@@ -1,0 +1,42 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <ClCompile Include="SFNetworkEntry.cpp">
+      <Filter>Interface</Filter>
+    </ClCompile>
+    <ClCompile Include="SFTCPNetwork.cpp">
+      <Filter>Interface</Filter>
+    </ClCompile>
+    <ClCompile Include=".\SFUDPNetwork.cpp">
+      <Filter>Interface</Filter>
+    </ClCompile>
+    <ClCompile Include="stdafx.cpp">
+      <Filter>Interface</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="SFNetworkEntry.h">
+      <Filter>Interface</Filter>
+    </ClInclude>
+    <ClInclude Include="SFTCPNetwork.h">
+      <Filter>Interface</Filter>
+    </ClInclude>
+    <ClInclude Include=".\SFUDPNetwork.h">
+      <Filter>Interface</Filter>
+    </ClInclude>
+    <ClInclude Include="stdafx.h">
+      <Filter>Interface</Filter>
+    </ClInclude>
+    <ClInclude Include="targetver.h">
+      <Filter>Interface</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <Text Include="ReadMe.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <Filter Include="Interface">
+      <UniqueIdentifier>{165b84c8-fa15-4d99-8393-9473624aaca2}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+</Project>

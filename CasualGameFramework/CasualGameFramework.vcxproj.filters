@@ -1,0 +1,265 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="Common">
+      <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
+      <Extensions>cpp;c;cc;cxx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
+    </Filter>
+    <Filter Include="GameMode">
+      <UniqueIdentifier>{6d9307cc-fc1f-41ab-809a-334b0f6e74b6}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Entry">
+      <UniqueIdentifier>{9207da86-d57f-4642-8d08-855c5af9fe48}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="P2P">
+      <UniqueIdentifier>{a6c1fc8b-81d8-439f-a595-fd173dd58f41}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Player">
+      <UniqueIdentifier>{11e3063b-b6a9-4fd2-9c85-832a68d370e1}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Room">
+      <UniqueIdentifier>{c9466b8d-5dc5-4fd0-8f9a-ee5168896a7f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Lobby">
+      <UniqueIdentifier>{c05bd53e-4a98-4726-b167-73c26dde9409}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Team">
+      <UniqueIdentifier>{4ed74712-2772-4e07-a21c-a4d966e3b0a1}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="DataBase">
+      <UniqueIdentifier>{f9511c26-8169-477d-a626-cd15dae0bef5}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include=".\SFGameConstant.h">
+      <Filter>Common</Filter>
+    </ClInclude>
+    <ClInclude Include=".\SFGameStructure.h">
+      <Filter>Common</Filter>
+    </ClInclude>
+    <ClInclude Include=".\SFLogicCore.h">
+      <Filter>Common</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Common\SFPacketStore\SFPacketStore.pb.h">
+      <Filter>Common</Filter>
+    </ClInclude>
+    <ClInclude Include=".\SFSendPacket.h">
+      <Filter>Common</Filter>
+    </ClInclude>
+    <ClInclude Include=".\stdafx.h">
+      <Filter>Common</Filter>
+    </ClInclude>
+    <ClInclude Include=".\targetver.h">
+      <Filter>Common</Filter>
+    </ClInclude>
+    <ClInclude Include=".\SFGameMode.h">
+      <Filter>GameMode</Filter>
+    </ClInclude>
+    <ClInclude Include=".\SFGameModeFSM.h">
+      <Filter>GameMode</Filter>
+    </ClInclude>
+    <ClInclude Include=".\SFLogicContents.h">
+      <Filter>Entry</Filter>
+    </ClInclude>
+    <ClInclude Include=".\SFLogicEntry.h">
+      <Filter>Entry</Filter>
+    </ClInclude>
+    <ClInclude Include=".\SFP2PSys.h">
+      <Filter>P2P</Filter>
+    </ClInclude>
+    <ClInclude Include=".\SFPlayer.h">
+      <Filter>Player</Filter>
+    </ClInclude>
+    <ClInclude Include=".\SFPlayerFSM.h">
+      <Filter>Player</Filter>
+    </ClInclude>
+    <ClInclude Include=".\SFPlayerInit.h">
+      <Filter>Player</Filter>
+    </ClInclude>
+    <ClInclude Include=".\SFPlayerLoading.h">
+      <Filter>Player</Filter>
+    </ClInclude>
+    <ClInclude Include=".\SFPlayerLobby.h">
+      <Filter>Player</Filter>
+    </ClInclude>
+    <ClInclude Include=".\SFPlayerLogin.h">
+      <Filter>Player</Filter>
+    </ClInclude>
+    <ClInclude Include=".\SFPlayerNone.h">
+      <Filter>Player</Filter>
+    </ClInclude>
+    <ClInclude Include=".\SFPlayerPlay.h">
+      <Filter>Player</Filter>
+    </ClInclude>
+    <ClInclude Include=".\SFPlayerPlayEnd.h">
+      <Filter>Player</Filter>
+    </ClInclude>
+    <ClInclude Include=".\SFPlayerPlayReady.h">
+      <Filter>Player</Filter>
+    </ClInclude>
+    <ClInclude Include=".\SFPlayerRoom.h">
+      <Filter>Player</Filter>
+    </ClInclude>
+    <ClInclude Include=".\SFPlayerState.h">
+      <Filter>Player</Filter>
+    </ClInclude>
+    <ClInclude Include=".\SFRoom.h">
+      <Filter>Room</Filter>
+    </ClInclude>
+    <ClInclude Include=".\SFRoomFSM.h">
+      <Filter>Room</Filter>
+    </ClInclude>
+    <ClInclude Include=".\SFRoomLoading.h">
+      <Filter>Room</Filter>
+    </ClInclude>
+    <ClInclude Include=".\SFRoomManager.h">
+      <Filter>Room</Filter>
+    </ClInclude>
+    <ClInclude Include=".\SFRoomNone.h">
+      <Filter>Room</Filter>
+    </ClInclude>
+    <ClInclude Include=".\SFRoomPlay.h">
+      <Filter>Room</Filter>
+    </ClInclude>
+    <ClInclude Include=".\SFRoomPlayEnd.h">
+      <Filter>Room</Filter>
+    </ClInclude>
+    <ClInclude Include=".\SFRoomPlayReady.h">
+      <Filter>Room</Filter>
+    </ClInclude>
+    <ClInclude Include=".\SFRoomState.h">
+      <Filter>Room</Filter>
+    </ClInclude>
+    <ClInclude Include=".\SFRoomWait.h">
+      <Filter>Room</Filter>
+    </ClInclude>
+    <ClInclude Include=".\SFLobby.h">
+      <Filter>Lobby</Filter>
+    </ClInclude>
+    <ClInclude Include=".\SFTeam.h">
+      <Filter>Team</Filter>
+    </ClInclude>
+    <ClInclude Include="SFDirectoryWatcher.h">
+      <Filter>Entry</Filter>
+    </ClInclude>
+    <ClInclude Include="SFDirectoryWatcherTask.h">
+      <Filter>Entry</Filter>
+    </ClInclude>
+    <ClInclude Include="SFSendDBRequest.h">
+      <Filter>DataBase</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include=".\SFLogicCore.cpp">
+      <Filter>Common</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Common\SFPacketStore\SFPacketStore.pb.cc">
+      <Filter>Common</Filter>
+    </ClCompile>
+    <ClCompile Include=".\SFSendPacket.cpp">
+      <Filter>Common</Filter>
+    </ClCompile>
+    <ClCompile Include=".\stdafx.cpp">
+      <Filter>Common</Filter>
+    </ClCompile>
+    <ClCompile Include=".\SFGameMode.cpp">
+      <Filter>GameMode</Filter>
+    </ClCompile>
+    <ClCompile Include=".\SFGameModeFSM.cpp">
+      <Filter>GameMode</Filter>
+    </ClCompile>
+    <ClCompile Include=".\SFLogicContents.cpp">
+      <Filter>Entry</Filter>
+    </ClCompile>
+    <ClCompile Include=".\SFLogicEntry.cpp">
+      <Filter>Entry</Filter>
+    </ClCompile>
+    <ClCompile Include=".\SFP2PSys.cpp">
+      <Filter>P2P</Filter>
+    </ClCompile>
+    <ClCompile Include=".\SFPlayer.cpp">
+      <Filter>Player</Filter>
+    </ClCompile>
+    <ClCompile Include=".\SFPlayerFSM.cpp">
+      <Filter>Player</Filter>
+    </ClCompile>
+    <ClCompile Include=".\SFPlayerInit.cpp">
+      <Filter>Player</Filter>
+    </ClCompile>
+    <ClCompile Include=".\SFPlayerLoading.cpp">
+      <Filter>Player</Filter>
+    </ClCompile>
+    <ClCompile Include=".\SFPlayerLobby.cpp">
+      <Filter>Player</Filter>
+    </ClCompile>
+    <ClCompile Include=".\SFPlayerLogin.cpp">
+      <Filter>Player</Filter>
+    </ClCompile>
+    <ClCompile Include=".\SFPlayerNone.cpp">
+      <Filter>Player</Filter>
+    </ClCompile>
+    <ClCompile Include=".\SFPlayerPlay.cpp">
+      <Filter>Player</Filter>
+    </ClCompile>
+    <ClCompile Include=".\SFPlayerPlayEnd.cpp">
+      <Filter>Player</Filter>
+    </ClCompile>
+    <ClCompile Include=".\SFPlayerPlayReady.cpp">
+      <Filter>Player</Filter>
+    </ClCompile>
+    <ClCompile Include=".\SFPlayerRoom.cpp">
+      <Filter>Player</Filter>
+    </ClCompile>
+    <ClCompile Include=".\SFPlayerState.cpp">
+      <Filter>Player</Filter>
+    </ClCompile>
+    <ClCompile Include=".\SFRoom.cpp">
+      <Filter>Room</Filter>
+    </ClCompile>
+    <ClCompile Include=".\SFRoomFSM.cpp">
+      <Filter>Room</Filter>
+    </ClCompile>
+    <ClCompile Include=".\SFRoomLoading.cpp">
+      <Filter>Room</Filter>
+    </ClCompile>
+    <ClCompile Include=".\SFRoomManager.cpp">
+      <Filter>Room</Filter>
+    </ClCompile>
+    <ClCompile Include=".\SFRoomNone.cpp">
+      <Filter>Room</Filter>
+    </ClCompile>
+    <ClCompile Include=".\SFRoomPlay.cpp">
+      <Filter>Room</Filter>
+    </ClCompile>
+    <ClCompile Include=".\SFRoomPlayEnd.cpp">
+      <Filter>Room</Filter>
+    </ClCompile>
+    <ClCompile Include=".\SFRoomPlayReady.cpp">
+      <Filter>Room</Filter>
+    </ClCompile>
+    <ClCompile Include=".\SFRoomState.cpp">
+      <Filter>Room</Filter>
+    </ClCompile>
+    <ClCompile Include=".\SFRoomWait.cpp">
+      <Filter>Room</Filter>
+    </ClCompile>
+    <ClCompile Include=".\SFLobby.cpp">
+      <Filter>Lobby</Filter>
+    </ClCompile>
+    <ClCompile Include=".\SFTeam.cpp">
+      <Filter>Team</Filter>
+    </ClCompile>
+    <ClCompile Include="SFDirectoryWatcher.cpp">
+      <Filter>Entry</Filter>
+    </ClCompile>
+    <ClCompile Include="SFDirectoryWatcherTask.cpp">
+      <Filter>Entry</Filter>
+    </ClCompile>
+    <ClCompile Include="SFSendDBRequest.cpp">
+      <Filter>DataBase</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <Text Include=".\ReadMe.txt" />
+  </ItemGroup>
+</Project>

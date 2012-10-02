@@ -1,0 +1,156 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup Label="ProjectConfigurations">
+    <ProjectConfiguration Include="Debug|Win32">
+      <Configuration>Debug</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|Win32">
+      <Configuration>Release</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+  </ItemGroup>
+  <PropertyGroup Label="Globals">
+    <VCTargetsPath Condition="'$(VCTargetsPath11)' != '' and '$(VSVersion)' == '' and '$(VisualStudioVersion)' == ''">$(VCTargetsPath11)</VCTargetsPath>
+  </PropertyGroup>
+  <PropertyGroup Label="Globals">
+    <ProjectGuid>{835E9346-EC73-421D-8C4B-16C4673E3680}</ProjectGuid>
+    <RootNamespace>BaseLib</RootNamespace>
+    <Keyword>Win32Proj</Keyword>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="Configuration">
+    <ConfigurationType>StaticLibrary</ConfigurationType>
+    <PlatformToolset>v110</PlatformToolset>
+    <CharacterSet>Unicode</CharacterSet>
+    <WholeProgramOptimization>true</WholeProgramOptimization>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
+    <ConfigurationType>StaticLibrary</ConfigurationType>
+    <PlatformToolset>v110</PlatformToolset>
+    <CharacterSet>Unicode</CharacterSet>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
+  <ImportGroup Label="ExtensionSettings">
+  </ImportGroup>
+  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="PropertySheets">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="PropertySheets">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <PropertyGroup Label="UserMacros" />
+  <PropertyGroup>
+    <_ProjectFileVersion>11.0.50522.1</_ProjectFileVersion>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <OutDir>..\Lib\Debug\</OutDir>
+    <IntDir>../Intermediate/$(Configuration)\$(ProjectName)\</IntDir>
+    <TargetName>$(ProjectName)</TargetName>
+    <TargetExt>.lib</TargetExt>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <OutDir>..\Lib\Release\</OutDir>
+    <IntDir>..\Intermediate\$(Configuration)\$(ProjectName)\</IntDir>
+    <TargetName>$(ProjectName)</TargetName>
+    <TargetExt>.lib</TargetExt>
+  </PropertyGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <ClCompile>
+      <Optimization>Disabled</Optimization>
+      <AdditionalIncludeDirectories>../ThirdParty/Breakpad;../ThirdParty/Bugtrap;../ThirdParty/LiteZip;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions>WIN32;_DEBUG;_LIB;_CRT_SECURE_NO_WARNINGS;_CRT_NON_CONFORMING_SWPRINTFS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <MinimalRebuild>true</MinimalRebuild>
+      <BasicRuntimeChecks>EnableFastChecks</BasicRuntimeChecks>
+      <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
+      <PrecompiledHeader>Use</PrecompiledHeader>
+      <WarningLevel>Level3</WarningLevel>
+      <DebugInformationFormat>EditAndContinue</DebugInformationFormat>
+    </ClCompile>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <ClCompile>
+      <Optimization>MaxSpeed</Optimization>
+      <IntrinsicFunctions>true</IntrinsicFunctions>
+      <AdditionalIncludeDirectories>../ThirdParty/BreakPad;../ThirdParty/Bugtrap;../ThirdParty/LiteZip;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions>WIN32;NDEBUG;_LIB;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
+      <FunctionLevelLinking>true</FunctionLevelLinking>
+      <PrecompiledHeader>Use</PrecompiledHeader>
+      <WarningLevel>Level3</WarningLevel>
+      <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
+    </ClCompile>
+  </ItemDefinitionGroup>
+  <ItemGroup>
+    <ClCompile Include=".\cpu_info.cpp" />
+    <ClCompile Include=".\CPUDesc.cpp" />
+    <ClCompile Include=".\SFBitArray.cpp" />
+    <ClCompile Include=".\SFDiskManager.cpp" />
+    <ClCompile Include=".\SFFilePack.cpp" />
+    <ClCompile Include=".\SFIni.cpp" />
+    <ClCompile Include=".\SFRegexChecker.cpp" />
+    <ClCompile Include=".\SFRegistry.cpp" />
+    <ClCompile Include=".\SFServiceController.cpp" />
+    <ClCompile Include=".\SFSystemInfo.cpp" />
+    <ClCompile Include=".\stdafx.cpp">
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Create</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Create</PrecompiledHeader>
+    </ClCompile>
+    <ClCompile Include="SFBreakPad.cpp" />
+    <ClCompile Include="SFBugTrap.cpp" />
+    <ClCompile Include="SFCustomHandler.cpp" />
+    <ClCompile Include="SFExceptionHandlerUtil.cpp" />
+    <ClCompile Include="SFMinidump.cpp" />
+    <ClCompile Include="SFStackWalker.cpp" />
+    <ClCompile Include="StackWalker.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include=".\cpu_info.h" />
+    <ClInclude Include=".\CPUDesc.h" />
+    <ClInclude Include=".\SFBitArray.h" />
+    <ClInclude Include=".\SFDiskManager.h" />
+    <ClInclude Include=".\SFFilePack.h" />
+    <ClInclude Include=".\SFIni.h" />
+    <ClInclude Include=".\SFRegexChecker.h" />
+    <ClInclude Include=".\SFRegistry.h" />
+    <ClInclude Include=".\SFServiceController.h" />
+    <ClInclude Include=".\SFSystemInfo.h" />
+    <ClInclude Include=".\stdafx.h" />
+    <ClInclude Include=".\targetver.h" />
+    <ClInclude Include=".\DataStructure\Array.h" />
+    <ClInclude Include=".\DataStructure\Array2D.h" />
+    <ClInclude Include=".\DataStructure\Array3D.h" />
+    <ClInclude Include=".\DataStructure\BinarySearchTree.h" />
+    <ClInclude Include=".\DataStructure\BinaryTree.h" />
+    <ClInclude Include=".\DataStructure\Bitvector.h" />
+    <ClInclude Include=".\DataStructure\DLinkedList.h" />
+    <ClInclude Include=".\DataStructure\Graph.h" />
+    <ClInclude Include=".\DataStructure\HashTable.h" />
+    <ClInclude Include=".\DataStructure\Heap.h" />
+    <ClInclude Include=".\DataStructure\Huffman.h" />
+    <ClInclude Include=".\DataStructure\Pathfinding.h" />
+    <ClInclude Include=".\DataStructure\Queue.h" />
+    <ClInclude Include=".\DataStructure\RandomNumbers.h" />
+    <ClInclude Include=".\DataStructure\RLE.h" />
+    <ClInclude Include=".\DataStructure\SLinkedList.h" />
+    <ClInclude Include=".\DataStructure\sorts.h" />
+    <ClInclude Include=".\DataStructure\Stack.h" />
+    <ClInclude Include=".\DataStructure\Tree.h" />
+    <ClInclude Include="GPGLockFreeQueue.h" />
+    <ClInclude Include="SFBreakPad.h" />
+    <ClInclude Include="SFBugTrap.h" />
+    <ClInclude Include="SFCustomHandler.h" />
+    <ClInclude Include="SFExceptionHandler.h" />
+    <ClInclude Include="SFExceptionHandlerUtil.h" />
+    <ClInclude Include="SFMinidump.h" />
+    <ClInclude Include="SFStackWalker.h" />
+    <ClInclude Include="StackWalker.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <Text Include=".\DataStructure\Readme.txt" />
+    <Text Include=".\ReadMe.txt" />
+  </ItemGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
+  <ImportGroup Label="ExtensionTargets">
+  </ImportGroup>
+</Project>

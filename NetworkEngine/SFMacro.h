@@ -1,0 +1,13 @@
+#pragma once
+#include <assert.h>
+
+#define SFASSERT(x) assert((x))
+
+#define SF_GETPACKET_ARG(a,b,c) memcpy(a,b.c_str(), sizeof(c));
+
+#define  SFSYSTEM_SERVER SFEngine<SFServer,GoogleLog,SFACEFramework>
+#define  SFSYSTEM_CLIENT SFEngine<SFClient,GoogleLog,SFACEFramework>
+
+#define DATABASE_TSS ACE_TSS<SFDatabaseMySQL>
+
+#define CGSF_PACKET_OPTION  PACKET_OPTION_DATACRC|PACKET_OPTION_ENCRYPTION|PACKET_OPTION_COMPRESS
