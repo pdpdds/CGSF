@@ -20,7 +20,7 @@ In ThirdParty Folder
 * Compile GoogleProtocolBuffer(protobuf-2.4.1) and copy (libprotobuf.lib, libprotobuf-lite.lib, libprotoc.lib) to lib/debug(or release)
   (this project's compile is not perfect. we need protobuf's 2012 version)
   
- In CGSF Folder
+In CGSF Folder
 * Open OnlineSystem.sln and Build it
 
 Open Source
