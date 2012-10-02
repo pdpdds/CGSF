@@ -62,7 +62,7 @@
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <ClCompile>
       <Optimization>Disabled</Optimization>
-      <AdditionalIncludeDirectories>../Common/SFPacketStore;../Common;../P2PServer;../CasualGameFramework;../NetworkEngine;../ThirdParty/protobuf-2.4.1/src;../ACE_wrappers;../ThirdParty/glog/src/windows;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>../Common/SFPacketStore;../Common;../P2PServer;../CasualGameFramework;../NetworkEngine;../../ThirdParty/protobuf-2.4.1/src;../../ThirdParty/ACE_wrappers;../../ThirdParty/glog/src/windows;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>WIN32;_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <MinimalRebuild>true</MinimalRebuild>
       <BasicRuntimeChecks>EnableFastChecks</BasicRuntimeChecks>
@@ -72,7 +72,7 @@
       <DebugInformationFormat>EditAndContinue</DebugInformationFormat>
     </ClCompile>
     <Link>
-      <AdditionalLibraryDirectories>../ThirdParty/SQLite;../Lib/Debug;../ThirdParty/Lib/debug;../ThirdParty/Lib/Debug/Glog;../ThirdParty/Lib/Debug/libProto;../Ace_Wrappers/lib;../ThirdParty/Lib/Debug/vld-10;../ThirdParty/MySql/lib;../ThirdParty/boost_1_49_0/stage/lib;../ThirdParty/ssl/lib;../ThirdParty/libTom/Lib/debug;../ThirdParty/loki/lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalLibraryDirectories>../../ThirdParty/SQLite;../Lib/Debug;../../ThirdParty/Lib/debug;../../ThirdParty/Ace_Wrappers/lib;../../ThirdParty/Lib/vld-10;../../ThirdParty/MySql/lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <SubSystem>Console</SubSystem>
       <TargetMachine>MachineX86</TargetMachine>
@@ -82,7 +82,7 @@
     <ClCompile>
       <Optimization>MaxSpeed</Optimization>
       <IntrinsicFunctions>true</IntrinsicFunctions>
-      <AdditionalIncludeDirectories>../Common/SFPacketStore;../Common;../P2PServer;../CasualGameFramework;../NetworkEngine;../ThirdParty/protobuf-2.4.1/src;../ACE_wrappers;../ThirdParty/glog/src/windows;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>../Common/SFPacketStore;../Common;../P2PServer;../CasualGameFramework;../NetworkEngine;../../ThirdParty/protobuf-2.4.1/src;../../ThirdParty/ACE_wrappers;../../ThirdParty/glog/src/windows;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>WIN32;NDEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
       <FunctionLevelLinking>true</FunctionLevelLinking>

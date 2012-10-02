@@ -11,18 +11,16 @@ GoogleLog::~GoogleLog(void)
 
 BOOL GoogleLog::Initialize()
 {
-	google::InitGoogleLogging("CGSF");
+	//google::InitGoogleLogging("CGSF");
 
-
-
-	google::SetLogDestination(GLOG_ERROR, "./");
+	//google::SetLogDestination(GLOG_ERROR, "./");
 
 	return TRUE;
 }
 
 BOOL GoogleLog::Finally()
 {
-	google::ShutdownGoogleLogging();
+	//google::ShutdownGoogleLogging();
 
 	return TRUE;
 }

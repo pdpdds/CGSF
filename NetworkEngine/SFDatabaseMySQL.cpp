@@ -57,7 +57,7 @@ BOOL SFDatabaseMySQL::Execute(char* szQuery)
 
 	if (QueryState != 0)
 	{
-		LOG(FATAL) << "Mysql Query error" << mysql_error(&m_Conn);
+		//LOG(FATAL) << "Mysql Query error" << mysql_error(&m_Conn);
 		SFASSERT(0);
 		return FALSE;
 	}
@@ -110,5 +110,4 @@ BOOL SFDatabaseMySQL::Call( SFMessage* pMessage )
 	}
 
 	return TRUE;
-
 }

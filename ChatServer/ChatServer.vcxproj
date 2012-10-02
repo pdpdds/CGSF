@@ -60,7 +60,7 @@
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <ClCompile>
       <Optimization>Disabled</Optimization>
-      <AdditionalIncludeDirectories>../NetworkEngine;../ACE_wrappers;../Common;../Common/SFPacketStore;../ThirdParty/protobuf-2.4.1/src;../Common;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>../NetworkEngine;../../ThirdParty/ACE_wrappers;../Common;../Common/SFPacketStore;../../ThirdParty/protobuf-2.4.1/src;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>WIN32;_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <MinimalRebuild>true</MinimalRebuild>
       <BasicRuntimeChecks>EnableFastChecks</BasicRuntimeChecks>
@@ -70,7 +70,7 @@
       <DebugInformationFormat>EditAndContinue</DebugInformationFormat>
     </ClCompile>
     <Link>
-      <AdditionalLibraryDirectories>../ThirdParty/SQLite;../ThirdParty/libtom/lib/debug;../ThirdParty/Lib/debug;../ThirdParty/Lib/Debug/Glog;../ThirdParty/Lib/Debug/libProto;../Ace_Wrappers/lib;../Lib/Debug;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalLibraryDirectories>../../ThirdParty/SQLite;../../ThirdParty/Lib/debug;../../ThirdParty/Ace_Wrappers/lib;../Lib/Debug;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <SubSystem>Console</SubSystem>
       <TargetMachine>MachineX86</TargetMachine>
@@ -80,7 +80,7 @@
     <ClCompile>
       <Optimization>MaxSpeed</Optimization>
       <IntrinsicFunctions>true</IntrinsicFunctions>
-      <AdditionalIncludeDirectories>../NetworkEngine;../Common;../ThirdParty/glog/src/windows;../Common/SFPacketStore;../ThirdParty/protobuf-2.4.1/src;../ACE_wrappers;../ThirdParty/vld-10;../ThirdParty/Mysql/include;../ThirdParty/LiteZip;../ThirdParty/boost_1_49_0;../ExceptionHandler;../CGSF/External;../ThirdParty/ssl/include;../ThirdParty/libTom/Include;../CGBase/DataStructure;../ThirdParty/Loki/include/loki;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>../NetworkEngine;../../ThirdParty/ACE_wrappers;../Common;../Common/SFPacketStore;../../ThirdParty/protobuf-2.4.1/src;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>WIN32;NDEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
       <FunctionLevelLinking>true</FunctionLevelLinking>

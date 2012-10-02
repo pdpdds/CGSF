@@ -27,8 +27,8 @@
 
 #define GLOG_NO_ABBREVIATED_SEVERITIES
 
-#pragma warning(disable : 4244)
-#include <glog/logging.h>
+//#pragma warning(disable : 4244)
+//#include <glog/logging.h>
 #include <google/protobuf/io/zero_copy_stream_impl_lite.h>
 #include "ChatPacket.pb.h"
 
@@ -36,7 +36,7 @@
 #include "SFString.h"
 #include "SFBridgeThread.h"
 
-#pragma comment(lib, "libglog.lib")
+//#pragma comment(lib, "libglog.lib")
 
 using namespace google;
 
