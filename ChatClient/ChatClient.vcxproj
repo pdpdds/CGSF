@@ -60,7 +60,7 @@
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <ClCompile>
       <Optimization>Disabled</Optimization>
-      <AdditionalIncludeDirectories>../Include;../NetInterface;../BaseLib;../ThirdParty/Breakpad;../ThirdParty/Bugtrap;../NetworkEngine;../Common;../ThirdParty/glog/src/windows;../Common/SFPacketStore;../ThirdParty/protobuf-2.4.1/src;../ACE_wrappers;../ThirdParty/vld-10;../ThirdParty/Mysql/include;../ThirdParty/LiteZip;../ThirdParty/boost_1_49_0;../ExceptionHandler;../CGSF/External;../ThirdParty/ssl/include;../ThirdParty/libTom/Include;../CGBase/DataStructure;../ThirdParty/Loki/include/loki;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>../Include;../NetInterface;../BaseLib;../../ThirdParty/Breakpad;../../ThirdParty/Bugtrap;../NetworkEngine;../Common;../../ThirdParty/glog/src/windows;../Common/SFPacketStore;../../ThirdParty/protobuf-2.4.1/src;../../ThirdParty/ACE_wrappers;../../ThirdParty/vld-10;../../ThirdParty/Mysql/include;../../ThirdParty/LiteZip;../CGSF/External;../../ThirdParty/ssl/include;../../ThirdParty/libTom/Include;../CGBase/DataStructure;../../ThirdParty/Loki/include/loki;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>WIN32;_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <MinimalRebuild>true</MinimalRebuild>
       <BasicRuntimeChecks>EnableFastChecks</BasicRuntimeChecks>
@@ -80,7 +80,7 @@
     <ClCompile>
       <Optimization>MaxSpeed</Optimization>
       <IntrinsicFunctions>true</IntrinsicFunctions>
-      <AdditionalIncludeDirectories>../Include;../NetInterface;../BaseLib;../ThirdParty/Breakpad;../ThirdParty/Bugtrap;../NetworkEngine;../Common;../ThirdParty/glog/src/windows;../Common/SFPacketStore;../ThirdParty/protobuf-2.4.1/src;../ACE_wrappers;../ThirdParty/vld-10;../ThirdParty/Mysql/include;../ThirdParty/LiteZip;../ThirdParty/boost_1_49_0;../ExceptionHandler;../CGSF/External;../ThirdParty/ssl/include;../ThirdParty/libTom/Include;../CGBase/DataStructure;../ThirdParty/Loki/include/loki;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>../Include;../NetInterface;../BaseLib;../../ThirdParty/Breakpad;../../ThirdParty/Bugtrap;../NetworkEngine;../Common;../../ThirdParty/glog/src/windows;../Common/SFPacketStore;../../ThirdParty/protobuf-2.4.1/src;../../ThirdParty/ACE_wrappers;../../ThirdParty/vld-10;../../ThirdParty/Mysql/include;../../ThirdParty/LiteZip;../CGSF/External;../../ThirdParty/ssl/include;../../ThirdParty/libTom/Include;../CGBase/DataStructure;../../ThirdParty/Loki/include/loki;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>WIN32;NDEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
       <FunctionLevelLinking>true</FunctionLevelLinking>

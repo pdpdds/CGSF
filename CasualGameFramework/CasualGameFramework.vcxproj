@@ -58,7 +58,7 @@
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <ClCompile>
       <Optimization>Disabled</Optimization>
-      <AdditionalIncludeDirectories>../ThirdParty/mysql/include;../NetworkEngine;../BaseLib;../Common;../Common/SFPacketStore;../ACE_WRAPPERS;../ThirdParty/protobuf-2.4.1/src;../ThirdParty/glog/src/windows;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>../../ThirdParty/mysql/include;../NetworkEngine;../BaseLib;../Common;../Common/SFPacketStore;../../ThirdParty/ACE_WRAPPERS;../../ThirdParty/protobuf-2.4.1/src;../../ThirdParty/glog/src/windows;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>WIN32;_DEBUG;_LIB;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <MinimalRebuild>true</MinimalRebuild>
       <BasicRuntimeChecks>EnableFastChecks</BasicRuntimeChecks>
@@ -72,7 +72,7 @@
     <ClCompile>
       <Optimization>MaxSpeed</Optimization>
       <IntrinsicFunctions>true</IntrinsicFunctions>
-      <AdditionalIncludeDirectories>../ThirdParty/mysql/include;../NetworkEngine;../BaseLib;../Common;../Common/SFPacketStore;../ACE_WRAPPERS;../ThirdParty/protobuf-2.4.1/src;../ThirdParty/glog/src/windows;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>../../ThirdParty/mysql/include;../NetworkEngine;../BaseLib;../Common;../Common/SFPacketStore;../../ThirdParty/ACE_WRAPPERS;../../ThirdParty/protobuf-2.4.1/src;../../ThirdParty/glog/src/windows;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>WIN32;NDEBUG;_LIB;%(PreprocessorDefinitions);_CRT_SECURE_NO_WARNING</PreprocessorDefinitions>
       <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
       <FunctionLevelLinking>true</FunctionLevelLinking>

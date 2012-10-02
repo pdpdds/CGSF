@@ -58,7 +58,7 @@
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <ClCompile>
       <Optimization>Disabled</Optimization>
-      <AdditionalIncludeDirectories>../Include;./External;../BaseLib;../NetworkEngine/External;../P2PNetwork;../Common;../FPSMultiPlayer/DirectX9.0/Include;../ThirdParty/zlib;../ThirdParty/liblzf;../ThirdParty/glog/src/windows;../ACE_wrappers;../ThirdParty/Mysql/include;../ThirdParty/boost_1_49_0;../ThirdParty;../ThirdParty/ssl/include;../Common/SFPacketStore;../ThirdParty/protobuf-2.4.1/src;../ThirdParty/SQLite;../ThirdParty/Loki/include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>../Include;./External;../BaseLib;../NetworkEngine/External;../P2PNetwork;../Common;../../ThirdParty/zlib;../../ThirdParty/liblzf;../../ThirdParty/glog/src/windows;../../ThirdParty/ACE_wrappers;../../ThirdParty/Mysql/include;../../ThirdParty/boost_1_49_0;../../ThirdParty;../../ThirdParty/ssl/include;../Common/SFPacketStore;../../ThirdParty/protobuf-2.4.1/src;../../ThirdParty/SQLite;../../ThirdParty/Loki/include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>WIN32;_DEBUG;_LIB;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <MinimalRebuild>true</MinimalRebuild>
       <BasicRuntimeChecks>EnableFastChecks</BasicRuntimeChecks>
@@ -75,7 +75,7 @@
     <ClCompile>
       <Optimization>MaxSpeed</Optimization>
       <IntrinsicFunctions>true</IntrinsicFunctions>
-      <AdditionalIncludeDirectories>../Include;./External;../BaseLib;../NetworkEngine/External;../P2PNetwork;../Common;../FPSMultiPlayer/DirectX9.0/Include;../ThirdParty/zlib;../ThirdParty/liblzf;../ThirdParty/glog/src/windows;../ACE_wrappers;../ThirdParty/Mysql/include;../ThirdParty/boost_1_49_0;../ThirdParty;../ThirdParty/ssl/include;../Common/SFPacketStore;../ThirdParty/protobuf-2.4.1/src;../ThirdParty/SQLite;../ThirdParty/Loki/include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>../Include;./External;../BaseLib;../NetworkEngine/External;../P2PNetwork;../Common;../../ThirdParty/zlib;../../ThirdParty/liblzf;../../ThirdParty/glog/src/windows;../../ThirdParty/ACE_wrappers;../../ThirdParty/Mysql/include;../../ThirdParty;../../ThirdParty/ssl/include;../Common/SFPacketStore;../../ThirdParty/protobuf-2.4.1/src;../../ThirdParty/SQLite;../../ThirdParty/Loki/include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>WIN32;NDEBUG;_LIB;%(PreprocessorDefinitions);_CRT_SECURE_NO_WARNINGS</PreprocessorDefinitions>
       <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
       <FunctionLevelLinking>true</FunctionLevelLinking>
