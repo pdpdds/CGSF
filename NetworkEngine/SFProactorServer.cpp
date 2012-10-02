@@ -28,7 +28,7 @@ BOOL SendAuthPacket(SFProactorService* pService)
 SFProactorServer::SFProactorServer(void)
 : m_Acceptor(this)
 {
-	ACEAllocator* AceMemoryPool = new ACEAllocator(100, sizeof(SFProactorService));
+	//ACEAllocator* AceMemoryPool = new ACEAllocator(100, sizeof(SFProactorService));
 }
 
 SFProactorServer::~SFProactorServer(void)
@@ -150,4 +150,14 @@ BOOL SFProactorServer::CreateTimerTask( ILogicEntry* pLogic)
 	}
 
 	return TRUE;
+}
+
+BOOL SFProactorServer::Send(int Serial, USHORT PacketID, char* pMessage, int BufSize )
+{
+	return ProactorServiceMapSingleton::instance()->Send(Serial, PacketID, pMessage, BufSize );
+}
+
+BOOL SFProactorServer::Send(int Serial, SFPacket* pPacket)
+{
+	return ProactorServiceMapSingleton::instance()->Send(Serial, pPacket);
 }

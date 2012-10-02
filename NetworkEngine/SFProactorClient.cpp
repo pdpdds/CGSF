@@ -100,3 +100,15 @@ BOOL SFProactorClient::ServiceInitialize( SFProactorService* pService )
 
 	return TRUE;
 }
+
+BOOL SFProactorClient::Send(int Serial, USHORT PacketID, char* pMessage, int BufSize )
+{
+	SFProactorService* pService = GetNetworkService();
+	return pService->Send(PacketID, pMessage, BufSize);
+}
+
+BOOL SFProactorClient::Send(int Serial, SFPacket* pPacket)
+{
+	SFProactorService* pService = GetNetworkService();
+	return pService->Send(pPacket);
+}

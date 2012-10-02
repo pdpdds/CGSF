@@ -6,6 +6,7 @@
 #include <iostream>
 #include "SFClient.h"
 #include "GoogleLog.h"
+#include "SFMGFramework.h"
 
 extern SFSYSTEM_CLIENT* g_pNetworkEngine;
 

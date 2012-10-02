@@ -17,6 +17,9 @@ public:
 
 	SFProactorService* GetNetworkService(){return m_pNetworkService;}
 
+	virtual BOOL Send(int Serial, USHORT PacketID, char* pMessage, int BufSize ) override;
+	virtual BOOL Send(int Serial, SFPacket* pPacket) override;
+
 protected:
 	virtual BOOL Run() override;
 

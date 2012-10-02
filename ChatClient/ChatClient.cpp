@@ -14,6 +14,7 @@
 #include "SFMinidump.h"
 #include "SFCustomHandler.h"
 #include "SFBugTrap.h"
+#include "SFMGFramework.h"
 
 SFSYSTEM_CLIENT* g_pNetworkEngine = NULL;
 

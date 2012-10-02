@@ -37,8 +37,8 @@ BOOL SFTCPNetwork::Update()
 	return pTCPClient->Update();
 }
 
-BOOL SFTCPNetwork::Send( USHORT PacketID, char* pMessage, int BufSize )
+BOOL SFTCPNetwork::Send(int Serial, USHORT PacketID, char* pMessage, int BufSize )
 {
 	SFClient* pTCPClient = m_TCPClient->GetNetworkPolicy();
-	return pTCPClient->Send(PacketID, pMessage, BufSize);
+	return pTCPClient->Send(Serial, PacketID, pMessage, BufSize);
 }

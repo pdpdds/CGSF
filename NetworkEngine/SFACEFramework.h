@@ -14,6 +14,9 @@ public:
 	virtual BOOL End() override;
 	virtual BOOL Finally() override;
 
+	virtual BOOL Send(int Serial, USHORT PacketID, char* pMessage, int BufSize ) override;
+	virtual BOOL Send(int Serial, SFPacket* pPacket) override;
+
 	static char* GetModuleName(){return "ACE";}
 
 protected:

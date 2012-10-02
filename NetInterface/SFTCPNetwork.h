@@ -3,6 +3,7 @@
 #include "GoogleLog.h"
 #include "SFMacro.h"
 #include "SFACEFramework.h"
+#include "SFMGFramework.h"
 #include "SFEngine.h"
 
 class SFTCPNetwork
@@ -14,7 +15,7 @@ public:
 	BOOL Initialize(INetworkCallback* pTCPCallBack);
 	BOOL Run();
 	BOOL Update();
-	BOOL Send( USHORT PacketID, char* pMessage, int BufSize );
+	BOOL Send(int Serial, USHORT PacketID, char* pMessage, int BufSize );
 
 	SFSYSTEM_CLIENT* GetNetwork();
 

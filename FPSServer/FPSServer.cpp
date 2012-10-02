@@ -9,6 +9,7 @@
 #include "SFFreeForAll.h"
 #include "SFShouter.h"
 #include "SFUtil.h"
+#include "SFMGFramework.h"
 
 SFSYSTEM_SERVER* g_pEngine = NULL;
 
@@ -33,7 +34,6 @@ HINSTANCE g_pP2PHandle = 0;
 
 int _tmain(int argc, _TCHAR* argv[])
 {
-
 	ACE::init();
 
 	g_pEngine = new SFSYSTEM_SERVER();

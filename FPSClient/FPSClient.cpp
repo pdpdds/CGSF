@@ -9,6 +9,12 @@
 #pragma comment(lib, "NetworkEngine.lib")
 #pragma comment(lib, "NetInterface.lib")
 
+#ifdef _DEBUG
+#pragma comment(lib, "aced.lib")
+#else
+#pragma comment(lib, "ace.lib")
+#endif
+
 SFNetworkEntry* g_pNetworkEntry = NULL;
 
 int _tmain(int argc, _TCHAR* argv[])
@@ -31,4 +37,3 @@ int _tmain(int argc, _TCHAR* argv[])
 
 	return 0;
 }
-

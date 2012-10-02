@@ -39,7 +39,7 @@ bool TCPCallback::HandleNetworkMessage(int PacketID, BYTE* pBuffer, USHORT Lengt
 			PktLogin.SerializeToZeroCopyStream(&os);
 		}
 
-		g_pNetworkEntry->TCPSend(CGSF::Login, (char*)&Buffer, BufSize);
+		g_pNetworkEntry->TCPSend(0, CGSF::Login, (char*)&Buffer, BufSize);
 
 		//LOG(ERROR) << "This should work";
 		//LOG(ERROR) << "This should work";
@@ -57,7 +57,7 @@ bool TCPCallback::HandleNetworkMessage(int PacketID, BYTE* pBuffer, USHORT Lengt
 			PktEnterLobby.SerializeToZeroCopyStream(&os);
 		}
 		
-		g_pNetworkEntry->TCPSend(CGSF::EnterLobby, (char*)&Buffer, BufSize);
+		g_pNetworkEntry->TCPSend(0, CGSF::EnterLobby, (char*)&Buffer, BufSize);
 	}
 	else if (PacketID == CGSF::EnterLobby)
 	{
@@ -72,7 +72,7 @@ bool TCPCallback::HandleNetworkMessage(int PacketID, BYTE* pBuffer, USHORT Lengt
 			PktCreateRoom.SerializeToZeroCopyStream(&os);
 		}
 
-		g_pNetworkEntry->TCPSend(CGSF::CreateRoom, (char*)&Buffer, BufSize);
+		g_pNetworkEntry->TCPSend(0, CGSF::CreateRoom, (char*)&Buffer, BufSize);
 	}
 
 	return true;

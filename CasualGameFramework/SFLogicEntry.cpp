@@ -6,8 +6,14 @@
 #include "SFRoomFSM.h"
 #include "SFDatabaseProxyLocal.h"
 #include "SFDatabaseProxyImpl.h"
+#include "SFMacro.h"
+#include "SFServer.h"
+#include "GoogleLog.h"
+#include "SFEngine.h"
+#include "SFMGFramework.h"
 
 SFLogicEntry* SFLogicEntry::m_pLogicEntry = NULL;
+extern SFSYSTEM_SERVER* g_pEngine;
 
 SFLogicEntry::SFLogicEntry(void)
 {
@@ -204,14 +210,14 @@ BOOL SFLogicEntry::OnShouter(SFPacket* pPacket)
 
 BOOL SFLogicEntry::Send(SFPlayer* pPlayer, SFPacket* pPacket)
 {
-	ProactorServiceMapSingleton::instance()->Send(pPlayer->GetSerial(), pPacket);
+	g_pEngine->GetNetworkPolicy()->Send(pPlayer->GetSerial(), pPacket);
 
 	return TRUE;
 }
 
 BOOL SFLogicEntry::Send( int Serial, USHORT PacketID, char* pBuffer, int BufferSize )
 {
-	ProactorServiceMapSingleton::instance()->Send(Serial, PacketID, pBuffer, BufferSize);
-
+	g_pEngine->GetNetworkPolicy()->Send(Serial, PacketID, pBuffer, BufferSize);
+	
 	return TRUE;
 }

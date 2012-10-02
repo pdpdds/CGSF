@@ -4,6 +4,8 @@ class INetworkFramework;
 class INetworkCallback;
 class ILogicEntry;
 
+class SFPacket;
+
 class SFClient
 {
 public:
@@ -14,7 +16,9 @@ public:
 
 	void SetNetworkCallback(INetworkCallback* pNetworkCallback){m_pNetworkCallback = pNetworkCallback;}
 	BOOL Update();
-	bool Send( USHORT PacketID, char* pMessage, int BufSize );
+
+	bool Send(int Serial, USHORT PacketID, char* pMessage, int BufSize );
+	BOOL Send(int Serial, SFPacket* pPacket);
 
 protected:
 	

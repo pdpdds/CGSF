@@ -11,7 +11,7 @@
 #include "GoogleLog.h"
 #include "SFProactorClient.h"
 #include "SFProactorService.h"
-
+#include "SFMGFramework.h"
 
 extern SFSYSTEM_CLIENT* g_pNetworkEngine;
 
@@ -25,7 +25,7 @@ ChatPacketEntry::~ChatPacketEntry(void)
 
 BOOL ChatPacketEntry::Send( int Serial, SFPacket* pPacket )
 {
-	ProactorServiceMapSingleton::instance()->Send(Serial, pPacket);
+	g_pNetworkEngine->GetNetworkPolicy()->Send(Serial, pPacket);
 
 	return TRUE;
 }
@@ -36,18 +36,17 @@ BOOL ChatPacketEntry::Send(USHORT PacketID, char* pBuffer, int BufSize )
 	Packet.SetPacketID(PacketID);
 	Packet.MakePacket((BYTE*)pBuffer, BufSize, CGSF_PACKET_OPTION);
 
-	ProactorServiceMapSingleton::instance()->Send(GetSerial(), &Packet);
+	g_pNetworkEngine->GetNetworkPolicy()->Send(GetSerial(), &Packet);
 
 	return TRUE;
 }
 
 BOOL ChatPacketEntry::Send(int Serial, USHORT PacketID, char* pBuffer, int BufSize )
 {
-	ProactorServiceMapSingleton::instance()->Send(Serial, PacketID, pBuffer, BufSize);
+	g_pNetworkEngine->GetNetworkPolicy()->Send(Serial, PacketID, pBuffer, BufSize);
 
 	return TRUE;
 }
-
 
 BOOL ChatPacketEntry::ProcessPacket( SFCommand* pCommand )
 {

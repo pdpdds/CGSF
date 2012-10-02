@@ -67,3 +67,16 @@ BOOL SFACEFramework::Finally()
 
 	return TRUE;
 }
+
+BOOL SFACEFramework::Send(int Serial, USHORT PacketID, char* pMessage, int BufSize )
+{
+	IProactorAgent* pAgent = (IProactorAgent*)GetNetworkAgent();
+	return pAgent->Send(Serial, PacketID, pMessage, BufSize );
+}
+
+BOOL SFACEFramework::Send(int Serial, SFPacket* pPacket)
+{
+	IProactorAgent* pAgent = (IProactorAgent*)GetNetworkAgent();
+	return pAgent->Send(Serial, pPacket);
+}
+

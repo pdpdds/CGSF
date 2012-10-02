@@ -8,7 +8,8 @@
 #include "GoogleLog.h"
 #include "SFClient.h"
 #include "SFMacro.h"
-
+#include "SFMGFramework.h"
+#include "SFEngine.h"
 SFSYSTEM_SERVER* g_pEngine = NULL;
 
 #ifdef _DEBUG

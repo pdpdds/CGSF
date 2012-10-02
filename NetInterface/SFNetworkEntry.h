@@ -17,7 +17,7 @@ public:
 	BOOL Run();
 	BOOL Update();
 
-	bool TCPSend( USHORT PacketID, char* pMessage, int BufSize );
+	bool TCPSend(int Serial, USHORT PacketID, char* pMessage, int BufSize );
 	bool UDPSend(unsigned char* pMessage, int BufSize );
 	//bool TCPSend( USHORT PacketID, NetworkMessage* pMessage, int Size );
 

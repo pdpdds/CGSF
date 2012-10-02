@@ -5,8 +5,14 @@
 #include "PacketID.h"
 #include "SFSinglton.h"
 #include <iostream>
+#include "SFEngine.h"
+#include "SFServer.h"
+#include "GoogleLog.h"
+#include "SFMGFramework.h"
 
 using namespace google;
+
+extern SFSYSTEM_SERVER* g_pEngine;
 
 ChatLogicEntry::ChatLogicEntry(void)
 {
@@ -104,7 +110,7 @@ BOOL ChatLogicEntry::OnPlayerData( SFPacket* pPacket )
 
 BOOL ChatLogicEntry::Send(int Serial, SFPacket* pPacket)
 {
-	ProactorServiceMapSingleton::instance()->Send(Serial, pPacket);
+	g_pEngine->GetNetworkPolicy()->Send(Serial, pPacket);
 
 	return TRUE;
 }

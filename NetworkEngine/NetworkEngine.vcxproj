@@ -58,7 +58,7 @@
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <ClCompile>
       <Optimization>Disabled</Optimization>
-      <AdditionalIncludeDirectories>../Include;./External;../BaseLib;../NetworkEngine/External;../P2PNetwork;../Common;../../ThirdParty/zlib;../../ThirdParty/liblzf;../../ThirdParty/glog/src/windows;../../ThirdParty/ACE_wrappers;../../ThirdParty/Mysql/include;../../ThirdParty/boost_1_49_0;../../ThirdParty;../../ThirdParty/ssl/include;../Common/SFPacketStore;../../ThirdParty/protobuf-2.4.1/src;../../ThirdParty/SQLite;../../ThirdParty/Loki/include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>../Engine/MGServer/Include;../Include;./External;../BaseLib;../NetworkEngine/External;../P2PNetwork;../Common;../../ThirdParty/zlib;../../ThirdParty/liblzf;../../ThirdParty/glog/src/windows;../../ThirdParty/ACE_wrappers;../../ThirdParty/Mysql/include;../../ThirdParty/boost_1_49_0;../../ThirdParty;../../ThirdParty/ssl/include;../Common/SFPacketStore;../../ThirdParty/protobuf-2.4.1/src;../../ThirdParty/SQLite;../../ThirdParty/Loki/include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>WIN32;_DEBUG;_LIB;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <MinimalRebuild>true</MinimalRebuild>
       <BasicRuntimeChecks>EnableFastChecks</BasicRuntimeChecks>
@@ -176,6 +176,11 @@
     <ClCompile Include="GoogleLog.cpp" />
     <ClCompile Include="SFACETimeOutHandler.cpp" />
     <ClCompile Include="SFIOCPFramework.cpp" />
+    <ClCompile Include="SFMGClient.cpp" />
+    <ClCompile Include="SFMGClientReceiver.cpp" />
+    <ClCompile Include="SFMGFramework.cpp" />
+    <ClCompile Include="SFMGServer.cpp" />
+    <ClCompile Include="SFMGServerReceiver.cpp" />
     <ClCompile Include="SFShouter.cpp" />
     <ClCompile Include="StringConversion.cpp" />
     <ClCompile Include="tinystr.cpp" />
@@ -268,11 +273,17 @@
     <ClInclude Include="DelayedDirectoryChangeHandler.h" />
     <ClInclude Include="DirectoryChanges.h" />
     <ClInclude Include="GoogleLog.h" />
+    <ClInclude Include="ISFAgent.h" />
     <ClInclude Include="IXMLSerializable.h" />
     <ClInclude Include="IXMLStreamReader.h" />
     <ClInclude Include="IXMLStreamWriter.h" />
     <ClInclude Include="SFACETimeOutHandler.h" />
     <ClInclude Include="SFIOCPFramework.h" />
+    <ClInclude Include="SFMGClient.h" />
+    <ClInclude Include="SFMGClientReceiver.h" />
+    <ClInclude Include="SFMGFramework.h" />
+    <ClInclude Include="SFMGServer.h" />
+    <ClInclude Include="SFMGServerReceiver.h" />
     <ClInclude Include="SFShouter.h" />
     <ClInclude Include="SFXMLStreamReader.h" />
     <ClInclude Include="SFXMLStreamWriter.h" />

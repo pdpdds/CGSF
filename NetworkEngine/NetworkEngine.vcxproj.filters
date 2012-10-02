@@ -71,6 +71,9 @@
     <Filter Include="Shouter">
       <UniqueIdentifier>{d07dc62e-052f-4e2a-a608-ed2f1312111a}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Network\MG">
+      <UniqueIdentifier>{ded8d32c-2b1f-440f-93ef-a812079e8728}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include=".\SFExcel.cpp">
@@ -258,6 +261,21 @@
     </ClCompile>
     <ClCompile Include=".\SFBridgeThread.cpp">
       <Filter>Network\ACE</Filter>
+    </ClCompile>
+    <ClCompile Include="SFMGFramework.cpp">
+      <Filter>Network\MG</Filter>
+    </ClCompile>
+    <ClCompile Include="SFMGServer.cpp">
+      <Filter>Network\MG</Filter>
+    </ClCompile>
+    <ClCompile Include="SFMGServerReceiver.cpp">
+      <Filter>Network\MG</Filter>
+    </ClCompile>
+    <ClCompile Include="SFMGClient.cpp">
+      <Filter>Network\MG</Filter>
+    </ClCompile>
+    <ClCompile Include="SFMGClientReceiver.cpp">
+      <Filter>Network\MG</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -545,6 +563,24 @@
     </ClInclude>
     <ClInclude Include="StringConversion.h">
       <Filter>XML</Filter>
+    </ClInclude>
+    <ClInclude Include="SFMGFramework.h">
+      <Filter>Network\MG</Filter>
+    </ClInclude>
+    <ClInclude Include="SFMGServer.h">
+      <Filter>Network\MG</Filter>
+    </ClInclude>
+    <ClInclude Include="ISFAgent.h">
+      <Filter>Network</Filter>
+    </ClInclude>
+    <ClInclude Include="SFMGServerReceiver.h">
+      <Filter>Network\MG</Filter>
+    </ClInclude>
+    <ClInclude Include="SFMGClient.h">
+      <Filter>Network\MG</Filter>
+    </ClInclude>
+    <ClInclude Include="SFMGClientReceiver.h">
+      <Filter>Network\MG</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

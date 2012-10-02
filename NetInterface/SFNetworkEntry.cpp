@@ -14,10 +14,10 @@ SFNetworkEntry::~SFNetworkEntry(void)
 {
 }
 
-bool SFNetworkEntry::TCPSend( USHORT PacketID, char* pMessage, int BufSize )
+bool SFNetworkEntry::TCPSend(int Serial,  USHORT PacketID, char* pMessage, int BufSize )
 {
 	if(m_pTCPNetwork)
-		return m_pTCPNetwork->Send(PacketID, pMessage, BufSize);
+		return m_pTCPNetwork->Send(Serial, PacketID, pMessage, BufSize);
 
 	return false;
 }

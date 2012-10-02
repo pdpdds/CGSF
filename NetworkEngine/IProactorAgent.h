@@ -1,20 +1,16 @@
 #pragma once
+#include "ISFAgent.h"
 
 class SFProactorService;
 class ILogicEntry;
 
-class IProactorAgent
+class IProactorAgent : public ISFAgent
 {
 public:
 	IProactorAgent(void);
 	virtual ~IProactorAgent(void);
 
-	virtual BOOL Start(ILogicEntry* pLogic) = 0;
-	virtual BOOL End() = 0;
-
-	virtual BOOL Run() = 0;
-
-	virtual BOOL ServiceInitialize(SFProactorService* pService){return 0;}
+	virtual BOOL ServiceInitialize(SFProactorService* pService){return false;}
 	virtual BOOL ServiceDisconnect(int Serial){return FALSE;}
 
 protected:

@@ -61,11 +61,12 @@ BOOL SFClient::Update()
 	return TRUE;
 }
 
-bool SFClient::Send( USHORT PacketID, char* pMessage, int BufSize )
+bool SFClient::Send(int Serial, USHORT PacketID, char* pMessage, int BufSize )
 {
-	SFProactorClient* pClient = (SFProactorClient*)m_pNetworkFramework->GetNetworkAgent();
-	SFProactorService* pService = (SFProactorService*)pClient->GetNetworkService();
-	pService->Send(PacketID, pMessage, BufSize);
+	return m_pNetworkFramework->Send(Serial, PacketID, pMessage, BufSize);
+}
 
-	return TRUE;
+BOOL SFClient::Send(int Serial, SFPacket* pPacket)
+{
+	return m_pNetworkFramework->Send(Serial, pPacket);
 }

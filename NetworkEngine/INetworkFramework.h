@@ -1,4 +1,5 @@
 #pragma once
+#include "ISFAgent.h"
 
 enum eNetworkFrameworkType
 {
@@ -9,6 +10,7 @@ enum eNetworkFrameworkType
 
 class ILogicEntry;
 class IProactorAgent;
+class SFPacket;
 
 class INetworkFramework
 {
@@ -21,11 +23,14 @@ public:
 	virtual BOOL End() = 0;
 	virtual BOOL Finally() = 0;
 
-	IProactorAgent* GetNetworkAgent(){return m_pNetworkAgent;}
+	virtual BOOL Send(int Serial, USHORT PacketID, char* pMessage, int BufSize ) = 0;
+	virtual BOOL Send(int Serial, SFPacket* pPacket) = 0;
+
+	ISFAgent* GetNetworkAgent(){return m_pNetworkAgent;}
 	void SetNetworkFrameworkType(eNetworkFrameworkType Type){m_Type = Type;}
 
 protected:
-	IProactorAgent* m_pNetworkAgent;
+	ISFAgent* m_pNetworkAgent;
 
 private:
 	eNetworkFrameworkType m_Type;
