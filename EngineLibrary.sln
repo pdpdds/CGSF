@@ -1,0 +1,50 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 2012
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "BaseLib", "BaseLib\BaseLib.vcxproj", "{835E9346-EC73-421D-8C4B-16C4673E3680}"
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "CasualGameFramework", "CasualGameFramework\CasualGameFramework.vcxproj", "{6C69EC32-ACD5-4641-AE75-7652221ED3A3}"
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "P2PServer", "P2PServer\P2PServer.vcxproj", "{C2DFE144-64D7-4101-A1CE-C441A8F3F24D}"
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "P2PClient", "P2PClient\P2PClient.vcxproj", "{AF8B1386-16B1-408F-9B7E-4274F8AD5BC3}"
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "NetworkEngine", "NetworkEngine\NetworkEngine.vcxproj", "{F7276B81-CD8E-4E0B-ABF5-BAB8FEBE0511}"
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "NetInterface", "NetInterface\NetInterface.vcxproj", "{C62DE91E-5119-429A-B9C4-11EA6ACC329F}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Win32 = Debug|Win32
+		Release|Win32 = Release|Win32
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{6C69EC32-ACD5-4641-AE75-7652221ED3A3}.Debug|Win32.ActiveCfg = Debug|Win32
+		{6C69EC32-ACD5-4641-AE75-7652221ED3A3}.Debug|Win32.Build.0 = Debug|Win32
+		{6C69EC32-ACD5-4641-AE75-7652221ED3A3}.Release|Win32.ActiveCfg = Release|Win32
+		{6C69EC32-ACD5-4641-AE75-7652221ED3A3}.Release|Win32.Build.0 = Release|Win32
+		{835E9346-EC73-421D-8C4B-16C4673E3680}.Debug|Win32.ActiveCfg = Debug|Win32
+		{835E9346-EC73-421D-8C4B-16C4673E3680}.Debug|Win32.Build.0 = Debug|Win32
+		{835E9346-EC73-421D-8C4B-16C4673E3680}.Release|Win32.ActiveCfg = Release|Win32
+		{835E9346-EC73-421D-8C4B-16C4673E3680}.Release|Win32.Build.0 = Release|Win32
+		{AF8B1386-16B1-408F-9B7E-4274F8AD5BC3}.Debug|Win32.ActiveCfg = Debug|Win32
+		{AF8B1386-16B1-408F-9B7E-4274F8AD5BC3}.Debug|Win32.Build.0 = Debug|Win32
+		{AF8B1386-16B1-408F-9B7E-4274F8AD5BC3}.Release|Win32.ActiveCfg = Release|Win32
+		{AF8B1386-16B1-408F-9B7E-4274F8AD5BC3}.Release|Win32.Build.0 = Release|Win32
+		{C2DFE144-64D7-4101-A1CE-C441A8F3F24D}.Debug|Win32.ActiveCfg = Debug|Win32
+		{C2DFE144-64D7-4101-A1CE-C441A8F3F24D}.Debug|Win32.Build.0 = Debug|Win32
+		{C2DFE144-64D7-4101-A1CE-C441A8F3F24D}.Release|Win32.ActiveCfg = Release|Win32
+		{C2DFE144-64D7-4101-A1CE-C441A8F3F24D}.Release|Win32.Build.0 = Release|Win32
+		{C62DE91E-5119-429A-B9C4-11EA6ACC329F}.Debug|Win32.ActiveCfg = Debug|Win32
+		{C62DE91E-5119-429A-B9C4-11EA6ACC329F}.Debug|Win32.Build.0 = Debug|Win32
+		{C62DE91E-5119-429A-B9C4-11EA6ACC329F}.Release|Win32.ActiveCfg = Release|Win32
+		{C62DE91E-5119-429A-B9C4-11EA6ACC329F}.Release|Win32.Build.0 = Release|Win32
+		{F7276B81-CD8E-4E0B-ABF5-BAB8FEBE0511}.Debug|Win32.ActiveCfg = Debug|Win32
+		{F7276B81-CD8E-4E0B-ABF5-BAB8FEBE0511}.Debug|Win32.Build.0 = Debug|Win32
+		{F7276B81-CD8E-4E0B-ABF5-BAB8FEBE0511}.Release|Win32.ActiveCfg = Release|Win32
+		{F7276B81-CD8E-4E0B-ABF5-BAB8FEBE0511}.Release|Win32.Build.0 = Release|Win32
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal
