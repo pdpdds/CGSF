@@ -21,7 +21,7 @@ In ThirdParty Folder
   (this project's compile is not perfect)
   
 In CGSF Folder
-* Open OnlineSystem.sln and Build it
+* Open AllProject.sln and Build it
 
 Open Source
 -------
