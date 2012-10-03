@@ -23,6 +23,11 @@ BOOL SFServer::Run( INetworkFramework* pFramework, ILogicEntry* pLogic )
 	return TRUE;
 }
 
+BOOL SFServer::Stop()
+{
+	return m_pFramework->End();
+}
+
 BOOL SFServer::Send(int Serial, SFPacket* pPacket)
 {
 	return m_pFramework->Send(Serial, pPacket);

@@ -38,7 +38,7 @@ BOOL SFMGServer::Start( ILogicEntry* pLogic )
 
 	if(pLogic != NULL)
 	{
-		ACE_Thread_Manager::instance()->spawn_n(1, (ACE_THR_FUNC)BusinessThread, NULL, THR_NEW_LWP, ACE_DEFAULT_THREAD_PRIORITY, 2) == -1;
+		ACE_Thread_Manager::instance()->spawn_n(1, (ACE_THR_FUNC)BusinessThread, NULL, THR_NEW_LWP, ACE_DEFAULT_THREAD_PRIORITY, 2);
 
 		LogicEntrySingleton::instance()->SetLogic(pLogic);
 	}

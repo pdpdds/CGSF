@@ -13,6 +13,7 @@ public:
 	virtual ~SFClient(void);
 
 	BOOL Run(INetworkFramework* pFramework, ILogicEntry* pLogic);
+	BOOL Stop();
 
 	void SetNetworkCallback(INetworkCallback* pNetworkCallback){m_pNetworkCallback = pNetworkCallback;}
 	BOOL Update();

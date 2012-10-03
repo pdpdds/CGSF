@@ -78,6 +78,7 @@ BOOL SFEngine<typename NetworkPolicy, typename LoggerPolicy, typename NetworkMod
 template <typename NetworkPolicy, typename LoggerPolicy, typename NetworkModulePolicy>
 BOOL SFEngine<typename NetworkPolicy, typename LoggerPolicy, typename NetworkModulePolicy>::Stop()
 {
+	m_pNetworkPolicy->Stop();
 	m_pLoggerPolicy->Finally();
 
 	return TRUE;

@@ -5,11 +5,11 @@
 
 #define SF_GETPACKET_ARG(a,b,c) memcpy(a,b.c_str(), sizeof(c));
 
-//#define  SFSYSTEM_SERVER SFEngine<SFServer,GoogleLog,SFACEFramework>
-//#define  SFSYSTEM_CLIENT SFEngine<SFClient,GoogleLog,SFACEFramework>
+#define  SFSYSTEM_SERVER SFEngine<SFServer,GoogleLog,SFACEFramework>
+#define  SFSYSTEM_CLIENT SFEngine<SFClient,GoogleLog,SFACEFramework>
 
-#define  SFSYSTEM_SERVER SFEngine<SFServer,GoogleLog,SFMGFramework>
-#define  SFSYSTEM_CLIENT SFEngine<SFClient,GoogleLog,SFMGFramework>
+//#define  SFSYSTEM_SERVER SFEngine<SFServer,GoogleLog,SFMGFramework>
+//#define  SFSYSTEM_CLIENT SFEngine<SFClient,GoogleLog,SFMGFramework>
 
 #define DATABASE_TSS ACE_TSS<SFDatabaseMySQL>
 

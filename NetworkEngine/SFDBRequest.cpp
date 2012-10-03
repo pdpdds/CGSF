@@ -2,6 +2,18 @@
 #include "SFDBRequest.h"
 #include "SFDatabaseMySQL.h"
 
+SFMessage* GetDBInitMessage(int RequestMsg, DWORD PlayerSerial)
+{
+	SFMessage* pMessage = LogicEntrySingleton::instance()->GetDBMessage();
+
+	SFASSERT(pMessage != NULL);
+	pMessage->Initialize(RequestMsg);
+	pMessage->SetOwnerSerial(PlayerSerial);
+	pMessage->SetPacketType(SFCommand_DB);
+
+	return pMessage;
+}
+
 void SendToLogic(SFMessage* pMessage)
 {
 	pMessage->SetPacketType(SFCommand_DB);

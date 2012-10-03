@@ -3,6 +3,7 @@
 #include <ACE/TSS_t.h>
 
 void SendToLogic(SFMessage* pMessage);
+SFMessage* GetDBInitMessage(int RequestMsg, DWORD PlayerSerial);	
 
 class SFMessage;
 

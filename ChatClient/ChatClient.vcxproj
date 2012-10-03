@@ -89,7 +89,7 @@
       <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
     </ClCompile>
     <Link>
-      <AdditionalLibraryDirectories>../Lib/Release;../ThirdParty/Lib/release;../ThirdParty/Lib/Release/Glog;../ThirdParty/Lib/Release/libProto;../Ace_Wrappers/lib;../ThirdParty/Lib/Release/vld-10;../ThirdParty/MySql/lib;../ThirdParty/boost_1_49_0/stage/lib;../ThirdParty/ssl/lib;../ThirdParty/libTom/Lib/release;../ThirdParty/SQLite;../ThirdParty/PCRE/lib;../ThirdParty/loki/lib;../ThirdParty/libfds/lib/dynamic;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalLibraryDirectories>../Lib/Release;../../ThirdParty/Lib/release;../../ThirdParty/Lib/Release/libProto;../../ThirdParty/Ace_Wrappers/lib;../../ThirdParty/Lib/Release/vld-10;../../ThirdParty/MySql/lib;../../ThirdParty/libfds/lib/dynamic;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <SubSystem>Console</SubSystem>
       <OptimizeReferences>true</OptimizeReferences>

@@ -94,7 +94,7 @@
       <OptimizeReferences>true</OptimizeReferences>
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
       <TargetMachine>MachineX86</TargetMachine>
-      <AdditionalLibraryDirectories>../../ThirdParty/libfds/lib/dynamic</AdditionalLibraryDirectories>
+      <AdditionalLibraryDirectories>../../ThirdParty/liblfds/lib/dynamic</AdditionalLibraryDirectories>
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>

@@ -28,7 +28,12 @@ BOOL SFClient::Run( INetworkFramework* pFramework, ILogicEntry* pLogic )
 	return TRUE;
 }
 
-//게임 로직과 네트워크 처리를 한 쓰레드로 처리하고 싶을 때 사용할 것 
+BOOL SFClient::Stop()
+{
+	return m_pNetworkFramework->End();
+}
+
+//게임 로직과 TCP 네트워크 처리를 한 쓰레드로 처리하고 싶을 때 사용할 것 
 BOOL SFClient::Update()
 {
 	while(1)

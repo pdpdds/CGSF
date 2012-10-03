@@ -28,15 +28,6 @@ SFSYSTEM_CLIENT* g_pNetworkEngine = NULL;
 #pragma comment(lib, "libprotobuf.lib")
 #pragma comment(lib, "NetworkEngine.lib")
 
-BOOL g_bEndNetworkHandler = FALSE;
-
-static void NetworkHandler(void* Args)
-{
-	g_pNetworkEngine->Run(NULL);
-	
-	return;
-}
-
 int _tmain(int argc, _TCHAR* argv[])
 {
 	SFExceptionHandler* pHandler = new SFBugTrap();
@@ -48,24 +39,11 @@ int _tmain(int argc, _TCHAR* argv[])
 	g_pNetworkEngine = new SFSYSTEM_CLIENT();
 	g_pNetworkEngine->CreateSystem();
 
-//////////////////////////////////////////////////////////////////////
-//메인 쓰레드와 패킷 처리 쓰레드를 구별할 시 방법1
-//////////////////////////////////////////////////////////////////////
 	ChatPacketEntry* pLogicEntry = new ChatPacketEntry();
 	if(FALSE == g_pNetworkEngine->Run(pLogicEntry))
 	{
-		//g_pNetworkEngine->Stop();
-		//delete g_pNetworkEngine;
 		return 0;
 	}
-//////////////////////////////////////////////////////////////////////
-
-
-	//TCPNetworkCallback* pNetworkCallback = new TCPNetworkCallback();
-	//g_pNetworkEngine->SetNetworkCallback(pNetworkCallback);
-
-	//ACE_Thread_Manager::instance()->spawn_n(1, (ACE_THR_FUNC)NetworkHandler, NULL, THR_NEW_LWP, ACE_DEFAULT_THREAD_PRIORITY, 1);
-
 
 	while(g_pNetworkEngine->GetProcessing() == TRUE)
 	{
@@ -85,13 +63,13 @@ int _tmain(int argc, _TCHAR* argv[])
 			PktChat.SerializeToZeroCopyStream(&os);
 		}
 
-		if(g_pNetworkEngine->GetProcessing())
-			pLogicEntry->Send(CGSF::ChatReq, Buffer, BufSize);
+		pLogicEntry->Send(CGSF::ChatReq, Buffer, BufSize);
 	}
 
-	g_bEndNetworkHandler = TRUE;
-
 	g_pNetworkEngine->Stop();
+
+	delete g_pNetworkEngine;
+	delete pLogicEntry; //책임질 대상을 결정할 것...
 
 	ACE::fini();
 
