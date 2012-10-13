@@ -1,0 +1,4 @@
+# $Id: svc.conf.dynamic 93974 2011-04-22 07:26:59Z msmit $
+
+dynamic HA_Status_Dynamic_Service Service_Object *
+HA_Status:_make_HA_Status() "-f status.ini"

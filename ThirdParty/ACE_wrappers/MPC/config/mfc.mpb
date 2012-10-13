@@ -1,0 +1,12 @@
+// -*- MPC -*-
+// $Id: mfc.mpb 1934 2010-11-12 12:40:22Z elliott_c $
+
+project: winapp {
+  requires += mfc
+  macros   += _AFXDLL
+
+  specific {
+    use_mfc = 2
+    unicode_mfc_entry = wWinMainCRTStartup
+  }
+}

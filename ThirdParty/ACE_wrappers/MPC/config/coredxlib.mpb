@@ -1,0 +1,8 @@
+// -*- MPC -*-
+// $Id: coredxlib.mpb 1999 2011-04-06 12:03:45Z johnnyw $
+
+project {
+  lit_libs    += dds_cpp dds
+  libpaths    += $(COREDX_TOP)/target/$(COREDX_TARGET)/lib
+  includes    += $(COREDX_TOP)/target/include
+}

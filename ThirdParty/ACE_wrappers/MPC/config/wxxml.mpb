@@ -1,0 +1,9 @@
+// $Id: wxxml.mpb 1934 2010-11-12 12:40:22Z elliott_c $
+project: wxbase {
+  specific(prop:windows) {
+    Debug::lit_libs   += wx$(WX_VERSION)$(WX_UNICODE)d_xml
+    Release::lit_libs += wx$(WX_VERSION)$(WX_UNICODE)_xml
+  } else {
+    lit_libs += wx_base$(WX_UNICODE)_xml$(WX_VERSION)
+  }
+}

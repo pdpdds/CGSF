@@ -1,0 +1,9 @@
+// -*- MPC -*-
+// $Id: opalorb.mpb 1749 2010-04-10 19:38:14Z elliott_c $
+
+project {
+  Define_Custom(Perl_IDL) {
+    command  = perl <%quote%>$(OPALORB_ROOT)/idl/idl.pl<%quote%>
+    inputext = .idl
+  }
+}

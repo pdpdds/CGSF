@@ -1,0 +1,12 @@
+<log4j:event logger="org.apache.log4j.xml.XMLLayoutTestCase" timestamp="1213947943630" level="DEBUG" thread="0x000004c8">
+<log4j:message><![CDATA[hi]]></log4j:message>
+</log4j:event>
+
+<log4j:event logger="org.apache.log4j.xml.XMLLayoutTestCase" timestamp="1213947943630" level="DEBUG" thread="0x000004c8">
+<log4j:message><![CDATA[null]]></log4j:message>
+</log4j:event>
+
+<log4j:event logger="org.apache.log4j.xml.XMLLayoutTestCase" timestamp="1213947943630" level="DEBUG" thread="0x000004c8">
+<log4j:message><![CDATA[hi]]></log4j:message>
+</log4j:event>
+

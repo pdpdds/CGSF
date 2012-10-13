@@ -1,0 +1,15 @@
+// -*- MPC -*-
+// $Id: RMCast.mpc 91291 2010-08-05 16:55:50Z johnnyw $
+
+project(*Sender) : aceexe, rmcast {
+  exename = sender
+  Source_Files {
+    Sender.cpp
+  }
+}
+project(*Receiver) : aceexe, rmcast {
+  exename = receiver
+  Source_Files {
+    Receiver.cpp
+  }
+}

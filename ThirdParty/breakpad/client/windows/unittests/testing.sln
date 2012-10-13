@@ -1,0 +1,47 @@
+Microsoft Visual Studio Solution File, Format Version 9.00
+# Visual Studio 2005
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "gmock", "gmock.vcproj", "{7B9EC45F-5550-5240-B60F-4FDD6FB10139}"
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "gtest", "gtest.vcproj", "{D28F7A67-5C3F-6764-7722-5FA1327F817D}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Win32 = Debug|Win32
+		Release|x64 = Release|x64
+		Purify|Win32 = Purify|Win32
+		Purify|x64 = Purify|x64
+		Debug|x64 = Debug|x64
+		Release|Win32 = Release|Win32
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{7B9EC45F-5550-5240-B60F-4FDD6FB10139}.Debug|Win32.ActiveCfg = Debug|Win32
+		{7B9EC45F-5550-5240-B60F-4FDD6FB10139}.Debug|Win32.Build.0 = Debug|Win32
+		{7B9EC45F-5550-5240-B60F-4FDD6FB10139}.Release|x64.ActiveCfg = Release|x64
+		{7B9EC45F-5550-5240-B60F-4FDD6FB10139}.Release|x64.Build.0 = Release|x64
+		{7B9EC45F-5550-5240-B60F-4FDD6FB10139}.Purify|Win32.ActiveCfg = Purify|Win32
+		{7B9EC45F-5550-5240-B60F-4FDD6FB10139}.Purify|Win32.Build.0 = Purify|Win32
+		{7B9EC45F-5550-5240-B60F-4FDD6FB10139}.Purify|x64.ActiveCfg = Purify|x64
+		{7B9EC45F-5550-5240-B60F-4FDD6FB10139}.Purify|x64.Build.0 = Purify|x64
+		{7B9EC45F-5550-5240-B60F-4FDD6FB10139}.Debug|x64.ActiveCfg = Debug|x64
+		{7B9EC45F-5550-5240-B60F-4FDD6FB10139}.Debug|x64.Build.0 = Debug|x64
+		{7B9EC45F-5550-5240-B60F-4FDD6FB10139}.Release|Win32.ActiveCfg = Release|Win32
+		{7B9EC45F-5550-5240-B60F-4FDD6FB10139}.Release|Win32.Build.0 = Release|Win32
+		{D28F7A67-5C3F-6764-7722-5FA1327F817D}.Debug|Win32.ActiveCfg = Debug|Win32
+		{D28F7A67-5C3F-6764-7722-5FA1327F817D}.Debug|Win32.Build.0 = Debug|Win32
+		{D28F7A67-5C3F-6764-7722-5FA1327F817D}.Release|x64.ActiveCfg = Release|x64
+		{D28F7A67-5C3F-6764-7722-5FA1327F817D}.Release|x64.Build.0 = Release|x64
+		{D28F7A67-5C3F-6764-7722-5FA1327F817D}.Purify|Win32.ActiveCfg = Purify|Win32
+		{D28F7A67-5C3F-6764-7722-5FA1327F817D}.Purify|Win32.Build.0 = Purify|Win32
+		{D28F7A67-5C3F-6764-7722-5FA1327F817D}.Purify|x64.ActiveCfg = Purify|x64
+		{D28F7A67-5C3F-6764-7722-5FA1327F817D}.Purify|x64.Build.0 = Purify|x64
+		{D28F7A67-5C3F-6764-7722-5FA1327F817D}.Debug|x64.ActiveCfg = Debug|x64
+		{D28F7A67-5C3F-6764-7722-5FA1327F817D}.Debug|x64.Build.0 = Debug|x64
+		{D28F7A67-5C3F-6764-7722-5FA1327F817D}.Release|Win32.ActiveCfg = Release|Win32
+		{D28F7A67-5C3F-6764-7722-5FA1327F817D}.Release|Win32.Build.0 = Release|Win32
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+	EndGlobalSection
+EndGlobal

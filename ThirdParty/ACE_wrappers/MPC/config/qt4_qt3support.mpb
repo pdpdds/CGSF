@@ -1,0 +1,7 @@
+// -*- MPC -*-
+// $Id: qt4_qt3support.mpb 1627 2009-08-25 12:24:22Z elliott_c $
+
+project: qt4_gui {
+  lit_libs += Qt3Support$(QT_CFG)
+  macros += QT3_SUPPORT
+}

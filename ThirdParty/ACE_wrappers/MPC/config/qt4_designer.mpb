@@ -1,0 +1,6 @@
+// -*- MPC -*-
+// $Id: qt4_designer.mpb 1627 2009-08-25 12:24:22Z elliott_c $
+
+project: qt4_xml {
+  lit_libs += QtDesigner$(QT_CFG)
+}

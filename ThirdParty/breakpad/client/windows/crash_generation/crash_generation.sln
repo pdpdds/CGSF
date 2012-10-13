@@ -1,0 +1,65 @@
+Microsoft Visual Studio Solution File, Format Version 9.00
+# Visual Studio 2005
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "(crash_generation)", "crash_generation", "{71054F76-E083-ED71-B3F9-3E9B872F3E9E}"
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "common", "..\common.vcproj", "{D9B073B4-F6CB-3177-1ADA-BEA7D4FBA51E}"
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "crash_generation_client", "crash_generation_client.vcproj", "{1BF6DF26-7E7F-9199-C317-DA54E5BF2225}"
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "crash_generation_server", "crash_generation_server.vcproj", "{1D9756DA-DF1A-8D19-34E8-2A6AF26C5B27}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Win32 = Debug|Win32
+		Release|x64 = Release|x64
+		Purify|Win32 = Purify|Win32
+		Purify|x64 = Purify|x64
+		Debug|x64 = Debug|x64
+		Release|Win32 = Release|Win32
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{1BF6DF26-7E7F-9199-C317-DA54E5BF2225}.Debug|Win32.ActiveCfg = Debug|Win32
+		{1BF6DF26-7E7F-9199-C317-DA54E5BF2225}.Debug|Win32.Build.0 = Debug|Win32
+		{1BF6DF26-7E7F-9199-C317-DA54E5BF2225}.Release|x64.ActiveCfg = Release|x64
+		{1BF6DF26-7E7F-9199-C317-DA54E5BF2225}.Release|x64.Build.0 = Release|x64
+		{1BF6DF26-7E7F-9199-C317-DA54E5BF2225}.Purify|Win32.ActiveCfg = Purify|Win32
+		{1BF6DF26-7E7F-9199-C317-DA54E5BF2225}.Purify|Win32.Build.0 = Purify|Win32
+		{1BF6DF26-7E7F-9199-C317-DA54E5BF2225}.Purify|x64.ActiveCfg = Purify|x64
+		{1BF6DF26-7E7F-9199-C317-DA54E5BF2225}.Purify|x64.Build.0 = Purify|x64
+		{1BF6DF26-7E7F-9199-C317-DA54E5BF2225}.Debug|x64.ActiveCfg = Debug|x64
+		{1BF6DF26-7E7F-9199-C317-DA54E5BF2225}.Debug|x64.Build.0 = Debug|x64
+		{1BF6DF26-7E7F-9199-C317-DA54E5BF2225}.Release|Win32.ActiveCfg = Release|Win32
+		{1BF6DF26-7E7F-9199-C317-DA54E5BF2225}.Release|Win32.Build.0 = Release|Win32
+		{1D9756DA-DF1A-8D19-34E8-2A6AF26C5B27}.Debug|Win32.ActiveCfg = Debug|Win32
+		{1D9756DA-DF1A-8D19-34E8-2A6AF26C5B27}.Debug|Win32.Build.0 = Debug|Win32
+		{1D9756DA-DF1A-8D19-34E8-2A6AF26C5B27}.Release|x64.ActiveCfg = Release|x64
+		{1D9756DA-DF1A-8D19-34E8-2A6AF26C5B27}.Release|x64.Build.0 = Release|x64
+		{1D9756DA-DF1A-8D19-34E8-2A6AF26C5B27}.Purify|Win32.ActiveCfg = Purify|Win32
+		{1D9756DA-DF1A-8D19-34E8-2A6AF26C5B27}.Purify|Win32.Build.0 = Purify|Win32
+		{1D9756DA-DF1A-8D19-34E8-2A6AF26C5B27}.Purify|x64.ActiveCfg = Purify|x64
+		{1D9756DA-DF1A-8D19-34E8-2A6AF26C5B27}.Purify|x64.Build.0 = Purify|x64
+		{1D9756DA-DF1A-8D19-34E8-2A6AF26C5B27}.Debug|x64.ActiveCfg = Debug|x64
+		{1D9756DA-DF1A-8D19-34E8-2A6AF26C5B27}.Debug|x64.Build.0 = Debug|x64
+		{1D9756DA-DF1A-8D19-34E8-2A6AF26C5B27}.Release|Win32.ActiveCfg = Release|Win32
+		{1D9756DA-DF1A-8D19-34E8-2A6AF26C5B27}.Release|Win32.Build.0 = Release|Win32
+		{D9B073B4-F6CB-3177-1ADA-BEA7D4FBA51E}.Debug|Win32.ActiveCfg = Debug|Win32
+		{D9B073B4-F6CB-3177-1ADA-BEA7D4FBA51E}.Debug|Win32.Build.0 = Debug|Win32
+		{D9B073B4-F6CB-3177-1ADA-BEA7D4FBA51E}.Release|x64.ActiveCfg = Release|x64
+		{D9B073B4-F6CB-3177-1ADA-BEA7D4FBA51E}.Release|x64.Build.0 = Release|x64
+		{D9B073B4-F6CB-3177-1ADA-BEA7D4FBA51E}.Purify|Win32.ActiveCfg = Purify|Win32
+		{D9B073B4-F6CB-3177-1ADA-BEA7D4FBA51E}.Purify|Win32.Build.0 = Purify|Win32
+		{D9B073B4-F6CB-3177-1ADA-BEA7D4FBA51E}.Purify|x64.ActiveCfg = Purify|x64
+		{D9B073B4-F6CB-3177-1ADA-BEA7D4FBA51E}.Purify|x64.Build.0 = Purify|x64
+		{D9B073B4-F6CB-3177-1ADA-BEA7D4FBA51E}.Debug|x64.ActiveCfg = Debug|x64
+		{D9B073B4-F6CB-3177-1ADA-BEA7D4FBA51E}.Debug|x64.Build.0 = Debug|x64
+		{D9B073B4-F6CB-3177-1ADA-BEA7D4FBA51E}.Release|Win32.ActiveCfg = Release|Win32
+		{D9B073B4-F6CB-3177-1ADA-BEA7D4FBA51E}.Release|Win32.Build.0 = Release|Win32
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{1D9756DA-DF1A-8D19-34E8-2A6AF26C5B27} = {71054F76-E083-ED71-B3F9-3E9B872F3E9E}
+		{1BF6DF26-7E7F-9199-C317-DA54E5BF2225} = {71054F76-E083-ED71-B3F9-3E9B872F3E9E}
+	EndGlobalSection
+EndGlobal

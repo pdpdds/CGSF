@@ -1,0 +1,10 @@
+2008-06-20 00:46:10,499 [0x000004c8] DEBUG org.apache.log4j.xml.DOMTestCase - Message 0
+2008-06-20 00:46:10,499 [0x000004c8] DEBUG root - Message 0
+2008-06-20 00:46:10,499 [0x000004c8] INFO org.apache.log4j.xml.DOMTestCase - Message 1
+2008-06-20 00:46:10,499 [0x000004c8] INFO root - Message 1
+2008-06-20 00:46:10,499 [0x000004c8] WARN org.apache.log4j.xml.DOMTestCase - Message 2
+2008-06-20 00:46:10,499 [0x000004c8] WARN root - Message 2
+2008-06-20 00:46:10,499 [0x000004c8] ERROR org.apache.log4j.xml.DOMTestCase - Message 3
+2008-06-20 00:46:10,499 [0x000004c8] ERROR root - Message 3
+2008-06-20 00:46:10,499 [0x000004c8] FATAL org.apache.log4j.xml.DOMTestCase - Message 4
+2008-06-20 00:46:10,499 [0x000004c8] FATAL root - Message 4

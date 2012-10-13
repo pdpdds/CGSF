@@ -1,0 +1,10 @@
+// -*- MPC -*-
+//
+// $Id: cdt6lib.mpt 1836 2010-06-29 14:47:21Z cleeland $
+
+conditional_include "cdt6platforms"
+
+configurations = debug release
+project_type_name = "Static Library"
+project_type = lib
+build_artefact_type = org.eclipse.cdt.build.core.buildArtefactType.staticLib

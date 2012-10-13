@@ -1,0 +1,596 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="DataLoader">
+      <UniqueIdentifier>{20cc6690-0fe2-447b-b3ae-3d8931e63fb9}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Common">
+      <UniqueIdentifier>{93995380-89BD-4b04-88EB-625FBE52EBFB}</UniqueIdentifier>
+      <Extensions>h;hpp;hxx;hm;inl;inc;xsd</Extensions>
+    </Filter>
+    <Filter Include="External">
+      <UniqueIdentifier>{50f50389-b969-4360-8d8a-96dfd6cc9815}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Database">
+      <UniqueIdentifier>{c49ccb7f-234c-4fc4-8cbe-d420b38a244b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Database\DBRequest">
+      <UniqueIdentifier>{1397d6ed-3a34-4685-b36f-38720cfaae63}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Packet">
+      <UniqueIdentifier>{80fc87bd-8418-43cd-b4aa-93b0b64dcf0d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="logger">
+      <UniqueIdentifier>{630e196a-592d-4e64-9637-85f0b525c3b3}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Network">
+      <UniqueIdentifier>{8c588fa3-b1c1-48ac-9961-67d09e2c49a8}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Network\ACE">
+      <UniqueIdentifier>{852018fb-62cf-4a72-8af1-a2790d04579a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Compress">
+      <UniqueIdentifier>{e7f2ecb8-46e3-4124-8f23-1e7bb59d188c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Encryption">
+      <UniqueIdentifier>{3038de86-b1dd-4e28-ab5c-bcf898527bfd}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Math">
+      <UniqueIdentifier>{5dc2d83e-47bb-4132-886b-c85328dc33be}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Logic">
+      <UniqueIdentifier>{770a9c60-f72d-483c-bd26-9bb51653c8db}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="String">
+      <UniqueIdentifier>{37fad154-5fb6-4aa3-8b6f-7c8136fbf223}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="DataStructure">
+      <UniqueIdentifier>{31168c77-ebdb-4ea4-9b6b-ac0dce6351dd}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Util">
+      <UniqueIdentifier>{c133b25c-d090-4f23-9464-86ea094473f8}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Singlton">
+      <UniqueIdentifier>{afa4362c-6b77-48cb-bb1d-20350fc9e7c0}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Entry">
+      <UniqueIdentifier>{4222400f-56e6-4b41-941e-ea2645fd73c6}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="CRC">
+      <UniqueIdentifier>{b675ccb6-30ac-4d41-87d4-e4864b6613d6}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Network\IOCP">
+      <UniqueIdentifier>{a6bb752f-cb57-4021-9c86-02f5bedd49e6}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="DirectoryWathcer">
+      <UniqueIdentifier>{7490970d-fb9b-4519-affa-710857c39c0d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="XML">
+      <UniqueIdentifier>{f712968b-8842-4026-8b63-12f9882789cb}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Shouter">
+      <UniqueIdentifier>{d07dc62e-052f-4e2a-a608-ed2f1312111a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Network\MG">
+      <UniqueIdentifier>{ded8d32c-2b1f-440f-93ef-a812079e8728}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include=".\SFExcel.cpp">
+      <Filter>DataLoader</Filter>
+    </ClCompile>
+    <ClCompile Include=".\SFIni.cpp">
+      <Filter>DataLoader</Filter>
+    </ClCompile>
+    <ClCompile Include=".\stdafx.cpp">
+      <Filter>Common</Filter>
+    </ClCompile>
+    <ClCompile Include=".\External\base64.cpp">
+      <Filter>External</Filter>
+    </ClCompile>
+    <ClCompile Include=".\External\crc.cpp">
+      <Filter>External</Filter>
+    </ClCompile>
+    <ClCompile Include=".\External\CSmtp.cpp">
+      <Filter>External</Filter>
+    </ClCompile>
+    <ClCompile Include=".\External\md5.cpp">
+      <Filter>External</Filter>
+    </ClCompile>
+    <ClCompile Include=".\CppSQLite3.cpp">
+      <Filter>Database</Filter>
+    </ClCompile>
+    <ClCompile Include=".\SFDatabase.cpp">
+      <Filter>Database</Filter>
+    </ClCompile>
+    <ClCompile Include=".\SFDatabaseMySQL.cpp">
+      <Filter>Database</Filter>
+    </ClCompile>
+    <ClCompile Include=".\SFDatabaseODBC.cpp">
+      <Filter>Database</Filter>
+    </ClCompile>
+    <ClCompile Include=".\SFDataBaseProxy.cpp">
+      <Filter>Database</Filter>
+    </ClCompile>
+    <ClCompile Include=".\SFDatabaseProxyImpl.cpp">
+      <Filter>Database</Filter>
+    </ClCompile>
+    <ClCompile Include=".\SFDatabaseProxyLocal.cpp">
+      <Filter>Database</Filter>
+    </ClCompile>
+    <ClCompile Include=".\SFDatabaseProxyRemote.cpp">
+      <Filter>Database</Filter>
+    </ClCompile>
+    <ClCompile Include=".\SFDatabaseSQLite.cpp">
+      <Filter>Database</Filter>
+    </ClCompile>
+    <ClCompile Include=".\SFDBManager.cpp">
+      <Filter>Database</Filter>
+    </ClCompile>
+    <ClCompile Include=".\SFDBRequest.cpp">
+      <Filter>Database</Filter>
+    </ClCompile>
+    <ClCompile Include=".\SFDBWorker.cpp">
+      <Filter>Database</Filter>
+    </ClCompile>
+    <ClCompile Include=".\SFReqMySQL.cpp">
+      <Filter>Database\DBRequest</Filter>
+    </ClCompile>
+    <ClCompile Include=".\SFCheckSum.cpp">
+      <Filter>Packet</Filter>
+    </ClCompile>
+    <ClCompile Include=".\SFIOBuffer.cpp">
+      <Filter>Packet</Filter>
+    </ClCompile>
+    <ClCompile Include=".\SFPacket.cpp">
+      <Filter>Packet</Filter>
+    </ClCompile>
+    <ClCompile Include=".\SFPacketAnalyzer.cpp">
+      <Filter>Packet</Filter>
+    </ClCompile>
+    <ClCompile Include=".\SFPacketIOBuffer.cpp">
+      <Filter>Packet</Filter>
+    </ClCompile>
+    <ClCompile Include=".\ACELogger.cpp">
+      <Filter>logger</Filter>
+    </ClCompile>
+    <ClCompile Include=".\IProactorAgent.cpp">
+      <Filter>Network\ACE</Filter>
+    </ClCompile>
+    <ClCompile Include=".\SFACEFramework.cpp">
+      <Filter>Network\ACE</Filter>
+    </ClCompile>
+    <ClCompile Include=".\SFProactorAcceptor.cpp">
+      <Filter>Network\ACE</Filter>
+    </ClCompile>
+    <ClCompile Include=".\SFProactorClient.cpp">
+      <Filter>Network\ACE</Filter>
+    </ClCompile>
+    <ClCompile Include=".\SFProactorServer.cpp">
+      <Filter>Network\ACE</Filter>
+    </ClCompile>
+    <ClCompile Include=".\SFProactorService.cpp">
+      <Filter>Network\ACE</Filter>
+    </ClCompile>
+    <ClCompile Include=".\SFCompressLzf.cpp">
+      <Filter>Compress</Filter>
+    </ClCompile>
+    <ClCompile Include=".\SFCompressZLib.cpp">
+      <Filter>Compress</Filter>
+    </ClCompile>
+    <ClCompile Include=".\SFEncryptionXOR.cpp">
+      <Filter>Encryption</Filter>
+    </ClCompile>
+    <ClCompile Include=".\LogicEntry.cpp">
+      <Filter>Logic</Filter>
+    </ClCompile>
+    <ClCompile Include=".\SFLogicGateway.cpp">
+      <Filter>Logic</Filter>
+    </ClCompile>
+    <ClCompile Include=".\SFFString.cpp">
+      <Filter>String</Filter>
+    </ClCompile>
+    <ClCompile Include=".\SFList.cpp">
+      <Filter>DataStructure</Filter>
+    </ClCompile>
+    <ClCompile Include=".\SFObject.cpp">
+      <Filter>DataStructure</Filter>
+    </ClCompile>
+    <ClCompile Include=".\SFObserver.cpp">
+      <Filter>DataStructure</Filter>
+    </ClCompile>
+    <ClCompile Include=".\SFSubject.cpp">
+      <Filter>DataStructure</Filter>
+    </ClCompile>
+    <ClCompile Include=".\SFUtil.cpp">
+      <Filter>Util</Filter>
+    </ClCompile>
+    <ClCompile Include=".\ExportFunc.cpp">
+      <Filter>Entry</Filter>
+    </ClCompile>
+    <ClCompile Include=".\ServerEngine.cpp">
+      <Filter>Entry</Filter>
+    </ClCompile>
+    <ClCompile Include=".\SFClient.cpp">
+      <Filter>Entry</Filter>
+    </ClCompile>
+    <ClCompile Include=".\SFServer.cpp">
+      <Filter>Entry</Filter>
+    </ClCompile>
+    <ClCompile Include="GoogleLog.cpp">
+      <Filter>logger</Filter>
+    </ClCompile>
+    <ClCompile Include="SFIOCPFramework.cpp">
+      <Filter>Network\IOCP</Filter>
+    </ClCompile>
+    <ClCompile Include="SFACETimeOutHandler.cpp">
+      <Filter>Network\ACE</Filter>
+    </ClCompile>
+    <ClCompile Include=".\SFFastCRC.cpp">
+      <Filter>CRC</Filter>
+    </ClCompile>
+    <ClCompile Include=".\External\7zcrc.cpp">
+      <Filter>External</Filter>
+    </ClCompile>
+    <ClCompile Include="DelayedDirectoryChangeHandler.cpp">
+      <Filter>DirectoryWathcer</Filter>
+    </ClCompile>
+    <ClCompile Include="DirectoryChanges.cpp">
+      <Filter>DirectoryWathcer</Filter>
+    </ClCompile>
+    <ClCompile Include="tinystr.cpp">
+      <Filter>XML</Filter>
+    </ClCompile>
+    <ClCompile Include="tinyxml.cpp">
+      <Filter>XML</Filter>
+    </ClCompile>
+    <ClCompile Include="tinyxmlerror.cpp">
+      <Filter>XML</Filter>
+    </ClCompile>
+    <ClCompile Include="tinyxmlparser.cpp">
+      <Filter>XML</Filter>
+    </ClCompile>
+    <ClCompile Include="SFShouter.cpp">
+      <Filter>Shouter</Filter>
+    </ClCompile>
+    <ClCompile Include="StringConversion.cpp">
+      <Filter>XML</Filter>
+    </ClCompile>
+    <ClCompile Include=".\SFBridgeThread.cpp">
+      <Filter>Network\ACE</Filter>
+    </ClCompile>
+    <ClCompile Include="SFMGFramework.cpp">
+      <Filter>Network\MG</Filter>
+    </ClCompile>
+    <ClCompile Include="SFMGServer.cpp">
+      <Filter>Network\MG</Filter>
+    </ClCompile>
+    <ClCompile Include="SFMGServerReceiver.cpp">
+      <Filter>Network\MG</Filter>
+    </ClCompile>
+    <ClCompile Include="SFMGClient.cpp">
+      <Filter>Network\MG</Filter>
+    </ClCompile>
+    <ClCompile Include="SFMGClientReceiver.cpp">
+      <Filter>Network\MG</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include=".\SFExcel.h">
+      <Filter>DataLoader</Filter>
+    </ClInclude>
+    <ClInclude Include=".\SFIni.h">
+      <Filter>DataLoader</Filter>
+    </ClInclude>
+    <ClInclude Include=".\SFDispatch.h">
+      <Filter>Common</Filter>
+    </ClInclude>
+    <ClInclude Include=".\SFFactory.h">
+      <Filter>Common</Filter>
+    </ClInclude>
+    <ClInclude Include=".\SFMacro.h">
+      <Filter>Common</Filter>
+    </ClInclude>
+    <ClInclude Include=".\SFMessage.h">
+      <Filter>Common</Filter>
+    </ClInclude>
+    <ClInclude Include=".\stdafx.h">
+      <Filter>Common</Filter>
+    </ClInclude>
+    <ClInclude Include=".\targetver.h">
+      <Filter>Common</Filter>
+    </ClInclude>
+    <ClInclude Include=".\External\7zcrc.h">
+      <Filter>External</Filter>
+    </ClInclude>
+    <ClInclude Include=".\External\base64.h">
+      <Filter>External</Filter>
+    </ClInclude>
+    <ClInclude Include=".\External\crc.h">
+      <Filter>External</Filter>
+    </ClInclude>
+    <ClInclude Include=".\External\CSmtp.h">
+      <Filter>External</Filter>
+    </ClInclude>
+    <ClInclude Include=".\External\md5.h">
+      <Filter>External</Filter>
+    </ClInclude>
+    <ClInclude Include=".\CppSQLite3.h">
+      <Filter>Database</Filter>
+    </ClInclude>
+    <ClInclude Include=".\IDBManager.h">
+      <Filter>Database</Filter>
+    </ClInclude>
+    <ClInclude Include=".\SFDatabase.h">
+      <Filter>Database</Filter>
+    </ClInclude>
+    <ClInclude Include=".\SFDatabaseMySQL.h">
+      <Filter>Database</Filter>
+    </ClInclude>
+    <ClInclude Include=".\SFDatabaseODBC.h">
+      <Filter>Database</Filter>
+    </ClInclude>
+    <ClInclude Include=".\SFDataBaseProxy.h">
+      <Filter>Database</Filter>
+    </ClInclude>
+    <ClInclude Include=".\SFDatabaseProxyImpl.h">
+      <Filter>Database</Filter>
+    </ClInclude>
+    <ClInclude Include=".\SFDatabaseProxyLocal.h">
+      <Filter>Database</Filter>
+    </ClInclude>
+    <ClInclude Include=".\SFDatabaseProxyRemote.h">
+      <Filter>Database</Filter>
+    </ClInclude>
+    <ClInclude Include=".\SFDatabaseSQLite.h">
+      <Filter>Database</Filter>
+    </ClInclude>
+    <ClInclude Include=".\SFDBManager.h">
+      <Filter>Database</Filter>
+    </ClInclude>
+    <ClInclude Include=".\SFDBRequest.h">
+      <Filter>Database</Filter>
+    </ClInclude>
+    <ClInclude Include=".\SFDBWorker.h">
+      <Filter>Database</Filter>
+    </ClInclude>
+    <ClInclude Include=".\SFReqMySQL.h">
+      <Filter>Database\DBRequest</Filter>
+    </ClInclude>
+    <ClInclude Include=".\SFCheckSum.h">
+      <Filter>Packet</Filter>
+    </ClInclude>
+    <ClInclude Include=".\SFIOBuffer.h">
+      <Filter>Packet</Filter>
+    </ClInclude>
+    <ClInclude Include=".\SFPacket.h">
+      <Filter>Packet</Filter>
+    </ClInclude>
+    <ClInclude Include=".\SFPacketAnalyzer.h">
+      <Filter>Packet</Filter>
+    </ClInclude>
+    <ClInclude Include=".\SFPacketIOBuffer.h">
+      <Filter>Packet</Filter>
+    </ClInclude>
+    <ClInclude Include=".\ACELogger.h">
+      <Filter>logger</Filter>
+    </ClInclude>
+    <ClInclude Include=".\SFLog.h">
+      <Filter>logger</Filter>
+    </ClInclude>
+    <ClInclude Include=".\IProactorAgent.h">
+      <Filter>Network\ACE</Filter>
+    </ClInclude>
+    <ClInclude Include=".\SFACEFramework.h">
+      <Filter>Network\ACE</Filter>
+    </ClInclude>
+    <ClInclude Include=".\SFBridgeThread.h">
+      <Filter>Network\ACE</Filter>
+    </ClInclude>
+    <ClInclude Include=".\SFProactorAcceptor.h">
+      <Filter>Network\ACE</Filter>
+    </ClInclude>
+    <ClInclude Include=".\SFProactorClient.h">
+      <Filter>Network\ACE</Filter>
+    </ClInclude>
+    <ClInclude Include=".\SFProactorServer.h">
+      <Filter>Network\ACE</Filter>
+    </ClInclude>
+    <ClInclude Include=".\SFProactorService.h">
+      <Filter>Network\ACE</Filter>
+    </ClInclude>
+    <ClInclude Include=".\SFCompressLzf.h">
+      <Filter>Compress</Filter>
+    </ClInclude>
+    <ClInclude Include=".\SFCompressZLib.h">
+      <Filter>Compress</Filter>
+    </ClInclude>
+    <ClInclude Include=".\SFEncryption.h">
+      <Filter>Encryption</Filter>
+    </ClInclude>
+    <ClInclude Include=".\SFEncryptionXOR.h">
+      <Filter>Encryption</Filter>
+    </ClInclude>
+    <ClInclude Include=".\SFMath.h">
+      <Filter>Math</Filter>
+    </ClInclude>
+    <ClInclude Include=".\ILogicEntry.h">
+      <Filter>Logic</Filter>
+    </ClInclude>
+    <ClInclude Include=".\LogicEntry.h">
+      <Filter>Logic</Filter>
+    </ClInclude>
+    <ClInclude Include=".\SFLogicGateway.h">
+      <Filter>Logic</Filter>
+    </ClInclude>
+    <ClInclude Include=".\SFFString.h">
+      <Filter>String</Filter>
+    </ClInclude>
+    <ClInclude Include=".\SFString.h">
+      <Filter>String</Filter>
+    </ClInclude>
+    <ClInclude Include=".\SFConsumer.h">
+      <Filter>DataStructure</Filter>
+    </ClInclude>
+    <ClInclude Include=".\SFIDMap.h">
+      <Filter>DataStructure</Filter>
+    </ClInclude>
+    <ClInclude Include=".\SFIOCPQueue.h">
+      <Filter>DataStructure</Filter>
+    </ClInclude>
+    <ClInclude Include=".\SFList.h">
+      <Filter>DataStructure</Filter>
+    </ClInclude>
+    <ClInclude Include=".\SFLock.h">
+      <Filter>DataStructure</Filter>
+    </ClInclude>
+    <ClInclude Include=".\SFLockDeque.h">
+      <Filter>DataStructure</Filter>
+    </ClInclude>
+    <ClInclude Include=".\SFLockQueue.h">
+      <Filter>DataStructure</Filter>
+    </ClInclude>
+    <ClInclude Include=".\SFObject.h">
+      <Filter>DataStructure</Filter>
+    </ClInclude>
+    <ClInclude Include=".\SFObjectPool.h">
+      <Filter>DataStructure</Filter>
+    </ClInclude>
+    <ClInclude Include=".\SFObserver.h">
+      <Filter>DataStructure</Filter>
+    </ClInclude>
+    <ClInclude Include=".\SFProducer.h">
+      <Filter>DataStructure</Filter>
+    </ClInclude>
+    <ClInclude Include=".\SFQueue.h">
+      <Filter>DataStructure</Filter>
+    </ClInclude>
+    <ClInclude Include=".\SFSubject.h">
+      <Filter>DataStructure</Filter>
+    </ClInclude>
+    <ClInclude Include=".\SFTree.h">
+      <Filter>DataStructure</Filter>
+    </ClInclude>
+    <ClInclude Include=".\SFTSSyncQueue.h">
+      <Filter>DataStructure</Filter>
+    </ClInclude>
+    <ClInclude Include=".\SFTimer.h">
+      <Filter>Util</Filter>
+    </ClInclude>
+    <ClInclude Include=".\SFUtil.h">
+      <Filter>Util</Filter>
+    </ClInclude>
+    <ClInclude Include=".\SFSinglton.h">
+      <Filter>Singlton</Filter>
+    </ClInclude>
+    <ClInclude Include=".\ExportFunc.h">
+      <Filter>Entry</Filter>
+    </ClInclude>
+    <ClInclude Include=".\IEngine.h">
+      <Filter>Entry</Filter>
+    </ClInclude>
+    <ClInclude Include=".\INetworkCallback.h">
+      <Filter>Entry</Filter>
+    </ClInclude>
+    <ClInclude Include=".\INetworkFramework.h">
+      <Filter>Entry</Filter>
+    </ClInclude>
+    <ClInclude Include=".\SFClient.h">
+      <Filter>Entry</Filter>
+    </ClInclude>
+    <ClInclude Include=".\SFEngine.h">
+      <Filter>Entry</Filter>
+    </ClInclude>
+    <ClInclude Include=".\SFServer.h">
+      <Filter>Entry</Filter>
+    </ClInclude>
+    <ClInclude Include=".\SFFastCRC.h">
+      <Filter>CRC</Filter>
+    </ClInclude>
+    <ClInclude Include="GoogleLog.h">
+      <Filter>logger</Filter>
+    </ClInclude>
+    <ClInclude Include="SFIOCPFramework.h">
+      <Filter>Network\IOCP</Filter>
+    </ClInclude>
+    <ClInclude Include="SFACETimeOutHandler.h">
+      <Filter>Network\ACE</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Common\SFConstant.h">
+      <Filter>Common</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Common\SFStructure.h">
+      <Filter>Common</Filter>
+    </ClInclude>
+    <ClInclude Include="DelayedDirectoryChangeHandler.h">
+      <Filter>DirectoryWathcer</Filter>
+    </ClInclude>
+    <ClInclude Include="DirectoryChanges.h">
+      <Filter>DirectoryWathcer</Filter>
+    </ClInclude>
+    <ClInclude Include="CStdString.h">
+      <Filter>DirectoryWathcer</Filter>
+    </ClInclude>
+    <ClInclude Include="IXMLSerializable.h">
+      <Filter>XML</Filter>
+    </ClInclude>
+    <ClInclude Include="IXMLStreamReader.h">
+      <Filter>XML</Filter>
+    </ClInclude>
+    <ClInclude Include="IXMLStreamWriter.h">
+      <Filter>XML</Filter>
+    </ClInclude>
+    <ClInclude Include="SFXMLStreamReader.h">
+      <Filter>XML</Filter>
+    </ClInclude>
+    <ClInclude Include="SFXMLStreamWriter.h">
+      <Filter>XML</Filter>
+    </ClInclude>
+    <ClInclude Include="tinystr.h">
+      <Filter>XML</Filter>
+    </ClInclude>
+    <ClInclude Include="tinyxml.h">
+      <Filter>XML</Filter>
+    </ClInclude>
+    <ClInclude Include="SFShouter.h">
+      <Filter>Shouter</Filter>
+    </ClInclude>
+    <ClInclude Include="StringConversion.h">
+      <Filter>XML</Filter>
+    </ClInclude>
+    <ClInclude Include="SFMGFramework.h">
+      <Filter>Network\MG</Filter>
+    </ClInclude>
+    <ClInclude Include="SFMGServer.h">
+      <Filter>Network\MG</Filter>
+    </ClInclude>
+    <ClInclude Include="ISFAgent.h">
+      <Filter>Network</Filter>
+    </ClInclude>
+    <ClInclude Include="SFMGServerReceiver.h">
+      <Filter>Network\MG</Filter>
+    </ClInclude>
+    <ClInclude Include="SFMGClient.h">
+      <Filter>Network\MG</Filter>
+    </ClInclude>
+    <ClInclude Include="SFMGClientReceiver.h">
+      <Filter>Network\MG</Filter>
+    </ClInclude>
+    <ClInclude Include=".\INetworkEngine.h">
+      <Filter>Network</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <Text Include=".\ReadMe.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <CustomBuild Include=".\External\7zCrcOpt.asm">
+      <Filter>External</Filter>
+    </CustomBuild>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include=".\External\7zAsm.asm">
+      <Filter>External</Filter>
+    </None>
+  </ItemGroup>
+</Project>

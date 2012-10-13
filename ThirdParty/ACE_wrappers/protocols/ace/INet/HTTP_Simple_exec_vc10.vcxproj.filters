@@ -1,0 +1,260 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="Source Files">
+      <UniqueIdentifier>{B1F27843-FECA-1BAD-F826-8A65F7EE4449}</UniqueIdentifier>
+      <Extensions>cpp;cxx;cc;c;C</Extensions>
+    </Filter>
+    <Filter Include="Header Files">
+      <UniqueIdentifier>{06319535-FECA-1BAD-F826-8A65F7EE4449}</UniqueIdentifier>
+      <Extensions>h;hpp;hxx;hh</Extensions>
+    </Filter>
+    <Filter Include="Build Files">
+      <UniqueIdentifier>{A1909F1C-FECA-1BAD-F826-8A65F7EE4449}</UniqueIdentifier>
+      <Extensions>mpc;mpb;mwc</Extensions>
+    </Filter>
+    <Filter Include="Pkgconfig Files">
+      <UniqueIdentifier>{8441A3A3-FECA-1BAD-F826-8A65F7EE4449}</UniqueIdentifier>
+      <Extensions>pcin</Extensions>
+    </Filter>
+    <Filter Include="Inline Files">
+      <UniqueIdentifier>{763028EF-FECA-1BAD-F826-8A65F7EE4449}</UniqueIdentifier>
+      <Extensions>i;ipp;inl</Extensions>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="HTTP_Simple_exec.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="AuthenticationBase.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="BidirStreamBuffer.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="BufferedStreamBuffer.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="ClientRequestHandler.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="ConnectionCache.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="FTP_ClientRequestHandler.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="FTP_IOStream.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="FTP_Request.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="FTP_Response.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="FTP_Session.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="FTP_URL.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="HeaderBase.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="HTTP_BasicAuthentication.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="HTTP_ClientRequestHandler.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="HTTP_Header.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="HTTP_IOStream.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="HTTP_Request.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="HTTP_Response.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="HTTP_Session.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="HTTP_SessionBase.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="HTTP_Status.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="HTTP_StreamPolicy.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="HTTP_StreamPolicyBase.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="HTTP_URL.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="HTTPS_Context.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="HTTPS_Session.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="HTTPS_SessionFactory.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="HTTPS_URL.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="INet_Export.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="INet_Log.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="INet_SSL_Export.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="IOS_util.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Request.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="RequestHandler.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Response.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Sock_IOStream.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="SSL_CallbackManager.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="SSL_CertificateCallback.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="SSL_PasswordCallback.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="SSL_Proxy_Connector.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="SSL_X509Cert.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="SSLSock_IOStream.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="StreamHandler.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="StreamInterceptor.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="String_IOStream.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="URLBase.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="inet.mpc">
+      <Filter>Build Files</Filter>
+    </None>
+    <None Include="inet_ssl.mpc">
+      <Filter>Build Files</Filter>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="ACE_INet.pc.in">
+      <Filter>Pkgconfig Files</Filter>
+    </None>
+    <None Include="ACE_INet_SSL.pc.in">
+      <Filter>Pkgconfig Files</Filter>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="AuthenticationBase.inl">
+      <Filter>Inline Files</Filter>
+    </None>
+    <None Include="ClientRequestHandler.inl">
+      <Filter>Inline Files</Filter>
+    </None>
+    <None Include="ConnectionCache.inl">
+      <Filter>Inline Files</Filter>
+    </None>
+    <None Include="FTP_ClientRequestHandler.inl">
+      <Filter>Inline Files</Filter>
+    </None>
+    <None Include="FTP_IOStream.inl">
+      <Filter>Inline Files</Filter>
+    </None>
+    <None Include="FTP_Request.inl">
+      <Filter>Inline Files</Filter>
+    </None>
+    <None Include="FTP_Response.inl">
+      <Filter>Inline Files</Filter>
+    </None>
+    <None Include="FTP_URL.inl">
+      <Filter>Inline Files</Filter>
+    </None>
+    <None Include="HeaderBase.inl">
+      <Filter>Inline Files</Filter>
+    </None>
+    <None Include="HTTP_BasicAuthentication.inl">
+      <Filter>Inline Files</Filter>
+    </None>
+    <None Include="HTTP_ClientRequestHandler.inl">
+      <Filter>Inline Files</Filter>
+    </None>
+    <None Include="HTTP_Header.inl">
+      <Filter>Inline Files</Filter>
+    </None>
+    <None Include="HTTP_IOStream.inl">
+      <Filter>Inline Files</Filter>
+    </None>
+    <None Include="HTTP_Request.inl">
+      <Filter>Inline Files</Filter>
+    </None>
+    <None Include="HTTP_Response.inl">
+      <Filter>Inline Files</Filter>
+    </None>
+    <None Include="HTTP_SessionBase.inl">
+      <Filter>Inline Files</Filter>
+    </None>
+    <None Include="HTTP_Status.inl">
+      <Filter>Inline Files</Filter>
+    </None>
+    <None Include="HTTP_URL.inl">
+      <Filter>Inline Files</Filter>
+    </None>
+    <None Include="HTTPS_Context.inl">
+      <Filter>Inline Files</Filter>
+    </None>
+    <None Include="HTTPS_URL.inl">
+      <Filter>Inline Files</Filter>
+    </None>
+    <None Include="SSL_CallbackManager.inl">
+      <Filter>Inline Files</Filter>
+    </None>
+    <None Include="SSL_CertificateCallback.inl">
+      <Filter>Inline Files</Filter>
+    </None>
+    <None Include="SSL_X509Cert.inl">
+      <Filter>Inline Files</Filter>
+    </None>
+    <None Include="URLBase.inl">
+      <Filter>Inline Files</Filter>
+    </None>
+  </ItemGroup>
+</Project>

@@ -1,0 +1,25 @@
+// -*- MPC -*-
+// $Id: httpu.mpc 95491 2012-01-24 13:51:36Z johnnyw $
+
+project(HTTPU) : ace_output, acelib {
+    sharedname = HTTPU
+    dynamicflags += HTTPU_BUILD_DLL
+    avoids += uses_wchar ace_for_tao
+    after += JAWS2
+    libs += JAWS2
+    includes += ..
+
+    Source_Files {
+        *.cpp
+    }
+
+    Template_Files{
+    }
+
+    Header_Files{
+        *.h
+    }
+
+    Inline_Files{
+    }
+}

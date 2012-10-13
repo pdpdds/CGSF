@@ -1,0 +1,6 @@
+// -*- MPC -*-
+// $Id: MC_Test_Utilities.mpc 90163 2010-05-18 21:42:20Z mitza $
+
+project(MC_Test_Utilities) : acelib, avoids_ace_for_tao {
+  dynamicflags += MC_TEST_UTILITIES_BUILD_DLL
+}

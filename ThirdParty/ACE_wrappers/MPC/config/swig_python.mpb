@@ -1,0 +1,19 @@
+// -*- MPC -*-
+// $Id: swig_python.mpb 1754 2010-04-24 23:41:07Z elliott_c $
+
+project {
+  Define_Custom(SWIG) {
+    command           = swig
+    commandflags      = -python -c++
+    inputext          = .swg, .swig, .i
+    source_outputext  = _wrap.cxx
+    generic_outputext = .py
+  }
+  requires += swig_python
+  includes += $(PYTHON_INCLUDE)/.
+  libpaths += $(PYTHON_LIBPATH)/.
+
+  specific {
+    lib_prefix =
+  }
+}

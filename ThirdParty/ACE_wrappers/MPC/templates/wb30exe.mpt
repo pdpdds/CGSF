@@ -1,0 +1,6 @@
+// $Id: wb30exe.mpt 1878 2010-08-06 14:13:57Z mitza $
+
+
+
+conditional_include "wb30dll"
+conditional_include "user_wb30exe"

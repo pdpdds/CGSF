@@ -1,0 +1,9 @@
+// -*- MPC -*-
+// $Id: test.mpc 90416 2010-06-04 18:54:15Z mcorino $
+
+project(MT_Get) : aceexe, inet {
+  exename = mt_get
+  Source_Files {
+    Main.cpp
+  }
+}

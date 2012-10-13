@@ -1,0 +1,3 @@
+# $Id: svc.conf.static 93974 2011-04-22 07:26:59Z msmit $
+
+static HA_Status_Static_Service "-f status.ini"

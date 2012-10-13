@@ -1,0 +1,6 @@
+// -*- MPC -*-
+// $Id: qt4_test.mpb 1627 2009-08-25 12:24:22Z elliott_c $
+
+project: qt4_core {
+  lit_libs += QtTest$(QT_CFG)
+}

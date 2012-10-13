@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="Source Files">
+      <UniqueIdentifier>{B1F27843-FECA-1BAD-2431-8A1100722433}</UniqueIdentifier>
+      <Extensions>cpp;cxx;cc;c;C</Extensions>
+    </Filter>
+    <Filter Include="Build Files">
+      <UniqueIdentifier>{A1909F1C-FECA-1BAD-2431-8A1100722433}</UniqueIdentifier>
+      <Extensions>mpc;mpb;mwc</Extensions>
+    </Filter>
+    <Filter Include="Test Files">
+      <UniqueIdentifier>{4190FD01-FECA-1BAD-2431-8A1100722433}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Svc Conf Files">
+      <UniqueIdentifier>{84D0937A-FECA-1BAD-2431-8A1100722433}</UniqueIdentifier>
+      <Extensions>conf;confxml</Extensions>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="Dynamic_Test.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Main.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="acetest.mpb">
+      <Filter>Build Files</Filter>
+    </None>
+    <None Include="tests.mpc">
+      <Filter>Build Files</Filter>
+    </None>
+    <None Include="tests.mwc">
+      <Filter>Build Files</Filter>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="run_test.pl">
+      <Filter>Test Files</Filter>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Bug_3334_Regression_Test.conf">
+      <Filter>Svc Conf Files</Filter>
+    </None>
+    <None Include="Bug_3912_Regression_Test.conf">
+      <Filter>Svc Conf Files</Filter>
+    </None>
+    <None Include="Service_Config_Stream_Test.conf">
+      <Filter>Svc Conf Files</Filter>
+    </None>
+    <None Include="Service_Config_Test.conf">
+      <Filter>Svc Conf Files</Filter>
+    </None>
+    <None Include="Service_Config_Test.conf.xml">
+      <Filter>Svc Conf Files</Filter>
+    </None>
+    <None Include="Service_Config_Test.UTF-16.conf">
+      <Filter>Svc Conf Files</Filter>
+    </None>
+    <None Include="Service_Config_Test.UTF-16.conf.xml">
+      <Filter>Svc Conf Files</Filter>
+    </None>
+    <None Include="Service_Config_Test.WCHAR_T.conf">
+      <Filter>Svc Conf Files</Filter>
+    </None>
+    <None Include="Service_Config_Test.WCHAR_T.conf.xml">
+      <Filter>Svc Conf Files</Filter>
+    </None>
+    <None Include="UNIXclerk.conf">
+      <Filter>Svc Conf Files</Filter>
+    </None>
+    <None Include="UNIXserver.conf">
+      <Filter>Svc Conf Files</Filter>
+    </None>
+    <None Include="UNIXtokens.conf">
+      <Filter>Svc Conf Files</Filter>
+    </None>
+    <None Include="Win32clerk.conf">
+      <Filter>Svc Conf Files</Filter>
+    </None>
+    <None Include="Win32server.conf">
+      <Filter>Svc Conf Files</Filter>
+    </None>
+    <None Include="Win32tokens.conf">
+      <Filter>Svc Conf Files</Filter>
+    </None>
+  </ItemGroup>
+</Project>

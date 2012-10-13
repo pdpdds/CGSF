@@ -1,0 +1,8 @@
+// -*- MPC -*-
+// $Id: loki.mpb 1691 2010-01-17 19:31:51Z johnnyw $
+
+project {
+  includes += $(LOKI_ROOT)/include
+  libpaths += $(LOKI_ROOT)/lib
+  lit_libs += loki
+}

@@ -1,0 +1,8 @@
+// -*- MPC -*-
+// $Id: unicode.mpb 1606 2009-08-04 10:31:14Z johnnyw $
+
+feature (uses_wchar) {
+  specific {
+    unicode = 1
+  }
+}

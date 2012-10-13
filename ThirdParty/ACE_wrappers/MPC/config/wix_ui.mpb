@@ -1,0 +1,8 @@
+// $Id: wix_ui.mpb 1592 2009-06-24 21:20:17Z hillj $
+
+project : wix {
+  specific {
+    wix_flags   += -ext WixUIExtension
+    light_flags += '-ext WixUIExtension'
+  }
+}

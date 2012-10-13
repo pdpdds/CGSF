@@ -1,0 +1,27 @@
+// $Id: TAO-DPKG.mwc 94355 2011-07-31 11:18:35Z johnnyw $
+
+workspace {
+  exclude {
+    .pc
+    examples
+    orbsvcs/examples
+
+    performance-tests
+    orbsvcs/tests/Notify/performance-tests
+    orbsvcs/performance-tests
+
+    interop-tests
+
+    tests
+    examples/PluggableUDP/tests
+    orbsvcs/tests
+    orbsvcs/examples/CosEC/RtEC_Based/tests
+
+    docs
+    DevGuideExamples
+    orbsvcs/DevGuideExamples
+    utils/logWalker
+    utils/monitor
+  }
+}
+

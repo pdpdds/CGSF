@@ -1,0 +1,16 @@
+// -*- MPC -*-
+// $Id: wix.mpt 1927 2010-11-03 14:55:16Z calkinsc $
+
+conditional_include "common"
+conditional_include "windowscommon"
+
+configurations     = Debug Release
+
+conditional_include "vc10platforms"
+
+Release {
+}
+
+Debug {
+    debug_prj        = 1
+}

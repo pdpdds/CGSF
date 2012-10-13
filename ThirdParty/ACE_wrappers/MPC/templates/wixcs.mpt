@@ -1,0 +1,4 @@
+// -*- MPC -*-
+// $Id: wixcs.mpt 1927 2010-11-03 14:55:16Z calkinsc $
+
+conditional_include "vc8csharp"

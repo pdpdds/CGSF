@@ -1,0 +1,10 @@
+2008-06-20 00:46:10,840 [0x000004c8] DEBUG atternLayoutTest - Message 0
+2008-06-20 00:46:10,840 [0x000004c8] DEBUG root - Message 0
+2008-06-20 00:46:10,840 [0x000004c8] INFO  atternLayoutTest - Message 1
+2008-06-20 00:46:10,840 [0x000004c8] INFO  root - Message 1
+2008-06-20 00:46:10,840 [0x000004c8] WARN  atternLayoutTest - Message 2
+2008-06-20 00:46:10,850 [0x000004c8] WARN  root - Message 2
+2008-06-20 00:46:10,850 [0x000004c8] ERROR atternLayoutTest - Message 3
+2008-06-20 00:46:10,850 [0x000004c8] ERROR root - Message 3
+2008-06-20 00:46:10,850 [0x000004c8] FATAL atternLayoutTest - Message 4
+2008-06-20 00:46:10,850 [0x000004c8] FATAL root - Message 4

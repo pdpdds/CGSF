@@ -1,0 +1,9 @@
+// $Id: wxxrc.mpb 1934 2010-11-12 12:40:22Z elliott_c $
+project: wxadvanced, wxhtml, wxxml {
+  specific(prop:windows) {
+    Debug::lit_libs   += wx$(WX_PORT)$(WX_VERSION)$(WX_UNICODE)d_xrc
+    Release::lit_libs += wx$(WX_PORT)$(WX_VERSION)$(WX_UNICODE)_xrc
+  } else {
+    lit_libs += wx_$(WX_PORT)$(WX_UNICODE)_xrc$(WX_VERSION)
+  }
+}

@@ -1,0 +1,10 @@
+// -*- MPC -*-
+// $Id: cdt6dll.mpt 1856 2010-07-23 21:50:04Z cleeland $
+
+conditional_include "cdt6platforms"
+
+configurations = debug release
+project_type_name = "Shared Library"
+project_type = so
+build_artefact_type = org.eclipse.cdt.build.core.buildArtefactType.sharedLib
+pic = -fPIC

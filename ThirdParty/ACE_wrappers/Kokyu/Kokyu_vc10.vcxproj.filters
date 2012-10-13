@@ -1,0 +1,156 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="Source Files">
+      <UniqueIdentifier>{B1F27843-FECA-1BAD-9CE7-8A2E004D9CE5}</UniqueIdentifier>
+      <Extensions>cpp;cxx;cc;c;C</Extensions>
+    </Filter>
+    <Filter Include="Header Files">
+      <UniqueIdentifier>{06319535-FECA-1BAD-9CE7-8A2E004D9CE5}</UniqueIdentifier>
+      <Extensions>h;hpp;hxx;hh</Extensions>
+    </Filter>
+    <Filter Include="Build Files">
+      <UniqueIdentifier>{A1909F1C-FECA-1BAD-9CE7-8A2E004D9CE5}</UniqueIdentifier>
+      <Extensions>mpc;mpb;mwc</Extensions>
+    </Filter>
+    <Filter Include="Pkgconfig Files">
+      <UniqueIdentifier>{8441A3A3-FECA-1BAD-9CE7-8A2E004D9CE5}</UniqueIdentifier>
+      <Extensions>pcin</Extensions>
+    </Filter>
+    <Filter Include="Inline Files">
+      <UniqueIdentifier>{763028EF-FECA-1BAD-9CE7-8A2E004D9CE5}</UniqueIdentifier>
+      <Extensions>i;ipp;inl</Extensions>
+    </Filter>
+    <Filter Include="Template Files">
+      <UniqueIdentifier>{5635C877-FECA-1BAD-9CE7-8A2E004D9CE5}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Documentation">
+      <UniqueIdentifier>{B14BBA74-FECA-1BAD-9CE7-8A2E004D9CE5}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="Default_Dispatcher_Impl.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Dispatcher_Impl.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Dispatcher_Task.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Kokyu.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Kokyu_defs.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="Default_Dispatcher_Impl.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Dispatch_Deferrer.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Dispatcher_Impl.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Dispatcher_Task.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="DSRT_CV_Dispatcher_Impl_T.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="DSRT_Direct_Dispatcher_Impl_T.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="DSRT_Dispatch_Item_T.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="DSRT_Dispatcher_Impl_T.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="DSRT_Sched_Queue_T.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Kokyu.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="kokyu_config.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Kokyu_defs.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Kokyu_dsrt.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="kokyu_export.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Kokyu.mpc">
+      <Filter>Build Files</Filter>
+    </None>
+    <None Include="Kokyu.mwc">
+      <Filter>Build Files</Filter>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Kokyu.pc.in">
+      <Filter>Pkgconfig Files</Filter>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Default_Dispatcher_Impl.inl">
+      <Filter>Inline Files</Filter>
+    </None>
+    <None Include="Dispatcher_Impl.inl">
+      <Filter>Inline Files</Filter>
+    </None>
+    <None Include="Dispatcher_Task.inl">
+      <Filter>Inline Files</Filter>
+    </None>
+    <None Include="DSRT_Dispatch_Item_T.inl">
+      <Filter>Inline Files</Filter>
+    </None>
+    <None Include="DSRT_Dispatcher_Impl_T.inl">
+      <Filter>Inline Files</Filter>
+    </None>
+    <None Include="Kokyu.inl">
+      <Filter>Inline Files</Filter>
+    </None>
+    <None Include="Kokyu_defs.inl">
+      <Filter>Inline Files</Filter>
+    </None>
+    <None Include="Kokyu_dsrt.inl">
+      <Filter>Inline Files</Filter>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="DSRT_CV_Dispatcher_Impl_T.cpp">
+      <Filter>Template Files</Filter>
+    </ClCompile>
+    <ClCompile Include="DSRT_Direct_Dispatcher_Impl_T.cpp">
+      <Filter>Template Files</Filter>
+    </ClCompile>
+    <ClCompile Include="DSRT_Dispatch_Item_T.cpp">
+      <Filter>Template Files</Filter>
+    </ClCompile>
+    <ClCompile Include="DSRT_Dispatcher_Impl_T.cpp">
+      <Filter>Template Files</Filter>
+    </ClCompile>
+    <ClCompile Include="DSRT_Sched_Queue_T.cpp">
+      <Filter>Template Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Kokyu_dsrt.cpp">
+      <Filter>Template Files</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <CustomBuild Include="README">
+      <Filter>Documentation</Filter>
+    </CustomBuild>
+  </ItemGroup>
+</Project>

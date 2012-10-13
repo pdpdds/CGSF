@@ -1,0 +1,6 @@
+// -*- MPC -*-
+// $Id: qt4_opengl.mpb 1627 2009-08-25 12:24:22Z elliott_c $
+
+project: qt4_gui {
+  lit_libs += QtOpenGL$(QT_CFG)
+}

@@ -1,0 +1,10 @@
+// -*- MPC -*-
+// $Id: libpng.mpb 1685 2010-01-05 14:35:09Z elliott_c $
+
+feature(libpng): zlib {
+  requires += zlib
+  includes += "$(PNG_ROOT)/include/libpng"
+  libpaths += "$(PNG_ROOT)/lib"
+  lit_libs += png
+  macros   += PNG
+}

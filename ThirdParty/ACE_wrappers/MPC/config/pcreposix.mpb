@@ -1,0 +1,5 @@
+// $Id: pcreposix.mpb 1622 2009-08-14 18:48:16Z elliott_c $
+
+project: pcre {
+  lit_libs += pcreposix$(PCRE_VERSION)
+}

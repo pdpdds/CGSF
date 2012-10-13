@@ -1,0 +1,10 @@
+// -*- MPC -*-
+//
+// $Id: cdt6exe.mpt 1836 2010-06-29 14:47:21Z cleeland $
+
+conditional_include "cdt6platforms"
+
+configurations = debug release
+project_type_name = Executable
+project_type = exe
+build_artefact_type = org.eclipse.cdt.build.core.buildArtefactType.exe

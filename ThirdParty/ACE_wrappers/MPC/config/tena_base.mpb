@@ -1,0 +1,8 @@
+// $Id: tena_base.mpb 2006 2011-04-11 01:58:43Z hillj $
+
+project {
+  requires += tena
+
+  includes += $(TENA_HOME)/$(TENA_VERSION)/include
+  libpaths += $(TENA_HOME)/lib
+}

@@ -1,0 +1,8 @@
+// -*- MPC -*-
+// $Id: gdiplus.mpb 1769 2010-05-27 19:44:28Z hillj $
+
+project {
+  specific (prop:windows) {
+    lit_libs += gdiplus
+  }
+}

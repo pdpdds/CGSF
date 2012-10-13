@@ -1,0 +1,6 @@
+// $Id: openmp.mpb 2041 2011-10-19 19:13:21Z wotte $
+feature(openmp) {
+  verbatim(gnuace, top) {
+    openmp ?= 1
+  }
+}
