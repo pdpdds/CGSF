@@ -6,8 +6,8 @@
 #include "TCPCallback.h"
 #include "UDPCallback.h"
 
-#pragma comment(lib, "NetworkEngine.lib")
-#pragma comment(lib, "NetInterface.lib")
+#pragma comment(lib, "EngineLayer.lib")
+#pragma comment(lib, "ClientInterface.lib")
 
 #ifdef _DEBUG
 #pragma comment(lib, "aced.lib")

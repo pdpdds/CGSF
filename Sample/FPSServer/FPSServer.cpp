@@ -19,9 +19,8 @@ SFSYSTEM_SERVER* g_pEngine = NULL;
 #pragma comment(lib, "ace.lib")
 #endif
 
-#pragma comment(lib, "CasualGameFramework.lib")
-#pragma comment(lib, "NetworkEngine.lib")
-//#pragma comment(lib, "libglog_static.lib")
+#pragma comment(lib, "CasualGame.lib")
+#pragma comment(lib, "EngineLayer.lib")
 
 #define GAMEMODE_NONE 0
 #define GAMEMODE_TRAINING 1

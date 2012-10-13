@@ -10,10 +10,10 @@
     <ClCompile Include="stdafx.cpp">
       <Filter>Source</Filter>
     </ClCompile>
-    <ClCompile Include="..\Common\SFPacketStore\SFPacketStore.pb.cc">
+    <ClCompile Include=".\FPSClient.cpp">
       <Filter>Source</Filter>
     </ClCompile>
-    <ClCompile Include=".\FPSClient.cpp">
+    <ClCompile Include="..\..\Common\SFPacketStore\SFPacketStore.pb.cc">
       <Filter>Source</Filter>
     </ClCompile>
   </ItemGroup>
@@ -30,7 +30,7 @@
     <ClInclude Include="stdafx.h">
       <Filter>Source</Filter>
     </ClInclude>
-    <ClInclude Include="..\Common\SFPacketStore\SFPacketStore.pb.h">
+    <ClInclude Include="..\..\Common\SFPacketStore\SFPacketStore.pb.h">
       <Filter>Source</Filter>
     </ClInclude>
   </ItemGroup>

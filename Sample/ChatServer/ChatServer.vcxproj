@@ -44,8 +44,8 @@
     <_ProjectFileVersion>11.0.50522.1</_ProjectFileVersion>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
-    <OutDir>..\Bin32\Debug\</OutDir>
-    <IntDir>../Intermediate/$(Configuration)\$(ProjectName)\</IntDir>
+    <OutDir>../..\Bin32\Debug\</OutDir>
+    <IntDir>../../Intermediate/$(Configuration)\$(ProjectName)\</IntDir>
     <TargetName>$(ProjectName)</TargetName>
     <TargetExt>.exe</TargetExt>
     <LinkIncremental>true</LinkIncremental>
@@ -60,7 +60,7 @@
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <ClCompile>
       <Optimization>Disabled</Optimization>
-      <AdditionalIncludeDirectories>../NetworkEngine;../../ThirdParty/ACE_wrappers;../Common;../Common/SFPacketStore;../../ThirdParty/protobuf-2.4.1/src;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>../../EngineLayer;../../ThirdParty/ACE_wrappers;../../Common;../../Common/SFPacketStore;../../ThirdParty/protobuf-2.4.1/src;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>WIN32;_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <MinimalRebuild>true</MinimalRebuild>
       <BasicRuntimeChecks>EnableFastChecks</BasicRuntimeChecks>
@@ -70,7 +70,7 @@
       <DebugInformationFormat>EditAndContinue</DebugInformationFormat>
     </ClCompile>
     <Link>
-      <AdditionalLibraryDirectories>../Engine/MGServer/debug;../../ThirdParty/SQLite;../../ThirdParty/Lib/debug;../../ThirdParty/Ace_Wrappers/lib;../Lib/Debug;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalLibraryDirectories>../../EngineLayer/Engine/MGServer/debug;../../ThirdParty/SQLite;../../ThirdParty/Lib/debug;../../ThirdParty/Ace_Wrappers/lib;../../Lib/Debug;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <SubSystem>Console</SubSystem>
       <TargetMachine>MachineX86</TargetMachine>
@@ -98,13 +98,10 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include=".\ChatLogicEntry.cpp" />
-    <ClCompile Include="..\Common\SFPacketStore\ChatPacket.pb.cc">
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
-      </PrecompiledHeader>
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
-      </PrecompiledHeader>
+    <ClCompile Include="..\..\Common\SFPacketStore\ChatPacket.pb.cc">
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">NotUsing</PrecompiledHeader>
     </ClCompile>
+    <ClCompile Include=".\ChatLogicEntry.cpp" />
     <ClCompile Include=".\ChatServer.cpp" />
     <ClCompile Include=".\ChatUser.cpp" />
     <ClCompile Include=".\stdafx.cpp">
@@ -113,8 +110,8 @@
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="..\..\Common\SFPacketStore\ChatPacket.pb.h" />
     <ClInclude Include=".\ChatLogicEntry.h" />
-    <ClInclude Include="..\Common\SFPacketStore\ChatPacket.pb.h" />
     <ClInclude Include=".\ChatUser.h" />
     <ClInclude Include=".\stdafx.h" />
     <ClInclude Include=".\targetver.h" />

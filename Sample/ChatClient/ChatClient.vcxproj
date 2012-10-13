@@ -44,7 +44,7 @@
     <_ProjectFileVersion>11.0.50522.1</_ProjectFileVersion>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
-    <OutDir>..\Bin32\Debug\</OutDir>
+    <OutDir>../../Bin32/Debug\</OutDir>
     <IntDir>../../Intermediate/$(Configuration)\$(ProjectName)\</IntDir>
     <TargetName>$(ProjectName)</TargetName>
     <TargetExt>.exe</TargetExt>

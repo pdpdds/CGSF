@@ -23,9 +23,9 @@ SFSYSTEM_CLIENT* g_pNetworkEngine = NULL;
 #pragma comment(lib, "ace.lib")
 #endif
 
-#pragma comment(lib, "BaseLib.lib")
+#pragma comment(lib, "BaseLayer.lib")
 #pragma comment(lib, "libprotobuf.lib")
-#pragma comment(lib, "NetworkEngine.lib")
+#pragma comment(lib, "EngineLayer.lib")
 
 int _tmain(int argc, _TCHAR* argv[])
 {

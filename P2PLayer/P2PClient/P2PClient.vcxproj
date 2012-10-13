@@ -67,7 +67,7 @@
       <PrecompiledHeader />
       <WarningLevel>Level3</WarningLevel>
       <DebugInformationFormat>EditAndContinue</DebugInformationFormat>
-      <AdditionalIncludeDirectories>../Include;../../ThirdParty/liblfds/include;</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>../../Common/Include;../../ThirdParty/liblfds/include;</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <GenerateDebugInformation>true</GenerateDebugInformation>

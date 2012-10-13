@@ -19,7 +19,7 @@ SFSYSTEM_SERVER* g_pEngine = NULL;
 #endif
 
 #pragma comment(lib, "libprotobuf.lib")
-#pragma comment(lib, "NetworkEngine.lib")
+#pragma comment(lib, "EngineLayer.lib")
 
 HINSTANCE g_pP2PHandle = 0;
 

@@ -36,6 +36,9 @@
     <ClCompile Include="SFTraining.cpp">
       <Filter>GameMode</Filter>
     </ClCompile>
+    <ClCompile Include="..\..\Common\SFPacketStore\SFPacketStore.pb.cc">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include=".\stdafx.h">
@@ -55,6 +58,9 @@
     </ClInclude>
     <ClInclude Include="SFTraining.h">
       <Filter>GameMode</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Common\SFPacketStore\SFPacketStore.pb.h">
+      <Filter>Source Files</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
