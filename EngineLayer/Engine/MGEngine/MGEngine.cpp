@@ -7,7 +7,12 @@
 #include "INetworkEngineCallback.h"
 
 #pragma comment(lib, "ws2_32.lib")
+
+#ifdef _DEBUG
+#pragma comment(lib, "MyServerLib_d.lib")
+#else
 #pragma comment(lib, "MyServerLib.lib")
+#endif
 
 INetworkEngine * CreateNetworkEngine(bool Server, INetworkEngineCallback* pCallback)
 {
