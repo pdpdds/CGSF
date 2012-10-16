@@ -3,15 +3,14 @@
 #include <conio.h>
 #include "SFLogicEntry.h"
 #include "P2PServer.h"
-#include "SFServer.h"
 #include "GoogleLog.h"
 #include "SFTraining.h"
 #include "SFFreeForAll.h"
 #include "SFShouter.h"
 #include "SFUtil.h"
-#include "SFMGFramework.h"
+#include "SFIni.h"
 
-SFSYSTEM_SERVER* g_pEngine = NULL;
+SFEngine<GoogleLog, INetworkEngine>* g_pEngine = NULL;
 
 #ifdef _DEBUG
 #pragma comment(lib, "aced.lib")
@@ -33,10 +32,39 @@ HINSTANCE g_pP2PHandle = 0;
 
 int _tmain(int argc, _TCHAR* argv[])
 {
-	ACE::init();
+	g_pEngine = new SFEngine<GoogleLog, INetworkEngine>;
 
-	g_pEngine = new SFSYSTEM_SERVER();
-	g_pEngine->CreateSystem();
+	SFLogicEntry* pLogicEntry = new SFLogicEntry();
+
+	/*int MaxPacketPool = 1000;
+
+	PacketPoolSingleton::instance()->Init(MaxPacketPool);*/
+
+	
+	////////////////////////////////////////////////////////////////////
+//Game Mode
+////////////////////////////////////////////////////////////////////
+	pLogicEntry->AddGameMode(GAMEMODE_TRAINING, new SFTraining(GAMEMODE_TRAINING));
+	pLogicEntry->AddGameMode(GAMEMODE_FREEFORALL, new SFFreeForAll(GAMEMODE_FREEFORALL));
+
+	pLogicEntry->Initialize();
+
+
+	if(FALSE == g_pEngine->CreateSystem("CGSFEngine.dll", pLogicEntry, true))
+		return 0;
+
+////////////////////////////////////////////////////////////////////
+//Timer
+////////////////////////////////////////////////////////////////////
+	_TimerInfo Timer;
+	Timer.TimerID = TIMER_1_SEC;
+	Timer.Period = 1000;
+	Timer.StartDelay = 5000;
+
+	if(g_pEngine->GetNetworkEngine()->CheckTimerImpl())
+	{
+		g_pEngine->GetNetworkEngine()->CreateTimerTask(TIMER_1_SEC, 5000, 1000);
+	}
 
 	g_pP2PHandle = ::LoadLibrary(L"P2PServer.dll");
 
@@ -65,27 +93,17 @@ int _tmain(int argc, _TCHAR* argv[])
 
 	Shouter.Write(L"Shouter.xml");*/
 
+	SFIni ini;
+	
+	WCHAR szIP[20];
+	USHORT Port;
 
-	SFLogicEntry* pLogicEntry = new SFLogicEntry();
-
-////////////////////////////////////////////////////////////////////
-//Timer
-////////////////////////////////////////////////////////////////////
-	_TimerInfo Timer;
-	Timer.TimerID = TIMER_1_SEC;
-	Timer.Period = 1000;
-	Timer.StartDelay = 5000;
-
-	pLogicEntry->AddTimer(Timer);
-
-////////////////////////////////////////////////////////////////////
-//Game Mode
-////////////////////////////////////////////////////////////////////
-	pLogicEntry->AddGameMode(GAMEMODE_TRAINING, new SFTraining(GAMEMODE_TRAINING));
-	pLogicEntry->AddGameMode(GAMEMODE_FREEFORALL, new SFFreeForAll(GAMEMODE_FREEFORALL));
-
-	pLogicEntry->Initialize();
-	g_pEngine->Run(pLogicEntry);
+	ini.SetPathName(_T("./Connection.ini"));
+	ini.GetString(L"ServerInfo",L"IP",szIP, 20);
+	Port = ini.GetInt(L"ServerInfo",L"PORT",0);
+	
+	std::string str = StringConversion::ToASCII(szIP);
+	g_pEngine->Start((char*)str.c_str(), Port);
 
 	_getch();
 
@@ -95,9 +113,7 @@ int _tmain(int argc, _TCHAR* argv[])
 
 	::FreeLibrary(g_pP2PHandle);
 
-	g_pEngine->Stop();
-
-	ACE::fini();
+	g_pEngine->ShutDown();
 
 	return 0;
 }

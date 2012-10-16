@@ -1,5 +1,6 @@
 #pragma once
 #include "SFPlayerState.h"
+#include "CommonStructure.h"
 #include "SFObserver.h"
 #include "SFACEAllocator.h"
 #include "PeerInfo.h"

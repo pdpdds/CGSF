@@ -145,6 +145,9 @@
     <ClInclude Include="SFSendDBRequest.h">
       <Filter>DataBase</Filter>
     </ClInclude>
+    <ClInclude Include="..\..\Common\SFPacketStore\PacketCore.pb.h">
+      <Filter>Common</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include=".\SFLogicCore.cpp">
@@ -251,6 +254,9 @@
     </ClCompile>
     <ClCompile Include="SFSendDBRequest.cpp">
       <Filter>DataBase</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Common\SFPacketStore\PacketCore.pb.cc">
+      <Filter>Common</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

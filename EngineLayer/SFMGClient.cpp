@@ -52,12 +52,7 @@ BOOL SFMGClient::Start( ILogicEntry* pLogic )
 
 BOOL SFMGClient::End()
 {
-	m_pService->stop();
-	delete m_pService;
-
-	delete m_pClientReceiver;
-
-	WSACleanup();
+	
 
 	return TRUE;
 }

@@ -34,11 +34,11 @@
 
 #include <tchar.h>
 #include "SFString.h"
+#include "SFCompressLzf.h"
+#include "SFPacketAnalyzer.H"
 #include "SFBridgeThread.h"
 
 //#pragma comment(lib, "libglog.lib")
-
-using namespace google;
 
 #define LOKI_WINDOWS_H
 

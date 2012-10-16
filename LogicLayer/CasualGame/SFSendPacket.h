@@ -7,6 +7,8 @@ class SFRoom;
 BOOL SendToClient(SFPlayer* pPlayer, SFPacket* pPacket);
 BOOL SendToClient(SFPlayer* pPlayer, USHORT PacketID, ::google::protobuf::Message* pMessage, int BufSize);
 
+BOOL SendAuthPacket(int Serial);
+
 BOOL SendLoginResult(SFPlayer* pPlayer,int Result);
 BOOL SendEnterLobby(SFPlayer* pPlayer);
 

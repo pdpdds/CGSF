@@ -1,5 +1,5 @@
 #pragma once
-#include "ISFAgent.h"
+/*#include "ISFAgent.h"
 
 enum eNetworkFrameworkType
 {

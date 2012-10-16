@@ -5,13 +5,11 @@
 #include "SFSinglton.h"
 #include <iostream>
 #include "SFEngine.h"
-#include "SFServer.h"
 #include "GoogleLog.h"
-#include "SFMGFramework.h"
 
 using namespace google;
 
-extern SFSYSTEM_SERVER* g_pEngine;
+extern SFSYSTEM* g_pEngine;
 
 ChatLogicEntry::ChatLogicEntry(void)
 {
@@ -109,7 +107,7 @@ BOOL ChatLogicEntry::OnPlayerData( SFPacket* pPacket )
 
 BOOL ChatLogicEntry::Send(int Serial, SFPacket* pPacket)
 {
-	g_pEngine->GetNetworkPolicy()->Send(Serial, pPacket);
+	g_pEngine->GetNetworkEngine()->Send(Serial, (char*)pPacket->GetHeader(), pPacket->GetPacketSize());
 
 	return TRUE;
 }

@@ -26,9 +26,6 @@
     <Filter Include="Network">
       <UniqueIdentifier>{8c588fa3-b1c1-48ac-9961-67d09e2c49a8}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Network\ACE">
-      <UniqueIdentifier>{852018fb-62cf-4a72-8af1-a2790d04579a}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Compress">
       <UniqueIdentifier>{e7f2ecb8-46e3-4124-8f23-1e7bb59d188c}</UniqueIdentifier>
     </Filter>
@@ -53,14 +50,8 @@
     <Filter Include="Singlton">
       <UniqueIdentifier>{afa4362c-6b77-48cb-bb1d-20350fc9e7c0}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Entry">
-      <UniqueIdentifier>{4222400f-56e6-4b41-941e-ea2645fd73c6}</UniqueIdentifier>
-    </Filter>
     <Filter Include="CRC">
       <UniqueIdentifier>{b675ccb6-30ac-4d41-87d4-e4864b6613d6}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Network\IOCP">
-      <UniqueIdentifier>{a6bb752f-cb57-4021-9c86-02f5bedd49e6}</UniqueIdentifier>
     </Filter>
     <Filter Include="DirectoryWathcer">
       <UniqueIdentifier>{7490970d-fb9b-4519-affa-710857c39c0d}</UniqueIdentifier>
@@ -70,9 +61,6 @@
     </Filter>
     <Filter Include="Shouter">
       <UniqueIdentifier>{d07dc62e-052f-4e2a-a608-ed2f1312111a}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Network\MG">
-      <UniqueIdentifier>{ded8d32c-2b1f-440f-93ef-a812079e8728}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -154,24 +142,6 @@
     <ClCompile Include=".\ACELogger.cpp">
       <Filter>logger</Filter>
     </ClCompile>
-    <ClCompile Include=".\IProactorAgent.cpp">
-      <Filter>Network\ACE</Filter>
-    </ClCompile>
-    <ClCompile Include=".\SFACEFramework.cpp">
-      <Filter>Network\ACE</Filter>
-    </ClCompile>
-    <ClCompile Include=".\SFProactorAcceptor.cpp">
-      <Filter>Network\ACE</Filter>
-    </ClCompile>
-    <ClCompile Include=".\SFProactorClient.cpp">
-      <Filter>Network\ACE</Filter>
-    </ClCompile>
-    <ClCompile Include=".\SFProactorServer.cpp">
-      <Filter>Network\ACE</Filter>
-    </ClCompile>
-    <ClCompile Include=".\SFProactorService.cpp">
-      <Filter>Network\ACE</Filter>
-    </ClCompile>
     <ClCompile Include=".\SFCompressLzf.cpp">
       <Filter>Compress</Filter>
     </ClCompile>
@@ -205,26 +175,8 @@
     <ClCompile Include=".\SFUtil.cpp">
       <Filter>Util</Filter>
     </ClCompile>
-    <ClCompile Include=".\ExportFunc.cpp">
-      <Filter>Entry</Filter>
-    </ClCompile>
-    <ClCompile Include=".\ServerEngine.cpp">
-      <Filter>Entry</Filter>
-    </ClCompile>
-    <ClCompile Include=".\SFClient.cpp">
-      <Filter>Entry</Filter>
-    </ClCompile>
-    <ClCompile Include=".\SFServer.cpp">
-      <Filter>Entry</Filter>
-    </ClCompile>
     <ClCompile Include="GoogleLog.cpp">
       <Filter>logger</Filter>
-    </ClCompile>
-    <ClCompile Include="SFIOCPFramework.cpp">
-      <Filter>Network\IOCP</Filter>
-    </ClCompile>
-    <ClCompile Include="SFACETimeOutHandler.cpp">
-      <Filter>Network\ACE</Filter>
     </ClCompile>
     <ClCompile Include=".\SFFastCRC.cpp">
       <Filter>CRC</Filter>
@@ -256,23 +208,14 @@
     <ClCompile Include="StringConversion.cpp">
       <Filter>XML</Filter>
     </ClCompile>
+    <ClCompile Include="SFNetworkEngineCallback.cpp">
+      <Filter>Network</Filter>
+    </ClCompile>
+    <ClCompile Include="SFUserSession.cpp">
+      <Filter>Network</Filter>
+    </ClCompile>
     <ClCompile Include=".\SFBridgeThread.cpp">
-      <Filter>Network\ACE</Filter>
-    </ClCompile>
-    <ClCompile Include="SFMGFramework.cpp">
-      <Filter>Network\MG</Filter>
-    </ClCompile>
-    <ClCompile Include="SFMGServer.cpp">
-      <Filter>Network\MG</Filter>
-    </ClCompile>
-    <ClCompile Include="SFMGServerReceiver.cpp">
-      <Filter>Network\MG</Filter>
-    </ClCompile>
-    <ClCompile Include="SFMGClient.cpp">
-      <Filter>Network\MG</Filter>
-    </ClCompile>
-    <ClCompile Include="SFMGClientReceiver.cpp">
-      <Filter>Network\MG</Filter>
+      <Filter>Network</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -378,27 +321,6 @@
     <ClInclude Include=".\SFLog.h">
       <Filter>logger</Filter>
     </ClInclude>
-    <ClInclude Include=".\IProactorAgent.h">
-      <Filter>Network\ACE</Filter>
-    </ClInclude>
-    <ClInclude Include=".\SFACEFramework.h">
-      <Filter>Network\ACE</Filter>
-    </ClInclude>
-    <ClInclude Include=".\SFBridgeThread.h">
-      <Filter>Network\ACE</Filter>
-    </ClInclude>
-    <ClInclude Include=".\SFProactorAcceptor.h">
-      <Filter>Network\ACE</Filter>
-    </ClInclude>
-    <ClInclude Include=".\SFProactorClient.h">
-      <Filter>Network\ACE</Filter>
-    </ClInclude>
-    <ClInclude Include=".\SFProactorServer.h">
-      <Filter>Network\ACE</Filter>
-    </ClInclude>
-    <ClInclude Include=".\SFProactorService.h">
-      <Filter>Network\ACE</Filter>
-    </ClInclude>
     <ClInclude Include=".\SFCompressLzf.h">
       <Filter>Compress</Filter>
     </ClInclude>
@@ -430,9 +352,6 @@
       <Filter>String</Filter>
     </ClInclude>
     <ClInclude Include=".\SFConsumer.h">
-      <Filter>DataStructure</Filter>
-    </ClInclude>
-    <ClInclude Include=".\SFIDMap.h">
       <Filter>DataStructure</Filter>
     </ClInclude>
     <ClInclude Include=".\SFIOCPQueue.h">
@@ -483,44 +402,11 @@
     <ClInclude Include=".\SFSinglton.h">
       <Filter>Singlton</Filter>
     </ClInclude>
-    <ClInclude Include=".\ExportFunc.h">
-      <Filter>Entry</Filter>
-    </ClInclude>
-    <ClInclude Include=".\IEngine.h">
-      <Filter>Entry</Filter>
-    </ClInclude>
-    <ClInclude Include=".\INetworkCallback.h">
-      <Filter>Entry</Filter>
-    </ClInclude>
-    <ClInclude Include=".\INetworkFramework.h">
-      <Filter>Entry</Filter>
-    </ClInclude>
-    <ClInclude Include=".\SFClient.h">
-      <Filter>Entry</Filter>
-    </ClInclude>
-    <ClInclude Include=".\SFEngine.h">
-      <Filter>Entry</Filter>
-    </ClInclude>
-    <ClInclude Include=".\SFServer.h">
-      <Filter>Entry</Filter>
-    </ClInclude>
     <ClInclude Include=".\SFFastCRC.h">
       <Filter>CRC</Filter>
     </ClInclude>
     <ClInclude Include="GoogleLog.h">
       <Filter>logger</Filter>
-    </ClInclude>
-    <ClInclude Include="SFIOCPFramework.h">
-      <Filter>Network\IOCP</Filter>
-    </ClInclude>
-    <ClInclude Include="SFACETimeOutHandler.h">
-      <Filter>Network\ACE</Filter>
-    </ClInclude>
-    <ClInclude Include="..\Common\SFConstant.h">
-      <Filter>Common</Filter>
-    </ClInclude>
-    <ClInclude Include="..\Common\SFStructure.h">
-      <Filter>Common</Filter>
     </ClInclude>
     <ClInclude Include="DelayedDirectoryChangeHandler.h">
       <Filter>DirectoryWathcer</Filter>
@@ -558,25 +444,34 @@
     <ClInclude Include="StringConversion.h">
       <Filter>XML</Filter>
     </ClInclude>
-    <ClInclude Include="SFMGFramework.h">
-      <Filter>Network\MG</Filter>
-    </ClInclude>
-    <ClInclude Include="SFMGServer.h">
-      <Filter>Network\MG</Filter>
-    </ClInclude>
-    <ClInclude Include="ISFAgent.h">
+    <ClInclude Include="SFNetworkEngineCallback.h">
       <Filter>Network</Filter>
     </ClInclude>
-    <ClInclude Include="SFMGServerReceiver.h">
-      <Filter>Network\MG</Filter>
+    <ClInclude Include="SFUserSession.h">
+      <Filter>Network</Filter>
     </ClInclude>
-    <ClInclude Include="SFMGClient.h">
-      <Filter>Network\MG</Filter>
+    <ClInclude Include="SFConstant.h">
+      <Filter>Common</Filter>
     </ClInclude>
-    <ClInclude Include="SFMGClientReceiver.h">
-      <Filter>Network\MG</Filter>
+    <ClInclude Include="SFStructure.h">
+      <Filter>Common</Filter>
     </ClInclude>
-    <ClInclude Include=".\INetworkEngine.h">
+    <ClInclude Include="EngineDLLInterface\INetworkEngineCallback.h">
+      <Filter>Network</Filter>
+    </ClInclude>
+    <ClInclude Include="EngineDLLInterface\INetworkEngine.h">
+      <Filter>Network</Filter>
+    </ClInclude>
+    <ClInclude Include=".\SFBridgeThread.h">
+      <Filter>Network</Filter>
+    </ClInclude>
+    <ClInclude Include=".\INetworkFramework.h">
+      <Filter>Network</Filter>
+    </ClInclude>
+    <ClInclude Include=".\SFEngine.h">
+      <Filter>Network</Filter>
+    </ClInclude>
+    <ClInclude Include=".\IEngine.h">
       <Filter>Network</Filter>
     </ClInclude>
   </ItemGroup>

@@ -7,13 +7,11 @@
 #include "SFDatabaseProxyLocal.h"
 #include "SFDatabaseProxyImpl.h"
 #include "SFMacro.h"
-#include "SFServer.h"
 #include "GoogleLog.h"
 #include "SFEngine.h"
-#include "SFMGFramework.h"
 
 SFLogicEntry* SFLogicEntry::m_pLogicEntry = NULL;
-extern SFSYSTEM_SERVER* g_pEngine;
+extern SFEngine<GoogleLog, INetworkEngine>* g_pEngine;
 
 SFLogicEntry::SFLogicEntry(void)
 {
@@ -130,6 +128,8 @@ BOOL SFLogicEntry::OnConnectPlayer( int PlayerSerial )
 
 	m_PlayerMap.insert(PlayerMap::value_type(PlayerSerial, pPlayer));
 
+	SendAuthPacket(PlayerSerial);
+
 	return TRUE;
 }
 
@@ -210,14 +210,18 @@ BOOL SFLogicEntry::OnShouter(SFPacket* pPacket)
 
 BOOL SFLogicEntry::Send(SFPlayer* pPlayer, SFPacket* pPacket)
 {
-	g_pEngine->GetNetworkPolicy()->Send(pPlayer->GetSerial(), pPacket);
-
-	return TRUE;
+	return g_pEngine->GetNetworkEngine()->Send(pPlayer->GetSerial(), (char*)pPacket->GetHeader(), pPacket->GetHeaderSize() + pPacket->GetDataSize());
 }
 
-BOOL SFLogicEntry::Send( int Serial, USHORT PacketID, char* pBuffer, int BufferSize )
+BOOL SFLogicEntry::Send( int Serial, int PacketID, char* pBuffer, int BufferSize )
 {
-	g_pEngine->GetNetworkPolicy()->Send(Serial, PacketID, pBuffer, BufferSize);
-	
-	return TRUE;
+	int HeaderSize = sizeof(SFPacketHeader);
+
+	SFPacket PacketSend;
+
+	PacketSend.SetPacketID(PacketID);
+
+	PacketSend.MakePacket((BYTE*)pBuffer, BufferSize, CGSF_PACKET_OPTION);
+
+	return g_pEngine->GetNetworkEngine()->Send(Serial, (char*)PacketSend.GetHeader(), PacketSend.GetHeaderSize() + PacketSend.GetDataSize());
 }

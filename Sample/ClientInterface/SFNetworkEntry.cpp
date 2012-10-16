@@ -2,6 +2,8 @@
 #include "SFNetworkEntry.h"
 #include "SFTCPNetwork.h"
 #include "SFUDPNetwork.h"
+#include "SFIni.h"
+#include "StringConversion.h"
 
 SFNetworkEntry::SFNetworkEntry(void)
 	: m_pTCPNetwork(NULL)
@@ -30,13 +32,13 @@ bool SFNetworkEntry::UDPSend(unsigned char* pMessage, int BufSize )
 	return false;
 }
 
-BOOL SFNetworkEntry::Initialize(INetworkCallback* pTCPCallBack, IUDPNetworkCallback* pUDPCallback)
+BOOL SFNetworkEntry::Initialize(char* szModuleName, INetworkCallback* pTCPCallBack, IUDPNetworkCallback* pUDPCallback)
 {
 	if(pTCPCallBack == NULL)
 		return FALSE;
 
 	m_pTCPNetwork = new SFTCPNetwork();
-	m_pTCPNetwork->Initialize(pTCPCallBack);
+	m_pTCPNetwork->Initialize(szModuleName, pTCPCallBack);
 
 	if(pUDPCallback)
 	{
@@ -55,11 +57,20 @@ BOOL SFNetworkEntry::Finally()
 
 BOOL SFNetworkEntry::Run()
 {
-	if(m_pTCPNetwork->Run() == FALSE)
+	SFIni ini;
+	
+	WCHAR szIP[20];
+	USHORT Port;
+
+	ini.SetPathName(_T("./Connection.ini"));
+	ini.GetString(L"ServerInfo",L"IP",szIP, 20);
+	Port = ini.GetInt(L"ServerInfo",L"PORT",0);
+
+	std::string str = StringConversion::ToASCII(szIP);
+	if(m_pTCPNetwork->Start((char*)str.c_str(), Port) == FALSE)
 	{
 		return FALSE;
 	}
-
 
 	if(m_pUDPNetwork)
 	{

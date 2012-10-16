@@ -40,7 +40,7 @@ public:
 	SFLobby* GetLobby(){return m_pLobby;}
 
 	BOOL Send(SFPlayer* pPlayer, SFPacket* pPacket);
-	BOOL Send( int Serial, USHORT PacketID, char* pBuffer, int BufferSize );
+	BOOL Send( int Serial, int PacketID, char* pBuffer, int BufferSize );
 
 	SFDatabaseProxy* GetDataBaseProxy(){return m_pDatabaseProxy;}
 

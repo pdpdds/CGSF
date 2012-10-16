@@ -36,8 +36,3 @@ void BusinessThread(void* Args)
 		}
 	}
 }
-
-void ProactiveWorkThread(void* Args)
-{
-	ACE_Proactor::instance()->proactor_run_event_loop();
-}

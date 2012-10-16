@@ -60,7 +60,7 @@
       <Optimization>Disabled</Optimization>
       <PreprocessorDefinitions>WIN32;_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <SDLCheck>true</SDLCheck>
-      <AdditionalIncludeDirectories>../ClientInterface;../../Common/Include;../../Common;../../Common/SFPacketStore;../../EngineLayer;../../ThirdParty/protobuf-2.4.1/src</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>../ClientInterface;../../Common/Include;../../Common;../../Common/SFPacketStore;../../EngineLayer;../../ThirdParty/protobuf-2.4.1/src;../../EngineLayer/EngineDllInterface</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>

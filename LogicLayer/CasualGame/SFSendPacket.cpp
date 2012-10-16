@@ -1,12 +1,32 @@
 #include "StdAfx.h"
 #include "SFSendPacket.h"
 #include "SFPacketStore.pb.h"
-#include "SFProactorService.h"
+#include "PacketCore.pb.h"
 #include "PacketID.h"
 #include "SFPlayer.h"
 #include "SFRoom.h"
 #include "GamePacketStructure.h"
 #include "SFP2PSys.h"
+
+BOOL SendAuthPacket(int Serial)
+{
+	PacketCore::Auth PktAuth;
+	PktAuth.set_encryptionkey(ENCRYPTION_KEY);
+
+	int BufSize = PktAuth.ByteSize();
+
+	char Buffer[2048] = {0,};
+
+	if(BufSize != 0)
+	{
+		::google::protobuf::io::ArrayOutputStream os(Buffer, BufSize);
+		PktAuth.SerializeToZeroCopyStream(&os);
+	}
+
+	SFLogicEntry::GetLogicEntry()->Send(Serial, CGSF::Auth, Buffer, BufSize);
+
+	return TRUE;
+}
 
 BOOL SendToClient(SFPlayer* pPlayer, USHORT PacketID, ::google::protobuf::Message* pMessage, int BufSize)
 {

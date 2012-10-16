@@ -8,7 +8,7 @@ public:
 	IEngine(void){}
 	virtual ~IEngine(void){}
 
-	virtual BOOL CreateSystem() = 0;
-	virtual BOOL Run(ILogicEntry* pLogic) = 0;
-	virtual BOOL Stop() = 0;
+	virtual BOOL CreateSystem(char* szModuleName, ILogicEntry* pLogic, bool Server = false) = 0;
+	virtual BOOL Start(char* szIP, unsigned short Port) = 0;
+	virtual BOOL ShutDown() = 0;
 };

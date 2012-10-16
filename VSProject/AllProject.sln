@@ -10,6 +10,7 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "EngineLayer", "..\EngineLay
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "CasualGame", "..\LogicLayer\CasualGame\CasualGame.vcxproj", "{6C69EC32-ACD5-4641-AE75-7652221ED3A3}"
 	ProjectSection(ProjectDependencies) = postProject
+		{835E9346-EC73-421D-8C4B-16C4673E3680} = {835E9346-EC73-421D-8C4B-16C4673E3680}
 		{F7276B81-CD8E-4E0B-ABF5-BAB8FEBE0511} = {F7276B81-CD8E-4E0B-ABF5-BAB8FEBE0511}
 	EndProjectSection
 EndProject
@@ -50,6 +51,16 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "FPSServer", "..\Sample\FPSS
 		{F7276B81-CD8E-4E0B-ABF5-BAB8FEBE0511} = {F7276B81-CD8E-4E0B-ABF5-BAB8FEBE0511}
 	EndProjectSection
 EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "CGSFEngine", "..\EngineLayer\Engine\CGSFEngine\CGSFEngine.vcxproj", "{D3434D93-3187-430C-885F-FD6F9613366A}"
+	ProjectSection(ProjectDependencies) = postProject
+		{F7276B81-CD8E-4E0B-ABF5-BAB8FEBE0511} = {F7276B81-CD8E-4E0B-ABF5-BAB8FEBE0511}
+	EndProjectSection
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "MGEngine", "..\EngineLayer\Engine\MGEngine\MGEngine.vcxproj", "{5B71850E-2755-4B2B-BC10-FA51BEC3E380}"
+	ProjectSection(ProjectDependencies) = postProject
+		{F7276B81-CD8E-4E0B-ABF5-BAB8FEBE0511} = {F7276B81-CD8E-4E0B-ABF5-BAB8FEBE0511}
+	EndProjectSection
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Win32 = Debug|Win32
@@ -64,6 +75,10 @@ Global
 		{48877B52-1B8E-44BF-AEA7-16FE109A96AD}.Debug|Win32.Build.0 = Debug|Win32
 		{48877B52-1B8E-44BF-AEA7-16FE109A96AD}.Release|Win32.ActiveCfg = Release|Win32
 		{48877B52-1B8E-44BF-AEA7-16FE109A96AD}.Release|Win32.Build.0 = Release|Win32
+		{5B71850E-2755-4B2B-BC10-FA51BEC3E380}.Debug|Win32.ActiveCfg = Debug|Win32
+		{5B71850E-2755-4B2B-BC10-FA51BEC3E380}.Debug|Win32.Build.0 = Debug|Win32
+		{5B71850E-2755-4B2B-BC10-FA51BEC3E380}.Release|Win32.ActiveCfg = Release|Win32
+		{5B71850E-2755-4B2B-BC10-FA51BEC3E380}.Release|Win32.Build.0 = Release|Win32
 		{6C69EC32-ACD5-4641-AE75-7652221ED3A3}.Debug|Win32.ActiveCfg = Debug|Win32
 		{6C69EC32-ACD5-4641-AE75-7652221ED3A3}.Debug|Win32.Build.0 = Debug|Win32
 		{6C69EC32-ACD5-4641-AE75-7652221ED3A3}.Release|Win32.ActiveCfg = Release|Win32
@@ -92,6 +107,10 @@ Global
 		{C62DE91E-5119-429A-B9C4-11EA6ACC329F}.Debug|Win32.Build.0 = Debug|Win32
 		{C62DE91E-5119-429A-B9C4-11EA6ACC329F}.Release|Win32.ActiveCfg = Release|Win32
 		{C62DE91E-5119-429A-B9C4-11EA6ACC329F}.Release|Win32.Build.0 = Release|Win32
+		{D3434D93-3187-430C-885F-FD6F9613366A}.Debug|Win32.ActiveCfg = Debug|Win32
+		{D3434D93-3187-430C-885F-FD6F9613366A}.Debug|Win32.Build.0 = Debug|Win32
+		{D3434D93-3187-430C-885F-FD6F9613366A}.Release|Win32.ActiveCfg = Release|Win32
+		{D3434D93-3187-430C-885F-FD6F9613366A}.Release|Win32.Build.0 = Release|Win32
 		{F7276B81-CD8E-4E0B-ABF5-BAB8FEBE0511}.Debug|Win32.ActiveCfg = Debug|Win32
 		{F7276B81-CD8E-4E0B-ABF5-BAB8FEBE0511}.Debug|Win32.Build.0 = Debug|Win32
 		{F7276B81-CD8E-4E0B-ABF5-BAB8FEBE0511}.Release|Win32.ActiveCfg = Release|Win32

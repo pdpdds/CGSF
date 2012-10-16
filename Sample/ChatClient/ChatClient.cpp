@@ -2,20 +2,27 @@
 //
 
 #include "stdafx.h"
+#include "SFSinglton.h"
+#include "SFBridgeThread.h"
 #include "SFEngine.h"
 #include "TCPNetworkCallback.h"
 #include <iostream>
 #include "PacketID.h"
-#include "SFClient.h"
 #include "GoogleLog.h"
 #include "ChatPacketEntry.h"
 #include "SFBreakPad.h"
 #include "SFMinidump.h"
 #include "SFCustomHandler.h"
 #include "SFBugTrap.h"
-#include "SFMGFramework.h"
+#include "SFIni.h"
+#include "StringConversion.h"
 
-SFSYSTEM_CLIENT* g_pNetworkEngine = NULL;
+
+#include <google/protobuf/io/zero_copy_stream_impl_lite.h>
+#pragma comment(lib, "liblzf.lib")
+#pragma comment(lib, "zlib.lib")
+
+SFSYSTEM* g_pEngine = NULL;
 
 #ifdef _DEBUG
 #pragma comment(lib, "aced.lib")
@@ -35,16 +42,23 @@ int _tmain(int argc, _TCHAR* argv[])
 
 	ACE::init();
 
-	g_pNetworkEngine = new SFSYSTEM_CLIENT();
-	g_pNetworkEngine->CreateSystem();
-
+	g_pEngine = new SFSYSTEM();
 	ChatPacketEntry* pLogicEntry = new ChatPacketEntry();
-	if(FALSE == g_pNetworkEngine->Run(pLogicEntry))
-	{
-		return 0;
-	}
+	g_pEngine->CreateSystem("MGEngine.dll", pLogicEntry);
 
-	while(g_pNetworkEngine->GetProcessing() == TRUE)
+	SFIni ini;
+	
+	WCHAR szIP[20];
+	USHORT Port;
+
+	ini.SetPathName(_T("./Connection.ini"));
+	ini.GetString(L"ServerInfo",L"IP",szIP, 20);
+	Port = ini.GetInt(L"ServerInfo",L"PORT",0);
+	
+	std::string str = StringConversion::ToASCII(szIP);
+	g_pEngine->Start((char*)str.c_str(), Port);
+
+	while(g_pEngine->GetProcessing() == TRUE)
 	{
 		std::string ChatMessage;
 		std::cin >> ChatMessage;
@@ -65,9 +79,9 @@ int _tmain(int argc, _TCHAR* argv[])
 		pLogicEntry->Send(CGSF::ChatReq, Buffer, BufSize);
 	}
 
-	g_pNetworkEngine->Stop();
+	g_pEngine->ShutDown();
 
-	delete g_pNetworkEngine;
+	delete g_pEngine;
 	delete pLogicEntry; //책임질 대상을 결정할 것...
 
 	ACE::fini();

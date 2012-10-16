@@ -6,13 +6,11 @@
 #include "SFSinglton.h"
 #include <iostream>
 #include "SFEngine.h"
-#include "SFClient.h"
 #include "GoogleLog.h"
-#include "SFProactorClient.h"
-#include "SFProactorService.h"
-#include "SFMGFramework.h"
 
-extern SFSYSTEM_CLIENT* g_pNetworkEngine;
+extern SFSYSTEM* g_pEngine;
+
+using namespace google;
 
 ChatPacketEntry::ChatPacketEntry(void)
 {
@@ -25,14 +23,14 @@ ChatPacketEntry::~ChatPacketEntry(void)
 BOOL ChatPacketEntry::Send(USHORT PacketID, char* pBuffer, int BufSize )
 {
 
-	g_pNetworkEngine->GetNetworkPolicy()->Send(GetSerial(), PacketID, pBuffer, BufSize);
+	g_pEngine->Send(GetSerial(), PacketID, pBuffer, BufSize);
 
 	return TRUE;
 }
 
 BOOL ChatPacketEntry::Send(int Serial, USHORT PacketID, char* pBuffer, int BufSize )
 {
-	g_pNetworkEngine->GetNetworkPolicy()->Send(Serial, PacketID, pBuffer, BufSize);
+	g_pEngine->Send(Serial, PacketID, pBuffer, BufSize);
 
 	return TRUE;
 }
@@ -58,12 +56,12 @@ BOOL ChatPacketEntry::ProcessPacket( SFCommand* pCommand )
 	}
 	else if(pCommand->GetPacketType() == SFCommand_Disconnect)
 	{
-		g_pNetworkEngine->SetProcessing(FALSE);
+		g_pEngine->SetProcessing(FALSE);
 		printf("Disconnect Server!!\n");
 	}
 	else if(pCommand->GetPacketType() == SFCommand_Connect)
 	{
-		g_pNetworkEngine->SetProcessing(TRUE);
+		g_pEngine->SetProcessing(TRUE);
 		printf("Connect Server!!\n");
 
 		m_Serial = pCommand->GetOwnerSerial();

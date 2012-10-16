@@ -58,7 +58,7 @@
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <ClCompile>
       <Optimization>Disabled</Optimization>
-      <AdditionalIncludeDirectories>./Engine/MGServer/Include;../Common/Include;../BaseLayer;./External;../P2PNetwork;../Common;../ThirdParty/zlib;../ThirdParty/liblzf;../ThirdParty/glog/src/windows;../ThirdParty/ACE_wrappers;../ThirdParty/Mysql/include;../ThirdParty/boost_1_49_0;../ThirdParty;../ThirdParty/ssl/include;../Common/SFPacketStore;../ThirdParty/protobuf-2.4.1/src;../ThirdParty/SQLite;../ThirdParty/Loki/include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>./EngineDllInterface;./Engine/MGEngine/Include;../Common/Include;../BaseLayer;./External;../P2PNetwork;../Common;../ThirdParty/zlib;../ThirdParty/liblzf;../ThirdParty/glog/src/windows;../ThirdParty/ACE_wrappers;../ThirdParty/Mysql/include;../ThirdParty/boost_1_49_0;../ThirdParty;../ThirdParty/ssl/include;../Common/SFPacketStore;../ThirdParty/protobuf-2.4.1/src;../ThirdParty/SQLite;../ThirdParty/Loki/include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>WIN32;_DEBUG;_LIB;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <MinimalRebuild>true</MinimalRebuild>
       <BasicRuntimeChecks>EnableFastChecks</BasicRuntimeChecks>
@@ -140,15 +140,9 @@
     <ClCompile Include=".\SFPacketAnalyzer.cpp" />
     <ClCompile Include=".\SFPacketIOBuffer.cpp" />
     <ClCompile Include=".\ACELogger.cpp" />
-    <ClCompile Include=".\IProactorAgent.cpp" />
-    <ClCompile Include=".\SFACEFramework.cpp" />
     <ClCompile Include=".\SFBridgeThread.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Use</PrecompiledHeader>
     </ClCompile>
-    <ClCompile Include=".\SFProactorAcceptor.cpp" />
-    <ClCompile Include=".\SFProactorClient.cpp" />
-    <ClCompile Include=".\SFProactorServer.cpp" />
-    <ClCompile Include=".\SFProactorService.cpp" />
     <ClCompile Include=".\SFCompressLzf.cpp" />
     <ClCompile Include=".\SFCompressZLib.cpp" />
     <ClCompile Include=".\SFEncryptionXOR.cpp" />
@@ -160,22 +154,13 @@
     <ClCompile Include=".\SFObserver.cpp" />
     <ClCompile Include=".\SFSubject.cpp" />
     <ClCompile Include=".\SFUtil.cpp" />
-    <ClCompile Include=".\ExportFunc.cpp" />
-    <ClCompile Include=".\ServerEngine.cpp" />
-    <ClCompile Include=".\SFClient.cpp" />
-    <ClCompile Include=".\SFServer.cpp" />
     <ClCompile Include=".\SFFastCRC.cpp" />
     <ClCompile Include="DelayedDirectoryChangeHandler.cpp" />
     <ClCompile Include="DirectoryChanges.cpp" />
     <ClCompile Include="GoogleLog.cpp" />
-    <ClCompile Include="SFACETimeOutHandler.cpp" />
-    <ClCompile Include="SFIOCPFramework.cpp" />
-    <ClCompile Include="SFMGClient.cpp" />
-    <ClCompile Include="SFMGClientReceiver.cpp" />
-    <ClCompile Include="SFMGFramework.cpp" />
-    <ClCompile Include="SFMGServer.cpp" />
-    <ClCompile Include="SFMGServerReceiver.cpp" />
+    <ClCompile Include="SFNetworkEngineCallback.cpp" />
     <ClCompile Include="SFShouter.cpp" />
+    <ClCompile Include="SFUserSession.cpp" />
     <ClCompile Include="StringConversion.cpp" />
     <ClCompile Include="tinystr.cpp" />
     <ClCompile Include="tinyxml.cpp" />
@@ -183,8 +168,6 @@
     <ClCompile Include="tinyxmlparser.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="..\Common\SFConstant.h" />
-    <ClInclude Include="..\Common\SFStructure.h" />
     <ClInclude Include=".\SFExcel.h" />
     <ClInclude Include=".\SFIni.h" />
     <ClInclude Include=".\SFDispatch.h" />
@@ -219,13 +202,7 @@
     <ClInclude Include=".\SFPacketIOBuffer.h" />
     <ClInclude Include=".\ACELogger.h" />
     <ClInclude Include=".\SFLog.h" />
-    <ClInclude Include=".\IProactorAgent.h" />
-    <ClInclude Include=".\SFACEFramework.h" />
     <ClInclude Include=".\SFBridgeThread.h" />
-    <ClInclude Include=".\SFProactorAcceptor.h" />
-    <ClInclude Include=".\SFProactorClient.h" />
-    <ClInclude Include=".\SFProactorServer.h" />
-    <ClInclude Include=".\SFProactorService.h" />
     <ClInclude Include=".\SFCompressLzf.h" />
     <ClInclude Include=".\SFCompressZLib.h" />
     <ClInclude Include=".\SFEncryption.h" />
@@ -237,7 +214,6 @@
     <ClInclude Include=".\SFFString.h" />
     <ClInclude Include=".\SFString.h" />
     <ClInclude Include=".\SFConsumer.h" />
-    <ClInclude Include=".\SFIDMap.h" />
     <ClInclude Include=".\SFIOCPQueue.h" />
     <ClInclude Include=".\SFList.h" />
     <ClInclude Include=".\SFLock.h" />
@@ -254,31 +230,24 @@
     <ClInclude Include=".\SFTimer.h" />
     <ClInclude Include=".\SFUtil.h" />
     <ClInclude Include=".\SFSinglton.h" />
-    <ClInclude Include=".\ExportFunc.h" />
     <ClInclude Include=".\IEngine.h" />
-    <ClInclude Include=".\INetworkCallback.h" />
     <ClInclude Include=".\INetworkFramework.h" />
-    <ClInclude Include=".\SFClient.h" />
     <ClInclude Include=".\SFEngine.h" />
-    <ClInclude Include=".\SFServer.h" />
     <ClInclude Include=".\SFFastCRC.h" />
     <ClInclude Include="CStdString.h" />
     <ClInclude Include="DelayedDirectoryChangeHandler.h" />
     <ClInclude Include="DirectoryChanges.h" />
+    <ClInclude Include="EngineDLLInterface\INetworkEngine.h" />
+    <ClInclude Include="EngineDLLInterface\INetworkEngineCallback.h" />
     <ClInclude Include="GoogleLog.h" />
-    <ClInclude Include=".\INetworkEngine.h" />
-    <ClInclude Include="ISFAgent.h" />
     <ClInclude Include="IXMLSerializable.h" />
     <ClInclude Include="IXMLStreamReader.h" />
     <ClInclude Include="IXMLStreamWriter.h" />
-    <ClInclude Include="SFACETimeOutHandler.h" />
-    <ClInclude Include="SFIOCPFramework.h" />
-    <ClInclude Include="SFMGClient.h" />
-    <ClInclude Include="SFMGClientReceiver.h" />
-    <ClInclude Include="SFMGFramework.h" />
-    <ClInclude Include="SFMGServer.h" />
-    <ClInclude Include="SFMGServerReceiver.h" />
+    <ClInclude Include="SFConstant.h" />
+    <ClInclude Include="SFNetworkEngineCallback.h" />
     <ClInclude Include="SFShouter.h" />
+    <ClInclude Include="SFStructure.h" />
+    <ClInclude Include="SFUserSession.h" />
     <ClInclude Include="SFXMLStreamReader.h" />
     <ClInclude Include="SFXMLStreamWriter.h" />
     <ClInclude Include="StringConversion.h" />

@@ -6,8 +6,11 @@
 #include "TCPCallback.h"
 #include "UDPCallback.h"
 
+#pragma comment(lib, "libprotobuf.lib")
 #pragma comment(lib, "EngineLayer.lib")
 #pragma comment(lib, "ClientInterface.lib")
+#pragma comment(lib, "liblzf.lib")
+#pragma comment(lib, "zlib.lib")
 
 #ifdef _DEBUG
 #pragma comment(lib, "aced.lib")
@@ -29,7 +32,7 @@ int _tmain(int argc, _TCHAR* argv[])
 	TCPCallback* pCallback = new TCPCallback();
 	UDPCallback* pUDPCallback = new UDPCallback(); 
 
-	g_pNetworkEntry->Initialize(pCallback, pUDPCallback);
+	g_pNetworkEntry->Initialize("CGSFEngine.dll", pCallback, pUDPCallback);
 
 	g_pNetworkEntry->Run();
 

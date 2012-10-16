@@ -23,10 +23,19 @@
 #include "SFConstant.h"
 #include "SFStructure.h"
 #include "SFMacro.h"
-#include "SFClient.h"
 #include "PacketID.h"
 #include "SFPacketStore.pb.h"
 
 #include <google/protobuf/io/zero_copy_stream_impl_lite.h>
 
 using namespace google;
+
+#pragma comment(lib, "zlib.lib")
+#pragma comment(lib, "liblzf.lib")
+#pragma comment(lib, "libprotobuf.lib")
+//#pragma comment(lib, "tomcrypt.lib")
+#ifdef _DEBUG
+#pragma comment(lib, "aced.lib")
+#else
+#pragma comment(lib, "ace.lib")
+#endif

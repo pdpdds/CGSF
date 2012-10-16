@@ -3,11 +3,9 @@
 #include "PacketID.h"
 #include "SFEngine.h"
 #include <iostream>
-#include "SFClient.h"
 #include "GoogleLog.h"
-#include "SFMGFramework.h"
 
-extern SFSYSTEM_CLIENT* g_pNetworkEngine;
+extern SFSYSTEM* g_pEngine;
 
 using namespace google;
 
