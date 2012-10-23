@@ -69,7 +69,9 @@ template <typename LoggerPolicy, typename NetworkPolicy>
 SFEngine<typename LoggerPolicy, typename NetworkPolicy>::~SFEngine(void)
 {
 	delete m_pLoggerPolicy;
-	delete m_pNetworkEngine;
+
+	if(m_pNetworkEngine)
+		delete m_pNetworkEngine;
 }
 
 template <typename LoggerPolicy, typename NetworkPolicy>
