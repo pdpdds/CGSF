@@ -243,6 +243,7 @@
     <ClInclude Include="IXMLSerializable.h" />
     <ClInclude Include="IXMLStreamReader.h" />
     <ClInclude Include="IXMLStreamWriter.h" />
+    <ClInclude Include="MPSC_Queue.h" />
     <ClInclude Include="SFConstant.h" />
     <ClInclude Include="SFNetworkEngineCallback.h" />
     <ClInclude Include="SFShouter.h" />

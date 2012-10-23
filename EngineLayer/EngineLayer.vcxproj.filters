@@ -474,6 +474,9 @@
     <ClInclude Include=".\IEngine.h">
       <Filter>Network</Filter>
     </ClInclude>
+    <ClInclude Include="MPSC_Queue.h">
+      <Filter>DataStructure</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <Text Include=".\ReadMe.txt" />

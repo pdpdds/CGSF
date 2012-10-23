@@ -1,0 +1,42 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="cegui">
+      <UniqueIdentifier>{c21c9ac2-3bb4-4228-bc32-c5c94ca270bb}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="cegui\src">
+      <UniqueIdentifier>{e62d1d01-fed3-4f47-bb24-76465c7dfafa}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="cegui\src\ImageCodecModules">
+      <UniqueIdentifier>{f914864f-ed9b-4895-80be-c5bacb94c7df}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="cegui\src\ImageCodecModules\DevILImageCodec">
+      <UniqueIdentifier>{42fc60c6-8368-47b6-af7f-2ea83e910d56}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="cegui\include">
+      <UniqueIdentifier>{2c1594c0-1209-4e2e-b353-d96d14f16cf1}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="cegui\include\ImageCodecModules">
+      <UniqueIdentifier>{e5bcadd5-9ccf-4d19-8c91-d68773970784}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="cegui\include\ImageCodecModules\DevILImageCodec">
+      <UniqueIdentifier>{14758077-f620-4a1d-88cf-21db855851bb}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="..\..\..\..\cegui\src\ImageCodecModules\DevILImageCodec\CEGUIDevILImageCodec.cpp">
+      <Filter>cegui\src\ImageCodecModules\DevILImageCodec</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\cegui\src\ImageCodecModules\DevILImageCodec\CEGUIDevILImageCodecModule.cpp">
+      <Filter>cegui\src\ImageCodecModules\DevILImageCodec</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="..\..\..\..\cegui\include\ImageCodecModules\DevILImageCodec\CEGUIDevILImageCodec.h">
+      <Filter>cegui\include\ImageCodecModules\DevILImageCodec</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\cegui\include\ImageCodecModules\DevILImageCodec\CEGUIDevILImageCodecModule.h">
+      <Filter>cegui\include\ImageCodecModules\DevILImageCodec</Filter>
+    </ClInclude>
+  </ItemGroup>
+</Project>

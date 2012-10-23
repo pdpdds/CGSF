@@ -1,6 +1,7 @@
 #pragma once
 #include "SFTSSyncQueue.h"
 #include "SFIOCPQueue.h"
+#include "MPSC_Queue.h"
 
 class SFCommand;
 
@@ -14,5 +15,6 @@ public:
 	SFCommand* PopPacket(int WaitTime = INFINITE);
 
 private:
-	SFIOCPQueue<SFCommand> m_IOCPQueue;
+	//SFIOCPQueue<SFCommand> m_IOCPQueue;
+	MPSCQueue<SFCommand> m_IOCPQueue;
 };
