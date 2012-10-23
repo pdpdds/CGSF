@@ -1,0 +1,154 @@
+//Microsoft Developer Studio generated resource script.
+//
+#include "Resource.h"
+
+#define APSTUDIO_READONLY_SYMBOLS
+/////////////////////////////////////////////////////////////////////////////
+//
+// Generated from the TEXTINCLUDE 2 resource.
+//
+#include "afxres.h"
+
+/////////////////////////////////////////////////////////////////////////////
+#undef APSTUDIO_READONLY_SYMBOLS
+
+/////////////////////////////////////////////////////////////////////////////
+// English (Australia) resources
+
+#if !defined(AFX_RESOURCE_DLL) || defined(AFX_TARG_ENA)
+#ifdef _WIN32
+LANGUAGE LANG_ENGLISH, SUBLANG_ENGLISH_AUS
+#pragma code_page(1252)
+#endif //_WIN32
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Dialog
+//
+
+IDD_GRAPHICS_SETTINGS DIALOG DISCARDABLE  0, 0, 290, 185
+STYLE DS_MODALFRAME | DS_CENTER | WS_POPUP | WS_CAPTION | WS_SYSMENU
+CAPTION "Graphics Settings"
+FONT 8, "MS Shell Dlg"
+BEGIN
+    GROUPBOX        "Adapter Details",IDC_STATIC,7,7,276,48
+    LTEXT           "Display Adapter:",IDC_STATIC,16,20,98,8,SS_CENTERIMAGE
+    LTEXT           "Driver Version:",IDC_STATIC,16,38,98,8,SS_CENTERIMAGE
+    GROUPBOX        "Display Settings",IDC_STATIC,7,57,276,100
+    CONTROL         "Windowed",IDC_WINDOWED,"Button",BS_AUTORADIOBUTTON | 
+                    WS_GROUP | WS_TABSTOP,16,73,98,8
+    CONTROL         "Fullscreen",IDC_FULLSCREEN,"Button",BS_AUTORADIOBUTTON,
+                    16,89,98,8
+    LTEXT           "Colour Depth:",IDC_STATIC,16,106,98,8
+    COMBOBOX        IDC_COLOUR_DEPTH,115,103,159,204,CBS_DROPDOWNLIST | 
+                    WS_DISABLED | WS_VSCROLL | WS_GROUP | WS_TABSTOP
+    LTEXT           "Resolution:",IDC_STATIC,16,124,98,8
+    COMBOBOX        IDC_RESOLUTION,115,121,159,204,CBS_DROPDOWNLIST | 
+                    WS_DISABLED | WS_VSCROLL | WS_GROUP | WS_TABSTOP
+    LTEXT           "Refresh Rate:",IDC_STATIC,16,140,98,8
+    COMBOBOX        IDC_REFRESH_RATE,115,137,159,204,CBS_DROPDOWNLIST | 
+                    WS_DISABLED | WS_VSCROLL | WS_GROUP | WS_TABSTOP
+    DEFPUSHBUTTON   "OK",IDOK,65,164,50,14
+    PUSHBUTTON      "Cancel",IDCANCEL,175,164,50,14
+    EDITTEXT        IDC_DISPLAY_ADAPTER,115,17,159,12,ES_READONLY | NOT 
+                    WS_TABSTOP
+    EDITTEXT        IDC_DRIVER_VERSION,115,34,159,12,ES_READONLY | NOT 
+                    WS_TABSTOP
+    CONTROL         "V-Sync",IDC_VSYNC,"Button",BS_AUTOCHECKBOX | 
+                    WS_DISABLED | WS_TABSTOP,115,89,60,8
+END
+
+IDD_MENU DIALOG DISCARDABLE  0, 0, 153, 198
+STYLE DS_MODALFRAME | DS_CENTER | WS_POPUP | WS_CAPTION
+CAPTION "Cityscape"
+FONT 8, "MS Sans Serif"
+BEGIN
+    LTEXT           "Name",IDC_STATIC,7,7,139,8
+    LTEXT           "Sessions",IDC_STATIC,7,88,78,8
+    CTEXT           "Developed by Vaughan Young",IDC_STATIC,7,183,139,8
+    LTEXT           "Character",IDC_STATIC,7,34,139,8
+    LTEXT           "Map (Host Only)",IDC_STATIC,7,61,139,8
+    EDITTEXT        IDC_NAME,7,17,139,12
+    EDITTEXT        IDC_CHARACTER,7,44,139,12
+    EDITTEXT        IDC_MAP,7,71,139,12
+    LISTBOX         IDC_SESSIONS,7,98,78,75,LBS_SORT | LBS_NOINTEGRALHEIGHT | 
+                    WS_VSCROLL | WS_TABSTOP
+    DEFPUSHBUTTON   "Host",IDC_HOST,96,98,50,14
+    PUSHBUTTON      "Join",IDC_JOIN,96,118,50,14
+    PUSHBUTTON      "Refresh",IDC_REFRESH,96,138,50,14
+    PUSHBUTTON      "Exit",IDC_EXIT,96,158,50,14
+END
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// DESIGNINFO
+//
+
+#ifdef APSTUDIO_INVOKED
+GUIDELINES DESIGNINFO DISCARDABLE 
+BEGIN
+    IDD_GRAPHICS_SETTINGS, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 283
+        VERTGUIDE, 16
+        VERTGUIDE, 115
+        VERTGUIDE, 175
+        VERTGUIDE, 274
+        TOPMARGIN, 7
+        BOTTOMMARGIN, 178
+    END
+
+    IDD_MENU, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 146
+        VERTGUIDE, 85
+        TOPMARGIN, 7
+        BOTTOMMARGIN, 191
+    END
+END
+#endif    // APSTUDIO_INVOKED
+
+
+#ifdef APSTUDIO_INVOKED
+/////////////////////////////////////////////////////////////////////////////
+//
+// TEXTINCLUDE
+//
+
+1 TEXTINCLUDE DISCARDABLE 
+BEGIN
+    "Resource.h\0"
+END
+
+2 TEXTINCLUDE DISCARDABLE 
+BEGIN
+    "#include ""afxres.h""\r\n"
+    "\0"
+END
+
+3 TEXTINCLUDE DISCARDABLE 
+BEGIN
+    "\r\n"
+    "\0"
+END
+
+#endif    // APSTUDIO_INVOKED
+
+#endif    // English (Australia) resources
+/////////////////////////////////////////////////////////////////////////////
+
+
+
+#ifndef APSTUDIO_INVOKED
+/////////////////////////////////////////////////////////////////////////////
+//
+// Generated from the TEXTINCLUDE 3 resource.
+//
+
+
+/////////////////////////////////////////////////////////////////////////////
+#endif    // not APSTUDIO_INVOKED
+
