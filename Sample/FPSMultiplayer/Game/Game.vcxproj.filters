@@ -54,7 +54,7 @@
     <ClCompile Include=".\Room.cpp">
       <Filter>State</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\Common\SFPacketStore\SFPacketStore.pb.cc">
+    <ClCompile Include="..\..\..\Common\SFPacketStore\SFPacketStore.pb.cc">
       <Filter>External</Filter>
     </ClCompile>
   </ItemGroup>
@@ -92,10 +92,10 @@
     <ClInclude Include=".\Room.h">
       <Filter>State</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\Common\SFPacketStore\PacketID.h">
+    <ClInclude Include="..\..\..\Common\SFPacketStore\PacketID.h">
       <Filter>External</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\Common\SFPacketStore\SFPacketStore.pb.h">
+    <ClInclude Include="..\..\..\Common\SFPacketStore\SFPacketStore.pb.h">
       <Filter>External</Filter>
     </ClInclude>
   </ItemGroup>

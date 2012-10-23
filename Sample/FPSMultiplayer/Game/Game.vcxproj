@@ -46,7 +46,7 @@
     <_ProjectFileVersion>11.0.50522.1</_ProjectFileVersion>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
-    <OutDir>..\Bin\Debug\</OutDir>
+    <OutDir>../Bin</OutDir>
     <IntDir>.\Debug\</IntDir>
     <TargetName>Game</TargetName>
     <TargetExt>.exe</TargetExt>
@@ -70,7 +70,7 @@
     </Midl>
     <ClCompile>
       <Optimization>Disabled</Optimization>
-      <AdditionalIncludeDirectories>../../include;../../Sample/ClientInterface;../../BaseLayer;../../ExceptionHandler;../../Common;../DirectX9.0/Include;../../NetworkEngine;../../Common/SFPacketStore;../../P2PClient;../CEGUI/Include;../../ThirdParty/protobuf-2.4.1/src;../../Common/Include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>../../ClientInterface;../../../BaseLayer;../../../Common;../DirectX9.0/Include;../../../NetworkEngine;../../../Common/SFPacketStore;../../../P2PClient;../../../ThirdParty/CEGUI/CEGUI/Include;../../../ThirdParty/protobuf-2.4.1/src;../../../Common/Include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>WIN32;_DEBUG;_WINDOWS;_WIN32_DCOM;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <MinimalRebuild>true</MinimalRebuild>
       <BasicRuntimeChecks>EnableFastChecks</BasicRuntimeChecks>
@@ -90,7 +90,7 @@
     <Link>
       <AdditionalDependencies>aced.lib;EngineLayer.lib;d3dx9d.lib;d3d9.lib;dinput8.lib;d3dxof.lib;dxguid.lib;winmm.lib;odbc32.lib;odbccp32.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <SuppressStartupBanner>true</SuppressStartupBanner>
-      <AdditionalLibraryDirectories>../../ThirdParty/SQLite;../../lib/debug;../DirectX9.0/Lib;../../ThirdParty/mysql/lib;../../ThirdParty/lib/debug/libproto;../../ThirdParty/lib/debug/glog;../../ThirdParty/lib/debug;../../ThirdParty/libTom/Lib/Debug;../../ThirdParty/ACE_wrappers/lib;../../Bin32;../../debug;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalLibraryDirectories>../../../lib/debug;../DirectX9.0/Lib;../../../ThirdParty/mysql/lib;../../../ThirdParty/lib/debug;../../../ThirdParty/ACE_wrappers/lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <ProgramDatabaseFile>.\Debug/Game.pdb</ProgramDatabaseFile>
       <SubSystem>Windows</SubSystem>
@@ -149,6 +149,7 @@
     </Bscmake>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="..\..\..\Common\SFPacketStore\SFPacketStore.pb.cc" />
     <ClCompile Include="Bullet.cpp" />
     <ClCompile Include="GameMaterial.cpp" />
     <ClCompile Include="Main.cpp" />
@@ -160,9 +161,10 @@
     <ClCompile Include="Game.cpp" />
     <ClCompile Include="Menu.cpp" />
     <ClCompile Include=".\Room.cpp" />
-    <ClCompile Include="..\..\Common\SFPacketStore\SFPacketStore.pb.cc" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="..\..\..\Common\SFPacketStore\PacketID.h" />
+    <ClInclude Include="..\..\..\Common\SFPacketStore\SFPacketStore.pb.h" />
     <ClInclude Include="Bullet.h" />
     <ClInclude Include="GameMaterial.h" />
     <ClInclude Include="Main.h" />
@@ -174,8 +176,6 @@
     <ClInclude Include="Game.h" />
     <ClInclude Include="Menu.h" />
     <ClInclude Include=".\Room.h" />
-    <ClInclude Include="..\..\Common\SFPacketStore\PacketID.h" />
-    <ClInclude Include="..\..\Common\SFPacketStore\SFPacketStore.pb.h" />
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="..\Engine\Resource.rc">
