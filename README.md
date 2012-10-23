@@ -12,15 +12,15 @@ Documentation
 Build Instruction
 -------
 To build project, we need visual studio 2012
-* Uncompress CGSF/External/ThirdParty.zip and copy it to ../../
 
 In ThirdParty Folder
 * Open ThirdParty.sln and Compile
 * Compile ACE Project
+* Compile CEGUI(CGSF/ThirdParty/CEGUI/projects/premake/CEGUI2012.sln)
 * Compile GoogleProtocolBuffer(protobuf-2.4.1) and copy (libprotobuf.lib, libprotobuf-lite.lib, libprotoc.lib) to lib/debug(or release)
   (this project's compile is not perfect)
   
-In CGSF Folder
+In VSProject
 * Open AllProject.sln and Build it
 
 Open Source
