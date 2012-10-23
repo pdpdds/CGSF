@@ -46,7 +46,7 @@
     <_ProjectFileVersion>11.0.50522.1</_ProjectFileVersion>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
-    <OutDir>../Bin</OutDir>
+    <OutDir>../Bin32</OutDir>
     <IntDir>.\Debug\</IntDir>
     <TargetName>Game</TargetName>
     <TargetExt>.exe</TargetExt>
@@ -90,7 +90,7 @@
     <Link>
       <AdditionalDependencies>aced.lib;EngineLayer.lib;d3dx9d.lib;d3d9.lib;dinput8.lib;d3dxof.lib;dxguid.lib;winmm.lib;odbc32.lib;odbccp32.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <SuppressStartupBanner>true</SuppressStartupBanner>
-      <AdditionalLibraryDirectories>../../../lib/debug;../DirectX9.0/Lib;../../../ThirdParty/mysql/lib;../../../ThirdParty/lib/debug;../../../ThirdParty/ACE_wrappers/lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalLibraryDirectories>../../../VSProject/lib/debug;../DirectX9.0/Lib;../../../ThirdParty/mysql/lib;../../../ThirdParty/lib/debug;../../../ThirdParty/ACE_wrappers/lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <ProgramDatabaseFile>.\Debug/Game.pdb</ProgramDatabaseFile>
       <SubSystem>Windows</SubSystem>
