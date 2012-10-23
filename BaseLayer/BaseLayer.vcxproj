@@ -44,8 +44,8 @@
     <_ProjectFileVersion>11.0.50522.1</_ProjectFileVersion>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
-    <OutDir>..\Lib\Debug\</OutDir>
-    <IntDir>../Intermediate/$(Configuration)\$(ProjectName)\</IntDir>
+    <OutDir>..\VSProject\Lib\Debug\</OutDir>
+    <IntDir>../VSProject/Intermediate/$(Configuration)\$(ProjectName)\</IntDir>
     <TargetName>$(ProjectName)</TargetName>
     <TargetExt>.lib</TargetExt>
   </PropertyGroup>
