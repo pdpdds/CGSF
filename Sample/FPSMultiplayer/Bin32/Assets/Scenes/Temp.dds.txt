@@ -1,0 +1,16 @@
+#begin
+
+texture      string ./Assets/Scenes/Temp.dds
+ignore_face  bool   true
+ignore_fog   bool   false
+ignore_ray   bool   true
+
+transparency colour 0.0 0.0 0.0 0.0
+
+diffuse      colour 0.0 0.0 0.0 0.0
+ambient      colour 0.0 0.0 0.0 0.0
+specular     colour 0.0 0.0 0.0 0.0
+emissive     colour 0.0 0.0 0.0 0.0
+power        float  0.0
+
+#end

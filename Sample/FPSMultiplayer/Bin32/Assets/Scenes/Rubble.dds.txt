@@ -1,0 +1,16 @@
+#begin
+
+texture      string ./Assets/Scenes/Rubble.dds
+ignore_face  bool   false
+ignore_fog   bool   false
+ignore_ray   bool   false
+
+transparency colour 0.0 0.0 0.0 0.0
+
+diffuse      colour 1.0 1.0 1.0 1.0
+ambient      colour 1.0 1.0 1.0 1.0
+specular     colour 0.5 0.5 0.5 1.0
+emissive     colour 0.0 0.0 0.0 0.0
+power        float  20.0
+
+#end

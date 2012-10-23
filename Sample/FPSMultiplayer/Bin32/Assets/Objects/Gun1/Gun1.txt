@@ -1,0 +1,23 @@
+#begin
+
+type            number 0
+name            string "Gun 1"
+ellipse_radius  vector 1.0 1.0 1.0
+
+list_position   number 0
+rate_of_fire    float  0.3
+muzzle_velocity float  200.0
+max_damage      float  25.0
+range           float  50.0
+
+flash0          string Flash1_1.dds.txt
+flash1          string Flash1_2.dds.txt
+flash_path      string ./Assets/Objects/Gun1/
+
+mesh            string "3rd Person.x"
+mesh_hands      string "1st Person.x"
+mesh_path       string ./Assets/Objects/Gun1/
+
+sound           string ./Assets/Sounds/light_shot.wav
+
+#end

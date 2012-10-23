@@ -1,0 +1,24 @@
+#begin
+
+type            number 0
+name            string "Gun 3"
+ellipse_radius  vector 1.0 1.0 1.0
+
+list_position   number 2
+rate_of_fire    float  0.5
+muzzle_velocity float  400.0
+max_damage      float  50.0
+range           float  200.0
+
+flash0          string Flash2_1.dds.txt
+flash1          string Flash2_2.dds.txt
+flash2          string Flash2_3.dds.txt
+flash_path      string ./Assets/Objects/Gun3/
+
+mesh            string "3rd Person.x"
+mesh_hands      string "1st Person.x"
+mesh_path       string ./Assets/Objects/Gun3/
+
+sound           string ./Assets/Sounds/heavy_shot.wav
+
+#end

@@ -1,0 +1,12 @@
+#begin
+
+name               string Marine
+
+mesh_name          string Marine.x
+mesh_path          string ./Assets/Characters/
+
+ellipse_radius     vector 0.3 0.75 0.3
+
+view_weapon_offset vector 5.0 55.0 0.0
+
+#end

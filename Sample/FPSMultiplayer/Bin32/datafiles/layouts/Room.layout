@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<GUILayout >
+    <Window Type="Vanilla/FrameWindow" Name="CGSF/Room" >
+        <Property Name="Text" Value="Room" />
+        <Property Name="AlwaysOnTop" Value="True" />
+        <Property Name="TitlebarFont" Value="DejaVuSans-10" />
+        <Property Name="UnifiedMaxSize" Value="{{0.8,0},{0.8,0}}" />
+        <Property Name="UnifiedMinSize" Value="{{0.2,0},{0.2,0}}" />
+        <Property Name="TitlebarEnabled" Value="True" />
+        <Property Name="UnifiedAreaRect" Value="{{0.400391,0},{0.0716147,0},{0.900391,0},{0.561978,0}}" />
+        <Property Name="CloseButtonEnabled" Value="False" />
+        <Window Type="Vanilla/Button" Name="CGSF/Room/Send" >
+            <Property Name="ID" Value="1" />
+            <Property Name="Text" Value="Send" />
+            <Property Name="UnifiedAreaRect" Value="{{-0.00195313,0},{0,-30},{0.248047,0},{0.0167073,0}}" />
+            <Property Name="VerticalAlignment" Value="Bottom" />
+            <Property Name="HorizontalAlignment" Value="Right" />
+        </Window>
+        <Window Type="Vanilla/Editbox" Name="CGSF/Room/Edit" >
+            <Property Name="ID" Value="2" />
+            <Property Name="MaxTextLength" Value="1073741823" />
+            <Property Name="UnifiedAreaRect" Value="{{0.03125,0},{0,-33},{0.75,-5},{0,-3}}" />
+            <Property Name="VerticalAlignment" Value="Bottom" />
+            <Property Name="TextParsingEnabled" Value="False" />
+        </Window>
+        <Window Type="Vanilla/MultiLineEditbox" Name="CGSF/Room/History" >
+            <Property Name="ID" Value="3" />
+            <Property Name="Text" >CGSF Room
+
+</Property>
+            <Property Name="ReadOnly" Value="True" />
+            <Property Name="MaxTextLength" Value="1073741823" />
+            <Property Name="UnifiedAreaRect" Value="{{0,7},{0,7},{1,-7},{1,-68}}" />
+            <Property Name="TextParsingEnabled" Value="False" />
+        </Window>
+        <Window Type="Vanilla/Button" Name="CGSF/Room/Start" >
+            <Property Name="ID" Value="4" />
+            <Property Name="Font" Value="DejaVuSans-10" />
+            <Property Name="Text" Value="Start" />
+            <Property Name="UnifiedAreaRect" Value="{{0.034375,0},{0.907694,0},{0.284375,0},{0.99648,0}}" />
+        </Window>
+        <Window Type="Vanilla/Button" Name="CGSF/Room/TeamChange" >
+            <Property Name="ID" Value="5" />
+            <Property Name="Text" Value="TeamChange" />
+            <Property Name="UnifiedAreaRect" Value="{{0.302344,0},{0.90539,0},{0.575782,0},{0.998989,0}}" />
+        </Window>
+        <Window Type="Vanilla/Button" Name="CGSF/Room/Leave" >
+			<Property Name="ID" Value="6" />
+            <Property Name="Text" Value="Leave" />
+            <Property Name="UnifiedAreaRect" Value="{{0.585938,0},{0.906267,0},{0.835938,0},{1.00491,0}}" />
+        </Window>
+    </Window>
+</GUILayout>
