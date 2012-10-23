@@ -72,7 +72,7 @@ void PlayerManager::Update( float elapsed )
 		// Send a request spawn point message to the host.
 		NetworkMessage rspm;
 //		rspm.msgid = MSGID_SPAWN_POINT_REQUEST;
-	//	rspm.dpnid = g_engine->GetNetwork()->GetLocalID();
+	//	rspm.dpnid = g_engine->GetNetwork()->GetPlayerID();
 		//g_engine->GetNetwork()->Send( &rspm, sizeof( NetworkMessage ), g_engine->GetNetwork()->GetHostID() );
 
 		// Indicate that a spawn point has been requested.
@@ -238,7 +238,7 @@ void PlayerManager::SpawnLocalPlayer( long spawnPoint )
 	// Send a message to spawn the local player at the given spawn point.
 //	SpawnPlayerMsg spm;
 	//spm.msgid = MSGID_SPAWN_PLAYER;
-	//spm.dpnid = g_engine->GetNetwork()->GetLocalID();
+	//spm.dpnid = g_engine->GetNetwork()->GetPlayerID();
 	//spm.translation = g_engine->GetSceneManager()->GetSpawnPointByID( spawnPoint )->GetTranslation();
 	//g_engine->GetNetwork()->Send( &spm, sizeof( SpawnPlayerMsg ), DPNID_ALL_PLAYERS_GROUP );
 }
@@ -275,7 +275,7 @@ void PlayerManager::SpawnPlayer( int dpnid, D3DXVECTOR3 translation )
 	m_players->GetCurrent()->MouseLook( 0.0f, 0.0f, true );
 
 	// Check if the local player was spawned.
-	if( m_players->GetCurrent()->GetID() == g_engine->GetLocalID() )
+	if( m_players->GetCurrent()->GetID() == g_engine->GetPlayerID() )
 	{
 		// Set local player as the viewing player.
 		m_players->GetCurrent()->SetIsViewing( true );

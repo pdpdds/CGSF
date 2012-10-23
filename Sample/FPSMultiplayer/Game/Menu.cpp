@@ -232,7 +232,7 @@ void Menu::HandleNetworkMessage(int PacketID, BYTE* pBuffer, USHORT Length)
 		std::string szdata = PktLoginSuccess.userinfo();
 		memcpy(&Info, szdata.c_str(), sizeof(_UserInfo));
 
-		//g_engine->SetLocalID(Info.Serial);
+		g_engine->SetPlayerID(Info.Serial);
 		
 		SFPacketStore::EnterLobby PktEnterLobby;
 		int BufSize = PktEnterLobby.ByteSize();

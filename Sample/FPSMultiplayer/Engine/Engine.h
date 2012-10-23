@@ -137,6 +137,9 @@ public:
 	void SetLocalID(int LocalID){m_LocalID = LocalID;}
 	int GetLocalID(){return m_LocalID;}
 
+	void SetPlayerID(int PlayerID){m_PlayerID = PlayerID;}
+	int GetPlayerID(){return m_PlayerID;}
+
 	SFNetworkEntry* m_pNetwork;
 	SoundSystem *GetSoundSystem();
 	SceneManager *GetSceneManager();
@@ -164,6 +167,7 @@ private:
 
 	Input *m_input; // Input object.
 	int m_LocalID;
+	int m_PlayerID;
 
 	SoundSystem *m_soundSystem; // Sound system.
 	SceneManager *m_sceneManager; // Scene manager.

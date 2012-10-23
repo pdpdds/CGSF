@@ -1,5 +1,5 @@
 #pragma once
-
+/*
 struct mpscq_node_t 
 { 
 
@@ -37,9 +37,9 @@ void mpscq_push(mpscq_t* self, mpscq_node_t* n)
 
     n->next = 0; 
 
-    mpscq_node_t* prev = XCHG(&self->head, n);    //(*) 
+//    mpscq_node_t* prev = XCHG(&self->head, n);    //(*) 
 
-    prev->next = n; 
+//    prev->next = n; 
 } 
 
 mpscq_node_t* mpscq_pop(mpscq_t* self) 
@@ -141,3 +141,4 @@ protected:
 private:
 	mpscq_t m_mpsc_queue;
 };
+*/

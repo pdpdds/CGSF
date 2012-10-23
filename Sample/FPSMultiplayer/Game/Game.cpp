@@ -272,17 +272,17 @@ void Game::HandleNetworkMessage(int PacketID, BYTE* pBuffer, USHORT Length)
 
 			PlayerObject *object = m_playerManager->AddPlayer(&Info);
 
-			if(Info.PlayerID == g_engine->GetLocalID())
+			if(Info.PlayerID == g_engine->GetPlayerID())
 			{
 				m_playerManager->SetLocalPlayer(object);
 			}
 	
 			g_engine->GetSceneManager()->AddObject( object );
 
-			if(Info.PlayerID == g_engine->GetLocalID())
+			if(Info.PlayerID == g_engine->GetPlayerID())
 			{
 				SpawnPlayerMsg spm;
-				spm.PlayerID = g_engine->GetLocalID();
+				spm.PlayerID = g_engine->GetPlayerID();
 				spm.translation = g_engine->GetSceneManager()->GetSpawnPointByID( PktMsgCreatePlayer.spawnindex() )->GetTranslation();
 
 				g_engine->TCPSend(CGSF::MSG_SPAWN_PLAYER, &spm, sizeof(SpawnPlayerMsg));
@@ -326,7 +326,7 @@ void Game::HandleNetworkMessage(int PacketID, BYTE* pBuffer, USHORT Length)
 			PlayerObject *player = m_playerManager->GetPlayer( msg.PlayerID );
 
 
-			if(player != NULL && msg.PlayerID == g_engine->GetLocalID())
+			if(player != NULL && msg.PlayerID == g_engine->GetPlayerID())
 			{
 				m_playerManager->GetLocalPlayer()->SetEnabled(true);
 

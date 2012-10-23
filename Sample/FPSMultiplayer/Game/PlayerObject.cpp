@@ -62,7 +62,7 @@ PlayerObject::PlayerObject( PlayerInfo *player, Script *script, unsigned long ty
 	Script *weaponScript = new Script( "Gun1.txt", "./Assets/Objects/Gun1/" );
 	m_weapons[0] = new Weapon( weaponScript, m_viewWeaponOffset );
 	m_currentWeapon = 0;
-	//if( player->dpnid == g_engine->GetNetwork()->GetLocalID() )
+	//if( player->dpnid == g_engine->GetNetwork()->GetPlayerID() )
 	//	m_weapons[m_currentWeapon]->UseViewWeapon( true );
 	//else
 	m_weapons[m_currentWeapon]->UseViewWeapon( false );
@@ -221,7 +221,7 @@ void PlayerObject::Update( float elapsed, bool addVelocity )
 			// Send a message to inform the other players the weapon is ready.
 			PlayerWeaponChangeMsg pwcm;
 			pwcm.msgid = CGSF::MSG_PLAYER_WEAPON_CHANGE;
-			pwcm.PlayerID = g_engine->GetLocalID();
+			pwcm.PlayerID = g_engine->GetPlayerID();
 			pwcm.weapon = m_currentWeapon;
 			g_engine->TCPSend(CGSF::MSG_PLAYER_WEAPON_CHANGE, &pwcm, sizeof(PlayerWeaponChangeMsg));
 			//g_engine->GetNetwork()->Send( &pwcm, sizeof( PlayerWeaponChangeMsg ), DPNID_ALL_PLAYERS_GROUP, DPNSEND_NOLOOPBACK );
@@ -247,7 +247,7 @@ void PlayerObject::Update( float elapsed, bool addVelocity )
 void PlayerObject::Render( D3DXMATRIX *world )
 {
 	// Allow the base animated object to render.
-	if( m_dpnid != g_engine->GetLocalID() )
+	if( m_dpnid != g_engine->GetPlayerID() )
 		AnimatedObject::Render( world );
 	else if( m_dying == true )
 		return;
@@ -294,7 +294,7 @@ void PlayerObject::CollisionOccurred( SceneObject *object, unsigned long collisi
 			m_weapons[listPosition] = new Weapon( spawner->GetObjectScript(), m_viewWeaponOffset );
 
 			// Check if this is the local player.
-			if( m_dpnid == g_engine->GetLocalID() )
+			if( m_dpnid == g_engine->GetPlayerID() )
 			{
 				// Set the weapon to use the first person mesh.
 				m_weapons[listPosition]->UseViewWeapon( true );
@@ -662,7 +662,7 @@ void PlayerObject::ChangeWeapon( char change, char weapon )
 	// Send a weapon changing message.
 	NetworkMessage pwcm;
 	pwcm.msgid = CGSF::MSG_PLAYER_WEAPON_CHANGING;
-	pwcm.PlayerID = g_engine->GetLocalID();
+	pwcm.PlayerID = g_engine->GetPlayerID();
 	g_engine->TCPSend(CGSF::MSG_PLAYER_WEAPON_CHANGING, &pwcm, sizeof(NetworkMessage));
 	//g_engine->GetNetwork()->Send( &pwcm, sizeof( NetworkMessage ), DPNID_ALL_PLAYERS_GROUP, DPNSEND_NOLOOPBACK );
 }

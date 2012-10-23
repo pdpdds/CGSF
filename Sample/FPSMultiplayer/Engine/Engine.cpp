@@ -76,6 +76,7 @@ Engine::Engine( EngineSetup *setup )
 	m_loaded = false;
 	m_pGameStateBlock = NULL;
 	m_LocalID = -1;
+	m_PlayerID = -1;
 
 	// If no setup structure was passed in, then create a default one.
 	// Otehrwise, make a copy of the passed in structure.
