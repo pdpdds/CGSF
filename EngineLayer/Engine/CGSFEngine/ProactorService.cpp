@@ -1,12 +1,9 @@
 #include "ProactorService.h"
-#include "INetworkEngine.h"
-#include "INetworkEngineCallback.h"
 #include "SingltonObject.h"
 #include <Assert.h>
 
 ProactorService::ProactorService()
 {
-
 }
 
 ProactorService::~ProactorService( void )
@@ -16,7 +13,7 @@ ProactorService::~ProactorService( void )
 
 	ProactorServiceMapSingleton::instance()->UnRegister(m_Serial);
 
-	m_pOwner->GetCallback()->OnDisconnect(this->m_Serial);
+	OnDisconnect(this->m_Serial);
 }
 
 void ProactorService::open( ACE_HANDLE h, ACE_Message_Block& MessageBlock )
@@ -33,7 +30,7 @@ void ProactorService::open( ACE_HANDLE h, ACE_Message_Block& MessageBlock )
 
 	assert(m_Serial != INVALID_ID);
 
-	m_pOwner->GetCallback()->OnConnect(this->m_Serial);
+	OnConnect(this->m_Serial);
 
 	PostRecv();
 
@@ -64,7 +61,7 @@ void ProactorService::handle_read_stream( const ACE_Asynch_Read_Stream::Result& 
 	}
 	else
 	{
-		if(false == m_pOwner->GetCallback()->OnData(m_Serial, Block.rd_ptr(), Block.length()))
+		if(false == OnData(m_Serial, Block.rd_ptr(), Block.length()))
 		{
 			Block.release();
 			delete this;
@@ -79,7 +76,6 @@ void ProactorService::handle_write_stream( const ACE_Asynch_Write_Stream::Result
 {
 	Result.message_block().release();
 }
-
 
 BOOL ProactorService::Send(char* pBuffer, int BufferSize)
 {

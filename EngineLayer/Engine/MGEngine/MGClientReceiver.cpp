@@ -27,7 +27,7 @@ void MGClientReceiver::notifyReleaseSocket(ASSOCKDESCEX& sockdesc)
 {
 	printf("Disconnected %d\n", sockdesc.assockUid);
 
-	m_pOwner->GetCallback()->OnDisconnect(sockdesc.assockUid);
+	m_Session.OnDisconnect(sockdesc.assockUid);
 
 	Synchronized es(&m_SessionLock);
            
@@ -38,7 +38,7 @@ void MGClientReceiver::notifyReleaseSocket(ASSOCKDESCEX& sockdesc)
 
 void MGClientReceiver::notifyMessage(ASSOCKDESCEX& sockdesc, size_t length, char* data)
 {
-	if(false == m_pOwner->GetCallback()->OnData(sockdesc.assockUid, data, length))
+	if(false == m_Session.OnData(sockdesc.assockUid,data, length))
 	{
 		Synchronized es(&m_SessionLock);
            
@@ -52,11 +52,9 @@ void MGClientReceiver::notifyConnectingResult(INT32 requestID, ASSOCKDESCEX& soc
 {
 	if(error == 0)
 	{
-		printf("Connected\n");
-
 		printf(" Connected %d\n", sockdesc.assockUid);
 
-		m_pOwner->GetCallback()->OnConnect(sockdesc.assockUid);
+		m_Session.OnConnect(sockdesc.assockUid);
 
 		Synchronized es(&m_SessionLock);
 		m_SessionMap.insert(std::make_pair(sockdesc.assockUid, sockdesc));

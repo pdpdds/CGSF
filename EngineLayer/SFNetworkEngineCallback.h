@@ -14,8 +14,9 @@ public:
 
 	virtual bool OnConnect(int Serial) override;
 	virtual bool OnDisconnect(int Serial) override;
-	virtual bool OnData(int Serial, char* pData, unsigned short Length) override;
+	//virtual bool OnData(int Serial, char* pData, unsigned short Length) override;
 	virtual bool OnTimer(const void *arg) override;
+	virtual IPacketService* CreatePacketService() override;
 
 protected:
 

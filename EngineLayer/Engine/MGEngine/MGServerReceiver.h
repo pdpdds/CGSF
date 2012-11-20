@@ -1,6 +1,7 @@
 #pragma once
 #include "asios.h"
 #include <map>
+#include "ISession.h"
 
 class INetworkEngine;
 
@@ -27,5 +28,6 @@ private:
 	CriticalSectionLock m_SessionLock;
 
 	INetworkEngine* m_pOwner;
+	ISession m_Session;
 };
 

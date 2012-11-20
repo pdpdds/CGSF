@@ -1,13 +1,16 @@
 #ifndef INETWORKENGINECALLBACK_H_
 #define INETWORKENGINECALLBACK_H_
 
+class IPacketService;
+
 class INetworkEngineCallback
 {
   public:
 	  INetworkEngineCallback(void){}
     virtual ~INetworkEngineCallback() {};
 
-	virtual bool OnData(int Serial, char* pData, unsigned short Length) = 0;
+	virtual IPacketService* CreatePacketService() = 0;
+	//virtual bool OnData(int Serial, char* pData, unsigned short Length) {return false;}
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////
 //세션이 생성되었을 때

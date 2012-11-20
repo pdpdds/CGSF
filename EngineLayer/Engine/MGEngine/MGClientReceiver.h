@@ -1,6 +1,7 @@
 #pragma once
 #include "asios.h"
 #include <map>
+#include "ISession.h"
 
 class INetworkEngine;
 
@@ -26,7 +27,7 @@ private:
 	SessionMap m_SessionMap;
 	CriticalSectionLock m_SessionLock;
 	ASSOCKDESCEX m_SocketDesc;
+	ISession m_Session;
 
 	INetworkEngine* m_pOwner;
 };
-

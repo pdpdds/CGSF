@@ -86,6 +86,8 @@
   <ItemGroup>
     <ClInclude Include="..\..\EngineDLLInterface\INetworkEngine.h" />
     <ClInclude Include="..\..\EngineDLLInterface\INetworkEngineCallback.h" />
+    <ClInclude Include="..\..\EngineDLLInterface\IPacketService.h" />
+    <ClInclude Include="..\..\EngineDLLInterface\ISession.h" />
     <ClInclude Include=".\CGSFEngine.h" />
     <ClInclude Include="ACEHeader.h" />
     <ClInclude Include=".\SingltonObject.h" />

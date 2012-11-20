@@ -44,6 +44,12 @@
     <ClInclude Include="ACETimeOutHandler.h">
       <Filter>Source</Filter>
     </ClInclude>
+    <ClInclude Include="..\..\EngineDLLInterface\IPacketService.h">
+      <Filter>Source</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\EngineDLLInterface\ISession.h">
+      <Filter>Source</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include=".\CGSFEngine.cpp">

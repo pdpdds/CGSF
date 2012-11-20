@@ -1,6 +1,7 @@
 #include "stdafx.h"
 #include "SFNetworkEngineCallback.h"
 #include "SFUserSession.h"
+#include "SFPacketService.h"
 
 SFNetworkEngineCallback::SFNetworkEngineCallback(void)
 {
@@ -19,12 +20,12 @@ bool SFNetworkEngineCallback::OnConnect(int Serial)
 	LogicGatewaySingleton::instance()->PushPacket(pCommand);
 
 //20121015 오브젝트풀은 나중에
-	SFUserSession* pUserSession = new SFUserSession(Serial);
+	/*SFUserSession* pUserSession = new SFUserSession();
 
 	m_Lock.Lock();
 	m_UserSessionMap.insert(std::make_pair(Serial, pUserSession));
-	m_Lock.Unlock();
-
+	m_Lock.Unlock();*/
+	
 	return true;
 }
 
@@ -36,7 +37,7 @@ bool SFNetworkEngineCallback::OnDisconnect(int Serial)
 
 	LogicGatewaySingleton::instance()->PushPacket(pCommand);
 
-	m_Lock.Lock();
+	/*m_Lock.Lock();
 	UserSessionMap::iterator iter = m_UserSessionMap.find(Serial);
 
 	if(iter != m_UserSessionMap.end())
@@ -47,12 +48,12 @@ bool SFNetworkEngineCallback::OnDisconnect(int Serial)
 		delete pSession;
 	}
 
-	m_Lock.Unlock();
+	m_Lock.Unlock();*/
 	
 	return true;
 }
 
-bool SFNetworkEngineCallback::OnData(int Serial, char* pData, unsigned short Length)
+/*bool SFNetworkEngineCallback::OnData(int Serial, char* pData, unsigned short Length)
 {
 	UserSessionMap::iterator iter = m_UserSessionMap.find(Serial);
 
@@ -63,8 +64,8 @@ bool SFNetworkEngineCallback::OnData(int Serial, char* pData, unsigned short Len
 	}
 
 	SFUserSession* pSession = iter->second;
-	return pSession->ProcessData(pData, Length);
-}
+	return pSession->ProcessData(Serial, pData, Length);
+}*/
 
 bool SFNetworkEngineCallback::OnTimer(const void *arg)
 {
@@ -82,4 +83,9 @@ bool SFNetworkEngineCallback::OnTimer(const void *arg)
 	//      (tv - this->start_time_).sec ()));
 
 	return true;
+}
+
+IPacketService* SFNetworkEngineCallback::CreatePacketService()
+{
+	return new SFPacketService();
 }

@@ -4,15 +4,14 @@
 class SFUserSession
 {
 public:
-	SFUserSession(int Serial);
+	SFUserSession();
 	virtual ~SFUserSession(void);
 
-	bool ProcessData(char* pData, unsigned short Length);
+	bool ProcessData(int Serial, char* pData, unsigned short Length);
 
 protected:
 
 private:
-	int m_Serial;
 	SFPacketAnalyzer<SFCompressLzf> m_BufferAnalyzer;
 };
 

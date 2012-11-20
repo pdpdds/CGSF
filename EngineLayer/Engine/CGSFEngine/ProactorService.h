@@ -2,10 +2,9 @@
 #include <ace/Asynch_IO.h>
 #include <ACE/OS.h>
 #include <ACE/Message_Block.h>
+#include "ISession.h"
 
-class INetworkEngine;
-
-class ProactorService : public ACE_Service_Handler
+class ProactorService : public ACE_Service_Handler, public ISession
 {
 public:
 	ProactorService();
@@ -18,13 +17,10 @@ public:
 	void PostRecv();
 
 	BOOL Send(char* pBuffer, int BufferSize);
-
-	void SetOwner(INetworkEngine* pOwner){m_pOwner = pOwner;}
 	void SetSerial(int Serial){m_Serial = Serial;}
 private:
 	ACE_Asynch_Write_Stream m_AsyncWriter;
 	ACE_Asynch_Read_Stream m_AsyncReader;
 
-	INetworkEngine* m_pOwner;
 	int m_Serial;
 };

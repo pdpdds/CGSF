@@ -2,8 +2,7 @@
 #include "SFUserSession.h"
 
 
-SFUserSession::SFUserSession(int Serial)
-	: m_Serial(Serial)
+SFUserSession::SFUserSession()
 {
 }
 
@@ -12,7 +11,7 @@ SFUserSession::~SFUserSession(void)
 {
 }
 
-bool SFUserSession::ProcessData(char* pData, unsigned short Length)
+bool SFUserSession::ProcessData(int Serial, char* pData, unsigned short Length)
 {
 	m_BufferAnalyzer.AddTransferredData(pData, Length);
 
@@ -23,7 +22,7 @@ bool SFUserSession::ProcessData(char* pData, unsigned short Length)
 	while(TRUE ==  m_BufferAnalyzer.GetPacket(*pPacket, ErrorCode))
 	{
 		pPacket->SetPacketType(SFCommand_Data);
-		pPacket->SetOwnerSerial(m_Serial);
+		pPacket->SetOwnerSerial(Serial);
 
 		LogicGatewaySingleton::instance()->PushPacket(pPacket);
 

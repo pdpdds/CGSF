@@ -217,6 +217,9 @@
     <ClCompile Include=".\SFBridgeThread.cpp">
       <Filter>Network</Filter>
     </ClCompile>
+    <ClCompile Include="SFPacketService.cpp">
+      <Filter>Network</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include=".\SFExcel.h">
@@ -476,6 +479,15 @@
     </ClInclude>
     <ClInclude Include="MPSC_Queue.h">
       <Filter>DataStructure</Filter>
+    </ClInclude>
+    <ClInclude Include="EngineDLLInterface\ISession.h">
+      <Filter>Network</Filter>
+    </ClInclude>
+    <ClInclude Include="EngineDLLInterface\IPacketService.h">
+      <Filter>Network</Filter>
+    </ClInclude>
+    <ClInclude Include="SFPacketService.h">
+      <Filter>Network</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

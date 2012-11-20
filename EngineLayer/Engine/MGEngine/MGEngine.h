@@ -47,4 +47,3 @@ private:
 	MGClientReceiver* m_pClientReceiver;
 	AsynchIOService* m_pService;
 };
-

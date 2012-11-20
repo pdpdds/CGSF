@@ -16,7 +16,7 @@ void MGServerReceiver::notifyRegisterSocket(ASSOCKDESCEX& sockdesc, SOCKADDR_IN&
 {
 	printf(" Connected %d\n", sockdesc.assockUid);
 
-	m_pOwner->GetCallback()->OnConnect(sockdesc.assockUid);
+	m_Session.OnConnect(sockdesc.assockUid);
 
 	Synchronized es(&m_SessionLock);
 	m_SessionMap.insert(std::make_pair(sockdesc.assockUid, sockdesc));
@@ -26,7 +26,7 @@ void MGServerReceiver::notifyReleaseSocket(ASSOCKDESCEX& sockdesc)
 {
 	printf("Disconnected %d\n", sockdesc.assockUid);
 
-	m_pOwner->GetCallback()->OnDisconnect(sockdesc.assockUid);
+	m_Session.OnDisconnect(sockdesc.assockUid);
 
 	Synchronized es(&m_SessionLock);
            
@@ -37,7 +37,7 @@ void MGServerReceiver::notifyReleaseSocket(ASSOCKDESCEX& sockdesc)
 
 void MGServerReceiver::notifyMessage(ASSOCKDESCEX& sockdesc, size_t length, char* data)
 {
-	if(false == m_pOwner->GetCallback()->OnData(sockdesc.assockUid, data, length))
+    if(false == m_Session.OnData(sockdesc.assockUid,data, length))
 	{
 		Synchronized es(&m_SessionLock);
            
@@ -87,6 +87,5 @@ bool MGServerReceiver::Disconnect(int Serial)
 	m_SessionMap.erase(Serial);
 
 	return true;
-
 }
 

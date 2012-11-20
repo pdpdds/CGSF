@@ -159,6 +159,7 @@
     <ClCompile Include="DirectoryChanges.cpp" />
     <ClCompile Include="GoogleLog.cpp" />
     <ClCompile Include="SFNetworkEngineCallback.cpp" />
+    <ClCompile Include="SFPacketService.cpp" />
     <ClCompile Include="SFShouter.cpp" />
     <ClCompile Include="SFUserSession.cpp" />
     <ClCompile Include="StringConversion.cpp" />
@@ -239,6 +240,8 @@
     <ClInclude Include="DirectoryChanges.h" />
     <ClInclude Include="EngineDLLInterface\INetworkEngine.h" />
     <ClInclude Include="EngineDLLInterface\INetworkEngineCallback.h" />
+    <ClInclude Include="EngineDLLInterface\IPacketService.h" />
+    <ClInclude Include="EngineDLLInterface\ISession.h" />
     <ClInclude Include="GoogleLog.h" />
     <ClInclude Include="IXMLSerializable.h" />
     <ClInclude Include="IXMLStreamReader.h" />
@@ -246,6 +249,7 @@
     <ClInclude Include="MPSC_Queue.h" />
     <ClInclude Include="SFConstant.h" />
     <ClInclude Include="SFNetworkEngineCallback.h" />
+    <ClInclude Include="SFPacketService.h" />
     <ClInclude Include="SFShouter.h" />
     <ClInclude Include="SFStructure.h" />
     <ClInclude Include="SFUserSession.h" />
