@@ -4,8 +4,7 @@ class SFProactorService;
 class SFPlayer;
 class SFRoom;
 
-BOOL SendToClient(SFPlayer* pPlayer, SFPacket* pPacket);
-BOOL SendToClient(SFPlayer* pPlayer, USHORT PacketID, ::google::protobuf::Message* pMessage, int BufSize);
+BOOL SendToClient(SFPlayer* pPlayer, BasePacket* pPacket);
 
 BOOL SendAuthPacket(int Serial);
 

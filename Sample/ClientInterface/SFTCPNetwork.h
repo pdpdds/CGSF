@@ -1,4 +1,5 @@
 #pragma once
+#pragma warning(disable : 4996)
 #include "GoogleLog.h"
 #include "SFMacro.h"
 #include "SFEngine.h"
@@ -14,14 +15,19 @@ public:
 	BOOL Initialize(char* szModuleName, INetworkCallback* pTCPCallBack);
 	BOOL Start(char* szIP, unsigned short Port);
 	BOOL Update();
-	BOOL Send(int Serial, USHORT PacketID, char* pMessage, int BufSize );
+	BOOL SendRequest(BasePacket* pPacket);
 
-	SFSYSTEM* GetNetwork();
+	SFEngine* GetNetwork();
+
+	void SetLogicDispatcher(ILogicDispatcher* pDispatcher);
+
+	void SetPacketProtocol(IPacketProtocol* pProtocol);
+
 
 protected:
 
 private:
-	SFSYSTEM* m_TCPClient; // TCP
+	SFEngine* m_TCPClient; // TCP
 	INetworkCallback* m_pTCPCallBack;
 };
 

@@ -62,6 +62,12 @@
     <Filter Include="Shouter">
       <UniqueIdentifier>{d07dc62e-052f-4e2a-a608-ed2f1312111a}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Packet\ProtobufPacket">
+      <UniqueIdentifier>{27197d65-2387-4f0f-9e99-1d711b364bd1}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Packet\PacketProtocol">
+      <UniqueIdentifier>{8349fc42-da29-49ce-aeef-7b5f72c6a78a}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include=".\SFExcel.cpp">
@@ -131,9 +137,6 @@
       <Filter>Packet</Filter>
     </ClCompile>
     <ClCompile Include=".\SFPacket.cpp">
-      <Filter>Packet</Filter>
-    </ClCompile>
-    <ClCompile Include=".\SFPacketAnalyzer.cpp">
       <Filter>Packet</Filter>
     </ClCompile>
     <ClCompile Include=".\SFPacketIOBuffer.cpp">
@@ -208,16 +211,37 @@
     <ClCompile Include="StringConversion.cpp">
       <Filter>XML</Filter>
     </ClCompile>
-    <ClCompile Include="SFNetworkEngineCallback.cpp">
-      <Filter>Network</Filter>
-    </ClCompile>
-    <ClCompile Include="SFUserSession.cpp">
-      <Filter>Network</Filter>
-    </ClCompile>
     <ClCompile Include=".\SFBridgeThread.cpp">
       <Filter>Network</Filter>
     </ClCompile>
-    <ClCompile Include="SFPacketService.cpp">
+    <ClCompile Include="SFProtobufPacketImpl.cpp">
+      <Filter>Packet\ProtobufPacket</Filter>
+    </ClCompile>
+    <ClCompile Include="SFCompressor.cpp">
+      <Filter>Compress</Filter>
+    </ClCompile>
+    <ClCompile Include="SFProtobufProtocol.cpp">
+      <Filter>Packet\ProtobufPacket</Filter>
+    </ClCompile>
+    <ClCompile Include=".\SFDefaultPacketProtocol.cpp">
+      <Filter>Packet\ProtobufPacket</Filter>
+    </ClCompile>
+    <ClCompile Include=".\SFPacketProtocol.cpp">
+      <Filter>Packet\PacketProtocol</Filter>
+    </ClCompile>
+    <ClCompile Include="SFProtocol.cpp">
+      <Filter>Packet\ProtobufPacket</Filter>
+    </ClCompile>
+    <ClCompile Include="DataBuffer.cpp">
+      <Filter>Packet\ProtobufPacket</Filter>
+    </ClCompile>
+    <ClCompile Include="SFEngine.cpp">
+      <Filter>Network</Filter>
+    </ClCompile>
+    <ClCompile Include=".\SFCasualGameDispatcher.cpp">
+      <Filter>Network</Filter>
+    </ClCompile>
+    <ClCompile Include=".\SFSessionService.cpp">
       <Filter>Network</Filter>
     </ClCompile>
   </ItemGroup>
@@ -310,9 +334,6 @@
       <Filter>Packet</Filter>
     </ClInclude>
     <ClInclude Include=".\SFPacket.h">
-      <Filter>Packet</Filter>
-    </ClInclude>
-    <ClInclude Include=".\SFPacketAnalyzer.h">
       <Filter>Packet</Filter>
     </ClInclude>
     <ClInclude Include=".\SFPacketIOBuffer.h">
@@ -447,20 +468,11 @@
     <ClInclude Include="StringConversion.h">
       <Filter>XML</Filter>
     </ClInclude>
-    <ClInclude Include="SFNetworkEngineCallback.h">
-      <Filter>Network</Filter>
-    </ClInclude>
-    <ClInclude Include="SFUserSession.h">
-      <Filter>Network</Filter>
-    </ClInclude>
     <ClInclude Include="SFConstant.h">
       <Filter>Common</Filter>
     </ClInclude>
     <ClInclude Include="SFStructure.h">
       <Filter>Common</Filter>
-    </ClInclude>
-    <ClInclude Include="EngineDLLInterface\INetworkEngineCallback.h">
-      <Filter>Network</Filter>
     </ClInclude>
     <ClInclude Include="EngineDLLInterface\INetworkEngine.h">
       <Filter>Network</Filter>
@@ -474,19 +486,52 @@
     <ClInclude Include=".\SFEngine.h">
       <Filter>Network</Filter>
     </ClInclude>
-    <ClInclude Include=".\IEngine.h">
-      <Filter>Network</Filter>
-    </ClInclude>
     <ClInclude Include="MPSC_Queue.h">
       <Filter>DataStructure</Filter>
     </ClInclude>
     <ClInclude Include="EngineDLLInterface\ISession.h">
       <Filter>Network</Filter>
     </ClInclude>
-    <ClInclude Include="EngineDLLInterface\IPacketService.h">
+    <ClInclude Include="SFProtobufPacketImpl.h">
+      <Filter>Packet\ProtobufPacket</Filter>
+    </ClInclude>
+    <ClInclude Include="SFProtobufPacket.h">
+      <Filter>Packet\ProtobufPacket</Filter>
+    </ClInclude>
+    <ClInclude Include="SFProtocol.h">
+      <Filter>Packet\ProtobufPacket</Filter>
+    </ClInclude>
+    <ClInclude Include="SFCompressor.h">
+      <Filter>Compress</Filter>
+    </ClInclude>
+    <ClInclude Include="SFProtobufProtocol.h">
+      <Filter>Packet\ProtobufPacket</Filter>
+    </ClInclude>
+    <ClInclude Include=".\SFDefaultPacketProtocol.h">
+      <Filter>Packet\ProtobufPacket</Filter>
+    </ClInclude>
+    <ClInclude Include=".\SFPacketProtocol.h">
+      <Filter>Packet\PacketProtocol</Filter>
+    </ClInclude>
+    <ClInclude Include="DataBuffer.h">
+      <Filter>Packet\ProtobufPacket</Filter>
+    </ClInclude>
+    <ClInclude Include=".\EngineDLLInterface\ISessionService.h">
       <Filter>Network</Filter>
     </ClInclude>
-    <ClInclude Include="SFPacketService.h">
+    <ClInclude Include="ILogicDispatcher.h">
+      <Filter>Network</Filter>
+    </ClInclude>
+    <ClInclude Include=".\SFCasualGameDispatcher.h">
+      <Filter>Network</Filter>
+    </ClInclude>
+    <ClInclude Include=".\SFSessionService.h">
+      <Filter>Network</Filter>
+    </ClInclude>
+    <ClInclude Include="EngineDLLInterface\IEngine.h">
+      <Filter>Network</Filter>
+    </ClInclude>
+    <ClInclude Include="EngineDLLInterface\BasePacket.h">
       <Filter>Network</Filter>
     </ClInclude>
   </ItemGroup>

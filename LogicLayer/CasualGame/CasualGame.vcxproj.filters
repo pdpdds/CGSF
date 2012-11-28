@@ -29,6 +29,9 @@
     <Filter Include="DataBase">
       <UniqueIdentifier>{f9511c26-8169-477d-a626-cd15dae0bef5}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Protocol">
+      <UniqueIdentifier>{c7b3c0d4-c116-4572-8208-9c4e92d556d1}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include=".\SFGameConstant.h">
@@ -148,6 +151,9 @@
     <ClInclude Include="..\..\Common\SFPacketStore\PacketCore.pb.h">
       <Filter>Common</Filter>
     </ClInclude>
+    <ClInclude Include="SFCGProtobufProtocol.h">
+      <Filter>Protocol</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include=".\SFLogicCore.cpp">
@@ -257,6 +263,9 @@
     </ClCompile>
     <ClCompile Include="..\..\Common\SFPacketStore\PacketCore.pb.cc">
       <Filter>Common</Filter>
+    </ClCompile>
+    <ClCompile Include="SFCGProtobufProtocol.cpp">
+      <Filter>Protocol</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

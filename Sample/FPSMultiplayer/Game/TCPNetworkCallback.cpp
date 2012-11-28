@@ -11,9 +11,9 @@ TCPNetworkCallback::~TCPNetworkCallback(void)
 {
 }
 
-bool TCPNetworkCallback::HandleNetworkMessage(int PacketID, BYTE* pBuffer, USHORT Length)
+bool TCPNetworkCallback::HandleNetworkMessage(BasePacket* pPacket)
 {
-	g_engine->GetCurrentState()->HandleNetworkMessage(PacketID, pBuffer, Length);
+	g_engine->GetCurrentState()->HandleNetworkMessage(pPacket);
 
 	return true;
 }

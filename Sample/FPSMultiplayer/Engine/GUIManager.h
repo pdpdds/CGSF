@@ -15,7 +15,7 @@ public:
 
 	bool ChangeState( eGUIState State );
 	bool ProcessInput( int InputParam );
-	virtual bool Notify(int Msg, char* pBuffer, int BufferSize );
+	virtual bool Notify(BasePacket* pPacket);
 
 	bool Create(IDirect3DDevice9* pDevice);
 	bool handleRootKeyDown(const CEGUI::EventArgs& args);

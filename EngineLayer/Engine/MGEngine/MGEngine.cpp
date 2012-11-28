@@ -4,7 +4,7 @@
 #include "MGServerReceiver.h"
 #include "MGClientReceiver.h"
 #include "Acceptor.h"
-#include "INetworkEngineCallback.h"
+#include "IEngine.h"
 
 #pragma comment(lib, "ws2_32.lib")
 
@@ -14,16 +14,16 @@
 #pragma comment(lib, "MyServerLib.lib")
 #endif
 
-INetworkEngine * CreateNetworkEngine(bool Server, INetworkEngineCallback* pCallback)
+INetworkEngine * CreateNetworkEngine(bool Server, IEngine* pEngine)
 {
 	if(Server)
-		return new MGServerEngine(pCallback);
+		return new MGServerEngine(pEngine);
 	else
-		return new MGClientEngine(pCallback);
+		return new MGClientEngine(pEngine);
 }
 
-MGServerEngine::MGServerEngine(INetworkEngineCallback* pCallback)
-	: INetworkEngine(pCallback)
+MGServerEngine::MGServerEngine(IEngine* pEngine)
+	: INetworkEngine(pEngine)
 {
 }
 
@@ -77,9 +77,9 @@ bool MGServerEngine::Shutdown()
 	return true;
 }
 
-bool MGServerEngine::Send(int Serial, char* pData, unsigned short Length)
+bool MGServerEngine::SendRequest(BasePacket* pPacket)
 {
-	m_pServerReceiver->Send(Serial, pData, Length);
+	m_pServerReceiver->SendRequest(pPacket);
 	return true;
 }
 
@@ -91,8 +91,8 @@ bool MGServerEngine::Disconnect(int Serial)
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////////
 ///////////////////////////////////////////////////////////////////////////////////////////////////////
-MGClientEngine::MGClientEngine(INetworkEngineCallback* pCallback)
-	: INetworkEngine(pCallback)
+MGClientEngine::MGClientEngine(IEngine* pEngine)
+	: INetworkEngine(pEngine)
 {
 }
 
@@ -141,9 +141,9 @@ bool MGClientEngine::Shutdown()
 	return true;
 }
 
-bool MGClientEngine::Send(int Serial, char* pData, unsigned short Length)
+bool MGClientEngine::SendRequest(BasePacket* pPacket)
 {
-	m_pClientReceiver->Send(Serial, pData, Length);
+	m_pClientReceiver->SendRequest(pPacket);
 	return true;
 }
 

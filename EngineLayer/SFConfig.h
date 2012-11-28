@@ -3,10 +3,10 @@
 class SFConfig
 {
 public:
-	SFConfig(void);
-	virtual ~SFConfig(void);
+	SFConfig(void){}
+	virtual ~SFConfig(void){}
 
-	BOOL LoadConfig();
+	BOOL LoadConfig(){return FALSE;}
 
 protected:
 

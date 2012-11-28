@@ -15,7 +15,7 @@ public:
 
 	bool isVisible() const;
 
-	virtual bool Notify(int Msg, char* pBuffer, int BufferSize ) override;
+	virtual bool Notify(BasePacket* pPacket) override;
 
 private:
 	// these must match the IDs assigned in the layout

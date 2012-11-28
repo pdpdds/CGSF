@@ -8,7 +8,11 @@
 #include "SFMacro.h"
 #include "SFSinglton.h"
 #include "SFEngine.h"
-SFSYSTEM* g_pEngine = NULL;
+#include "SFPacketProtocol.h"
+#include "SFCasualGameDispatcher.h"
+#include "ChatProtocol.h"
+
+SFEngine* g_pEngine = NULL;
 
 #ifdef _DEBUG
 #pragma comment(lib, "aced.lib")
@@ -27,11 +31,17 @@ int _tmain(int argc, _TCHAR* argv[])
 {
 	ACE::init();
 
-	g_pEngine = new SFSYSTEM();
+	g_pEngine = new SFEngine();
 	
+	IPacketProtocol* pProtocol = new SFPacketProtocol<ChatProtocol>;
+	g_pEngine->SetPacketProtocol(pProtocol);
 
 	ChatLogicEntry* pLogicEntry = new ChatLogicEntry();
-	g_pEngine->CreateSystem("MGEngine.dll", pLogicEntry);
+	g_pEngine->CreateEngine("CGSFEngine.dll", TRUE);
+	g_pEngine->CreateLogicThread(pLogicEntry);
+
+	ILogicDispatcher* pDispatcher = new SFCasualGameDispatcher();
+	g_pEngine->SetLogicDispathcer(pDispatcher);
 
 	/*_TimerInfo Timer;
 	Timer.TimerID = TIMER_1_SEC;

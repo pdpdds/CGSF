@@ -37,7 +37,9 @@
 #include "SFPacket.h"
 #include "SFLogicEntry.h"
 #include "SFSinglton.h"
+#include "SFEngine.h"
+#include "SFProtobufPacket.h"
 
 using namespace google;
-
+extern SFEngine* g_pEngine;
 //#pragma comment(lib, "libprotobuf.lib")

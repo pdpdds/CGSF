@@ -39,6 +39,12 @@
     <ClCompile Include="..\..\Common\SFPacketStore\SFPacketStore.pb.cc">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="FPSProtocol.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="FPSDefaultProtocol.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include=".\stdafx.h">
@@ -61,6 +67,12 @@
     </ClInclude>
     <ClInclude Include="..\..\Common\SFPacketStore\SFPacketStore.pb.h">
       <Filter>Source Files</Filter>
+    </ClInclude>
+    <ClInclude Include="FPSProtocol.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="FPSDefaultProtocol.h">
+      <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

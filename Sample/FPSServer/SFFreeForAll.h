@@ -17,11 +17,11 @@ public:
 
 	virtual BOOL Update(DWORD dwTickcount) override;
 
-	BOOL ProcessUserRequest(SFPlayer* pPlayer, SFPacket* pPacket) override;
+	BOOL ProcessUserRequest(SFPlayer* pPlayer, BasePacket* pPacket) override;
 	BOOL ProcessUserRequest(SFPlayer* pPlayer, int Msg) override;
 
-	BOOL OnSpawnPlayer(SFPlayer* pPlayer, SFPacket* pPacket);
-	BOOL OnPlayerHealth(SFPlayer* pPlayer, SFPacket* pPacket);
+	BOOL OnSpawnPlayer(SFPlayer* pPlayer, BasePacket* pPacket);
+	BOOL OnPlayerHealth(SFPlayer* pPlayer, BasePacket* pPacket);
 
 protected:
 

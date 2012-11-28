@@ -24,7 +24,7 @@ BOOL SFPlayerRoom::OnLeave()
 	return TRUE;
 }
 
-BOOL SFPlayerRoom::ProcessPacket( SFPacket* pPacket )
+BOOL SFPlayerRoom::ProcessPacket( BasePacket* pPacket )
 {
 	SFPlayer* pPlayer = GetOwner();
 	SFRoomManager* pRoomManager = SFLogicEntry::GetLogicEntry()->GetRoomManager();

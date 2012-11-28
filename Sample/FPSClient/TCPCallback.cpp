@@ -1,15 +1,17 @@
 #include "stdafx.h"
 #include "TCPCallback.h"
 #include "SFNetworkEntry.h"
-
+#include "BasePacket.h"
 #include "PacketID.h"
 #include <string>
 #include <google/protobuf/io/zero_copy_stream_impl_lite.h>
 #include "SFPacketStore.pb.h"
+#include "SFProtobufPacket.h"
 
 extern SFNetworkEntry* g_pNetworkEntry;
 
 TCPCallback::TCPCallback(void)
+	: m_Serial(-1)
 {
 }
 
@@ -17,63 +19,56 @@ TCPCallback::~TCPCallback(void)
 {
 }
 
-bool TCPCallback::HandleNetworkMessage(int PacketID, BYTE* pBuffer, USHORT Length)
+bool TCPCallback::HandleNetworkMessage(BasePacket* pPacket)
 {
+	int PacketID = pPacket->GetPacketID();
+
 	if (PacketID == CGSF::Auth)
 	{
 		int i = 1;
 		std::string name = "cgsf";
 		std::string password = "1234";
 
-		SFPacketStore::Login PktLogin;
-		PktLogin.set_username(name);
-		PktLogin.set_password(password);
+		SFProtobufPacket<SFPacketStore::Login> request(CGSF::Login);
+		request.SetOwnerSerial(m_Serial);
+		request.GetData().set_username(name);
+		request.GetData().set_password(password);
 
-		int BufSize = PktLogin.ByteSize();
-
-		char Buffer[2048] = {0,};
-
-		if(BufSize != 0)
-		{
-			::google::protobuf::io::ArrayOutputStream os(Buffer, BufSize);
-			PktLogin.SerializeToZeroCopyStream(&os);
-		}
-
-		g_pNetworkEntry->TCPSend(0, CGSF::Login, (char*)&Buffer, BufSize);
+		g_pNetworkEntry->TCPSend(&request);
 
 		//LOG(ERROR) << "This should work";
 		//LOG(ERROR) << "This should work";
 	}
 	else if (PacketID == CGSF::LoginSuccess)
 	{
-		SFPacketStore::EnterLobby PktEnterLobby;
-		int BufSize = PktEnterLobby.ByteSize();
-
-		char Buffer[2048] = {0,};
-
-		if(BufSize != 0)
-		{
-			::google::protobuf::io::ArrayOutputStream os(Buffer, BufSize);
-			PktEnterLobby.SerializeToZeroCopyStream(&os);
-		}
+		printf("Login Success\n");
+		SFProtobufPacket<SFPacketStore::EnterLobby> request(CGSF::EnterLobby);
+		request.SetOwnerSerial(m_Serial);
 		
-		g_pNetworkEntry->TCPSend(0, CGSF::EnterLobby, (char*)&Buffer, BufSize);
+		g_pNetworkEntry->TCPSend(&request);
 	}
 	else if (PacketID == CGSF::EnterLobby)
 	{
-		SFPacketStore::CreateRoom PktCreateRoom;
-		int BufSize = PktCreateRoom.ByteSize();
+		printf("Enter Lobby\n");
 
-		char Buffer[2048] = {0,};
+		SFProtobufPacket<SFPacketStore::CreateRoom> request(CGSF::CreateRoom);
+		request.GetData().set_gamemode(3);
+		request.SetOwnerSerial(m_Serial);
 
-		if(BufSize != 0)
-		{
-			::google::protobuf::io::ArrayOutputStream os(Buffer, BufSize);
-			PktCreateRoom.SerializeToZeroCopyStream(&os);
-		}
-
-		g_pNetworkEntry->TCPSend(0, CGSF::CreateRoom, (char*)&Buffer, BufSize);
+		g_pNetworkEntry->TCPSend(&request);
 	}
 
 	return true;
+}
+
+void TCPCallback::HandleConnect(int Serial)
+{
+	m_Serial = Serial;
+	printf("Connected\n");
+	
+}
+
+void TCPCallback::HandleDisconnect(int Serial)
+{
+	printf("Disconnected\n");
 }

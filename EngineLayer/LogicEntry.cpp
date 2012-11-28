@@ -11,20 +11,20 @@ LogicEntry::~LogicEntry(void)
 {
 }
 
-BOOL LogicEntry::ProcessPacket( SFCommand* pCommand )
+BOOL LogicEntry::ProcessPacket( BasePacket* pPacket )
 {
 	if(m_pLogicEntry)
-		m_pLogicEntry->ProcessPacket(pCommand);
+		m_pLogicEntry->ProcessPacket(pPacket);
 
 	return TRUE;
 }
 
-SFMessage* LogicEntry::GetDBMessage()
+SFMessage* LogicEntry::AllocDBMessage()
 {
 	return m_DBMessagePool.Alloc();
 }
 
-BOOL LogicEntry::RecallDBMessage( SFMessage* pMessage )
+BOOL LogicEntry::ReleaseDBMessage( SFMessage* pMessage )
 {
 	return m_DBMessagePool.Release(pMessage);
 }

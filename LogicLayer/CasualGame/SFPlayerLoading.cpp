@@ -28,7 +28,7 @@ BOOL SFPlayerLoading::OnLeave()
 	return TRUE;
 }
 
-BOOL SFPlayerLoading::ProcessPacket( SFPacket* pPacket )
+BOOL SFPlayerLoading::ProcessPacket( BasePacket* pPacket )
 {
 	switch(pPacket->GetPacketID())
 	{
@@ -49,7 +49,7 @@ BOOL SFPlayerLoading::ProcessDBResult( SFMessage* pMessage )
 	return TRUE;
 }
 
-BOOL SFPlayerLoading::OnLoadingComplete( SFPacket* pPacket )
+BOOL SFPlayerLoading::OnLoadingComplete( BasePacket* pPacket )
 {
 	SFPlayer* pPlayer = GetOwner();
 	SFRoomManager* pManager = SFLogicEntry::GetLogicEntry()->GetRoomManager();

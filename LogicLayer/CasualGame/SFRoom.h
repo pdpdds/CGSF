@@ -7,7 +7,6 @@
 
 class SFPlayer;
 class SFRoomFSM;
-class SFPacket;
 
 #define  MAX_ROOM_MEMBER 4
 
@@ -19,7 +18,7 @@ public:
 	SFRoom(int RoomIndex);
 	virtual ~SFRoom(void);
 
-	BOOL ProcessUserRequest(SFPlayer* pPlayer, SFPacket* pPacket);
+	BOOL ProcessUserRequest(SFPlayer* pPlayer, BasePacket* pPacket);
 	BOOL ProcessUserRequest(SFPlayer* pPlayer, int Msg);
 
 	BOOL Open(SFPlayer* pPlayer);
@@ -57,7 +56,7 @@ public:
 
 	RoomMemberMap& GetRoomMemberMap(){return m_RoomMemberMap;}
 
-	BOOL BroadCast(SFPacket* pPacket);
+	BOOL BroadCast(BasePacket* pPacket);
 
 	SFRoomFSM* GetRoomFSM(){return m_pRoomFSM;}
 

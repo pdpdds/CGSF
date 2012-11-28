@@ -5,6 +5,7 @@
 #include "SFObjectPool.h"
 #include "SFLogicGateway.h"
 #include "LogicEntry.h"
+#include "SFPacket.h"
 
 // class SFEngine;
 

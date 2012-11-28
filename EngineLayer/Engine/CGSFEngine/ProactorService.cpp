@@ -61,7 +61,7 @@ void ProactorService::handle_read_stream( const ACE_Asynch_Read_Stream::Result& 
 	}
 	else
 	{
-		if(false == OnData(m_Serial, Block.rd_ptr(), Block.length()))
+		if(false == OnReceive(Block.rd_ptr(), Block.length()))
 		{
 			Block.release();
 			delete this;
@@ -77,7 +77,7 @@ void ProactorService::handle_write_stream( const ACE_Asynch_Write_Stream::Result
 	Result.message_block().release();
 }
 
-BOOL ProactorService::Send(char* pBuffer, int BufferSize)
+void ProactorService::SendInternal(char* pBuffer, int BufferSize)
 {
 	ACE_Message_Block* pBlock = NULL;
 
@@ -94,5 +94,5 @@ BOOL ProactorService::Send(char* pBuffer, int BufferSize)
 		m_AsyncWriter.writev(*pBlock, pBlock->total_length());
 	}
 
-	return TRUE;
+	//return TRUE;
 }

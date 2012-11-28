@@ -1,7 +1,8 @@
 #pragma once
+#include "SFDispatch.h"
 
 class SFPlayer;
-class SFPacket;
+class BasePacket;
 class SFMessage;
 
 class SFPlayerState
@@ -17,8 +18,10 @@ public:
 protected:
 	virtual BOOL OnEnter(){return FALSE;}
 	virtual BOOL OnLeave(){return FALSE;}
-	virtual BOOL ProcessPacket(SFPacket* pPacket){return FALSE;}
+	virtual BOOL ProcessPacket(BasePacket* pPacket){return FALSE;}
 	virtual BOOL ProcessDBResult(SFMessage* pMessage){return FALSE;}
+
+	SFDispatch<USHORT, std::tr1::function<BOOL(BasePacket*)>, BasePacket*> m_Dispatch;
 
 private:
 	SFPlayer* m_pOwner;

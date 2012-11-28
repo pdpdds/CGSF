@@ -24,7 +24,7 @@ public:
 
 protected:
 	BOOL AddGameMode(SFRoomPlay* pOwner);
-	BOOL ProcessUserRequest(SFPlayer* pPlayer, SFPacket* pPacket) override;
+	BOOL ProcessUserRequest(SFPlayer* pPlayer, BasePacket* pPacket) override;
 	BOOL ProcessUserRequest(SFPlayer* pPlayer, int Msg) override;
 
 private:

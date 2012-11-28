@@ -50,7 +50,7 @@
     <TargetExt>.lib</TargetExt>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
-    <OutDir>..\lib\Release\</OutDir>
+    <OutDir>..\..\VSProject\lib\Release\</OutDir>
     <IntDir>../Intermediate/$(Configuration)\$(ProjectName)\</IntDir>
     <TargetName>$(ProjectName)</TargetName>
     <TargetExt>.lib</TargetExt>
@@ -72,7 +72,7 @@
     <ClCompile>
       <Optimization>MaxSpeed</Optimization>
       <IntrinsicFunctions>true</IntrinsicFunctions>
-      <AdditionalIncludeDirectories>../../ThirdParty/mysql/include;../NetworkEngine;../BaseLib;../Common;../Common/SFPacketStore;../../ThirdParty/ACE_WRAPPERS;../../ThirdParty/protobuf-2.4.1/src;../../ThirdParty/glog/src/windows;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>../../EngineLayer;../../EngineLayer/EngineDllInterface;../../BaseLayer;../../Common;../../Common/SFPacketStore;../../ThirdParty/ACE_WRAPPERS;../../ThirdParty/protobuf-2.4.1/src;../../ThirdParty/glog/src/windows;../../ThirdParty/mysql/include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>WIN32;NDEBUG;_LIB;%(PreprocessorDefinitions);_CRT_SECURE_NO_WARNING</PreprocessorDefinitions>
       <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
       <FunctionLevelLinking>true</FunctionLevelLinking>
@@ -118,6 +118,7 @@
     <ClInclude Include=".\SFRoomWait.h" />
     <ClInclude Include=".\SFLobby.h" />
     <ClInclude Include=".\SFTeam.h" />
+    <ClInclude Include="SFCGProtobufProtocol.h" />
     <ClInclude Include="SFDirectoryWatcher.h" />
     <ClInclude Include="SFDirectoryWatcherTask.h" />
     <ClInclude Include="SFSendDBRequest.h" />
@@ -125,6 +126,7 @@
   <ItemGroup>
     <ClCompile Include="..\..\Common\SFPacketStore\PacketCore.pb.cc">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">NotUsing</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">NotUsing</PrecompiledHeader>
     </ClCompile>
     <ClCompile Include=".\SFLogicCore.cpp" />
     <ClCompile Include=".\SFSendPacket.cpp" />
@@ -161,6 +163,7 @@
     <ClCompile Include=".\SFRoomWait.cpp" />
     <ClCompile Include=".\SFLobby.cpp" />
     <ClCompile Include=".\SFTeam.cpp" />
+    <ClCompile Include="SFCGProtobufProtocol.cpp" />
     <ClCompile Include="SFDirectoryWatcher.cpp" />
     <ClCompile Include="SFDirectoryWatcherTask.cpp" />
     <ClCompile Include="SFSendDBRequest.cpp" />

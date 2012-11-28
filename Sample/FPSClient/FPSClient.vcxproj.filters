@@ -16,6 +16,10 @@
     <ClCompile Include="..\..\Common\SFPacketStore\SFPacketStore.pb.cc">
       <Filter>Source</Filter>
     </ClCompile>
+    <ClCompile Include="FPSClientProtocol.cpp">
+      <Filter>Source</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Common\SFPacketStore\PacketCore.pb.cc" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="UDPCallback.h">
@@ -33,6 +37,10 @@
     <ClInclude Include="..\..\Common\SFPacketStore\SFPacketStore.pb.h">
       <Filter>Source</Filter>
     </ClInclude>
+    <ClInclude Include="FPSClientProtocol.h">
+      <Filter>Source</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Common\SFPacketStore\PacketCore.pb.h" />
   </ItemGroup>
   <ItemGroup>
     <Text Include="ReadMe.txt" />

@@ -62,7 +62,7 @@ BOOL SFGameModeFSM::AddGameMode(SFRoomPlay* pOwner)
 	return TRUE;
 }
 
-BOOL SFGameModeFSM::ProcessUserRequest( SFPlayer* pPlayer, SFPacket* pPacket )
+BOOL SFGameModeFSM::ProcessUserRequest( SFPlayer* pPlayer, BasePacket* pPacket )
 {
 	return m_pCurrentGameMode->ProcessUserRequest(pPlayer, pPacket);
 }

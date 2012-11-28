@@ -51,7 +51,7 @@
     <LinkIncremental>true</LinkIncremental>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
-    <OutDir>..\Bin32\Release\</OutDir>
+    <OutDir>../..\VSProject\Bin32\</OutDir>
     <IntDir>../Intermediate/$(Configuration)\$(ProjectName)\</IntDir>
     <TargetName>$(ProjectName)</TargetName>
     <TargetExt>.exe</TargetExt>
@@ -80,7 +80,7 @@
     <ClCompile>
       <Optimization>MaxSpeed</Optimization>
       <IntrinsicFunctions>true</IntrinsicFunctions>
-      <AdditionalIncludeDirectories>../NetworkEngine;../../ThirdParty/ACE_wrappers;../Common;../Common/SFPacketStore;../../ThirdParty/protobuf-2.4.1/src;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>../../EngineLayer;../../ThirdParty/ACE_wrappers;../../Common;../../Common/SFPacketStore;../../ThirdParty/protobuf-2.4.1/src;../../EngineLayer/EngineDllInterface;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>WIN32;NDEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
       <FunctionLevelLinking>true</FunctionLevelLinking>
@@ -89,7 +89,7 @@
       <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
     </ClCompile>
     <Link>
-      <AdditionalLibraryDirectories>../Lib/Release;../../ThirdParty/Lib/release;../../ThirdParty/Lib/Release/libProto;../../ThirdParty/Ace_Wrappers/lib;../../ThirdParty/Lib/Release/vld-10;../../ThirdParty/MySql/lib;../ThirdParty/liblfds/lib/dynamic;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalLibraryDirectories>../../ThirdParty/SQLite;../../ThirdParty/Lib/Release;../../ThirdParty/Ace_Wrappers/lib;../../VSProject/Lib/Release;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <SubSystem>Console</SubSystem>
       <OptimizeReferences>true</OptimizeReferences>
@@ -100,6 +100,7 @@
   <ItemGroup>
     <ClCompile Include="..\..\Common\SFPacketStore\ChatPacket.pb.cc">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">NotUsing</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">NotUsing</PrecompiledHeader>
     </ClCompile>
     <ClCompile Include=".\ChatLogicEntry.cpp" />
     <ClCompile Include=".\ChatServer.cpp" />
@@ -108,6 +109,7 @@
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Create</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Create</PrecompiledHeader>
     </ClCompile>
+    <ClCompile Include="ChatProtocol.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\Common\SFPacketStore\ChatPacket.pb.h" />
@@ -115,6 +117,7 @@
     <ClInclude Include=".\ChatUser.h" />
     <ClInclude Include=".\stdafx.h" />
     <ClInclude Include=".\targetver.h" />
+    <ClInclude Include="ChatProtocol.h" />
   </ItemGroup>
   <ItemGroup>
     <Text Include=".\ReadMe.txt" />

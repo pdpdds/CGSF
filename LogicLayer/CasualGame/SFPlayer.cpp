@@ -55,7 +55,7 @@ ePlayerState SFPlayer::GetPlayerState()
 	return m_pFSM->GetPlayerState();
 }
 
-BOOL SFPlayer::ProcessPacket(SFPacket* pPacket)
+BOOL SFPlayer::ProcessPacket(BasePacket* pPacket)
 {
 	return m_pFSM->ProcessPacket(pPacket);
 }

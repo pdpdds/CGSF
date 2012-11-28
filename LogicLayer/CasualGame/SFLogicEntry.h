@@ -29,18 +29,18 @@ public:
 	SFLogicEntry(void);
 	virtual ~SFLogicEntry(void);
 
+	BOOL Initialize();
 	static SFLogicEntry* GetLogicEntry(){return m_pLogicEntry;}
 
-	BOOL Initialize();
+	virtual BOOL ProcessPacket(BasePacket* pBase) override;
+	
 	BOOL CreateDirectoryWathcer();
 
-	virtual BOOL ProcessPacket(SFCommand* pBase) override;
-	
 	SFRoomManager* GetRoomManager(){return m_pRoomManager;}
 	SFLobby* GetLobby(){return m_pLobby;}
 
-	BOOL Send(SFPlayer* pPlayer, SFPacket* pPacket);
-	BOOL Send( int Serial, int PacketID, char* pBuffer, int BufferSize );
+	BOOL Send(SFPlayer* pPlayer, BasePacket* pPacket);
+	BOOL SendRequest(BasePacket* pPacket);
 
 	SFDatabaseProxy* GetDataBaseProxy(){return m_pDatabaseProxy;}
 
@@ -49,9 +49,9 @@ public:
 
 protected:
 	BOOL OnConnectPlayer(int PlayerSerial);
-	BOOL OnPlayerData(SFPacket* pPacket);
-	BOOL OnTimer(SFPacket* pPacket);
-	BOOL OnShouter(SFPacket* pPacket);
+	BOOL OnPlayerData(BasePacket* pPacket);
+	BOOL OnTimer(BasePacket* pPacket);
+	BOOL OnShouter(BasePacket* pPacket);
 
 	BOOL OnDBResult(SFMessage* pMessage);
 	BOOL OnDisconnectPlayer(int PlayerSerial);

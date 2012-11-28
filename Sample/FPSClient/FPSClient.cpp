@@ -5,6 +5,11 @@
 #include "SFNetworkEntry.h"
 #include "TCPCallback.h"
 #include "UDPCallback.h"
+#include "SFMacro.h"
+#include "SFConstant.h"
+#include "FPSClientProtocol.h"
+#include "SFPacketProtocol.h"
+#include "SFCasualGameDispatcher.h"
 
 #pragma comment(lib, "libprotobuf.lib")
 #pragma comment(lib, "EngineLayer.lib")
@@ -33,6 +38,13 @@ int _tmain(int argc, _TCHAR* argv[])
 	UDPCallback* pUDPCallback = new UDPCallback(); 
 
 	g_pNetworkEntry->Initialize("CGSFEngine.dll", pCallback, pUDPCallback);
+
+	IPacketProtocol* pProtocol = new SFPacketProtocol<FPSClientProtocol>;
+	g_pNetworkEntry->SetPacketProtocol(pProtocol);
+
+	ILogicDispatcher* pDispatcher = new SFCasualGameDispatcher();
+	g_pNetworkEntry->SetLogicDispatcher(pDispatcher);
+
 
 	g_pNetworkEntry->Run();
 

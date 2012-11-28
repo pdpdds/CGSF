@@ -11,7 +11,8 @@
 #include <Windows.h>
 #include "../Engine/GUIManager.h"
 #include "SFPacketStore.pb.h"
-#include <google/protobuf/io/zero_copy_stream_impl_lite.h>
+#include "BasePacket.h"
+#include "SFProtobufPacket.h"
 #include "PeerInfo.h"
 
 //-----------------------------------------------------------------------------
@@ -68,21 +69,10 @@ void Game::Load()
 	// Load the scene from the host player's selection.
 	g_engine->GetSceneManager()->LoadScene( "Abandoned City.txt", "./Assets/Scenes/" );
 
-	SFPacketStore::LoadingComplete PktLoadingComplete;
-	int BufSize = PktLoadingComplete.ByteSize();
+	SFProtobufPacket<SFPacketStore::LoadingComplete> PktLoadingComplete(CGSF::LoadingComplete);
+	PktLoadingComplete.SetOwnerSerial(g_engine->GetLocalID());
 
-	char Buffer[2048] = {0,};
-
-	if(BufSize != 0)
-	{
-		::google::protobuf::io::ArrayOutputStream os(Buffer, BufSize);
-		PktLoadingComplete.SerializeToZeroCopyStream(&os);
-	}
-
-
-	g_engine->GetNetwork()->TCPSend(g_engine->GetLocalID(), CGSF::LoadingComplete, Buffer, BufSize);
-
-	
+	g_engine->GetNetwork()->TCPSend(&PktLoadingComplete);
 
 	ShowCursor( true );
 }
@@ -171,19 +161,9 @@ void Game::Update( float elapsed )
 	// Check if the user wants to exit back to the menu.
 	if( g_engine->GetInput()->GetKeyPress( DIK_ESCAPE ) )
 	{
-		//g_engine->ChangeState( STATE_MENU );
-		SFPacketStore::LeaveRoom PktLeaveRoom;
-		int BufSize = PktLeaveRoom.ByteSize();
+		SFProtobufPacket<SFPacketStore::LeaveRoom> LeaveRoom(CGSF::LeaveRoom);
 
-		char Buffer[2048] = {0,};
-
-		if(BufSize != 0)
-		{
-			::google::protobuf::io::ArrayOutputStream os(Buffer, BufSize);
-			PktLeaveRoom.SerializeToZeroCopyStream(&os);
-		}
-
-		g_engine->GetNetwork()->TCPSend(g_engine->GetLocalID(), CGSF::LeaveRoom, Buffer, BufSize);
+		g_engine->GetNetwork()->TCPSend(&LeaveRoom);
 	}
 }
 
@@ -221,20 +201,18 @@ BulletManager *Game::GetBulletManager()
 #define SF_GETPACKET_ARG(a,b,c) memcpy(a,b.c_str(), sizeof(c));
 
 using namespace google;
-void Game::HandleNetworkMessage(int PacketID, BYTE* pBuffer, USHORT Length)
+void Game::HandleNetworkMessage(BasePacket* pPacket)
 {
 	// Process the received messaged based on its type.
-	switch( PacketID )
+	switch( pPacket->GetPacketID() )
 	{
 	case CGSF::PeerList:
 		{
-			SFPacketStore::PeerList PktPeerList;
-			protobuf::io::ArrayInputStream is(pBuffer, Length);
-			PktPeerList.ParseFromZeroCopyStream(&is);
+			SFProtobufPacket<SFPacketStore::PeerList>* pPeerList = (SFProtobufPacket<SFPacketStore::PeerList>*)pPacket;
 
-			for(int i=0; i < PktPeerList.peer_size(); i++)
+			for(int i=0; i < pPeerList->GetData().peer_size(); i++)
 			{
-				const SFPacketStore::PeerList::PeerInfo& Peer = PktPeerList.peer(i);
+				const SFPacketStore::PeerList::PeerInfo& Peer = pPeerList->GetData().peer(i);
 				_PeerInfo PeerInfo;
 				SF_GETPACKET_ARG(&PeerInfo, Peer.info(), _PeerInfo);
 				g_engine->GetNetwork()->AddPeer(Peer.serial(), PeerInfo.ExternalIP, PeerInfo.ExternalPort, PeerInfo.LocalIP, PeerInfo.LocalPort);
@@ -248,10 +226,8 @@ void Game::HandleNetworkMessage(int PacketID, BYTE* pBuffer, USHORT Length)
 		break;
 	case CGSF::DeletePeer:
 		{
-			SFPacketStore::DELETE_PEER PktDeletePeer;
-			protobuf::io::ArrayInputStream is(pBuffer, Length);
-			PktDeletePeer.ParseFromZeroCopyStream(&is);
-			g_engine->GetNetwork()->DeletePeer(PktDeletePeer.serial());
+			SFProtobufPacket<SFPacketStore::DELETE_PEER>* pDeletePeer = (SFProtobufPacket<SFPacketStore::DELETE_PEER>*)pPacket;
+			g_engine->GetNetwork()->DeletePeer(pDeletePeer->GetData().serial());
 		}
 		break;
 
@@ -263,12 +239,10 @@ void Game::HandleNetworkMessage(int PacketID, BYTE* pBuffer, USHORT Length)
 		break;
 	case CGSF::MSG_CREATE_PLAYER:
 		{
-			SFPacketStore::MSG_CREATE_PLAYER PktMsgCreatePlayer;
-			protobuf::io::ArrayInputStream is(pBuffer, Length);
-			PktMsgCreatePlayer.ParseFromZeroCopyStream(&is);
-		
+			SFProtobufPacket<SFPacketStore::MSG_CREATE_PLAYER>* pMsgCreatePlayer = (SFProtobufPacket<SFPacketStore::MSG_CREATE_PLAYER>*)pPacket;
+
 			PlayerInfo Info;
-			Info.PlayerID =  PktMsgCreatePlayer.serial();
+			Info.PlayerID =  pMsgCreatePlayer->GetData().serial();
 
 			PlayerObject *object = m_playerManager->AddPlayer(&Info);
 
@@ -283,7 +257,7 @@ void Game::HandleNetworkMessage(int PacketID, BYTE* pBuffer, USHORT Length)
 			{
 				SpawnPlayerMsg spm;
 				spm.PlayerID = g_engine->GetPlayerID();
-				spm.translation = g_engine->GetSceneManager()->GetSpawnPointByID( PktMsgCreatePlayer.spawnindex() )->GetTranslation();
+				spm.translation = g_engine->GetSceneManager()->GetSpawnPointByID( pMsgCreatePlayer->GetData().spawnindex() )->GetTranslation();
 
 				g_engine->TCPSend(CGSF::MSG_SPAWN_PLAYER, &spm, sizeof(SpawnPlayerMsg));
 			}
@@ -297,28 +271,22 @@ void Game::HandleNetworkMessage(int PacketID, BYTE* pBuffer, USHORT Length)
 
 	case CGSF::MSG_DESTROY_PLAYER:
 		{
-			SFPacketStore::MSG_DESTROY_PLAYER PktMsgDestroyPlayer;
-			protobuf::io::ArrayInputStream is(pBuffer, Length);
-			PktMsgDestroyPlayer.ParseFromZeroCopyStream(&is);
+			SFProtobufPacket<SFPacketStore::MSG_DESTROY_PLAYER>* pMsgDestroyPlayer = (SFProtobufPacket<SFPacketStore::MSG_DESTROY_PLAYER>*)pPacket;
 
 			// Remove the player from the player manager and the scene.
-			SceneObject *object = m_playerManager->GetPlayer( PktMsgDestroyPlayer.serial() );
+			SceneObject *object = m_playerManager->GetPlayer( pMsgDestroyPlayer->GetData().serial() );
 			g_engine->GetSceneManager()->RemoveObject( &object );
-			m_playerManager->RemovePlayer( PktMsgDestroyPlayer.serial() );
+			m_playerManager->RemovePlayer( pMsgDestroyPlayer->GetData().serial() );
 		}
 		break;
 
 	case CGSF::MSG_SPAWN_PLAYER:
 		{
-			SFPacketStore::MSG_SPAWN_PLAYER PktPlayerSpawn;
-			protobuf::io::ArrayInputStream is(pBuffer, Length);
-			PktPlayerSpawn.ParseFromZeroCopyStream(&is);
-
+			SFProtobufPacket<SFPacketStore::MSG_SPAWN_PLAYER>* pPlayerSpawn = (SFProtobufPacket<SFPacketStore::MSG_SPAWN_PLAYER>*)pPacket;
 
 			// Get a pointer to the game specific network message.
 			SpawnPlayerMsg msg;
-
-			SF_GETPACKET_ARG(&msg, PktPlayerSpawn.spawnplayer(), SpawnPlayerMsg);
+			SF_GETPACKET_ARG(&msg, pPlayerSpawn->GetData().spawnplayer(), SpawnPlayerMsg);
 
 			// Spawn the player.
 			m_playerManager->SpawnPlayer( msg.PlayerID, msg.translation );
@@ -347,13 +315,10 @@ void Game::HandleNetworkMessage(int PacketID, BYTE* pBuffer, USHORT Length)
 
 	case  CGSF::MSG_PLAYER_HEALTH:
 		{
-			SFPacketStore::MSG_PLAYER_HEALTH PktPlayerHealth;
-			protobuf::io::ArrayInputStream is(pBuffer, Length);
-			PktPlayerHealth.ParseFromZeroCopyStream(&is);
+			SFProtobufPacket<SFPacketStore::MSG_PLAYER_HEALTH>* pPlayerHealth = (SFProtobufPacket<SFPacketStore::MSG_PLAYER_HEALTH>*)pPacket;
 			
 			PlayerHealthMsg msg;
-
-			SF_GETPACKET_ARG(&msg, PktPlayerHealth.playerhealth(), PlayerHealthMsg);
+			SF_GETPACKET_ARG(&msg, pPlayerHealth->GetData().playerhealth(), PlayerHealthMsg);
 			// Set the player's health.
 			m_playerManager->GetPlayer( msg.PlayerID )->SetHealth( msg.health );
 
@@ -364,14 +329,10 @@ void Game::HandleNetworkMessage(int PacketID, BYTE* pBuffer, USHORT Length)
 		break;
 	case CGSF::MSG_PLAYER_SCORE:
 		{
-
-			SFPacketStore::MSG_PLAYER_SCORE PktPlayerScore;
-			protobuf::io::ArrayInputStream is(pBuffer, Length);
-			PktPlayerScore.ParseFromZeroCopyStream(&is);
+			SFProtobufPacket<SFPacketStore::MSG_PLAYER_SCORE>* pPlayerScore = (SFProtobufPacket<SFPacketStore::MSG_PLAYER_SCORE>*)pPacket;
 
 			PlayerScoreMsg msg;
-
-			SF_GETPACKET_ARG(&msg, PktPlayerScore.playerscore(), PlayerScoreMsg);
+			SF_GETPACKET_ARG(&msg, pPlayerScore->GetData().playerscore(), PlayerScoreMsg);
 
 			// Update the player's score.
 			m_playerManager->GetPlayer( msg.PlayerID )->SetFrags( msg.frags );
@@ -381,13 +342,10 @@ void Game::HandleNetworkMessage(int PacketID, BYTE* pBuffer, USHORT Length)
 
 	case CGSF::MSG_PLAYER_WEAPON_CHANGE:
 		{
-			SFPacketStore::MSG_PLAYER_WEAPON_CHANGE PktPlayerWeaponChange;
-			protobuf::io::ArrayInputStream is(pBuffer, Length);
-			PktPlayerWeaponChange.ParseFromZeroCopyStream(&is);
+			SFProtobufPacket<SFPacketStore::MSG_PLAYER_WEAPON_CHANGE>* pPlayerWeaponChange = (SFProtobufPacket<SFPacketStore::MSG_PLAYER_WEAPON_CHANGE>*)pPacket;
 
 			PlayerWeaponChangeMsg msg;
-
-			SF_GETPACKET_ARG(&msg, PktPlayerWeaponChange.weaponchange(), PlayerWeaponChangeMsg);
+			SF_GETPACKET_ARG(&msg, pPlayerWeaponChange->GetData().weaponchange(), PlayerWeaponChangeMsg);
 
 			// Change the player's weapon.
 			m_playerManager->GetPlayer( msg.PlayerID )->WeaponChanged( msg.weapon );
@@ -396,13 +354,10 @@ void Game::HandleNetworkMessage(int PacketID, BYTE* pBuffer, USHORT Length)
 
 	case CGSF::MSG_PLAYER_WEAPON_CHANGING:
 		{
-			SFPacketStore::MSG_PLAYER_WEAPON_CHANGING PktPlayerWeaponChanging;
-			protobuf::io::ArrayInputStream is(pBuffer, Length);
-			PktPlayerWeaponChanging.ParseFromZeroCopyStream(&is);
+			SFProtobufPacket<SFPacketStore::MSG_PLAYER_WEAPON_CHANGING>* pWeaponChanging = (SFProtobufPacket<SFPacketStore::MSG_PLAYER_WEAPON_CHANGING>*)pPacket;
 
 			PlayerWeaponChangeMsg msg;
-
-			SF_GETPACKET_ARG(&msg, PktPlayerWeaponChanging.weaponchanging(), PlayerWeaponChangeMsg);
+			SF_GETPACKET_ARG(&msg, pWeaponChanging->GetData().weaponchanging(), PlayerWeaponChangeMsg);
 
 			// Indicate that this player is changing weapons.
 			m_playerManager->GetPlayer( msg.PlayerID )->WeaponChanging();		

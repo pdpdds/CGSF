@@ -30,6 +30,9 @@
     <ClCompile Include="..\..\Common\SFPacketStore\ChatPacket.pb.cc">
       <Filter>Header Files</Filter>
     </ClCompile>
+    <ClCompile Include="ChatProtocol.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include=".\ChatLogicEntry.h">
@@ -45,6 +48,9 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="..\..\Common\SFPacketStore\ChatPacket.pb.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="ChatProtocol.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

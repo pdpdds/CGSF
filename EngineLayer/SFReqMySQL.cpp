@@ -50,7 +50,7 @@ BOOL SFReqMySQL::Call( SFMessage* pMessage )
 			mysql_free_result(sql_result);
 		}
 
-		SFMessage* pMsg = LogicEntrySingleton::instance()->GetDBMessage();
+		SFMessage* pMsg = LogicEntrySingleton::instance()->AllocDBMessage();
 		pMessage->Initialize(DBMSG_LOGIN);
 		pMessage->SetOwnerSerial(pMsg->GetOwnerSerial());
 		pMessage->SetPacketType(pMsg->GetPacketType());

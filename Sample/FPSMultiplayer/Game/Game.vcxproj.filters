@@ -57,6 +57,12 @@
     <ClCompile Include="..\..\..\Common\SFPacketStore\SFPacketStore.pb.cc">
       <Filter>External</Filter>
     </ClCompile>
+    <ClCompile Include="SFGameProtocol.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\Common\SFPacketStore\PacketCore.pb.cc">
+      <Filter>External</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Bullet.h">
@@ -96,6 +102,12 @@
       <Filter>External</Filter>
     </ClInclude>
     <ClInclude Include="..\..\..\Common\SFPacketStore\SFPacketStore.pb.h">
+      <Filter>External</Filter>
+    </ClInclude>
+    <ClInclude Include="SFGameProtocol.h">
+      <Filter>Source Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\Common\SFPacketStore\PacketCore.pb.h">
       <Filter>External</Filter>
     </ClInclude>
   </ItemGroup>

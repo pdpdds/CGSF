@@ -22,7 +22,7 @@ public:
 
 	BOOL ChangeState(ePlayerState State);
 	ePlayerState GetPlayerState();
-	BOOL ProcessPacket(SFPacket* pPacket);
+	BOOL ProcessPacket(BasePacket* pPacket);
 	BOOL ProcessDBResult(SFMessage* pMessage);
 
 	std::string m_username;

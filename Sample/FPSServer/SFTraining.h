@@ -17,7 +17,7 @@ public:
 
 	virtual BOOL Update(DWORD dwTickcount) override;
 
-	BOOL ProcessUserRequest(SFPlayer* pPlayer, SFPacket* pPacket) override;
+	BOOL ProcessUserRequest(SFPlayer* pPlayer, BasePacket* pPacket) override;
 	BOOL ProcessUserRequest(SFPlayer* pPlayer, int Msg) override;
 
 };

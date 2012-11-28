@@ -36,7 +36,7 @@ BOOL SFPlayerPlay::OnLeave()
 	return TRUE;
 }
 
-BOOL SFPlayerPlay::ProcessPacket( SFPacket* pPacket )
+BOOL SFPlayerPlay::ProcessPacket( BasePacket* pPacket )
 {
 	SFPlayer* pPlayer = GetOwner();
 	int RoomIndex = pPlayer->GetRoomIndex();

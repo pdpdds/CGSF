@@ -89,7 +89,7 @@ bool GUIFSM::ChangeState( eGUIState State )
 	return true;
 }
 
-bool GUIFSM::Notify( int Msg, char* pBuffer, int BufferSize )
+bool GUIFSM::Notify(BasePacket* pPacket)
 {
-	return m_pCurrentState->Notify(Msg, pBuffer, BufferSize );
+	return m_pCurrentState->Notify(pPacket );
 }

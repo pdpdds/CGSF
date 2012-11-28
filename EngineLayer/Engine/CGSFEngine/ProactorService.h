@@ -4,6 +4,8 @@
 #include <ACE/Message_Block.h>
 #include "ISession.h"
 
+class BaseClass;
+
 class ProactorService : public ACE_Service_Handler, public ISession
 {
 public:
@@ -16,7 +18,7 @@ public:
 
 	void PostRecv();
 
-	BOOL Send(char* pBuffer, int BufferSize);
+	void SendInternal(char* pBuffer, int BufferSize) override;
 	void SetSerial(int Serial){m_Serial = Serial;}
 private:
 	ACE_Asynch_Write_Stream m_AsyncWriter;

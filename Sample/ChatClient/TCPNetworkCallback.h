@@ -7,5 +7,5 @@ public:
 	TCPNetworkCallback(void);
 	virtual ~TCPNetworkCallback(void);
 
-	virtual bool HandleNetworkMessage(int PacketID, BYTE* pBuffer, USHORT Length) override;
+	virtual bool HandleNetworkMessage(BasePacket* pPacket) override;
 };

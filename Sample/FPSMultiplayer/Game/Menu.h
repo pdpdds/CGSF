@@ -22,7 +22,7 @@ public:
 	Menu();
 
 	virtual void Update( float elapsed );
-	virtual void HandleNetworkMessage(int PacketID, BYTE* pBuffer, USHORT Length) override;
+	virtual void HandleNetworkMessage(BasePacket* pPacket) override;
 	virtual void HandleNetworkMessage( NetworkMessage* pMessage ) override;
 
 	virtual void Render() override;

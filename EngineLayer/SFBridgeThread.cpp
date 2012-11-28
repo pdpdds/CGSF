@@ -1,5 +1,6 @@
 #include "StdAfx.h"
 #include "SFBridgeThread.h"
+#include "SFPacket.h"
 
 SFIOCPQueue<int> IOCPQueue;
 
@@ -9,23 +10,27 @@ void BusinessThread(void* Args)
 {
 	while(gServerEnd == FALSE)
 	{
-		SFCommand* pCommand = LogicGatewaySingleton::instance()->PopPacket();
-		LogicEntrySingleton::instance()->ProcessPacket(pCommand);
+		BasePacket* pPacket = LogicGatewaySingleton::instance()->PopPacket();
+		LogicEntrySingleton::instance()->ProcessPacket(pPacket);
 
-		switch(pCommand->GetPacketType())
+		switch(pPacket->GetPacketType())
 		{
-		case SFCommand_Connect:
-		case SFCommand_Data:
-		case SFCommand_Timer:
-		case SFCommand_Shouter:
-		case SFCommand_Disconnect:
+		case SFPacket_Connect:
+		case SFPacket_Disconnect:
+		case SFPacket_Timer:
+		case SFPacket_Data:
+		case SFPacket_Shouter:
 			{
-				PacketPoolSingleton::instance()->Release((SFPacket*)pCommand);
+				delete pPacket;
 			}
 			break;
-		case SFCommand_DB:
+		
+		//프로토콜 버퍼 완성한 다음에 디폴트 프로토콜 처리 고려하자...	
+		//PacketPoolSingleton::instance()->Release((SFPacket*)pPacket);
+			//break;
+		case SFPacket_DB:
 			{
-				LogicEntrySingleton::instance()->RecallDBMessage((SFMessage*)pCommand);
+				LogicEntrySingleton::instance()->ReleaseDBMessage((SFMessage*)pPacket);
 			}
 			break;
 		default:

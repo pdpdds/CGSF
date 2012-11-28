@@ -4,6 +4,9 @@ class SFTCPNetwork;
 class SFUDPNetwork;
 class INetworkCallback;
 class IUDPNetworkCallback;
+class BasePacket;
+class ILogicDispatcher;
+class IPacketProtocol;
 
 class SFNetworkEntry
 {
@@ -12,12 +15,15 @@ public:
 	virtual ~SFNetworkEntry(void);
 
 	BOOL Initialize(char* szModuleName, INetworkCallback* pTCPCallBack, IUDPNetworkCallback* pUDPCallback);
+	void SetLogicDispatcher(ILogicDispatcher* pDispatcher);
+	void SetPacketProtocol(IPacketProtocol* pDispatcher);
+
 	BOOL Finally();
 
 	BOOL Run();
 	BOOL Update();
 
-	bool TCPSend(int Serial, USHORT PacketID, char* pMessage, int BufSize );
+	bool TCPSend(BasePacket* pPacket );
 	bool UDPSend(unsigned char* pMessage, int BufSize );
 	//bool TCPSend( USHORT PacketID, NetworkMessage* pMessage, int Size );
 

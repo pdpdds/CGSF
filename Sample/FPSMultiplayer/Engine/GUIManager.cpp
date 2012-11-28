@@ -159,7 +159,7 @@ bool GUIManager::ProcessInput( int InputParam )
 	return m_pGUIFSM->ProcessInput(InputParam);
 }
 
-bool GUIManager::Notify( int Msg, char* pBuffer, int BufferSize )
+bool GUIManager::Notify(BasePacket* pPacket)
 {
-	return m_pGUIFSM->Notify(Msg, pBuffer, BufferSize);
+	return m_pGUIFSM->Notify(pPacket);
 }

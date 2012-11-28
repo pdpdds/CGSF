@@ -9,12 +9,12 @@ SFLogicGateway::~SFLogicGateway(void)
 {
 }
 
-BOOL SFLogicGateway::PushPacket( SFCommand* pPacket )
+BOOL SFLogicGateway::PushPacket( BasePacket* pPacket )
 {
 	return m_IOCPQueue.Push(pPacket);
 }
 
-SFCommand* SFLogicGateway::PopPacket(int WaitTime)
+BasePacket* SFLogicGateway::PopPacket(int WaitTime)
 {
 	return m_IOCPQueue.Pop(WaitTime);
 }

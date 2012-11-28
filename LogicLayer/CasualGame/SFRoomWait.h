@@ -9,13 +9,13 @@ public:
 	SFRoomWait(SFRoom* pOwner, eRoomState State);
 	virtual ~SFRoomWait(void);
 
-	BOOL ProcessUserRequest(SFPlayer* pPlayer, SFPacket* pPacket) override;
+	BOOL ProcessUserRequest(SFPlayer* pPlayer, BasePacket* pPacket) override;
 		
 /////////////////////////////////////////////////////////////////////////////////////////
 /////////////////////////////////////////////////////////////////////////////////////////
-	BOOL OnChangeTeam(SFPlayer* pPlayer, SFPacket* pPacket );
-	BOOL OnStartGame(SFPlayer* pPlayer, SFPacket* pPacket );
-	BOOL OnChat( SFPlayer* pPlayer, SFPacket* pPacket );
+	BOOL OnChangeTeam(SFPlayer* pPlayer, BasePacket* pPacket );
+	BOOL OnStartGame(SFPlayer* pPlayer, BasePacket* pPacket );
+	BOOL OnChat( SFPlayer* pPlayer, BasePacket* pPacket );
 
 protected:
 	BOOL OnEnterRoom(SFPlayer* pPlayer) override;

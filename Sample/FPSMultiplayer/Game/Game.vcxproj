@@ -70,7 +70,7 @@
     </Midl>
     <ClCompile>
       <Optimization>Disabled</Optimization>
-      <AdditionalIncludeDirectories>../../ClientInterface;../../../BaseLayer;../../../Common;../DirectX9.0/Include;../../../NetworkEngine;../../../Common/SFPacketStore;../../../P2PClient;../../../ThirdParty/CEGUI/CEGUI/Include;../../../ThirdParty/protobuf-2.4.1/src;../../../Common/Include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>../../ClientInterface;../../../BaseLayer;../../../Common;../DirectX9.0/Include;../../../NetworkEngine;../../../Common/SFPacketStore;../../../P2PClient;../../../ThirdParty/CEGUI/CEGUI/Include;../../../ThirdParty/protobuf-2.4.1/src;../../../Common/Include;%(AdditionalIncludeDirectories);../../../EngineLayer;../../../EngineLayer/EngineDLLInterface</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>WIN32;_DEBUG;_WINDOWS;_WIN32_DCOM;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <MinimalRebuild>true</MinimalRebuild>
       <BasicRuntimeChecks>EnableFastChecks</BasicRuntimeChecks>
@@ -149,6 +149,7 @@
     </Bscmake>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="..\..\..\Common\SFPacketStore\PacketCore.pb.cc" />
     <ClCompile Include="..\..\..\Common\SFPacketStore\SFPacketStore.pb.cc" />
     <ClCompile Include="Bullet.cpp" />
     <ClCompile Include="GameMaterial.cpp" />
@@ -157,12 +158,14 @@
     <ClCompile Include="PlayerObject.cpp" />
     <ClCompile Include=".\TCPNetworkCallback.cpp" />
     <ClCompile Include=".\UDPNetworkCallback.cpp" />
+    <ClCompile Include="SFGameProtocol.cpp" />
     <ClCompile Include="Weapon.cpp" />
     <ClCompile Include="Game.cpp" />
     <ClCompile Include="Menu.cpp" />
     <ClCompile Include=".\Room.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="..\..\..\Common\SFPacketStore\PacketCore.pb.h" />
     <ClInclude Include="..\..\..\Common\SFPacketStore\PacketID.h" />
     <ClInclude Include="..\..\..\Common\SFPacketStore\SFPacketStore.pb.h" />
     <ClInclude Include="Bullet.h" />
@@ -172,6 +175,7 @@
     <ClInclude Include="PlayerObject.h" />
     <ClInclude Include=".\TCPNetworkCallback.h" />
     <ClInclude Include=".\UDPNetworkCallback.h" />
+    <ClInclude Include="SFGameProtocol.h" />
     <ClInclude Include="Weapon.h" />
     <ClInclude Include="Game.h" />
     <ClInclude Include="Menu.h" />

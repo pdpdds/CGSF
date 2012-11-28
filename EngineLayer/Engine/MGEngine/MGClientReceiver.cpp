@@ -1,7 +1,7 @@
 #include "MGClientReceiver.h"
 #include "INetworkEngine.h"
 #include "MGEngine.h"
-#include "INetworkEngineCallback.h"
+#include "IEngine.h"
 
 MGClientReceiver::MGClientReceiver(INetworkEngine* pOwner)
 	: m_pOwner(pOwner)
@@ -38,7 +38,7 @@ void MGClientReceiver::notifyReleaseSocket(ASSOCKDESCEX& sockdesc)
 
 void MGClientReceiver::notifyMessage(ASSOCKDESCEX& sockdesc, size_t length, char* data)
 {
-	if(false == m_Session.OnData(sockdesc.assockUid,data, length))
+	if(false == m_Session.OnReceive(data, length))
 	{
 		Synchronized es(&m_SessionLock);
            
@@ -62,9 +62,9 @@ void MGClientReceiver::notifyConnectingResult(INT32 requestID, ASSOCKDESCEX& soc
 	
 }
 
-BOOL MGClientReceiver::Send(int Serial, char* pMessage, int BufSize )
+BOOL MGClientReceiver::SendRequest(BasePacket* pPacket)
 {
-	Synchronized es(&m_SessionLock);
+	/*Synchronized es(&m_SessionLock);
 
 	SessionMap::iterator iter = m_SessionMap.find(Serial);
 
@@ -74,7 +74,7 @@ BOOL MGClientReceiver::Send(int Serial, char* pMessage, int BufSize )
 	}
 
 	iter->second.psender->postingSend(iter->second, BufSize, pMessage);
-
+	*/
 	return TRUE;
 }
 

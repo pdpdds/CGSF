@@ -10,6 +10,11 @@
 #include "UDPNetworkCallback.h"
 #include "SFBugTrap.h"
 #include "SFNetworkEntry.h"
+#include "SFConstant.h"
+#include "SFMacro.h"
+#include "SFCasualGameDispatcher.h"
+#include "SFPacketProtocol.h"
+#include "SFGameProtocol.h"
 
 #ifdef _DEBUG
 #pragma comment(linker, "/entry:WinMainCRTStartup /subsystem:console")
@@ -83,6 +88,12 @@ int WINAPI WinMain( HINSTANCE instance, HINSTANCE prev, LPSTR cmdLine, int cmdSh
 	UDPNetworkCallback* pUDPCallback = new UDPNetworkCallback(); 
 
 	g_engine->GetNetwork()->Initialize("CGSFEngine.dll", pCallback, pUDPCallback);
+
+	IPacketProtocol* pProtocol = new SFPacketProtocol<SFGameProtocol>;
+	g_engine->GetNetwork()->SetPacketProtocol(pProtocol);
+
+	ILogicDispatcher* pDispatcher = new SFCasualGameDispatcher();
+	g_engine->GetNetwork()->SetLogicDispatcher(pDispatcher);
 
 	if(g_engine != NULL)
 		g_engine->Run();

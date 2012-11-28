@@ -1,7 +1,7 @@
 #pragma once
 #include <map>
 
-class SFCommand;
+class BasePacket;
 
 class ILogicEntry
 {
@@ -9,5 +9,5 @@ public:
 	ILogicEntry(void){}
 	virtual ~ILogicEntry(void){}
 
-	virtual BOOL ProcessPacket(SFCommand* pCommand) = 0;
+	virtual BOOL ProcessPacket(BasePacket* pPacket) = 0;
 };

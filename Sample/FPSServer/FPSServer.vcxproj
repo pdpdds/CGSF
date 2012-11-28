@@ -82,7 +82,7 @@
     <ClCompile>
       <Optimization>MaxSpeed</Optimization>
       <IntrinsicFunctions>true</IntrinsicFunctions>
-      <AdditionalIncludeDirectories>../Common/SFPacketStore;../Common;../P2PServer;../CasualGameFramework;../NetworkEngine;../../ThirdParty/protobuf-2.4.1/src;../../ThirdParty/ACE_wrappers;../../ThirdParty/glog/src/windows;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>../../Common/SFPacketStore;../../Common;../../P2PLayer/P2PServer;../../LogicLayer/CasualGame;../../EngineLayer;../../ThirdParty/protobuf-2.4.1/src;../../ThirdParty/ACE_wrappers;../../ThirdParty/glog/src/windows;../../EngineLayer/EngineDllInterface;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>WIN32;NDEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
       <FunctionLevelLinking>true</FunctionLevelLinking>
@@ -91,7 +91,7 @@
       <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
     </ClCompile>
     <Link>
-      <AdditionalLibraryDirectories>../Lib/Release;../../ThirdParty/Lib/release;../../ThirdParty/Lib/Release/libProto;../../ThirdParty/Ace_Wrappers/lib;../../ThirdParty/Lib/Release/vld-10;../../ThirdParty/MySql/lib;../../ThirdParty/liblfds/lib/dynamic;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalLibraryDirectories>../../VSProject/Lib/Release;../../ThirdParty/SQLite;../../ThirdParty/Lib/Release;../../ThirdParty/Ace_Wrappers/lib;../../ThirdParty/Lib/vld-10;../../ThirdParty/MySql/lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <SubSystem>Console</SubSystem>
       <OptimizeReferences>true</OptimizeReferences>
@@ -102,12 +102,15 @@
   <ItemGroup>
     <ClCompile Include="..\..\Common\SFPacketStore\SFPacketStore.pb.cc">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">NotUsing</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">NotUsing</PrecompiledHeader>
     </ClCompile>
     <ClCompile Include=".\FPSServer.cpp" />
     <ClCompile Include=".\stdafx.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Create</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Create</PrecompiledHeader>
     </ClCompile>
+    <ClCompile Include="FPSDefaultProtocol.cpp" />
+    <ClCompile Include="FPSProtocol.cpp" />
     <ClCompile Include="SFFreeForAll.cpp" />
     <ClCompile Include="SFSuddenDeath.cpp" />
     <ClCompile Include="SFTeamDeathMatch.cpp" />
@@ -117,6 +120,8 @@
     <ClInclude Include="..\..\Common\SFPacketStore\SFPacketStore.pb.h" />
     <ClInclude Include=".\stdafx.h" />
     <ClInclude Include=".\targetver.h" />
+    <ClInclude Include="FPSDefaultProtocol.h" />
+    <ClInclude Include="FPSProtocol.h" />
     <ClInclude Include="SFFreeForAll.h" />
     <ClInclude Include="SFSuddenDeath.h" />
     <ClInclude Include="SFTeamDeathMatch.h" />

@@ -6,6 +6,7 @@
 #include "SFPlayer.h"
 #include "SFSendPacket.h"
 #include "SFPacket.h"
+#include "SFProtobufPacket.h"
 
 SFFreeForAll::SFFreeForAll(int Mode)
 : SFGameMode(Mode)
@@ -37,7 +38,7 @@ BOOL SFFreeForAll::ProcessUserRequest( SFPlayer* pPlayer, int Msg )
 	return TRUE;
 }
 
-BOOL SFFreeForAll::ProcessUserRequest( SFPlayer* pPlayer, SFPacket* pPacket )
+BOOL SFFreeForAll::ProcessUserRequest( SFPlayer* pPlayer, BasePacket* pPacket )
 {
 	SFRoom* pRoom = GetOwner()->GetOwner();
 
@@ -67,17 +68,15 @@ BOOL SFFreeForAll::ProcessUserRequest( SFPlayer* pPlayer, SFPacket* pPacket )
 	return TRUE;
 }
 
-BOOL SFFreeForAll::OnPlayerHealth(SFPlayer* pPlayer, SFPacket* pPacket)
+BOOL SFFreeForAll::OnPlayerHealth(SFPlayer* pPlayer, BasePacket* pPacket)
 {
 	SFRoom* pRoom = GetOwner()->GetOwner();
 
-	SFPacketStore::MSG_PLAYER_HEALTH PktPlayerHealth;
-	protobuf::io::ArrayInputStream is(pPacket->GetDataBuffer(), pPacket->GetDataSize());
-	PktPlayerHealth.ParseFromZeroCopyStream(&is);
-
+	SFProtobufPacket<SFPacketStore::MSG_PLAYER_HEALTH>* pHealth = (SFProtobufPacket<SFPacketStore::MSG_PLAYER_HEALTH>*)pPacket;
+	
 	PlayerHealthMsg msg;
 
-	SF_GETPACKET_ARG(&msg, PktPlayerHealth.playerhealth(), PlayerHealthMsg);
+	SF_GETPACKET_ARG(&msg, pHealth->GetData().playerhealth(), PlayerHealthMsg);
 
 	SFPlayer* pHurtPlayer = NULL;
 	SFRoom::RoomMemberMap MemberMap = pRoom->GetRoomMemberMap();
@@ -116,17 +115,15 @@ BOOL SFFreeForAll::OnPlayerHealth(SFPlayer* pPlayer, SFPacket* pPacket)
 	return TRUE;
 }
 
-BOOL SFFreeForAll::OnSpawnPlayer(SFPlayer* pPlayer, SFPacket* pPacket)
+BOOL SFFreeForAll::OnSpawnPlayer(SFPlayer* pPlayer, BasePacket* pPacket)
 {
 	SFRoom* pRoom = GetOwner()->GetOwner();
 
-	SFPacketStore::MSG_SPAWN_PLAYER PkSpawnPlayer;
-	protobuf::io::ArrayInputStream is(pPacket->GetDataBuffer(), pPacket->GetDataSize());
-	PkSpawnPlayer.ParseFromZeroCopyStream(&is);
+	SFProtobufPacket<SFPacketStore::MSG_SPAWN_PLAYER>* pSpawnPlayer = (SFProtobufPacket<SFPacketStore::MSG_SPAWN_PLAYER>*)pPacket;
 
 	SpawnPlayerMsg msg;
 
-	SF_GETPACKET_ARG(&msg, PkSpawnPlayer.spawnplayer(), SpawnPlayerMsg);
+	SF_GETPACKET_ARG(&msg, pSpawnPlayer->GetData().spawnplayer(), SpawnPlayerMsg);
 
 	_CharacterInfo* pInfo = pPlayer->GetCharacterInfo();
 	pInfo->translation = msg.translation;

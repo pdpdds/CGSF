@@ -6,9 +6,9 @@
 #include "SFSinglton.h"
 #include <iostream>
 #include "SFEngine.h"
-#include "GoogleLog.h"
+#include "SFProtobufPacket.h"
 
-extern SFSYSTEM* g_pEngine;
+extern SFEngine* g_pEngine;
 
 using namespace google;
 
@@ -20,18 +20,9 @@ ChatPacketEntry::~ChatPacketEntry(void)
 {
 }
 
-BOOL ChatPacketEntry::Send(USHORT PacketID, char* pBuffer, int BufSize )
+BOOL ChatPacketEntry::SendRequest(BasePacket* pPacket)
 {
-
-	g_pEngine->Send(GetSerial(), PacketID, pBuffer, BufSize);
-
-	return TRUE;
-}
-
-BOOL ChatPacketEntry::Send(int Serial, USHORT PacketID, char* pBuffer, int BufSize )
-{
-	g_pEngine->Send(Serial, PacketID, pBuffer, BufSize);
-
+	g_pEngine->SendRequest(pPacket);
 	return TRUE;
 }
 
@@ -41,30 +32,27 @@ BOOL ChatPacketEntry::Send(int Serial, USHORT PacketID, char* pBuffer, int BufSi
 //TCP 처리 쓰레드에서 받은 패킷을 메인 쓰레드로 넘길 경우
 //lock free queue를 사용하면 됩니다.(UDP 쓰레드에서 메인 쓰레드로 패킷 넘기는 부분 참조)
 
-BOOL ChatPacketEntry::ProcessPacket( SFCommand* pCommand )
+BOOL ChatPacketEntry::ProcessPacket( BasePacket* pPacket)
 {
-	SFPacket* pPacket = (SFPacket*)(pCommand);
-	if(pPacket->GetPacketID() == CGSF::ChatReq)
+	if(pPacket->GetPacketID() == CGSF::ChatRes)
 	{
-		ChatPacket::Chat PktChat;
-		protobuf::io::ArrayInputStream is(pPacket->GetDataBuffer(), pPacket->GetDataSize());
-		PktChat.ParseFromZeroCopyStream(&is);
+		SFProtobufPacket<ChatPacket::Chat>* pChat = (SFProtobufPacket<ChatPacket::Chat>*)pPacket;
 
-		std::cout << PktChat.chatmessage() << std::endl;
+		std::cout << pChat->GetData().chatmessage() << std::endl;
 
 		return TRUE;
 	}
-	else if(pCommand->GetPacketType() == SFCommand_Disconnect)
+	else if(pPacket->GetPacketType() == SFPacket_Disconnect)
 	{
-		g_pEngine->SetProcessing(FALSE);
+//		g_pEngine->SetProcessing(FALSE);
 		printf("Disconnect Server!!\n");
 	}
-	else if(pCommand->GetPacketType() == SFCommand_Connect)
+	else if(pPacket->GetPacketType() == SFPacket_Connect)
 	{
-		g_pEngine->SetProcessing(TRUE);
+		//g_pEngine->SetProcessing(TRUE);
 		printf("Connect Server!!\n");
 
-		m_Serial = pCommand->GetOwnerSerial();
+		m_Serial = pPacket->GetOwnerSerial();
 	}
 
 	return FALSE;

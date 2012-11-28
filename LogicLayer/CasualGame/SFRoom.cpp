@@ -27,7 +27,7 @@ int SFRoom::GetRoomState()
 	return m_pRoomFSM->GetRoomState();
 }
 
-BOOL SFRoom::ProcessUserRequest( SFPlayer* pPlayer, SFPacket* pPacket )
+BOOL SFRoom::ProcessUserRequest( SFPlayer* pPlayer, BasePacket* pPacket )
 {
 	return m_pRoomFSM->ProcessUserRequest(pPlayer, pPacket);
 }
@@ -232,7 +232,7 @@ BOOL SFRoom::CanEnter( SFPlayer* pPlayer )
 	return FALSE;
 }
 
-BOOL SFRoom::BroadCast( SFPacket* pPacket )
+BOOL SFRoom::BroadCast( BasePacket* pPacket )
 {
 	for(int i = 0; i < TEAM_TYPE_MAX; i++)
 	{

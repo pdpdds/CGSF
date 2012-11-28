@@ -12,6 +12,10 @@
 SFPlayerLobby::SFPlayerLobby(SFPlayer* pOwner, ePlayerState State)
 : SFPlayerState(pOwner, State)
 {
+	m_Dispatch.RegisterMessage(CGSF::EnterRoom, std::tr1::bind(&SFPlayerLobby::OnEnterRoom, this, std::tr1::placeholders::_1));
+	m_Dispatch.RegisterMessage(CGSF::CreateRoom, std::tr1::bind(&SFPlayerLobby::OnCreateRoom, this, std::tr1::placeholders::_1));
+	m_Dispatch.RegisterMessage(CGSF::ChatReq, std::tr1::bind(&SFPlayerLobby::OnChatReq, this, std::tr1::placeholders::_1));
+	m_Dispatch.RegisterMessage(CGSF::PlayerIP, std::tr1::bind(&SFPlayerLobby::OnPlayerIP, this, std::tr1::placeholders::_1));
 }
 
 SFPlayerLobby::~SFPlayerLobby(void)
@@ -42,37 +46,9 @@ BOOL SFPlayerLobby::OnLeave()
 	return TRUE;
 }
 
-BOOL SFPlayerLobby::ProcessPacket( SFPacket* pPacket )
+BOOL SFPlayerLobby::ProcessPacket( BasePacket* pPacket )
 {
-	switch(pPacket->GetPacketID())
-	{
-	case CGSF::EnterRoom:
-		{
-			OnEnterRoom(pPacket);
-		}
-		break;
-	case CGSF::CreateRoom:
-		{
-			OnCreateRoom(pPacket);
-		}
-		break;
-	case CGSF::ChatReq:
-		{
-			OnChatReq(pPacket);
-		}
-		break;
-
-	case CGSF::PlayerIP:
-		{
-			OnPlayerIP(pPacket);
-		}
-		break;
-
-	default:
-		return FALSE;
-	}
-
-	return TRUE;
+	return m_Dispatch.HandleMessage(pPacket->GetPacketID(), pPacket);
 }
 
 BOOL SFPlayerLobby::ProcessDBResult( SFMessage* pMessage )
@@ -80,7 +56,7 @@ BOOL SFPlayerLobby::ProcessDBResult( SFMessage* pMessage )
 	return TRUE;
 }
 
-BOOL SFPlayerLobby::OnEnterRoom( SFPacket* pPacket )
+BOOL SFPlayerLobby::OnEnterRoom( BasePacket* pPacket )
 {
 	SFPlayer* pPlayer = GetOwner();
 	
@@ -90,24 +66,23 @@ BOOL SFPlayerLobby::OnEnterRoom( SFPacket* pPacket )
 
 	SFRoomManager* pRoomManager = SFLogicEntry::GetLogicEntry()->GetRoomManager();
 
-	SFPacketStore::EnterRoom PkEnterRoom;
-	protobuf::io::ArrayInputStream is(pPacket->GetDataBuffer(), pPacket->GetDataSize());
-	PkEnterRoom.ParseFromZeroCopyStream(&is);
+	SFProtobufPacket<SFPacketStore::EnterRoom>* pEnterRoom = (SFProtobufPacket<SFPacketStore::EnterRoom>*)pPacket;
 
-	int RoomIndex = PkEnterRoom.roomindex();
+
+	int RoomIndex = pEnterRoom->GetData().roomindex();
 
 	SFRoom* pRoom = pRoomManager->GetRoom(RoomIndex);
 
 	if(pRoom == NULL)
 		return FALSE;
 
-	if(TRUE == pRoom->ProcessUserRequest(pPlayer, pPacket))
-		SendToClient(GetOwner(), CGSF::EnterRoom, &PkEnterRoom, PkEnterRoom.ByteSize());
+	//if(TRUE == pRoom->ProcessUserRequest(pPlayer, pPacket))
+		//일단주석SendToClient(GetOwner(), CGSF::EnterRoom, pEnterRoom->getStructuredData(), pEnterRoom->GetData().ByteSize());
 
 	return TRUE;
 }
 
-BOOL SFPlayerLobby::OnCreateRoom( SFPacket* pPacket )
+BOOL SFPlayerLobby::OnCreateRoom( BasePacket* pPacket )
 {
 	SFPlayer* pPlayer = GetOwner();
 	_PeerInfo Info = pPlayer->GetIPInfo();
@@ -116,47 +91,41 @@ BOOL SFPlayerLobby::OnCreateRoom( SFPacket* pPacket )
 
 	SFRoomManager* pRoomManager = SFLogicEntry::GetLogicEntry()->GetRoomManager();
 
-	SFPacketStore::CreateRoom PktCreateRoom;
-	protobuf::io::ArrayInputStream is(pPacket->GetDataBuffer(), pPacket->GetDataSize());
-	PktCreateRoom.ParseFromZeroCopyStream(&is);
+	SFProtobufPacket<SFPacketStore::CreateRoom>* pEnterCreateRoom = (SFProtobufPacket<SFPacketStore::CreateRoom>*)pPacket;
 
-	BOOL bResult = pRoomManager->OnCreateRoom(this, PktCreateRoom.gamemode());
+	BOOL bResult = pRoomManager->OnCreateRoom(this, pEnterCreateRoom->GetData().gamemode());
 
 	if(FALSE == bResult)
 		return FALSE;
 
 	pPlayer->ChangeState(PLAYER_STATE_ROOM);
 
-	SendToClient(GetOwner(), CGSF::CreateRoom, &PktCreateRoom, PktCreateRoom.ByteSize());
+	//SendToClient(GetOwner(), CGSF::CreateRoom, &PktCreateRoom, PktCreateRoom.ByteSize());
 
 	return TRUE;
 }
 
-BOOL SFPlayerLobby::OnChatReq( SFPacket* pPacket )
+BOOL SFPlayerLobby::OnChatReq( BasePacket* pPacket )
 {
 	SFLobby* pLobby = SFLogicEntry::GetLogicEntry()->GetLobby();
 
 	SFPlayer* pPlayer = GetOwner();
 
-	SFPacketStore::ChatReq PktChatReq;
-	protobuf::io::ArrayInputStream is(pPacket->GetDataBuffer(), pPacket->GetDataSize());
-	PktChatReq.ParseFromZeroCopyStream(&is);
+	SFProtobufPacket<SFPacketStore::ChatReq>* pChatReq = (SFProtobufPacket<SFPacketStore::ChatReq>*)pPacket;
 
-	pLobby->OnChat(GetOwner(), PktChatReq.message());
+	pLobby->OnChat(GetOwner(), pChatReq->GetData().message());
 
 	return TRUE;
 }
 
-BOOL SFPlayerLobby::OnPlayerIP( SFPacket* pPacket )
+BOOL SFPlayerLobby::OnPlayerIP( BasePacket* pPacket )
 {
 	SFPlayer* pPlayer = GetOwner();
 
-	SFPacketStore::PLAYER_IP PktPlayerIP;
-	protobuf::io::ArrayInputStream is(pPacket->GetDataBuffer(), pPacket->GetDataSize());
-	PktPlayerIP.ParseFromZeroCopyStream(&is);
+	SFProtobufPacket<SFPacketStore::PLAYER_IP>* pPlayerIP = (SFProtobufPacket<SFPacketStore::PLAYER_IP>*)pPacket;
 
 	PlayerIPMsg Msg;
-	SF_GETPACKET_ARG(&Msg, PktPlayerIP.playerip(), PlayerIPMsg);
+	SF_GETPACKET_ARG(&Msg, pPlayerIP->GetData().playerip(), PlayerIPMsg);
 
 	_PeerInfo Info;
 	Info.ExternalIP = Msg.ExternalIP;

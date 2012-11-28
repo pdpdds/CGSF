@@ -7,14 +7,15 @@
 #define NETWORKENGINEDECL __declspec(dllimport)
 #endif
 
-class INetworkEngineCallback;
+class IEngine;
+class BasePacket;
 
 class NETWORKENGINEDECL INetworkEngine
 {
   public:  
-	INetworkEngine(INetworkEngineCallback* pCallback)
+	INetworkEngine(IEngine* pEngine)
 	{
-		m_Callback = pCallback;
+		m_pEngine = pEngine;
 	}
 
     virtual ~INetworkEngine() {};
@@ -32,7 +33,7 @@ class NETWORKENGINEDECL INetworkEngine
 //Desc : 데이터 전송
 //패킷전송을 위한 구성은 마친 상태
 ////////////////////////////////////////////////////////////////////////////////////////////////////
-	virtual bool Send(int Serial, char* pData, unsigned short Length) = 0;
+	virtual bool SendRequest(BasePacket* pPacket) = 0;
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////
 //강제로 세션을 종료하고 싶을 때
@@ -47,15 +48,15 @@ class NETWORKENGINEDECL INetworkEngine
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////
-	INetworkEngineCallback* GetCallback(){return m_Callback;}
+	IEngine* GetEngine(){return m_pEngine;}
 
 protected:
-	INetworkEngineCallback* m_Callback;
+	IEngine* m_pEngine;
 
 private:
 };
 
-typedef INetworkEngine* (CREATENETWORKENGINE)(bool Server, INetworkEngineCallback* pCallback);
-extern "C" NETWORKENGINEDECL INetworkEngine* CreateNetworkEngine(bool Server, INetworkEngineCallback* pCallback);
+typedef INetworkEngine* (CREATENETWORKENGINE)(bool Server, IEngine* pEngine);
+extern "C" NETWORKENGINEDECL INetworkEngine* CreateNetworkEngine(bool Server, IEngine* pEngine);
 
 #endif  // INETWORKENGINE_H_

@@ -1,8 +1,8 @@
 #ifndef ISESSION_H_
 #define ISESSION_H_
 #include "INetworkEngine.h"
-#include "INetworkEngineCallback.h"
-#include "IPacketService.h"
+#include "IEngine.h"
+#include "ISessionService.h"
 
 class ISession
 {
@@ -12,32 +12,36 @@ class ISession
 
 	void SetOwner(INetworkEngine* pOwner){m_pOwner = pOwner;}
 
-	//void OnConnect(int Serial);
-	//void OnDisconnect(int Serial);
-	//bool OnData(int Serial, char* pData, unsigned short Length);
+	virtual void SendInternal(char* pBuffer, int BufferSize) {}
 
 	void OnConnect(int Serial)
 	{
-		m_pPacketService = m_pOwner->GetCallback()->CreatePacketService();
-		m_pOwner->GetCallback()->OnConnect(Serial);
+		m_pSessionService = m_pOwner->GetEngine()->CreateSessionService();
+		m_pSessionService->SetSerial(Serial);
+		m_pOwner->GetEngine()->OnConnect(Serial);
 	}
 
 	void OnDisconnect(int Serial)
 	{
-		m_pOwner->GetCallback()->OnDisconnect(Serial);
-		delete m_pPacketService;
+		m_pOwner->GetEngine()->OnDisconnect(Serial);
+		delete m_pSessionService;
 	}
 
-	bool OnData(int Serial, char* pData, unsigned short Length)
+	bool OnReceive(char* pData, unsigned short Length)
 	{
-		return m_pPacketService->OnData(Serial, pData, Length);
+		return m_pSessionService->OnReceive(pData, Length);
+	}
+
+	BOOL SendRequest(BasePacket* pPacket)
+	{
+		return m_pSessionService->SendRequest(this, pPacket);
 	}
 
 protected:
 
 private:
 	INetworkEngine* m_pOwner;
-	IPacketService* m_pPacketService;
+	ISessionService* m_pSessionService;
 };
 
 

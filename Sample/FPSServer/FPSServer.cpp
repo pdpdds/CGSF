@@ -9,8 +9,10 @@
 #include "SFShouter.h"
 #include "SFUtil.h"
 #include "SFIni.h"
+#include "FPSProtocol.h"
+#include "SFCasualGameDispatcher.h"
 
-SFEngine<GoogleLog, INetworkEngine>* g_pEngine = NULL;
+SFEngine* g_pEngine = NULL;
 
 #ifdef _DEBUG
 #pragma comment(lib, "aced.lib")
@@ -32,8 +34,8 @@ HINSTANCE g_pP2PHandle = 0;
 
 int _tmain(int argc, _TCHAR* argv[])
 {
-	g_pEngine = new SFEngine<GoogleLog, INetworkEngine>;
-
+	g_pEngine = new SFEngine();
+	
 	SFLogicEntry* pLogicEntry = new SFLogicEntry();
 
 	/*int MaxPacketPool = 1000;
@@ -49,9 +51,18 @@ int _tmain(int argc, _TCHAR* argv[])
 
 	pLogicEntry->Initialize();
 
+	IPacketProtocol* pProtocol = new SFPacketProtocol<FPSProtocol>;
+	g_pEngine->SetPacketProtocol(pProtocol);
 
-	if(FALSE == g_pEngine->CreateSystem("CGSFEngine.dll", pLogicEntry, true))
+	if(FALSE == g_pEngine->CreateEngine("CGSFEngine.dll", true))
 		return 0;
+
+	if(FALSE == g_pEngine->CreateLogicThread(pLogicEntry))
+		return 0;
+
+	ILogicDispatcher* pDispatcher = new SFCasualGameDispatcher();
+
+	g_pEngine->SetLogicDispathcer(pDispatcher);
 
 ////////////////////////////////////////////////////////////////////
 //Timer

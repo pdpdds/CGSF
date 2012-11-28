@@ -12,8 +12,8 @@ public:
 	virtual BOOL OnEnter() override;
 	virtual BOOL OnLeave() override;
 
-	virtual BOOL ProcessUserRequest(SFPlayer* pPlayer, SFPacket* pPacket) override;
+	virtual BOOL ProcessUserRequest(SFPlayer* pPlayer, BasePacket* pPacket) override;
 
 protected:
-	BOOL OnReportIP(SFPlayer* pPlayer, SFPacket* pPacket);
+	BOOL OnReportIP(SFPlayer* pPlayer, BasePacket* pPacket);
 };

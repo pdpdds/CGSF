@@ -9,6 +9,7 @@
 SFPlayerLogin::SFPlayerLogin(SFPlayer* pOwner, ePlayerState State)
 : SFPlayerState(pOwner, State)
 {
+	m_Dispatch.RegisterMessage(CGSF::EnterLobby, std::tr1::bind(&SFPlayerLogin::OnEnterLobby, this, std::tr1::placeholders::_1));
 }
 
 SFPlayerLogin::~SFPlayerLogin(void)
@@ -25,18 +26,9 @@ BOOL SFPlayerLogin::OnLeave()
 	return TRUE;
 }
 
-BOOL SFPlayerLogin::ProcessPacket( SFPacket* pPacket )
+BOOL SFPlayerLogin::ProcessPacket( BasePacket* pPacket )
 {
-	switch(pPacket->GetPacketID())
-	{
-	case CGSF::EnterLobby:
-		{
-			OnEnterLobby(pPacket);
-		}
-		break;
-	default:
-		return FALSE;
-	}
+	return m_Dispatch.HandleMessage(pPacket->GetPacketID(), pPacket);
 
 	return TRUE;
 }
@@ -46,11 +38,9 @@ BOOL SFPlayerLogin::ProcessDBResult( SFMessage* pMessage )
 	return FALSE;
 }
 
-BOOL SFPlayerLogin::OnEnterLobby( SFPacket* pPacket )
+BOOL SFPlayerLogin::OnEnterLobby( BasePacket* pPacket )
 {
-	SFPacketStore::EnterLobby PktEnterLobby;
-	protobuf::io::ArrayInputStream is(pPacket->GetDataBuffer(), pPacket->GetDataSize());
-	PktEnterLobby.ParseFromZeroCopyStream(&is);
+	SFProtobufPacket<SFPacketStore::EnterLobby>* pEnterLobby = (SFProtobufPacket<SFPacketStore::EnterLobby>*)pPacket;
 
 	SFPlayer* pPlayer = GetOwner();
 

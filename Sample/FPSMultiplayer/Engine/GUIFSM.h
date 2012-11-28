@@ -14,7 +14,7 @@ public:
 	bool ChangeState(eGUIState State);
 
 	virtual bool ProcessInput(int InputParam) override;
-	virtual bool Notify(int Msg, char* pBuffer, int BufferSize ) override;
+	virtual bool Notify(BasePacket* pPacket) override;
 
 protected:
 

@@ -110,7 +110,7 @@ BOOL SFRoomPlay::OnLeaveRoom( SFPlayer* pPlayer )
 /////////////////////////////////////////////////////////////////////////////////////
 /////////////////////////////////////////////////////////////////////////////////////
 
-BOOL SFRoomPlay::ProcessUserRequest( SFPlayer* pPlayer, SFPacket* pPacket )
+BOOL SFRoomPlay::ProcessUserRequest( SFPlayer* pPlayer, BasePacket* pPacket )
 {
 	if(FALSE == m_DispatchingSystem.HandleMessage(pPacket->GetPacketID(), pPlayer, pPacket))
 		if(FALSE == m_Dispatch.HandleMessage(pPacket->GetPacketID(), pPlayer))
@@ -126,12 +126,15 @@ BOOL SFRoomPlay::ProcessUserRequest( SFPlayer* pPlayer, int Msg )
 	return TRUE;
 }
 
-BOOL SFRoomPlay::OnLoadingComplete( SFPlayer* pPlayer, SFPacket* pPacket )
+BOOL SFRoomPlay::OnLoadingComplete( SFPlayer* pPlayer, BasePacket* pPacket )
 {
 	SFRoom* pOwner = GetOwner();
 
-	SFRoom::RoomMemberMap MemberMap = pOwner->GetRoomMemberMap();
+	SFProtobufPacket<SFPacketStore::MSG_CREATE_PLAYER> MsgCreatePlayer(CGSF::MSG_CREATE_PLAYER);
+	MsgCreatePlayer.GetData().set_serial(pPlayer->GetSerial());
+	MsgCreatePlayer.GetData().set_spawnindex(pPlayer->GetSpawnIndex());
 
+	SFRoom::RoomMemberMap MemberMap = pOwner->GetRoomMemberMap();
 	SFRoom::RoomMemberMap::iterator iter = MemberMap.begin();
 
 	for(;iter != MemberMap.end(); iter++)
@@ -140,14 +143,7 @@ BOOL SFRoomPlay::OnLoadingComplete( SFPlayer* pPlayer, SFPacket* pPacket )
 
 		if(pTarget == pPlayer)
 			continue;
-
-		SFPacketStore::MSG_CREATE_PLAYER PktMsgCreatePlayer;
-		PktMsgCreatePlayer.set_serial(pPlayer->GetSerial());
-		PktMsgCreatePlayer.set_spawnindex(pPlayer->GetSpawnIndex());
-
-		int BufSize = PktMsgCreatePlayer.ByteSize();
-
-		SendToClient(pTarget, CGSF::MSG_CREATE_PLAYER, &PktMsgCreatePlayer, BufSize);
+		SendToClient(pTarget, &MsgCreatePlayer);
 	}
 
 	SendCreatePlayer(pPlayer, pOwner);

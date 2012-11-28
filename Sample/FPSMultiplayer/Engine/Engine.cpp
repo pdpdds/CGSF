@@ -11,8 +11,9 @@
 #include "PacketID.h"
 #include <Windows.h>
 #include "SFPacketStore.pb.h"
-#include <google/protobuf/io/zero_copy_stream_impl_lite.h>
-
+#include "BasePacket.h"
+#include "SFProtobufPacket.h"
+	      
 #pragma comment(lib, "Imm32.lib")
 #pragma comment(lib, "libprotobuf.lib")
 
@@ -553,17 +554,12 @@ bool Engine::TCPSend( USHORT PacketID, NetworkMessage* pMessage, int Size )
 
 	if(PacketID == CGSF::MSG_PLAYER_HEALTH)
 	{
-		SFPacketStore::MSG_PLAYER_HEALTH PktPlayerHealth;
-		PktPlayerHealth.set_playerhealth(pMessage, Size);
-		int BufSize = PktPlayerHealth.ByteSize();
+		SFProtobufPacket<SFPacketStore::MSG_PLAYER_HEALTH> PktPlayerHealth(CGSF::MSG_PLAYER_HEALTH);
+		PktPlayerHealth.SetOwnerSerial(GetLocalID());
 
-		if(BufSize != 0)
-		{
-			::google::protobuf::io::ArrayOutputStream os(Buffer, BufSize);
-			PktPlayerHealth.SerializeToZeroCopyStream(&os);
-		}
-
-		m_pNetwork->TCPSend(GetLocalID(), CGSF::MSG_PLAYER_HEALTH, Buffer, BufSize);
+		PktPlayerHealth.GetData().set_playerhealth(pMessage, Size);
+		
+		m_pNetwork->TCPSend(&PktPlayerHealth);
 	}
 	/*else if (PacketID == CGSF::MSG_PLAYER_LOOK_UPDATE)
 	{
@@ -595,31 +591,20 @@ bool Engine::TCPSend( USHORT PacketID, NetworkMessage* pMessage, int Size )
 	}*/
 	else if(PacketID == CGSF::MSG_SPAWN_PLAYER)
 	{
-		SFPacketStore::MSG_SPAWN_PLAYER PktSpawnPlayer;
-		PktSpawnPlayer.set_spawnplayer(pMessage, Size);
-		int BufSize = PktSpawnPlayer.ByteSize();
+		SFProtobufPacket<SFPacketStore::MSG_SPAWN_PLAYER> PktSpawnPlayer(CGSF::MSG_SPAWN_PLAYER);
+		PktSpawnPlayer.SetOwnerSerial(GetLocalID());
+		PktSpawnPlayer.GetData().set_spawnplayer(pMessage, Size);
 
-		if(BufSize != 0)
-		{
-			::google::protobuf::io::ArrayOutputStream os(Buffer, BufSize);
-			PktSpawnPlayer.SerializeToZeroCopyStream(&os);
-		}
-
-		m_pNetwork->TCPSend(GetLocalID(), CGSF::MSG_SPAWN_PLAYER, Buffer, BufSize);
+		m_pNetwork->TCPSend(&PktSpawnPlayer);
 	}
 	else if(PacketID == CGSF::PlayerIP)
 	{
-		SFPacketStore::PLAYER_IP PktPlayerIP;
-		PktPlayerIP.set_playerip(pMessage, Size);
-		int BufSize = PktPlayerIP.ByteSize();
+		SFProtobufPacket<SFPacketStore::PLAYER_IP> PktPlayerIP(CGSF::PlayerIP);
+		PktPlayerIP.SetOwnerSerial(GetLocalID());
 
-		if(BufSize != 0)
-		{
-			::google::protobuf::io::ArrayOutputStream os(Buffer, BufSize);
-			PktPlayerIP.SerializeToZeroCopyStream(&os);
-		}
+		PktPlayerIP.GetData().set_playerip(pMessage, Size);
 
-		m_pNetwork->TCPSend(GetLocalID(), CGSF::PlayerIP, Buffer, BufSize);
+		m_pNetwork->TCPSend(&PktPlayerIP);
 	}
 	
 	return true;

@@ -62,7 +62,7 @@
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <ClCompile>
       <Optimization>Disabled</Optimization>
-      <AdditionalIncludeDirectories>../DirectX9.0/Include;../../../Common;../../../ThirdParty/CEGUI/CEGUI/Include;../../../ThirdParty/CEGUI/CEGUI/include/RendererModules/Direct3D9;../../../Common/SFPacketStore;../../../ThirdParty/protobuf-2.4.1/src;../../ClientInterface;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>../DirectX9.0/Include;../../../Common;../../../ThirdParty/CEGUI/CEGUI/Include;../../../ThirdParty/CEGUI/CEGUI/include/RendererModules/Direct3D9;../../../Common/SFPacketStore;../../../ThirdParty/protobuf-2.4.1/src;../../ClientInterface;%(AdditionalIncludeDirectories);../../../EngineLayer;../../../EngineLayer/EngineDLLInterface</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>WIN32;_DEBUG;_LIB;_WIN32_DCOM;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <MinimalRebuild>true</MinimalRebuild>
       <BasicRuntimeChecks>EnableFastChecks</BasicRuntimeChecks>

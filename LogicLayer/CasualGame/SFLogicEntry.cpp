@@ -11,7 +11,6 @@
 #include "SFEngine.h"
 
 SFLogicEntry* SFLogicEntry::m_pLogicEntry = NULL;
-extern SFEngine<GoogleLog, INetworkEngine>* g_pEngine;
 
 SFLogicEntry::SFLogicEntry(void)
 {
@@ -66,42 +65,42 @@ BOOL SFLogicEntry::AddGameMode(int Mode, SFGameMode* pMode)
 	return TRUE;
 }
 
-BOOL SFLogicEntry::ProcessPacket( SFCommand* pBase )
+BOOL SFLogicEntry::ProcessPacket( BasePacket* pBase )
 {
 	switch (pBase->GetPacketType())
 	{
-	case SFCommand_Connect:
+	case SFPacket_Connect:
 		{	
 			OnConnectPlayer(pBase->GetOwnerSerial());
 		}
 		break;
 
-	case SFCommand_Data:
+	case SFPacket_Data:
 		{	
-			OnPlayerData((SFPacket*)pBase);
+			OnPlayerData((BasePacket*)pBase);
 		}
 		break;
 
-	case SFCommand_Timer:
+	case SFPacket_Timer:
 		{	
-			OnTimer((SFPacket*)pBase);
+			OnTimer((BasePacket*)pBase);
 		}
 		break;
 
-	case SFCommand_Shouter:
+	case SFPacket_Shouter:
 		{	
 			OnShouter((SFPacket*)pBase);
 		}
 		break;
 
 
-	case SFCommand_Disconnect:
+	case SFPacket_Disconnect:
 		{	
 			OnDisconnectPlayer(pBase->GetOwnerSerial());
 		}
 		break;
 
-	case SFCommand_DB:
+	case SFPacket_DB:
 		{	
 			OnDBResult((SFMessage*)pBase);
 		}
@@ -168,7 +167,7 @@ BOOL SFLogicEntry::OnDisconnectPlayer( int PlayerSerial )
 	return TRUE;
 }
 
-BOOL SFLogicEntry::OnPlayerData( SFPacket* pPacket )
+BOOL SFLogicEntry::OnPlayerData( BasePacket* pPacket )
 {
 	PlayerMap::iterator iter = m_PlayerMap.find(pPacket->GetOwnerSerial());
 
@@ -198,22 +197,22 @@ BOOL SFLogicEntry::OnDBResult(SFMessage* pMessage)
 	return pPlayer->ProcessDBResult(pMessage);
 }
 
-BOOL SFLogicEntry::OnTimer(SFPacket* pPacket)
+BOOL SFLogicEntry::OnTimer(BasePacket* pPacket)
 {
 	return TRUE;
 }
 
-BOOL SFLogicEntry::OnShouter(SFPacket* pPacket)
+BOOL SFLogicEntry::OnShouter(BasePacket* pPacket)
 {
 	return TRUE;
 }
 
-BOOL SFLogicEntry::Send(SFPlayer* pPlayer, SFPacket* pPacket)
+BOOL SFLogicEntry::SendRequest(BasePacket* pPacket)
 {
-	return g_pEngine->GetNetworkEngine()->Send(pPlayer->GetSerial(), (char*)pPacket->GetHeader(), pPacket->GetHeaderSize() + pPacket->GetDataSize());
+	return g_pEngine->SendRequest(pPacket);
 }
 
-BOOL SFLogicEntry::Send( int Serial, int PacketID, char* pBuffer, int BufferSize )
+/*BOOL SFLogicEntry::Send( int Serial, int PacketID, char* pBuffer, int BufferSize )
 {
 	int HeaderSize = sizeof(SFPacketHeader);
 
@@ -224,4 +223,4 @@ BOOL SFLogicEntry::Send( int Serial, int PacketID, char* pBuffer, int BufferSize
 	PacketSend.MakePacket((BYTE*)pBuffer, BufferSize, CGSF_PACKET_OPTION);
 
 	return g_pEngine->GetNetworkEngine()->Send(Serial, (char*)PacketSend.GetHeader(), PacketSend.GetHeaderSize() + PacketSend.GetDataSize());
-}
+}*/

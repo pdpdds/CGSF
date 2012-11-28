@@ -7,49 +7,51 @@
 #include "SFRoom.h"
 #include "GamePacketStructure.h"
 #include "SFP2PSys.h"
+#include "SFProtobufPacket.h"
 
 BOOL SendAuthPacket(int Serial)
 {
-	PacketCore::Auth PktAuth;
-	PktAuth.set_encryptionkey(ENCRYPTION_KEY);
+	SFProtobufPacket<PacketCore::Auth> Auth = SFProtobufPacket<PacketCore::Auth>(CGSF::Auth);
+	Auth.SetOwnerSerial(Serial);
+	Auth.SetPacketID(CGSF::Auth);
 
-	int BufSize = PktAuth.ByteSize();
+	Auth.GetData().set_encryptionkey(ENCRYPTION_KEY);
 
-	char Buffer[2048] = {0,};
+	SFLogicEntry::GetLogicEntry()->SendRequest(&Auth);
 
-	if(BufSize != 0)
+	return TRUE;
+}
+
+BOOL SendLoginResult( SFPlayer* pPlayer,int Result )
+{
+	_UserInfo* pUserInfo = pPlayer->GetUserInfo();	
+	pUserInfo->Serial = pPlayer->GetSerial();
+
+	if(Result == 0)
 	{
-		::google::protobuf::io::ArrayOutputStream os(Buffer, BufSize);
-		PktAuth.SerializeToZeroCopyStream(&os);
+		SFProtobufPacket<SFPacketStore::LoginSuccess> LoginSuccess = SFProtobufPacket<SFPacketStore::LoginSuccess>(CGSF::LoginSuccess);
+		LoginSuccess.SetOwnerSerial(pPlayer->GetSerial());
+	
+		LoginSuccess.GetData().set_result(Result);
+		LoginSuccess.GetData().set_userinfo((const char*)pPlayer->GetUserInfo(), sizeof(_UserInfo));
+		
+		SFLogicEntry::GetLogicEntry()->SendRequest(&LoginSuccess);
 	}
-
-	SFLogicEntry::GetLogicEntry()->Send(Serial, CGSF::Auth, Buffer, BufSize);
+	else
+	{
+		SFProtobufPacket<SFPacketStore::LoginFail> LoginFail = SFProtobufPacket<SFPacketStore::LoginFail>(CGSF::LoginFail);
+		LoginFail.SetOwnerSerial(pPlayer->GetSerial());
+		LoginFail.GetData().set_result(Result);
+		
+		SFLogicEntry::GetLogicEntry()->SendRequest(&LoginFail);
+	}
 
 	return TRUE;
 }
 
-BOOL SendToClient(SFPlayer* pPlayer, USHORT PacketID, ::google::protobuf::Message* pMessage, int BufSize)
+BOOL SendToClient(SFPlayer* pPlayer, BasePacket* pPacket)
 {
-	char Buffer[MAX_PACKET_DATA] = {0,};
-
-	if(BufSize != 0)
-	{	
-
-		::google::protobuf::io::ArrayOutputStream os(Buffer, BufSize);
-		if(false == pMessage->SerializeToZeroCopyStream(&os))
-		{
-			SFASSERT(0);
-		}
-	}
-
-	SFLogicEntry::GetLogicEntry()->Send(pPlayer->GetSerial(), PacketID, Buffer, BufSize);
-
-	return TRUE;
-}
-
-BOOL SendToClient(SFPlayer* pPlayer, SFPacket* pPacket)
-{
-	SFLogicEntry::GetLogicEntry()->Send(pPlayer, pPacket);
+	SFLogicEntry::GetLogicEntry()->SendRequest(pPacket);
 	return TRUE;
 }
 
@@ -63,44 +65,19 @@ BOOL SendPlayEnd( SFPlayer* pPlayer )
 	return TRUE;
 }
 
-BOOL SendLoginResult( SFPlayer* pPlayer,int Result )
-{
-	if(Result == 0)
-	{
-		SFPacketStore::LoginSuccess PktLoginSuccess;
-		_UserInfo* pUserInfo = pPlayer->GetUserInfo();
-		pUserInfo->Serial = pPlayer->GetSerial();
-
-		PktLoginSuccess.set_result(Result);
-		PktLoginSuccess.set_userinfo((const char*)pPlayer->GetUserInfo(), sizeof(_UserInfo));
-		int BufSize = PktLoginSuccess.ByteSize();
-		SendToClient(pPlayer, CGSF::LoginSuccess, &PktLoginSuccess, BufSize);
-	}
-	else
-	{
-		SFPacketStore::LoginFail PktLoginFail;
-		PktLoginFail.set_result(Result);
-		int BufSize = PktLoginFail.ByteSize();
-		SendToClient(pPlayer, CGSF::LoginFail, &PktLoginFail, BufSize);
-	}
-
-	return TRUE;
-}
-
 BOOL SendEnterLobby( SFPlayer* pPlayer )
 {
-	SFPacketStore::EnterLobby PktEnterLobby;
-	int BufSize = PktEnterLobby.ByteSize();
-	SendToClient(pPlayer, CGSF::EnterLobby, &PktEnterLobby, BufSize);
+	SFProtobufPacket<SFPacketStore::EnterLobby> EnterLobby = SFProtobufPacket<SFPacketStore::EnterLobby>(CGSF::EnterLobby);
+	EnterLobby.SetOwnerSerial(pPlayer->GetSerial());
+	SFLogicEntry::GetLogicEntry()->SendRequest(&EnterLobby);
 
 	return TRUE;
 }
 
 BOOL SendLeaveRoom( SFPlayer* pPlayer )
 {
-	SFPacketStore::LeaveRoom PktLeaveRoom;
-	int BufSize = PktLeaveRoom.ByteSize();
-	SendToClient(pPlayer, CGSF::LeaveRoom, &PktLeaveRoom, BufSize);
+	SFProtobufPacket<SFPacketStore::LeaveRoom> LeaveRoom = SFProtobufPacket<SFPacketStore::LeaveRoom>(CGSF::LeaveRoom);
+	SFLogicEntry::GetLogicEntry()->SendRequest(&LeaveRoom);
 
 	return TRUE;
 }
@@ -117,9 +94,9 @@ BOOL SendLeaveTeamMember( SFPlayer* pPlayer, int PlayerIndex )
 
 BOOL SendLoadingStart( SFPlayer* pPlayer )
 {
-	SFPacketStore::StartGame PktStartGame;
-	int BufSize = PktStartGame.ByteSize();
-	SendToClient(pPlayer, CGSF::StartGame, &PktStartGame, BufSize);
+	SFProtobufPacket<SFPacketStore::StartGame> StartGame = SFProtobufPacket<SFPacketStore::StartGame>(CGSF::StartGame);
+	SFLogicEntry::GetLogicEntry()->SendRequest(&StartGame);
+
 	return TRUE;
 }
 
@@ -139,13 +116,13 @@ BOOL SendCreatePlayer( SFPlayer* pPlayer, SFRoom* pRoom, BOOL ExceptMe)
 				continue;
 		}
 
+		SFProtobufPacket<SFPacketStore::MSG_CREATE_PLAYER> MsgCreatePlayer = SFProtobufPacket<SFPacketStore::MSG_CREATE_PLAYER>(CGSF::MSG_CREATE_PLAYER);
+
 		SFPacketStore::MSG_CREATE_PLAYER PktMsgCreatePlayer;
-		PktMsgCreatePlayer.set_serial(pTarget->GetSerial());
-		PktMsgCreatePlayer.set_spawnindex(pTarget->GetSpawnIndex());
+		MsgCreatePlayer.GetData().set_serial(pTarget->GetSerial());
+		MsgCreatePlayer.GetData().set_spawnindex(pTarget->GetSpawnIndex());
 
-		int BufSize = PktMsgCreatePlayer.ByteSize();
-
-		SendToClient(pPlayer, CGSF::MSG_CREATE_PLAYER, &PktMsgCreatePlayer, BufSize);
+		SFLogicEntry::GetLogicEntry()->SendRequest(&MsgCreatePlayer);
 	}
 	
 	return TRUE;
@@ -153,19 +130,18 @@ BOOL SendCreatePlayer( SFPlayer* pPlayer, SFRoom* pRoom, BOOL ExceptMe)
 
 BOOL SendDestroyPlayer( SFPlayer* pPlayer, int PlayerIndex)
 {
-	SFPacketStore::MSG_DESTROY_PLAYER PktMsgDestroyPlayer;
-	PktMsgDestroyPlayer.set_serial(PlayerIndex);
+	SFProtobufPacket<SFPacketStore::MSG_DESTROY_PLAYER> MsgDestroyPlayer = SFProtobufPacket<SFPacketStore::MSG_DESTROY_PLAYER>(CGSF::MSG_DESTROY_PLAYER);
 
-	int BufSize = PktMsgDestroyPlayer.ByteSize();
+	MsgDestroyPlayer.GetData().set_serial(PlayerIndex);
 
-	SendToClient(pPlayer, CGSF::MSG_DESTROY_PLAYER, &PktMsgDestroyPlayer, BufSize);
-	
+	SFLogicEntry::GetLogicEntry()->SendRequest(&MsgDestroyPlayer);
+
 	return TRUE;
 }
 
 BOOL SendSpawnPlayer( SFPlayer* pPlayer,SFPlayer* pTarget)
 {
-	SFPacketStore::MSG_SPAWN_PLAYER PktMsgSpawnPlayer;
+	SFProtobufPacket<SFPacketStore::MSG_SPAWN_PLAYER> PktMsgSpawnPlayer = SFProtobufPacket<SFPacketStore::MSG_SPAWN_PLAYER>(CGSF::MSG_SPAWN_PLAYER);
 
 	_CharacterInfo* pInfo = pTarget->GetCharacterInfo();
 
@@ -173,17 +149,15 @@ BOOL SendSpawnPlayer( SFPlayer* pPlayer,SFPlayer* pTarget)
 	msg.PlayerID = pTarget->GetSerial();
 	msg.translation = pInfo->translation;
 
-	PktMsgSpawnPlayer.set_spawnplayer(&msg, sizeof(SpawnPlayerMsg));
-	int BufSize = PktMsgSpawnPlayer.ByteSize();
+	PktMsgSpawnPlayer.GetData().set_spawnplayer(&msg, sizeof(SpawnPlayerMsg));
 
-	SendToClient(pPlayer, CGSF::MSG_SPAWN_PLAYER, &PktMsgSpawnPlayer, BufSize);
-
+	SFLogicEntry::GetLogicEntry()->SendRequest(&PktMsgSpawnPlayer);
 	return TRUE;
 }
 
 BOOL SendPlayerHealth( SFPlayer* pPlayer,SFPlayer* pTarget)
 {
-	SFPacketStore::MSG_PLAYER_HEALTH PktPlayerHealth;
+	SFProtobufPacket<SFPacketStore::MSG_PLAYER_HEALTH> PktPlayerHealth = SFProtobufPacket<SFPacketStore::MSG_PLAYER_HEALTH>(CGSF::MSG_PLAYER_HEALTH);
 
 	_CharacterInfo* pInfo = pTarget->GetCharacterInfo();
 
@@ -191,17 +165,16 @@ BOOL SendPlayerHealth( SFPlayer* pPlayer,SFPlayer* pTarget)
 	msg.PlayerID = pTarget->GetSerial();
 	msg.health = pInfo->health;
 
-	PktPlayerHealth.set_playerhealth(&msg, sizeof(SpawnPlayerMsg));
-	int BufSize = PktPlayerHealth.ByteSize();
+	PktPlayerHealth.GetData().set_playerhealth(&msg, sizeof(SpawnPlayerMsg));
 
-	SendToClient(pPlayer, CGSF::MSG_PLAYER_HEALTH, &PktPlayerHealth, BufSize);
-
+	SFLogicEntry::GetLogicEntry()->SendRequest(&PktPlayerHealth);
+	
 	return TRUE;
 }
 
 BOOL SendPeerInfo( SFPlayer* pPlayer, SFRoom* pRoom)
 {
-	SFPacketStore::PeerList PktPeerList;
+	SFProtobufPacket<SFPacketStore::PeerList> PktPeerList = SFProtobufPacket<SFPacketStore::PeerList>(CGSF::PeerList);
 
 	SFP2PSys* pP2PSys = pRoom->GetP2PSys();
 
@@ -218,25 +191,22 @@ BOOL SendPeerInfo( SFPlayer* pPlayer, SFRoom* pRoom)
 			continue;
 		}
 
-		SFPacketStore::PeerList::PeerInfo* pPeer = PktPeerList.add_peer();
+		SFPacketStore::PeerList::PeerInfo* pPeer = PktPeerList.GetData().add_peer();
 		pPeer->set_serial(iter->first);
 		pPeer->set_info(&(iter->second), sizeof(_PeerInfo));
 	}
 
-	int BufSize = PktPeerList.ByteSize();
-	SendToClient(pPlayer, CGSF::PeerList, &PktPeerList, BufSize);
-
+	SFLogicEntry::GetLogicEntry()->SendRequest(&PktPeerList);
+	
 	return TRUE;
 }
 
 BOOL SendDeletePeer(SFPlayer* pPlayer, int PlayerIndex )
 {
-	SFPacketStore::DELETE_PEER PktDeletePeer;
-	PktDeletePeer.set_serial(PlayerIndex);
+	SFProtobufPacket<SFPacketStore::DELETE_PEER> DELETE_PEER = SFProtobufPacket<SFPacketStore::DELETE_PEER>(CGSF::DeletePeer);
+	DELETE_PEER.GetData().set_serial(PlayerIndex);
 
-	int BufSize = PktDeletePeer.ByteSize();
-
-	SendToClient(pPlayer, CGSF::DeletePeer, &PktDeletePeer, BufSize);
+	SFLogicEntry::GetLogicEntry()->SendRequest(&DELETE_PEER);
 
 	return TRUE;
 }

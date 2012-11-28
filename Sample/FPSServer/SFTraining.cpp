@@ -30,7 +30,7 @@ BOOL SFTraining::ProcessUserRequest( SFPlayer* pPlayer, int Msg )
 	return TRUE;
 }
 
-BOOL SFTraining::ProcessUserRequest( SFPlayer* pPlayer, SFPacket* pPacket )
+BOOL SFTraining::ProcessUserRequest( SFPlayer* pPlayer, BasePacket* pPacket )
 {
 	return TRUE;
 }

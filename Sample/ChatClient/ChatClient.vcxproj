@@ -80,7 +80,7 @@
     <ClCompile>
       <Optimization>MaxSpeed</Optimization>
       <IntrinsicFunctions>true</IntrinsicFunctions>
-      <AdditionalIncludeDirectories>../Include;../NetInterface;../BaseLib;../../ThirdParty/Breakpad;../../ThirdParty/Bugtrap;../NetworkEngine;../Common;../../ThirdParty/glog/src/windows;../Common/SFPacketStore;../../ThirdParty/protobuf-2.4.1/src;../../ThirdParty/ACE_wrappers;../../ThirdParty/vld-10;../../ThirdParty/Mysql/include;../../ThirdParty/LiteZip;../CGSF/External;../../ThirdParty/ssl/include;../../ThirdParty/libTom/Include;../CGBase/DataStructure;../../ThirdParty/Loki/include/loki;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>../ClientInterface;../../BaseLayer;../../EngineLayer;../../EngineLayer/EngineDllInterface;../../Common;../../Common/SFPacketStore;../../Common/Include;../../ThirdParty/Breakpad;../../ThirdParty/Bugtrap;../../ThirdParty/glog/src/windows;../../ThirdParty/protobuf-2.4.1/src;../../ThirdParty/ACE_wrappers;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>WIN32;NDEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
       <FunctionLevelLinking>true</FunctionLevelLinking>
@@ -89,7 +89,7 @@
       <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
     </ClCompile>
     <Link>
-      <AdditionalLibraryDirectories>../Lib/Release;../../ThirdParty/Lib/release;../../ThirdParty/Lib/Release/libProto;../../ThirdParty/Ace_Wrappers/lib;../../ThirdParty/Lib/Release/vld-10;../../ThirdParty/MySql/lib;../../ThirdParty/libfds/lib/dynamic;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalLibraryDirectories>../../ThirdParty/Bugtrap;../../ThirdParty/SQLite;../../VSProject/Lib/Release;../../ThirdParty/Lib/Release;../../ThirdParty/Ace_Wrappers/lib;../../ThirdParty/MySql/lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <SubSystem>Console</SubSystem>
       <OptimizeReferences>true</OptimizeReferences>
@@ -100,6 +100,11 @@
   <ItemGroup>
     <ClCompile Include="..\..\Common\SFPacketStore\ChatPacket.pb.cc">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">NotUsing</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">NotUsing</PrecompiledHeader>
+    </ClCompile>
+    <ClCompile Include="..\..\Common\SFPacketStore\PacketCore.pb.cc">
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">NotUsing</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">NotUsing</PrecompiledHeader>
     </ClCompile>
     <ClCompile Include=".\ChatClient.cpp" />
     <ClCompile Include=".\ChatPacketEntry.cpp" />
@@ -108,13 +113,16 @@
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Create</PrecompiledHeader>
     </ClCompile>
     <ClCompile Include=".\TCPNetworkCallback.cpp" />
+    <ClCompile Include="ChatClientProtocol.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\Common\SFPacketStore\ChatPacket.pb.h" />
+    <ClInclude Include="..\..\Common\SFPacketStore\PacketCore.pb.h" />
     <ClInclude Include=".\TCPNetworkCallback.h" />
     <ClInclude Include=".\ChatPacketEntry.h" />
     <ClInclude Include=".\stdafx.h" />
     <ClInclude Include=".\targetver.h" />
+    <ClInclude Include="ChatClientProtocol.h" />
   </ItemGroup>
   <ItemGroup>
     <Text Include=".\ReadMe.txt" />

@@ -12,10 +12,10 @@ public:
 	virtual BOOL OnEnter() override;
 	virtual BOOL OnLeave() override;
 
-	virtual BOOL ProcessUserRequest(SFPlayer* pPlayer, SFPacket* pPacket) override;
+	virtual BOOL ProcessUserRequest(SFPlayer* pPlayer, BasePacket* pPacket) override;
 
 protected:
 
-	BOOL OnLoadingComplete(SFPlayer* pPlayer, SFPacket* pPacket);
+	BOOL OnLoadingComplete(SFPlayer* pPlayer, BasePacket* pPacket);
 
 };

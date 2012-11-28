@@ -38,7 +38,7 @@ BOOL SFRoomPlayReady::OnLeave()
 	return TRUE;
 }
 
-BOOL SFRoomPlayReady::ProcessUserRequest( SFPlayer* pPlayer, SFPacket* pPacket )
+BOOL SFRoomPlayReady::ProcessUserRequest( SFPlayer* pPlayer, BasePacket* pPacket )
 {
 	SFRoom* pRoom = GetOwner();
 
@@ -54,7 +54,7 @@ BOOL SFRoomPlayReady::ProcessUserRequest( SFPlayer* pPlayer, SFPacket* pPacket )
 	return TRUE;
 }
 
-BOOL SFRoomPlayReady::OnReportIP( SFPlayer* pPlayer, SFPacket* pPacket )
+BOOL SFRoomPlayReady::OnReportIP( SFPlayer* pPlayer, BasePacket* pPacket )
 {
 	return TRUE;
 }

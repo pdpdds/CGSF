@@ -1,5 +1,7 @@
 #pragma once
 
+class BasePacket;
+
 typedef enum eGUIState
 {
 	GUI_STATE_NONE = 0,
@@ -16,7 +18,7 @@ public:
 	virtual ~GUIState(void){}
 
 	virtual bool ProcessInput(int InputParam) = 0;
-	virtual bool Notify(int Msg, char* pBuffer, int BufferSize ) {return false;}
+	virtual bool Notify(BasePacket* pPacket) {return false;}
 	eGUIState GetGUIState(){return m_State;}
 
 	virtual bool OnEnter(){return false;}

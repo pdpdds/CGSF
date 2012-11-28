@@ -50,7 +50,7 @@
     <TargetExt>.lib</TargetExt>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
-    <OutDir>..\lib\Release\</OutDir>
+    <OutDir>..\VSProject\lib\Release\</OutDir>
     <IntDir>../Intermediate/$(Configuration)\$(ProjectName)\</IntDir>
     <TargetName>$(ProjectName)</TargetName>
     <TargetExt>.lib</TargetExt>
@@ -75,7 +75,7 @@
     <ClCompile>
       <Optimization>MaxSpeed</Optimization>
       <IntrinsicFunctions>true</IntrinsicFunctions>
-      <AdditionalIncludeDirectories>../Engine/MGServer/Include;../Include;./External;../BaseLib;../NetworkEngine/External;../P2PNetwork;../Common;../../ThirdParty/zlib;../../ThirdParty/liblzf;../../ThirdParty/glog/src/windows;../../ThirdParty/ACE_wrappers;../../ThirdParty/Mysql/include;../../ThirdParty;../../ThirdParty/ssl/include;../Common/SFPacketStore;../../ThirdParty/protobuf-2.4.1/src;../../ThirdParty/SQLite;../../ThirdParty/Loki/include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>./EngineDllInterface;./Engine/MGEngine/Include;../Common/Include;../BaseLayer;./External;../P2PNetwork;../Common;../ThirdParty/zlib;../ThirdParty/liblzf;../ThirdParty/glog/src/windows;../ThirdParty/ACE_wrappers;../ThirdParty/Mysql/include;../ThirdParty/boost_1_49_0;../ThirdParty;../ThirdParty/ssl/include;../Common/SFPacketStore;../ThirdParty/protobuf-2.4.1/src;../ThirdParty/SQLite;../ThirdParty/Loki/include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>WIN32;NDEBUG;_LIB;%(PreprocessorDefinitions);_CRT_SECURE_NO_WARNINGS</PreprocessorDefinitions>
       <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
       <FunctionLevelLinking>true</FunctionLevelLinking>
@@ -137,7 +137,7 @@
     <ClCompile Include=".\SFCheckSum.cpp" />
     <ClCompile Include=".\SFIOBuffer.cpp" />
     <ClCompile Include=".\SFPacket.cpp" />
-    <ClCompile Include=".\SFPacketAnalyzer.cpp" />
+    <ClCompile Include=".\SFPacketProtocol.cpp" />
     <ClCompile Include=".\SFPacketIOBuffer.cpp" />
     <ClCompile Include=".\ACELogger.cpp" />
     <ClCompile Include=".\SFBridgeThread.cpp">
@@ -155,13 +155,19 @@
     <ClCompile Include=".\SFSubject.cpp" />
     <ClCompile Include=".\SFUtil.cpp" />
     <ClCompile Include=".\SFFastCRC.cpp" />
+    <ClCompile Include="DataBuffer.cpp" />
     <ClCompile Include="DelayedDirectoryChangeHandler.cpp" />
     <ClCompile Include="DirectoryChanges.cpp" />
     <ClCompile Include="GoogleLog.cpp" />
-    <ClCompile Include="SFNetworkEngineCallback.cpp" />
-    <ClCompile Include="SFPacketService.cpp" />
+    <ClCompile Include="SFCompressor.cpp" />
+    <ClCompile Include=".\SFDefaultPacketProtocol.cpp" />
+    <ClCompile Include="SFEngine.cpp" />
+    <ClCompile Include=".\SFCasualGameDispatcher.cpp" />
+    <ClCompile Include=".\SFSessionService.cpp" />
+    <ClCompile Include="SFProtobufPacketImpl.cpp" />
+    <ClCompile Include="SFProtobufProtocol.cpp" />
+    <ClCompile Include="SFProtocol.cpp" />
     <ClCompile Include="SFShouter.cpp" />
-    <ClCompile Include="SFUserSession.cpp" />
     <ClCompile Include="StringConversion.cpp" />
     <ClCompile Include="tinystr.cpp" />
     <ClCompile Include="tinyxml.cpp" />
@@ -199,7 +205,7 @@
     <ClInclude Include=".\SFCheckSum.h" />
     <ClInclude Include=".\SFIOBuffer.h" />
     <ClInclude Include=".\SFPacket.h" />
-    <ClInclude Include=".\SFPacketAnalyzer.h" />
+    <ClInclude Include=".\SFPacketProtocol.h" />
     <ClInclude Include=".\SFPacketIOBuffer.h" />
     <ClInclude Include=".\ACELogger.h" />
     <ClInclude Include=".\SFLog.h" />
@@ -231,28 +237,35 @@
     <ClInclude Include=".\SFTimer.h" />
     <ClInclude Include=".\SFUtil.h" />
     <ClInclude Include=".\SFSinglton.h" />
-    <ClInclude Include=".\IEngine.h" />
     <ClInclude Include=".\INetworkFramework.h" />
     <ClInclude Include=".\SFEngine.h" />
     <ClInclude Include=".\SFFastCRC.h" />
     <ClInclude Include="CStdString.h" />
+    <ClInclude Include="DataBuffer.h" />
     <ClInclude Include="DelayedDirectoryChangeHandler.h" />
     <ClInclude Include="DirectoryChanges.h" />
+    <ClInclude Include="EngineDLLInterface\BasePacket.h" />
+    <ClInclude Include="EngineDLLInterface\IEngine.h" />
     <ClInclude Include="EngineDLLInterface\INetworkEngine.h" />
-    <ClInclude Include="EngineDLLInterface\INetworkEngineCallback.h" />
-    <ClInclude Include="EngineDLLInterface\IPacketService.h" />
+    <ClInclude Include=".\EngineDLLInterface\ISessionService.h" />
     <ClInclude Include="EngineDLLInterface\ISession.h" />
     <ClInclude Include="GoogleLog.h" />
+    <ClInclude Include="ILogicDispatcher.h" />
     <ClInclude Include="IXMLSerializable.h" />
     <ClInclude Include="IXMLStreamReader.h" />
     <ClInclude Include="IXMLStreamWriter.h" />
     <ClInclude Include="MPSC_Queue.h" />
+    <ClInclude Include="SFCompressor.h" />
     <ClInclude Include="SFConstant.h" />
-    <ClInclude Include="SFNetworkEngineCallback.h" />
-    <ClInclude Include="SFPacketService.h" />
+    <ClInclude Include=".\SFDefaultPacketProtocol.h" />
+    <ClInclude Include=".\SFCasualGameDispatcher.h" />
+    <ClInclude Include=".\SFSessionService.h" />
+    <ClInclude Include="SFProtobufPacket.h" />
+    <ClInclude Include="SFProtobufPacketImpl.h" />
+    <ClInclude Include="SFProtobufProtocol.h" />
+    <ClInclude Include="SFProtocol.h" />
     <ClInclude Include="SFShouter.h" />
     <ClInclude Include="SFStructure.h" />
-    <ClInclude Include="SFUserSession.h" />
     <ClInclude Include="SFXMLStreamReader.h" />
     <ClInclude Include="SFXMLStreamWriter.h" />
     <ClInclude Include="StringConversion.h" />

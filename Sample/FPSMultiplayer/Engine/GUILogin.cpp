@@ -2,7 +2,8 @@
 #include "PacketID.h"
 #include "SFPacketStore.pb.h"
 #include "Engine.h"
-#include <google/protobuf/io/zero_copy_stream_impl_lite.h>
+#include "BasePacket.h"
+#include "SFProtobufPacket.h"
 
 using namespace google;
 
@@ -89,20 +90,12 @@ bool GUILogin::handleSubmit(const CEGUI::EventArgs&)
 	if(edit_text2.empty())
 		return false;
 
-	SFPacketStore::Login PktLogin;
-	PktLogin.set_username(edit_text.c_str());
-	PktLogin.set_password(edit_text2.c_str());
-	int BufSize = PktLogin.ByteSize();
+	SFProtobufPacket<SFPacketStore::Login> PktLogin(CGSF::Login);
+	PktLogin.SetOwnerSerial(g_engine->GetLocalID());
+	PktLogin.GetData().set_username(edit_text.c_str());
+	PktLogin.GetData().set_password(edit_text2.c_str());
 
-	char Buffer[2048] = {0,};
-
-	if(BufSize != 0)
-	{
-		::google::protobuf::io::ArrayOutputStream os(Buffer, BufSize);
-		PktLogin.SerializeToZeroCopyStream(&os);
-	}
-
-	g_engine->GetNetwork()->TCPSend(g_engine->GetLocalID(), CGSF::Login, Buffer, BufSize);
+	g_engine->GetNetwork()->TCPSend(&PktLogin);
 
 	editboxName->setText("");
 	editboxPassword->setText("");
@@ -130,7 +123,7 @@ bool GUILogin::OnLeave()
 	return true;
 }
 
-bool GUILogin::Notify( int Msg,  char* pBuffer, int BufferSize )
+bool GUILogin::Notify(BasePacket* pPacket)
 {
 	return true;
 }

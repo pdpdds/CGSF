@@ -7,11 +7,11 @@ public:
 	SFPlayerLogin(SFPlayer* pOwner, ePlayerState State);
 	virtual ~SFPlayerLogin(void);
 
-	BOOL OnEnterLobby(SFPacket* pPacket);
+	BOOL OnEnterLobby(BasePacket* pPacket);
 
 protected:
 	virtual BOOL OnEnter() override;
 	virtual BOOL OnLeave() override;
-	virtual BOOL ProcessPacket(SFPacket* pPacket) override;
+	virtual BOOL ProcessPacket(BasePacket* pPacket) override;
 	virtual BOOL ProcessDBResult(SFMessage* pMessage) override;
 };

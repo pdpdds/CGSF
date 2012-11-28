@@ -4,7 +4,6 @@
 
 typedef struct tag_SFPacketHeader
 {
-	USHORT PacketID;
 	USHORT PacketLen;
 	DWORD  PacketOption;
 	DWORD  DataCRC;
@@ -21,7 +20,6 @@ typedef struct tag_SFPacketHeader
 
 	void Clear()
 	{
-		PacketID = 0;
 		PacketLen = 0;
 		PacketOption = 0;
 		DataCRC = 0;

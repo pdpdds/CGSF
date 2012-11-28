@@ -96,7 +96,7 @@ BOOL SFRoomFSM::AddState( eRoomState State )
 	return TRUE;
 }
 
-BOOL SFRoomFSM::ProcessUserRequest( SFPlayer* pPlayer, SFPacket* pPacket )
+BOOL SFRoomFSM::ProcessUserRequest( SFPlayer* pPlayer, BasePacket* pPacket )
 {
 	if(m_pCurrentState)
 		return m_pCurrentState->ProcessUserRequest(pPlayer, pPacket );

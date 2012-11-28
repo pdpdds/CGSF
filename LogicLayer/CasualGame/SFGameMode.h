@@ -2,7 +2,7 @@
 
 class SFPlayer;
 class SFRoomPlay;
-class SFPacket;
+class BasePacket;
 
 class SFGameMode
 {
@@ -15,7 +15,7 @@ public:
 
 	virtual BOOL OnEnter(int GameMode) {return FALSE;}
 	virtual BOOL Onleave() {return FALSE;}
-	virtual BOOL ProcessUserRequest(SFPlayer* pPlayer, SFPacket* pPacket) {return FALSE;}
+	virtual BOOL ProcessUserRequest(SFPlayer* pPlayer, BasePacket* pPacket) {return FALSE;}
 	virtual BOOL ProcessUserRequest(SFPlayer* pPlayer, int Msg) {return FALSE;}
 	virtual BOOL Update(DWORD dwTickcount) {return FALSE;}
 

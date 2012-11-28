@@ -4,17 +4,18 @@
 #include "ProactorAcceptor.h"
 #include "SingltonObject.h"
 #include <assert.h>
+#include "BasePacket.h"
 
-INetworkEngine * CreateNetworkEngine(bool Server, INetworkEngineCallback* pCallback)
+INetworkEngine * CreateNetworkEngine(bool Server, IEngine* pEngine)
 {
 	if(Server)
-		return new CGSFServerEngine(pCallback);
+		return new CGSFServerEngine(pEngine);
 	else
-		return new CGSFClientEngine(pCallback);
+		return new CGSFClientEngine(pEngine);
 }
 
-CGSFServerEngine::CGSFServerEngine(INetworkEngineCallback* pCallback)
-	: INetworkEngine(pCallback)
+CGSFServerEngine::CGSFServerEngine(IEngine* pEngine)
+	: INetworkEngine(pEngine)
 	, m_Acceptor(this)
 	, m_TimeOutHandler(this)
 {
@@ -68,9 +69,9 @@ bool CGSFServerEngine::Shutdown()
 	return true;
 }
 
-bool CGSFServerEngine::Send(int Serial, char* pData, unsigned short Length)
+bool CGSFServerEngine::SendRequest(BasePacket* pPacket)
 {
-	 ProactorServiceMapSingleton::instance()->Send(Serial, pData, Length);
+	 ProactorServiceMapSingleton::instance()->SendRequest(pPacket);
 
 	return true;
 }
@@ -106,8 +107,8 @@ bool CGSFServerEngine::CreateTimerTask(unsigned int TimerID, unsigned int StartT
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-CGSFClientEngine::CGSFClientEngine(INetworkEngineCallback* pCallback)
-	: INetworkEngine(pCallback)
+CGSFClientEngine::CGSFClientEngine(IEngine* pEngine)
+	: INetworkEngine(pEngine)
 	, m_TimeOutHandler(this)
 {
 }
@@ -163,9 +164,9 @@ bool CGSFClientEngine::Shutdown()
 	return true;
 }
 
-bool CGSFClientEngine::Send(int Serial, char* pData, unsigned short Length)
+bool CGSFClientEngine::SendRequest(BasePacket* pPacket)
 {
-	 ProactorServiceMapSingleton::instance()->Send(Serial, pData, Length);
+	 ProactorServiceMapSingleton::instance()->SendRequest(pPacket);
 
 	return true;
 }

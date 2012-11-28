@@ -16,10 +16,10 @@ SFNetworkEntry::~SFNetworkEntry(void)
 {
 }
 
-bool SFNetworkEntry::TCPSend(int Serial,  USHORT PacketID, char* pMessage, int BufSize )
+bool SFNetworkEntry::TCPSend(BasePacket* pPacket )
 {
 	if(m_pTCPNetwork)
-		return m_pTCPNetwork->Send(Serial, PacketID, pMessage, BufSize);
+		return (bool)m_pTCPNetwork->SendRequest(pPacket);
 
 	return false;
 }
@@ -47,7 +47,16 @@ BOOL SFNetworkEntry::Initialize(char* szModuleName, INetworkCallback* pTCPCallBa
 	}
 	
 	return TRUE;
+}
 
+void SFNetworkEntry::SetLogicDispatcher(ILogicDispatcher* pDispatcher)
+{
+	m_pTCPNetwork->SetLogicDispatcher(pDispatcher);
+}
+
+void SFNetworkEntry::SetPacketProtocol(IPacketProtocol* pProtocol)
+{
+	m_pTCPNetwork->SetPacketProtocol(pProtocol);
 }
 
 BOOL SFNetworkEntry::Finally()

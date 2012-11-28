@@ -5,19 +5,19 @@ class MGServerReceiver;
 class MGClientReceiver;
 class AsynchIOService;
 class Acceptor;
-class INetworkEngineCallback;
+class IEngine;
 
 class MGServerEngine : public INetworkEngine
 {
 public:
-	MGServerEngine(INetworkEngineCallback* pCallback);
+	MGServerEngine(IEngine* pEngine);
 	virtual ~MGServerEngine(void);
 
 	virtual bool Init() override;
 	virtual bool Start(char* szIP, unsigned short Port) override;
     virtual bool Shutdown() override;
 
-	virtual bool Send(int Serial, char* pData, unsigned short Length) override;
+	virtual bool SendRequest(BasePacket* pPacket) override;
 	virtual bool Disconnect(int Serial) override;
 
 protected:
@@ -31,14 +31,14 @@ private:
 class MGClientEngine : public INetworkEngine
 {
 public:
-	MGClientEngine(INetworkEngineCallback* pCallback);
+	MGClientEngine(IEngine* pEngine);
 	virtual ~MGClientEngine(void);
 
 	virtual bool Init() override;
 	virtual bool Start(char* szIP, unsigned short Port) override;
     virtual bool Shutdown() override;
 
-	virtual bool Send(int Serial, char* pData, unsigned short Length) override;
+	virtual bool SendRequest(BasePacket* pPacket) override;
 	virtual bool Disconnect(int Serial) override;
 
 protected:

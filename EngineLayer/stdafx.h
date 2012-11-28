@@ -11,14 +11,15 @@
 
 // TODO: reference additional headers your program requires here
 #include <windows.h>
+
+#pragma warning(disable : 4996)
 #include "SFConstant.h"
 #include "SFStructure.h"
-#include "SFPacket.h"
+#include "BasePacket.h"
 #include "SFMacro.h"
 #include "SFSinglton.h"
 //#include "PacketID.h"
 
-#pragma warning(disable : 4996)
 #include <ace/ace.h>
 #include <ace/Thread_Manager.h>
 #include <ace/Thread_Mutex.h>
@@ -35,7 +36,7 @@
 #include <tchar.h>
 #include "SFString.h"
 #include "SFCompressLzf.h"
-#include "SFPacketAnalyzer.H"
+#include "SFPacketProtocol.H"
 #include "SFBridgeThread.h"
 
 //#pragma comment(lib, "libglog.lib")

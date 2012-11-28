@@ -3,6 +3,7 @@
 #include "SFRoom.h"
 #include "SFPlayer.h"
 #include "SFSendPacket.h"
+#include "SFProtobufPacket.h"
 
 SFRoomWait::SFRoomWait(SFRoom* pOwner, eRoomState State)
 :SFRoomState(pOwner, State)
@@ -49,7 +50,7 @@ BOOL SFRoomWait::OnLeaveRoom( SFPlayer* pPlayer )
 	return FALSE;
 }
 
-BOOL SFRoomWait::ProcessUserRequest( SFPlayer* pPlayer, SFPacket* pPacket )
+BOOL SFRoomWait::ProcessUserRequest( SFPlayer* pPlayer, BasePacket* pPacket )
 {
 	if(FALSE == m_DispatchingSystem.HandleMessage(pPacket->GetPacketID(), pPlayer, pPacket))
 		return m_Dispatch.HandleMessage(pPacket->GetPacketID(), pPlayer);
@@ -57,14 +58,14 @@ BOOL SFRoomWait::ProcessUserRequest( SFPlayer* pPlayer, SFPacket* pPacket )
 	return FALSE;
 }
 
-BOOL SFRoomWait::OnChangeTeam( SFPlayer* pPlayer, SFPacket* pPacket )
+BOOL SFRoomWait::OnChangeTeam( SFPlayer* pPlayer, BasePacket* pPacket )
 {
 	SFRoom* pOwner = GetOwner();
 
 	return pOwner->ChangeTeam(pPlayer);
 }
 
-BOOL SFRoomWait::OnStartGame( SFPlayer* pPlayer, SFPacket* pPacket )
+BOOL SFRoomWait::OnStartGame( SFPlayer* pPlayer, BasePacket* pPacket )
 {
 	SFRoom* pOwner = GetOwner();
 
@@ -79,19 +80,16 @@ BOOL SFRoomWait::OnStartGame( SFPlayer* pPlayer, SFPacket* pPacket )
 	return pOwner->ChangeState(ROOM_STATE_LOADING);
 }
 
-BOOL SFRoomWait::OnChat( SFPlayer* pPlayer, SFPacket* pPacket )
+BOOL SFRoomWait::OnChat( SFPlayer* pPlayer, BasePacket* pPacket )
 {
 	SFRoom* pRoom = GetOwner();
 
-	SFPacketStore::ChatReq PktChatReq;
-	protobuf::io::ArrayInputStream is(pPacket->GetDataBuffer(), pPacket->GetDataSize());
-	PktChatReq.ParseFromZeroCopyStream(&is);
+	SFProtobufPacket<SFPacketStore::ChatReq>* pChat = (SFProtobufPacket<SFPacketStore::ChatReq>*)pPacket;
+	//..
 
-	SFPacketStore::ChatRes PktChatRes;
-	PktChatRes.set_sender(pPlayer->m_username);
-	PktChatRes.set_message(PktChatReq.message());
-
-	int BufSize = PktChatRes.ByteSize();
+	SFProtobufPacket<SFPacketStore::ChatRes> PktChatRes(CGSF::ChatRes);
+	PktChatRes.GetData().set_sender(pPlayer->m_username);
+	PktChatRes.GetData().set_message(pChat->GetData().message());
 
 	SFRoom::RoomMemberMap MemberMap = pRoom->GetRoomMemberMap();
 
@@ -104,7 +102,7 @@ BOOL SFRoomWait::OnChat( SFPlayer* pPlayer, SFPacket* pPacket )
 		if(pTarget == pPlayer)
 			continue;
 
-		SendToClient(pTarget, CGSF::ChatRes, &PktChatRes, BufSize);
+		SendToClient(pTarget, &PktChatRes);
 	}
 
 	return TRUE;

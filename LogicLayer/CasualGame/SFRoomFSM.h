@@ -21,7 +21,7 @@ public:
 protected:
 	BOOL AddState(eRoomState State);
 	BOOL ChangeState(eRoomState State);
-	BOOL ProcessUserRequest(SFPlayer* pPlayer, SFPacket* pPacket) override;
+	BOOL ProcessUserRequest(SFPlayer* pPlayer, BasePacket* pPacket) override;
 	BOOL ProcessUserRequest(SFPlayer* pPlayer, int Msg) override;
 
 private:

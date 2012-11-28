@@ -16,13 +16,16 @@
 #include "SFBugTrap.h"
 #include "SFIni.h"
 #include "StringConversion.h"
-
+#include "SFProtobufPacket.h"
+#include "ChatClientProtocol.h"
+#include "SFPacketProtocol.h"
+#include "SFCasualGameDispatcher.h"
 
 #include <google/protobuf/io/zero_copy_stream_impl_lite.h>
 #pragma comment(lib, "liblzf.lib")
 #pragma comment(lib, "zlib.lib")
 
-SFSYSTEM* g_pEngine = NULL;
+SFEngine* g_pEngine = NULL;
 
 #ifdef _DEBUG
 #pragma comment(lib, "aced.lib")
@@ -42,9 +45,16 @@ int _tmain(int argc, _TCHAR* argv[])
 
 	ACE::init();
 
-	g_pEngine = new SFSYSTEM();
+	g_pEngine = new SFEngine();
 	ChatPacketEntry* pLogicEntry = new ChatPacketEntry();
-	g_pEngine->CreateSystem("MGEngine.dll", pLogicEntry);
+	g_pEngine->CreateEngine("CGSFEngine.dll", FALSE);
+	g_pEngine->CreateLogicThread(pLogicEntry);
+
+	IPacketProtocol* pProtocol = new SFPacketProtocol<ChatClientProtocol>;
+	g_pEngine->SetPacketProtocol(pProtocol);
+
+	ILogicDispatcher* pDispatcher = new SFCasualGameDispatcher();
+	g_pEngine->SetLogicDispathcer(pDispatcher);
 
 	SFIni ini;
 	
@@ -58,25 +68,21 @@ int _tmain(int argc, _TCHAR* argv[])
 	std::string str = StringConversion::ToASCII(szIP);
 	g_pEngine->Start((char*)str.c_str(), Port);
 
-	while(g_pEngine->GetProcessing() == TRUE)
+	while(/*g_pEngine->GetProcessing() == TRUE*/ TRUE)
 	{
 		std::string ChatMessage;
 		std::cin >> ChatMessage;
 
-		ChatPacket::Chat PktChat;
-		PktChat.set_chatmessage(ChatMessage);
+		SFProtobufPacket<ChatPacket::Chat> request(CGSF::ChatReq);
+		request.SetOwnerSerial(0);
+		request.GetData().set_chatmessage(ChatMessage);
 
-		int BufSize = PktChat.ByteSize();
-
-		char Buffer[2048] = {0,};
-
-		if(BufSize != 0)
+		if(request.GetData().ByteSize() != 0)
 		{
-			::google::protobuf::io::ArrayOutputStream os(Buffer, BufSize);
-			PktChat.SerializeToZeroCopyStream(&os);
+			pLogicEntry->SendRequest(&request);
 		}
 
-		pLogicEntry->Send(CGSF::ChatReq, Buffer, BufSize);
+		
 	}
 
 	g_pEngine->ShutDown();

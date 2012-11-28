@@ -1,5 +1,6 @@
 #include "StdAfx.h"
 #include "SFPacket.h"
+#include "SFCompressor.h"
 #include "SFCompressLzf.h"
 #include "SFCompressZLib.h"
 #include "SFChecksum.h"
@@ -50,7 +51,7 @@ BOOL SFPacket::MakePacket(BYTE* pSrcBuf, int SrcSize, int PacketOption)
 
 	if (PacketOption & PACKET_OPTION_COMPRESS && SrcSize >= PACKET_COMPRESS_LIMIT)
 	{
-		dwResult = SFPacketAnalyzer<SFCompressLzf>::GetCompressor().Compress(pDestBuf, DestSize, pSrcBuf, SrcSize);
+		dwResult = SFCompressor<SFCompressLzf>::GetCompressor()->Compress(pDestBuf, DestSize, pSrcBuf, SrcSize);
 
 		 if(dwResult != TRUE)
 		 {

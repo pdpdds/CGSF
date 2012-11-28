@@ -10,11 +10,11 @@ public:
 protected:
 	virtual BOOL OnEnter() override;
 	virtual BOOL OnLeave() override;
-	virtual BOOL ProcessPacket(SFPacket* pPacket) override;
+	virtual BOOL ProcessPacket(BasePacket* pPacket) override;
 	virtual BOOL ProcessDBResult(SFMessage* pMessage) override;
 
 private: //Packet Recv
-	BOOL OnLogin(SFPacket* pPacket);
+	BOOL OnLogin(BasePacket* pPacket);
 
 private: //DB Result
 	BOOL OnDBLogin(SFMessage* pMessage);

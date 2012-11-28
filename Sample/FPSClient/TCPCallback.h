@@ -7,6 +7,13 @@ public:
 	TCPCallback(void);
 	virtual ~TCPCallback(void);
 
-	virtual bool HandleNetworkMessage(int PacketID, BYTE* pBuffer, USHORT Length) override;
+	virtual bool HandleNetworkMessage(BasePacket* pPacket) override;
+	virtual void HandleConnect(int Serial) override;
+	virtual void HandleDisconnect(int Serial) override;
+
+protected:
+
+private:
+	int m_Serial;
 };
 

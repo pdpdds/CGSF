@@ -1,20 +1,20 @@
 #pragma once
 #include "INetworkEngine.h"
-#include "INetworkEngineCallback.h"
 #include "ProactorAcceptor.h"
 #include "ACETimeOutHandler.h"
 
 class CGSFServerEngine : public INetworkEngine
 {
 public:
-	CGSFServerEngine(INetworkEngineCallback* pCallback);
+	CGSFServerEngine(IEngine* pEngine);
 	virtual ~CGSFServerEngine(void);
 
 	virtual bool Init() override;
 	virtual bool Start(char* szIP, unsigned short Port) override;
     virtual bool Shutdown() override;
 
-	virtual bool Send(int Serial, char* pData, unsigned short Length) override;
+	virtual bool SendRequest(BasePacket* pPacket) override;
+
 	virtual bool Disconnect(int Serial) override;
 
 	virtual bool CheckTimerImpl() override; //default timer 사용
@@ -31,14 +31,14 @@ private:
 class CGSFClientEngine : public INetworkEngine
 {
 public:
-	CGSFClientEngine(INetworkEngineCallback* pCallback);
+	CGSFClientEngine(IEngine* pEngine);
 	virtual ~CGSFClientEngine(void);
 
 	virtual bool Init() override;
 	virtual bool Start(char* szIP, unsigned short Port) override;
     virtual bool Shutdown() override;
 
-	virtual bool Send(int Serial, char* pData, unsigned short Length) override;
+	virtual bool SendRequest(BasePacket* pPacket) override;
 	virtual bool Disconnect(int Serial) override;
 
 	virtual bool CheckTimerImpl() override; //default timer 사용
@@ -51,3 +51,4 @@ private:
 	ProactorService* m_ProactorService;
 	ACETimeOutHandler m_TimeOutHandler;
 };
+

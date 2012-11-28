@@ -2,7 +2,8 @@
 #include "PacketID.h"
 #include "SFPacketStore.pb.h"
 #include "Engine.h"
-#include <google/protobuf/io/zero_copy_stream_impl_lite.h>
+#include "BasePacket.h"
+#include "SFProtobufPacket.h"
 
 using namespace google;
 
@@ -142,19 +143,12 @@ bool GUIRoom::handleSend(const CEGUI::EventArgs&)
 		editbox->setText("");
 	}
 
-	SFPacketStore::ChatReq PktChatReq;
-	PktChatReq.set_message(edit_text.c_str());
-	int BufSize = PktChatReq.ByteSize();
+	SFProtobufPacket<SFPacketStore::ChatReq> PktChatReq(CGSF::ChatReq);
+	PktChatReq.SetOwnerSerial(g_engine->GetLocalID());
 
-	char Buffer[2048] = {0,};
-
-	if(BufSize != 0)
-	{
-		::google::protobuf::io::ArrayOutputStream os(Buffer, BufSize);
-		PktChatReq.SerializeToZeroCopyStream(&os);
-	}
-
-	g_engine->GetNetwork()->TCPSend(g_engine->GetLocalID(), CGSF::ChatReq, Buffer, BufSize);
+	PktChatReq.GetData().set_message(edit_text.c_str());
+	
+	g_engine->GetNetwork()->TCPSend(&PktChatReq);
 
 	// re-activate the text entry box
 	editbox->activate();
@@ -164,19 +158,10 @@ bool GUIRoom::handleSend(const CEGUI::EventArgs&)
 
 bool GUIRoom::handleStart( const CEGUI::EventArgs& args )
 {
-	SFPacketStore::StartGame PktStartGame;
-	int BufSize = PktStartGame.ByteSize();
+	SFProtobufPacket<SFPacketStore::StartGame> PktStartGame(CGSF::StartGame);
+	PktStartGame.SetOwnerSerial(g_engine->GetLocalID());
 
-	char Buffer[2048] = {0,};
-
-	if(BufSize != 0)
-	{
-		::google::protobuf::io::ArrayOutputStream os(Buffer, BufSize);
-		PktStartGame.SerializeToZeroCopyStream(&os);
-	}
-
-	g_engine->GetNetwork()->TCPSend(g_engine->GetLocalID(), CGSF::StartGame, Buffer, BufSize);
-
+	g_engine->GetNetwork()->TCPSend(&PktStartGame);
 
 	return true;
 }
@@ -189,19 +174,10 @@ bool GUIRoom::handleTeamChange( const CEGUI::EventArgs& args )
 bool GUIRoom::handleLeave( const CEGUI::EventArgs& args )
 {
 	
+	SFProtobufPacket<SFPacketStore::LeaveRoom> PktLeaveRoom(CGSF::LeaveRoom);
+	PktLeaveRoom.SetOwnerSerial(g_engine->GetLocalID());
 
-	SFPacketStore::LeaveRoom PktLeaveRoom;
-	int BufSize = PktLeaveRoom.ByteSize();
-
-	char Buffer[2048] = {0,};
-
-	if(BufSize != 0)
-	{
-		::google::protobuf::io::ArrayOutputStream os(Buffer, BufSize);
-		PktLeaveRoom.SerializeToZeroCopyStream(&os);
-	}
-
-	g_engine->GetNetwork()->TCPSend(g_engine->GetLocalID(), CGSF::LeaveRoom, Buffer, BufSize);
+	g_engine->GetNetwork()->TCPSend(&PktLeaveRoom);
 
 	return true;
 }
@@ -226,17 +202,14 @@ bool GUIRoom::OnLeave()
 	return true;
 }
 
-bool GUIRoom::Notify( int Msg, char* pBuffer, int BufferSize )
+bool GUIRoom::Notify(BasePacket* pPacket)
 {
-	if(Msg == CGSF::ChatRes)
+	if(pPacket->GetPacketID() == CGSF::ChatRes)
 	{
-		SFPacketStore::ChatRes PktChatRes;
-		protobuf::io::ArrayInputStream is(pBuffer, BufferSize);
-		PktChatRes.ParseFromZeroCopyStream(&is);
-		int BufSize = PktChatRes.ByteSize();
+		SFProtobufPacket<SFPacketStore::ChatRes>* pPktChatRes = (SFProtobufPacket<SFPacketStore::ChatRes>*)pPacket;
 
-		std::string name = PktChatRes.sender();
-		std::string szMessage = PktChatRes.message();
+		std::string name = pPktChatRes->GetData().sender();
+		std::string szMessage = pPktChatRes->GetData().message();
 
 		using namespace CEGUI;
 

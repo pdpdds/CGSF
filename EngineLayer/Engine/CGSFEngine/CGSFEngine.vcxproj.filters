@@ -50,6 +50,9 @@
     <ClInclude Include="..\..\EngineDLLInterface\ISession.h">
       <Filter>Source</Filter>
     </ClInclude>
+    <ClInclude Include="..\..\EngineDLLInterface\BasePacket.h">
+      <Filter>Source</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include=".\CGSFEngine.cpp">

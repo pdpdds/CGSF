@@ -55,7 +55,7 @@ public:
 //게임이 끝나면 결과창을 보여주며 입력이 허용이 안되는 등 여러 상태가 존재할 것이므로
 //네트워크 메세지와 업데이트 관련해서는 내부 상태에 따라 처리를 하도록 변경한다.
 /////////////////////////////////////////////////////////////////////////////////////
-	virtual void HandleNetworkMessage(int PacketID, BYTE* pBuffer, USHORT Length) override;
+	virtual void HandleNetworkMessage(BasePacket* pPacket) override;
 	virtual void Update( float elapsed ) override;
 
 private:

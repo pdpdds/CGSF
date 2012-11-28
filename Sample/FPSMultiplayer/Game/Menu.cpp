@@ -10,8 +10,8 @@
 #include "CommonStructure.h"
 #include "../Engine/GUIManager.h"
 #include "SFPacketStore.pb.h"
-#include <google/protobuf/io/zero_copy_stream_impl_lite.h>
-
+#include "BasePacket.h"
+#include "SFProtobufPacket.h"
 using namespace google;
 
 //-----------------------------------------------------------------------------
@@ -203,10 +203,10 @@ void Menu::Update( float elapsed )
 		CEGUI::System::getSingleton().injectMouseButtonUp(CEGUI::LeftButton);
 }
 
-void Menu::HandleNetworkMessage(int PacketID, BYTE* pBuffer, USHORT Length)
+void Menu::HandleNetworkMessage(BasePacket* pPacket)
 {
 
-	if (PacketID == CGSF::Auth)
+	if (pPacket->GetPacketID() == CGSF::Auth)
 	{
 		/*int i = 1;
 		std::string name = "juhang3";
@@ -222,32 +222,21 @@ void Menu::HandleNetworkMessage(int PacketID, BYTE* pBuffer, USHORT Length)
 
 		//g_engine->GetNetwork()->Send(CGSF::Login, &PktLogin, BufSize);;
 	}
-	else if (PacketID == CGSF::LoginSuccess)
+	else if (pPacket->GetPacketID() == CGSF::LoginSuccess)
 	{
-		SFPacketStore::LoginSuccess PktLoginSuccess;
-		protobuf::io::ArrayInputStream is(pBuffer, Length);
-		PktLoginSuccess.ParseFromZeroCopyStream(&is);
-
+		SFProtobufPacket<SFPacketStore::LoginSuccess>* pLoginSuccess = (SFProtobufPacket<SFPacketStore::LoginSuccess>*)pPacket;
 		_UserInfo Info;
-		std::string szdata = PktLoginSuccess.userinfo();
+		std::string szdata = pLoginSuccess->GetData().userinfo();
 		memcpy(&Info, szdata.c_str(), sizeof(_UserInfo));
 
 		g_engine->SetPlayerID(Info.Serial);
 		
-		SFPacketStore::EnterLobby PktEnterLobby;
-		int BufSize = PktEnterLobby.ByteSize();
+		SFProtobufPacket<SFPacketStore::EnterLobby> EnterLobby(CGSF::EnterLobby);
+		EnterLobby.SetOwnerSerial(g_engine->GetLocalID());
 
-		char Buffer[2048] = {0,};
-
-		if(BufSize != 0)
-		{
-			::google::protobuf::io::ArrayOutputStream os(Buffer, BufSize);
-			PktEnterLobby.SerializeToZeroCopyStream(&os);
-		}
-
-		g_engine->GetNetwork()->TCPSend(g_engine->GetLocalID(), CGSF::EnterLobby, Buffer, BufSize);
+		g_engine->GetNetwork()->TCPSend(&EnterLobby);
 	}
-	else if (PacketID == CGSF::EnterLobby)
+	else if (pPacket->GetPacketID() == CGSF::EnterLobby)
 	{
 		/*SFPacketStore::CreateRoom PktCreateRoom;
 		int BufSize = PktCreateRoom.ByteSize();
@@ -255,38 +244,38 @@ void Menu::HandleNetworkMessage(int PacketID, BYTE* pBuffer, USHORT Length)
 		g_engine->TCPSend(CGSF::CreateRoom, &PktCreateRoom, BufSize);*/
 		g_engine->GetGUIManager()->ChangeState(GUI_STATE_LOBBY);
 	}
-	else if (PacketID == CGSF::ChatRes)
+	else if (pPacket->GetPacketID() == CGSF::ChatRes)
 	{
 
-		g_engine->GetGUIManager()->Notify(CGSF::ChatRes, (char*)pBuffer, Length);
+		g_engine->GetGUIManager()->Notify(pPacket);
 	}
-	else if (PacketID == CGSF::CreateRoom)
+	else if (pPacket->GetPacketID() == CGSF::CreateRoom)
 	{
 		SFPacketStore::CreateRoom PktCreateRoom;
 
 		g_engine->GetGUIManager()->ChangeState(GUI_STATE_ROOM);
 	}
-	else if (PacketID == CGSF::EnterRoom)
+	else if (pPacket->GetPacketID() == CGSF::EnterRoom)
 	{
 		SFPacketStore::EnterRoom PktEnterRoom;
 
 		g_engine->GetGUIManager()->ChangeState(GUI_STATE_ROOM);
 	}
-	else if (PacketID == CGSF::LeaveRoom)
+	else if (pPacket->GetPacketID() == CGSF::LeaveRoom)
 	{
 		SFPacketStore::LeaveRoom PktLeaveRoom;
 
 		g_engine->GetGUIManager()->ChangeState(GUI_STATE_LOBBY);
 	}
-	else if (PacketID == CGSF::LeaveTeamMember)
+	else if (pPacket->GetPacketID() == CGSF::LeaveTeamMember)
 	{
-		g_engine->GetGUIManager()->Notify(CGSF::LeaveTeamMember, (char*)pBuffer, Length);
+		g_engine->GetGUIManager()->Notify(pPacket);
 	}
-	else if (PacketID == CGSF::EnterTeamMember)
+	else if (pPacket->GetPacketID() == CGSF::EnterTeamMember)
 	{
-		g_engine->GetGUIManager()->Notify(CGSF::LeaveTeamMember, (char*)pBuffer, Length);
+		g_engine->GetGUIManager()->Notify(pPacket);
 	}
-	else if (PacketID == CGSF::StartGame)
+	else if (pPacket->GetPacketID() == CGSF::StartGame)
 	{
 		g_engine->GetGUIManager()->ChangeState(GUI_STATE_GAME);
 		g_engine->ChangeState(STATE_GAME);

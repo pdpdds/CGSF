@@ -14,13 +14,14 @@ public:
 	ChatLogicEntry(void);
 	virtual ~ChatLogicEntry(void);
 
-	virtual BOOL ProcessPacket(SFCommand* pCommand) override;
-	BOOL Send(int Serial, SFPacket* pPacket);
-	BOOL Broadcast(SFPacket* pPacket, int Serial = -1);
+	virtual BOOL ProcessPacket(BasePacket* pBasePacket) override;
+	BOOL 
+		SendRequest(BasePacket* pPacket);
+	BOOL Broadcast(BasePacket* pPacket);
 
 protected:
 	BOOL OnConnectPlayer(int Serial);
-	BOOL OnPlayerData(SFPacket* pPacket);
+	BOOL OnPlayerData(BasePacket* pPacket);
 	BOOL OnDisconnectPlayer(int Serial);
 
 private:

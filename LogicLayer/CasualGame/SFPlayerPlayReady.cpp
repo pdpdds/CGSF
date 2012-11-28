@@ -33,7 +33,7 @@ BOOL SFPlayerPlayReady::OnLeave()
 	return TRUE;
 }
 
-BOOL SFPlayerPlayReady::ProcessPacket( SFPacket* pPacket )
+BOOL SFPlayerPlayReady::ProcessPacket( BasePacket* pPacket )
 {
 	return TRUE;
 }

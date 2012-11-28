@@ -17,7 +17,7 @@ protected:
 	BOOL ChangeState(ePlayerState State);
 	BOOL AddState(ePlayerState State);
 	ePlayerState GetPlayerState();
-	BOOL ProcessPacket(SFPacket* pPacket);
+	BOOL ProcessPacket(BasePacket* pPacket);
 	BOOL ProcessDBResult(SFMessage* pMessage);
 
 private:

@@ -12,6 +12,7 @@
 SFPlayerInit::SFPlayerInit(SFPlayer* pOwner, ePlayerState State)
 : SFPlayerState(pOwner, State)
 {
+	m_Dispatch.RegisterMessage(CGSF::Login, std::tr1::bind(&SFPlayerInit::OnLogin, this, std::tr1::placeholders::_1));
 }
 
 SFPlayerInit::~SFPlayerInit(void)
@@ -28,21 +29,9 @@ BOOL SFPlayerInit::OnLeave()
 	return TRUE;
 }
 
-BOOL SFPlayerInit::ProcessPacket(SFPacket* pPacket)
+BOOL SFPlayerInit::ProcessPacket(BasePacket* pPacket)
 {
-	switch(pPacket->GetPacketID())
-	{
-	case CGSF::Login:
-		{
-			OnLogin(pPacket);
-		}
-		break;
-
-	default:
-		return FALSE;
-	}
-	
-	return TRUE;
+	return m_Dispatch.HandleMessage(pPacket->GetPacketID(), pPacket);
 }
 
 BOOL SFPlayerInit::ProcessDBResult(SFMessage* pMessage)
@@ -65,18 +54,16 @@ BOOL SFPlayerInit::ProcessDBResult(SFMessage* pMessage)
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////
 //Handle Packet Recv
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////
-BOOL SFPlayerInit::OnLogin(SFPacket* pPacket)
+BOOL SFPlayerInit::OnLogin(BasePacket* pPacket)
 {
-	SFPacketStore::Login PktLogin;
-	protobuf::io::ArrayInputStream is(pPacket->GetDataBuffer(), pPacket->GetDataSize());
-	PktLogin.ParseFromZeroCopyStream(&is);
+	SFProtobufPacket<SFPacketStore::Login>* pLogin = (SFProtobufPacket<SFPacketStore::Login>*)pPacket;
 
 	SFPlayer* pPlayer = GetOwner();
 
-	pPlayer->m_username = PktLogin.username();
-	pPlayer->m_password = PktLogin.password();
+	pPlayer->m_username = pLogin->GetData().username();
+	pPlayer->m_password = pLogin->GetData().password();
 
-	SFSendDBRequest::RequestLogin(pPlayer, pPacket);
+	SFSendDBRequest::RequestLogin(pPlayer);
 
 	return TRUE;
 }

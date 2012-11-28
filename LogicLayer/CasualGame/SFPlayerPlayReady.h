@@ -9,6 +9,6 @@ public:
 
 	virtual BOOL OnEnter() override;
 	virtual BOOL OnLeave() override;
-	virtual BOOL ProcessPacket(SFPacket* pPacket) override;
+	virtual BOOL ProcessPacket(BasePacket* pPacket) override;
 	virtual BOOL ProcessDBResult(SFMessage* pMessage) override;
 };

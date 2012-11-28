@@ -1,10 +1,10 @@
 #pragma once
 #include <sqltypes.h>
-#include "SFPacket.h"
+#include "BasePacket.h"
 
 #define MAX_MESSAGE_BUFFER 512
 
-class SFMessage : public SFCommand
+class SFMessage : public BasePacket
 {
 public:
 	SFMessage() {Reset();}

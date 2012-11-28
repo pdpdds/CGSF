@@ -9,6 +9,7 @@
 #define STATE_H
 
 struct NetworkMessage;
+class BasePacket;
 
 //-----------------------------------------------------------------------------
 // Viewer Setup Structure
@@ -45,7 +46,7 @@ public:
 
 	unsigned long GetID();
 
-	virtual void HandleNetworkMessage(int PacketID, BYTE* pBuffer, USHORT Length) = 0;
+	virtual void HandleNetworkMessage(BasePacket* pPacket) = 0;
 	virtual void HandleNetworkMessage( NetworkMessage* pMessage ) {}
 	virtual bool HandleInput(UINT msg, WPARAM wparam, LPARAM lparam) {return false;}
 

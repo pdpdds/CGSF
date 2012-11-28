@@ -57,13 +57,13 @@ public:
 	ProactorServiceIDMap(){}
 	virtual ~ProactorServiceIDMap(){}
 
-	BOOL Send(int Serial, char* pMessage, int BufSize )
+	BOOL SendRequest(BasePacket* pPacket )
 	{
-		T* pProactorService = Get(Serial);
+		T* pProactorService = Get(pPacket->GetOwnerSerial());
 
 		if(pProactorService != NULL)
 		{
-			pProactorService->Send(pMessage, BufSize);
+			pProactorService->SendRequest(pPacket);
 		}
 
 		return TRUE;

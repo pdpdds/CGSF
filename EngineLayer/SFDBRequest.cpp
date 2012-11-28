@@ -4,19 +4,19 @@
 
 SFMessage* GetDBInitMessage(int RequestMsg, DWORD PlayerSerial)
 {
-	SFMessage* pMessage = LogicEntrySingleton::instance()->GetDBMessage();
+	SFMessage* pMessage = LogicEntrySingleton::instance()->AllocDBMessage();
 
 	SFASSERT(pMessage != NULL);
 	pMessage->Initialize(RequestMsg);
 	pMessage->SetOwnerSerial(PlayerSerial);
-	pMessage->SetPacketType(SFCommand_DB);
+	pMessage->SetPacketType(SFPacket_DB);
 
 	return pMessage;
 }
 
 void SendToLogic(SFMessage* pMessage)
 {
-	pMessage->SetPacketType(SFCommand_DB);
+	pMessage->SetPacketType(SFPacket_DB);
 	LogicGatewaySingleton::instance()->PushPacket(pMessage);
 }
 
@@ -36,7 +36,7 @@ int SFDBRequest::call(void)
 
 	Database->Call(m_pMessage);
 
-	LogicEntrySingleton::instance()->RecallDBMessage(m_pMessage);
+	LogicEntrySingleton::instance()->ReleaseDBMessage(m_pMessage);
 	m_pMessage = NULL;
 	
 	return 0;

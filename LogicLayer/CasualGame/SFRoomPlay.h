@@ -15,13 +15,13 @@ public:
 
 	BOOL Update(DWORD dwTickCount) override;
 
-	BOOL ProcessUserRequest(SFPlayer* pPlayer, SFPacket* pPacket) override;
+	BOOL ProcessUserRequest(SFPlayer* pPlayer, BasePacket* pPacket) override;
 	BOOL ProcessUserRequest(SFPlayer* pPlayer, int Msg) override;
 
 	BOOL OnEnterRoom(SFPlayer* pPlayer) override;
 	BOOL OnLeaveRoom( SFPlayer* pPlayer)  override;
 
-	BOOL OnLoadingComplete( SFPlayer* pPlayer, SFPacket* pPacket );
+	BOOL OnLoadingComplete( SFPlayer* pPlayer, BasePacket* pPacket );
 
 protected:
 

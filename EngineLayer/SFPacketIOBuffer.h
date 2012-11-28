@@ -1,6 +1,8 @@
 #pragma once
 #include "SFIOBuffer.h"
 
+class SFPacket;
+
 class SFPacketIOBuffer : public SFIOBuffer
 {
 

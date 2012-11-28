@@ -26,12 +26,12 @@ BOOL SFRoomLoading::OnLeave()
 	return TRUE;
 }
 
-BOOL SFRoomLoading::ProcessUserRequest( SFPlayer* pPlayer, SFPacket* pPacket )
+BOOL SFRoomLoading::ProcessUserRequest( SFPlayer* pPlayer, BasePacket* pPacket )
 {
 	return m_DispatchingSystem.HandleMessage(pPacket->GetPacketID(), pPlayer, pPacket);
 }
 
-BOOL SFRoomLoading::OnLoadingComplete( SFPlayer* pPlayer, SFPacket* pPacket)
+BOOL SFRoomLoading::OnLoadingComplete( SFPlayer* pPlayer, BasePacket* pPacket)
 {
 	SFRoom* pRoom = GetOwner();
 

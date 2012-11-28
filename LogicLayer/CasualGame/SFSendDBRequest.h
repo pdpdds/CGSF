@@ -5,8 +5,8 @@ class SFPlayer;
 class SFSendDBRequest
 {
 public:
-	static BOOL RequestLogin(SFPlayer* pPlayer, SFPacket* pPacket);
-	static BOOL SendRequest(int RequestMsg, DWORD PlayerSerial, SFPacket* pPacket);
+	static BOOL RequestLogin(SFPlayer* pPlayer);
+	static BOOL SendRequest(int RequestMsg, DWORD PlayerSerial, BasePacket* pPacket);
 
 protected:
 	static SFMessage* GetInitMessage(int RequestMsg, DWORD PlayerSerial);
