@@ -5,6 +5,8 @@
 #include "SFIni.h"
 #include "StringConversion.h"
 
+#pragma comment(lib, "BaseLayer.lib")
+
 SFNetworkEntry::SFNetworkEntry(void)
 	: m_pTCPNetwork(NULL)
 	, m_pUDPNetwork(NULL)

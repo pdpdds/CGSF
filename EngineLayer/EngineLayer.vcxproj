@@ -58,7 +58,7 @@
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <ClCompile>
       <Optimization>Disabled</Optimization>
-      <AdditionalIncludeDirectories>./EngineDllInterface;./Engine/MGEngine/Include;../Common/Include;../BaseLayer;./External;../P2PNetwork;../Common;../ThirdParty/zlib;../ThirdParty/liblzf;../ThirdParty/glog/src/windows;../ThirdParty/ACE_wrappers;../ThirdParty/Mysql/include;../ThirdParty/boost_1_49_0;../ThirdParty;../ThirdParty/ssl/include;../Common/SFPacketStore;../ThirdParty/protobuf-2.4.1/src;../ThirdParty/SQLite;../ThirdParty/Loki/include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>./EngineDllInterface;../Common/Include;../BaseLayer;./External;../P2PNetwork;../Common;../ThirdParty/zlib;../ThirdParty/liblzf;../ThirdParty/glog/src/windows;../ThirdParty/ACE_wrappers;../ThirdParty/boost_1_49_0;../ThirdParty;../Common/SFPacketStore;../ThirdParty/protobuf-2.4.1/src;../ThirdParty/Loki/include;../BaseLayer/XML;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>WIN32;_DEBUG;_LIB;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <MinimalRebuild>true</MinimalRebuild>
       <BasicRuntimeChecks>EnableFastChecks</BasicRuntimeChecks>
@@ -91,75 +91,17 @@
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Create</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Create</PrecompiledHeader>
     </ClCompile>
-    <ClCompile Include=".\External\7zcrc.cpp">
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
-      </PrecompiledHeader>
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
-      </PrecompiledHeader>
-    </ClCompile>
-    <ClCompile Include=".\External\base64.cpp">
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
-      </PrecompiledHeader>
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
-      </PrecompiledHeader>
-    </ClCompile>
-    <ClCompile Include=".\External\crc.cpp">
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
-      </PrecompiledHeader>
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
-      </PrecompiledHeader>
-    </ClCompile>
-    <ClCompile Include=".\External\CSmtp.cpp">
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
-      </PrecompiledHeader>
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
-      </PrecompiledHeader>
-    </ClCompile>
-    <ClCompile Include=".\External\md5.cpp">
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
-      </PrecompiledHeader>
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
-      </PrecompiledHeader>
-    </ClCompile>
-    <ClCompile Include=".\CppSQLite3.cpp" />
-    <ClCompile Include=".\SFDatabase.cpp" />
-    <ClCompile Include=".\SFDatabaseMySQL.cpp" />
-    <ClCompile Include=".\SFDatabaseODBC.cpp" />
-    <ClCompile Include=".\SFDataBaseProxy.cpp" />
-    <ClCompile Include=".\SFDatabaseProxyImpl.cpp" />
-    <ClCompile Include=".\SFDatabaseProxyLocal.cpp" />
-    <ClCompile Include=".\SFDatabaseProxyRemote.cpp" />
-    <ClCompile Include=".\SFDatabaseSQLite.cpp" />
-    <ClCompile Include=".\SFDBManager.cpp" />
-    <ClCompile Include=".\SFDBRequest.cpp" />
-    <ClCompile Include=".\SFDBWorker.cpp" />
-    <ClCompile Include=".\SFReqMySQL.cpp" />
     <ClCompile Include=".\SFCheckSum.cpp" />
     <ClCompile Include=".\SFIOBuffer.cpp" />
     <ClCompile Include=".\SFPacket.cpp" />
     <ClCompile Include=".\SFPacketProtocol.cpp" />
     <ClCompile Include=".\SFPacketIOBuffer.cpp" />
-    <ClCompile Include=".\ACELogger.cpp" />
     <ClCompile Include=".\SFBridgeThread.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Use</PrecompiledHeader>
     </ClCompile>
-    <ClCompile Include=".\SFCompressLzf.cpp" />
-    <ClCompile Include=".\SFCompressZLib.cpp" />
-    <ClCompile Include=".\SFEncryptionXOR.cpp" />
     <ClCompile Include=".\LogicEntry.cpp" />
     <ClCompile Include=".\SFLogicGateway.cpp" />
-    <ClCompile Include=".\SFFString.cpp" />
-    <ClCompile Include=".\SFList.cpp" />
-    <ClCompile Include=".\SFObject.cpp" />
-    <ClCompile Include=".\SFObserver.cpp" />
-    <ClCompile Include=".\SFSubject.cpp" />
-    <ClCompile Include=".\SFUtil.cpp" />
-    <ClCompile Include=".\SFFastCRC.cpp" />
     <ClCompile Include="DataBuffer.cpp" />
-    <ClCompile Include="DelayedDirectoryChangeHandler.cpp" />
-    <ClCompile Include="DirectoryChanges.cpp" />
-    <ClCompile Include="GoogleLog.cpp" />
-    <ClCompile Include="SFCompressor.cpp" />
     <ClCompile Include=".\SFDefaultPacketProtocol.cpp" />
     <ClCompile Include="SFEngine.cpp" />
     <ClCompile Include=".\SFCasualGameDispatcher.cpp" />
@@ -168,94 +110,34 @@
     <ClCompile Include="SFProtobufProtocol.cpp" />
     <ClCompile Include="SFProtocol.cpp" />
     <ClCompile Include="SFShouter.cpp" />
-    <ClCompile Include="StringConversion.cpp" />
-    <ClCompile Include="tinystr.cpp" />
-    <ClCompile Include="tinyxml.cpp" />
-    <ClCompile Include="tinyxmlerror.cpp" />
-    <ClCompile Include="tinyxmlparser.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include=".\SFExcel.h" />
     <ClInclude Include=".\SFIni.h" />
-    <ClInclude Include=".\SFDispatch.h" />
     <ClInclude Include=".\SFFactory.h" />
     <ClInclude Include=".\SFMacro.h" />
     <ClInclude Include=".\SFMessage.h" />
     <ClInclude Include=".\stdafx.h" />
     <ClInclude Include=".\targetver.h" />
-    <ClInclude Include=".\External\7zcrc.h" />
-    <ClInclude Include=".\External\base64.h" />
-    <ClInclude Include=".\External\crc.h" />
-    <ClInclude Include=".\External\CSmtp.h" />
-    <ClInclude Include=".\External\md5.h" />
-    <ClInclude Include=".\CppSQLite3.h" />
-    <ClInclude Include=".\IDBManager.h" />
-    <ClInclude Include=".\SFDatabase.h" />
-    <ClInclude Include=".\SFDatabaseMySQL.h" />
-    <ClInclude Include=".\SFDatabaseODBC.h" />
-    <ClInclude Include=".\SFDataBaseProxy.h" />
-    <ClInclude Include=".\SFDatabaseProxyImpl.h" />
-    <ClInclude Include=".\SFDatabaseProxyLocal.h" />
-    <ClInclude Include=".\SFDatabaseProxyRemote.h" />
-    <ClInclude Include=".\SFDatabaseSQLite.h" />
-    <ClInclude Include=".\SFDBManager.h" />
-    <ClInclude Include=".\SFDBRequest.h" />
-    <ClInclude Include=".\SFDBWorker.h" />
-    <ClInclude Include=".\SFReqMySQL.h" />
     <ClInclude Include=".\SFCheckSum.h" />
     <ClInclude Include=".\SFIOBuffer.h" />
     <ClInclude Include=".\SFPacket.h" />
     <ClInclude Include=".\SFPacketProtocol.h" />
     <ClInclude Include=".\SFPacketIOBuffer.h" />
-    <ClInclude Include=".\ACELogger.h" />
-    <ClInclude Include=".\SFLog.h" />
     <ClInclude Include=".\SFBridgeThread.h" />
-    <ClInclude Include=".\SFCompressLzf.h" />
-    <ClInclude Include=".\SFCompressZLib.h" />
-    <ClInclude Include=".\SFEncryption.h" />
-    <ClInclude Include=".\SFEncryptionXOR.h" />
-    <ClInclude Include=".\SFMath.h" />
     <ClInclude Include=".\ILogicEntry.h" />
     <ClInclude Include=".\LogicEntry.h" />
     <ClInclude Include=".\SFLogicGateway.h" />
-    <ClInclude Include=".\SFFString.h" />
-    <ClInclude Include=".\SFString.h" />
-    <ClInclude Include=".\SFConsumer.h" />
-    <ClInclude Include=".\SFIOCPQueue.h" />
-    <ClInclude Include=".\SFList.h" />
-    <ClInclude Include=".\SFLock.h" />
-    <ClInclude Include=".\SFLockDeque.h" />
-    <ClInclude Include=".\SFLockQueue.h" />
-    <ClInclude Include=".\SFObject.h" />
-    <ClInclude Include=".\SFObjectPool.h" />
-    <ClInclude Include=".\SFObserver.h" />
-    <ClInclude Include=".\SFProducer.h" />
-    <ClInclude Include=".\SFQueue.h" />
-    <ClInclude Include=".\SFSubject.h" />
-    <ClInclude Include=".\SFTree.h" />
-    <ClInclude Include=".\SFTSSyncQueue.h" />
-    <ClInclude Include=".\SFTimer.h" />
-    <ClInclude Include=".\SFUtil.h" />
     <ClInclude Include=".\SFSinglton.h" />
     <ClInclude Include=".\INetworkFramework.h" />
     <ClInclude Include=".\SFEngine.h" />
-    <ClInclude Include=".\SFFastCRC.h" />
-    <ClInclude Include="CStdString.h" />
     <ClInclude Include="DataBuffer.h" />
-    <ClInclude Include="DelayedDirectoryChangeHandler.h" />
-    <ClInclude Include="DirectoryChanges.h" />
     <ClInclude Include="EngineDLLInterface\BasePacket.h" />
     <ClInclude Include="EngineDLLInterface\IEngine.h" />
     <ClInclude Include="EngineDLLInterface\INetworkEngine.h" />
     <ClInclude Include=".\EngineDLLInterface\ISessionService.h" />
     <ClInclude Include="EngineDLLInterface\ISession.h" />
-    <ClInclude Include="GoogleLog.h" />
     <ClInclude Include="ILogicDispatcher.h" />
-    <ClInclude Include="IXMLSerializable.h" />
-    <ClInclude Include="IXMLStreamReader.h" />
-    <ClInclude Include="IXMLStreamWriter.h" />
-    <ClInclude Include="MPSC_Queue.h" />
-    <ClInclude Include="SFCompressor.h" />
     <ClInclude Include="SFConstant.h" />
     <ClInclude Include=".\SFDefaultPacketProtocol.h" />
     <ClInclude Include=".\SFCasualGameDispatcher.h" />
@@ -266,26 +148,6 @@
     <ClInclude Include="SFProtocol.h" />
     <ClInclude Include="SFShouter.h" />
     <ClInclude Include="SFStructure.h" />
-    <ClInclude Include="SFXMLStreamReader.h" />
-    <ClInclude Include="SFXMLStreamWriter.h" />
-    <ClInclude Include="StringConversion.h" />
-    <ClInclude Include="tinystr.h" />
-    <ClInclude Include="tinyxml.h" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include=".\External\7zAsm.asm">
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
-      <Command Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">ml.exe -c -Fo$(PlatformName)\$(ConfigurationName)\7zasm.obj ./External/7zasm.asm</Command>
-      <Outputs Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">$(PlatformName)\$(ConfigurationName)\7zasm.obj</Outputs>
-    </None>
-    <CustomBuild Include=".\External\7zCrcOpt.asm">
-      <FileType>Document</FileType>
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">false</ExcludedFromBuild>
-      <Command Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">ml.exe /safeseh -c -Fo$(PlatformName)\$(ConfigurationName)\7zCrcOpt.obj ./External/7zCrcOpt.asm</Command>
-      <Outputs Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">$(PlatformName)\$(ConfigurationName)\7zCrcOpt.obj</Outputs>
-      <Command Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">ml.exe /safeseh -c -Fo$(PlatformName)\$(ConfigurationName)\$(InputName).obj ./External/7zCrcOpt.asm</Command>
-      <Outputs Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">$(PlatformName)\$(ConfigurationName)\$(InputName).obj</Outputs>
-    </CustomBuild>
   </ItemGroup>
   <ItemGroup>
     <Text Include=".\ReadMe.txt" />

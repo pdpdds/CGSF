@@ -5,6 +5,13 @@
 #include "SFDataBaseProxy.h"
 #include "SFDirectoryWatcherTask.h"
 #include "SFPacketStore.pb.h"
+#include "SFRoomManager.h"
+#include "SFLobby.h"
+#include "SFRoomFSM.h"
+#include "SFDatabaseProxyLocal.h"
+#include "SFDatabaseProxyImpl.h"
+#include "SFEngine.h"
+#include "SFDatabaseMySQL.h"
 
 ///////////////////////////////////////////////////////////////////////////
 //Logic Entry

@@ -1,8 +1,6 @@
 #pragma once
 #include "ILogicEntry.h"
 
-class SFDatabaseProxy;
-
 class LogicEntry : public ILogicEntry
 {
 public:

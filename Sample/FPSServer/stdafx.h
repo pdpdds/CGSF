@@ -26,10 +26,6 @@
 #include "PacketID.h"
 #include "SFPacketStore.pb.h"
 
-#include <google/protobuf/io/zero_copy_stream_impl_lite.h>
-
-using namespace google;
-
 #pragma comment(lib, "zlib.lib")
 #pragma comment(lib, "liblzf.lib")
 #pragma comment(lib, "libprotobuf.lib")

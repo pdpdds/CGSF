@@ -154,6 +154,9 @@
     <ClInclude Include="SFCGProtobufProtocol.h">
       <Filter>Protocol</Filter>
     </ClInclude>
+    <ClInclude Include="SFDBProcessorMySQL.h">
+      <Filter>DataBase</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include=".\SFLogicCore.cpp">
@@ -266,6 +269,9 @@
     </ClCompile>
     <ClCompile Include="SFCGProtobufProtocol.cpp">
       <Filter>Protocol</Filter>
+    </ClCompile>
+    <ClCompile Include="SFDBProcessorMySQL.cpp">
+      <Filter>DataBase</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

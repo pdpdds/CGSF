@@ -5,7 +5,7 @@
 #include "GamePacketStructure.h"
 #include "SFPlayer.h"
 #include "SFSendPacket.h"
-#include "SFPacket.h"
+#include "BasePacket.h"
 #include "SFProtobufPacket.h"
 
 SFFreeForAll::SFFreeForAll(int Mode)

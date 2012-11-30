@@ -58,7 +58,7 @@
       <Optimization>Disabled</Optimization>
       <PreprocessorDefinitions>WIN32;_DEBUG;_LIB;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <SDLCheck>true</SDLCheck>
-      <AdditionalIncludeDirectories>../../Common/Include;../../EngineLayer;../../EngineLayer/EngineDllInterface;../../P2PLayer/P2PClient;../../ThirdParty/liblfds/include;../../ThirdParty/ACE_WRAPPERS</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>../../Common/Include;../../EngineLayer;../../EngineLayer/EngineDllInterface;../../P2PLayer/P2PClient;../../ThirdParty/liblfds/include;../../ThirdParty/ACE_WRAPPERS;../../BaseLayer/XML;../../BaseLayer</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Windows</SubSystem>

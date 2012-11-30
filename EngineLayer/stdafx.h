@@ -34,32 +34,10 @@
 //#include "ChatPacket.pb.h"
 
 #include <tchar.h>
+#include "Macro.h"
 #include "SFString.h"
 #include "SFCompressLzf.h"
 #include "SFPacketProtocol.H"
 #include "SFBridgeThread.h"
-
 //#pragma comment(lib, "libglog.lib")
 
-#define LOKI_WINDOWS_H
-
-
-#ifndef ASSERT
-#define ASSERT(exp) SFASSERT(exp)
-#endif
-
-#ifndef TRACE
-#define TRACE
-#endif
-
-#ifndef ASSERT_VALID
-#define ASSERT_VALID(pOb)
-#endif
-
-#ifndef VERIFY
-#ifdef _DEBUG
-#define VERIFY(exp) SFASSERT(exp)
-#else
-#define VERIFY(exp) exp
-#endif
-#endif

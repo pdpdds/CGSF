@@ -8,7 +8,7 @@
 #include "TCPNetworkCallback.h"
 #include <iostream>
 #include "PacketID.h"
-#include "GoogleLog.h"
+//#include "GoogleLog.h"
 #include "ChatPacketEntry.h"
 #include "SFBreakPad.h"
 #include "SFMinidump.h"
@@ -21,7 +21,6 @@
 #include "SFPacketProtocol.h"
 #include "SFCasualGameDispatcher.h"
 
-#include <google/protobuf/io/zero_copy_stream_impl_lite.h>
 #pragma comment(lib, "liblzf.lib")
 #pragma comment(lib, "zlib.lib")
 

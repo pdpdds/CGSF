@@ -1,6 +1,6 @@
 #pragma once
 #pragma warning(disable : 4996)
-#include "GoogleLog.h"
+//#include "GoogleLog.h"
 #include "SFMacro.h"
 #include "SFEngine.h"
 

@@ -60,7 +60,7 @@
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <ClCompile>
       <Optimization>Disabled</Optimization>
-      <AdditionalIncludeDirectories>../../EngineLayer;../../ThirdParty/ACE_wrappers;../../Common;../../Common/SFPacketStore;../../ThirdParty/protobuf-2.4.1/src;../../EngineLayer/EngineDllInterface;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>../../EngineLayer;../../ThirdParty/ACE_wrappers;../../Common;../../Common/SFPacketStore;../../ThirdParty/protobuf-2.4.1/src;../../EngineLayer/EngineDllInterface;../../BaseLayer;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>WIN32;_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <MinimalRebuild>true</MinimalRebuild>
       <BasicRuntimeChecks>EnableFastChecks</BasicRuntimeChecks>

@@ -4,7 +4,7 @@
 #include "SFEngine.h"
 #include <conio.h>
 #include "ChatLogicEntry.h"
-#include "GoogleLog.h"
+//#include "GoogleLog.h"
 #include "SFMacro.h"
 #include "SFSinglton.h"
 #include "SFEngine.h"

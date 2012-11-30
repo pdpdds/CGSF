@@ -1,7 +1,7 @@
 #include "stdafx.h"
 #include "SFTCPNetwork.h"
 #include "SFMacro.h"
-#include "GoogleLog.h"
+//#include "GoogleLog.h"
 #include "INetworkEngine.h"
 #include "SFEngine.h"
 #include "SFIni.h"

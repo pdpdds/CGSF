@@ -1,14 +1,8 @@
 #include "StdAfx.h"
 #include "SFLogicEntry.h"
 #include "SFPlayer.h"
-#include "SFRoomManager.h"
-#include "SFLobby.h"
-#include "SFRoomFSM.h"
-#include "SFDatabaseProxyLocal.h"
-#include "SFDatabaseProxyImpl.h"
 #include "SFMacro.h"
-#include "GoogleLog.h"
-#include "SFEngine.h"
+#include "SFDBProcessorMySQL.h"
 
 SFLogicEntry* SFLogicEntry::m_pLogicEntry = NULL;
 
@@ -19,7 +13,7 @@ SFLogicEntry::SFLogicEntry(void)
 
 BOOL SFLogicEntry::Initialize()
 {
-	SFDatabaseProxy* pProxyLocal = new SFDatabaseProxyLocal();
+	SFDatabaseProxy* pProxyLocal = new SFDatabaseProxyLocal<SFDBProcessorMySQL>();
 	m_pDatabaseProxy = new SFDatabaseProxyImpl(pProxyLocal);
 	m_pDatabaseProxy->Initialize();
 

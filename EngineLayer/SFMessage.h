@@ -1,6 +1,7 @@
 #pragma once
 #include <sqltypes.h>
 #include "BasePacket.h"
+#include "Macro.h"
 
 #define MAX_MESSAGE_BUFFER 512
 

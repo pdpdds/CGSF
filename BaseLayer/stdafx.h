@@ -14,3 +14,8 @@
 // TODO: reference additional headers your program requires here
 #include <windows.h>
 #include <malloc.h>
+#include <stdio.h>
+#include <tchar.h>
+#include <string>
+
+#include "Macro.h"

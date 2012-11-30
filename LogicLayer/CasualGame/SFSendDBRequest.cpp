@@ -12,6 +12,7 @@ SFMessage* SFSendDBRequest::GetInitMessage(int RequestMsg, DWORD PlayerSerial)
 
 	SFASSERT(pMessage != NULL);
 	pMessage->Initialize(RequestMsg);
+	pMessage->SetPacketID(RequestMsg);
 	pMessage->SetOwnerSerial(PlayerSerial);
 	pMessage->SetPacketType(SFPacket_DB);
 
@@ -36,6 +37,13 @@ BOOL SFSendDBRequest::SendRequest(int RequestMsg, DWORD PlayerSerial, BasePacket
 
 	return TRUE;
 }
+
+void SFSendDBRequest::SendToLogic(BasePacket* pMessage)
+{
+	pMessage->SetPacketType(SFPacket_DB);
+	LogicGatewaySingleton::instance()->PushPacket(pMessage);
+}
+
 
 //////////////////////////////////////////////////////////////////////////////////////////////
 //개별적으로 리퀘스트를 작성해야 할 때

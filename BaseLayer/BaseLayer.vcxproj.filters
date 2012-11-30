@@ -12,6 +12,36 @@
     <Filter Include="Exception">
       <UniqueIdentifier>{f6164a71-4e36-4c94-917f-8fca1a84f492}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Math">
+      <UniqueIdentifier>{c31ef5a6-30a8-4e34-a4d1-edd727d9f222}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="XML">
+      <UniqueIdentifier>{ef8abce6-8896-4f93-ba6a-42bd6a1bf60d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="DirectoryWatcher">
+      <UniqueIdentifier>{05ade628-b364-4e81-964a-667490b73fc4}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Syncronization">
+      <UniqueIdentifier>{346f7b7a-1707-4cf2-bf0b-9ccf292647e3}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="String">
+      <UniqueIdentifier>{d1ca1177-f3ec-4679-bc80-fa276abc8478}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Logger">
+      <UniqueIdentifier>{9f34e6bd-2c8f-4b23-bd77-15638e2c1879}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Compress">
+      <UniqueIdentifier>{84fe6fd7-baf5-4e95-83d3-ae3a85ccaaa1}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Encryption">
+      <UniqueIdentifier>{85b70d7b-6e98-42c2-ab94-cb80549b2a72}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="External">
+      <UniqueIdentifier>{64037e08-248d-46e1-aa07-1712c5ce4854}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="CRC">
+      <UniqueIdentifier>{7049b4e5-b9d1-40a7-b5b0-79cc4828c72d}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include=".\cpu_info.cpp">
@@ -67,6 +97,81 @@
     </ClCompile>
     <ClCompile Include="StackWalker.cpp">
       <Filter>Exception</Filter>
+    </ClCompile>
+    <ClCompile Include="XML\StringConversion.cpp">
+      <Filter>XML</Filter>
+    </ClCompile>
+    <ClCompile Include="XML\tinystr.cpp">
+      <Filter>XML</Filter>
+    </ClCompile>
+    <ClCompile Include="XML\tinyxml.cpp">
+      <Filter>XML</Filter>
+    </ClCompile>
+    <ClCompile Include="XML\tinyxmlerror.cpp">
+      <Filter>XML</Filter>
+    </ClCompile>
+    <ClCompile Include="XML\tinyxmlparser.cpp">
+      <Filter>XML</Filter>
+    </ClCompile>
+    <ClCompile Include="DelayedDirectoryChangeHandler.cpp">
+      <Filter>DirectoryWatcher</Filter>
+    </ClCompile>
+    <ClCompile Include="DirectoryChanges.cpp">
+      <Filter>DirectoryWatcher</Filter>
+    </ClCompile>
+    <ClCompile Include="SFFString.cpp">
+      <Filter>String</Filter>
+    </ClCompile>
+    <ClCompile Include="SFUtil.cpp">
+      <Filter>Util</Filter>
+    </ClCompile>
+    <ClCompile Include="Logger\ACELogger.cpp">
+      <Filter>Logger</Filter>
+    </ClCompile>
+    <ClCompile Include="Logger\GoogleLog.cpp">
+      <Filter>Logger</Filter>
+    </ClCompile>
+    <ClCompile Include="SFCompressLzf.cpp">
+      <Filter>Compress</Filter>
+    </ClCompile>
+    <ClCompile Include="SFCompressor.cpp">
+      <Filter>Compress</Filter>
+    </ClCompile>
+    <ClCompile Include="SFCompressZLib.cpp">
+      <Filter>Compress</Filter>
+    </ClCompile>
+    <ClCompile Include="SFEncryptionXOR.cpp">
+      <Filter>Encryption</Filter>
+    </ClCompile>
+    <ClCompile Include="External\7zcrc.cpp">
+      <Filter>External</Filter>
+    </ClCompile>
+    <ClCompile Include="External\base64.cpp">
+      <Filter>External</Filter>
+    </ClCompile>
+    <ClCompile Include="External\crc.cpp">
+      <Filter>External</Filter>
+    </ClCompile>
+    <ClCompile Include="External\CSmtp.cpp">
+      <Filter>External</Filter>
+    </ClCompile>
+    <ClCompile Include="External\md5.cpp">
+      <Filter>External</Filter>
+    </ClCompile>
+    <ClCompile Include="SFFastCRC.cpp">
+      <Filter>CRC</Filter>
+    </ClCompile>
+    <ClCompile Include="SFList.cpp">
+      <Filter>Syncronization</Filter>
+    </ClCompile>
+    <ClCompile Include="SFObserver.cpp">
+      <Filter>Syncronization</Filter>
+    </ClCompile>
+    <ClCompile Include="SFSubject.cpp">
+      <Filter>Syncronization</Filter>
+    </ClCompile>
+    <ClCompile Include="SFObject.cpp">
+      <Filter>Syncronization</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -190,11 +295,153 @@
     <ClInclude Include="GPGLockFreeQueue.h">
       <Filter>Util</Filter>
     </ClInclude>
+    <ClInclude Include="SFMath.h">
+      <Filter>Math</Filter>
+    </ClInclude>
+    <ClInclude Include="XML\IXMLSerializable.h">
+      <Filter>XML</Filter>
+    </ClInclude>
+    <ClInclude Include="XML\IXMLStreamReader.h">
+      <Filter>XML</Filter>
+    </ClInclude>
+    <ClInclude Include="XML\IXMLStreamWriter.h">
+      <Filter>XML</Filter>
+    </ClInclude>
+    <ClInclude Include="XML\SFXMLStreamReader.h">
+      <Filter>XML</Filter>
+    </ClInclude>
+    <ClInclude Include="XML\SFXMLStreamWriter.h">
+      <Filter>XML</Filter>
+    </ClInclude>
+    <ClInclude Include="XML\StringConversion.h">
+      <Filter>XML</Filter>
+    </ClInclude>
+    <ClInclude Include="XML\tinystr.h">
+      <Filter>XML</Filter>
+    </ClInclude>
+    <ClInclude Include="XML\tinyxml.h">
+      <Filter>XML</Filter>
+    </ClInclude>
+    <ClInclude Include="CStdString.h">
+      <Filter>DirectoryWatcher</Filter>
+    </ClInclude>
+    <ClInclude Include="DelayedDirectoryChangeHandler.h">
+      <Filter>DirectoryWatcher</Filter>
+    </ClInclude>
+    <ClInclude Include="DirectoryChanges.h">
+      <Filter>DirectoryWatcher</Filter>
+    </ClInclude>
+    <ClInclude Include="Macro.h">
+      <Filter>Util</Filter>
+    </ClInclude>
+    <ClInclude Include="SFLock.h">
+      <Filter>Syncronization</Filter>
+    </ClInclude>
+    <ClInclude Include="SFFString.h">
+      <Filter>String</Filter>
+    </ClInclude>
+    <ClInclude Include="SFString.h">
+      <Filter>String</Filter>
+    </ClInclude>
+    <ClInclude Include="SFTimer.h">
+      <Filter>Util</Filter>
+    </ClInclude>
+    <ClInclude Include="SFUtil.h">
+      <Filter>Util</Filter>
+    </ClInclude>
+    <ClInclude Include="Logger\ACELogger.h">
+      <Filter>Logger</Filter>
+    </ClInclude>
+    <ClInclude Include="Logger\GoogleLog.h">
+      <Filter>Logger</Filter>
+    </ClInclude>
+    <ClInclude Include="Logger\SFLog.h">
+      <Filter>Logger</Filter>
+    </ClInclude>
+    <ClInclude Include="SFCompressLzf.h">
+      <Filter>Compress</Filter>
+    </ClInclude>
+    <ClInclude Include="SFCompressor.h">
+      <Filter>Compress</Filter>
+    </ClInclude>
+    <ClInclude Include="SFCompressZLib.h">
+      <Filter>Compress</Filter>
+    </ClInclude>
+    <ClInclude Include="SFEncryption.h">
+      <Filter>Encryption</Filter>
+    </ClInclude>
+    <ClInclude Include="SFEncryptionXOR.h">
+      <Filter>Encryption</Filter>
+    </ClInclude>
+    <ClInclude Include="External\7zcrc.h">
+      <Filter>External</Filter>
+    </ClInclude>
+    <ClInclude Include="External\base64.h">
+      <Filter>External</Filter>
+    </ClInclude>
+    <ClInclude Include="External\crc.h">
+      <Filter>External</Filter>
+    </ClInclude>
+    <ClInclude Include="External\CSmtp.h">
+      <Filter>External</Filter>
+    </ClInclude>
+    <ClInclude Include="External\md5.h">
+      <Filter>External</Filter>
+    </ClInclude>
+    <ClInclude Include="SFFastCRC.h">
+      <Filter>CRC</Filter>
+    </ClInclude>
+    <ClInclude Include="SFDispatch.h">
+      <Filter>DataStructure</Filter>
+    </ClInclude>
+    <ClInclude Include="SFIOCPQueue.h">
+      <Filter>Syncronization</Filter>
+    </ClInclude>
+    <ClInclude Include="SFList.h">
+      <Filter>Syncronization</Filter>
+    </ClInclude>
+    <ClInclude Include="SFLockDeque.h">
+      <Filter>Syncronization</Filter>
+    </ClInclude>
+    <ClInclude Include="SFLockQueue.h">
+      <Filter>Syncronization</Filter>
+    </ClInclude>
+    <ClInclude Include="SFObjectPool.h">
+      <Filter>Syncronization</Filter>
+    </ClInclude>
+    <ClInclude Include="SFObserver.h">
+      <Filter>Syncronization</Filter>
+    </ClInclude>
+    <ClInclude Include="SFQueue.h">
+      <Filter>Syncronization</Filter>
+    </ClInclude>
+    <ClInclude Include="SFSubject.h">
+      <Filter>Syncronization</Filter>
+    </ClInclude>
+    <ClInclude Include="SFTree.h">
+      <Filter>Syncronization</Filter>
+    </ClInclude>
+    <ClInclude Include="SFTSSyncQueue.h">
+      <Filter>Syncronization</Filter>
+    </ClInclude>
+    <ClInclude Include="SFObject.h">
+      <Filter>Syncronization</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <Text Include=".\DataStructure\Readme.txt">
       <Filter>DataStructure</Filter>
     </Text>
     <Text Include=".\ReadMe.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="External\7zAsm.asm">
+      <Filter>External</Filter>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <CustomBuild Include="External\7zCrcOpt.asm">
+      <Filter>External</Filter>
+    </CustomBuild>
   </ItemGroup>
 </Project>

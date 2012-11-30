@@ -3,7 +3,7 @@
 #include <conio.h>
 #include "SFLogicEntry.h"
 #include "P2PServer.h"
-#include "GoogleLog.h"
+//#include "GoogleLog.h"
 #include "SFTraining.h"
 #include "SFFreeForAll.h"
 #include "SFShouter.h"
@@ -20,8 +20,10 @@ SFEngine* g_pEngine = NULL;
 #pragma comment(lib, "ace.lib")
 #endif
 
+#pragma comment(lib, "BaseLayer.lib")
 #pragma comment(lib, "CasualGame.lib")
 #pragma comment(lib, "EngineLayer.lib")
+#pragma comment(lib, "DatabaseLayer.lib")
 
 #define GAMEMODE_NONE 0
 #define GAMEMODE_TRAINING 1

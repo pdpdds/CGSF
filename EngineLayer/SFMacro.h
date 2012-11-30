@@ -1,7 +1,4 @@
 #pragma once
-#include <assert.h>
-
-#define SFASSERT(x) assert((x))
 
 #define SF_GETPACKET_ARG(a,b,c) memcpy(a,b.c_str(), sizeof(c));
 
