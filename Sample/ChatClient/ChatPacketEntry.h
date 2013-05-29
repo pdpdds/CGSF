@@ -1,9 +1,10 @@
 #pragma once
 #include "ILogicEntry.h"
+#include "VMemPool.h"
 
-class SFCommand;
+class BasePacket;
 
-class ChatPacketEntry : public ILogicEntry
+class ChatPacketEntry : public ILogicEntry,  public CVMemPool<ChatPacketEntry>
 {
 public:
 	ChatPacketEntry(void);
@@ -20,22 +21,3 @@ protected:
 private:
 	int m_Serial;
 };
-
-/*m_pPacketProtocol->
-
-		char* pBuffer = m_pPacketProtocol->GetData();
-		int BufferSize = m_pPacketProtocol->GetSize();
-
-		if (oBuffer.GetDataSize()==0){
-			return true;
-
-			SendInternal(pBuffer, BufferSize);
-
-			return true;
-		}
-
-	unsigned int uSize = min(4096, oBuffer.GetDataSize());
-
-	
-		oBuffer.Pop(uSize);
-		return WriteBytes();*/

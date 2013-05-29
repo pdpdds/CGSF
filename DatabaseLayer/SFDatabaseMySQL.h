@@ -1,6 +1,5 @@
 #pragma once
 #include "SFDatabase.h"
-#include "SFDispatch.h"
 #include <functional>
 #include "Macro.h"
 #include "BasePacket.h"
@@ -8,6 +7,8 @@
 #pragma warning(disable : 4005)
 #include <my_global.h>
 #include <mysql.h>
+//#define GLOG_NO_ABBREVIATED_SEVERITIES
+//#include "glog/logging.h"
 
 class BasePacket;
 
@@ -29,7 +30,7 @@ public:
 	{
 		SFASSERT(mysql_thread_safe() > 0);
 
-		//LOG(ERROR) << "MySQL Version : " <<  mysql_get_client_info();
+//		LOG(ERROR) << "MySQL Version : " <<  mysql_get_client_info();
 
 		mysql_init(&m_Conn);
 
@@ -74,10 +75,7 @@ public:
 
 	MYSQL* GetDBConnection(){return m_pDBConnection;}
 
-	virtual BOOL RegisterDBService() = 0;
-
 protected:
-	SFDispatch<USHORT, std::tr1::function<BOOL(BasePacket*)>, BasePacket*> m_Dispatch;
 
 private:
 	MYSQL m_Conn;

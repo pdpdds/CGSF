@@ -8,8 +8,9 @@ public:
 	virtual ~SFDBProcessorMySQL(void);
 
 	virtual BOOL Initialize() override;
-	virtual BasePacket* Alloc() override;
 	virtual BOOL RegisterDBService() override;
+
+	virtual BasePacket* Alloc() override;
 	virtual BOOL Release(BasePacket* pMessage) override;
 
 	virtual BOOL Call(BasePacket* pMessage);

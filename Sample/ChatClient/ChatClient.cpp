@@ -10,6 +10,7 @@
 #include "PacketID.h"
 //#include "GoogleLog.h"
 #include "ChatPacketEntry.h"
+#include "ChatPacketJsonEntry.h"
 #include "SFBreakPad.h"
 #include "SFMinidump.h"
 #include "SFCustomHandler.h"
@@ -20,6 +21,9 @@
 #include "ChatClientProtocol.h"
 #include "SFPacketProtocol.h"
 #include "SFCasualGameDispatcher.h"
+#include "SFJsonProtocol.h"
+#include "SFJsonPacket.h"
+#include "VMemPool.h"
 
 #pragma comment(lib, "liblzf.lib")
 #pragma comment(lib, "zlib.lib")
@@ -45,11 +49,11 @@ int _tmain(int argc, _TCHAR* argv[])
 	ACE::init();
 
 	g_pEngine = new SFEngine();
-	ChatPacketEntry* pLogicEntry = new ChatPacketEntry();
+	ChatPacketJsonEntry* pLogicEntry = new ChatPacketJsonEntry();
 	g_pEngine->CreateEngine("CGSFEngine.dll", FALSE);
 	g_pEngine->CreateLogicThread(pLogicEntry);
 
-	IPacketProtocol* pProtocol = new SFPacketProtocol<ChatClientProtocol>;
+	IPacketProtocol* pProtocol = new SFPacketProtocol<SFJsonProtocol>;
 	g_pEngine->SetPacketProtocol(pProtocol);
 
 	ILogicDispatcher* pDispatcher = new SFCasualGameDispatcher();
@@ -72,15 +76,23 @@ int _tmain(int argc, _TCHAR* argv[])
 		std::string ChatMessage;
 		std::cin >> ChatMessage;
 
-		SFProtobufPacket<ChatPacket::Chat> request(CGSF::ChatReq);
+		/*SFProtobufPacket<ChatPacket::Chat> request(CGSF::ChatReq);
 		request.SetOwnerSerial(0);
 		request.GetData().set_chatmessage(ChatMessage);
 
 		if(request.GetData().ByteSize() != 0)
 		{
 			pLogicEntry->SendRequest(&request);
-		}
+		}*/
 
+
+		SFJsonPacket JsonPacket;
+		JsonObjectNode& ObjectNode = JsonPacket.GetData();
+		ObjectNode.Add("PacketId", 1234);
+		ObjectNode.Add("chat", ChatMessage);
+		JsonPacket.SetOwnerSerial(pLogicEntry->GetSerial());
+
+		pLogicEntry->SendRequest(&JsonPacket);
 		
 	}
 

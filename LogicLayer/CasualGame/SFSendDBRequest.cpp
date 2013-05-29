@@ -19,7 +19,7 @@ SFMessage* SFSendDBRequest::GetInitMessage(int RequestMsg, DWORD PlayerSerial)
 	return pMessage;
 }
 
-BOOL SFSendDBRequest::Send(SFMessage* pMessage)
+BOOL SFSendDBRequest::SendDBRequest(SFMessage* pMessage)
 {
 	return SFLogicEntry::GetLogicEntry()->GetDataBaseProxy()->SendDBRequest(pMessage);
 }
@@ -27,7 +27,7 @@ BOOL SFSendDBRequest::Send(SFMessage* pMessage)
 ///////////////////////////////////////////////////////////////////////////////////////
 //Default DB Request
 ///////////////////////////////////////////////////////////////////////////////////////
-BOOL SFSendDBRequest::SendRequest(int RequestMsg, DWORD PlayerSerial, BasePacket* pPacket)
+BOOL SFSendDBRequest::SendDBRequest(int RequestMsg, DWORD PlayerSerial, BasePacket* pPacket)
 {
 	SFPacket* Packet = (SFPacket*)pPacket;
 
@@ -54,5 +54,5 @@ BOOL SFSendDBRequest::RequestLogin(SFPlayer* pPlayer)
 	pMessage->Write((const BYTE* )pPlayer->m_username.c_str(), pPlayer->m_username.length());
 	pMessage->Write((const BYTE* )pPlayer->m_password.c_str(), pPlayer->m_password.length());
 
-	return Send(pMessage);
+	return SendDBRequest(pMessage);
 }

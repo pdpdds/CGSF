@@ -45,20 +45,20 @@
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <OutDir>..\..\VSProject\lib\Debug\</OutDir>
-    <IntDir>../../../VSProject/Intermediate/$(Configuration)\$(ProjectName)\</IntDir>
+    <IntDir>../../VSProject/Intermediate/$(Configuration)\$(ProjectName)\</IntDir>
     <TargetName>$(ProjectName)</TargetName>
     <TargetExt>.lib</TargetExt>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
-    <OutDir>..\..\VSProject\lib\Release\</OutDir>
-    <IntDir>../Intermediate/$(Configuration)\$(ProjectName)\</IntDir>
+    <OutDir>..\VSProject\lib\Release\</OutDir>
+    <IntDir>../VSProject/Intermediate/$(Configuration)\$(ProjectName)\</IntDir>
     <TargetName>$(ProjectName)</TargetName>
     <TargetExt>.lib</TargetExt>
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <ClCompile>
       <Optimization>Disabled</Optimization>
-      <AdditionalIncludeDirectories>../../DatabaseLayer;../../EngineLayer;../../EngineLayer/EngineDllInterface;../../BaseLayer;../../Common;../../Common/SFPacketStore;../../ThirdParty/ACE_WRAPPERS;../../ThirdParty/protobuf-2.4.1/src;../../ThirdParty/glog/src/windows;../../ThirdParty/mysql/include;../../BaseLayer/XML;../../BaseLayer/Logger;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>../../BaseLayer/VMemPool;../../DatabaseLayer;../../EngineLayer;../../EngineLayer/EngineDllInterface;../../BaseLayer;../../Common;../../Common/SFPacketStore;../../ThirdParty/ACE_WRAPPERS;../../ThirdParty/protobuf-2.4.1/src;../../ThirdParty/glog/src/windows;../../ThirdParty/mysql/include;../../BaseLayer/XML;../../BaseLayer/Logger;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>WIN32;_DEBUG;_LIB;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <MinimalRebuild>true</MinimalRebuild>
       <BasicRuntimeChecks>EnableFastChecks</BasicRuntimeChecks>
@@ -120,6 +120,7 @@
     <ClInclude Include=".\SFTeam.h" />
     <ClInclude Include="SFCGProtobufProtocol.h" />
     <ClInclude Include="SFDBProcessorMySQL.h" />
+    <ClInclude Include="SFDBProcessorODBC.h" />
     <ClInclude Include="SFDirectoryWatcher.h" />
     <ClInclude Include="SFDirectoryWatcherTask.h" />
     <ClInclude Include="SFSendDBRequest.h" />
@@ -166,6 +167,7 @@
     <ClCompile Include=".\SFTeam.cpp" />
     <ClCompile Include="SFCGProtobufProtocol.cpp" />
     <ClCompile Include="SFDBProcessorMySQL.cpp" />
+    <ClCompile Include="SFDBProcessorODBC.cpp" />
     <ClCompile Include="SFDirectoryWatcher.cpp" />
     <ClCompile Include="SFDirectoryWatcherTask.cpp" />
     <ClCompile Include="SFSendDBRequest.cpp" />

@@ -26,7 +26,7 @@
 #include <ace/Proactor.h>
 #include <ace/Task.h>
 
-#define GLOG_NO_ABBREVIATED_SEVERITIES
+//#define GLOG_NO_ABBREVIATED_SEVERITIES
 
 //#pragma warning(disable : 4244)
 //#include <glog/logging.h>

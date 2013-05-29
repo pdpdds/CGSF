@@ -4,13 +4,14 @@
 #include "SFEngine.h"
 #include <conio.h>
 #include "ChatLogicEntry.h"
-//#include "GoogleLog.h"
+#include "ChatLogicJsonEntry.h"
 #include "SFMacro.h"
 #include "SFSinglton.h"
 #include "SFEngine.h"
 #include "SFPacketProtocol.h"
 #include "SFCasualGameDispatcher.h"
 #include "ChatProtocol.h"
+#include "SFJsonProtocol.h"
 
 SFEngine* g_pEngine = NULL;
 
@@ -22,8 +23,7 @@ SFEngine* g_pEngine = NULL;
 
 #pragma comment(lib, "libprotobuf.lib")
 #pragma comment(lib, "EngineLayer.lib")
-#pragma comment(lib, "liblzf.lib")
-#pragma comment(lib, "zlib.lib")
+#pragma comment(lib, "BaseLayer.lib")
 
 HINSTANCE g_pP2PHandle = 0;
 
@@ -33,10 +33,10 @@ int _tmain(int argc, _TCHAR* argv[])
 
 	g_pEngine = new SFEngine();
 	
-	IPacketProtocol* pProtocol = new SFPacketProtocol<ChatProtocol>;
+	IPacketProtocol* pProtocol = new SFPacketProtocol<SFJsonProtocol>;
 	g_pEngine->SetPacketProtocol(pProtocol);
 
-	ChatLogicEntry* pLogicEntry = new ChatLogicEntry();
+	ChatLogicJsonEntry* pLogicEntry = new ChatLogicJsonEntry();
 	g_pEngine->CreateEngine("CGSFEngine.dll", TRUE);
 	g_pEngine->CreateLogicThread(pLogicEntry);
 

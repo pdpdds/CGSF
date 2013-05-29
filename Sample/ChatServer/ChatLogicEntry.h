@@ -2,9 +2,8 @@
 #include "ILogicEntry.h"
 #include <map>
 
-class SFCommand;
 class ChatUser;
-class SFPacket;
+class BasePacket;
 
 class ChatLogicEntry : public ILogicEntry
 {
@@ -15,8 +14,7 @@ public:
 	virtual ~ChatLogicEntry(void);
 
 	virtual BOOL ProcessPacket(BasePacket* pBasePacket) override;
-	BOOL 
-		SendRequest(BasePacket* pPacket);
+	BOOL SendRequest(BasePacket* pPacket);
 	BOOL Broadcast(BasePacket* pPacket);
 
 protected:

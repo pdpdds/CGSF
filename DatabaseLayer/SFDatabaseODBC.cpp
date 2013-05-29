@@ -26,22 +26,17 @@ SFDatabaseODBC::~SFDatabaseODBC(void)
 
 BOOL SFDatabaseODBC::Initialize()
 {
-	return TRUE;
-}
-
-BOOL SFDatabaseODBC::Initialize(const WCHAR* pServiceName, WCHAR* pDBName, WCHAR* pID, WCHAR* pPassword)
-{
-	if(FALSE == ConnectDB(pDBName, pID, pPassword))
+	if(FALSE == ConnectDB(GetInfo()->szDBName, GetInfo()->szID, GetInfo()->szPassword))
 		return FALSE;
 
 	return TRUE;
 }
 
-BOOL SFDatabaseODBC::ConnectDB(WCHAR* pDBName, WCHAR* pID, WCHAR* pPassword)
+BOOL SFDatabaseODBC::ConnectDB(char* pDBName, char* pID, char* pPassword)
 {
 	Disconnect();
 
-	if(SQL_NULL_HANDLE == Connect(L"DatabaseName", L"ID", L"Password"))
+	if(SQL_NULL_HANDLE == Connect(pDBName, pID, pPassword))
 		return FALSE;
 
 	return TRUE;
@@ -60,9 +55,9 @@ BOOL SFDatabaseODBC::RegisterStatement(SFStatement& statement)
 	return TRUE;
 }
 
-SQLHANDLE SFDatabaseODBC::Connect(LPCTSTR szDSN, LPCTSTR szUserID, LPCTSTR szPassword, SQLHANDLE hEnv)
+SQLHANDLE SFDatabaseODBC::Connect(char* szDSN, char* szUserID, char* szPassword, SQLHANDLE hEnv)
 {
-	if(SQL_NULL_HANDLE)
+	//if(SQL_NULL_HANDLE)
 	{
 		m_sqlReturn = ::SQLSetEnvAttr(NULL, SQL_ATTR_CONNECTION_POOLING, (SQLPOINTER)SQL_CP_ONE_PER_DRIVER, SQL_IS_INTEGER);
 		if(!SH_SQL_SUCCESS(m_sqlReturn))
@@ -87,7 +82,7 @@ SQLHANDLE SFDatabaseODBC::Connect(LPCTSTR szDSN, LPCTSTR szUserID, LPCTSTR szPas
 	if(!SH_SQL_SUCCESS(m_sqlReturn))			
 		return SQL_NULL_HANDLE;
 
-	m_sqlReturn = ::SQLConnect(m_hDbc, (SQLWCHAR*)szDSN, SQL_NTS, (SQLWCHAR*)szUserID, SQL_NTS, (SQLWCHAR*)szPassword, SQL_NTS);
+	m_sqlReturn = ::SQLConnectA(m_hDbc, (SQLCHAR*)szDSN, SQL_NTS, (SQLCHAR*)szUserID, SQL_NTS, (SQLCHAR*)szPassword, SQL_NTS);
 	if(SH_SQL_SUCCESS(m_sqlReturn))
 		m_bIsConnected = TRUE;
 	else

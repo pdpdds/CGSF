@@ -53,7 +53,7 @@
       <Optimization>Disabled</Optimization>
       <PreprocessorDefinitions>WIN32;_DEBUG;_LIB;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <SDLCheck>true</SDLCheck>
-      <AdditionalIncludeDirectories>../ThirdParty/ACE_wrappers;../BaseLayer;../ThirdParty/Mysql/include;../ThirdParty/SQLite;../EngineLayer;../EngineLayer/EngineDllInterface</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>../ThirdParty/glog-0.3.2/src/windows;../ThirdParty/ACE_wrappers;../BaseLayer;../ThirdParty/Mysql/include;../ThirdParty/SQLite;../EngineLayer;../EngineLayer/EngineDllInterface;../BaseLayer/XML</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Windows</SubSystem>
@@ -87,6 +87,7 @@
     <ClInclude Include="IDBManager.h" />
     <ClInclude Include="SFDatabase.h" />
     <ClInclude Include="SFDatabaseMySQL.h" />
+    <ClInclude Include="SFDatabaseODBC.h" />
     <ClInclude Include="SFDataBaseProxy.h" />
     <ClInclude Include="SFDatabaseProxyImpl.h" />
     <ClInclude Include="SFDatabaseProxyLocal.h" />
@@ -100,6 +101,7 @@
   <ItemGroup>
     <ClCompile Include="CppSQLite3.cpp" />
     <ClCompile Include="SFDatabaseMySQL.cpp" />
+    <ClCompile Include="SFDatabaseODBC.cpp" />
     <ClCompile Include="SFDBManager.cpp" />
     <ClCompile Include="SFDBRequest.cpp" />
     <ClCompile Include="SFDBWorker.cpp" />

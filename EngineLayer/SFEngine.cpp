@@ -4,6 +4,9 @@
 #include "ace/os_ns_thread.h"
 #include "SFBridgeThread.h"
 #include "SFSessionService.h"
+#include "P2PServer.h"
+
+HINSTANCE g_pP2PHandle = 0;
 
 SFEngine::SFEngine(void)
 {
@@ -56,15 +59,83 @@ ISessionService* SFEngine::CreateSessionService()
 	return pService;
 }
 
-BOOL SFEngine::Start(char* szIP, unsigned short Port)
+BOOL SFEngine::Intialize(ILogicEntry* pLogicEntry, IPacketProtocol* pProtocol, ILogicDispatcher* pDispatcher)
+{
+	SetPacketProtocol(pProtocol);
+	SetLogicDispathcer(pDispatcher);
+
+	m_Config.Read(L"EngineConfig.xml");
+	_EngineConfig* pInfo = m_Config.GetConfigureInfo();
+
+	if(FALSE == CreateEngine((char*)StringConversion::ToASCII(pInfo->EngineName).c_str(), true))
+		return 0;
+
+	if(FALSE == CreateLogicThread(pLogicEntry))
+		return 0;
+
+	////////////////////////////////////////////////////////////////////
+//Timer
+////////////////////////////////////////////////////////////////////
+	_TimerInfo Timer;
+	Timer.TimerID = TIMER_1_SEC;
+	Timer.Period = 1000;
+	Timer.StartDelay = 5000;
+
+	if(GetNetworkEngine()->CheckTimerImpl())
+	{
+		GetNetworkEngine()->CreateTimerTask(TIMER_1_SEC, 5000, 1000);
+	}
+
+	g_pP2PHandle = ::LoadLibrary(L"P2PServer.dll");
+
+	if(g_pP2PHandle == NULL)
+		return 0;
+
+	ACTIVATEP2P_FUNC *pfuncActivate;
+	pfuncActivate = (ACTIVATEP2P_FUNC *)::GetProcAddress( g_pP2PHandle, "ActivateP2P" );
+	int Result = pfuncActivate();
+
+	if(Result != 0)
+		return 0;
+
+	return TRUE;
+
+	/*int MaxPacketPool = 1000;
+
+	PacketPoolSingleton::instance()->Init(MaxPacketPool);*/
+
+	/*SFConfigure Configure;
+	_EngineConfig* pInfo = Configure.GetConfigureInfo();
+	pInfo->EngineName = L"CGSFEngine.dll";
+	pInfo->P2PModuleName = L"P2PServer.dll";
+	pInfo->ServerIP = L"127.0.0.1";
+	pInfo->ServerPort = 25251;
+	pInfo->PacketProtocol = L"Protobuf";
+	pInfo->HostName = L"Juhang";
+	pInfo->TimerList.push_back(TIMER_1_SEC);
+	Configure.Write(L"EngineConfig.xml");*/
+
+}
+
+BOOL SFEngine::Start()
 {
 	m_pNetworkEngine->Init();
 
-	return m_pNetworkEngine->Start(szIP, Port);
+	return m_pNetworkEngine->Start((char*)StringConversion::ToASCII(m_Config.GetConfigureInfo()->ServerIP)
+		                         , m_Config.GetConfigureInfo()->ServerPort);
 }
 
 BOOL SFEngine::ShutDown()
 {
+	if(g_pP2PHandle)
+	{
+		DEACTIVATEP2P_FUNC *pfuncDeactivate;
+		pfuncDeactivate = (DEACTIVATEP2P_FUNC *)::GetProcAddress( g_pP2PHandle, "DeactivateP2P" );
+		int Result = pfuncDeactivate();
+
+		::FreeLibrary(g_pP2PHandle);
+	}
+
 	m_pNetworkEngine->Shutdown();
 
 	ACE::fini();

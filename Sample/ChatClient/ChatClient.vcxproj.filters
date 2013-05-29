@@ -36,13 +36,13 @@
     <ClCompile Include="..\..\Common\SFPacketStore\PacketCore.pb.cc">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="ChatPacketJsonEntry.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include=".\TCPNetworkCallback.h">
       <Filter>Source Files</Filter>
-    </ClInclude>
-    <ClInclude Include=".\ChatPacketEntry.h">
-      <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include=".\stdafx.h">
       <Filter>Header Files</Filter>
@@ -58,6 +58,12 @@
     </ClInclude>
     <ClInclude Include="..\..\Common\SFPacketStore\PacketCore.pb.h">
       <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="ChatPacketJsonEntry.h">
+      <Filter>Source Files</Filter>
+    </ClInclude>
+    <ClInclude Include=".\ChatPacketEntry.h">
+      <Filter>Source Files</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

@@ -152,14 +152,13 @@ public:
 	/////////////////////////////////////////////////////////
 //Method
 /////////////////////////////////////////////////////////
-	BOOL Initialize(const WCHAR* pServiceName, WCHAR* pDBName, WCHAR* pID, WCHAR* pPassword);
-	BOOL ConnectDB(WCHAR* pDBName, WCHAR* pID, WCHAR* pPassword);
+	BOOL ConnectDB(char* pDBName, char* pID, char* pPassword);
 	BOOL RegisterStatement(SFStatement& statement);
 	BOOL IsDBConnected();
 
 	BOOL GetDBError(LPSTR szMsg, int nBufLen);
 	void Disconnect();
-	SQLHANDLE Connect(LPCTSTR szDSN, LPCTSTR szUserID, LPCTSTR szPasswd, SQLHANDLE hEnv = SQL_NULL_HANDLE);
+	SQLHANDLE Connect(char* szDSN, char* szUserID, char* szPasswd, SQLHANDLE hEnv = SQL_NULL_HANDLE);
 	BOOL AddStatement(SFStatement& statement);
 	BOOL IsConnected(){return m_bIsConnected;}
 

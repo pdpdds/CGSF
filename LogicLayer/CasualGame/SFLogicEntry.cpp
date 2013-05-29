@@ -3,6 +3,7 @@
 #include "SFPlayer.h"
 #include "SFMacro.h"
 #include "SFDBProcessorMySQL.h"
+#include "SFDBProcessorODBC.h"
 
 SFLogicEntry* SFLogicEntry::m_pLogicEntry = NULL;
 

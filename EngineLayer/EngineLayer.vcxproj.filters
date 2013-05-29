@@ -29,6 +29,12 @@
     <Filter Include="Packet\PacketProtocol">
       <UniqueIdentifier>{8349fc42-da29-49ce-aeef-7b5f72c6a78a}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Packet\CGSFPacket">
+      <UniqueIdentifier>{4241a524-5d76-436c-874a-dc3f357b9a5a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Packet\JsonPacket">
+      <UniqueIdentifier>{e4766a0c-0162-4846-8645-f96be4b00e63}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include=".\SFExcel.cpp">
@@ -39,18 +45,6 @@
     </ClCompile>
     <ClCompile Include=".\stdafx.cpp">
       <Filter>Common</Filter>
-    </ClCompile>
-    <ClCompile Include=".\SFCheckSum.cpp">
-      <Filter>Packet</Filter>
-    </ClCompile>
-    <ClCompile Include=".\SFIOBuffer.cpp">
-      <Filter>Packet</Filter>
-    </ClCompile>
-    <ClCompile Include=".\SFPacket.cpp">
-      <Filter>Packet</Filter>
-    </ClCompile>
-    <ClCompile Include=".\SFPacketIOBuffer.cpp">
-      <Filter>Packet</Filter>
     </ClCompile>
     <ClCompile Include=".\LogicEntry.cpp">
       <Filter>Logic</Filter>
@@ -70,9 +64,6 @@
     <ClCompile Include="SFProtobufProtocol.cpp">
       <Filter>Packet\ProtobufPacket</Filter>
     </ClCompile>
-    <ClCompile Include=".\SFDefaultPacketProtocol.cpp">
-      <Filter>Packet\ProtobufPacket</Filter>
-    </ClCompile>
     <ClCompile Include=".\SFPacketProtocol.cpp">
       <Filter>Packet\PacketProtocol</Filter>
     </ClCompile>
@@ -90,6 +81,30 @@
     </ClCompile>
     <ClCompile Include=".\SFSessionService.cpp">
       <Filter>Network</Filter>
+    </ClCompile>
+    <ClCompile Include="SFJsonProtocol.cpp">
+      <Filter>Packet\JsonPacket</Filter>
+    </ClCompile>
+    <ClCompile Include=".\SFPacketIOBuffer.cpp">
+      <Filter>Packet\CGSFPacket</Filter>
+    </ClCompile>
+    <ClCompile Include=".\SFPacket.cpp">
+      <Filter>Packet\CGSFPacket</Filter>
+    </ClCompile>
+    <ClCompile Include=".\SFIOBuffer.cpp">
+      <Filter>Packet\CGSFPacket</Filter>
+    </ClCompile>
+    <ClCompile Include=".\SFCheckSum.cpp">
+      <Filter>Packet\CGSFPacket</Filter>
+    </ClCompile>
+    <ClCompile Include="SFJsonPacket.cpp">
+      <Filter>Packet\JsonPacket</Filter>
+    </ClCompile>
+    <ClCompile Include="SFCGSFPacketProtocol.cpp">
+      <Filter>Packet\CGSFPacket</Filter>
+    </ClCompile>
+    <ClCompile Include="SFConfigure.cpp">
+      <Filter>Common</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -113,18 +128,6 @@
     </ClInclude>
     <ClInclude Include=".\targetver.h">
       <Filter>Common</Filter>
-    </ClInclude>
-    <ClInclude Include=".\SFCheckSum.h">
-      <Filter>Packet</Filter>
-    </ClInclude>
-    <ClInclude Include=".\SFIOBuffer.h">
-      <Filter>Packet</Filter>
-    </ClInclude>
-    <ClInclude Include=".\SFPacket.h">
-      <Filter>Packet</Filter>
-    </ClInclude>
-    <ClInclude Include=".\SFPacketIOBuffer.h">
-      <Filter>Packet</Filter>
     </ClInclude>
     <ClInclude Include=".\ILogicEntry.h">
       <Filter>Logic</Filter>
@@ -174,9 +177,6 @@
     <ClInclude Include="SFProtobufProtocol.h">
       <Filter>Packet\ProtobufPacket</Filter>
     </ClInclude>
-    <ClInclude Include=".\SFDefaultPacketProtocol.h">
-      <Filter>Packet\ProtobufPacket</Filter>
-    </ClInclude>
     <ClInclude Include=".\SFPacketProtocol.h">
       <Filter>Packet\PacketProtocol</Filter>
     </ClInclude>
@@ -200,6 +200,33 @@
     </ClInclude>
     <ClInclude Include="EngineDLLInterface\BasePacket.h">
       <Filter>Network</Filter>
+    </ClInclude>
+    <ClInclude Include="SFJsonProtocol.h">
+      <Filter>Packet\JsonPacket</Filter>
+    </ClInclude>
+    <ClInclude Include=".\SFPacketIOBuffer.h">
+      <Filter>Packet\CGSFPacket</Filter>
+    </ClInclude>
+    <ClInclude Include=".\SFPacket.h">
+      <Filter>Packet\CGSFPacket</Filter>
+    </ClInclude>
+    <ClInclude Include=".\SFIOBuffer.h">
+      <Filter>Packet\CGSFPacket</Filter>
+    </ClInclude>
+    <ClInclude Include=".\SFCheckSum.h">
+      <Filter>Packet\CGSFPacket</Filter>
+    </ClInclude>
+    <ClInclude Include="SFJsonPacket.h">
+      <Filter>Packet\JsonPacket</Filter>
+    </ClInclude>
+    <ClInclude Include="SFCGSFPacketProtocol.h">
+      <Filter>Packet\CGSFPacket</Filter>
+    </ClInclude>
+    <ClInclude Include="SFConfigure.h">
+      <Filter>Common</Filter>
+    </ClInclude>
+    <ClInclude Include="CommonHeader.h">
+      <Filter>Common</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

@@ -36,7 +36,7 @@ public:
 	SFLogicEntry(void);
 	virtual ~SFLogicEntry(void);
 
-	BOOL Initialize();
+	virtual BOOL Initialize() override;
 	static SFLogicEntry* GetLogicEntry(){return m_pLogicEntry;}
 
 	virtual BOOL ProcessPacket(BasePacket* pBase) override;

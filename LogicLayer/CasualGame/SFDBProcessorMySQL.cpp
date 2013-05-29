@@ -15,7 +15,7 @@ SFDBProcessorMySQL::~SFDBProcessorMySQL(void)
 
 BOOL SFDBProcessorMySQL::Initialize()
 {
-	_DBConnectionInfo Info = {"cgsf", "test", "root", "root", "127.0.0.1", 3306};
+	_DBConnectionInfo Info = {"cgsf", "test", "juhang3", "genius", "127.0.0.1", 3306};
     SetInfo(Info);
 
 	if(FALSE == SFDatabaseMySQL::Initialize())

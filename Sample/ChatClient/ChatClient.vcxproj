@@ -60,7 +60,7 @@
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <ClCompile>
       <Optimization>Disabled</Optimization>
-      <AdditionalIncludeDirectories>../ClientInterface;../../BaseLayer;../../EngineLayer;../../EngineLayer/EngineDllInterface;../../Common;../../Common/SFPacketStore;../../Common/Include;../../ThirdParty/Breakpad;../../ThirdParty/Bugtrap;../../ThirdParty/glog/src/windows;../../ThirdParty/protobuf-2.4.1/src;../../ThirdParty/ACE_wrappers;../../BaseLayer/XML;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>../../BaseLayer/VMemPool;../ClientInterface;../../BaseLayer;../../EngineLayer;../../EngineLayer/EngineDllInterface;../../Common;../../Common/SFPacketStore;../../Common/Include;../../ThirdParty/Breakpad;../../ThirdParty/Bugtrap;../../ThirdParty/glog/src/windows;../../ThirdParty/protobuf-2.4.1/src;../../ThirdParty/ACE_wrappers;../../BaseLayer/XML;../../BaseLayer/json;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>WIN32;_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <MinimalRebuild>true</MinimalRebuild>
       <BasicRuntimeChecks>EnableFastChecks</BasicRuntimeChecks>
@@ -114,6 +114,7 @@
     </ClCompile>
     <ClCompile Include=".\TCPNetworkCallback.cpp" />
     <ClCompile Include="ChatClientProtocol.cpp" />
+    <ClCompile Include="ChatPacketJsonEntry.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\Common\SFPacketStore\ChatPacket.pb.h" />
@@ -123,6 +124,7 @@
     <ClInclude Include=".\stdafx.h" />
     <ClInclude Include=".\targetver.h" />
     <ClInclude Include="ChatClientProtocol.h" />
+    <ClInclude Include="ChatPacketJsonEntry.h" />
   </ItemGroup>
   <ItemGroup>
     <Text Include=".\ReadMe.txt" />

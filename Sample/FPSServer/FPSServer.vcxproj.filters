@@ -74,6 +74,9 @@
     <ClInclude Include="FPSDefaultProtocol.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="GameModeConstant.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <Text Include=".\ReadMe.txt" />

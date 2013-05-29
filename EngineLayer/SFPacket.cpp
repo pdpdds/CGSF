@@ -30,18 +30,20 @@ void SFPacket::ResetDataBuffer()
 	memset(m_pPacketData, 0, sizeof(MAX_PACKET_DATA));
 }
 
-BOOL SFPacket::MakePacket(BYTE* pSrcBuf, int SrcSize, int PacketOption)
+bool SFPacket::Encode()
 {
-	if(SrcSize < 0 || SrcSize > MAX_PACKET_DATA)
+	int PacketOption = CGSF_PACKET_OPTION;
+
+	if(GetDataSize() < 0 || GetDataSize() > MAX_PACKET_DATA)
 	{
 		SFASSERT(0);
-		return FALSE;
+		return false;
 	}
 
-	if(SrcSize == 0)
+	if(GetDataSize() == 0)
 	{
 		m_Header.PacketLen = sizeof(SFPacketHeader);
-		return TRUE;
+		return true;
 	}
 
 	BYTE pDestBuf[4096] = {0,};
@@ -49,33 +51,31 @@ BOOL SFPacket::MakePacket(BYTE* pSrcBuf, int SrcSize, int PacketOption)
 
 	DWORD dwResult = 0;
 
-	if (PacketOption & PACKET_OPTION_COMPRESS && SrcSize >= PACKET_COMPRESS_LIMIT)
+	if (PacketOption & PACKET_OPTION_COMPRESS && GetDataSize() >= PACKET_COMPRESS_LIMIT)
 	{
-		dwResult = SFCompressor<SFCompressLzf>::GetCompressor()->Compress(pDestBuf, DestSize, pSrcBuf, SrcSize);
+		dwResult = SFCompressor<SFCompressLzf>::GetCompressor()->Compress(pDestBuf, DestSize, GetDataBuffer(), GetDataSize());
 
 		 if(dwResult != TRUE)
 		 {
 			 SFASSERT(0);
-			 return FALSE;
+			 return false;
 		 }
 
 		 m_Header.PacketLen = sizeof(SFPacketHeader) + DestSize;
 		 memcpy(m_pPacketData, pDestBuf, DestSize);
-		 SrcSize = DestSize;
+		 SetDataSize(DestSize);
 	}
 	else
 	{
 		PacketOption = PacketOption & (~PACKET_OPTION_COMPRESS);
-		m_Header.PacketLen = sizeof(SFPacketHeader) + SrcSize;
-		memcpy(m_pPacketData, pSrcBuf, SrcSize);
 	}
 
 	if (PacketOption & PACKET_OPTION_ENCRYPTION)
 	{
-		if(FALSE == SFEncrytion<SFEncryptionXOR>::Encrypt((BYTE*)m_pPacketData, SrcSize))
+		if(false == SFEncrytion<SFEncryptionXOR>::Encrypt((BYTE*)m_pPacketData, GetDataSize()))
 		{
 			SFASSERT(0);
-			return FALSE;
+			return false;
 		}
 	}
 
@@ -83,12 +83,12 @@ BOOL SFPacket::MakePacket(BYTE* pSrcBuf, int SrcSize, int PacketOption)
 
 	if (PacketOption & PACKET_OPTION_DATACRC)
 	{
-		BOOL Result = SFPacket::GetDataCRC((BYTE*)m_pPacketData, SrcSize, dwDataCRC);
+		BOOL Result = SFPacket::GetDataCRC((BYTE*)m_pPacketData, GetDataSize(), dwDataCRC);
 		
-		if(FALSE == Result)
+		if(false == Result)
 		{
 			SFASSERT(0);
-			return FALSE;
+			return false;
 		}
 
 		m_Header.DataCRC = dwDataCRC;
@@ -96,15 +96,78 @@ BOOL SFPacket::MakePacket(BYTE* pSrcBuf, int SrcSize, int PacketOption)
 
 	m_Header.SetPacketOption(PacketOption);
 
+	return true;
+}
+
+BOOL SFPacket::Decode(int& ErrorCode)
+{
+	SFPacketHeader* pHeader = GetHeader();
+
+	if(TRUE == pHeader->CheckDataCRC())
+	{
+		BOOL Result = CheckDataCRC();
+
+		if(TRUE != Result)
+		{
+			//SFLOG_WARN(L"Packet CRC Check Fail!! %d %d", pHeader->DataCRC, dwDataCRC);
+			ErrorCode = PACKETIO_ERROR_DATA_CRC;
+			return FALSE;
+		}
+	}
+
+	if (TRUE == pHeader->CheckEncryption())
+	{	
+		if(FALSE == SFEncrytion<SFEncryptionXOR>::Decrypt((BYTE*)GetDataBuffer(), pHeader->PacketLen - sizeof(SFPacketHeader)))
+		{
+			SFASSERT(0);
+			ErrorCode = PACKETIO_ERROR_DATA_ENCRYPTION;
+			return FALSE;
+		}
+	}
+
+	if(TRUE == pHeader->CheckCompressed())
+	{
+		BYTE pSrcBuf[MAX_PACKET_DATA] = {0,};
+		int DestSize = MAX_PACKET_DATA;
+
+		memcpy(pSrcBuf, GetDataBuffer(), GetDataSize());
+		ResetDataBuffer();
+
+		if(FALSE == SFCompressor<SFCompressLzf>::GetCompressor()->Uncompress(GetDataBuffer(), DestSize, pSrcBuf, GetDataSize()))
+		{
+			//SFLOG_WARN(L"Packet Uncompress Fail!! %d %d", pHeader->DataCRC, dwDataCRC);
+
+			ErrorCode = PACKETIO_ERROR_DATA_COMPRESS;
+
+			return FALSE;
+		}
+
+		pHeader->PacketLen = DestSize + sizeof(SFPacketHeader);
+	}
+
 	return TRUE;
 }
 
 BOOL SFPacket::GetDataCRC(BYTE* pDataBuf, DWORD DataSize, DWORD& dwDataCRC)
 {
-
 	BOOL Result = m_FastCRC.GetZLibCRC((BYTE*)pDataBuf, DataSize, dwDataCRC);
 
 	if(TRUE != Result)
+	{
+		SFASSERT(0);
+		return FALSE;
+	}
+
+	return TRUE;
+}
+
+BOOL SFPacket::CheckDataCRC()
+{
+	 DWORD dwDataCRC = 0;
+
+	BOOL Result = m_FastCRC.GetZLibCRC((BYTE*)m_pPacketData, GetDataSize(), dwDataCRC);
+
+	if(TRUE != Result || dwDataCRC != GetHeader()->DataCRC)
 	{
 		SFASSERT(0);
 		return FALSE;
@@ -120,5 +183,4 @@ BOOL SFPacket::GetDataCRC(BYTE* pDataBuf, DWORD DataSize, DWORD& dwDataCRC)
 	}*/
 
 	return TRUE;
-
 }

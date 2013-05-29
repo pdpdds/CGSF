@@ -5,6 +5,13 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "liblzf", "liblzf\liblzf.vcx
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "zlib", "zlib\zlib.vcxproj", "{EB62EF25-BEF5-4F95-BF77-414526AE6FFA}"
 EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Packer", "Packer\Packer.vcxproj", "{B86AEFA5-EF98-40F4-BDFD-88C7D7D05ACA}"
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "PackerTest", "PackerTest\PackerTest.vcxproj", "{E7584EF7-2687-4F97-82AB-EC98F39C1806}"
+	ProjectSection(ProjectDependencies) = postProject
+		{B86AEFA5-EF98-40F4-BDFD-88C7D7D05ACA} = {B86AEFA5-EF98-40F4-BDFD-88C7D7D05ACA}
+	EndProjectSection
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug Multithreaded DLL|Win32 = Debug Multithreaded DLL|Win32
@@ -33,6 +40,38 @@ Global
 		{8468FE5E-3585-441D-A6EA-0EEEC236AB7B}.Release Singlethreaded|Win32.Build.0 = Release|Win32
 		{8468FE5E-3585-441D-A6EA-0EEEC236AB7B}.Release|Win32.ActiveCfg = Release|Win32
 		{8468FE5E-3585-441D-A6EA-0EEEC236AB7B}.Release|Win32.Build.0 = Release|Win32
+		{B86AEFA5-EF98-40F4-BDFD-88C7D7D05ACA}.Debug Multithreaded DLL|Win32.ActiveCfg = Debug|Win32
+		{B86AEFA5-EF98-40F4-BDFD-88C7D7D05ACA}.Debug Multithreaded DLL|Win32.Build.0 = Debug|Win32
+		{B86AEFA5-EF98-40F4-BDFD-88C7D7D05ACA}.Debug Multithreaded|Win32.ActiveCfg = Debug|Win32
+		{B86AEFA5-EF98-40F4-BDFD-88C7D7D05ACA}.Debug Multithreaded|Win32.Build.0 = Debug|Win32
+		{B86AEFA5-EF98-40F4-BDFD-88C7D7D05ACA}.Debug Singlethreaded|Win32.ActiveCfg = Debug|Win32
+		{B86AEFA5-EF98-40F4-BDFD-88C7D7D05ACA}.Debug Singlethreaded|Win32.Build.0 = Debug|Win32
+		{B86AEFA5-EF98-40F4-BDFD-88C7D7D05ACA}.Debug|Win32.ActiveCfg = Debug|Win32
+		{B86AEFA5-EF98-40F4-BDFD-88C7D7D05ACA}.Debug|Win32.Build.0 = Debug|Win32
+		{B86AEFA5-EF98-40F4-BDFD-88C7D7D05ACA}.Release Multithreaded DLL|Win32.ActiveCfg = Release|Win32
+		{B86AEFA5-EF98-40F4-BDFD-88C7D7D05ACA}.Release Multithreaded DLL|Win32.Build.0 = Release|Win32
+		{B86AEFA5-EF98-40F4-BDFD-88C7D7D05ACA}.Release Multithreaded|Win32.ActiveCfg = Release|Win32
+		{B86AEFA5-EF98-40F4-BDFD-88C7D7D05ACA}.Release Multithreaded|Win32.Build.0 = Release|Win32
+		{B86AEFA5-EF98-40F4-BDFD-88C7D7D05ACA}.Release Singlethreaded|Win32.ActiveCfg = Release|Win32
+		{B86AEFA5-EF98-40F4-BDFD-88C7D7D05ACA}.Release Singlethreaded|Win32.Build.0 = Release|Win32
+		{B86AEFA5-EF98-40F4-BDFD-88C7D7D05ACA}.Release|Win32.ActiveCfg = Release|Win32
+		{B86AEFA5-EF98-40F4-BDFD-88C7D7D05ACA}.Release|Win32.Build.0 = Release|Win32
+		{E7584EF7-2687-4F97-82AB-EC98F39C1806}.Debug Multithreaded DLL|Win32.ActiveCfg = Debug|Win32
+		{E7584EF7-2687-4F97-82AB-EC98F39C1806}.Debug Multithreaded DLL|Win32.Build.0 = Debug|Win32
+		{E7584EF7-2687-4F97-82AB-EC98F39C1806}.Debug Multithreaded|Win32.ActiveCfg = Debug|Win32
+		{E7584EF7-2687-4F97-82AB-EC98F39C1806}.Debug Multithreaded|Win32.Build.0 = Debug|Win32
+		{E7584EF7-2687-4F97-82AB-EC98F39C1806}.Debug Singlethreaded|Win32.ActiveCfg = Debug|Win32
+		{E7584EF7-2687-4F97-82AB-EC98F39C1806}.Debug Singlethreaded|Win32.Build.0 = Debug|Win32
+		{E7584EF7-2687-4F97-82AB-EC98F39C1806}.Debug|Win32.ActiveCfg = Debug|Win32
+		{E7584EF7-2687-4F97-82AB-EC98F39C1806}.Debug|Win32.Build.0 = Debug|Win32
+		{E7584EF7-2687-4F97-82AB-EC98F39C1806}.Release Multithreaded DLL|Win32.ActiveCfg = Release|Win32
+		{E7584EF7-2687-4F97-82AB-EC98F39C1806}.Release Multithreaded DLL|Win32.Build.0 = Release|Win32
+		{E7584EF7-2687-4F97-82AB-EC98F39C1806}.Release Multithreaded|Win32.ActiveCfg = Release|Win32
+		{E7584EF7-2687-4F97-82AB-EC98F39C1806}.Release Multithreaded|Win32.Build.0 = Release|Win32
+		{E7584EF7-2687-4F97-82AB-EC98F39C1806}.Release Singlethreaded|Win32.ActiveCfg = Release|Win32
+		{E7584EF7-2687-4F97-82AB-EC98F39C1806}.Release Singlethreaded|Win32.Build.0 = Release|Win32
+		{E7584EF7-2687-4F97-82AB-EC98F39C1806}.Release|Win32.ActiveCfg = Release|Win32
+		{E7584EF7-2687-4F97-82AB-EC98F39C1806}.Release|Win32.Build.0 = Release|Win32
 		{EB62EF25-BEF5-4F95-BF77-414526AE6FFA}.Debug Multithreaded DLL|Win32.ActiveCfg = Debug|Win32
 		{EB62EF25-BEF5-4F95-BF77-414526AE6FFA}.Debug Multithreaded DLL|Win32.Build.0 = Debug|Win32
 		{EB62EF25-BEF5-4F95-BF77-414526AE6FFA}.Debug Multithreaded|Win32.ActiveCfg = Debug|Win32

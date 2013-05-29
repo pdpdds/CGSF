@@ -13,8 +13,8 @@ public:
 	BOOL Initialize();
 	void ResetDataBuffer();
 
-	BOOL MakePacket(BYTE* pSrcBuf, int SrcSize, int PacketOption = 0);
 	static BOOL GetDataCRC(BYTE* pDataBuf, DWORD DataSize, DWORD& dwDataCRC);
+	BOOL CheckDataCRC();
 
 	inline int GetDataSize(){return m_Header.PacketLen - sizeof(SFPacketHeader);}
 	inline void SetDataSize(USHORT Size){m_Header.PacketLen = Size + sizeof(SFPacketHeader);}
@@ -26,7 +26,8 @@ public:
 
 	inline int GetPacketSize(){return m_Header.PacketLen;}
 
-	//virtual bool Encode() override;
+	virtual bool Encode() override;
+	BOOL Decode(int& ErrorCode);
 	//virtual bool Decode(char* pBuf, unsigned int nSize) override;
 
 protected:

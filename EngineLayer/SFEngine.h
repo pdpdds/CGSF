@@ -1,6 +1,6 @@
 #pragma once
 #include "IEngine.h"
-#include "SFConfig.h"
+#include "SFConfigure.h"
 #include "INetworkEngine.h"
 #include "IPacketProtocol.h"
 #include "ILogicDispatcher.h"
@@ -12,12 +12,11 @@ public:
 	SFEngine(void);
 	virtual ~SFEngine(void);
 
-	BOOL Start(char* szIP, unsigned short Port);
+	BOOL Start();
+	BOOL Intialize(ILogicEntry* pLogicEntry, IPacketProtocol* pProtocol, ILogicDispatcher* pDispatcher);
 	BOOL ShutDown();
 
 	virtual ISessionService* CreateSessionService() override;
-	BOOL CreateLogicThread(ILogicEntry* pLogic);
-	BOOL CreateEngine(char* szModuleName, bool Server = false);
 	
 	virtual bool OnConnect(int Serial) override;
 	virtual bool OnDisconnect(int Serial) override;
@@ -27,35 +26,26 @@ public:
 
 	INetworkEngine* GetNetworkEngine(){return m_pNetworkEngine;}
 
-	SFConfig* GetConfig(){return &m_Config;}
-	void SetConfig(SFConfig& Config){m_Config = Config;}
+	SFConfigure* GetConfig(){return &m_Config;}
+	void SetConfig(SFConfigure& Config){m_Config = Config;}
 
-	void SetPacketProtocol(IPacketProtocol* pProtocol){m_pPacketProtocol = pProtocol;}
+	
 	IPacketProtocol* GetPacketProtocol(){return m_pPacketProtocol;}
-	void SetLogicDispathcer(ILogicDispatcher* pDispatcher){m_pLogicDispatcher = pDispatcher;}
-
 	ILogicDispatcher* GetLogicDispatcher(){return m_pLogicDispatcher;}
+
 protected:
+
+	BOOL CreateLogicThread(ILogicEntry* pLogic);
+	BOOL CreateEngine(char* szModuleName, bool Server = false);
 	
 private:
-	
-	SFConfig m_Config;
+	SFConfigure m_Config;
+
 	HINSTANCE m_EngineHandle;
 	INetworkEngine* m_pNetworkEngine;
 	IPacketProtocol* m_pPacketProtocol;
 	ILogicDispatcher* m_pLogicDispatcher;
+
+	void SetPacketProtocol(IPacketProtocol* pProtocol){m_pPacketProtocol = pProtocol;}
+	void SetLogicDispathcer(ILogicDispatcher* pDispatcher){m_pLogicDispatcher = pDispatcher;}
 };
-/*
-	BOOL Send( int Serial, int PacketID, char* pBuffer, int BufferSize )
-	{
-		int HeaderSize = sizeof(SFPacketHeader);
-
-		SFPacket PacketSend;
-
-		PacketSend.SetPacketID(PacketID);
-
-		PacketSend.MakePacket((BYTE*)pBuffer, BufferSize, CGSF_PACKET_OPTION);
-
-		return GetNetworkEngine()->Send(Serial, (char*)PacketSend.GetHeader(), PacketSend.GetHeaderSize() + PacketSend.GetDataSize());
-	}
-*/

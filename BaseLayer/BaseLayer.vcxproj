@@ -58,7 +58,7 @@
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <ClCompile>
       <Optimization>Disabled</Optimization>
-      <AdditionalIncludeDirectories>.;./XML;./Logger;./External;../ThirdParty/Breakpad;../ThirdParty/Bugtrap;../ThirdParty/LiteZip;../ThirdParty/ACE_wrappers;../ThirdParty;../ThirdParty/liblzf;../ThirdParty/zlib;../ThirdParty/ssl/include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>./VMemPool;.;./XML;./Logger;./External;../ThirdParty/Breakpad;../ThirdParty/Bugtrap;../ThirdParty/LiteZip;../ThirdParty/ACE_wrappers;../ThirdParty;../ThirdParty/liblzf;../ThirdParty/zlib;../ThirdParty/ssl/include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>WIN32;_DEBUG;_LIB;_CRT_SECURE_NO_WARNINGS;_CRT_NON_CONFORMING_SWPRINTFS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <MinimalRebuild>true</MinimalRebuild>
       <BasicRuntimeChecks>EnableFastChecks</BasicRuntimeChecks>
@@ -96,6 +96,7 @@
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Create</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Create</PrecompiledHeader>
     </ClCompile>
+    <ClCompile Include="CrashHandler.cpp" />
     <ClCompile Include="DelayedDirectoryChangeHandler.cpp" />
     <ClCompile Include="DirectoryChanges.cpp" />
     <ClCompile Include="External\7zcrc.cpp" />
@@ -109,6 +110,9 @@
     <ClCompile Include="External\md5.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">NotUsing</PrecompiledHeader>
     </ClCompile>
+    <ClCompile Include="GeneralPool.cpp" />
+    <ClCompile Include="json\JsonBuilder.cpp" />
+    <ClCompile Include="json\JsonNode.cpp" />
     <ClCompile Include="Logger\ACELogger.cpp" />
     <ClCompile Include="Logger\GoogleLog.cpp" />
     <ClCompile Include="SFBreakPad.cpp" />
@@ -129,6 +133,7 @@
     <ClCompile Include="SFSubject.cpp" />
     <ClCompile Include="SFUtil.cpp" />
     <ClCompile Include="StackWalker.cpp" />
+    <ClCompile Include="VMemPool\BitSet.cpp" />
     <ClCompile Include="XML\StringConversion.cpp" />
     <ClCompile Include="XML\tinystr.cpp" />
     <ClCompile Include="XML\tinyxml.cpp" />
@@ -167,6 +172,8 @@
     <ClInclude Include=".\DataStructure\sorts.h" />
     <ClInclude Include=".\DataStructure\Stack.h" />
     <ClInclude Include=".\DataStructure\Tree.h" />
+    <ClInclude Include="BigNum.h" />
+    <ClInclude Include="CrashHandler.h" />
     <ClInclude Include="CStdString.h" />
     <ClInclude Include="DelayedDirectoryChangeHandler.h" />
     <ClInclude Include="DirectoryChanges.h" />
@@ -175,7 +182,15 @@
     <ClInclude Include="External\crc.h" />
     <ClInclude Include="External\CSmtp.h" />
     <ClInclude Include="External\md5.h" />
+    <ClInclude Include="GeneralPool.h" />
     <ClInclude Include="GPGLockFreeQueue.h" />
+    <ClInclude Include="json\DataTypeConvertor.h" />
+    <ClInclude Include="json\elements.h" />
+    <ClInclude Include="json\JsonBuilder.h" />
+    <ClInclude Include="json\JsonNode.h" />
+    <ClInclude Include="json\reader.h" />
+    <ClInclude Include="json\visitor.h" />
+    <ClInclude Include="json\writer.h" />
     <ClInclude Include="Logger\ACELogger.h" />
     <ClInclude Include="Logger\GoogleLog.h" />
     <ClInclude Include="Logger\SFLog.h" />
@@ -212,6 +227,8 @@
     <ClInclude Include="SFTSSyncQueue.h" />
     <ClInclude Include="SFUtil.h" />
     <ClInclude Include="StackWalker.h" />
+    <ClInclude Include="VMemPool\BitSet.h" />
+    <ClInclude Include="VMemPool\VMemPool.h" />
     <ClInclude Include="XML\IXMLSerializable.h" />
     <ClInclude Include="XML\IXMLStreamReader.h" />
     <ClInclude Include="XML\IXMLStreamWriter.h" />
@@ -234,6 +251,9 @@
       <Command Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">ml.exe /safeseh -c -Fo$(PlatformName)\$(ConfigurationName)\7zCrcOpt.obj ./External/7zCrcOpt.asm</Command>
       <Outputs Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">$(PlatformName)\$(ConfigurationName)\7zCrcOpt.obj</Outputs>
     </CustomBuild>
+    <None Include="json\elements.inl" />
+    <None Include="json\reader.inl" />
+    <None Include="json\writer.inl" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

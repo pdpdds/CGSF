@@ -2,8 +2,6 @@
 #include "SFProtocol.h"
 #include "DataBuffer.h"
 
-class SFIncomingPacket;
-class SFOutgoingPacket;
 class ISession;
 class BasePacket;
 

@@ -1,4 +1,5 @@
 #pragma once
+#include "BasePacket.h"
 #include <google/protobuf/stubs/common.h>
 //
 #include <google/protobuf/generated_message_util.h>

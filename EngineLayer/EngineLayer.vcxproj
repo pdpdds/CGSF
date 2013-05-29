@@ -58,7 +58,7 @@
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <ClCompile>
       <Optimization>Disabled</Optimization>
-      <AdditionalIncludeDirectories>./EngineDllInterface;../Common/Include;../BaseLayer;./External;../P2PNetwork;../Common;../ThirdParty/zlib;../ThirdParty/liblzf;../ThirdParty/glog/src/windows;../ThirdParty/ACE_wrappers;../ThirdParty/boost_1_49_0;../ThirdParty;../Common/SFPacketStore;../ThirdParty/protobuf-2.4.1/src;../ThirdParty/Loki/include;../BaseLayer/XML;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>../BaseLayer/VMemPool;./EngineDllInterface;../Common/Include;../BaseLayer;./External;../P2PNetwork;../Common;../ThirdParty/zlib;../ThirdParty/liblzf;../ThirdParty/glog/src/windows;../ThirdParty/ACE_wrappers;../ThirdParty/boost_1_49_0;../ThirdParty;../Common/SFPacketStore;../ThirdParty/protobuf-2.4.1/src;../ThirdParty/Loki/include;../BaseLayer/XML;../BaseLayer/json;../P2PLayer/P2PServer;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>WIN32;_DEBUG;_LIB;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <MinimalRebuild>true</MinimalRebuild>
       <BasicRuntimeChecks>EnableFastChecks</BasicRuntimeChecks>
@@ -102,10 +102,13 @@
     <ClCompile Include=".\LogicEntry.cpp" />
     <ClCompile Include=".\SFLogicGateway.cpp" />
     <ClCompile Include="DataBuffer.cpp" />
-    <ClCompile Include=".\SFDefaultPacketProtocol.cpp" />
+    <ClCompile Include="SFCGSFPacketProtocol.cpp" />
+    <ClCompile Include="SFConfigure.cpp" />
     <ClCompile Include="SFEngine.cpp" />
     <ClCompile Include=".\SFCasualGameDispatcher.cpp" />
     <ClCompile Include=".\SFSessionService.cpp" />
+    <ClCompile Include="SFJsonPacket.cpp" />
+    <ClCompile Include="SFJsonProtocol.cpp" />
     <ClCompile Include="SFProtobufPacketImpl.cpp" />
     <ClCompile Include="SFProtobufProtocol.cpp" />
     <ClCompile Include="SFProtocol.cpp" />
@@ -137,11 +140,15 @@
     <ClInclude Include="EngineDLLInterface\INetworkEngine.h" />
     <ClInclude Include=".\EngineDLLInterface\ISessionService.h" />
     <ClInclude Include="EngineDLLInterface\ISession.h" />
+    <ClInclude Include="CommonHeader.h" />
     <ClInclude Include="ILogicDispatcher.h" />
+    <ClInclude Include="SFConfigure.h" />
     <ClInclude Include="SFConstant.h" />
-    <ClInclude Include=".\SFDefaultPacketProtocol.h" />
+    <ClInclude Include="SFCGSFPacketProtocol.h" />
     <ClInclude Include=".\SFCasualGameDispatcher.h" />
     <ClInclude Include=".\SFSessionService.h" />
+    <ClInclude Include="SFJsonPacket.h" />
+    <ClInclude Include="SFJsonProtocol.h" />
     <ClInclude Include="SFProtobufPacket.h" />
     <ClInclude Include="SFProtobufPacketImpl.h" />
     <ClInclude Include="SFProtobufProtocol.h" />
