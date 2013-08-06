@@ -17,6 +17,7 @@ In ThirdParty Folder
 * Open ThirdParty.sln and Compile
 * Compile ACE Project
 * Compile CEGUI(CGSF/ThirdParty/CEGUI/projects/premake/CEGUI2012.sln)
+* Compile glog(CGSF/ThirdParty/glog-0.3.2/google-glog.sln) and copy libglog.lib, libglog.dll to lib/debug(or release), bin32
 * Compile GoogleProtocolBuffer(protobuf-2.4.1) and copy (libprotobuf.lib, libprotobuf-lite.lib, libprotoc.lib) to lib/debug(or release)
   (this project's compile is not perfect)
   
