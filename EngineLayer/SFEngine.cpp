@@ -6,11 +6,24 @@
 #include "SFSessionService.h"
 #include "P2PServer.h"
 
-HINSTANCE g_pP2PHandle = 0;
+HINSTANCE g_pP2PServerHandle = 0;
 
-SFEngine::SFEngine(void)
+SFEngine::SFEngine(TCHAR* pArg)
 {
-	ACE::init();
+	/*SFConfigure Configure;
+	_EngineConfig* pInfo = Configure.GetConfigureInfo();
+	pInfo->EngineName = L"CGSFEngine.dll";
+	pInfo->P2PModuleName = L"P2PServer.dll";
+	pInfo->ServerIP = L"127.0.0.1";
+	pInfo->ServerPort = 25251;
+	pInfo->PacketProtocol = L"Protobuf";
+	pInfo->HostName = L"Juhang";
+	pInfo->TimerList.push_back(TIMER_1_SEC);
+	pInfo->LogDirectory = L"d:\\cgsflog\\";
+	Configure.Write(L"EngineConfig.xml");
+
+	Configure.Write(L"EngineConfig.xml");*/
+	google::InitGoogleLogging((char*)StringConversion::ToASCII(pArg).c_str());
 	
 	m_EngineHandle = 0;
 }
@@ -33,6 +46,9 @@ BOOL SFEngine::CreateEngine(char* szModuleName, bool Server)
 	m_pNetworkEngine = pfunc(Server, this);
 
 	if(m_pNetworkEngine == NULL)
+		return FALSE;
+
+	if(FALSE == m_pNetworkEngine->Init())
 		return FALSE;
 	
 	return TRUE;
@@ -61,17 +77,52 @@ ISessionService* SFEngine::CreateSessionService()
 
 BOOL SFEngine::Intialize(ILogicEntry* pLogicEntry, IPacketProtocol* pProtocol, ILogicDispatcher* pDispatcher)
 {
-	SetPacketProtocol(pProtocol);
-	SetLogicDispathcer(pDispatcher);
-
+	LOG(INFO) << "Engine Initialize... ";
+	
 	m_Config.Read(L"EngineConfig.xml");
 	_EngineConfig* pInfo = m_Config.GetConfigureInfo();
 
+	google::SetLogDestination(google::GLOG_INFO, (char*)StringConversion::ToASCII(pInfo->LogDirectory).c_str()); 
+	google::SetLogDestination(google::GLOG_WARNING, (char*)StringConversion::ToASCII(pInfo->LogDirectory).c_str()); 
+	google::SetLogDestination(google::GLOG_ERROR, (char*)StringConversion::ToASCII(pInfo->LogDirectory).c_str()); 
+
+	LOG(INFO) << "Log Destination " << (char*)StringConversion::ToASCII(pInfo->LogDirectory).c_str();
+
+	ACE::init();
+	LOG(INFO) << "ACE Init ";
+
+	ASSERT(pProtocol != NULL);
+	ASSERT(pDispatcher != NULL);
+
+	SetPacketProtocol(pProtocol);
+	SetLogicDispathcer(pDispatcher);
+
+	LOG(INFO) << "PacketProtocol Setting";
+	LOG(INFO) << "LogicDispatcher Setting";
+
+	if(FALSE == pLogicEntry->Initialize())
+	{
+		LOG(ERROR) << "LogicEntry Intialize Fail!!";
+		return FALSE;
+	}
+
+	LOG(INFO) << "LogicEntry Intialize Success!!";
+
 	if(FALSE == CreateEngine((char*)StringConversion::ToASCII(pInfo->EngineName).c_str(), true))
-		return 0;
+	{
+		LOG(ERROR) << "NetworkEngine : " << StringConversion::ToASCII(pInfo->EngineName).c_str() << " Creation FAIL!!";
+		return FALSE;
+	}
+
+	LOG(INFO) << "NetworkEngine : " << StringConversion::ToASCII(pInfo->EngineName).c_str() << " Creation Success!!";
 
 	if(FALSE == CreateLogicThread(pLogicEntry))
-		return 0;
+	{
+		LOG(ERROR) << "LogicThread Creation FAIL!!";
+		return FALSE;
+	}
+
+	LOG(INFO) << "LogicThread Creation Success!!";
 
 	////////////////////////////////////////////////////////////////////
 //Timer
@@ -83,62 +134,95 @@ BOOL SFEngine::Intialize(ILogicEntry* pLogicEntry, IPacketProtocol* pProtocol, I
 
 	if(GetNetworkEngine()->CheckTimerImpl())
 	{
-		GetNetworkEngine()->CreateTimerTask(TIMER_1_SEC, 5000, 1000);
+		if(FALSE == GetNetworkEngine()->CreateTimerTask(TIMER_1_SEC, 5000, 1000))
+		{
+			LOG(ERROR) << "Timer Creation FAIL!!";
+			return FALSE;
+		}
+
+		LOG(INFO) << "Timer Creation Success!!";
 	}
 
-	g_pP2PHandle = ::LoadLibrary(L"P2PServer.dll");
 
-	if(g_pP2PHandle == NULL)
-		return 0;
+	if(pInfo->P2PModuleName.empty() != TRUE)
+	{
+		g_pP2PServerHandle = ::LoadLibrary(L"P2PServer.dll");
 
-	ACTIVATEP2P_FUNC *pfuncActivate;
-	pfuncActivate = (ACTIVATEP2P_FUNC *)::GetProcAddress( g_pP2PHandle, "ActivateP2P" );
-	int Result = pfuncActivate();
+		std::string p2pName = StringConversion::ToASCII(pInfo->P2PModuleName.c_str());
 
-	if(Result != 0)
-		return 0;
+		if(g_pP2PServerHandle == NULL)
+		{
+			LOG(ERROR) << "P2P Module" << p2pName << " Handle Create Fail!!";
+			return FALSE;
+		}
 
+		ACTIVATEP2P_FUNC *pfuncActivate;
+		pfuncActivate = (ACTIVATEP2P_FUNC *)::GetProcAddress( g_pP2PServerHandle, "ActivateP2P" );
+
+		if(pfuncActivate == NULL)
+		{
+			LOG(ERROR) << "P2P Module " << p2pName << " => Can't find ActivateP2P Method!!";
+			return FALSE;
+		}
+
+		int Result = pfuncActivate();
+
+		if(Result != 0)
+		{
+			LOG(ERROR) << "P2P Module " << p2pName << " Activate fail!!";
+			return FALSE;
+		}
+
+		LOG(INFO) << "P2P Module " << p2pName << " Initialize Complete";
+	}
+
+	LOG(INFO) << "Engine Initialize Complete!! ";
 	return TRUE;
 
 	/*int MaxPacketPool = 1000;
 
 	PacketPoolSingleton::instance()->Init(MaxPacketPool);*/
 
-	/*SFConfigure Configure;
-	_EngineConfig* pInfo = Configure.GetConfigureInfo();
-	pInfo->EngineName = L"CGSFEngine.dll";
-	pInfo->P2PModuleName = L"P2PServer.dll";
-	pInfo->ServerIP = L"127.0.0.1";
-	pInfo->ServerPort = 25251;
-	pInfo->PacketProtocol = L"Protobuf";
-	pInfo->HostName = L"Juhang";
-	pInfo->TimerList.push_back(TIMER_1_SEC);
-	Configure.Write(L"EngineConfig.xml");*/
-
 }
 
 BOOL SFEngine::Start()
 {
+	_EngineConfig* pInfo = m_Config.GetConfigureInfo();
+
+	LOG(INFO) << "Engine Starting... IP : " << (char*)StringConversion::ToASCII(pInfo->ServerIP).c_str() << " Port : " << pInfo->ServerPort;
+	
+	if(false == m_pNetworkEngine->Start((char*)StringConversion::ToASCII(pInfo->ServerIP).c_str(), pInfo->ServerPort))
+	{
+		LOG(ERROR) << "Engine Start Fail!!";
+		return false;
+	}
+
+	LOG(INFO) << "Engine Start!!";
+}
+
+BOOL SFEngine::Start(char* szIP, unsigned short Port)
+{
 	m_pNetworkEngine->Init();
 
-	return m_pNetworkEngine->Start((char*)StringConversion::ToASCII(m_Config.GetConfigureInfo()->ServerIP)
-		                         , m_Config.GetConfigureInfo()->ServerPort);
+	return m_pNetworkEngine->Start(szIP, Port);
 }
 
 BOOL SFEngine::ShutDown()
 {
-	if(g_pP2PHandle)
+	if(g_pP2PServerHandle)
 	{
 		DEACTIVATEP2P_FUNC *pfuncDeactivate;
-		pfuncDeactivate = (DEACTIVATEP2P_FUNC *)::GetProcAddress( g_pP2PHandle, "DeactivateP2P" );
+		pfuncDeactivate = (DEACTIVATEP2P_FUNC *)::GetProcAddress( g_pP2PServerHandle, "DeactivateP2P" );
 		int Result = pfuncDeactivate();
 
-		::FreeLibrary(g_pP2PHandle);
+		::FreeLibrary(g_pP2PServerHandle);
 	}
 
 	m_pNetworkEngine->Shutdown();
 
 	ACE::fini();
+
+	google::ShutdownGoogleLogging();
 
 	return TRUE;
 }

@@ -8,11 +8,13 @@
 
 class SFEngine : public IEngine
 {
+	friend class SFTCPNetwork;
 public:
-	SFEngine(void);
+	SFEngine(_TCHAR* pArg);
 	virtual ~SFEngine(void);
 
 	BOOL Start();
+	BOOL Start(char* szIP, unsigned short Port);
 	BOOL Intialize(ILogicEntry* pLogicEntry, IPacketProtocol* pProtocol, ILogicDispatcher* pDispatcher);
 	BOOL ShutDown();
 

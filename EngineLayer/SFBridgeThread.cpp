@@ -1,6 +1,7 @@
 #include "StdAfx.h"
 #include "SFBridgeThread.h"
 #include "SFPacket.h"
+#include "SFDatabase.h"
 
 SFIOCPQueue<int> IOCPQueue;
 
@@ -30,7 +31,7 @@ void BusinessThread(void* Args)
 			//break;
 		case SFPacket_DB:
 			{
-				LogicEntrySingleton::instance()->ReleaseDBMessage((SFMessage*)pPacket);
+				SFDatabase::RecallDBMsg((SFMessage*)pPacket);
 			}
 			break;
 		default:

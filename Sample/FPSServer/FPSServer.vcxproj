@@ -62,7 +62,7 @@
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <ClCompile>
       <Optimization>Disabled</Optimization>
-      <AdditionalIncludeDirectories>../../BaseLayer/VMemPool;../../DatabaseLayer;../../Common/SFPacketStore;../../Common;../../P2PLayer/P2PServer;../../LogicLayer/CasualGame;../../EngineLayer;../../ThirdParty/protobuf-2.4.1/src;../../ThirdParty/ACE_wrappers;../../ThirdParty/glog/src/windows;../../EngineLayer/EngineDllInterface;../../BaseLayer;../../BaseLayer/XML;../../ThirdParty/Mysql/include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>../../BaseLayer/VMemPool;../../DatabaseLayer;../../Common/SFPacketStore;../../Common;../../P2PLayer/P2PServer;../../LogicLayer/CasualGame;../../EngineLayer;../../ThirdParty/protobuf-2.4.1/src;../../ThirdParty/ACE_wrappers;../../ThirdParty/glog/src/windows;../../EngineLayer/EngineDllInterface;../../BaseLayer;../../BaseLayer/XML;../../ThirdParty/Mysql/include;../../ThirdParty/glog-0.3.2/src/windows;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>WIN32;_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <MinimalRebuild>true</MinimalRebuild>
       <BasicRuntimeChecks>EnableFastChecks</BasicRuntimeChecks>

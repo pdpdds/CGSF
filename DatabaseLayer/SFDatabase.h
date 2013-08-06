@@ -1,31 +1,50 @@
 #pragma once
 #include "DBStruct.h"
-#include "SFDispatch.h"
-
-class BasePacket;
+#include "SFDBAdaptor.h"
+#include "SFObjectPool.h"
+#include "SFMessage.h"
+#include "BasePacket.h"
+#include "SFIni.h"
 
 class SFDatabase
 {
 public:
-	SFDatabase(void){}
+	SFDatabase(SFDBAdaptor* pAdaptor);
 	virtual ~SFDatabase(void){}
 
-	virtual BOOL Initialize() = 0;
-	virtual BOOL RegisterDBService() = 0;
+	BOOL Initialize()
+	{
+		SFIni ini;
+		_DBConnectionInfo Info;
 
-	virtual BasePacket* Alloc() = 0;
-	virtual BOOL Call(BasePacket* pMessage) = 0;
-	virtual BOOL Release(BasePacket* pMessage) = 0;
+		ini.SetPathName(_T("./DataSource.ini"));
+		ini.GetString(L"DataSourceInfo",L"DataSource",Info.szDataSource, 100);
+		ini.GetString(L"DataSourceInfo",L"Database",Info.szDBName, 100);
+		ini.GetString(L"DataSourceInfo",L"User",Info.szUser, 100);
+		ini.GetString(L"DataSourceInfo",L"Password",Info.szPassword, 100);
+		ini.GetString(L"DataSourceInfo",L"IP",Info.IP, 20);
+		Info.Port = ini.GetInt(L"DataSourceInfo",L"PORT",0);
 
-	_DBConnectionInfo* GetInfo(){return &m_Info;}
-	void SetInfo(_DBConnectionInfo& Info){m_Info = Info;}
+	
+		SetInfo(Info);
 
-	SFDispatch<USHORT, std::tr1::function<BOOL(BasePacket*)>, BasePacket*> m_Dispatch;
+		return m_pAdaptor->Initialize(&m_Info);
+	}
+
+	BOOL Call(BasePacket* pMessage);
+	
+	static _DBConnectionInfo* GetInfo(){return &m_Info;}
+	static void SetInfo(_DBConnectionInfo& Info){m_Info = Info;}
+
+	static SFMessage* GetInitMessage(int RequestMsg, DWORD PlayerSerial);
+	static SFMessage* AllocDBMsg();
+	static BOOL RecallDBMsg( SFMessage* pMessage );
 
 protected:
 
 private:
-	_DBConnectionInfo m_Info;
-};
+	SFDBAdaptor* m_pAdaptor;
 
-//LogicEntrySingleton::instance()->ReleaseDBMessage(m_pMessage);
+	static _DBConnectionInfo m_Info;
+	static SFObjectPool<SFMessage> m_DBMessagePool;
+};

@@ -1,6 +1,6 @@
 #pragma once
-#include "SFDatabaseODBC.h"
-
+//#include "SFDatabaseODBC.h"
+/*
 class SFDBProcessorODBC : public SFDatabaseODBC
 {
 public:
@@ -18,5 +18,5 @@ protected:
 
 private:
 	BOOL OnLogin( BasePacket* pMessage );
-};
+};*/
 

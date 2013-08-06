@@ -53,7 +53,7 @@
       <Optimization>Disabled</Optimization>
       <PreprocessorDefinitions>WIN32;_DEBUG;_LIB;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <SDLCheck>true</SDLCheck>
-      <AdditionalIncludeDirectories>../ThirdParty/glog-0.3.2/src/windows;../ThirdParty/ACE_wrappers;../BaseLayer;../ThirdParty/Mysql/include;../ThirdParty/SQLite;../EngineLayer;../EngineLayer/EngineDllInterface;../BaseLayer/XML</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>../ThirdParty/glog-0.3.2/src/windows;../ThirdParty/ACE_wrappers;../BaseLayer;../ThirdParty/Mysql/include;../ThirdParty/SQLite;../EngineLayer;../EngineLayer/EngineDllInterface;../BaseLayer/XML;../ThirdParty/fastdb</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Windows</SubSystem>
@@ -86,8 +86,9 @@
     <ClInclude Include="DBStruct.h" />
     <ClInclude Include="IDBManager.h" />
     <ClInclude Include="SFDatabase.h" />
-    <ClInclude Include="SFDatabaseMySQL.h" />
-    <ClInclude Include="SFDatabaseODBC.h" />
+    <ClInclude Include="SFDBAdaptor.h" />
+    <ClInclude Include="SFMySQL.h" />
+    <ClInclude Include="SFMSSQL.h" />
     <ClInclude Include="SFDataBaseProxy.h" />
     <ClInclude Include="SFDatabaseProxyImpl.h" />
     <ClInclude Include="SFDatabaseProxyLocal.h" />
@@ -95,16 +96,20 @@
     <ClInclude Include="SFDBManager.h" />
     <ClInclude Include="SFDBRequest.h" />
     <ClInclude Include="SFDBWorker.h" />
+    <ClInclude Include="SFFastDB.h" />
     <ClInclude Include="stdafx.h" />
     <ClInclude Include="targetver.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="CppSQLite3.cpp" />
-    <ClCompile Include="SFDatabaseMySQL.cpp" />
-    <ClCompile Include="SFDatabaseODBC.cpp" />
+    <ClCompile Include="SFDatabase.cpp" />
+    <ClCompile Include="SFDBAdaptor.cpp" />
+    <ClCompile Include="SFMySQL.cpp" />
+    <ClCompile Include="SFMSSQL.cpp" />
     <ClCompile Include="SFDBManager.cpp" />
     <ClCompile Include="SFDBRequest.cpp" />
     <ClCompile Include="SFDBWorker.cpp" />
+    <ClCompile Include="SFFastDB.cpp" />
     <ClCompile Include="stdafx.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Create</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Create</PrecompiledHeader>

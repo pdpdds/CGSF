@@ -1,5 +1,5 @@
 #include "stdafx.h"
-#include "SFDBProcessorODBC.h"
+/*#include "SFDBProcessorODBC.h"
 #include "DBMsg.h"
 #include "SFSendDBRequest.h"
 
@@ -64,4 +64,4 @@ BOOL SFDBProcessorODBC::OnLogin( BasePacket* pPacket )
 	SFSendDBRequest::SendToLogic(pMsg);
 	
 	return TRUE;
-}
+}*/

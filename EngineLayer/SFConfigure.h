@@ -17,6 +17,7 @@ typedef struct tag_EngineConfig
 	std::wstring PacketProtocol;
 	std::wstring HostName;
 	std::list<unsigned int> TimerList;
+	std::wstring LogDirectory;
 	
 	tag_EngineConfig()
 	{
@@ -54,6 +55,7 @@ public:
 		out.Write(L"PacketProtocol",m_ConfigureInfo.PacketProtocol);
 		out.Write(L"HostName",m_ConfigureInfo.HostName);
 		out.Write(L"TimerList",m_ConfigureInfo.TimerList);
+		out.Write(L"LogDirectory",m_ConfigureInfo.LogDirectory);
 	}
 
 	void Deserialize(IXMLStreamReader& in) {
@@ -65,6 +67,7 @@ public:
 		in.Read(L"PacketProtocol",m_ConfigureInfo.PacketProtocol);
 		in.Read(L"HostName",m_ConfigureInfo.HostName);
 		in.Read(L"TimerList",m_ConfigureInfo.TimerList);
+		in.Read(L"LogDirectory",m_ConfigureInfo.LogDirectory);
 	}
 
 protected:

@@ -60,7 +60,7 @@
       <Optimization>Disabled</Optimization>
       <PreprocessorDefinitions>WIN32;_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <SDLCheck>true</SDLCheck>
-      <AdditionalIncludeDirectories>../../LogicLayer/CasualGame;../ClientInterface;../../Common/Include;../../Common;../../Common/SFPacketStore;../../EngineLayer;../../ThirdParty/protobuf-2.4.1/src;../../EngineLayer/EngineDllInterface;../../BaseLayer</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>../../LogicLayer/CasualGame;../ClientInterface;../../Common/Include;../../Common;../../Common/SFPacketStore;../../EngineLayer;../../ThirdParty/protobuf-2.4.1/src;../../EngineLayer/EngineDllInterface;../../BaseLayer;../../BaseLayer/XML;../../ThirdParty/ACE_wrappers;../../ThirdParty/glog-0.3.2/src/windows</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>

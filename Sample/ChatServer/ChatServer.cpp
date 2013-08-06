@@ -25,8 +25,6 @@ SFEngine* g_pEngine = NULL;
 #pragma comment(lib, "EngineLayer.lib")
 #pragma comment(lib, "BaseLayer.lib")
 
-HINSTANCE g_pP2PHandle = 0;
-
 int _tmain(int argc, _TCHAR* argv[])
 {
 	ACE::init();

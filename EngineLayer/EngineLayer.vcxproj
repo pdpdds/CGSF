@@ -58,7 +58,7 @@
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <ClCompile>
       <Optimization>Disabled</Optimization>
-      <AdditionalIncludeDirectories>../BaseLayer/VMemPool;./EngineDllInterface;../Common/Include;../BaseLayer;./External;../P2PNetwork;../Common;../ThirdParty/zlib;../ThirdParty/liblzf;../ThirdParty/glog/src/windows;../ThirdParty/ACE_wrappers;../ThirdParty/boost_1_49_0;../ThirdParty;../Common/SFPacketStore;../ThirdParty/protobuf-2.4.1/src;../ThirdParty/Loki/include;../BaseLayer/XML;../BaseLayer/json;../P2PLayer/P2PServer;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>../BaseLayer/VMemPool;./EngineDllInterface;../Common/Include;../BaseLayer;./External;../P2PNetwork;../Common;../ThirdParty/zlib;../ThirdParty/liblzf;../ThirdParty/glog-0.3.2/src/windows;../ThirdParty/ACE_wrappers;../ThirdParty/boost_1_49_0;../ThirdParty;../Common/SFPacketStore;../ThirdParty/protobuf-2.4.1/src;../ThirdParty/Loki/include;../BaseLayer/XML;../BaseLayer/json;../P2PLayer/P2PServer;../DatabaseLayer;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>WIN32;_DEBUG;_LIB;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <MinimalRebuild>true</MinimalRebuild>
       <BasicRuntimeChecks>EnableFastChecks</BasicRuntimeChecks>

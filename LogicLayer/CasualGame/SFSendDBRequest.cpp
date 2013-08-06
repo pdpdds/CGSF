@@ -6,18 +6,7 @@
 ///////////////////////////////////////////////////////////////////////////////////////
 //Internal Function
 ///////////////////////////////////////////////////////////////////////////////////////
-SFMessage* SFSendDBRequest::GetInitMessage(int RequestMsg, DWORD PlayerSerial)
-{
-	SFMessage* pMessage = LogicEntrySingleton::instance()->AllocDBMessage();
 
-	SFASSERT(pMessage != NULL);
-	pMessage->Initialize(RequestMsg);
-	pMessage->SetPacketID(RequestMsg);
-	pMessage->SetOwnerSerial(PlayerSerial);
-	pMessage->SetPacketType(SFPacket_DB);
-
-	return pMessage;
-}
 
 BOOL SFSendDBRequest::SendDBRequest(SFMessage* pMessage)
 {
@@ -31,7 +20,7 @@ BOOL SFSendDBRequest::SendDBRequest(int RequestMsg, DWORD PlayerSerial, BasePack
 {
 	SFPacket* Packet = (SFPacket*)pPacket;
 
-	SFMessage* pMessage = GetInitMessage(RequestMsg, PlayerSerial);
+	SFMessage* pMessage = SFDatabase::GetInitMessage(RequestMsg, PlayerSerial);
 	pMessage->Write(Packet->GetDataBuffer(), Packet->GetDataSize());
 	SFLogicEntry::GetLogicEntry()->GetDataBaseProxy()->SendDBRequest(pMessage);
 
@@ -50,7 +39,7 @@ void SFSendDBRequest::SendToLogic(BasePacket* pMessage)
 //////////////////////////////////////////////////////////////////////////////////////////////
 BOOL SFSendDBRequest::RequestLogin(SFPlayer* pPlayer)
 {
-	SFMessage* pMessage = GetInitMessage(DBMSG_LOGIN, pPlayer->GetSerial());
+	SFMessage* pMessage = SFDatabase::GetInitMessage(DBMSG_LOGIN, pPlayer->GetSerial());
 	pMessage->Write((const BYTE* )pPlayer->m_username.c_str(), pPlayer->m_username.length());
 	pMessage->Write((const BYTE* )pPlayer->m_password.c_str(), pPlayer->m_password.length());
 

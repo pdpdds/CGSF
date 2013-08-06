@@ -13,6 +13,9 @@
       <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
       <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
     </Filter>
+    <Filter Include="DBComponent">
+      <UniqueIdentifier>{ade4380d-12ab-4feb-958e-ad2c0c29f1db}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <Text Include="ReadMe.txt" />
@@ -23,9 +26,6 @@
     </ClInclude>
     <ClInclude Include="targetver.h">
       <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="CppSQLite3.h">
-      <Filter>Source Files</Filter>
     </ClInclude>
     <ClInclude Include="DBMsg.h">
       <Filter>Source Files</Filter>
@@ -60,18 +60,24 @@
     <ClInclude Include="DBStruct.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="SFDatabaseMySQL.h">
-      <Filter>Source Files</Filter>
+    <ClInclude Include="SFFastDB.h">
+      <Filter>DBComponent</Filter>
     </ClInclude>
-    <ClInclude Include="SFDatabaseODBC.h">
+    <ClInclude Include="SFMySQL.h">
+      <Filter>DBComponent</Filter>
+    </ClInclude>
+    <ClInclude Include="SFMSSQL.h">
+      <Filter>DBComponent</Filter>
+    </ClInclude>
+    <ClInclude Include="CppSQLite3.h">
+      <Filter>DBComponent</Filter>
+    </ClInclude>
+    <ClInclude Include="SFDBAdaptor.h">
       <Filter>Source Files</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="stdafx.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="CppSQLite3.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="SFDBManager.cpp">
@@ -83,10 +89,22 @@
     <ClCompile Include="SFDBWorker.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="SFDatabaseMySQL.cpp">
+    <ClCompile Include="SFFastDB.cpp">
+      <Filter>DBComponent</Filter>
+    </ClCompile>
+    <ClCompile Include="SFMySQL.cpp">
+      <Filter>DBComponent</Filter>
+    </ClCompile>
+    <ClCompile Include="SFMSSQL.cpp">
+      <Filter>DBComponent</Filter>
+    </ClCompile>
+    <ClCompile Include="CppSQLite3.cpp">
+      <Filter>DBComponent</Filter>
+    </ClCompile>
+    <ClCompile Include="SFDBAdaptor.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="SFDatabaseODBC.cpp">
+    <ClCompile Include="SFDatabase.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>

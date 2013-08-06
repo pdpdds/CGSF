@@ -58,7 +58,7 @@
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <ClCompile>
       <Optimization>Disabled</Optimization>
-      <AdditionalIncludeDirectories>../../BaseLayer/VMemPool;../../DatabaseLayer;../../EngineLayer;../../EngineLayer/EngineDllInterface;../../BaseLayer;../../Common;../../Common/SFPacketStore;../../ThirdParty/ACE_WRAPPERS;../../ThirdParty/protobuf-2.4.1/src;../../ThirdParty/glog/src/windows;../../ThirdParty/mysql/include;../../BaseLayer/XML;../../BaseLayer/Logger;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>../../BaseLayer/VMemPool;../../DatabaseLayer;../../EngineLayer;../../EngineLayer/EngineDllInterface;../../BaseLayer;../../Common;../../Common/SFPacketStore;../../ThirdParty/ACE_WRAPPERS;../../ThirdParty/protobuf-2.4.1/src;../../ThirdParty/glog/src/windows;../../ThirdParty/mysql/include;../../BaseLayer/XML;../../BaseLayer/Logger;../../ThirdParty/glog-0.3.2/src/windows;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>WIN32;_DEBUG;_LIB;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <MinimalRebuild>true</MinimalRebuild>
       <BasicRuntimeChecks>EnableFastChecks</BasicRuntimeChecks>
@@ -119,7 +119,7 @@
     <ClInclude Include=".\SFLobby.h" />
     <ClInclude Include=".\SFTeam.h" />
     <ClInclude Include="SFCGProtobufProtocol.h" />
-    <ClInclude Include="SFDBProcessorMySQL.h" />
+    <ClInclude Include="SFMySQLAdaptor.h" />
     <ClInclude Include="SFDBProcessorODBC.h" />
     <ClInclude Include="SFDirectoryWatcher.h" />
     <ClInclude Include="SFDirectoryWatcherTask.h" />
@@ -166,7 +166,7 @@
     <ClCompile Include=".\SFLobby.cpp" />
     <ClCompile Include=".\SFTeam.cpp" />
     <ClCompile Include="SFCGProtobufProtocol.cpp" />
-    <ClCompile Include="SFDBProcessorMySQL.cpp" />
+    <ClCompile Include="SFMySQLAdaptor.cpp" />
     <ClCompile Include="SFDBProcessorODBC.cpp" />
     <ClCompile Include="SFDirectoryWatcher.cpp" />
     <ClCompile Include="SFDirectoryWatcherTask.cpp" />

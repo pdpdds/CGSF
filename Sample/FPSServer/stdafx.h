@@ -15,7 +15,7 @@
 ///////////////////////////////////////////////////////////////////////////////////
 #include <windows.h>
 #include "SFPacketStore.pb.h"
-
+#include "PacketID.h"
 #ifdef _DEBUG
 #pragma comment(lib, "aced.lib")
 #else
@@ -29,3 +29,4 @@
 #pragma comment(lib, "CasualGame.lib")
 #pragma comment(lib, "EngineLayer.lib")
 #pragma comment(lib, "DatabaseLayer.lib")
+#pragma comment(lib, "libglog.lib")

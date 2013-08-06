@@ -11,7 +11,7 @@
 #include "SFDatabaseProxyLocal.h"
 #include "SFDatabaseProxyImpl.h"
 #include "SFEngine.h"
-#include "SFDatabaseMySQL.h"
+#include "SFMySQL.h"
 
 ///////////////////////////////////////////////////////////////////////////
 //Logic Entry

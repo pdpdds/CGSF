@@ -9,22 +9,52 @@ SFEngine* g_pEngine = NULL;
 
 int _tmain(int argc, _TCHAR* argv[])
 {
-	g_pEngine = new SFEngine();
+	/*void ServiceTest(int argc, TCHAR* argv[])
+{
+#ifdef _DEBUG
+	//SFFacade Facade;
+	//Facade.Initialize();
+#else
+	SFServiceController Controller;
+	Controller.ServiceEntry(L"CGSF");
+#endif
+
+	if(argc == 2)
+	{
+		SFServiceController Controller;
+
+		if(_tcscmp(argv[1], L"-I") == 0)
+		{
+			Controller.InstallService(L"CGSF", L"CGSF", L"D:\\NPSvr\\CGSFTest.exe");
+		}
+		else if(_tcscmp(argv[1], L"-U") == 0)
+		{
+			Controller.DeleteService(L"CGSFTest");
+		}
+	}
+}*/
+	g_pEngine = new SFEngine(argv[0]);
+
 ////////////////////////////////////////////////////////////////////
 //Game Mode
 ////////////////////////////////////////////////////////////////////
 	SFLogicEntry* pLogicEntry = new SFLogicEntry();
 	pLogicEntry->AddGameMode(GAMEMODE_TRAINING, new SFTraining(GAMEMODE_TRAINING));
 	pLogicEntry->AddGameMode(GAMEMODE_FREEFORALL, new SFFreeForAll(GAMEMODE_FREEFORALL));
-	pLogicEntry->Initialize();
-
-/////////////////////////////////////////////////////////////////////
 	
-	g_pEngine->Intialize(pLogicEntry, new SFPacketProtocol<FPSProtocol>, new SFCasualGameDispatcher());
+/////////////////////////////////////////////////////////////////////
+	if (FALSE == g_pEngine->Intialize(pLogicEntry, new SFPacketProtocol<FPSProtocol>, new SFCasualGameDispatcher()) ||
+		FALSE == g_pEngine->Start())
+	{
+		google::FlushLogFiles(google::GLOG_INFO);
+		google::FlushLogFiles(google::GLOG_ERROR);
+		delete g_pEngine;
+		return 0;
+	}
 
-	g_pEngine->Start();
+	google::FlushLogFiles(google::GLOG_INFO);
+
 	getchar();
-
 	g_pEngine->ShutDown();
 
 	return 0;

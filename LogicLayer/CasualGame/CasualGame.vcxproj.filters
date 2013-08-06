@@ -154,10 +154,10 @@
     <ClInclude Include="SFCGProtobufProtocol.h">
       <Filter>Protocol</Filter>
     </ClInclude>
-    <ClInclude Include="SFDBProcessorMySQL.h">
+    <ClInclude Include="SFDBProcessorODBC.h">
       <Filter>DataBase</Filter>
     </ClInclude>
-    <ClInclude Include="SFDBProcessorODBC.h">
+    <ClInclude Include="SFMySQLAdaptor.h">
       <Filter>DataBase</Filter>
     </ClInclude>
   </ItemGroup>
@@ -273,10 +273,10 @@
     <ClCompile Include="SFCGProtobufProtocol.cpp">
       <Filter>Protocol</Filter>
     </ClCompile>
-    <ClCompile Include="SFDBProcessorMySQL.cpp">
+    <ClCompile Include="SFDBProcessorODBC.cpp">
       <Filter>DataBase</Filter>
     </ClCompile>
-    <ClCompile Include="SFDBProcessorODBC.cpp">
+    <ClCompile Include="SFMySQLAdaptor.cpp">
       <Filter>DataBase</Filter>
     </ClCompile>
   </ItemGroup>

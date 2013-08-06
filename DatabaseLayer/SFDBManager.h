@@ -118,7 +118,7 @@ protected:
 			ACE_NEW_RETURN(pWorker, SFDBWorker(this), -1);
 			this->m_queueWorkers.enqueue_tail(pWorker);
 
-			T* pDatabase = new T();
+			SFDatabase* pDatabase = new SFDatabase(new T());
 			pDatabase->Initialize();
 
 			pWorker->SetDatabase(pDatabase);

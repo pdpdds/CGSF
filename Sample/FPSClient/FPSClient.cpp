@@ -5,23 +5,9 @@
 #include "SFNetworkEntry.h"
 #include "TCPCallback.h"
 #include "UDPCallback.h"
-#include "SFMacro.h"
-#include "SFConstant.h"
 #include "FPSClientProtocol.h"
 #include "SFPacketProtocol.h"
 #include "SFCasualGameDispatcher.h"
-
-#pragma comment(lib, "libprotobuf.lib")
-#pragma comment(lib, "EngineLayer.lib")
-#pragma comment(lib, "ClientInterface.lib")
-#pragma comment(lib, "liblzf.lib")
-#pragma comment(lib, "zlib.lib")
-
-#ifdef _DEBUG
-#pragma comment(lib, "aced.lib")
-#else
-#pragma comment(lib, "ace.lib")
-#endif
 
 SFNetworkEntry* g_pNetworkEntry = NULL;
 
