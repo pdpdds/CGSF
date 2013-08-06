@@ -27,7 +27,7 @@ SFEngine* g_pEngine = NULL;
 
 int _tmain(int argc, _TCHAR* argv[])
 {
-	ACE::init();
+	/*ACE::init();
 
 	g_pEngine = new SFEngine();
 	
@@ -41,12 +41,12 @@ int _tmain(int argc, _TCHAR* argv[])
 	ILogicDispatcher* pDispatcher = new SFCasualGameDispatcher();
 	g_pEngine->SetLogicDispathcer(pDispatcher);
 
-	/*_TimerInfo Timer;
-	Timer.TimerID = TIMER_1_SEC;
-	Timer.Period = 1000;
-	Timer.StartDelay = 5000;
+	//_TimerInfo Timer;
+//	Timer.TimerID = TIMER_1_SEC;
+//	Timer.Period = 1000;
+//	Timer.StartDelay = 5000;
 
-	pLogicEntry->AddTimer(Timer);*/
+	pLogicEntry->AddTimer(Timer);
 
 	g_pEngine->Start("127.0.0.1", 25251);
 
@@ -54,7 +54,7 @@ int _tmain(int argc, _TCHAR* argv[])
 
 	g_pEngine->ShutDown();
 
-	ACE::fini();
+	ACE::fini();*/
 
 	return 0;
 }

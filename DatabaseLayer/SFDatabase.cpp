@@ -2,6 +2,7 @@
 #include "SFDatabase.h"
 
 SFObjectPool<SFMessage> SFDatabase::m_DBMessagePool;
+_DBConnectionInfo SFDatabase::m_Info;
 
 SFDatabase::SFDatabase(SFDBAdaptor* pAdaptor)
 	: m_pAdaptor(pAdaptor)

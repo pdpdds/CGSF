@@ -60,7 +60,7 @@
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <ClCompile>
       <Optimization>Disabled</Optimization>
-      <AdditionalIncludeDirectories>../../BaseLayer/VMemPool;../ClientInterface;../../BaseLayer;../../EngineLayer;../../EngineLayer/EngineDllInterface;../../Common;../../Common/SFPacketStore;../../Common/Include;../../ThirdParty/Breakpad;../../ThirdParty/Bugtrap;../../ThirdParty/glog/src/windows;../../ThirdParty/protobuf-2.4.1/src;../../ThirdParty/ACE_wrappers;../../BaseLayer/XML;../../BaseLayer/json;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>../../BaseLayer/VMemPool;../ClientInterface;../../BaseLayer;../../EngineLayer;../../EngineLayer/EngineDllInterface;../../Common;../../Common/SFPacketStore;../../Common/Include;../../ThirdParty/Breakpad;../../ThirdParty/Bugtrap;../../ThirdParty/glog/src/windows;../../ThirdParty/protobuf-2.4.1/src;../../ThirdParty/ACE_wrappers;../../BaseLayer/XML;../../BaseLayer/json;../../ThirdParty/glog-0.3.2/src/windows;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>WIN32;_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <MinimalRebuild>true</MinimalRebuild>
       <BasicRuntimeChecks>EnableFastChecks</BasicRuntimeChecks>

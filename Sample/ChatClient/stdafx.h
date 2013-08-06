@@ -27,3 +27,6 @@
 
 #include "ChatPacket.pb.h"
 #include <google/protobuf/io/zero_copy_stream_impl_lite.h>
+
+#pragma comment(lib, "DatabaseLayer.lib")
+#pragma comment(lib, "libglog.lib")

@@ -42,7 +42,7 @@ SFEngine* g_pEngine = NULL;
 
 int _tmain(int argc, _TCHAR* argv[])
 {
-	SFExceptionHandler* pHandler = new SFBugTrap();
+	/*SFExceptionHandler* pHandler = new SFBugTrap();
 	if(FALSE == pHandler->Install())
 		return FALSE;
 
@@ -71,19 +71,20 @@ int _tmain(int argc, _TCHAR* argv[])
 	std::string str = StringConversion::ToASCII(szIP);
 	g_pEngine->Start((char*)str.c_str(), Port);
 
-	while(/*g_pEngine->GetProcessing() == TRUE*/ TRUE)
+	//while(g_pEngine->GetProcessing() == TRUE)
+	while(TRUE)
 	{
 		std::string ChatMessage;
 		std::cin >> ChatMessage;
 
-		/*SFProtobufPacket<ChatPacket::Chat> request(CGSF::ChatReq);
-		request.SetOwnerSerial(0);
-		request.GetData().set_chatmessage(ChatMessage);
+		//SFProtobufPacket<ChatPacket::Chat> request(CGSF::ChatReq);
+		//request.SetOwnerSerial(0);
+		//request.GetData().set_chatmessage(ChatMessage);
 
-		if(request.GetData().ByteSize() != 0)
-		{
-			pLogicEntry->SendRequest(&request);
-		}*/
+		//if(request.GetData().ByteSize() != 0)
+		//{
+		//	pLogicEntry->SendRequest(&request);
+		//}
 
 
 		SFJsonPacket JsonPacket;
@@ -104,6 +105,6 @@ int _tmain(int argc, _TCHAR* argv[])
 	ACE::fini();
 
 	delete pHandler;
-
+	*/
 	return 0;
 }

@@ -60,7 +60,7 @@
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <ClCompile>
       <Optimization>Disabled</Optimization>
-      <AdditionalIncludeDirectories>../../EngineLayer;../../ThirdParty/ACE_wrappers;../../Common;../../Common/SFPacketStore;../../ThirdParty/protobuf-2.4.1/src;../../EngineLayer/EngineDllInterface;../../BaseLayer;../../BaseLayer/json;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>../../EngineLayer;../../ThirdParty/ACE_wrappers;../../Common;../../Common/SFPacketStore;../../ThirdParty/protobuf-2.4.1/src;../../EngineLayer/EngineDllInterface;../../BaseLayer;../../BaseLayer/json;../../BaseLayer/XML;../../ThirdParty/glog-0.3.2/src/windows;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>WIN32;_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <MinimalRebuild>true</MinimalRebuild>
       <BasicRuntimeChecks>EnableFastChecks</BasicRuntimeChecks>
@@ -70,7 +70,7 @@
       <DebugInformationFormat>EditAndContinue</DebugInformationFormat>
     </ClCompile>
     <Link>
-      <AdditionalLibraryDirectories>../../EngineLayer/Engine/MGServer/debug;../../ThirdParty/SQLite;../../ThirdParty/Lib/debug;../../ThirdParty/Ace_Wrappers/lib;../../VSProject/Lib/Debug;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalLibraryDirectories>../../EngineLayer/Engine/MGServer/debug;../../ThirdParty/SQLite;../../ThirdParty/Lib/debug;../../ThirdParty/Ace_Wrappers/lib;../../VSProject/Lib/Debug;../../ThirdParty/MySql/lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <SubSystem>Console</SubSystem>
       <TargetMachine>MachineX86</TargetMachine>
