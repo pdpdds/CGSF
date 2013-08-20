@@ -11,6 +11,9 @@ BOOL SendAuthPacket(int Serial);
 BOOL SendLoginResult(SFPlayer* pPlayer,int Result);
 BOOL SendEnterLobby(SFPlayer* pPlayer);
 
+BOOL SendCreateRoom( SFPlayer* pPlayer, int GameMode );
+
+BOOL SendEnterRoom( SFPlayer* pPlayer, int GameMode, int RoomIndex );
 BOOL SendLeaveRoom(SFPlayer* pPlayer);
 
 

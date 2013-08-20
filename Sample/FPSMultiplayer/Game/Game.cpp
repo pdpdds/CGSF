@@ -162,6 +162,7 @@ void Game::Update( float elapsed )
 	if( g_engine->GetInput()->GetKeyPress( DIK_ESCAPE ) )
 	{
 		SFProtobufPacket<SFPacketStore::LeaveRoom> LeaveRoom(CGSF::LeaveRoom);
+		LeaveRoom.SetOwnerSerial(g_engine->GetLocalID());
 
 		g_engine->GetNetwork()->TCPSend(&LeaveRoom);
 	}

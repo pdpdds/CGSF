@@ -5,7 +5,7 @@
 // Programming a Multiplayer First Person Shooter in DirectX
 // Copyright (c) 2004 Vaughan Young
 //-----------------------------------------------------------------------------
-#include "Main.h"
+
 #include "TCPNetworkCallback.h"
 #include "UDPNetworkCallback.h"
 #include "SFBugTrap.h"
@@ -15,6 +15,7 @@
 #include "SFCasualGameDispatcher.h"
 #include "SFPacketProtocol.h"
 #include "SFGameProtocol.h"
+#include "Main.h"
 
 #ifdef _DEBUG
 #pragma comment(linker, "/entry:WinMainCRTStartup /subsystem:console")

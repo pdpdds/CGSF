@@ -4,7 +4,7 @@
 #include "SFPacketIOBuffer.h"
 #include "SFEncryption.h"
 #include "SFEncryptionXOR.h"
-#include "SFEngine.h"
+
 #include "Macro.h"
 
 class BasePacket;

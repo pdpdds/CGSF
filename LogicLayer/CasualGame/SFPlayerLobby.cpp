@@ -76,7 +76,8 @@ BOOL SFPlayerLobby::OnEnterRoom( BasePacket* pPacket )
 	if(pRoom == NULL)
 		return FALSE;
 
-	//if(TRUE == pRoom->ProcessUserRequest(pPlayer, pPacket))
+	if(TRUE == pRoom->ProcessUserRequest(pPlayer, pPacket))
+		SendEnterRoom(pPlayer, pEnterRoom->GetData().gamemode(), pEnterRoom->GetData().roomindex());
 		//일단주석SendToClient(GetOwner(), CGSF::EnterRoom, pEnterRoom->getStructuredData(), pEnterRoom->GetData().ByteSize());
 
 	return TRUE;
@@ -100,7 +101,7 @@ BOOL SFPlayerLobby::OnCreateRoom( BasePacket* pPacket )
 
 	pPlayer->ChangeState(PLAYER_STATE_ROOM);
 
-	//SendToClient(GetOwner(), CGSF::CreateRoom, &PktCreateRoom, PktCreateRoom.ByteSize());
+	SendCreateRoom(pPlayer, pEnterCreateRoom->GetData().gamemode());
 
 	return TRUE;
 }

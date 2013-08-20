@@ -27,6 +27,39 @@ BasePacket* SFCGProtobufProtocol::CreateIncomingPacketFromPacketId( int PacketId
 		return new SFProtobufPacket<SFPacketStore::CreateRoom>(PacketId);
 		break;
 
+	case CGSF::EnterRoom:
+		return new SFProtobufPacket<SFPacketStore::EnterRoom>(PacketId);
+		break;
+
+	case CGSF::PlayerIP:
+		return new SFProtobufPacket<SFPacketStore::PLAYER_IP>(PacketId);
+		break;
+
+	case CGSF::ChatReq:
+		return new SFProtobufPacket<SFPacketStore::ChatReq>(PacketId);
+		break;
+
+
+	case CGSF::LeaveRoom:
+		return new SFProtobufPacket<SFPacketStore::LeaveRoom>(PacketId);
+		break;
+
+		
+	case CGSF::ChangeTeam:
+		return new SFProtobufPacket<SFPacketStore::ChangeTeam>(PacketId);
+		break;
+
+	case CGSF::StartGame:
+		return new SFProtobufPacket<SFPacketStore::StartGame>(PacketId);
+		break;
+	
+	case CGSF::LoadingComplete:
+		return new SFProtobufPacket<SFPacketStore::LoadingComplete>(PacketId);
+		break;
+
+
+	
+
 	default:
 		return NULL;
 		break;

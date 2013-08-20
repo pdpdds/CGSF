@@ -1,3 +1,5 @@
+#pragma once
+
 #pragma warning(disable : 4996)
 #include <ace/ace.h>
 #include <ace/Thread_Manager.h>
