@@ -198,6 +198,8 @@ BOOL SFEngine::Start()
 	}
 
 	LOG(INFO) << "Engine Start!!";
+
+	return true;
 }
 
 BOOL SFEngine::Start(char* szIP, unsigned short Port)
