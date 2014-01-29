@@ -138,7 +138,9 @@ typedef unsigned __int64 uint64;
 #else
 #define GOOGLE_PREDICT_BRANCH_NOT_TAKEN(x) x
 #define GOOGLE_PREDICT_FALSE(x) x
+#ifndef GOOGLE_PREDICT_TRUE
 #define GOOGLE_PREDICT_TRUE(x) x
+#endif
 #endif
 #endif
 

@@ -35,6 +35,9 @@
     <Filter Include="Packet\JsonPacket">
       <UniqueIdentifier>{e4766a0c-0162-4846-8645-f96be4b00e63}</UniqueIdentifier>
     </Filter>
+    <Filter Include="ClientInterface">
+      <UniqueIdentifier>{f64f9b76-faa7-4823-a693-7a97f55ce284}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include=".\SFExcel.cpp">
@@ -105,6 +108,15 @@
     </ClCompile>
     <ClCompile Include="SFConfigure.cpp">
       <Filter>Common</Filter>
+    </ClCompile>
+    <ClCompile Include="SFNetworkEntry.cpp">
+      <Filter>ClientInterface</Filter>
+    </ClCompile>
+    <ClCompile Include="SFTCPNetwork.cpp">
+      <Filter>ClientInterface</Filter>
+    </ClCompile>
+    <ClCompile Include="SFUDPNetwork.cpp">
+      <Filter>ClientInterface</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -227,6 +239,15 @@
     </ClInclude>
     <ClInclude Include="CommonHeader.h">
       <Filter>Common</Filter>
+    </ClInclude>
+    <ClInclude Include="SFNetworkEntry.h">
+      <Filter>ClientInterface</Filter>
+    </ClInclude>
+    <ClInclude Include="SFTCPNetwork.h">
+      <Filter>ClientInterface</Filter>
+    </ClInclude>
+    <ClInclude Include="SFUDPNetwork.h">
+      <Filter>ClientInterface</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

@@ -2,6 +2,7 @@
 #include "ChatProtocol.h"
 #include "SFProtobufPacket.h"
 #include "PacketID.h"
+#include "ChatPacket.pb.h"
 
 ChatProtocol::ChatProtocol(void)
 {

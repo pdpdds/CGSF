@@ -8,7 +8,7 @@
 #include "SFEngine.h"
 #include "SFProtobufPacket.h"
 
-extern SFEngine* g_pEngine;
+//extern SFEngine* g_pEngine;
 
 using namespace google;
 
@@ -22,7 +22,7 @@ ChatPacketEntry::~ChatPacketEntry(void)
 
 BOOL ChatPacketEntry::SendRequest(BasePacket* pPacket)
 {
-	g_pEngine->SendRequest(pPacket);
+	//g_pEngine->SendRequest(pPacket);
 	return TRUE;
 }
 

@@ -29,4 +29,3 @@
 #pragma comment(lib, "CasualGame.lib")
 #pragma comment(lib, "EngineLayer.lib")
 #pragma comment(lib, "DatabaseLayer.lib")
-#pragma comment(lib, "ClientInterface.lib")

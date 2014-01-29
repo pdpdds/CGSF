@@ -8,7 +8,7 @@
 #include "SFEngine.h"
 #include "SFJsonPacket.h"
 
-extern SFEngine* g_pEngine;
+//extern SFEngine* g_pEngine;
 
 
 ChatPacketJsonEntry::ChatPacketJsonEntry(void)
@@ -21,7 +21,7 @@ ChatPacketJsonEntry::~ChatPacketJsonEntry(void)
 
 BOOL ChatPacketJsonEntry::SendRequest(BasePacket* pPacket)
 {
-	g_pEngine->SendRequest(pPacket);
+	//g_pEngine->SendRequest(pPacket);
 	return TRUE;
 }
 

@@ -10,23 +10,21 @@
 #include <stdio.h>
 #include <tchar.h>
 
+#include "CommonHeader.h"
 // TODO: reference additional headers your program requires here
-#pragma warning(disable : 4996)
-
-#include <ace/ace.h>
-#include <ace/Thread_Manager.h>
-#include <ace/Thread_Mutex.h>
-#include <ace/Proactor.h>
-#include <ace/Task.h>
 ///////////////////////////////////////////////////////////////////////////////////
-
 #include <windows.h>
-#include "SFMacro.h"
-#include "SFConstant.h"
-#include "SFStructure.h"
+#include "SFPacketStore.pb.h"
 
-#include "ChatPacket.pb.h"
-#include <google/protobuf/io/zero_copy_stream_impl_lite.h>
+#ifdef _DEBUG
+#pragma comment(lib, "aced.lib")
+#else
+#pragma comment(lib, "ace.lib")
+#endif
 
+#pragma comment(lib, "zlib.lib")
+#pragma comment(lib, "liblzf.lib")
+#pragma comment(lib, "libprotobuf.lib")
+#pragma comment(lib, "BaseLayer.lib")
+#pragma comment(lib, "EngineLayer.lib")
 #pragma comment(lib, "DatabaseLayer.lib")
-#pragma comment(lib, "libglog.lib")

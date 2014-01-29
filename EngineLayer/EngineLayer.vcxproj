@@ -58,7 +58,7 @@
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <ClCompile>
       <Optimization>Disabled</Optimization>
-      <AdditionalIncludeDirectories>../BaseLayer/VMemPool;./EngineDllInterface;../Common/Include;../BaseLayer;./External;../P2PNetwork;../Common;../ThirdParty/zlib;../ThirdParty/liblzf;../ThirdParty/glog-0.3.2/src/windows;../ThirdParty/ACE_wrappers;../ThirdParty/boost_1_49_0;../ThirdParty;../Common/SFPacketStore;../ThirdParty/protobuf-2.4.1/src;../ThirdParty/Loki/include;../BaseLayer/XML;../BaseLayer/json;../P2PLayer/P2PServer;../DatabaseLayer;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>../BaseLayer/VMemPool;./EngineDllInterface;../Common/Include;../BaseLayer;./External;../P2PNetwork;../Common;../ThirdParty/zlib;../ThirdParty/liblzf;../ThirdParty/glog-0.3.2/src/windows;../ThirdParty/ACE_wrappers;../ThirdParty/boost_1_49_0;../ThirdParty;../Common/SFPacketStore;../ThirdParty/protobuf-2.4.1/src;../ThirdParty/Loki/include;../BaseLayer/XML;../BaseLayer/json;../P2PLayer/P2PServer;../DatabaseLayer;../P2PLayer/P2PClient;../ThirdParty/liblfds/include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>WIN32;_DEBUG;_LIB;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <MinimalRebuild>true</MinimalRebuild>
       <BasicRuntimeChecks>EnableFastChecks</BasicRuntimeChecks>
@@ -109,10 +109,13 @@
     <ClCompile Include=".\SFSessionService.cpp" />
     <ClCompile Include="SFJsonPacket.cpp" />
     <ClCompile Include="SFJsonProtocol.cpp" />
+    <ClCompile Include="SFNetworkEntry.cpp" />
     <ClCompile Include="SFProtobufPacketImpl.cpp" />
     <ClCompile Include="SFProtobufProtocol.cpp" />
     <ClCompile Include="SFProtocol.cpp" />
     <ClCompile Include="SFShouter.cpp" />
+    <ClCompile Include="SFTCPNetwork.cpp" />
+    <ClCompile Include="SFUDPNetwork.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include=".\SFExcel.h" />
@@ -149,12 +152,15 @@
     <ClInclude Include=".\SFSessionService.h" />
     <ClInclude Include="SFJsonPacket.h" />
     <ClInclude Include="SFJsonProtocol.h" />
+    <ClInclude Include="SFNetworkEntry.h" />
     <ClInclude Include="SFProtobufPacket.h" />
     <ClInclude Include="SFProtobufPacketImpl.h" />
     <ClInclude Include="SFProtobufProtocol.h" />
     <ClInclude Include="SFProtocol.h" />
     <ClInclude Include="SFShouter.h" />
     <ClInclude Include="SFStructure.h" />
+    <ClInclude Include="SFTCPNetwork.h" />
+    <ClInclude Include="SFUDPNetwork.h" />
   </ItemGroup>
   <ItemGroup>
     <Text Include=".\ReadMe.txt" />

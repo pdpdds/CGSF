@@ -5,7 +5,7 @@
 #include "BasePacket.h"
 #include <iostream>
 
-extern SFEngine* g_pEngine;
+//extern SFEngine* g_pEngine;
 
 using namespace google;
 

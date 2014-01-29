@@ -14,7 +14,7 @@ public:
 	SFNetworkEntry(void);
 	virtual ~SFNetworkEntry(void);
 
-	BOOL Initialize(char* szModuleName, INetworkCallback* pTCPCallBack, IUDPNetworkCallback* pUDPCallback = NULL);
+	BOOL Initialize(char* szModuleName, INetworkCallback* pTCPCallBack, IUDPNetworkCallback* pUDPCallback);
 	void SetLogicDispatcher(ILogicDispatcher* pDispatcher);
 	void SetPacketProtocol(IPacketProtocol* pDispatcher);
 

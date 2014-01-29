@@ -7,26 +7,26 @@
 
 #include "targetver.h"
 
+
 #include <stdio.h>
 #include <tchar.h>
 
-#pragma warning(disable : 4996)
-#include <ace/ace.h>
-#include <ace/Thread_Manager.h>
-#include <ace/Thread_Mutex.h>
-#include <ace/Proactor.h>
-#include <ace/Task.h>
-
-
+#include "CommonHeader.h"
 // TODO: reference additional headers your program requires here
 ///////////////////////////////////////////////////////////////////////////////////
 #include <windows.h>
-#include "SFConstant.h"
-#include "SFStructure.h"
-#include "SFMacro.h"
+#include "SFPacketStore.pb.h"
+#include "PacketID.h"
+#ifdef _DEBUG
+#pragma comment(lib, "aced.lib")
+#else
+#pragma comment(lib, "ace.lib")
+#endif
 
-#include <google/protobuf/io/zero_copy_stream_impl_lite.h>
-#include "ChatPacket.pb.h"
-
+#pragma comment(lib, "zlib.lib")
+#pragma comment(lib, "liblzf.lib")
+#pragma comment(lib, "libprotobuf.lib")
+#pragma comment(lib, "BaseLayer.lib")
+#pragma comment(lib, "EngineLayer.lib")
 #pragma comment(lib, "DatabaseLayer.lib")
 #pragma comment(lib, "libglog.lib")
