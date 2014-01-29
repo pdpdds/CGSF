@@ -2,6 +2,7 @@
 #include <sql.h>
 #include <sqlext.h>
 #include "SFList.h"
+#include "DBStruct.h"
 
 #define SH_SQL_SUCCESS(ret) (ret == SQL_SUCCESS || ret == SQL_SUCCESS_WITH_INFO)
 
