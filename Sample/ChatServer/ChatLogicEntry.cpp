@@ -6,6 +6,7 @@
 #include <iostream>
 #include "SFEngine.h"
 #include "SFProtobufPacket.h"
+#include "ChatPacket.pb.h"
 
 using namespace google;
 

@@ -18,6 +18,11 @@ ChatLogicJsonEntry::~ChatLogicJsonEntry(void)
 {
 }
 
+BOOL ChatLogicJsonEntry::Initialize()
+{
+	return TRUE;
+}
+
 BOOL ChatLogicJsonEntry::ProcessPacket(BasePacket* pPacket )
 {
 	switch (pPacket->GetPacketType())

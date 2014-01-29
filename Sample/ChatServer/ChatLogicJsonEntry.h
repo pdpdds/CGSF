@@ -12,6 +12,7 @@ public:
 	ChatLogicJsonEntry(void);
 	virtual ~ChatLogicJsonEntry(void);
 
+	virtual BOOL Initialize() override;
 	virtual BOOL ProcessPacket(BasePacket* pBasePacket) override;
 	BOOL SendRequest(BasePacket* pPacket);
 	BOOL Broadcast(BasePacket* pPacket);

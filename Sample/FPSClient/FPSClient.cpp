@@ -31,7 +31,6 @@ int _tmain(int argc, _TCHAR* argv[])
 	ILogicDispatcher* pDispatcher = new SFCasualGameDispatcher();
 	g_pNetworkEntry->SetLogicDispatcher(pDispatcher);
 
-
 	g_pNetworkEntry->Run();
 
 	while(1)
