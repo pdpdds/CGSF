@@ -22,6 +22,7 @@ public:
 
 	BOOL Run();
 	BOOL Update();
+	BOOL IsConnected();
 
 	bool TCPSend(BasePacket* pPacket );
 	bool UDPSend(unsigned char* pMessage, int BufSize );

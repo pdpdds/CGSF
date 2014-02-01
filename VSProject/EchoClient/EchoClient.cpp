@@ -7,15 +7,22 @@
 #include "BasePacket.h"
 #include "SFPacketProtocol.h"
 #include "SFJsonProtocol.h"
+#include "SFJsonPacket.h"
 #include "SFCasualGameDispatcher.h"
+#include <string>
+#include <iostream>
 
 SFNetworkEntry* g_pNetworkEntry = NULL;
 
 void EchoInputThread(void* Args)
 {
-	//while(g_pNetworkEntry->GetTCPNetwork() == FALSE)
+	std::string input;
+	while(g_pNetworkEntry->IsConnected())
 	{
-		
+		std::cin >> input;
+		SFJsonPacket packet;
+		packet.GetData().Add("ECHO", input.c_str());
+		g_pNetworkEntry->TCPSend(&packet);
 	}
 }
 
@@ -35,9 +42,11 @@ int _tmain(int argc, _TCHAR* argv[])
 
 	g_pNetworkEntry->Run();
 
+	g_pNetworkEntry->Update();
+
 	ACE_Thread_Manager::instance()->spawn_n(1, (ACE_THR_FUNC)EchoInputThread, NULL, THR_NEW_LWP, ACE_DEFAULT_THREAD_PRIORITY, 2);
 
-	while(1)
+	while(g_pNetworkEntry->IsConnected())
 	{
 		g_pNetworkEntry->Update();
 	

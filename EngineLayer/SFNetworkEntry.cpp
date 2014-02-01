@@ -103,6 +103,11 @@ BOOL SFNetworkEntry::Update()
 	return TRUE;
 }
 
+BOOL SFNetworkEntry::IsConnected()
+{
+	return m_pTCPNetwork->IsConnected();
+}
+
 bool SFNetworkEntry::AddPeer(int Serial, int ExternalIP, short ExternalPort, int LocalIP, short LocalPort)
 {
 	return m_pUDPNetwork->AddPeer(Serial, ExternalIP, ExternalPort, LocalIP, LocalPort);

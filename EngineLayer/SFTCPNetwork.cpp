@@ -80,6 +80,8 @@ BOOL SFTCPNetwork::SendRequest(BasePacket* pPacket)
 
 	PacketSend.MakePacket((BYTE*)pMessage, BufSize, CGSF_PACKET_OPTION);
 	*/
+
+	pPacket->SetOwnerSerial(m_pTCPCallBack->GetSerial());
 	return m_TCPClient->SendRequest(pPacket);
 }
 
@@ -91,4 +93,9 @@ void SFTCPNetwork::SetLogicDispatcher(ILogicDispatcher* pDispatcher)
 void SFTCPNetwork::SetPacketProtocol(IPacketProtocol* pProtocol)
 {
 	m_TCPClient->SetPacketProtocol(pProtocol);
+}
+
+bool SFTCPNetwork::IsConnected()
+{
+	return m_pTCPCallBack->IsConnected();
 }

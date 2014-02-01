@@ -12,8 +12,5 @@ public:
 	virtual void HandleDisconnect(int Serial) override;
 
 protected:
-
-private:
-	int m_Serial;
 };
 

@@ -23,7 +23,7 @@ public:
 
 	void SetPacketProtocol(IPacketProtocol* pProtocol);
 
-
+	bool IsConnected();
 protected:
 
 private:

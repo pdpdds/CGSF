@@ -25,6 +25,10 @@ BOOL EchoLogicEntry::ProcessPacket(BasePacket* pPacket )
 	{
 		g_pEngine->SendRequest(pPacket);
 	}
+	else if (pPacket->GetPacketType() == SFPacket_Connect)
+	{
+		int i = 1;
+	}
 
 	return TRUE;
 }

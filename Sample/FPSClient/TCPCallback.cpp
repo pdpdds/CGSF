@@ -11,7 +11,7 @@
 extern SFNetworkEntry* g_pNetworkEntry;
 
 TCPCallback::TCPCallback(void)
-	: m_Serial(-1)
+	//: m_Serial(-1)
 {
 }
 
@@ -30,7 +30,7 @@ bool TCPCallback::HandleNetworkMessage(BasePacket* pPacket)
 		std::string password = "1234";
 
 		SFProtobufPacket<SFPacketStore::Login> request(CGSF::Login);
-		request.SetOwnerSerial(m_Serial);
+		//request.SetOwnerSerial(m_Serial);
 		request.GetData().set_username(name);
 		request.GetData().set_password(password);
 
@@ -43,7 +43,7 @@ bool TCPCallback::HandleNetworkMessage(BasePacket* pPacket)
 	{
 		printf("Login Success\n");
 		SFProtobufPacket<SFPacketStore::EnterLobby> request(CGSF::EnterLobby);
-		request.SetOwnerSerial(m_Serial);
+		//request.SetOwnerSerial(m_Serial);
 		
 		g_pNetworkEntry->TCPSend(&request);
 	}
@@ -53,7 +53,7 @@ bool TCPCallback::HandleNetworkMessage(BasePacket* pPacket)
 
 		SFProtobufPacket<SFPacketStore::CreateRoom> request(CGSF::CreateRoom);
 		request.GetData().set_gamemode(3);
-		request.SetOwnerSerial(m_Serial);
+		//request.SetOwnerSerial(m_Serial);
 
 		g_pNetworkEntry->TCPSend(&request);
 	}
@@ -63,7 +63,7 @@ bool TCPCallback::HandleNetworkMessage(BasePacket* pPacket)
 
 void TCPCallback::HandleConnect(int Serial)
 {
-	m_Serial = Serial;
+	SetSerial(Serial);
 	printf("Connected\n");
 	
 }
