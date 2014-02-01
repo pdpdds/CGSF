@@ -255,7 +255,7 @@ public:
 		const WCHAR* szvalue = (pNode->ToElement())->Attribute(L"value");
 		std::wstring wstr = StringConversion::ToUnicode(szvalue);
 
-		wcscpy(buffer, wstr.c_str());
+		wcscpy_s(buffer, wcslen(wstr.c_str()) + 1, wstr.c_str());
 
 		return wstr.size();
 	}
@@ -269,7 +269,7 @@ public:
 		const WCHAR* szvalue = (pNode->ToElement())->Attribute(L"value");
 		std::string str = StringConversion::ToASCII(szvalue);
 
-		strcpy(buffer, str.c_str());
+		strcpy_s(buffer, strlen(str.c_str()) + 1, str.c_str());
 
 		return str.size();
 	}

@@ -11,23 +11,19 @@
     </ProjectConfiguration>
   </ItemGroup>
   <PropertyGroup Label="Globals">
-    <VCTargetsPath Condition="'$(VCTargetsPath11)' != '' and '$(VSVersion)' == '' and '$(VisualStudioVersion)' == ''">$(VCTargetsPath11)</VCTargetsPath>
-  </PropertyGroup>
-  <PropertyGroup Label="Globals">
-    <ProjectGuid>{C62DE91E-5119-429A-B9C4-11EA6ACC329F}</ProjectGuid>
+    <ProjectGuid>{DD9698A1-F393-47EF-B4E7-41DB22BA2DD6}</ProjectGuid>
     <Keyword>Win32Proj</Keyword>
-    <RootNamespace>NetLib</RootNamespace>
-    <ProjectName>ClientInterface</ProjectName>
+    <RootNamespace>EchoServer</RootNamespace>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
-    <ConfigurationType>StaticLibrary</ConfigurationType>
+    <ConfigurationType>Application</ConfigurationType>
     <UseDebugLibraries>true</UseDebugLibraries>
     <PlatformToolset>v110</PlatformToolset>
     <CharacterSet>Unicode</CharacterSet>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="Configuration">
-    <ConfigurationType>StaticLibrary</ConfigurationType>
+    <ConfigurationType>Application</ConfigurationType>
     <UseDebugLibraries>false</UseDebugLibraries>
     <PlatformToolset>v110</PlatformToolset>
     <WholeProgramOptimization>true</WholeProgramOptimization>
@@ -43,33 +39,28 @@
     <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
   </ImportGroup>
   <PropertyGroup Label="UserMacros" />
-  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
-    <OutDir>../../VSProject/lib\Release\</OutDir>
-    <IntDir>../Intermediate/$(Configuration)\$(ProjectName)\</IntDir>
-  </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
-    <OutDir>../../VSProject/lib\Debug\</OutDir>
+    <LinkIncremental>true</LinkIncremental>
+    <OutDir>../..\VSProject\Bin32\</OutDir>
     <IntDir>../../VSProject/Intermediate/$(Configuration)\$(ProjectName)\</IntDir>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <LinkIncremental>false</LinkIncremental>
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <ClCompile>
       <PrecompiledHeader>Use</PrecompiledHeader>
       <WarningLevel>Level3</WarningLevel>
       <Optimization>Disabled</Optimization>
-      <PreprocessorDefinitions>WIN32;_DEBUG;_LIB;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>WIN32;_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <SDLCheck>true</SDLCheck>
-      <AdditionalIncludeDirectories>../../Common/Include;../../EngineLayer;../../EngineLayer/EngineDllInterface;../../P2PLayer/P2PClient;../../ThirdParty/liblfds/include;../../ThirdParty/ACE_WRAPPERS;../../BaseLayer/XML;../../BaseLayer;../../ThirdParty/glog-0.3.2/src/windows</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>../../BaseLayer/VMemPool;../../BaseLayer;../../EngineLayer;../../EngineLayer/EngineDllInterface;../../Common;../../Common/SFPacketStore;../../Common/Include;../../ThirdParty/Breakpad;../../ThirdParty/Bugtrap;../../ThirdParty/glog/src/windows;../../ThirdParty/protobuf-2.4.1/src;../../ThirdParty/ACE_wrappers;../../BaseLayer/XML;../../BaseLayer/json;../../ThirdParty/glog-0.3.2/src/windows;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
-      <SubSystem>Windows</SubSystem>
+      <SubSystem>Console</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
+      <AdditionalLibraryDirectories>../../EngineLayer/Engine/MGServer/debug;../../ThirdParty/SQLite;../../ThirdParty/Lib/debug;../../ThirdParty/Ace_Wrappers/lib;../../VSProject/Lib/Debug;../../ThirdParty/MySql/lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
     </Link>
-    <Lib>
-      <AdditionalDependencies>
-      </AdditionalDependencies>
-      <AdditionalLibraryDirectories>
-      </AdditionalLibraryDirectories>
-    </Lib>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <ClCompile>
@@ -78,12 +69,11 @@
       <Optimization>MaxSpeed</Optimization>
       <FunctionLevelLinking>true</FunctionLevelLinking>
       <IntrinsicFunctions>true</IntrinsicFunctions>
-      <PreprocessorDefinitions>WIN32;NDEBUG;_LIB;%(PreprocessorDefinitions);_CRT_SECURE_NO_WARNINGS</PreprocessorDefinitions>
+      <PreprocessorDefinitions>WIN32;NDEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <SDLCheck>true</SDLCheck>
-      <AdditionalIncludeDirectories>../../Common/Include;../../EngineLayer;../../EngineLayer/EngineDllInterface;../../P2PLayer/P2PClient;../../ThirdParty/liblfds/include;../../ThirdParty/ACE_WRAPPERS</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
-      <SubSystem>Windows</SubSystem>
+      <SubSystem>Console</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
       <OptimizeReferences>true</OptimizeReferences>
@@ -93,20 +83,17 @@
     <Text Include="ReadMe.txt" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="SFNetworkEntry.h" />
-    <ClInclude Include="SFTCPNetwork.h" />
+    <ClInclude Include="EchoLogicEntry.h" />
     <ClInclude Include="stdafx.h" />
     <ClInclude Include="targetver.h" />
-    <ClInclude Include=".\SFUDPNetwork.h" />
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="SFNetworkEntry.cpp" />
-    <ClCompile Include="SFTCPNetwork.cpp" />
+    <ClCompile Include="EchoLogicEntry.cpp" />
+    <ClCompile Include="EchoServer.cpp" />
     <ClCompile Include="stdafx.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Create</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Create</PrecompiledHeader>
     </ClCompile>
-    <ClCompile Include=".\SFUDPNetwork.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
