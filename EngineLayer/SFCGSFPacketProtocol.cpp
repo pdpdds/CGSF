@@ -58,7 +58,7 @@ BOOL SFCGSFPacketProtocol::Reset()
 	return TRUE;
 }
 
-BOOL SFCGSFPacketProtocol::SendRequest(ISession* pSession, BasePacket* pPacket)
+bool SFCGSFPacketProtocol::SendRequest(ISession* pSession, BasePacket* pPacket)
 {
 	SFPacket* pSFPacket = (SFPacket*)pPacket;
 	pSFPacket->Encode();

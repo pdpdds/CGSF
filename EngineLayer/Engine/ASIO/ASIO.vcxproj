@@ -11,12 +11,9 @@
     </ProjectConfiguration>
   </ItemGroup>
   <PropertyGroup Label="Globals">
-    <VCTargetsPath Condition="'$(VCTargetsPath11)' != '' and '$(VSVersion)' == '' and '$(VisualStudioVersion)' == ''">$(VCTargetsPath11)</VCTargetsPath>
-  </PropertyGroup>
-  <PropertyGroup Label="Globals">
-    <ProjectGuid>{D3434D93-3187-430C-885F-FD6F9613366A}</ProjectGuid>
+    <ProjectGuid>{4BD7A214-3722-4C65-BEED-D3B2618A8D76}</ProjectGuid>
     <Keyword>Win32Proj</Keyword>
-    <RootNamespace>CGSFEngine</RootNamespace>
+    <RootNamespace>ASIO</RootNamespace>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
@@ -56,14 +53,13 @@
       </PrecompiledHeader>
       <WarningLevel>Level3</WarningLevel>
       <Optimization>Disabled</Optimization>
-      <PreprocessorDefinitions>NETWORKENGINE_EXPORTS;WIN32;_DEBUG;_WINDOWS;_USRDLL;CGSFENGINE_EXPORTS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <AdditionalIncludeDirectories>../../EngineDLLInterface;../../../ThirdParty/ACE_wrappers</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions>WIN32;_DEBUG;_WINDOWS;_USRDLL;ASIO_EXPORTS;NETWORKENGINE_EXPORTS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <AdditionalIncludeDirectories>D:\Library\boost_1_54_0;../../EngineDLLInterface;</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Windows</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
-      <AdditionalLibraryDirectories>../../../ThirdParty/ACE_wrappers/lib</AdditionalLibraryDirectories>
-      <AdditionalDependencies>aced.lib;kernel32.lib;user32.lib;gdi32.lib;winspool.lib;comdlg32.lib;advapi32.lib;shell32.lib;ole32.lib;oleaut32.lib;uuid.lib;odbc32.lib;odbccp32.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalLibraryDirectories>D:\Library\boost_1_54_0\stage\lib</AdditionalLibraryDirectories>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
@@ -74,37 +70,29 @@
       <Optimization>MaxSpeed</Optimization>
       <FunctionLevelLinking>true</FunctionLevelLinking>
       <IntrinsicFunctions>true</IntrinsicFunctions>
-      <PreprocessorDefinitions>NETWORKENGINE_EXPORTS;WIN32;NDEBUG;_WINDOWS;_USRDLL;CGSFENGINE_EXPORTS;%(PreprocessorDefinitions);_CRT_SECURE_NO_WARNINGS</PreprocessorDefinitions>
-      <AdditionalIncludeDirectories>../../EngineDLLInterface;../../../ThirdParty/ACE_wrappers</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions>WIN32;NDEBUG;_WINDOWS;_USRDLL;ASIO_EXPORTS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
     </ClCompile>
     <Link>
       <SubSystem>Windows</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
       <OptimizeReferences>true</OptimizeReferences>
-      <AdditionalLibraryDirectories>../../../ThirdParty/ACE_wrappers/lib</AdditionalLibraryDirectories>
-      <AdditionalDependencies>ace.lib;kernel32.lib;user32.lib;gdi32.lib;winspool.lib;comdlg32.lib;advapi32.lib;shell32.lib;ole32.lib;oleaut32.lib;uuid.lib;odbc32.lib;odbccp32.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClInclude Include="..\..\EngineDLLInterface\BasePacket.h" />
     <ClInclude Include="..\..\EngineDLLInterface\INetworkEngine.h" />
+    <ClInclude Include="..\..\EngineDLLInterface\IPacketProtocol.h" />
     <ClInclude Include="..\..\EngineDLLInterface\ISession.h" />
-    <ClInclude Include=".\CGSFEngine.h" />
-    <ClInclude Include="ACEHeader.h" />
-    <ClInclude Include=".\SingltonObject.h" />
-    <ClInclude Include=".\ProactorIDMap.h" />
-    <ClInclude Include="ACETimeOutHandler.h" />
-    <ClInclude Include="ProactorAcceptor.h" />
-    <ClInclude Include="ProactorService.h" />
-    <ClInclude Include="ProactorWorkerThread.h" />
-    <ClInclude Include="Queue.h" />
+    <ClInclude Include="ASIOEngine.h" />
+    <ClInclude Include="ChattingServer.h" />
+    <ClInclude Include="Protocol.h" />
+    <ClInclude Include="ServerSession.h" />
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include=".\CGSFEngine.cpp" />
-    <ClCompile Include="ProactorAcceptor.cpp" />
-    <ClCompile Include="ProactorService.cpp" />
-    <ClCompile Include="ProactorWorkerThread.cpp" />
+    <ClCompile Include="ASIOEngine.cpp" />
+    <ClCompile Include="ChattingClient.h" />
+    <ClCompile Include="ServerSession.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

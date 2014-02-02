@@ -52,7 +52,7 @@ void MGServerReceiver::notifyConnectingResult(INT32 requestID, ASSOCKDESCEX& soc
 
 }
 
-BOOL MGServerReceiver::SendRequest(BasePacket* pPacket)
+bool MGServerReceiver::SendRequest(BasePacket* pPacket)
 {
 	/*Synchronized es(&m_SessionLock);
 

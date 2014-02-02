@@ -17,7 +17,6 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\EngineDLLInterface\INetworkEngine.h" />
-    <ClInclude Include="..\..\EngineDLLInterface\INetworkEngineCallback.h" />
     <ClInclude Include="MGClientReceiver.h" />
     <ClInclude Include="MGEngine.h" />
     <ClInclude Include="MGServerReceiver.h" />

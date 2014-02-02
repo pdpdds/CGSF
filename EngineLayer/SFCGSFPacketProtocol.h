@@ -11,7 +11,7 @@ public:
 	BOOL Reset();
 	BasePacket* GetPacket(int& ErrorCode);
 	BOOL AddTransferredData(char* pBuffer, DWORD dwTransferred);
-	BOOL SendRequest(ISession* pSession, BasePacket* pPacket);
+	bool SendRequest(ISession* pSession, BasePacket* pPacket);
 
 protected:
 	BOOL Initialize();

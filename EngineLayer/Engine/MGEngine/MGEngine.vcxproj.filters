@@ -14,9 +14,6 @@
     <ClInclude Include="MGEngine.h">
       <Filter>Source</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\EngineDLLInterface\INetworkEngineCallback.h">
-      <Filter>Source</Filter>
-    </ClInclude>
     <ClInclude Include="MGServerReceiver.h">
       <Filter>Source</Filter>
     </ClInclude>

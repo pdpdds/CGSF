@@ -1,6 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <EngineConfig.xml type="Struct">
-  <EngineName type="wstring" value="CGSFEngine.dll" />
+  <EngineName type="wstring" value="ASIO.dll" />
   <P2PModuleName type="wstring" value="P2PServer.dll" />
   <ServerIP type="wstring" value="127.0.0.1" />
   <ServerPort type="uint16" value="25251" />

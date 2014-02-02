@@ -18,8 +18,8 @@ public:
 	SFPacketProtocol(){}
 	virtual ~SFPacketProtocol(void){}
 
-	BOOL OnReceive(int Serial, char* pBuffer, DWORD dwTransferred) override;
-	BOOL SendRequest(ISession* pSession, BasePacket* pPacket) override;
+	bool OnReceive(int Serial, char* pBuffer, unsigned int dwTransferred) override;
+	bool SendRequest(ISession* pSession, BasePacket* pPacket) override;
 
 	virtual IPacketProtocol* Clone(){return new SFPacketProtocol<T>();}
 
@@ -30,7 +30,7 @@ private:
 };
 
 template <typename T>
-BOOL SFPacketProtocol<T>::OnReceive(int Serial, char* pBuffer, DWORD dwTransferred)
+bool SFPacketProtocol<T>::OnReceive(int Serial, char* pBuffer, unsigned int dwTransferred)
 {
 	BOOL bRet = m_Analyzer.AddTransferredData(pBuffer, dwTransferred);
 
@@ -61,15 +61,15 @@ BOOL SFPacketProtocol<T>::OnReceive(int Serial, char* pBuffer, DWORD dwTransferr
 		return false;
 	}
 
-	return TRUE;
+	return true;
 }
 
 template <typename T>
-BOOL SFPacketProtocol<T>::SendRequest(ISession* pSession, BasePacket* pPacket)
+bool SFPacketProtocol<T>::SendRequest(ISession* pSession, BasePacket* pPacket)
 {
 	BOOL bRet = m_Analyzer.SendRequest(pSession, pPacket);
 
-	return TRUE;
+	return true;
 }
 
 ////////////////////////////////////////////////////////////////////////////////

@@ -1,6 +1,6 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio Express 2012 for Windows Desktop
+# Visual Studio 2012
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "BaseLayer", "..\BaseLayer\BaseLayer.vcxproj", "{835E9346-EC73-421D-8C4B-16C4673E3680}"
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "EngineLayer", "..\EngineLayer\EngineLayer.vcxproj", "{F7276B81-CD8E-4E0B-ABF5-BAB8FEBE0511}"
@@ -62,6 +62,12 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "CGSFTest", "..\CGSFTest\CGS
 		{F7276B81-CD8E-4E0B-ABF5-BAB8FEBE0511} = {F7276B81-CD8E-4E0B-ABF5-BAB8FEBE0511}
 	EndProjectSection
 EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "ASIO", "..\EngineLayer\Engine\ASIO\ASIO.vcxproj", "{4BD7A214-3722-4C65-BEED-D3B2618A8D76}"
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "EchoServer", "..\Sample\EchoServer\EchoServer.vcxproj", "{DD9698A1-F393-47EF-B4E7-41DB22BA2DD6}"
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "EchoClient", "..\Sample\EchoClient\EchoClient.vcxproj", "{F6F0BD80-CB93-41F3-A8DB-CF3418DA7EE0}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Win32 = Debug|Win32
@@ -120,6 +126,18 @@ Global
 		{ADE398AE-4C04-478D-8252-F65273AC7E18}.Debug|Win32.Build.0 = Debug|Win32
 		{ADE398AE-4C04-478D-8252-F65273AC7E18}.Release|Win32.ActiveCfg = Release|Win32
 		{ADE398AE-4C04-478D-8252-F65273AC7E18}.Release|Win32.Build.0 = Release|Win32
+		{4BD7A214-3722-4C65-BEED-D3B2618A8D76}.Debug|Win32.ActiveCfg = Debug|Win32
+		{4BD7A214-3722-4C65-BEED-D3B2618A8D76}.Debug|Win32.Build.0 = Debug|Win32
+		{4BD7A214-3722-4C65-BEED-D3B2618A8D76}.Release|Win32.ActiveCfg = Release|Win32
+		{4BD7A214-3722-4C65-BEED-D3B2618A8D76}.Release|Win32.Build.0 = Release|Win32
+		{DD9698A1-F393-47EF-B4E7-41DB22BA2DD6}.Debug|Win32.ActiveCfg = Debug|Win32
+		{DD9698A1-F393-47EF-B4E7-41DB22BA2DD6}.Debug|Win32.Build.0 = Debug|Win32
+		{DD9698A1-F393-47EF-B4E7-41DB22BA2DD6}.Release|Win32.ActiveCfg = Release|Win32
+		{DD9698A1-F393-47EF-B4E7-41DB22BA2DD6}.Release|Win32.Build.0 = Release|Win32
+		{F6F0BD80-CB93-41F3-A8DB-CF3418DA7EE0}.Debug|Win32.ActiveCfg = Debug|Win32
+		{F6F0BD80-CB93-41F3-A8DB-CF3418DA7EE0}.Debug|Win32.Build.0 = Debug|Win32
+		{F6F0BD80-CB93-41F3-A8DB-CF3418DA7EE0}.Release|Win32.ActiveCfg = Release|Win32
+		{F6F0BD80-CB93-41F3-A8DB-CF3418DA7EE0}.Release|Win32.Build.0 = Release|Win32
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

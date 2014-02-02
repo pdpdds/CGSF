@@ -17,9 +17,6 @@
     <ClInclude Include="..\..\EngineDLLInterface\INetworkEngine.h">
       <Filter>Source</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\EngineDLLInterface\INetworkEngineCallback.h">
-      <Filter>Source</Filter>
-    </ClInclude>
     <ClInclude Include="ACEHeader.h">
       <Filter>Source</Filter>
     </ClInclude>
@@ -42,9 +39,6 @@
       <Filter>Source</Filter>
     </ClInclude>
     <ClInclude Include="ACETimeOutHandler.h">
-      <Filter>Source</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\EngineDLLInterface\IPacketService.h">
       <Filter>Source</Filter>
     </ClInclude>
     <ClInclude Include="..\..\EngineDLLInterface\ISession.h">

@@ -57,7 +57,7 @@ public:
 	ProactorServiceIDMap(){}
 	virtual ~ProactorServiceIDMap(){}
 
-	BOOL SendRequest(BasePacket* pPacket )
+	bool SendRequest(BasePacket* pPacket )
 	{
 		T* pProactorService = Get(pPacket->GetOwnerSerial());
 

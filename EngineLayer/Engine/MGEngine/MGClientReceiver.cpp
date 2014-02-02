@@ -62,7 +62,7 @@ void MGClientReceiver::notifyConnectingResult(INT32 requestID, ASSOCKDESCEX& soc
 	
 }
 
-BOOL MGClientReceiver::SendRequest(BasePacket* pPacket)
+bool MGClientReceiver::SendRequest(BasePacket* pPacket)
 {
 	/*Synchronized es(&m_SessionLock);
 

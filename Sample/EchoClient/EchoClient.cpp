@@ -17,7 +17,7 @@ SFNetworkEntry* g_pNetworkEntry = NULL;
 void EchoInputThread(void* Args)
 {
 	std::string input;
-	while(g_pNetworkEntry->IsConnected())
+	while(1)
 	{
 		std::cin >> input;
 		SFJsonPacket packet;
@@ -28,11 +28,12 @@ void EchoInputThread(void* Args)
 
 int _tmain(int argc, _TCHAR* argv[])
 {
+	ACE::init();
 	g_pNetworkEntry = new SFNetworkEntry();
 
 	EchoCallback* pCallback = new EchoCallback();
 
-	g_pNetworkEntry->Initialize("CGSFEngine.dll", pCallback);
+	g_pNetworkEntry->Initialize("ASIO.dll", pCallback);
 
 	IPacketProtocol* pProtocol = new SFPacketProtocol<SFJsonProtocol>;
 	g_pNetworkEntry->SetPacketProtocol(pProtocol);
@@ -46,7 +47,7 @@ int _tmain(int argc, _TCHAR* argv[])
 
 	ACE_Thread_Manager::instance()->spawn_n(1, (ACE_THR_FUNC)EchoInputThread, NULL, THR_NEW_LWP, ACE_DEFAULT_THREAD_PRIORITY, 2);
 
-	while(g_pNetworkEntry->IsConnected())
+	while(1)
 	{
 		g_pNetworkEntry->Update();
 	

@@ -32,7 +32,7 @@ class ISession
 		return m_pSessionService->OnReceive(pData, Length);
 	}
 
-	BOOL SendRequest(BasePacket* pPacket)
+	bool SendRequest(BasePacket* pPacket)
 	{
 		return m_pSessionService->SendRequest(this, pPacket);
 	}

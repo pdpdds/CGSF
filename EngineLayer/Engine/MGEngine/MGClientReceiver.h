@@ -17,7 +17,7 @@ public:
 	virtual void notifyMessage(ASSOCKDESCEX& sockdesc, size_t length, char* data) override;
 	virtual void notifyConnectingResult(INT32 requestID, ASSOCKDESCEX& sockdesc, DWORD error);
 
-	BOOL SendRequest(BasePacket* pPacket);
+	bool SendRequest(BasePacket* pPacket);
 	bool Disconnect(int Serial);
 
 protected:
