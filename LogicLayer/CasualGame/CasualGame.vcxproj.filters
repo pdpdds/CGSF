@@ -157,7 +157,7 @@
     <ClInclude Include="SFDBProcessorODBC.h">
       <Filter>DataBase</Filter>
     </ClInclude>
-    <ClInclude Include="SFMySQLAdaptor.h">
+    <ClInclude Include="SFMySQLAdaptorImpl.h">
       <Filter>DataBase</Filter>
     </ClInclude>
   </ItemGroup>
@@ -276,7 +276,7 @@
     <ClCompile Include="SFDBProcessorODBC.cpp">
       <Filter>DataBase</Filter>
     </ClCompile>
-    <ClCompile Include="SFMySQLAdaptor.cpp">
+    <ClCompile Include="SFMySQLAdaptorImpl.cpp">
       <Filter>DataBase</Filter>
     </ClCompile>
   </ItemGroup>

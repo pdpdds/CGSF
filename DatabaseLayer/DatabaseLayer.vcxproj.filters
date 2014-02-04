@@ -16,6 +16,9 @@
     <Filter Include="DBComponent">
       <UniqueIdentifier>{ade4380d-12ab-4feb-958e-ad2c0c29f1db}</UniqueIdentifier>
     </Filter>
+    <Filter Include="DBAdaptor">
+      <UniqueIdentifier>{50bc590b-d417-480d-8855-b29e41292793}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <Text Include="ReadMe.txt" />
@@ -73,7 +76,10 @@
       <Filter>DBComponent</Filter>
     </ClInclude>
     <ClInclude Include="SFDBAdaptor.h">
-      <Filter>Source Files</Filter>
+      <Filter>DBAdaptor</Filter>
+    </ClInclude>
+    <ClInclude Include="SFMySQLAdaptor.h">
+      <Filter>DBAdaptor</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -101,11 +107,14 @@
     <ClCompile Include="CppSQLite3.cpp">
       <Filter>DBComponent</Filter>
     </ClCompile>
-    <ClCompile Include="SFDBAdaptor.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="SFDatabase.cpp">
       <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="SFDBAdaptor.cpp">
+      <Filter>DBAdaptor</Filter>
+    </ClCompile>
+    <ClCompile Include="SFMySQLAdaptor.cpp">
+      <Filter>DBAdaptor</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

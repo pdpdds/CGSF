@@ -1,22 +1,23 @@
 #include "stdafx.h"
-#include "SFMySQLAdaptor.h"
+#include "SFMySQLAdaptorImpl.h"
 #include "SFMySQL.h"
 #include "DBMsg.h"
 #include "SFSendDBRequest.h"
 
-SFMySQLAdaptor::SFMySQLAdaptor(void)
+SFMySQLAdaptorImpl::SFMySQLAdaptorImpl(void)
+	: m_pMySql(NULL)
 {
 	
 }
 
 
-SFMySQLAdaptor::~SFMySQLAdaptor(void)
+SFMySQLAdaptorImpl::~SFMySQLAdaptorImpl(void)
 {
 	if(m_pMySql)
 		delete m_pMySql;
 }
 
-BOOL SFMySQLAdaptor::Initialize(_DBConnectionInfo* pInfo)
+BOOL SFMySQLAdaptorImpl::Initialize(_DBConnectionInfo* pInfo)
 {
 	m_pMySql = new SFMySQL();
 
@@ -27,16 +28,16 @@ BOOL SFMySQLAdaptor::Initialize(_DBConnectionInfo* pInfo)
 }
 
 
-BOOL SFMySQLAdaptor::RegisterDBService()
+BOOL SFMySQLAdaptorImpl::RegisterDBService()
 {
-	m_Dispatch.RegisterMessage(DBMSG_LOGIN, std::tr1::bind(&SFMySQLAdaptor::OnLogin, this, std::tr1::placeholders::_1));
+	m_Dispatch.RegisterMessage(DBMSG_LOGIN, std::tr1::bind(&SFMySQLAdaptorImpl::OnLogin, this, std::tr1::placeholders::_1));
 
 	return TRUE;
 }
 
 ////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////
-BOOL SFMySQLAdaptor::OnLogin( BasePacket* pPacket )
+BOOL SFMySQLAdaptorImpl::OnLogin( BasePacket* pPacket )
 {
 	SFMessage* pMessage = (SFMessage*)pPacket;
 	MYSQL_RES *sql_result = NULL;

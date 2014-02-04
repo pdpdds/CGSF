@@ -10,13 +10,10 @@ public:
 	SFMySQLAdaptor(void);
 	virtual ~SFMySQLAdaptor(void);
 
-	virtual BOOL Initialize(_DBConnectionInfo* pInfo) override;
-	virtual BOOL RegisterDBService() override;
+	virtual BOOL Initialize(_DBConnectionInfo* pInfo) override;	
 
 protected:
 
 private:
-	SFMySQL* m_pMySql;
-
-	BOOL OnLogin( BasePacket* pMessage );
+	SFMySQL* m_pMySql;	
 };

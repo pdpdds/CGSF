@@ -2,7 +2,7 @@
 #include "SFLogicEntry.h"
 #include "SFPlayer.h"
 #include "SFMacro.h"
-#include "SFMySQLAdaptor.h"
+#include "SFMySQLAdaptorImpl.h"
 
 SFLogicEntry* SFLogicEntry::m_pLogicEntry = NULL;
 
@@ -17,11 +17,11 @@ BOOL SFLogicEntry::Initialize()
 
 	if(_tcscmp(SFDatabase::GetInfo()->szDataSource, _T("hsql")) == 0)
 	{
-		pProxyLocal = new SFDatabaseProxyLocal<SFMySQLAdaptor>();
+		pProxyLocal = new SFDatabaseProxyLocal<SFMySQLAdaptorImpl>();
 	}
 	else
 	{
-		pProxyLocal = new SFDatabaseProxyLocal<SFMySQLAdaptor>();
+		pProxyLocal = new SFDatabaseProxyLocal<SFMySQLAdaptorImpl>();
 	}
 
 	m_pDatabaseProxy = new SFDatabaseProxyImpl(pProxyLocal);

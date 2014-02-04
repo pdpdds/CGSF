@@ -1,6 +1,5 @@
 #pragma once
 
-class SFProactorService;
 class SFPlayer;
 class SFRoom;
 
