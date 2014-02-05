@@ -1,0 +1,6 @@
+#ifndef _QUERY_IDENTIFIER_H
+#define _QUERY_IDENTIFIER_H
+
+#define DBMSG_LOGIN 0x1000
+
+#endif

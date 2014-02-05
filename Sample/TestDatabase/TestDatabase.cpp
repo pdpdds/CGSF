@@ -9,10 +9,14 @@
 
 int _tmain(int argc, _TCHAR* argv[])
 {
+	ACE::init();
+
 	SFDatabaseProxy* pProxyLocal = new SFDatabaseProxyLocal<SFFastDBAdaptorImpl>();
 	SFDatabaseProxy* pDatabaseProxy = new SFDatabaseProxyImpl(pProxyLocal);
 
 	pDatabaseProxy->Initialize();
+
+	getchar();
 
 	return 0;
 }
