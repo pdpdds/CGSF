@@ -1,0 +1,369 @@
+<!DOCTYPE HTML PUBLIC "-//IETF//DTD HTML 3.2//EN">
+<HTML>
+<HEAD>
+   <TITLE></TITLE>
+   <META NAME="Author" CONTENT="Joe Hellerstein">
+   <META NAME="GENERATOR" CONTENT="Mozilla/3.0b5aGold (WinNT; I) [Netscape]">
+</HEAD>
+<BODY TEXT="#000000" BGCOLOR="#FFFFFF" LINK="#FF0000" VLINK="#800080" ALINK="#0000FF">
+
+<H1>A Guided Tour of Sample Code<IMG SRC="gist.gif" HEIGHT=194 WIDTH=254 ALIGN=RIGHT></H1>
+
+<CENTER><P>
+<HR WIDTH="100%"></P></CENTER>
+
+<P>The libGiST package is a C++ library that provides the basic GiST functionality.
+By itself it does nothing, since some of the important methods are <I>pure
+virtual</I>. However, with a little coding on your part, you can make it
+index data in a variety of ways, and support just about any query.</P>
+
+<P>We have provided some examples to get you started. &nbsp;The RTree directory
+contains code which uses libGiST as the basis for a simple R-tree-like
+storage/retrieval system that indexes 2-dimensional box data, and supports
+natural geographic queries. &nbsp;The RSTree directory provides the same
+functionality as the RTree directory, but uses the more efficient (and
+complex)&nbsp;R*-tree techniques invented by Beckman, et al. [BKSS90].
+The BTree directory contains code which uses libGiST to implement a simple
+B+-tree storage/retrieval system that indexes textual data, to support
+alphabetic equality and range queries.</P>
+
+<P>As an introduction to libGiST, we will step through the header files
+for each of these small projects, which will introduce you to increasingly
+powerful features of libGiST. We will go through the simplest project,
+RTree, in some detail, and then just describe the features of RSTree and
+BTree that are different from RTree. &nbsp;Probably the easiest way to
+use libGiST is to cannibalize some of this sample code, so it's worth looking
+at carefully.</P>
+
+<CENTER><P>
+<HR WIDTH="100%"></P></CENTER>
+
+<H2 ALIGN=CENTER>RTree</H2>
+
+<P>R-trees were first proposed by Guttman [Gut84] to index geographic data
+(points, lines, and polygons), in order to efficiently find data that satisfy
+geographic predicates (i.e., <TT>key {contains,contained-in,overlaps,equals}
+constant</TT>). The keys in a (2D) R-tree are &quot;bounding boxes&quot;,
+i.e. rectangles which are aligned with the x and y axes. A key signifies
+that all objects stored below it fall within that geographic area. If you
+want more detail on R-trees, Guttman's paper makes for fairly accessible
+reading.</P>
+
+<P>In order to extend libGiST to support R-tree behavior, we need four
+of the basic GiST methods mentioned in the original GiST paper:</P>
+
+<UL>
+<LI>Consistent: compares a query rectangle and a key rectangle to see if
+they correspond in a way appropriate to the query predicate. One tricky
+bit in R-trees is that entries on internal nodes are treated differently
+than entries at the leaves. (<TT>RTpredicate::Consistent(const RTpredicate
+&amp;)i</TT>n RTpredicate.h).</LI>
+
+<LI>Union: given a set of geographic objects, finds the minimal bounding
+box containing them all. &nbsp;(<TT>GiSTentry *RTnode::Union() </TT>in
+RTnode.h)</LI>
+
+<LI>Penalty: returns a <TT>GiSTPenalty</TT> (just a <TT>double</TT>, really)
+representing the &quot;badness&quot; of inserting a new entry below this
+entry -- for R-trees, this is measured by the increase in area of this
+entry's bounding box required to accomodate the new entry. (<TT>GiSTpenalty
+*RTentry::Penalty(const GiSTentry)</TT> in RTentry.h)</LI>
+
+<LI>PickSplit: Guttman proposes 3 different algorithms in his paper; we
+use his polynomial-time algorithm in our implementation. ( <TT>GiSTnode
+*RTnode::PickSplit()</TT> in RTnode.h)</LI>
+</UL>
+
+<P>We will also need various utility methods like constructors and destructors
+for our RTree classes, which inherit most (but not all!) of their behavior
+from libGiST. We won't talk about the constructors and destructors, which
+are pretty straightforward, but the rest of the simple utility methods
+are as follows (organized by file):</P>
+
+<UL>
+<LI>RT.h: contains the <TT>RT</TT> class for R-trees, which inherits from
+the <TT>GiST</TT> class of libGiST</LI>
+
+<UL>
+<LI><TT>GiSTobjid RT::IsA():&nbsp;</TT>Not strictly necessary, but useful
+for debugging. &nbsp;All classes which inherit from the GiSTobject class
+can define an <TT>IsA</TT> method to identify themselves. The choice of
+object tags is in <TT>libGiST/GiSTdefs.h</TT> if you wish to extend it.</LI>
+
+<LI><TT>GiSTnode *RT::CreateNode()</TT>:&nbsp;This constructor method is
+<I>critical</I>, as it ensures that our trees are actually instances of
+the RT class, and hence will use the appropriate RT methods. <B>N.B.: </B>Your
+programs will compile but <I>probably not work</I> if you don't define
+constructors and other basic allocation utilties for all your classes!!
+This is because libGiST makes heavy use of the virtual function mechanism
+of C++, which requires that objects be allocated within their appropriate
+subclasses.</LI>
+
+<LI><TT>GiSTstore *RT::CreateStore(): </TT>this method identifies and passes
+control to the storage subsystem of your choice. &nbsp;libGiST is distributed
+with one storage subsystem, GiSTfile, which uses the file system to store
+indices. &nbsp;Smarter storage systems (e.g. DBMSs of various sorts, or
+buffer management packages) may be plugged in via inheritance to improve
+the speed and/or functionality of your code.</LI>
+</UL>
+
+<LI>RTnode.h: defines the <TT>RTnode</TT> class for nodes in an R-tree,
+which inherits from <TT>GiSTnode</TT></LI>
+
+<UL>
+<LI><TT>GiSTobjid RTnode::IsA()</TT>: as above</LI>
+
+<LI><TT>GiSTobject *RTnode::Copy()</TT>: as above, <I>crucial</I> to the
+correctness of your code.</LI>
+
+<LI><TT>GiSTnode *RTnode::PickSplit()</TT> : One of the basic GiST methods.
+Note that the splitting is effected by actually deleting entries from <TT>*this</TT>,
+and putting them on the page which is returned by the method.</LI>
+
+<LI><TT>GiSTentry *RTnode::Union()</TT>: another of the basic GiST methods
+described above</LI>
+
+<LI><TT>GiSTentry *RTnode::CreateEntry():</TT> used to generate an entry
+of the appropriate subclass of <TT>GiSTentry</TT>, which in this case is
+<TT>RTentry</TT>. <I>&nbsp;Like the </I><TT>Copy</TT><I> methods, this
+is crucial!</I></LI>
+
+<LI>i<TT>nt RTnode::FixedLength()</TT>: tells libGiST two things -- that
+the keys in our nodes have a fixed length, and what that length is. &nbsp;If
+our entries were of variable length (as will be the case in BTree below),
+this method would return 0.</LI>
+</UL>
+
+<LI>RTentry.h: defines the <TT>RTentry </TT>clas for entries in an R-tree,
+which inherits from <TT>GiSTnode</TT>. Also defines the <TT>RTkey</TT>
+class, which represents bounding boxes. <B>N.B.:</B> The <TT>GiSTentry</TT>
+class contains a member <TT>GiSTobject *key</TT>, which is used to hold
+keys. So our <TT>RTkey</TT> class must inherit from <TT>GiSTobject.</TT></LI>
+
+<UL>
+<LI><TT>RTkey::Copy()</TT>: again, <I>critical.</I></LI>
+
+<LI>A variety of bounding-box methods, which are relatively self-explanatory.</LI>
+
+<LI><TT>RTkey &amp;RTentry::Key()</TT>: casts the key member, which is
+of class <TT>GiSTobject </TT>to class <TT>RTkey.</TT> &nbsp;Used to prevent
+compiler warnings.</LI>
+
+<LI><TT>GiSTobject *RTentry::Copy()</TT>: as above, you can't do without
+it.</LI>
+
+<LI><TT>void RTentry::InitKey()</TT>: this method allocates a new key for
+the entry -- like the <TT>Copy</TT> methods, it's crucial that it return
+an instance of the appropriate key subclass (in this case, <TT>RTkey</TT>).</LI>
+
+<LI><TT>GiSTpenalty * RTentry::Penalty(const GiSTentry &amp;newEntry)</TT>:
+as discussed above</LI>
+
+<LI><TT>int RTentry::CompressedLength()</TT>: since libGiST supports compressed
+keys (discussed in BTree below), this method is required to calculate the
+length of this <I>key</I> (not the entry) when compressed. In this case
+it's just <TT>sizeof(RTkey)</TT>.</LI>
+
+<LI>A variety of other methods for accessing/setting properties of the
+key.</LI>
+</UL>
+
+<LI>RTpredicate.h: Home of the <TT>RTpredicate</TT> class, which contains
+the <TT>Consistent</TT> method. In addition, <TT>RTpredicate</TT> has two
+important members, <TT>oper</TT> and <TT>value</TT>. &nbsp;The former distinguishes
+between the different box-comparison operators&nbsp;(<TT>Contains, Contained,
+Overlap, Equal)</TT> and the latter holds the bounding box to which we're
+comparing.</LI>
+</UL>
+
+<P>A quick look at the .cpp files will show that there's little more in
+them than what's described above -- the only method of any complexity is
+the PickSplit algorithm, which is taken directly from Guttman's paper.</P>
+
+<CENTER><P>
+<HR WIDTH="100%"></P></CENTER>
+
+<H2 ALIGN=CENTER>RSTree</H2>
+
+<P>The R*-tree is very much like the R-tree, having identical keys and
+supporting identical query predicates. But it contains some optimizations
+that often make t outperform simple R-trees during lookup, by paying for
+some additional complexity during insertion. First, it has different Penalty
+and PickSplit methods. Second, it uses a technique known as <I>Forced Reinsert</I>
+to keep the tree fuller and better balanced than an R-tree.</P>
+
+<P>Forced reinsert works as follows -- when an entry is inserted into a
+full node, some percentage of the entries on that node are deleted, and
+reinserted into the tree. If the node is at a non-leaf level, the reinsertion
+places the deleted entries back into nodes at that level. &nbsp;If reinsertion
+discovers a full node, then it splits it as usual. This sporadic reinsertion
+of elements accomodates changes in the data distribution as the tree fills
+in.</P>
+
+<P>Forced reinsert is supported by libGiST, and the RSTree implementation
+simply takes advantage of it. &nbsp;The PickSplit and Penalty methods for
+RSTree are a bit complicated, as proposed by the inventors of the R*-tree.</P>
+
+<UL>
+<LI>RT.h:</LI>
+
+<UL>
+<LI><TT>int RT::ForcedReinsert()</TT>: this method is overriden here to
+return 1 rather than 0, turning on libGiST's forced reinsert logic.</LI>
+
+<LI><TT>GiSTlist&lt;GiSTentry*&gt; RT::RemoveTop(GiSTnode *node)</TT>:
+this method deletes the top k% of entries on <TT>node</TT>, where k = <TT>GiST::RemoveRatio()</TT>,
+and returns them in a linked list. Beckmann et al. recommend removing the
+k% furthest from the center of the bounding box of the node. The default
+behavior in <TT>GiST::RemoveTop</TT> is just to remove the first k% of
+entries from the left of the node, so we overload it here to use Beckmann,
+et al's technique.</LI>
+</UL>
+
+<LI>RTentry.h:</LI>
+
+<UL>
+<LI>class <TT>RTpenalty</TT>: the standard <TT>GiSTPenalty</TT> class is
+just a container for a double. The R*-tree paper specifies a way of resolving
+ties if two penalties are equal, and yet <I>another</I> technique for resolving
+the tie if the first tie-breaker doesn't help. In order to support this,
+the <TT>RTpenalty</TT> class contains 3 doubles, and its comparison methods
+break ties accordingly.</LI>
+</UL>
+</UL>
+
+<P>These are the only significant differences between RSTree and RTree.</P>
+
+<CENTER><P>
+<HR WIDTH="100%"></P></CENTER>
+
+<H2 ALIGN=CENTER>BTree</H2>
+
+<P>B+-trees have 3 fundamental differences from R-trees:</P>
+
+<OL>
+<LI>the keys in a B+-tree are in ascending order from left to right on
+each page.</LI>
+
+<LI>range scans in a B+-tree do not traverse the tree; rather, they find
+the leftmost item and scan across the leaves of the tree until they exceed
+the right boundary of the range.</LI>
+
+<LI>in a B+-tree node, there are 1 fewer keys than there are pointers</LI>
+</OL>
+
+<P>The first of these two issues are handled in our BTree implementation
+by informing libGiST that the tree has the IsOrdered property. &nbsp;This
+is described below. &nbsp;The third of these issues is handled via <I>key
+compression</I>: two virtual methods of GiSTentry -- Compress and Decompress
+-- were not used in our RTree implementation, but are added for BTree.
+They allow keys to be compressed on disk to take up less space and improve
+fanout. &nbsp;When keys are read off disk, they are decompressed, and before
+they are written back, they are compressed. The BTree implementation essentially
+compresses the first key on a node to nothing, which effectively gives
+the standard B+-tree layout of <I>n-1</I> keys for <I>n</I> pointers.</P>
+
+<P>We now describe the salient parts of the BTree implementation that make
+it differ from the RTree and RSTree implementations. &nbsp;First, of course,
+the keys in a BTree are different -- in uncompressed format, they are alphabetic
+ranges of words (our demo works on textual data -- see the <TT>BTkey</TT>
+class in BTentry.h). The operators that can appear in BTpredicates are
+the standard ordering operators: <TT>&lt;, &lt;=, =, &gt;=, &gt;; </TT>otherwise,
+BTpredicates are very similar to RTpredicates. &nbsp;Further differences
+are described by file:</P>
+
+<UL>
+<LI>BT.h:</LI>
+
+<UL>
+<LI><TT>BT::IsOrdered()</TT>: this method, inherited from the <TT>GiST</TT>
+class, defaults to returning 0, signifying FALSE. In the case of BTree,
+it returns 1, signifying TRUE, to tell libGiST to ensure that keys are
+ordered on each page, and that range queries are handled without the usual
+depth-first traversal<SUP>1</SUP>.</LI>
+</UL>
+
+<LI>BTnode.h</LI>
+
+<UL>
+<LI><TT>BTnode::Insert(const GiSTentry &amp;entry)</TT>: This routine includes
+an assertion for debugging purposes, and then calls its ancestor method
+<TT>GiSTnode::Insert</TT>. &nbsp;You could remove this descendant method
+without harm, but it's better to leave it in to prevent problems after
+modification of the code.</LI>
+
+<LI><TT>BTnode::InsertBefore(const GiSTentry &amp;entry, int index)</TT>:
+This routine requires some explanation. &nbsp;Its ancestor, <TT>GiSTnode::InsertBefore</TT>,<TT>
+</TT>simply inserts entry <TT>entry</TT> onto this node before the entry
+at the <TT>index</TT>'th spot, shuffling that entry and its neighbors over
+to the right. However, <TT>BTnode::InsertBefore</TT> overrides this behavior
+with some extra detail.</LI>
+
+<P>In uncompressed format, BTree keys are pairs of words demarcating a
+range, closed on the left end and open on the right (e.g. the range <TT>[&quot;albacore&quot;,
+&quot;apple&quot;)</TT> contains albacore, all the words between albacore
+and apple, but not apple). The leftmost entry (at index 0) has a left end
+of <TT>-infinity</TT>, and the rightmost entry has a right end of <TT>infinity</TT>.
+All other entries have a left end equal to their left neighbor's right
+end, and a right end equal to their right neighbors left end. <TT>BTnode::InsertBefore</TT>
+ensures that these properties remain true after insertion.</P>
+
+<P>(<B>N.B.:</B> The above is not true for leaf nodes, which have keys
+that are ranges containing <I>only</I> the value of the item, e.g. <TT>[&quot;albacore&quot;,
+&quot;albacore)</TT>. This is why <TT>GiSTnode::Insert </TT>works for leaf
+nodes but not for internal nodes.)</P>
+
+<LI><TT>BTnode::Coalesce(const GiSTnode&amp; node, const GiSTentry&amp;
+entry)</TT>: This method is also overridden to ensure the properties above.
+We are moving entries from <TT>node</TT>, which is to our right, to <TT>this</TT>.
+If <TT>this</TT> is a non-empty internal page, the rightmost entry on <TT>this</TT>
+has an upperbound of +inf, and the leftmost entry on <TT>node</TT> has
+a lower bound of -inf. This code takes care of that -- both these values
+should be set to the right bound of <TT>entry (</TT>our parent entry).</LI>
+</UL>
+
+<LI>BTentry.h</LI>
+
+<UL>
+<LI>class <TT>BTkey</TT> is a simple string class, with special cases for
+representing negative and positive infinity</LI>
+
+<LI>class <TT>BTintkey</TT> is a simple class for pairs of <TT>BTkey</TT>s,
+representing a range. It is the key type for <TT>BTentry</TT>.</LI>
+
+<LI><TT>GiSTcompressedEntry BTEntry::Compress()</TT>: compresses a key
+and copies the pointer into the result. In this case, if it's the leftmost
+entry on the node it compresses down to 0 bytes. &nbsp;Any other entry
+compresses down to its lower boundary.</LI>
+
+<LI><TT>void BTEntry::Decompress(const GiSTcompressedEntry entry)</TT>:
+decompresses a key and copies the pointer into the result. In this case,
+it reverses the logic of compress by peeking at the neighbor to the right
+to get the upper bound. &nbsp;If this is the leftmost entry, the lower
+bound is <TT>-inf</TT>.</LI>
+</UL>
+</UL>
+
+<P>Otherwise there should be no great surprises in the BTree code.</P>
+
+<CENTER><P>
+<HR WIDTH="100%"></P></CENTER>
+
+<H2 ALIGN=CENTER>Writing your own methods</H2>
+
+<P>If you've made it this far, you should be ready to develop your own
+indexing code using libGiST. &nbsp;If you have ordered data and mostly
+are supporting range predicates, you should probably start with the BTree
+sample code and modify it to suit. &nbsp;If you have unordered data, it's
+probably best to start with the RTree code, and when you get things working,
+try adding Forced Resinsert (a la RSTree) and see if it helps.</P>
+
+<P>
+<HR WIDTH="100%"></P>
+
+<P><SUP>1</SUP>In v0.9b1 range queries are handled depth-first even if
+<TT>IsOrdered()</TT> returns 1. This is a bug, which we hope to fix in
+a subsequent release.</P>
+
+</BODY>
+</HTML>

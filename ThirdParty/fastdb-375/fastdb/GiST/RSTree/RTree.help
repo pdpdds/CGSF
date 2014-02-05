@@ -1,0 +1,39 @@
+This is a test program for the Generalized Search Tree (GiST), as
+described by Hellerstein, Naughton & Pfeffer in Proceedings of the
+21st International Conference on Very Large Database Systems.
+
+The following commands are understood:
+
+create rtree foo         Creates and opens a new r-tree named foo
+
+open rtree foo           Opens an existing r-tree foo
+
+close foo                Closes the rtree foo
+
+drop x                   Drops (deletes) the table foo
+
+select from foo          Selects (displays) all entries in foo
+
+select from foo where key <op> (<xlo>, <xhi>, <ylo>, <yhi>) 
+                         Selects entries in foo based on comparison with
+			 a bounding box.  The comparison operators
+                         that can be used in place of <op> are =
+                         (equals), & (overlaps), < (contained-in), and
+                         > (contains).  The four coordinates of 
+                         the key are (xlow, xhigh, ylow, yhigh) of the
+                         query box, which are all of type double.
+
+insert foo ((0,1.2,0,1), 4)   Inserts a new entry with key (0,1.2,0,1), 
+                         pointer 4 into table foo.  
+
+delete foo ((0,0,0,0), 4)   deletes an entry with key (0,0,0,0), pointer 4
+                         from table foo
+
+debug                    Activate debugging output
+
+help                     Display this screen
+
+dump foo                 Dump tree foo to the screen. 
+
+quit                     Quit the program
+

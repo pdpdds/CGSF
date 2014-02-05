@@ -1,0 +1,215 @@
+# -*- makefile -*-
+# Makefile for Microsoft Windows with Borland C++ Builder 5.2 compiler
+
+OBJS = class.obj compiler.obj database.obj xml.obj hashtab.obj file.obj stdtp.obj \
+	sync.obj symtab.obj ttree.obj rtree.obj container.obj cursor.obj query.obj w32sock.obj wwwapi.obj localcli.obj server.obj
+
+LIBOBJS = + class.obj + compiler.obj + database.obj + xml.obj + hashtab.obj + file.obj + stdtp.obj \
+        + sync.obj + symtab.obj + ttree.obj + rtree.obj + container.obj + cursor.obj + query.obj + w32sock.obj + wwwapi.obj + localcli.obj
+
+INCS = inc/fastdb.h inc/stdtp.h inc/class.h inc/database.h inc/cursor.h inc/reference.h inc/rectangle.h \
+	inc/array.h inc/file.h inc/hashtab.h inc/ttree.h  inc/rtree.h inc/container.h inc/sync.h inc/query.h inc/datetime.h inc/sync_w32.h \
+	inc/config.h inc/timeseries.h inc/exception.h
+
+CLI_OBJS = cli.obj w32sock.obj repsock.obj
+CLI_LIBOBJS = + cli.obj + w32sock.obj + repsock.obj + stdtp.obj
+CLI_LIB = cli.lib
+FASTDB_LIB = fastdb.lib 
+
+EXES = subsql.exe
+
+EXAMPLES = guess.exe testdb.exe testjoin.exe testddl.exe testperf.exe testsync.exe testconc.exe testiref.exe testtrav.exe testidx.exe localclitest.exe testspat.exe testtl.exe
+
+CC = BCC32.EXE
+
+# DEFS macro is deprecatred, edit inc/config.h file instead
+DEFS = 
+
+CFLAGS = -c -Iinc -v -Ox -w-8027 -DASM_CPUID_NOT_SUPPORTED $(DEFS)
+
+LD = $(CC)
+LDFLAGS = -v 
+
+AR = tlib
+ARFLAGS = 
+
+STDLIBS = 
+
+
+all: $(FASTDB_LIB) $(CLI_LIB) $(EXES) $(EXAMPLES)
+
+
+class.obj: src/class.cpp inc/compiler.h inc/compiler.d inc/symtab.h $(INCS)
+	$(CC) $(CFLAGS) src/class.cpp
+
+compiler.obj: src/compiler.cpp inc/compiler.h inc/compiler.d inc/symtab.h $(INCS)
+	$(CC) $(CFLAGS) src/compiler.cpp
+
+stdtp.obj: src/stdtp.cpp $(INCS)
+	$(CC) $(CFLAGS) src/stdtp.cpp
+
+query.obj: src/query.cpp inc/compiler.h inc/compiler.d inc/symtab.h $(INCS)
+	$(CC) $(CFLAGS) src/query.cpp
+
+database.obj: src/database.cpp inc/compiler.h inc/compiler.d inc/symtab.h $(INCS)
+	$(CC) $(CFLAGS) src/database.cpp
+
+xml.obj: src/xml.cpp inc/compiler.h inc/compiler.d inc/symtab.h $(INCS)
+	$(CC) $(CFLAGS) src/xml.cpp
+
+localcli.obj: src/localcli.cpp inc/compiler.h inc/compiler.d inc/symtab.h inc/localcli.h  $(INCS)
+	$(CC) $(CFLAGS) src/localcli.cpp
+
+cursor.obj: src/cursor.cpp inc/compiler.h inc/compiler.d $(INCS)
+	$(CC) $(CFLAGS) src/cursor.cpp
+
+hashtab.obj: src/hashtab.cpp $(INCS)
+	$(CC) $(CFLAGS) src/hashtab.cpp
+
+file.obj: src/file.cpp $(INCS)
+	$(CC) $(CFLAGS) src/file.cpp
+
+sync.obj: src/sync.cpp $(INCS)
+	$(CC) $(CFLAGS) src/sync.cpp
+
+symtab.obj: src/symtab.cpp inc/symtab.h $(INCS)
+	$(CC) $(CFLAGS) src/symtab.cpp
+
+ttree.obj: src/ttree.cpp $(INCS)
+	$(CC) $(CFLAGS) src/ttree.cpp
+
+rtree.obj: src/rtree.cpp $(INCS)
+	$(CC) $(CFLAGS) src/rtree.cpp
+
+container.obj: src/container.cpp $(INCS)
+	$(CC) $(CFLAGS) src/container.cpp
+
+wwwapi.obj: src/wwwapi.cpp inc/wwwapi.h inc/stdtp.h inc/sockio.h inc/sync.h inc/sync_w32.h inc/config.h
+	$(CC) $(CFLAGS) src/wwwapi.cpp
+
+w32sock.obj: src/w32sock.cpp inc/w32sock.h inc/sockio.h inc/stdtp.h
+	$(CC) $(CFLAGS) src/w32sock.cpp
+
+repsock.obj: src/repsock.cpp inc/repsock.h inc/sockio.h inc/stdtp.h inc/sync.h inc/sync_w32.h inc/config.h
+	$(CC) $(CFLAGS) src/repsock.cpp
+
+cli.obj: src/cli.cpp inc/cli.h inc/cliproto.h inc/repsock.h inc/sockio.h inc/stdtp.h inc/sync.h inc/sync_w32.h inc/config.h
+	$(CC) $(CFLAGS) src/cli.cpp
+
+fastdb.lib: $(OBJS)
+	$(AR) $(ARFLAGS) fastdb.lib $(LIBOBJS)
+
+cli.lib: $(CLI_OBJS)
+	$(AR) $(ARFLAGS) cli.lib $(CLI_LIBOBJS)
+
+server.obj: src/server.cpp inc/server.h inc/compiler.h inc/compiler.d inc/subsql.h inc/symtab.h $(INCS)
+	$(CC) $(CFLAGS) src/server.cpp
+
+subsql.obj: src/subsql.cpp inc/compiler.h inc/compiler.d inc/subsql.h inc/symtab.h $(INCS)
+	$(CC) $(CFLAGS) src/subsql.cpp
+
+subsql.exe: subsql.obj $(FASTDB_LIB)
+	$(LD) $(LDFLAGS) subsql.obj $(FASTDB_LIB) $(STDLIBS)
+
+clitest.obj: examples/clitest.c inc/cli.h
+	$(CC) $(CFLAGS) examples/clitest.c
+
+clitest.exe: clitest.obj $(CLI_LIB)
+	$(LD) $(LDFLAGS) clitest.obj $(CLI_LIB) $(STDLIBS) $(SOCKLIBS)
+
+
+localclitest.exe: clitest.obj $(FASTDB_LIB)
+	$(LD) $(LDFLAGS) -elocalclitest.exe clitest.obj $(FASTDB_LIB) $(STDLIBS)
+
+guess.obj: examples/guess.cpp $(INCS)
+	$(CC) $(CFLAGS) examples/guess.cpp 
+
+guess.exe: guess.obj $(FASTDB_LIB)
+	$(LD) $(LDFLAGS) guess.obj $(FASTDB_LIB) $(STDLIBS)
+
+testdb.obj: examples/testdb.cpp $(INCS)
+	$(CC) $(CFLAGS) examples/testdb.cpp 
+
+testdb.exe: testdb.obj $(FASTDB_LIB)
+	$(LD) $(LDFLAGS) testdb.obj $(FASTDB_LIB) $(STDLIBS)
+
+testjoin.obj: examples/testjoin.cpp $(INCS)
+	$(CC) $(CFLAGS) examples/testjoin.cpp 
+
+testjoin.exe: testjoin.obj $(FASTDB_LIB)
+	$(LD) $(LDFLAGS) testjoin.obj $(FASTDB_LIB) $(STDLIBS)
+
+testddl.obj: examples/testddl.cpp $(INCS)
+	$(CC) $(CFLAGS) examples/testddl.cpp 
+
+testddl.exe: testddl.obj $(FASTDB_LIB)
+	$(LD) $(LDFLAGS) testddl.obj $(FASTDB_LIB) $(STDLIBS)
+
+testperf.obj: examples/testperf.cpp $(INCS)
+	$(CC) $(CFLAGS) examples/testperf.cpp 
+
+testperf.exe: testperf.obj $(FASTDB_LIB)
+	$(LD) $(LDFLAGS) testperf.obj $(FASTDB_LIB) $(STDLIBS)
+
+testidx.obj: examples/testidx.cpp $(INCS)
+	$(CC) $(CFLAGS) examples/testidx.cpp 
+
+testidx.exe: testidx.obj $(FASTDB_LIB)
+	$(LD) $(LDFLAGS) testidx.obj $(FASTDB_LIB) $(STDLIBS)
+
+testtl.obj: examples/testtl.cpp $(INCS)
+	$(CC) $(CFLAGS) examples/testtl.cpp 
+
+testtl.exe: testtl.obj $(FASTDB_LIB)
+	$(LD) $(LDFLAGS) testtl.obj $(FASTDB_LIB) $(STDLIBS)
+
+testspat.obj: examples/testspat.cpp $(INCS)
+	$(CC) $(CFLAGS) examples/testspat.cpp 
+
+testspat.exe: testspat.obj $(FASTDB_LIB)
+	$(LD) $(LDFLAGS) testspat.obj $(FASTDB_LIB) $(STDLIBS)
+
+testsync.obj: examples/testsync.cpp $(INCS)
+	$(CC) $(CFLAGS) examples/testsync.cpp 
+
+testsync.exe: testsync.obj $(FASTDB_LIB)
+	$(LD) $(LDFLAGS) testsync.obj $(FASTDB_LIB) $(STDLIBS)
+
+testconc.obj: examples/testconc.cpp $(INCS)
+	$(CC) $(CFLAGS) examples/testconc.cpp 
+
+testconc.exe: testconc.obj $(FASTDB_LIB)
+	$(LD) $(LDFLAGS) testconc.obj $(FASTDB_LIB) $(STDLIBS)
+
+testiref.obj: examples/testiref.cpp $(INCS)
+	$(CC) $(CFLAGS) examples/testiref.cpp 
+
+testiref.exe: testiref.obj $(FASTDB_LIB)
+	$(LD) $(LDFLAGS) testiref.obj $(FASTDB_LIB) $(STDLIBS)
+
+testtrav.obj: examples/testtrav.cpp $(INCS)
+	$(CC) $(CFLAGS) examples/testtrav.cpp 
+
+testtrav.exe: testtrav.obj $(FASTDB_LIB)
+	$(LD) $(LDFLAGS) testtrav.obj $(FASTDB_LIB) $(STDLIBS)
+
+
+
+cleanobj:
+	del *.odb,*.obj,*.pch,*.pdb,*.ilk,*.dsp,*.dsw,*.ncb,*.opt
+
+cleandbs:
+	del *.fdb
+
+clean: cleanobj cleandbs
+	del *~,*.lib,*.exe
+
+
+zip: clean
+	cd ..
+	del fastdb.zip
+	zip -r fastdb.zip fastdb
+
+copyzip: zip
+	copy fastdb.zip a:
+

@@ -1,0 +1,104 @@
+<!DOCTYPE HTML PUBLIC "-//IETF//DTD HTML 3.2//EN">
+<HTML>
+<HEAD>
+   <TITLE>libGiST, v.0.9b1</TITLE>
+   <META NAME="GENERATOR" CONTENT="Mozilla/3.0b5aGold (WinNT; I) [Netscape]">
+</HEAD>
+<BODY TEXT="#333333" BGCOLOR="#FFFFFF" LINK="#006699" VLINK="#999900" ALINK="#999900">
+
+<H1>libGiST v.0.9b1 Installation Notes <IMG SRC="gist.gif" HEIGHT=194 WIDTH=254 ALIGN=RIGHT></H1>
+
+<CENTER><P>
+<HR WIDTH="100%"></P></CENTER>
+
+<H2>Portability</H2>
+
+<P>libGiST was concurrently developed under HP/UX with the g++ compiler,
+and under Windows NT with the Microsoft Visual C++ 4.1 compiler. It is
+also reported to have ported cleanly under Solaris with g++.  Since
+these platforms are quite different, we expect the code to be quite portable,
+but have not done extensive porting ourselves. Before you port libGiST
+to other platforms, please check the <A HREF="http://s2k-ftp.cs.berkeley.edu/pub/gist/libgist/">libGiST
+home page</A> and see if anyway has done it for you already. If not, and
+you succeed in porting, contact us at <A HREF="mailto:gist@postgres.berkeley.edu">gist@postgres.berkeley.edu</A>!</P>
+
+<CENTER><P>
+<HR WIDTH="100%"></P></CENTER>
+
+<H2>NT&nbsp;Installation Notes</H2>
+
+<H3>Requirements</H3>
+
+<UL>
+<LI>Either an unzip package, or tar and gunzip. All of these are widely
+available on the web.</LI>
+
+<LI>Microsoft Visual C++ version 4.1: earlier versions may work, but we
+make no guarantees</LI>
+
+<LI>Microsoft Developer Studio: not strictly necessary, but you will have
+to create your own NMAKE files if you don't have Developer Studio</LI>
+
+<LI>bison &amp;&nbsp;flex: not actually required for libGiST, but necessary
+to use the demonstration code. bison and flex for Windows are freely available
+on the Web from a variety of sources.</LI>
+</UL>
+
+<H3>Procedure</H3>
+
+<OL>
+<LI>Run the genparse.bat script in the topmost directory.</LI>
+
+<LI>Load libGiST\libGiST.mdp into Developer Studio. You probably want to
+build both the Debug and Release configurations.</LI>
+
+<LI>For each demo project of interest, there is a .mdp file in the directory
+that can be loaded into Developer Studio to build the demo applications.</LI>
+
+<LI>Libraries and executables will be left with their sources. &nbsp;If
+you wish to install them elsewhere, you will need to do so by hand.</LI>
+</OL>
+
+<CENTER><P>
+<HR WIDTH="100%"></P></CENTER>
+
+<H2>UN*X Installation Notes</H2>
+
+<H3>Requirements</H3>
+
+<UL>
+<LI>Either an unzip package, or tar and gunzip. All of these are widely
+available on the web.</LI>
+
+<LI>g++ version 2.7.2: other versions may work, as may other C++ compilers,
+but we have not tested any.</LI>
+
+<LI>gmake: you may substitute make, but will need to rewrite the (simple)&nbsp;Makefiles
+to suit.</LI>
+
+<LI>bison &amp; flex: not actually required for libGiST, but necessary
+to use the demonstration code. bison and flex are freely available on the
+Web from a variety of sources. It is possible that yacc and lex may be
+substituted, but we have not tested them.</LI>
+</UL>
+
+<H3>Procedure</H3>
+
+<OL>
+<LI>Edit the top-level Makefile, and set paths for the various tools, etc.
+</LI>
+
+<LI>Run gmake -- it will recursively make libGiST and all the example projects.</LI>
+
+<LI>Libraries and executables will be left with their sources. &nbsp;If
+you wish to install them elsewhere, you will need to do so by hand.</LI>
+</OL>
+
+<CENTER><P>
+<HR WIDTH="100%"></P></CENTER>
+
+<P>Comments, questions and suggestions may be directed to <I><A HREF="mailto:gist@postgres.berkeley.edu">gist@postgres.berkeley.edu</A></I>
+</P>
+
+</BODY>
+</HTML>

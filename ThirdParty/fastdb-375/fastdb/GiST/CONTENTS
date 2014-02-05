@@ -1,0 +1,10 @@
+BTree/          -- source code for the BTree example application
+CONTENTS        -- this file
+Makefile        -- Makefile used for building under UN*X
+README          -- licensing information
+RSTree/         -- source code for the RSTree example application
+RTree/          -- source code for the RTree example application
+doc/            -- documentation in HTML format
+genparse.bat*   -- batch file used for building under MS Windows
+libGiST/        -- the libGiST source
+tests/          -- regression test suite

@@ -1,0 +1,462 @@
+# -*- makefile -*-
+# Makefile for Microsoft Windows with Microsoft Visual C++ 5.0 or higher compiler
+
+!IFNDEF GENERATE_DLL
+GENERATE_DLL=0
+!ENDIF
+
+!IFNDEF FAULT_TOLERANT
+FAULT_TOLERANT=0
+!ENDIF
+
+!IFNDEF DEBUG
+DEBUG=1
+!ENDIF
+
+!IFNDEF UNICODE
+UNICODE=0
+!ENDIF
+
+!IFNDEF STATIC
+STATIC=1
+!ENDIF
+
+
+OBJS = class.obj compiler.obj database.obj xml.obj hashtab.obj file.obj \
+	sync.obj symtab.obj ttree.obj rtree.obj container.obj cursor.obj query.obj w32sock.obj \
+	wwwapi.obj localcli.obj stdtp.obj server.obj
+
+CLI_OBJS = cli.obj w32sock.obj sync.obj repsock.obj stdtp.obj
+
+INCS = inc/fastdb.h inc/stdtp.h inc/class.h inc/database.h inc/cursor.h inc/reference.h inc/wwwapi.h \
+	inc/array.h inc/file.h inc/hashtab.h inc/ttree.h inc/rtree.h inc/container.h inc/sync.h inc/sync_w32.h inc/config.h \
+	inc/query.h inc/datetime.h inc/harray.h inc/timeseries.h inc/rectangle.h inc/exception.h
+
+FASTDB_LIB = fastdb.lib 
+CLI_LIB = cli.lib
+FASTDB_DLL = fastdb.dll 
+CLI_DLL = cli.dll
+
+EXES = subsql.exe cgistub.exe forcerecovery.exe
+
+EXAMPLES = guess.exe guess2.exe guess_std.exe testdb.exe testleak.exe testfrag.exe testjoin.exe testddl.exe testperf.exe testpar.exe testindex.exe testarridx.exe  testudt.exe testfuzzy.exe testsync.exe testconc.exe testiref.exe testtrav.exe testidx.exe bugdb.exe clidb.exe clitest.exe clitest2.exe testrect.exe localclitest.exe testalter.exe testraw.exe testharr.exe testspat.exe testtimeseries.exe testwcs.exe testtl.exe
+
+CC = cl
+
+# DEFS macro is deprecatred, edit inc/config.h file instead
+!IF $(UNICODE)
+DEFS = $(DEFS) -DUNICODE
+!ENDIF
+
+!IF $(DEBUG)
+DEFS = $(DEFS) -D_DEBUG 
+CFLAGS = -c  -Iinc -nologo -Od -Zi -W3 -EHsc $(CODE_MODEL) $(DEFS)
+!ELSE
+CFLAGS = -c  -Iinc -nologo -Ox -Zi -W3 -EHsc $(CODE_MODEL) $(DEFS)
+!ENDIF
+
+!IF $(STATIC)
+CODE_MODEL=-MT
+!ELSE
+CODE_MODEL=-MD
+!ENDIF
+
+!IF $(DEBUG)
+CODE_MODEL=$(CODE_MODEL)d
+!ENDIF
+
+LD = $(CC)
+LDFLAGS = $(CODE_MODEL) -Zi -nologo
+
+!IF $(DEBUG)
+DLLFLAGS = -LDd -Zi -nologo
+!ELSE
+DLLFLAGS = -LD -nologo
+!ENDIF
+
+AR = lib
+ARFLAGS = 
+
+STDLIBS = advapi32.lib
+
+SOCKLIBS = wsock32.lib
+
+!IF $(FAULT_TOLERANT)
+DEFS = $(DEFS) -DREPLICATION_SUPPORT
+STDLIBS = $(STDLIBS) $(SOCKLIBS)
+!ELSE
+!ENDIF
+
+!IF $(GENERATE_DLL)
+all: $(FASTDB_DLL) $(CLI_DLL) $(EXES) $(EXAMPLES)
+DEFS = $(DEFS) -DFASTDB_DLL 
+!ELSE
+all: $(FASTDB_LIB) $(CLI_LIB) $(EXES) $(EXAMPLES)
+!ENDIF
+
+class.obj: src/class.cpp inc/compiler.h inc/compiler.d inc/symtab.h $(INCS)
+	$(CC) $(CFLAGS) src/class.cpp
+
+compiler.obj: src/compiler.cpp inc/compiler.h inc/compiler.d inc/symtab.h $(INCS)
+	$(CC) $(CFLAGS) src/compiler.cpp
+
+query.obj: src/query.cpp inc/compiler.h inc/compiler.d inc/symtab.h $(INCS)
+	$(CC) $(CFLAGS) src/query.cpp
+
+database.obj: src/database.cpp inc/compiler.h inc/compiler.d inc/symtab.h $(INCS)
+	$(CC) $(CFLAGS) src/database.cpp
+
+xml.obj: src/xml.cpp inc/compiler.h inc/compiler.d inc/symtab.h $(INCS)
+	$(CC) $(CFLAGS) src/xml.cpp
+
+localcli.obj: src/localcli.cpp inc/compiler.h inc/compiler.d inc/symtab.h inc/localcli.h $(INCS)
+	$(CC) $(CFLAGS) src/localcli.cpp
+
+cursor.obj: src/cursor.cpp inc/compiler.h inc/compiler.d $(INCS)
+	$(CC) $(CFLAGS) src/cursor.cpp
+
+hashtab.obj: src/hashtab.cpp $(INCS)
+	$(CC) $(CFLAGS) src/hashtab.cpp
+
+file.obj: src/file.cpp $(INCS)
+	$(CC) $(CFLAGS) src/file.cpp
+
+stdtp.obj: src/stdtp.cpp $(INCS)
+	$(CC) $(CFLAGS) src/stdtp.cpp
+
+sync.obj: src/sync.cpp $(INCS)
+	$(CC) $(CFLAGS) src/sync.cpp
+
+symtab.obj: src/symtab.cpp inc/symtab.h $(INCS)
+	$(CC) $(CFLAGS) src/symtab.cpp
+
+ttree.obj: src/ttree.cpp $(INCS)
+	$(CC) $(CFLAGS) src/ttree.cpp
+
+rtree.obj: src/rtree.cpp $(INCS)
+	$(CC) $(CFLAGS) src/rtree.cpp
+
+container.obj: src/container.cpp $(INCS)
+	$(CC) $(CFLAGS) src/container.cpp
+
+wwwapi.obj: src/wwwapi.cpp inc/wwwapi.h inc/stdtp.h inc/sync.h inc/sockio.h inc/sync_w32.h inc/config.h
+	$(CC) $(CFLAGS) src/wwwapi.cpp
+
+w32sock.obj: src/w32sock.cpp inc/w32sock.h inc/sockio.h inc/stdtp.h
+	$(CC) $(CFLAGS) src/w32sock.cpp
+
+repsock.obj: src/repsock.cpp inc/repsock.h inc/sockio.h inc/stdtp.h inc/sync.h inc/sync_w32.h inc/config.h
+	$(CC) $(CFLAGS) src/repsock.cpp
+
+cli.obj: src/cli.cpp inc/cli.h inc/cliproto.h inc/repsock.h inc/sockio.h inc/stdtp.h inc/sync.h inc/sync_w32.h inc/config.h
+	$(CC) $(CFLAGS) src/cli.cpp
+
+fastdb.lib: $(OBJS)
+	$(AR) $(ARFLAGS) /OUT:fastdb.lib $(OBJS)
+
+fastdb.dll: $(OBJS)
+	$(CC) $(DLLFLAGS) /Fefastdb.dll $(OBJS) $(STDLIBS) $(SOCKLIBS)
+
+cli.lib: $(CLI_OBJS)
+	$(AR) $(ARFLAGS) /OUT:cli.lib $(CLI_OBJS)
+
+cli.dll: $(CLI_OBJS)
+	$(CC) $(DLLFLAGS) /Fecli.dll $(CLI_OBJS) $(STDLIBS) $(SOCKLIBS)
+
+subsql.obj: src/subsql.cpp inc/compiler.h inc/server.h inc/compiler.d inc/subsql.h inc/symtab.h $(INCS)
+	$(CC) $(CFLAGS) src/subsql.cpp
+
+server.obj: src/server.cpp inc/server.h inc/compiler.h inc/compiler.d inc/subsql.h inc/symtab.h $(INCS)
+	$(CC) $(CFLAGS) src/server.cpp
+
+subsql.exe: subsql.obj $(FASTDB_LIB)
+	$(LD) $(LDFLAGS) subsql.obj $(FASTDB_LIB) $(STDLIBS) $(SOCKLIBS)
+
+
+clitest.obj: examples/clitest.c inc/cli.h
+	$(CC) $(CFLAGS) examples/clitest.c
+
+clitest.exe: clitest.obj $(CLI_LIB)
+	$(LD) $(LDFLAGS) clitest.obj $(CLI_LIB) $(STDLIBS) $(SOCKLIBS)
+
+clitest2.obj: examples/clitest2.c inc/cli.h
+	$(CC) $(CFLAGS) examples/clitest2.c
+
+clitest2.exe: clitest2.obj $(FASTDB_LIB)
+	$(LD) $(LDFLAGS) /Feclitest2.exe clitest2.obj $(FASTDB_LIB) $(STDLIBS)
+
+testalter.obj: examples/testalter.c inc/cli.h
+	$(CC) $(CFLAGS) examples/testalter.c
+
+testalter.exe: testalter.obj $(FASTDB_LIB)
+	$(LD) $(LDFLAGS) /Fetestalter.exe testalter.obj $(FASTDB_LIB) $(STDLIBS)
+
+localclitest.exe: clitest.obj $(FASTDB_LIB)
+	$(LD) $(LDFLAGS) /Felocalclitest.exe clitest.obj $(FASTDB_LIB) $(STDLIBS)
+
+testrect.obj: examples/testrect.c inc/cli.h
+	$(CC) $(CFLAGS) examples/testrect.c
+
+testrect.exe: testrect.obj $(FASTDB_LIB)
+	$(LD) $(LDFLAGS) /Fetestrect.exe testrect.obj $(FASTDB_LIB) $(STDLIBS)
+
+bugdb.obj: examples/bugdb.cpp examples/bugdb.h $(INCS)
+	$(CC) $(CFLAGS) examples/bugdb.cpp
+
+bugdb.exe: bugdb.obj  $(FASTDB_LIB)
+	$(LD) $(LDFLAGS) bugdb.obj $(FASTDB_LIB) $(STDLIBS) $(SOCKLIBS)
+
+
+clidb.obj: examples/clidb.cpp examples/clidb.h $(INCS)
+	$(CC) $(CFLAGS) examples/clidb.cpp
+
+clidb.exe: clidb.obj  $(FASTDB_LIB)
+	$(LD) $(LDFLAGS) clidb.obj $(FASTDB_LIB) $(STDLIBS) $(SOCKLIBS)
+
+
+cgistub.obj: src/cgistub.cpp inc/stdtp.h inc/sockio.h
+	$(CC) $(CFLAGS) src/cgistub.cpp 
+
+cgistub.exe: cgistub.obj
+	$(LD) $(LDFLAGS) cgistub.obj $(FASTDB_LIB) $(STDLIBS) $(SOCKLIBS)
+
+
+forcerecovery.obj: src/forcerecovery.cpp inc/database.h
+	$(CC) $(CFLAGS) src/forcerecovery.cpp 
+
+forcerecovery.exe: forcerecovery.obj
+	$(LD) $(LDFLAGS) forcerecovery.obj
+
+
+guess.obj: examples/guess.cpp $(INCS)
+	$(CC) $(CFLAGS) examples/guess.cpp 
+
+guess.exe: guess.obj $(FASTDB_LIB)
+	$(LD) -Feguess.exe $(LDFLAGS) guess.obj $(FASTDB_LIB) $(STDLIBS)
+
+testharr.obj: examples/testharr.cpp $(INCS)
+	$(CC) $(CFLAGS) examples/testharr.cpp 
+
+testharr.exe: testharr.obj $(FASTDB_LIB)
+	$(LD) $(LDFLAGS) testharr.obj $(FASTDB_LIB) $(STDLIBS)
+
+guess_std.obj: examples/guess_std.cpp $(INCS)
+	$(CC) $(CFLAGS) examples/guess_std.cpp 
+
+guess_std.exe: guess_std.obj $(FASTDB_LIB)
+	$(LD) $(LDFLAGS) guess_std.obj $(FASTDB_LIB) $(STDLIBS)
+
+guess2.obj: examples/guess2.cpp $(INCS)
+	$(CC) $(CFLAGS) examples/guess2.cpp 
+
+guess2.exe: guess2.obj $(FASTDB_LIB)
+	$(LD) $(LDFLAGS) guess2.obj $(FASTDB_LIB) $(STDLIBS)
+
+testdb.obj: examples/testdb.cpp $(INCS)
+	$(CC) $(CFLAGS) examples/testdb.cpp 
+
+testdb.exe: testdb.obj $(FASTDB_LIB)
+	$(LD) $(LDFLAGS) testdb.obj $(FASTDB_LIB) $(STDLIBS)
+
+testraw.obj: examples/testraw.cpp $(INCS)
+	$(CC) $(CFLAGS) examples/testraw.cpp 
+
+testraw.exe: testraw.obj $(FASTDB_LIB)
+	$(LD) $(LDFLAGS) testraw.obj $(FASTDB_LIB) $(STDLIBS)
+
+testleak.obj: examples/testleak.cpp $(INCS)
+	$(CC) $(CFLAGS) examples/testleak.cpp 
+
+testleak.exe: testleak.obj $(FASTDB_LIB)
+	$(LD) $(LDFLAGS) testleak.obj $(FASTDB_LIB) $(STDLIBS)
+
+testfrag.obj: examples/testfrag.cpp $(INCS)
+	$(CC) $(CFLAGS) examples/testfrag.cpp 
+
+testfrag.exe: testfrag.obj $(FASTDB_LIB)
+	$(LD) $(LDFLAGS) testfrag.obj $(FASTDB_LIB) $(STDLIBS)
+
+testjoin.obj: examples/testjoin.cpp $(INCS)
+	$(CC) $(CFLAGS) examples/testjoin.cpp 
+
+testjoin.exe: testjoin.obj $(FASTDB_LIB)
+	$(LD) $(LDFLAGS) testjoin.obj $(FASTDB_LIB) $(STDLIBS)
+
+testddl.obj: examples/testddl.cpp $(INCS)
+	$(CC) $(CFLAGS) examples/testddl.cpp 
+
+testddl.exe: testddl.obj $(FASTDB_LIB)
+	$(LD) $(LDFLAGS) testddl.obj $(FASTDB_LIB) $(STDLIBS)
+
+testperf.obj: examples/testperf.cpp $(INCS)
+	$(CC) $(CFLAGS) examples/testperf.cpp 
+
+testperf.exe: testperf.obj $(FASTDB_LIB)
+	$(LD) $(LDFLAGS) testperf.obj $(FASTDB_LIB) $(STDLIBS)
+
+testwcs.obj: examples/testwcs.cpp $(INCS)
+	$(CC) $(CFLAGS) examples/testwcs.cpp 
+
+testwcs.exe: testwcs.obj $(FASTDB_LIB)
+	$(LD) $(LDFLAGS) testwcs.obj $(FASTDB_LIB) $(STDLIBS)
+
+testpar.obj: examples/testpar.cpp $(INCS)
+	$(CC) $(CFLAGS) examples/testpar.cpp 
+
+testpar.exe: testpar.obj $(FASTDB_LIB)
+	$(LD) $(LDFLAGS) testpar.obj $(FASTDB_LIB) $(STDLIBS)
+
+testindex.obj: examples/testindex.cpp $(INCS)
+	$(CC) $(CFLAGS) examples/testindex.cpp 
+
+testindex.exe: testindex.obj $(FASTDB_LIB)
+	$(LD) $(LDFLAGS) testindex.obj $(FASTDB_LIB) $(STDLIBS)
+
+testarridx.obj: examples/testarridx.cpp $(INCS)
+	$(CC) $(CFLAGS) examples/testarridx.cpp 
+
+testarridx.exe: testarridx.obj $(FASTDB_LIB)
+	$(LD) $(LDFLAGS) testarridx.obj $(FASTDB_LIB) $(STDLIBS)
+
+testudt.obj: examples/testudt.cpp $(INCS)
+	$(CC) $(CFLAGS) examples/testudt.cpp 
+
+testudt.exe: testudt.obj $(FASTDB_LIB)
+	$(LD) $(LDFLAGS) testudt.obj $(FASTDB_LIB) $(STDLIBS)
+
+testspat.obj: examples/testspat.cpp $(INCS)
+	$(CC) $(CFLAGS) examples/testspat.cpp
+
+testspat.exe: testspat.obj $(FASTDB_LIB)
+	$(LD) $(LDFLAGS) testspat.obj $(FASTDB_LIB) $(STDLIBS)
+
+testtimeseries.obj: examples/testtimeseries.cpp $(INCS)
+	$(CC) $(CFLAGS) examples/testtimeseries.cpp
+
+testtimeseries.exe: testtimeseries.obj $(FASTDB_LIB)
+	$(LD) $(LDFLAGS) testtimeseries.obj $(FASTDB_LIB) $(STDLIBS)
+
+testfuzzy.obj: examples/testfuzzy.cpp $(INCS)
+	$(CC) $(CFLAGS) examples/testfuzzy.cpp 
+
+testfuzzy.exe: testfuzzy.obj $(FASTDB_LIB)
+	$(LD) $(LDFLAGS) testfuzzy.obj $(FASTDB_LIB) $(STDLIBS)
+
+testidx.obj: examples/testidx.cpp $(INCS)
+	$(CC) $(CFLAGS) examples/testidx.cpp 
+
+testidx.exe: testidx.obj $(FASTDB_LIB)
+	$(LD) $(LDFLAGS) testidx.obj $(FASTDB_LIB) $(STDLIBS)
+
+testtl.obj: examples/testtl.cpp $(INCS)
+	$(CC) $(CFLAGS) examples/testtl.cpp 
+
+testtl.exe: testtl.obj $(FASTDB_LIB)
+	$(LD) $(LDFLAGS) testtl.obj $(FASTDB_LIB) $(STDLIBS)
+
+testsync.obj: examples/testsync.cpp $(INCS)
+	$(CC) $(CFLAGS) examples/testsync.cpp 
+
+testsync.exe: testsync.obj $(FASTDB_LIB)
+	$(LD) $(LDFLAGS) testsync.obj $(FASTDB_LIB) $(STDLIBS)
+
+testconc.obj: examples/testconc.cpp $(INCS)
+	$(CC) $(CFLAGS) examples/testconc.cpp 
+
+testconc.exe: testconc.obj $(FASTDB_LIB)
+	$(LD) $(LDFLAGS) testconc.obj $(FASTDB_LIB) $(STDLIBS)
+
+testreplic.obj: examples/testreplic.cpp $(INCS)
+	$(CC) $(CFLAGS) examples/testreplic.cpp 
+
+testreplic.exe: testreplic.obj $(FASTDB_LIB)
+	$(LD) $(LDFLAGS) testreplic.obj $(FASTDB_LIB) $(STDLIBS)
+
+testiref.obj: examples/testiref.cpp $(INCS)
+	$(CC) $(CFLAGS) examples/testiref.cpp 
+
+testiref.exe: testiref.obj $(FASTDB_LIB)
+	$(LD) $(LDFLAGS) testiref.obj $(FASTDB_LIB) $(STDLIBS)
+
+testtrav.obj: examples/testtrav.cpp $(INCS)
+	$(CC) $(CFLAGS) examples/testtrav.cpp 
+
+testtrav.exe: testtrav.obj $(FASTDB_LIB)
+	$(LD) $(LDFLAGS) testtrav.obj $(FASTDB_LIB) $(STDLIBS)
+
+java: javacli.jar jnicli.jar jnicli.dll examples/JniTestIndex.class examples/JniTestRelations.class  examples/TestIndex.class examples/CliTest.class
+
+jnicli.obj: jnicli\jnicli.cpp
+	$(CC) $(CFLAGS) -I"$(JAVA_HOME)\include" -I"$(JAVA_HOME)\include\win32" -I. jnicli\jnicli.cpp
+
+jnicli.dll: jnicli.obj fastdb.lib
+	$(LD) $(DLLFLAGS) jnicli.obj fastdb.lib "$(JAVA_HOME)\lib\jvm.lib"
+
+javacli.jar: javacli\*.java
+	javac -g javacli\*.java
+	jar cvf javacli.jar javacli/*.class
+	javadoc -d javacli/docs -public javacli\*.java
+
+jnicli.jar: jnicli\*.java
+	javac -g jnicli\*.java
+	jar cvf jnicli.jar jnicli/*.class
+	javadoc -d jnicli/docs -public jnicli\*.java
+
+examples/CliTest.class: examples/CliTest.java javacli.jar
+	javac -classpath .;javacli.jar examples\CliTest.java
+
+examples/TestIndex.class: examples/TestIndex.java javacli.jar
+	javac -classpath .;javacli.jar examples\TestIndex.java
+
+examples/JniTestIndex.class: examples/JniTestIndex.java jnicli.jar
+	javac -g -classpath jnicli.jar examples\JniTestIndex.java
+
+examples/JniTestRelations.class: examples/JniTestRelations.java jnicli.jar
+	javac -g -classpath jnicli.jar examples\JniTestRelations.java
+
+cleanobj:
+	-del *.odb,*.exp,*.obj,*.pch,*.pdb,*.ilk,*.ncb,*.opt,
+	-del *.manifest
+	-del javacli\*.lib,javacli\*.pdb,javacli\*.ilk,javacli\*.exp
+	-del jnicli\*.lib,jnicli\*.pdb,jnicli\*.ilk,jnicli\*.exp
+	-del *.class,javacli\*~,javacli\*.class,jnicli\*.class,javacli\*.obj,examples\*.class
+	-del *.suo
+	-rd /s/q cli\Debug
+	-rd /s/q SubSQLPrj\Debug
+	-rd /s/q Debug
+	-rd /s/q cli\Release
+	-rd /s/q SubSQLPrj\Release
+	-rd /s/q Release
+	-rd /s/q x64
+	-rd /s/q CLI\x64
+	-rd /s/q SubSQLPrj\x64
+	-rd /s/q "cli\Debug DLL"
+	-rd /s/q "SubSQLPrj\Debug DLL"
+	-rd /s/q "Debug DLL"
+	-rd /s/q "cli\Release DLL"
+	-rd /s/q "SubSQLPrj\Release DLL"
+	-rd /s/q "Release DLL"
+
+cleandbs:
+	-del ruby\*.fdb
+	-del *.log
+	-del *.fdb
+	-del *.dbs
+	-del *.dbs.cnt
+
+clean: cleanobj cleandbs
+	-del *~,*.lib,*.dll,*.exe
+
+
+zip: clean
+	cd ..
+	-del fastdb.zip
+        zip -r fastdb.zip fastdb
+
+copyzip: zip
+	copy fastdb.zip d:
+
+
+doxygen:
+	doxygen doxygen.cfg
+

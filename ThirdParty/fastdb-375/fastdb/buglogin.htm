@@ -1,0 +1,25 @@
+<!DOCTYPE HTML PUBLIC "-//W3C/DTD HTML 3.2//EN">
+<HTML>
+<HEAD>
+<TITLE>Bug Tracking Database</TITLE>
+</HEAD>
+<BODY BGCOLOR="#c0c0c0">
+<H1>Bug Tracking Database</H1>
+<FORM METHOD=POST ACTION="http://localhost/cgi-bin/cgistub">
+<INPUT TYPE=HIDDEN NAME="socket" VALUE="localhost:6101">
+<INPUT TYPE=HIDDEN NAME="page" VALUE="login">
+<TABLE>
+<TR>
+ <TH ALIGN=LEFT>User:</TD>
+ <TD><INPUT TYPE=text NAME="name" SIZE=32></TD>
+</TR>
+<TR>
+ <TH ALIGN=LEFT>Password:</TD>
+ <TD><INPUT TYPE=password NAME="password"></TD>
+</TR>
+</TABLE><P>
+<INPUT TYPE=submit VALUE="Login">
+</FORM>
+</BODY>
+</HTML>
+
