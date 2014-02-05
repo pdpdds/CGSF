@@ -53,7 +53,7 @@
       <Optimization>Disabled</Optimization>
       <PreprocessorDefinitions>WIN32;_DEBUG;_LIB;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <SDLCheck>true</SDLCheck>
-      <AdditionalIncludeDirectories>../ThirdParty/glog-0.3.2/src/windows;../ThirdParty/ACE_wrappers;../BaseLayer;../ThirdParty/Mysql/include;../ThirdParty/SQLite;../EngineLayer;../EngineLayer/EngineDllInterface;../BaseLayer/XML;../ThirdParty/fastdb/inc</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>../ThirdParty/glog-0.3.2/src/windows;../ThirdParty/ACE_wrappers;../BaseLayer;../ThirdParty/Mysql/include;../ThirdParty/SQLite;../EngineLayer;../EngineLayer/EngineDllInterface;../BaseLayer/XML;../ThirdParty/fastdb-375/fastdb/inc</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Windows</SubSystem>

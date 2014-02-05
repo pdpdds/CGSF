@@ -36,7 +36,7 @@ BOOL SFFastDB::Initialize(TCHAR* szDB)
 {
 	m_pDatabase = new dbDatabase();
 	std::string szDBSource = StringConversion::ToASCII(szDB);
-	if(FALSE == m_pDatabase->open(szDBSource.c_str()))
+	if(FALSE == m_pDatabase->open(szDB))
 		return FALSE;
 
 	return TRUE;
