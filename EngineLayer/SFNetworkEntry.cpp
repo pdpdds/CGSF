@@ -34,13 +34,21 @@ bool SFNetworkEntry::UDPSend(unsigned char* pMessage, int BufSize )
 	return false;
 }
 
-BOOL SFNetworkEntry::Initialize(char* szModuleName, INetworkCallback* pTCPCallBack, IUDPNetworkCallback* pUDPCallback)
+BOOL SFNetworkEntry::Initialize(INetworkCallback* pTCPCallBack, IUDPNetworkCallback* pUDPCallback)
 {
 	if(pTCPCallBack == NULL)
 		return FALSE;
 
+	SFIni ini;
+	WCHAR szEngine[MAX_PATH];
+
+	ini.SetPathName(_T("./Connection.ini"));
+	ini.GetString(L"Engine",L"NAME",szEngine, MAX_PATH);
+
+	std::string str = StringConversion::ToASCII(szEngine);
+
 	m_pTCPNetwork = new SFTCPNetwork();
-	m_pTCPNetwork->Initialize(szModuleName, pTCPCallBack);
+	m_pTCPNetwork->Initialize((char*)str.c_str(), pTCPCallBack);
 
 	if(pUDPCallback)
 	{

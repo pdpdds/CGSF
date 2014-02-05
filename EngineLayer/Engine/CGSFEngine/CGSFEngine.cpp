@@ -69,9 +69,9 @@ bool CGSFServerEngine::Shutdown()
 	return true;
 }
 
-bool CGSFServerEngine::SendRequest(BasePacket* pPacket)
+bool CGSFServerEngine::SendInternal(int ownerSerial, char* buffer, unsigned int bufferSize)
 {
-	 ProactorServiceMapSingleton::instance()->SendRequest(pPacket);
+	 ProactorServiceMapSingleton::instance()->SendInternal(ownerSerial, buffer, bufferSize);
 
 	return true;
 }
@@ -164,9 +164,9 @@ bool CGSFClientEngine::Shutdown()
 	return true;
 }
 
-bool CGSFClientEngine::SendRequest(BasePacket* pPacket)
+bool CGSFClientEngine::SendInternal(int ownerSerial, char* buffer, unsigned int bufferSize)
 {
-	 ProactorServiceMapSingleton::instance()->SendRequest(pPacket);
+	 ProactorServiceMapSingleton::instance()->SendInternal(ownerSerial, buffer, bufferSize);
 
 	return true;
 }

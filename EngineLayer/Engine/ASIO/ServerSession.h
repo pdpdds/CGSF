@@ -23,7 +23,7 @@ public:
 	boost::asio::ip::tcp::socket& Socket() { return m_Socket; }
 
 	void Init();
-	virtual void SendInternal(char* pBuffer, int BufferSize) override;
+	virtual void SendInternal(char* pBuffer, int BufferSize, int ownerSerial = -1) override;
 
 	void PostReceive();
 	

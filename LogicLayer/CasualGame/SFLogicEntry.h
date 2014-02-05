@@ -55,7 +55,7 @@ public:
 	GameModeMap* GetGameModeMap(){return &m_GameModeMap;}
 
 protected:
-	BOOL OnConnectPlayer(int PlayerSerial);
+	BOOL OnConnectPlayer(int playerSerial);
 	BOOL OnPlayerData(BasePacket* pPacket);
 	BOOL OnTimer(BasePacket* pPacket);
 	BOOL OnShouter(BasePacket* pPacket);

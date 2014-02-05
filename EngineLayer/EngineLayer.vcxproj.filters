@@ -118,6 +118,9 @@
     <ClCompile Include="SFUDPNetwork.cpp">
       <Filter>ClientInterface</Filter>
     </ClCompile>
+    <ClCompile Include="SFPacketSendGateway.cpp">
+      <Filter>Logic</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include=".\SFExcel.h">
@@ -248,6 +251,9 @@
     </ClInclude>
     <ClInclude Include="SFUDPNetwork.h">
       <Filter>ClientInterface</Filter>
+    </ClInclude>
+    <ClInclude Include="SFPacketSendGateway.h">
+      <Filter>Logic</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

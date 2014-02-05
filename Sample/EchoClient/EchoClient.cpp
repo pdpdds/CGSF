@@ -33,7 +33,7 @@ int _tmain(int argc, _TCHAR* argv[])
 
 	EchoCallback* pCallback = new EchoCallback();
 
-	g_pNetworkEntry->Initialize("ASIO.dll", pCallback);
+	g_pNetworkEntry->Initialize(pCallback);
 
 	IPacketProtocol* pProtocol = new SFPacketProtocol<SFJsonProtocol>;
 	g_pNetworkEntry->SetPacketProtocol(pProtocol);

@@ -44,7 +44,7 @@ BasePacket* SFJsonProtocol::GetPacket(int& ErrorCode)
 {
 	ErrorCode = PACKETIO_ERROR_NONE;
 	//SFASSERT(m_builder.PopCompleteNode(dstRootNode));
-	SFJsonPacket* pPacket = CreatePacket();
+	SFJsonPacket* pPacket = (SFJsonPacket*)CreatePacket();
 
 	BOOL bResult = m_builder.PopCompleteNode(pPacket->GetData());
 
@@ -58,13 +58,26 @@ BasePacket* SFJsonProtocol::GetPacket(int& ErrorCode)
 	return pPacket;
 }
 
-SFJsonPacket* SFJsonProtocol::CreatePacket()
+BasePacket* SFJsonProtocol::CreatePacket()
 {
 	return new SFJsonPacket();
 }
 
-BOOL SFJsonProtocol::DisposePacket(SFJsonPacket* pPacket)
+BOOL SFJsonProtocol::DisposePacket(BasePacket* pPacket)
 {
 	delete pPacket;
+	return TRUE;
+}
+
+bool SFJsonProtocol::GetPacketData(BasePacket* pPacket, char* buffer, const int BufferSize, unsigned int& writtenSize)
+{
+	SFJsonPacket* pJsonPacket = (SFJsonPacket*)pPacket;
+	JsonObjectNode& ObjectNode = pJsonPacket->GetData();
+
+	writtenSize = JsonBuilder::MakeBuffer(ObjectNode, buffer, BufferSize);
+
+	if(writtenSize == 0)
+		return FALSE;
+
 	return TRUE;
 }

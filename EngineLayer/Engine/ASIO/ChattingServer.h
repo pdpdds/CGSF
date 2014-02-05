@@ -112,14 +112,14 @@ public:
 		return;
 	}
 
-	bool SendRequest(BasePacket* pPacket)
+	bool SendInternal(int ownerSerial, char* buffer, unsigned int bufferSize)
 	{
-		Session* pSession = FindSession(pPacket->GetOwnerSerial());
+		Session* pSession = FindSession(ownerSerial);
 		if(pSession)
 		{
 			if( pSession->Socket().is_open() )					
 			{						
-				pSession->SendRequest(pPacket);
+				pSession->SendInternal(buffer, bufferSize);
 				return true;
 			}
 		}

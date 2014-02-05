@@ -1,8 +1,7 @@
 #include "stdafx.h"
 #include "SFFastDB.h"
+#include "StringConversion.h"
 #include "fastdb.h"
-
-extern dbDatabase db; // create database object
 
 class tbllogin { 
 public:
@@ -16,19 +15,28 @@ public:
 REGISTER(tbllogin);
 
 SFFastDB::SFFastDB(void)
+	: m_pDatabase(NULL)
 {
 }
 
 
 SFFastDB::~SFFastDB(void)
 {
-	if(db.isOpen())
-		db.close();
+	if(m_pDatabase)
+	{
+		if(m_pDatabase->isOpen())
+			m_pDatabase->close();
+
+		delete m_pDatabase;
+	}
+	
 }
 
 BOOL SFFastDB::Initialize(TCHAR* szDB)
 {
-	if(FALSE == db.open(szDB))
+	m_pDatabase = new dbDatabase();
+	std::string szDBSource = StringConversion::ToASCII(szDB);
+	if(FALSE == m_pDatabase->open(szDBSource.c_str()))
 		return FALSE;
 
 	return TRUE;

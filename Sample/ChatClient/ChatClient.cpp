@@ -16,7 +16,7 @@ int _tmain(int argc, _TCHAR* argv[])
 
 	TCPNetworkCallback* pCallback = new TCPNetworkCallback();
 
-	g_pNetworkEntry->Initialize("CGSFEngine.dll", pCallback);
+	g_pNetworkEntry->Initialize(pCallback);
 
 	IPacketProtocol* pProtocol = new SFPacketProtocol<SFJsonProtocol>;
 	g_pNetworkEntry->SetPacketProtocol(pProtocol);

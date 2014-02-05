@@ -5,7 +5,7 @@
 
 class INetworkEngine;
 
-class MGServerReceiver : public INetworkReceiver
+class MGServerReceiver : public INetworkReceiver, public ISession
 {
 	typedef std::map<long, ASSOCKDESCEX> SessionMap;
 public:
@@ -17,7 +17,8 @@ public:
 	virtual void notifyMessage(ASSOCKDESCEX& sockdesc, size_t length, char* data) override;
 	virtual void notifyConnectingResult(INT32 requestID, ASSOCKDESCEX& sockdesc, DWORD error);
 
-	bool SendRequest(BasePacket* pPacket);
+	virtual void SendInternal(char* pBuffer, int BufferSize, int ownerSerial = -1) override;
+
 	bool Disconnect(int Serial);
 
 protected:
@@ -28,6 +29,5 @@ private:
 	CriticalSectionLock m_SessionLock;
 
 	INetworkEngine* m_pOwner;
-	ISession m_Session;
 };
 

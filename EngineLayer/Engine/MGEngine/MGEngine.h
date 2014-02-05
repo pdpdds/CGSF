@@ -17,7 +17,7 @@ public:
 	virtual bool Start(char* szIP, unsigned short Port) override;
     virtual bool Shutdown() override;
 
-	virtual bool SendRequest(BasePacket* pPacket) override;
+	virtual bool SendInternal(int ownerSerial, char* buffer, unsigned int bufferSize) override;
 	virtual bool Disconnect(int Serial) override;
 
 protected:
@@ -38,7 +38,7 @@ public:
 	virtual bool Start(char* szIP, unsigned short Port) override;
     virtual bool Shutdown() override;
 
-	virtual bool SendRequest(BasePacket* pPacket) override;
+	virtual bool SendInternal(int ownerSerial, char* buffer, unsigned int bufferSize) override;
 	virtual bool Disconnect(int Serial) override;
 
 protected:

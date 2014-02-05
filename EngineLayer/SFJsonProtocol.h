@@ -16,10 +16,11 @@ public:
 	BOOL AddTransferredData(char* pBuffer, DWORD dwTransferred);
 	BOOL SendRequest(ISession* pSession, BasePacket* pPacket);
 
-	BOOL DisposePacket(SFJsonPacket* pPacket);
+	BOOL DisposePacket(BasePacket* pPacket);
+	BasePacket* CreatePacket();
+	bool GetPacketData(BasePacket* pPacket, char* buffer, const int BufferSize, unsigned int& writtenSize);
 
 protected:
-	SFJsonPacket* CreatePacket();
 
 private:
 	JsonBuilder m_builder;

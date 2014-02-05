@@ -12,7 +12,7 @@ class ISessionService
 	  virtual ~ISessionService() {delete m_pPacketProtocol;};
 
 	  virtual bool OnReceive(char* pData, unsigned short Length) = 0;
-	  virtual bool SendRequest(ISession* pSession, BasePacket* pPacket) = 0;
+	 // virtual bool SendRequest(ISession* pSession, BasePacket* pPacket) = 0;
 
 	  void SetSerial(int Serial){m_Serial = Serial;}
 

@@ -5,7 +5,6 @@
 #include "SFSendDBRequest.h"
 
 SFMySQLAdaptorImpl::SFMySQLAdaptorImpl(void)
-	: m_pMySql(NULL)
 {
 	
 }
@@ -13,20 +12,8 @@ SFMySQLAdaptorImpl::SFMySQLAdaptorImpl(void)
 
 SFMySQLAdaptorImpl::~SFMySQLAdaptorImpl(void)
 {
-	if(m_pMySql)
-		delete m_pMySql;
-}
-
-BOOL SFMySQLAdaptorImpl::Initialize(_DBConnectionInfo* pInfo)
-{
-	m_pMySql = new SFMySQL();
-
-	if(FALSE == m_pMySql->Initialize(pInfo))
-		return FALSE;
 	
-	return RegisterDBService();
 }
-
 
 BOOL SFMySQLAdaptorImpl::RegisterDBService()
 {
@@ -39,6 +26,7 @@ BOOL SFMySQLAdaptorImpl::RegisterDBService()
 ////////////////////////////////////////////////////////////////////////////////////////////////
 BOOL SFMySQLAdaptorImpl::OnLogin( BasePacket* pPacket )
 {
+	SFMySQL* pMySQL = GetObject();
 	SFMessage* pMessage = (SFMessage*)pPacket;
 	MYSQL_RES *sql_result = NULL;
 	//	MYSQL_ROW sql_row;
@@ -53,9 +41,9 @@ BOOL SFMySQLAdaptorImpl::OnLogin( BasePacket* pPacket )
 	char szQuery[100];
 	sprintf_s(szQuery, "SELECT * FROM tblLogin WHERE UserName = '%s'", "cgsf");
 
-	if(TRUE == m_pMySql->Execute(szQuery))
+	if(TRUE == pMySQL->Execute(szQuery))
 	{
-		sql_result = mysql_store_result(m_pMySql->GetDBConnection());
+		sql_result = mysql_store_result(pMySQL->GetDBConnection());
 
 		if(sql_result->row_count == 1)
 		{

@@ -6,7 +6,7 @@ bool SFSessionService::OnReceive(char* pData, unsigned short Length)
 	return m_pPacketProtocol->OnReceive(m_Serial, pData, Length);
 }
 
-bool SFSessionService::SendRequest(ISession* pSession, BasePacket* pPacket)
+/*bool SFSessionService::SendRequest(ISession* pSession, BasePacket* pPacket)
 {
 	if(TRUE == m_pPacketProtocol->SendRequest(pSession, pPacket))
 	{
@@ -14,4 +14,4 @@ bool SFSessionService::SendRequest(ISession* pSession, BasePacket* pPacket)
 	}
 
 	return false;
-}
+}*/

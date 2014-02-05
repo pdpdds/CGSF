@@ -26,9 +26,15 @@ public:
 	void SetOwnerSerial(int Serial){m_PacketOwnerSerial = Serial;}
 	int GetOwnerSerial(){return m_PacketOwnerSerial;}
 
+	void CopyBaseHeader(BasePacket* pSource)
+	{
+		SetOwnerSerial(pSource->GetOwnerSerial());
+		SetPacketID(pSource->GetPacketID());
+		SetPacketType(pSource->GetPacketType());
+	}
+
 	virtual bool Encode() {return false;}
 	virtual bool Decode(char* pBuf, unsigned int nSize) {return false;}
-	
 
 protected:
 

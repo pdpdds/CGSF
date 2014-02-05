@@ -77,9 +77,9 @@ bool MGServerEngine::Shutdown()
 	return true;
 }
 
-bool MGServerEngine::SendRequest(BasePacket* pPacket)
+bool MGServerEngine::SendInternal(int ownerSerial, char* buffer, unsigned int bufferSize)
 {
-	m_pServerReceiver->SendRequest(pPacket);
+	m_pServerReceiver->SendInternal(buffer, bufferSize, ownerSerial);
 	return true;
 }
 
@@ -141,9 +141,9 @@ bool MGClientEngine::Shutdown()
 	return true;
 }
 
-bool MGClientEngine::SendRequest(BasePacket* pPacket)
+bool MGClientEngine::SendInternal(int ownerSerial, char* buffer, unsigned int bufferSize)
 {
-	m_pClientReceiver->SendRequest(pPacket);
+	m_pClientReceiver->SendInternal(buffer, bufferSize, ownerSerial);
 	return true;
 }
 

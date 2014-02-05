@@ -62,15 +62,10 @@ public:
 		OnDisconnect(1);
 	}
 
-	bool SendRequest(BasePacket* pPacket)
-	{
-		ISession::SendRequest(pPacket);
-		return false;
-	}
 
-	void SendInternal(char* pBuffer, int BufferSize)
-	{	
-		PostSend(false, BufferSize, pBuffer);
+	virtual void SendInternal(char* buffer, int bufferSize, int ownerSerial = -1)
+	{
+		PostSend(false, bufferSize, buffer);
 	}
 
 	void PostSend( const bool bImmediately, const int nSize, char* pData )

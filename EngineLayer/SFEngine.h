@@ -38,6 +38,7 @@ public:
 protected:
 
 	BOOL CreateLogicThread(ILogicEntry* pLogic);
+	BOOL CreatePacketSendThread();
 	BOOL CreateEngine(char* szModuleName, bool Server = false);
 	
 private:

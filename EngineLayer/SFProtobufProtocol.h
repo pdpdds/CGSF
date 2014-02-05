@@ -14,7 +14,9 @@ public:
 	BOOL Reset();
 	BasePacket* GetPacket(int& ErrorCode);
 	BOOL AddTransferredData(char* pBuffer, DWORD dwTransferred);
-	BOOL SendRequest(ISession* pSession, BasePacket* pPacket);
+	//BOOL SendRequest(ISession* pSession, BasePacket* pPacket);
+
+	bool GetPacketData(BasePacket* pPacket, char* buffer, const int BufferSize, unsigned int& writtenSize);
 
 	virtual void disposeOutgoingPacket(BasePacket* pPacket);
 	virtual void disposeIncomingPacket(BasePacket* pPacket);

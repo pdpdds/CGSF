@@ -11,7 +11,9 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "FPSServer", "..\Sample\FPSS
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "EchoServer", "..\Sample\EchoServer\EchoServer.vcxproj", "{DD9698A1-F393-47EF-B4E7-41DB22BA2DD6}"
 EndProject
-Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "EchoClient", "EchoClient\EchoClient.vcxproj", "{F6F0BD80-CB93-41F3-A8DB-CF3418DA7EE0}"
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "EchoClient", "..\Sample\EchoClient\EchoClient.vcxproj", "{F6F0BD80-CB93-41F3-A8DB-CF3418DA7EE0}"
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "TestDatabase", "..\Sample\TestDatabase\TestDatabase.vcxproj", "{3FA3612F-7AF3-4E99-9D58-13F781C08D8B}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -43,6 +45,10 @@ Global
 		{F6F0BD80-CB93-41F3-A8DB-CF3418DA7EE0}.Debug|Win32.Build.0 = Debug|Win32
 		{F6F0BD80-CB93-41F3-A8DB-CF3418DA7EE0}.Release|Win32.ActiveCfg = Release|Win32
 		{F6F0BD80-CB93-41F3-A8DB-CF3418DA7EE0}.Release|Win32.Build.0 = Release|Win32
+		{3FA3612F-7AF3-4E99-9D58-13F781C08D8B}.Debug|Win32.ActiveCfg = Debug|Win32
+		{3FA3612F-7AF3-4E99-9D58-13F781C08D8B}.Debug|Win32.Build.0 = Debug|Win32
+		{3FA3612F-7AF3-4E99-9D58-13F781C08D8B}.Release|Win32.ActiveCfg = Release|Win32
+		{3FA3612F-7AF3-4E99-9D58-13F781C08D8B}.Release|Win32.Build.0 = Release|Win32
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

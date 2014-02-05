@@ -50,6 +50,8 @@ BOOL SFEngine::CreateEngine(char* szModuleName, bool Server)
 
 	if(FALSE == m_pNetworkEngine->Init())
 		return FALSE;
+
+	CreatePacketSendThread();
 	
 	return TRUE;
 }
@@ -66,6 +68,13 @@ BOOL SFEngine::CreateLogicThread(ILogicEntry* pLogic)
 	}
 
 	return FALSE;
+}
+
+BOOL SFEngine::CreatePacketSendThread()
+{	
+	ACE_Thread_Manager::instance()->spawn_n(1, (ACE_THR_FUNC)PacketSendThread, this, THR_NEW_LWP, ACE_DEFAULT_THREAD_PRIORITY, 2);
+
+	return TRUE;
 }
 
 ISessionService* SFEngine::CreateSessionService()
@@ -204,7 +213,7 @@ BOOL SFEngine::Start()
 
 BOOL SFEngine::Start(char* szIP, unsigned short Port)
 {
-	m_pNetworkEngine->Init();
+	//m_pNetworkEngine->Init();
 
 	return m_pNetworkEngine->Start(szIP, Port);
 }
@@ -271,5 +280,21 @@ bool SFEngine::OnTimer(const void *arg)
 
 BOOL SFEngine::SendRequest(BasePacket* pPacket)
 {
-	return GetNetworkEngine()->SendRequest(pPacket);
+	//return GetNetworkEngine()->SendRequest(pPacket);
+
+	SFPacket* pClonePacket = PacketPoolSingleton::instance()->Alloc();
+
+	unsigned int writtenSize;
+	bool result = m_pPacketProtocol->GetPacketData(pPacket, (char*)pClonePacket->GetDataBuffer(), MAX_PACKET_DATA, writtenSize);
+
+	if(writtenSize == 0)
+	{
+		PacketPoolSingleton::instance()->Release(pClonePacket);
+		return FALSE;
+	}
+	pClonePacket->SetDataSize(writtenSize);
+	pClonePacket->SetPacketType(SFPacket_Data);
+	pClonePacket->SetOwnerSerial(pPacket->GetOwnerSerial());
+
+	return PacketSendSingleton::instance()->PushPacket(pClonePacket);
 }

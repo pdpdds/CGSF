@@ -40,9 +40,9 @@ bool ASIOServerEngine::Shutdown()
 	return true;
 }
 
-bool ASIOServerEngine::SendRequest(BasePacket* pPacket)
+bool ASIOServerEngine::SendInternal(int ownerSerial, char* buffer, unsigned int bufferSize)
 {
-	m_pServer->SendRequest(pPacket);
+	m_pServer->SendInternal(ownerSerial, buffer, bufferSize);
 	return true;
 }
 
@@ -95,9 +95,9 @@ bool ASIOClientEngine::Shutdown()
 	return true;
 }
 
-bool ASIOClientEngine::SendRequest(BasePacket* pPacket)
+bool ASIOClientEngine::SendInternal(int ownerSerial, char* buffer, unsigned int bufferSize) 
 {
-	m_pClient->SendRequest(pPacket);
+	m_pClient->SendInternal(buffer, bufferSize, ownerSerial);
 	return true;
 }
 

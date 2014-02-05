@@ -2,6 +2,7 @@
 #include "SFBridgeThread.h"
 #include "SFPacket.h"
 #include "SFDatabase.h"
+#include "SFEngine.h"
 
 SFIOCPQueue<int> IOCPQueue;
 
@@ -40,5 +41,17 @@ void BusinessThread(void* Args)
 			}
 			break;
 		}
+	}
+}
+
+void PacketSendThread(void* Args)
+{
+	SFEngine* pEngine = (SFEngine*)Args;
+	INetworkEngine* pNetworkEngine = pEngine->GetNetworkEngine();
+	while(gServerEnd == FALSE)
+	{
+		SFPacket* pPacket = (SFPacket*)PacketSendSingleton::instance()->PopPacket();
+		pNetworkEngine->SendInternal(pPacket->GetOwnerSerial(), (char*)pPacket->GetDataBuffer(), pPacket->GetDataSize());
+		PacketPoolSingleton::instance()->Release(pPacket);
 	}
 }

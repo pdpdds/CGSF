@@ -27,7 +27,7 @@ void MGClientReceiver::notifyReleaseSocket(ASSOCKDESCEX& sockdesc)
 {
 	printf("Disconnected %d\n", sockdesc.assockUid);
 
-	m_Session.OnDisconnect(sockdesc.assockUid);
+	ISession::OnDisconnect(sockdesc.assockUid);
 
 	Synchronized es(&m_SessionLock);
            
@@ -38,7 +38,7 @@ void MGClientReceiver::notifyReleaseSocket(ASSOCKDESCEX& sockdesc)
 
 void MGClientReceiver::notifyMessage(ASSOCKDESCEX& sockdesc, size_t length, char* data)
 {
-	if(false == m_Session.OnReceive(data, length))
+	if(false == ISession::OnReceive(data, length))
 	{
 		Synchronized es(&m_SessionLock);
            
@@ -54,7 +54,7 @@ void MGClientReceiver::notifyConnectingResult(INT32 requestID, ASSOCKDESCEX& soc
 	{
 		printf(" Connected %d\n", sockdesc.assockUid);
 
-		m_Session.OnConnect(sockdesc.assockUid);
+		ISession::OnConnect(sockdesc.assockUid);
 
 		Synchronized es(&m_SessionLock);
 		m_SessionMap.insert(std::make_pair(sockdesc.assockUid, sockdesc));
@@ -62,20 +62,18 @@ void MGClientReceiver::notifyConnectingResult(INT32 requestID, ASSOCKDESCEX& soc
 	
 }
 
-bool MGClientReceiver::SendRequest(BasePacket* pPacket)
+void MGClientReceiver::SendInternal(char* pBuffer, int BufferSize, int ownerSerial)
 {
-	/*Synchronized es(&m_SessionLock);
+	Synchronized es(&m_SessionLock);
 
-	SessionMap::iterator iter = m_SessionMap.find(Serial);
+	SessionMap::iterator iter = m_SessionMap.find(ownerSerial);
 
 	if(iter == m_SessionMap.end())
 	{
-		return FALSE;
+		return;
 	}
 
-	iter->second.psender->postingSend(iter->second, BufSize, pMessage);
-	*/
-	return TRUE;
+	iter->second.psender->postingSend(iter->second, BufferSize, pBuffer);
 }
 
 ////////////////////////////////////////////////////////

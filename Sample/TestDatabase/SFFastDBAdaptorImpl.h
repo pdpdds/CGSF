@@ -1,13 +1,13 @@
 #pragma once
-#include "SFMySQLAdaptor.h"
+#include "SFFastDBAdaptor.h"
 
 class BasePacket;
 
-class SFMySQLAdaptorImpl : public SFMySQLAdaptor
+class SFFastDBAdaptorImpl : public SFFastDBAdaptor
 {
 public:
-	SFMySQLAdaptorImpl(void);
-	virtual ~SFMySQLAdaptorImpl(void);
+	SFFastDBAdaptorImpl(void);
+	virtual ~SFFastDBAdaptorImpl(void);
 
 	virtual BOOL RegisterDBService() override;
 
@@ -16,3 +16,4 @@ protected:
 private:
 	BOOL OnLogin( BasePacket* pMessage );
 };
+

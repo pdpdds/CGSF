@@ -110,6 +110,7 @@
     <ClCompile Include="SFJsonPacket.cpp" />
     <ClCompile Include="SFJsonProtocol.cpp" />
     <ClCompile Include="SFNetworkEntry.cpp" />
+    <ClCompile Include="SFPacketSendGateway.cpp" />
     <ClCompile Include="SFProtobufPacketImpl.cpp" />
     <ClCompile Include="SFProtobufProtocol.cpp" />
     <ClCompile Include="SFProtocol.cpp" />
@@ -153,6 +154,7 @@
     <ClInclude Include="SFJsonPacket.h" />
     <ClInclude Include="SFJsonProtocol.h" />
     <ClInclude Include="SFNetworkEntry.h" />
+    <ClInclude Include="SFPacketSendGateway.h" />
     <ClInclude Include="SFProtobufPacket.h" />
     <ClInclude Include="SFProtobufPacketImpl.h" />
     <ClInclude Include="SFProtobufProtocol.h" />

@@ -114,7 +114,7 @@ void Session::handle_receive( const boost::system::error_code& error, size_t byt
 	}
 }
 
-void Session::SendInternal(char* pBuffer, int BufferSize)
+void Session::SendInternal(char* pBuffer, int BufferSize, int ownerSerial)
 {
 	PostSend(false, BufferSize, pBuffer);
 }

@@ -42,7 +42,7 @@ BOOL SFTCPNetwork::Update()
 {
 	while(1)
 	{
-		BasePacket* pPacket = (SFPacket*)LogicGatewaySingleton::instance()->PopPacket(0);
+		BasePacket* pPacket = LogicGatewaySingleton::instance()->PopPacket(0);
 
 		if(pPacket != NULL)
 		{

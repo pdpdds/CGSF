@@ -18,7 +18,7 @@ public:
 
 	void PostRecv();
 
-	void SendInternal(char* pBuffer, int BufferSize) override;
+	void SendInternal(char* pBuffer, int BufferSize, int ownerSerial = -1) override;
 	void SetSerial(int Serial){m_Serial = Serial;}
 private:
 	ACE_Asynch_Write_Stream m_AsyncWriter;

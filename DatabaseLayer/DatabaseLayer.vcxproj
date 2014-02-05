@@ -53,7 +53,7 @@
       <Optimization>Disabled</Optimization>
       <PreprocessorDefinitions>WIN32;_DEBUG;_LIB;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <SDLCheck>true</SDLCheck>
-      <AdditionalIncludeDirectories>../ThirdParty/glog-0.3.2/src/windows;../ThirdParty/ACE_wrappers;../BaseLayer;../ThirdParty/Mysql/include;../ThirdParty/SQLite;../EngineLayer;../EngineLayer/EngineDllInterface;../BaseLayer/XML;../ThirdParty/fastdb</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>../ThirdParty/glog-0.3.2/src/windows;../ThirdParty/ACE_wrappers;../BaseLayer;../ThirdParty/Mysql/include;../ThirdParty/SQLite;../EngineLayer;../EngineLayer/EngineDllInterface;../BaseLayer/XML;../ThirdParty/fastdb/inc</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Windows</SubSystem>
@@ -87,6 +87,7 @@
     <ClInclude Include="IDBManager.h" />
     <ClInclude Include="SFDatabase.h" />
     <ClInclude Include="SFDBAdaptor.h" />
+    <ClInclude Include="SFFastDBAdaptor.h" />
     <ClInclude Include="SFMySQL.h" />
     <ClInclude Include="SFMSSQL.h" />
     <ClInclude Include="SFDataBaseProxy.h" />
@@ -105,6 +106,7 @@
     <ClCompile Include="CppSQLite3.cpp" />
     <ClCompile Include="SFDatabase.cpp" />
     <ClCompile Include="SFDBAdaptor.cpp" />
+    <ClCompile Include="SFFastDBAdaptor.cpp" />
     <ClCompile Include="SFMySQL.cpp" />
     <ClCompile Include="SFMSSQL.cpp" />
     <ClCompile Include="SFDBManager.cpp" />

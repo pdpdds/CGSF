@@ -23,7 +23,7 @@ int _tmain(int argc, _TCHAR* argv[])
 	TCPCallback* pCallback = new TCPCallback();
 	UDPCallback* pUDPCallback = new UDPCallback(); 
 
-	g_pNetworkEntry->Initialize("CGSFEngine.dll", pCallback, pUDPCallback);
+	g_pNetworkEntry->Initialize(pCallback, pUDPCallback);
 
 	IPacketProtocol* pProtocol = new SFPacketProtocol<FPSClientProtocol>;
 	g_pNetworkEntry->SetPacketProtocol(pProtocol);

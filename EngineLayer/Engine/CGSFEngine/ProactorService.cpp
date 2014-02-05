@@ -77,7 +77,7 @@ void ProactorService::handle_write_stream( const ACE_Asynch_Write_Stream::Result
 	Result.message_block().release();
 }
 
-void ProactorService::SendInternal(char* pBuffer, int BufferSize)
+void ProactorService::SendInternal(char* pBuffer, int BufferSize, int ownerSerial)
 {
 	ACE_Message_Block* pBlock = NULL;
 

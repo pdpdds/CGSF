@@ -12,7 +12,7 @@ class ISession
 
 	void SetOwner(INetworkEngine* pOwner){m_pOwner = pOwner;}
 
-	virtual void SendInternal(char* pBuffer, int BufferSize) {}
+	virtual void SendInternal(char* pBuffer, int BufferSize, int ownerSerial = -1) = 0;
 
 	void OnConnect(int Serial)
 	{
@@ -32,10 +32,11 @@ class ISession
 		return m_pSessionService->OnReceive(pData, Length);
 	}
 
+	/*
 	bool SendRequest(BasePacket* pPacket)
 	{
 		return m_pSessionService->SendRequest(this, pPacket);
-	}
+	}*/
 
 protected:
 

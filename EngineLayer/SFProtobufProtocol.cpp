@@ -39,7 +39,7 @@ BOOL SFProtobufProtocol::Reset()
 	return TRUE;
 }
 
-BOOL SFProtobufProtocol::SendRequest(ISession* pSession, BasePacket* pPacket)
+/*BOOL SFProtobufProtocol::SendRequest(ISession* pSession, BasePacket* pPacket)
 {
 	unsigned int uWrittenBytes = 0;
 	int iResult = serializeOutgoingPacket(*pPacket, oBuffer, uWrittenBytes);
@@ -50,6 +50,29 @@ BOOL SFProtobufProtocol::SendRequest(ISession* pSession, BasePacket* pPacket)
 
 	unsigned int uSize = oBuffer.GetDataSize();
 	pSession->SendInternal(oBuffer.GetBuffer(), uSize);
+
+	oBuffer.Pop(uSize);
+
+	return true;
+}*/
+
+bool SFProtobufProtocol::GetPacketData(BasePacket* pPacket, char* buffer, const int BufferSize, unsigned int& writtenSize)
+{
+	unsigned int uWrittenBytes = 0;
+	int iResult = serializeOutgoingPacket(*pPacket, oBuffer, uWrittenBytes);
+	
+	if (iResult!= SFProtocol::Success)
+	{
+		return false;
+	}
+
+	unsigned int uSize = oBuffer.GetDataSize();
+
+	if(uSize == 0)
+		return false;
+
+	memcpy(buffer, oBuffer.GetBuffer(), uSize);
+	writtenSize = uSize;
 
 	oBuffer.Pop(uSize);
 
