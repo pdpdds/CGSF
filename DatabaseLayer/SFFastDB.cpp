@@ -3,6 +3,7 @@
 #include "StringConversion.h"
 #include "fastdb.h"
 
+/*
 class tbllogin { 
 public:
 	char const* szUsername;
@@ -13,6 +14,7 @@ public:
 };
 
 REGISTER(tbllogin);
+*/
 
 SFFastDB::SFFastDB(void)
 	: m_pDatabase(NULL)
@@ -35,28 +37,12 @@ SFFastDB::~SFFastDB(void)
 BOOL SFFastDB::Initialize(TCHAR* szDB)
 {
 	m_pDatabase = new dbDatabase();
+
 	std::string szDBSource = StringConversion::ToASCII(szDB);
 	if(FALSE == m_pDatabase->open(szDB))
 		return FALSE;
 
-	return TRUE;
-}
+	printf("SFFastDB Init With %s\n", szDBSource.c_str());
 
-BOOL SFFastDB::Execute(char* szQuery)
-{
-
-	dbCursor<tbllogin> cursor;
-	dbQuery q;
-
-	char value[256];
-
-	q = "szUsername=",value;
-	gets(value);
-	if (cursor.select(q) > 0) { 
-		do { 
-			printf("%s\n", cursor->szUsername);
-		} while (cursor.next());
-	}
-	
 	return TRUE;
 }

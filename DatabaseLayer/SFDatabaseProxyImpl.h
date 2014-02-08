@@ -7,9 +7,9 @@ public:
 	SFDatabaseProxyImpl(SFDatabaseProxy* pProxy){m_pDataBaseProxy = pProxy;}
 	virtual ~SFDatabaseProxyImpl(void){}
 
-	virtual BOOL Initialize()
+	virtual BOOL Initialize(int workerPoolSize = -1)
 	{
-		return m_pDataBaseProxy->Initialize();
+		return m_pDataBaseProxy->Initialize(workerPoolSize);
 	}
 
 	virtual BOOL SendDBRequest(BasePacket* pMessage)

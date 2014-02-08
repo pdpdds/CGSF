@@ -9,7 +9,7 @@ int SFDBWorker::svc(void)
 {
 	m_ThreadID = ACE_Thread::self();
 
-	//		BOOL bResult = m_pDatabase->Initialize();
+	BOOL bResult = m_pDatabase->Initialize();
 
 	while(TRUE)
 	{

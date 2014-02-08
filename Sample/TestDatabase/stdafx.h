@@ -30,3 +30,4 @@
 #pragma comment(lib, "BaseLayer.lib")
 #pragma comment(lib, "DatabaseLayer.lib")
 #pragma comment(lib, "fastdb.lib")
+#pragma comment(lib, "EngineLayer.lib")

@@ -54,7 +54,7 @@
       <WarningLevel>Level3</WarningLevel>
       <Optimization>Disabled</Optimization>
       <PreprocessorDefinitions>WIN32;_DEBUG;_WINDOWS;_USRDLL;ASIO_EXPORTS;NETWORKENGINE_EXPORTS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <AdditionalIncludeDirectories>../../../ThirdParty\boost_1_55_0;../../EngineDLLInterface;</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>D:\Library\boost_1_54_0;../../EngineDLLInterface;</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Windows</SubSystem>

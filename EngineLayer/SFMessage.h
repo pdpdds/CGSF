@@ -2,6 +2,7 @@
 #include <sqltypes.h>
 #include "BasePacket.h"
 #include "Macro.h"
+#include <stdio.h>
 
 #define MAX_MESSAGE_BUFFER 512
 
@@ -88,6 +89,20 @@ public:
 		return *this;
 	}
 
+	inline SFMessage& SFMessage::operator << (char* szStr)
+	{
+		int len = strlen(szStr);
+		SFASSERT(len > 0);
+
+		memcpy(&m_aDataBuffer[m_usDataSize], szStr, len);
+		m_usDataSize += len;
+		m_aDataBuffer[m_usDataSize] = 0;
+		m_usDataSize++;
+
+		SFASSERT(m_usDataSize <= MAX_MESSAGE_BUFFER);
+		return *this;
+	}
+
 	inline SFMessage& SFMessage::operator << (TIMESTAMP_STRUCT& Data)
 	{
 		memcpy(&m_aDataBuffer[m_usDataSize], &Data, sizeof(TIMESTAMP_STRUCT));
@@ -157,6 +172,16 @@ public:
 		m_usCurrentReadPosition += sizeof(TIMESTAMP_STRUCT);
 
 		SFASSERT(m_usCurrentReadPosition <= MAX_MESSAGE_BUFFER);
+		return *this;
+	}
+
+	inline SFMessage& SFMessage::operator >> (char* szStr)
+	{
+		strcpy_s(szStr, MAX_PATH, (char*)&m_aDataBuffer[m_usCurrentReadPosition]);
+		m_usCurrentReadPosition += strlen((char*)&m_aDataBuffer[m_usCurrentReadPosition])+1;
+
+		SFASSERT(m_usCurrentReadPosition <= MAX_MESSAGE_BUFFER);
+
 		return *this;
 	}
 

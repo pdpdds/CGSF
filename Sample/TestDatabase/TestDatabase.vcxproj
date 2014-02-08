@@ -52,9 +52,9 @@
       <PrecompiledHeader>Use</PrecompiledHeader>
       <WarningLevel>Level3</WarningLevel>
       <Optimization>Disabled</Optimization>
-      <PreprocessorDefinitions>_VARIADIC_MAX=10;WIN32;_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>WIN32;_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <SDLCheck>true</SDLCheck>
-      <AdditionalIncludeDirectories>../../BaseLayer/VMemPool;../../BaseLayer;../../ThirdParty/Breakpad;../../ThirdParty/Bugtrap;../../ThirdParty/glog/src/windows;../../ThirdParty/protobuf-2.4.1/src;../../BaseLayer/XML;../../BaseLayer/json;../../ThirdParty/glog-0.3.2/src/windows;../../DatabaseLayer;../../EngineLayer/EngineDLLInterface;../../ThirdParty/ACE_wrappers;../../EngineLayer;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>../../BaseLayer/VMemPool;../../BaseLayer;../../ThirdParty/Breakpad;../../ThirdParty/Bugtrap;../../ThirdParty/glog/src/windows;../../ThirdParty/protobuf-2.4.1/src;../../BaseLayer/XML;../../BaseLayer/json;../../ThirdParty/glog-0.3.2/src/windows;../../DatabaseLayer;../../EngineLayer/EngineDLLInterface;../../ThirdParty/ACE_wrappers;../../EngineLayer;../../ThirdParty/fastdb-375/fastdb/inc;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -92,7 +92,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="SFFastDBAdaptorImpl.cpp">
-      <PreprocessorDefinitions Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">_VARIADIC_MAX=10;WIN32;NDEBUG;_CONSOLE;USE_LOCALE_SETTINGS;USE_STD_STRING;AUTOINCREMENT_SUPPORT;THROW_EXCEPTION_ON_ERROR;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">WIN32;NDEBUG;_CONSOLE;USE_LOCALE_SETTINGS;USE_STD_STRING;AUTOINCREMENT_SUPPORT;THROW_EXCEPTION_ON_ERROR;%(PreprocessorDefinitions)</PreprocessorDefinitions>
     </ClCompile>
     <ClCompile Include="stdafx.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Create</PrecompiledHeader>

@@ -14,15 +14,16 @@ class SFDBManager : public ACE_Task_Base, public IDBManager
 public:
 	enum
 	{
-		POOL_SIZE = 5,
+		DEFAUT_POOL_SIZE = 5,
 		MAX_TIMEOUT = 5,
 	};
 
-	SFDBManager(void)
+	SFDBManager()
 		: m_ShutDown(0)
 		, m_Workers_Lock()
-		, m_Workers_Cond(m_Workers_Lock)
+		, m_Workers_Cond(m_Workers_Lock)	
 	{
+		m_workerPoolSize = DEFAUT_POOL_SIZE;
 	}
 
 	virtual ~SFDBManager(void){}
@@ -30,6 +31,11 @@ public:
 	int perform(ACE_Method_Request* pReq)
 	{
 		return this->m_Queue.enqueue(pReq);
+	}
+
+	void SetWorkerPoolSize(int workerPoolSize)
+	{
+		m_workerPoolSize = workerPoolSize;
 	}
 
 	int svc(void)
@@ -112,14 +118,14 @@ protected:
 	{
 		ACE_GUARD_RETURN(ACE_Thread_Mutex, worker_mon, this->m_Workers_Lock, -1);
 
-		for(int i = 0; i < POOL_SIZE; i++)
+		for(int i = 0; i < m_workerPoolSize; i++)
 		{
 			SFDBWorker* pWorker;
 			ACE_NEW_RETURN(pWorker, SFDBWorker(this), -1);
 			this->m_queueWorkers.enqueue_tail(pWorker);
 
 			SFDatabase* pDatabase = new SFDatabase(new T());
-			pDatabase->Initialize();
+			//pDatabase->Initialize();
 
 			pWorker->SetDatabase(pDatabase);
 
@@ -141,6 +147,7 @@ protected:
 
 private:
 	int m_ShutDown;
+	int m_workerPoolSize;
 	ACE_Thread_Mutex m_Workers_Lock;
 	ACE_Condition<ACE_Thread_Mutex> m_Workers_Cond;
 	ACE_Unbounded_Queue<SFDBWorker*>	m_queueWorkers;

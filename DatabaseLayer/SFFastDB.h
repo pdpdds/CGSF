@@ -9,8 +9,7 @@ public:
 	SFFastDB(void);
 	~SFFastDB(void);
 
-	BOOL Initialize(TCHAR* szDB);
-	BOOL Execute(char* szQuery);
+	BOOL Initialize(TCHAR* szDB);	
 
 protected:
 

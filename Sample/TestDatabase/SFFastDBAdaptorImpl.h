@@ -13,7 +13,7 @@ public:
 
 protected:
 
-private:
-	BOOL OnLogin( BasePacket* pMessage );
+private:	
+	BOOL OnBookInfo( BasePacket* pMessage );
+	BOOL OnSongInfo( BasePacket* pMessage );
 };
-
