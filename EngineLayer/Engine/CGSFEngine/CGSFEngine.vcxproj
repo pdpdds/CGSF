@@ -17,6 +17,7 @@
     <ProjectGuid>{D3434D93-3187-430C-885F-FD6F9613366A}</ProjectGuid>
     <Keyword>Win32Proj</Keyword>
     <RootNamespace>CGSFEngine</RootNamespace>
+    <ProjectName>ACEEngine</ProjectName>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
@@ -90,18 +91,21 @@
     <ClInclude Include="..\..\EngineDLLInterface\BasePacket.h" />
     <ClInclude Include="..\..\EngineDLLInterface\INetworkEngine.h" />
     <ClInclude Include="..\..\EngineDLLInterface\ISession.h" />
-    <ClInclude Include=".\CGSFEngine.h" />
+    <ClInclude Include="ACEEngine.h" />
     <ClInclude Include="ACEHeader.h" />
     <ClInclude Include=".\SingltonObject.h" />
     <ClInclude Include=".\ProactorIDMap.h" />
     <ClInclude Include="ACETimeOutHandler.h" />
+    <ClInclude Include="InterlockedValue.h" />
+    <ClInclude Include="Lock.h" />
     <ClInclude Include="ProactorAcceptor.h" />
     <ClInclude Include="ProactorService.h" />
     <ClInclude Include="ProactorWorkerThread.h" />
     <ClInclude Include="Queue.h" />
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include=".\CGSFEngine.cpp" />
+    <ClCompile Include="ACEEngine.cpp" />
+    <ClCompile Include="InterlockedValue.cpp" />
     <ClCompile Include="ProactorAcceptor.cpp" />
     <ClCompile Include="ProactorService.cpp" />
     <ClCompile Include="ProactorWorkerThread.cpp" />

@@ -11,9 +11,6 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include=".\CGSFEngine.h">
-      <Filter>Source</Filter>
-    </ClInclude>
     <ClInclude Include="..\..\EngineDLLInterface\INetworkEngine.h">
       <Filter>Source</Filter>
     </ClInclude>
@@ -47,11 +44,17 @@
     <ClInclude Include="..\..\EngineDLLInterface\BasePacket.h">
       <Filter>Source</Filter>
     </ClInclude>
+    <ClInclude Include="InterlockedValue.h">
+      <Filter>Source</Filter>
+    </ClInclude>
+    <ClInclude Include="ACEEngine.h">
+      <Filter>Source</Filter>
+    </ClInclude>
+    <ClInclude Include="Lock.h">
+      <Filter>Source</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include=".\CGSFEngine.cpp">
-      <Filter>Source</Filter>
-    </ClCompile>
     <ClCompile Include="ProactorWorkerThread.cpp">
       <Filter>Source</Filter>
     </ClCompile>
@@ -59,6 +62,12 @@
       <Filter>Source</Filter>
     </ClCompile>
     <ClCompile Include="ProactorService.cpp">
+      <Filter>Source</Filter>
+    </ClCompile>
+    <ClCompile Include="InterlockedValue.cpp">
+      <Filter>Source</Filter>
+    </ClCompile>
+    <ClCompile Include="ACEEngine.cpp">
       <Filter>Source</Filter>
     </ClCompile>
   </ItemGroup>

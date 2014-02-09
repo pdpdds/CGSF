@@ -65,6 +65,9 @@ EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "ASIO", "..\EngineLayer\Engine\ASIO\ASIO.vcxproj", "{4BD7A214-3722-4C65-BEED-D3B2618A8D76}"
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "EchoServer", "..\Sample\EchoServer\EchoServer.vcxproj", "{DD9698A1-F393-47EF-B4E7-41DB22BA2DD6}"
+	ProjectSection(ProjectDependencies) = postProject
+		{D3434D93-3187-430C-885F-FD6F9613366A} = {D3434D93-3187-430C-885F-FD6F9613366A}
+	EndProjectSection
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "EchoClient", "..\Sample\EchoClient\EchoClient.vcxproj", "{F6F0BD80-CB93-41F3-A8DB-CF3418DA7EE0}"
 EndProject

@@ -268,13 +268,6 @@ bool SFEngine::OnTimer(const void *arg)
 
 	m_pLogicDispatcher->Dispatch(pPacket);
 
-	printf("%d\n", arg);
-	// Print out when timeouts occur.
-	//  ACE_DEBUG ((LM_DEBUG, "(%t) %d timeout occurred for %s @ %d.\n",
-	//        1,
-	//        (char *) arg,
-	//      (tv - this->start_time_).sec ()));
-
 	return true;
 }
 
@@ -292,6 +285,7 @@ BOOL SFEngine::SendRequest(BasePacket* pPacket)
 		PacketPoolSingleton::instance()->Release(pClonePacket);
 		return FALSE;
 	}
+
 	pClonePacket->SetDataSize(writtenSize);
 	pClonePacket->SetPacketType(SFPacket_Data);
 	pClonePacket->SetOwnerSerial(pPacket->GetOwnerSerial());
