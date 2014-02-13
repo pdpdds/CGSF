@@ -17,7 +17,11 @@ public:
 	//virtual
 		BOOL Push(T* pMsg) 
 	{
-		::PostQueuedCompletionStatus(m_hIOCP, 0, (ULONG_PTR)pMsg, NULL);
+		if(0 == ::PostQueuedCompletionStatus(m_hIOCP, 0, (ULONG_PTR)pMsg, NULL))
+		{
+			DWORD dwError =GetLastError();
+			return FALSE;
+		}
 		return TRUE;
 	}
 

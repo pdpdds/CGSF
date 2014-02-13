@@ -43,6 +43,8 @@
     <LinkIncremental>true</LinkIncremental>
     <OutDir>../VSProject/Bin32\</OutDir>
     <IntDir>../VSProject/Intermediate/$(Configuration)\$(ProjectName)\</IntDir>
+    <IncludePath>D:\Library\OpenSSL-Win32\include;$(IncludePath)</IncludePath>
+    <LibraryPath>D:\Library\OpenSSL-Win32\lib;$(LibraryPath)</LibraryPath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <LinkIncremental>false</LinkIncremental>
@@ -56,12 +58,12 @@
       <Optimization>Disabled</Optimization>
       <PreprocessorDefinitions>WIN32;_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <SDLCheck>true</SDLCheck>
-      <AdditionalIncludeDirectories>../BaseLayer;../DatabaseLayer;../EngineLayer;../ThirdParty/ACE_wrappers;../EngineLayer/EngineDllInterface;../ThirdParty/LiteZip;../ThirdParty/protobuf-2.4.1/src;../BaseLayer/DataStructure;../BaseLayer/Logger;../ThirdParty/SQLite</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>../BaseLayer;../DatabaseLayer;../EngineLayer;../ThirdParty/ACE_wrappers;../EngineLayer/EngineDllInterface;../ThirdParty/LiteZip;../ThirdParty/protobuf-2.4.1/src;../BaseLayer/DataStructure;../BaseLayer/Logger;../ThirdParty/SQLite;../ThirdParty/glog-0.3.2/src/windows;../BaseLayer/External;..\ThirdParty\liblfds\include</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
-      <AdditionalLibraryDirectories>../ThirdParty/Lib/Debug;../ThirdParty/ACE_wrappers/lib;../ThirdParty/SQLite;../VSProject/Lib/Debug;../ThirdParty/mysql/lib</AdditionalLibraryDirectories>
+      <AdditionalLibraryDirectories>../ThirdParty/Lib/Debug;../ThirdParty/ACE_wrappers/lib;../ThirdParty/SQLite;../VSProject/Lib/Debug;../ThirdParty/mysql/lib;..\ThirdParty\liblfds\lib\dynamic</AdditionalLibraryDirectories>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
@@ -87,24 +89,44 @@
   <ItemGroup>
     <ClInclude Include="BitArrayTest.h" />
     <ClInclude Include="DumpTest.h" />
+    <ClInclude Include="GLogTest.h" />
     <ClInclude Include="INITest.h" />
     <ClInclude Include="ITest.h" />
+    <ClInclude Include="LibfdsTest.h" />
+    <ClInclude Include="LockQueueTest.h" />
+    <ClInclude Include="RegistryTest.h" />
+    <ClInclude Include="RexTest.h" />
+    <ClInclude Include="SendEMailTest.h" />
+    <ClInclude Include="SerializationTest.h" />
     <ClInclude Include="SFBaseClass.h" />
+    <ClInclude Include="SFExcelTest.h" />
     <ClInclude Include="SFExtensionClass.h" />
+    <ClInclude Include="SFMathTest.h" />
     <ClInclude Include="SFNetworkHandler.h" />
     <ClInclude Include="SFPacketHandler.h" />
     <ClInclude Include="SFSampleDB.h" />
     <ClInclude Include="stdafx.h" />
     <ClInclude Include="StringTest.h" />
+    <ClInclude Include="SystemCheckTest.h" />
     <ClInclude Include="targetver.h" />
+    <ClInclude Include="TomCryptTest.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="BitArrayTest.cpp" />
     <ClCompile Include="CGSFTest.cpp" />
     <ClCompile Include="DumpTest.cpp" />
+    <ClCompile Include="GLogTest.cpp" />
     <ClCompile Include="INITest.cpp" />
+    <ClCompile Include="LibfdsTest.cpp" />
+    <ClCompile Include="LockQueueTest.cpp" />
+    <ClCompile Include="RegistryTest.cpp" />
+    <ClCompile Include="RexTest.cpp" />
+    <ClCompile Include="SendEMailTest.cpp" />
+    <ClCompile Include="SerializationTest.cpp" />
     <ClCompile Include="SFBaseClass.cpp" />
+    <ClCompile Include="SFExcelTest.cpp" />
     <ClCompile Include="SFExtensionClass.cpp" />
+    <ClCompile Include="SFMathTest.cpp" />
     <ClCompile Include="SFPacketHandler.cpp" />
     <ClCompile Include="SFSampleDB.cpp" />
     <ClCompile Include="stdafx.cpp">
@@ -112,6 +134,8 @@
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Create</PrecompiledHeader>
     </ClCompile>
     <ClCompile Include="StringTest.cpp" />
+    <ClCompile Include="SystemCheckTest.cpp" />
+    <ClCompile Include="TomCryptTest.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

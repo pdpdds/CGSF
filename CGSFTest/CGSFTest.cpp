@@ -15,68 +15,24 @@
 //#include <google/protobuf/io/zero_copy_stream_impl_lite.h>
 #include "SFPacketHandler.h"
 #include "SFDispatch.h"
-#include "SFLockQueue.h"
-#include "SFLockDeque.h"
-#include "SFIOCPQueue.h"
 #include "SFMessage.h"
-#include "Mmsystem.h"
-#include "SFRegistry.h"
 #include "SFObjectPool.h"
 //#include "SFNetworkHandler.h"
 #include <map>
 #include "SFServiceController.h"
 #include "SFSampleDB.h"
 #include "SFFilePack.h"
-#include "SFUtil.h"
-#include "SFSystemInfo.h"
-#include "GPGLockFreeQueue.h"
-#include "SFRegexChecker.h"
 #include "CPUDesc.h"
-//#include "SFExcel.h"
-//#include "CSMTP.h"
-//#include <tomcrypt.h>
-#include <SFMath.h>
 //#include "SFProactiveServer.h"
-//#include "liblfds.h"
 
 
-//#include <boost/serialization/serialization.hpp>
-//#include <boost/serialization/vector.hpp>
-//#include <boost/serialization/string.hpp>
-//#include <boost/archive/text_oarchive.hpp>
-//#include <boost/archive/text_iarchive.hpp>
-//#include <boost/archive/binary_iarchive.hpp> 
-//#include <boost/archive/binary_oarchive.hpp>
+
+
 #include <fstream>
 #include <iostream> 
 #include <sstream>  
 
 using namespace std;
-
-/*class SampleBoostSerialization
-{
-	friend class boost::serialization::access;
-
-public:
-	SampleBoostSerialization(){}
-	virtual ~SampleBoostSerialization(){}
-
-	void SetHP(int HP){m_HP = HP;}
-	void SetMP(int MP){m_MP = MP;}
-
-protected:
-
-private: 
-	template<class Archive> void serialize( Archive& ar, unsigned int ver )
-	{
-		ar & m_HP;
-		ar & m_MP;
-	}
-
-private:
-	int m_HP;
-	int m_MP;
-};*/
 
 #pragma comment(lib, "enginelayer.lib")
 #pragma comment(lib, "baselayer.lib")
@@ -84,106 +40,45 @@ private:
 #pragma comment(lib, "zlib.lib")
 #pragma comment(lib, "liblzf.lib")
 #pragma comment(lib, "libprotobuf.lib")
-//#pragma comment(lib, "tomcrypt.lib")
 #ifdef _DEBUG
 #pragma comment(lib, "aced.lib")
 #else
 #pragma comment(lib, "ace.lib")
 #endif
 
-#pragma comment(lib, "Winmm.lib")
 
-SFLockQueue<int> LockQueue;
-SFIOCPQueue<int> IOCPQueue;
-SFLockDeque<int> LockDeque;
-
-static void FakeWorkThread(void* Args)
-{
-	//ACE_Proactor::instance()->proactor_run_event_loop();
-
-	SFTSSyncQueue<int>* pQueue = (SFTSSyncQueue<int>*)Args;
-
-	for(int i = 0; i < 3000; i++)
-	{
-		int* p = new int;
-		*p = i;
-		pQueue->Push(p);
-	}
-}
-
-static void BusinessThread(void* Args)
-{
-	SFTSSyncQueue<int>* pQueue = (SFTSSyncQueue<int>*)Args;
-	while(1)
-	{
-		int* Num = pQueue->Pop();
-		//printf("%d\n", *Num);
-		delete Num;
-	}
-}
 
 /*void sampleFunc(protobuf::io::ArrayInputStream& input)
 {
 	return;
 }*/
 
-static void LockFreeProducer(void* Args)
-{
-	//ACE_Proactor::instance()->proactor_run_event_loop();
 
-	GPG::LockFreeQueue<int>* pQueue = (GPG::LockFreeQueue<int>*)Args;
 
-	for(int i = 0; i < 10000; i++)
-	{
-		
-		GPG::node<int>* p = new GPG::node<int>(i);
-		
-		pQueue->Add(p);
-	}
-}
-
-static void LockFreeConsumer(void* Args)
-{
-	//ACE_Proactor::instance()->proactor_run_event_loop();
-
-	GPG::LockFreeQueue<int>* pQueue = (GPG::LockFreeQueue<int>*)Args;
-
-	for(int i = 0; i < 10000; i++)
-	{
-		GPG::node<int>* p = pQueue->Remove();
-
-		if(p != NULL)
-			delete p;
-	}
-}
-
-void GPGLockFreeQueueTest();
-void RegularExpressionTest();
 void DatabaseTest();
 void ServiceTest(int argc, TCHAR* argv[]);
-void SystemCheckTest();
 void FileMemoryPackingTest();
-void BoostSerializationTest();
-void SFExcelTest();
-void SendEMailTest();
-void TomCryptTest();
 void DataStructureTest();
 void AceLoggerTest();
 void AceServerTest();
 void SQLiteTest();
 void PCRETest();
 void ACEDataStructureTest();
-void LokiTest();
-void libfdsTest();
 
 #include "INITest.h"
 #include "DumpTest.h"
 #include "BitArrayTest.h"
 #include "StringTest.h"
+#include "RexTest.h"
+#include "SystemCheckTest.h"
+#include "SFExcelTest.h"
+#include "GLogTest.h"
+#include "RegistryTest.h"
+#include "LockQueueTest.h"
 
 int _tmain(int argc, _TCHAR* argv[])
 {
-	StringTest test;
+	LockQueueTest test;
 	test.Run();
 
 	
@@ -192,9 +87,7 @@ int _tmain(int argc, _TCHAR* argv[])
 
 	//ACEDataStructureTest();
 
-	LokiTest();
-
-	//libfdsTest();
+	
 
 //////////////////////////////////////////////////////////////////////////
 //게임 프로그래머를 위한 자료구조와 알고리즘 소스 테스트
@@ -219,124 +112,18 @@ int _tmain(int argc, _TCHAR* argv[])
 //////////////////////////////////////////////////////////////////////////
 	//FileMemoryPackingTest();
 	
-//////////////////////////////////////////////////////////////////////////
-//SystemCheck Test
-//////////////////////////////////////////////////////////////////////////
-	//SystemCheckTest();
-
-//////////////////////////////////////////////////////////////////////////
-//LockFreeQueueTest
-//////////////////////////////////////////////////////////////////////////	
-	//GPGLockFreeQueueTest();
-
-//////////////////////////////////////////////////////////////////////////
-//Regular Expression Check
-//////////////////////////////////////////////////////////////////////////
-	//RegularExpressionTest();
+	
 
 //////////////////////////////////////////////////////////////////////////
 //Database Test
 //////////////////////////////////////////////////////////////////////////
-	//DatabaseTest();
-
-//////////////////////////////////////////////////////////////////////////
-//부스트 직렬화 테스트
-//////////////////////////////////////////////////////////////////////////
-	//BoostSerializationTest();
-
-	//SFExcelTest();
-
-	//SendEMailTest();
-	//TomCryptTest();
+	//DatabaseTest();	
 
 
 	return 0;
 }
 
-void GPGLockFreeQueueTest()
-{
-	
-	ACE::init();
 
-	SYSTEM_INFO si;
-	GetSystemInfo(&si);
-
-	int OptimalThreadCount = si.dwNumberOfProcessors * 2;
-
-	GPG::node<int>* pNode = new GPG::node<int>(-1);
-	GPG::LockFreeQueue<int> GPGQueue(pNode);
-
-
-
-	int GroupID = ACE_Thread_Manager::instance()->spawn_n(OptimalThreadCount, (ACE_THR_FUNC)LockFreeProducer, &GPGQueue, THR_NEW_LWP, ACE_DEFAULT_THREAD_PRIORITY, 1);
-
-	if(GroupID == -1)
-	{
-		SFASSERT(0);
-	}
-
-	int ConsumerGroupID = ACE_Thread_Manager::instance()->spawn_n(OptimalThreadCount, (ACE_THR_FUNC)LockFreeConsumer, &GPGQueue, THR_NEW_LWP, ACE_DEFAULT_THREAD_PRIORITY, 2);
-
-	if(ConsumerGroupID == -1)
-	{
-		SFASSERT(0);
-	}
-
-	ACE_Thread_Manager::instance()->wait_grp(GroupID);
-	ACE_Thread_Manager::instance()->wait_grp(ConsumerGroupID);
-
-	ACE::fini();
-}
-
-void RegularExpressionTest()
-{
-	SFRegexChecker Checker;
-
-	//주민등록번호
-	SFASSERT(FALSE == Checker.IsValidResidentRegistrationNumber(L"801234-798999"));
-	SFASSERT(TRUE == Checker.IsValidResidentRegistrationNumber(L"801234-7989990"));
-	SFASSERT(FALSE == Checker.IsValidResidentRegistrationNumber(L"801234-79899909"));
-
-	//URL
-	SFASSERT(TRUE == Checker.IsValidURL(L"http://onlinegameserver.org/444/"));
-	SFASSERT(TRUE == Checker.IsValidURL(L"http://onlinegameserver.org/444"));
-	SFASSERT(TRUE == Checker.IsValidURL(L"http://onlinegameserver.org"));
-	SFASSERT(TRUE == Checker.IsValidURL(L"http://onlinegameserver"));
-	SFASSERT(FALSE == Checker.IsValidURL(L"http://"));
-	SFASSERT(FALSE == Checker.IsValidURL(L"http://["));
-
-	//이메일
-	SFASSERT(FALSE == Checker.IsValidEMail(L"email"));
-	SFASSERT(FALSE == Checker.IsValidEMail(L"email@"));
-	SFASSERT(FALSE == Checker.IsValidEMail(L"email@daum"));
-	SFASSERT(FALSE == Checker.IsValidEMail(L"email@daum."));
-	SFASSERT(TRUE == Checker.IsValidEMail(L"a@daum.net"));
-	SFASSERT(TRUE == Checker.IsValidEMail(L"email-A@DAUM.Net"));
-	SFASSERT(FALSE == Checker.IsValidEMail(L"email-A@DAUM.Neta"));
-	SFASSERT(TRUE == Checker.IsValidEMail(L"email-A@DAUM.Ne"));
-	SFASSERT(FALSE == Checker.IsValidEMail(L"email-A@DAUM.N"));
-	SFASSERT(FALSE == Checker.IsValidEMail(L"email--A@DAUM.NET"));
-
-	//IP Address
-	SFASSERT(FALSE == Checker.IsValidIPAddress(L"333"));
-	SFASSERT(FALSE == Checker.IsValidIPAddress(L"333."));
-	SFASSERT(FALSE == Checker.IsValidIPAddress(L"333.333"));
-	SFASSERT(FALSE == Checker.IsValidIPAddress(L"333.333."));
-	SFASSERT(FALSE == Checker.IsValidIPAddress(L"333.333.333"));
-	SFASSERT(FALSE == Checker.IsValidIPAddress(L"333.333.333."));
-	SFASSERT(FALSE == Checker.IsValidIPAddress(L"333.333.333.333"));
-	SFASSERT(TRUE == Checker.IsValidIPAddress(L"133.133.133.133"));
-	SFASSERT(TRUE == Checker.IsValidIPAddress(L"255.255.255.255"));
-	SFASSERT(FALSE == Checker.IsValidIPAddress(L"255.255.255.256"));
-	SFASSERT(TRUE == Checker.IsValidIPAddress(L"56.255.255.255"));
-	SFASSERT(FALSE == Checker.IsValidIPAddress(L"333.333.333.333."));
-	SFASSERT(FALSE == Checker.IsValidIPAddress(L"333.333.333.333.333"));
-
-	//캐릭터이름
-	SFASSERT(FALSE == Checker.IsValidCharName(L"★가나다abc-][(){}_AB194"));
-	SFASSERT(TRUE == Checker.IsValidCharName(L"가나다abc-][(){}_AB194"));
-	SFASSERT(FALSE == Checker.IsValidCharName(L"ㅁ가나다abc-][(){}_AB194"));
-}
 
 void DatabaseTest()
 {
@@ -378,205 +165,12 @@ void ServiceTest(int argc, TCHAR* argv[])
 	}
 }
 
-void SystemCheckTest()
-{
-	float Score = SFUtil::GetWindowAssetPoint();
-
-	SFSystemInfo SystemInfo;
-
-	if(TRUE == SystemInfo.Initialize())
-	{
-		OSInfo* pOSInfo = SystemInfo.GetOSInfo();
-		DWORD dwOSMajorVersion = pOSInfo->dwOSMajorVer;
-		DWORD dwOSMinorVersion = pOSInfo->dwOSMinorVer;
-
-		printf("##Operation System Infomation##\n");
-		printf("OSName : %s, Ver : %d.%d\n", pOSInfo->szOperatingSystem, dwOSMajorVersion, dwOSMinorVersion);
-
-		MEMORYSTATUS* pMemoryInfo = SystemInfo.GetMemoryInfo();
-
-		DWORD dwTotalPhysicalMemory = pMemoryInfo->dwTotalPhys;
-		dwTotalPhysicalMemory = dwTotalPhysicalMemory /1048576;
-
-		DWORD dwTotalAvailablePhysicalMemory = pMemoryInfo->dwAvailPhys;
-		dwTotalAvailablePhysicalMemory = dwTotalAvailablePhysicalMemory /1048576;
-
-		printf("\n\n##MemoryInfomation##\n");
-		printf("Physical Memory : %dMB\n", dwTotalPhysicalMemory);
-		printf("Available Memory : %dMB\n", dwTotalAvailablePhysicalMemory);
-
-///////////////////////////////////////////////////////////////////////////////////////////////////
-//CPU Info
-///////////////////////////////////////////////////////////////////////////////////////////////////
-		CCPUDesc* pDesc = SystemInfo.GetCPUDesc();
-		if(true == pDesc->IsSupportCPUID())
-		{	
-			printf("\n\n##CPU Infomation##\n");
-			printf("VenderID : %s\n", pDesc->GetVendorID());
-			printf("TypeID : %s\n", pDesc->GetTypeID());
-			printf("FamilyID : %s\n", pDesc->GetFamilyID());
-			printf("ModelID : %s\n", pDesc->GetModelID());
-			printf("SteppingCode : %s\n", pDesc->GetSteppingCode());
-			printf("ExtendedProcessorName : %s\n", pDesc->GetExtendedProcessorName());
-			printf("GetProcessorClockFrequency : %d\n", pDesc->GetProcessorClockFrequency());
-			printf("GetProcessorNum : %d\n", pDesc->GetProcessorNum());
-		}
-		
-		PPROCESSORINFO pProcessorsInfo = pDesc->GetProcessorsInfo();
-
-		/*for(int nProcessorCount = 0; nProcessorCount < pDesc->GetProcessorNum(); nProcessorCount++)
-		{
-			printf("\n\n##Processor %d Infomation##\n",  pProcessorsInfo[nProcessorCount].dwProcessorIndex);
-
-			if(TRUE == pProcessorsInfo[nProcessorCount].bL1Cache)
-			{
-				printf("L1Cache : %d\n", pProcessorsInfo[nProcessorCount].L1CacheSize);
-			}
-
-			if(TRUE == pProcessorsInfo[nProcessorCount].bL2Cache)
-			{
-				printf("L2Cache : %d\n", pProcessorsInfo[nProcessorCount].L2CacheSize);
-			}
-
-			if(TRUE == pProcessorsInfo[nProcessorCount].bL3Cache)
-			{
-				printf("L3Cache : %d\n", pProcessorsInfo[nProcessorCount].L3CacheSize);
-			}
-
-			if(TRUE == pProcessorsInfo[nProcessorCount].bHyperthreadingInstructions)
-			{
-				printf("bHyperthreadingInstructions Enable\n");
-				printf("LogicalProcessorsPerPhysical : %d\n", pProcessorsInfo[nProcessorCount].LogicalProcessorsPerPhysical);
-			}	
-
-		}*/
-
-		DWORD dwL1CacheSize = pDesc->GetL1CacheSize();
-		DWORD dwL2CacheSize = pDesc->GetL2CacheSize();
-		DWORD dwL3CacheSize = pDesc->GetL3CacheSize();
-
-		DWORD dwMB = 0;
-		DWORD dwKB = 0;
-
-		SFUtil::ConvertBytesToMB(dwL1CacheSize, dwMB, dwKB);
-		_tprintf(TEXT("L1 cache size : %dMB %dKB\n"), dwMB, dwKB);
-
-		SFUtil::ConvertBytesToMB(dwL2CacheSize, dwMB, dwKB);
-		_tprintf(TEXT("L2 cache size : %dMB %dKB\n"), dwMB, dwKB);
-
-		SFUtil::ConvertBytesToMB(dwL3CacheSize, dwMB, dwKB);
-		_tprintf(TEXT("L3 cache size : %dMB %dKB\n"), dwMB, dwKB);
-	}
-}
-
 void FileMemoryPackingTest()
 {
 	SFFilePack FilePack;
 	if(FilePack.Initialize() == TRUE)	
 		FilePack.UnPackFile(_T("test.zip"));
 }
-
-/*void BoostSerializationTest()
-{
-	//std::ostringstream archive_stream;
-	std::stringstream ss;
-    {
-        SampleBoostSerialization SamplePlayer;
-		SamplePlayer.SetHP(100);
-		SamplePlayer.SetMP(90);
-       
-        ofstream file("PlayerInfo.dat");
-		
-        boost::archive::text_oarchive oa(ss);
-
-        oa << SamplePlayer;
-    }
-
-    {
-        SampleBoostSerialization SamplePlayer;
-
-		ifstream file("PlayerInfo.dat");
-        boost::archive::text_iarchive ia(ss);
-        ia >> SamplePlayer;
-
-		int j = 6;
-    }
-}*/
-
-/*void SFExcelTest()
-{
-	SFExcel Excel;
-	Excel.Initialize();
-	Excel.Read("test.xls", 0);
-	Excel.Finally();
-}*/
-
-/*void SendEMailTest()
-{
-
-	bool bError = false;
-
-	try
-	{
-		CSmtp mail;
-
-		//#define test_gmail_tls
-
-#if defined(test_gmail_tls)
-		//mail.SetSMTPServer("smtp.gmail.com",587);
-		//mail.SetSecurityType(CSmtp::USE_TLS);
-#elif defined(test_gmail_ssl)
-		mail.SetSMTPServer("smtp.gmail.com",465);
-		mail.SetSecurityType(CSmtp::USE_SSL);
-#elif defined(test_hotmail_TLS)
-		mail.SetSMTPServer("smtp.live.com",25);
-		mail.SetSecurityType(CSmtp::USE_TLS);
-#elif defined(test_aol_tls)
-		mail.SetSMTPServer("smtp.aol.com",587);
-		mail.SetSecurityType(CSmtp::USE_TLS);
-#elif defined(test_yahoo_ssl)
-		mail.SetSMTPServer("plus.smtp.mail.yahoo.com",465);
-		mail.SetSecurityType(CSmtp::USE_SSL);
-#endif
-
-		mail.SetSMTPServer("smtp.daum.net",465);
-		mail.SetSecurityType(USE_SSL);
-
-		mail.SetLogin("***"); //daum id
-		mail.SetPassword("***"); //daum password
-
-		mail.SetSenderName("***"); //자기이름
-		mail.SetSenderMail("***");//SenderMail
-		mail.SetReplyTo("***");//SenderMail
-		mail.SetSubject("The message");
-		mail.AddRecipient("***"); //ReceiverMail
-		mail.SetXPriority(XPRIORITY_HIGH);
-		mail.SetXMailer("The Bat! (v3.02) Professional");
-		mail.AddMsgLine("Hello,");
-		mail.AddMsgLine("");
-		mail.AddMsgLine("...");
-		mail.AddMsgLine("How are you today?");
-		mail.AddMsgLine("");
-		mail.AddMsgLine("Regards");
-		mail.ModMsgLine(5,"regards");
-		mail.DelMsgLine(2);
-		mail.AddMsgLine("User");
-
-		//mail.AddAttachment("../test1.jpg");
-		//mail.AddAttachment("c:\\test2.exe");
-		//mail.AddAttachment("c:\\test3.txt");
-		mail.Send();
-	}
-	catch(ECSmtp e)
-	{
-		std::cout << "Error: " << e.GetErrorText().c_str() << ".\n";
-		bError = true;
-	}
-	if(!bError)
-		std::cout << "Mail was send successfully.\n";
-}*/
-
-
 
 #include "Array2D.h"
 #include "Queue.h"
@@ -631,25 +225,6 @@ void DataStructureTest()
 	int HeapTop = IntHeap.Item();
 
 	SFASSERT(HeapTop == 7);
-
-	/*SFMath::Vector2D Vec2d(5.0f, 4.0f);
-	SFMath::Vector2D Vec2d2(5.0f, -4.0f);
-
-	Vec2d = Vec2d + Vec2d2;*/
-
-	SFMath::Vector2D Vec2d(1.0f, 0.0f);
-	SFMath::Vector2D Vec2d2(-3.0f, 4.0f);
-
-	Vec2d2 = Vec2d.Reflection(Vec2d2);
-
-	SFMath::Vector3D Vec3d(5.0f, 4.0f, 7.0f);
-	SFMath::Vector3D Vec3d2(5.0f, -4.0f, -4.0f);
-
-	Vec3d = Vec3d + Vec3d2;
-
-	Vec2d += Vec2d;
-
-	Vec3d += Vec3d;
 
 	return;
 
@@ -763,31 +338,7 @@ void AceLoggerTest()
 
 }
 
-void LogTest()
-{
-	///////////////////////////////////////////////////////////////////
-	///////////////////////////////////////////////////////////////////
-	/*google::InitGoogleLogging("CGSF");
 
-	google::SetLogDestination(GLOG_ERROR, "./");
-
-	LOG(ERROR) << "This should work";
-	LOG_IF(ERROR, 6 > 5) << "This should be also OK";
-
-	LOG(INFO) << "info";
-	LOG(WARNING) << "warn";
-	LOG(ERROR) << "error 주항";
-	//LOG(FATAL) << "fatal";
-
-	std::vector<std::string> dir = google::GetLoggingDirectories();
-	std::vector<std::string>::iterator it;
-	for(it=dir.begin(); it!=dir.end(); ++it){
-		LOG(INFO) << *it;
-	}	
-
-	//DLOG(FATAL) << "주항";
-	*/
-}
 
 #include "CppSQLite3.h"
 #include <ctime>
@@ -1011,20 +562,6 @@ ACE::fini();*/
 
 
 /*
-	SFFacade Sys;
-	Sys.Initialize();
-
-	SFObjectPool<int> Pool(100);
-
-	SFIni ini;
-	WCHAR szServerName[20];
-	int Ver;
-
-	ini.SetPathName(_T("./Test2.ini"));
-	ini.GetString(L"ServerInfo",L"Name",szServerName, 20);
-	Ver = ini.GetInt(L"ServerInfo",L"Ver",1);
-
-	
 
 ///////////////////////////////////////////////////////////////////////////////////////////
 //패킷 자르기 테스트
@@ -1097,17 +634,7 @@ ACE::fini();*/
 	SFMessage Message;
 		
 
-	SFRegistry Reg(HKEY_LOCAL_MACHINE);
-
-	if(TRUE == Reg.CreateRegistryKey(L"SOFTWARE\\JUHANG"))
-	{
-		DWORD dwValue;
-
-		Reg.SetValue(L"TEST1", 555);
-		Reg.GetValue(L"TEST1", dwValue);
-		Reg.DeleteValue(L"TEST1");
-		Reg.DeleteKey(L"SOFTWARE\\JUHANG");
-	}
+	
 
 /////////////////////////////////////////////////////////////////////////////////////////////
 //DB Test
@@ -1214,91 +741,7 @@ void ACEDataStructureTest()
 	
 }*/
 
-void LokiTest()
-{
 
-}
-/*
-#pragma comment(lib, "liblfds.lib")
-
-static void PushThread(void* Args)
-{
-	
-
-	struct stack_state* pStack = (struct stack_state*)Args;
-
-	for(int i = 0; i < 3000; i++)
-	{
-		int* p = new int;
-		*p = i;
-		
-		//stack_push(pStack, p);
-		stack_guaranteed_push(pStack, p);
-		
-	}
-}
-
-static void PopThread(void* Args)
-{
-	struct stack_state* pStack = (struct stack_state*)Args;
-
-	while(1)
-	{
-		int* t = NULL;
-		int i = stack_pop(pStack, (void**)&t);
-
-		if(t != NULL)
-		{
-			printf("pop success %d\n", GetCurrentThreadId());
-			delete t;
-		}
-		else
-		{
-			//printf("pop fail\n");
-		}
-	}
-}
-
-void libfdsTest()
-{
-	struct stack_state* pStack = NULL;
-	stack_new(&pStack, 10000);
-
-	ACE::init();
-
-	SYSTEM_INFO si;
-	GetSystemInfo(&si);
-
-	int OptimalThreadCount =si.dwNumberOfProcessors;
-
-	DWORD dwTime = timeGetTime();
-	int GroupID = ACE_Thread_Manager::instance()->spawn_n(OptimalThreadCount, (ACE_THR_FUNC)PushThread, pStack, THR_NEW_LWP, ACE_DEFAULT_THREAD_PRIORITY, 1);
-
-	if(GroupID == -1)
-	{
-		SFASSERT(0);
-	}
-
-	if(ACE_Thread_Manager::instance()->spawn_n(OptimalThreadCount, (ACE_THR_FUNC)PopThread, pStack, THR_NEW_LWP, ACE_DEFAULT_THREAD_PRIORITY, 2) == -1)
-	{
-		SFASSERT(0);
-	}
-
-	ACE_Thread_Manager::instance()->wait_grp(GroupID);
-	//ACE_Thread_Manager::instance()->wait_grp(Handler.grp_id());
-
-	//Handler.wait();
-
-	DWORD dwCompleteTime = timeGetTime();
-
-	DWORD dwElapsed = dwCompleteTime - dwTime;
-
-	printf("ElapsedTime %d\n", dwElapsed);
-
-	ACE_Thread_Manager::instance()->wait_grp(2);
-
-	ACE::fini();
-}*/
 
 std::string GetPluginDirectory ( void )
 {

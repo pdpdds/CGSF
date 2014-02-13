@@ -30,12 +30,6 @@
     <ClInclude Include="targetver.h">
       <Filter>헤더 파일</Filter>
     </ClInclude>
-    <ClInclude Include="SFBaseClass.h">
-      <Filter>헤더 파일</Filter>
-    </ClInclude>
-    <ClInclude Include="SFExtensionClass.h">
-      <Filter>헤더 파일</Filter>
-    </ClInclude>
     <ClInclude Include="SFNetworkHandler.h">
       <Filter>헤더 파일</Filter>
     </ClInclude>
@@ -58,6 +52,45 @@
       <Filter>Test</Filter>
     </ClInclude>
     <ClInclude Include="StringTest.h">
+      <Filter>Test</Filter>
+    </ClInclude>
+    <ClInclude Include="RexTest.h">
+      <Filter>Test</Filter>
+    </ClInclude>
+    <ClInclude Include="SystemCheckTest.h">
+      <Filter>Test</Filter>
+    </ClInclude>
+    <ClInclude Include="SFExcelTest.h">
+      <Filter>Test</Filter>
+    </ClInclude>
+    <ClInclude Include="SFBaseClass.h">
+      <Filter>Test\Dump</Filter>
+    </ClInclude>
+    <ClInclude Include="SFExtensionClass.h">
+      <Filter>Test\Dump</Filter>
+    </ClInclude>
+    <ClInclude Include="GLogTest.h">
+      <Filter>Test</Filter>
+    </ClInclude>
+    <ClInclude Include="RegistryTest.h">
+      <Filter>Test</Filter>
+    </ClInclude>
+    <ClInclude Include="TomCryptTest.h">
+      <Filter>Test</Filter>
+    </ClInclude>
+    <ClInclude Include="SerializationTest.h">
+      <Filter>Test</Filter>
+    </ClInclude>
+    <ClInclude Include="SendEMailTest.h">
+      <Filter>Test</Filter>
+    </ClInclude>
+    <ClInclude Include="LibfdsTest.h">
+      <Filter>Test</Filter>
+    </ClInclude>
+    <ClInclude Include="SFMathTest.h">
+      <Filter>Test</Filter>
+    </ClInclude>
+    <ClInclude Include="LockQueueTest.h">
       <Filter>Test</Filter>
     </ClInclude>
   </ItemGroup>
@@ -90,6 +123,39 @@
       <Filter>Test</Filter>
     </ClCompile>
     <ClCompile Include="StringTest.cpp">
+      <Filter>Test</Filter>
+    </ClCompile>
+    <ClCompile Include="RexTest.cpp">
+      <Filter>Test</Filter>
+    </ClCompile>
+    <ClCompile Include="SystemCheckTest.cpp">
+      <Filter>Test</Filter>
+    </ClCompile>
+    <ClCompile Include="SFExcelTest.cpp">
+      <Filter>Test</Filter>
+    </ClCompile>
+    <ClCompile Include="GLogTest.cpp">
+      <Filter>Test</Filter>
+    </ClCompile>
+    <ClCompile Include="RegistryTest.cpp">
+      <Filter>Test</Filter>
+    </ClCompile>
+    <ClCompile Include="TomCryptTest.cpp">
+      <Filter>Test</Filter>
+    </ClCompile>
+    <ClCompile Include="SerializationTest.cpp">
+      <Filter>Test</Filter>
+    </ClCompile>
+    <ClCompile Include="SendEMailTest.cpp">
+      <Filter>Test</Filter>
+    </ClCompile>
+    <ClCompile Include="LibfdsTest.cpp">
+      <Filter>Test</Filter>
+    </ClCompile>
+    <ClCompile Include="SFMathTest.cpp">
+      <Filter>Test</Filter>
+    </ClCompile>
+    <ClCompile Include="LockQueueTest.cpp">
       <Filter>Test</Filter>
     </ClCompile>
   </ItemGroup>
