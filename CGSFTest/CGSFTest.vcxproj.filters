@@ -13,6 +13,12 @@
       <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
       <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
     </Filter>
+    <Filter Include="Test">
+      <UniqueIdentifier>{fb6879f2-74c0-4cd0-b1cd-ac5ca5715803}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Test\Dump">
+      <UniqueIdentifier>{b518f044-6896-474a-88e2-0de53d50c023}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <Text Include="ReadMe.txt" />
@@ -39,6 +45,21 @@
     <ClInclude Include="SFSampleDB.h">
       <Filter>헤더 파일</Filter>
     </ClInclude>
+    <ClInclude Include="ITest.h">
+      <Filter>Test</Filter>
+    </ClInclude>
+    <ClInclude Include="INITest.h">
+      <Filter>Test</Filter>
+    </ClInclude>
+    <ClInclude Include="DumpTest.h">
+      <Filter>Test</Filter>
+    </ClInclude>
+    <ClInclude Include="BitArrayTest.h">
+      <Filter>Test</Filter>
+    </ClInclude>
+    <ClInclude Include="StringTest.h">
+      <Filter>Test</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="stdafx.cpp">
@@ -47,17 +68,29 @@
     <ClCompile Include="CGSFTest.cpp">
       <Filter>소스 파일</Filter>
     </ClCompile>
-    <ClCompile Include="SFBaseClass.cpp">
-      <Filter>소스 파일</Filter>
-    </ClCompile>
-    <ClCompile Include="SFExtensionClass.cpp">
-      <Filter>소스 파일</Filter>
-    </ClCompile>
     <ClCompile Include="SFPacketHandler.cpp">
       <Filter>소스 파일</Filter>
     </ClCompile>
     <ClCompile Include="SFSampleDB.cpp">
       <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="INITest.cpp">
+      <Filter>Test</Filter>
+    </ClCompile>
+    <ClCompile Include="DumpTest.cpp">
+      <Filter>Test</Filter>
+    </ClCompile>
+    <ClCompile Include="SFBaseClass.cpp">
+      <Filter>Test\Dump</Filter>
+    </ClCompile>
+    <ClCompile Include="SFExtensionClass.cpp">
+      <Filter>Test\Dump</Filter>
+    </ClCompile>
+    <ClCompile Include="BitArrayTest.cpp">
+      <Filter>Test</Filter>
+    </ClCompile>
+    <ClCompile Include="StringTest.cpp">
+      <Filter>Test</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

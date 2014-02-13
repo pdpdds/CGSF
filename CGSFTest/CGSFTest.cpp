@@ -10,8 +10,6 @@
 #include "SFCompressor.h"
 //#include "SFCheckSum.h"
 #include "SFEncryptionXOR.h"
-#include "SFString.h"
-#include "SFFString.h"
 #include "SFFastCRC.h"
 //#include "SFPacketStore.pb.h"
 //#include <google/protobuf/io/zero_copy_stream_impl_lite.h>
@@ -26,17 +24,13 @@
 #include "SFObjectPool.h"
 //#include "SFNetworkHandler.h"
 #include <map>
-#include "SFIni.h"
 #include "SFServiceController.h"
-#include "SFBitArray.h"
 #include "SFSampleDB.h"
 #include "SFFilePack.h"
 #include "SFUtil.h"
 #include "SFSystemInfo.h"
 #include "GPGLockFreeQueue.h"
 #include "SFRegexChecker.h"
-//#include "EHManager.h"
-#include "SFExtensionClass.h"
 #include "CPUDesc.h"
 //#include "SFExcel.h"
 //#include "CSMTP.h"
@@ -98,9 +92,6 @@ private:
 #endif
 
 #pragma comment(lib, "Winmm.lib")
-
-#define MAX_NICKNAME_LEN 8
-DECLARE_STRING_TYPE(SSNickName, MAX_NICKNAME_LEN);
 
 SFLockQueue<int> LockQueue;
 SFIOCPQueue<int> IOCPQueue;
@@ -166,32 +157,13 @@ static void LockFreeConsumer(void* Args)
 	}
 }
 
-struct PureCallBase 
-{ 
-	PureCallBase() { mf(); } 
-	void mf() 
-	{ 
-		pvf(); 
-	} 
-	virtual void pvf() = 0; 
-};
-
-struct PureCallExtend : public PureCallBase
-{ 
-	PureCallExtend() {}
-	virtual void pvf() {}
-};
-
-
 void GPGLockFreeQueueTest();
 void RegularExpressionTest();
 void DatabaseTest();
-void BitArrayTest();
 void ServiceTest(int argc, TCHAR* argv[]);
 void SystemCheckTest();
 void FileMemoryPackingTest();
 void BoostSerializationTest();
-void ServerCrashTest();
 void SFExcelTest();
 void SendEMailTest();
 void TomCryptTest();
@@ -204,16 +176,17 @@ void ACEDataStructureTest();
 void LokiTest();
 void libfdsTest();
 
+#include "INITest.h"
+#include "DumpTest.h"
+#include "BitArrayTest.h"
+#include "StringTest.h"
+
 int _tmain(int argc, _TCHAR* argv[])
 {
-	/*EHManager ProcessDump;
-	//if(FALSE == ProcessDump.Install(DL_MY_HANDLER_STACKOVERFLOW, EH_BUGTRAP))
-	if(FALSE == ProcessDump.Install(DL_MY_HANDLER_STACKOVERFLOW, EH_MINIDUMP))
-	{
-		printf("예외 핸들러 설치 실패\n");
-		getchar();
-		return 0;
-	}*/
+	StringTest test;
+	test.Run();
+
+	
 
 	//AceLoggerTest();
 
@@ -267,11 +240,6 @@ int _tmain(int argc, _TCHAR* argv[])
 	//DatabaseTest();
 
 //////////////////////////////////////////////////////////////////////////
-//BitArray Test
-//////////////////////////////////////////////////////////////////////////
-	//BitArrayTest();
-
-//////////////////////////////////////////////////////////////////////////
 //부스트 직렬화 테스트
 //////////////////////////////////////////////////////////////////////////
 	//BoostSerializationTest();
@@ -281,10 +249,6 @@ int _tmain(int argc, _TCHAR* argv[])
 	//SendEMailTest();
 	//TomCryptTest();
 
-//////////////////////////////////////////////////////////////////////////
-//Process Dump Test
-//////////////////////////////////////////////////////////////////////////
-	//ServerCrashTest();
 
 	return 0;
 }
@@ -387,47 +351,6 @@ void DatabaseTest()
 			ODBC.SPLoadUser(1, L"jUHANG");
 		}
 	}
-}
-
-void BitArrayTest()
-{
-
-	// initialize CBitArray object
-	SFBitArray a;
-	// set the bit 4578 in the bit array buffer (at byte 4578/8, at bit 4578%8)
-	a.SetAt(4578);
-	// set the bit 323 in the bit array buffer (at byte 323/8, at bit 323%8)
-	a.SetAt(323);
-	// get the count of '1's
-	int nCount = a.GetCount(); // return 2
-	// xor bit number 323
-	a.XOrAt(323);
-	// get the count of '1's
-	nCount = a.GetCount(); // return 1
-	// initialize CBitArray object
-	SFBitArray b;
-	// attach buffer which is allocated with some bytes
-	//char* buffer[] = {1,1,1,1};
-	//b.Attach((BYTE*)buffer, 4); 
-	// AND b with a
-
-	// ...
-	// and so on
-
-	BYTE* pBuffer = new BYTE[500000];
-	memset(pBuffer, 0, 500000);
-	b.Attach(pBuffer, 500000);
-	b.SetAt(100000);
-	b.SetAt(999999);
-
-	////////////////////////////////////////////////////
-	//5행 5열 타일에서 5행 6열의 타일이 보이는가?
-	//5행 5열은 25번째 인덱스 5행 6열은 26번째 인덱스
-	////////////////////////////////////////////////////
-	//25* 100 + 250???
-	nCount = b.GetCount();
-	b.Detach();
-	free(pBuffer);
 }
 
 void ServiceTest(int argc, TCHAR* argv[])
@@ -579,82 +502,6 @@ void FileMemoryPackingTest()
 		int j = 6;
     }
 }*/
-
-void Func3()
-{
-	//int aLocalVar[2];
-	//aLocalVar[3] = 0x45678;
-}
-
-void Func2()
-{
-	Func3();
-}
-
-void Func1()
-{
-	Func2();
-}
-
-void ServerCrashTest()
-{
-	
-
-////////////////////////////////////////////////////////////////////////
-//Generic Error
-////////////////////////////////////////////////////////////////////////
-	/*int* pPoint = 0;
-	*pPoint = 1234;*/
-
-////////////////////////////////////////////////////////////////////////
-//CRT Error
-////////////////////////////////////////////////////////////////////////
-	/*TCHAR szData[100000] = L"SampleChatStringDataNoEndSpace!!";
-	TCHAR szTargetBuffer[10] = {0,};
-	_tcsncpy_s(szTargetBuffer, szData, 10);*/
-
-////////////////////////////////////////////////////////////////////////
-//Out Of Memory
-////////////////////////////////////////////////////////////////////////
-	/*SFExtensionClass* pExtensionClass = new SFExtensionClass();
-
-	pExtensionClass->ProcessOutofMemory();*/
-
-////////////////////////////////////////////////////////////////////////
-//Heap Corruption
-////////////////////////////////////////////////////////////////////////
-	/*SFBaseClass* pBaseClass = new SFBaseClass();
-
-	SFExtensionClass* pExtensionClass = static_cast<SFExtensionClass*>(pBaseClass);
-
-	pExtensionClass->SetExtensionVar(12345678);
-	pExtensionClass->ProcessHeapCorruption();	
-
-	delete pBaseClass;*/
-
-////////////////////////////////////////////////////////////////////////
-//Pure Function Call
-////////////////////////////////////////////////////////////////////////
-	//PureCallExtend Temp;
-
-////////////////////////////////////////////////////////////////////////
-//Stack Overflow
-////////////////////////////////////////////////////////////////////////
-	/*SFExtensionClass* pExtensionClass = new SFExtensionClass();
-
-	pExtensionClass->ProcessStackOverFlow();	
-
-	delete pExtensionClass;*/
-
-////////////////////////////////////////////////////////////////////////
-//STATUS_ARRAY_BOUNDS_EXCEEDED : 확인해 볼 필요 있음
-////////////////////////////////////////////////////////////////////////
-
-////////////////////////////////////////////////////////////////////////
-//Return Address Manipulation (Stack Destroy)
-////////////////////////////////////////////////////////////////////////
-	Func1();
-}
 
 /*void SFExcelTest()
 {
@@ -1238,8 +1085,7 @@ ACE::fini();*/
 	PktAuth.SerializeToZeroCopyStream(&os);
 	
 	
-	SSNickName szName;
-	szName = _T("Juhang");
+	
 
 	SFFastCRC FastCrc;
 	FastCrc.Initialize();
@@ -1249,9 +1095,7 @@ ACE::fini();*/
 	printf("The crcFast() of \"123456789\" is 0x%X\n", crc);
 
 	SFMessage Message;
-	SFFString String("juhang3");
-	String.convert(SFFSTRType_Unicode16);
-	wprintf(L"%s\n", String.getUnicode16());
+		
 
 	SFRegistry Reg(HKEY_LOCAL_MACHINE);
 
