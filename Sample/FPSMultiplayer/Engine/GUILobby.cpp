@@ -20,7 +20,7 @@ const unsigned int GUILobby::JoinButtonID    = 5;
 
 GUILobby::GUILobby(eGUIState State)
 : GUIState(State)
-, d_root(CEGUI::WindowManager::getSingleton().loadWindowLayout("VanillaConsole.layout", "Lobby"))
+, d_root(CEGUI::WindowManager::getSingleton().loadLayoutFromFile("VanillaConsole.layout", "Lobby"))
 , d_historyPos(0)
 {
 	
@@ -47,11 +47,11 @@ GUILobby::GUILobby(eGUIState State)
 
 
     // decide where to attach the console main window
-    parent = parent ? parent : CEGUI::System::getSingleton().getGUISheet();
+	parent = parent ? parent : CEGUI::System::getSingleton().getDefaultGUIContext().getRootWindow();
 
     // attach this window if parent is valid
     if (parent)
-        parent->addChildWindow(d_root);
+        parent->addChild(d_root);
 
 	d_root->hide();
 }
@@ -81,7 +81,7 @@ bool GUILobby::handleKeyDown(const CEGUI::EventArgs& args)
         if (d_historyPos >= 0)
         {
             editbox->setText(d_history[d_historyPos]);
-            editbox->setCaratIndex(static_cast<size_t>(-1));
+            editbox->setCaretIndex(static_cast<size_t>(-1));
         }
         else
         {
@@ -96,7 +96,7 @@ bool GUILobby::handleKeyDown(const CEGUI::EventArgs& args)
         if (d_historyPos < static_cast<int>(d_history.size()))
         {
             editbox->setText(d_history[d_historyPos]);
-            editbox->setCaratIndex(static_cast<size_t>(-1));
+            editbox->setCaretIndex(static_cast<size_t>(-1));
         }
         else
         {
@@ -138,7 +138,7 @@ bool GUILobby::handleSubmit(const CEGUI::EventArgs&)
 		// append new text to history output
 		history->setText(history->getText() + edit_text);
 		// scroll to bottom of history output
-		history->setCaratIndex(static_cast<size_t>(-1));
+		history->setCaretIndex(static_cast<size_t>(-1));
 		// erase text in text entry box.
 		editbox->setText("");
 	}
@@ -180,7 +180,7 @@ bool GUILobby::handleRoomJoin( const CEGUI::EventArgs& args )
 
 bool GUILobby::ProcessInput( int InputParam )
 {
-	CEGUI::System::getSingleton().injectChar((CEGUI::utf32)InputParam);
+//	CEGUI::System::getSingleton().injectChar((CEGUI::utf32)InputParam);
 	return true;
 }
 
@@ -217,7 +217,7 @@ bool GUILobby::Notify(BasePacket* pPacket)
 		// append new text to history output
 		history->setText(history->getText() + szMessage);
 		// scroll to bottom of history output
-		history->setCaratIndex(static_cast<size_t>(-1));
+		history->setCaretIndex(static_cast<size_t>(-1));
 
 	}
 	

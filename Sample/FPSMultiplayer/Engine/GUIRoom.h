@@ -1,7 +1,7 @@
 #pragma once
 #include "GUIState.h"
 //#include "CEGuiSample.h"
-#include "CEGUI.h"
+#include <CEGUI/CEGUI.H>
 
 class GUIRoom : public GUIState
 {

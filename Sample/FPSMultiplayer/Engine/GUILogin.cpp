@@ -16,7 +16,7 @@ const unsigned int GUILogin::SubmitButtionID = 3;
 
 GUILogin::GUILogin(eGUIState State)
 : GUIState(State)
-, d_root(CEGUI::WindowManager::getSingleton().loadWindowLayout("Login.layout", "Login"))
+, d_root(CEGUI::WindowManager::getSingleton().loadLayoutFromFile("Login.layout", "Login"))
 {
 
 
@@ -39,11 +39,11 @@ GUILogin::GUILogin(eGUIState State)
 	d_root->getChild(SubmitButtionID)->subscribeEvent(PushButton::EventClicked, Event::Subscriber(&GUILogin::handleSubmit, this));
 
 	// decide where to attach the console main window
-	parent = parent ? parent : CEGUI::System::getSingleton().getGUISheet();
+	parent = parent ? parent : CEGUI::System::getSingleton().getDefaultGUIContext().getRootWindow();
 
 	// attach this window if parent is valid
 	if (parent)
-		parent->addChildWindow(d_root);
+		parent->addChild(d_root);
 
 	d_root->hide();
 }
@@ -105,7 +105,7 @@ bool GUILogin::handleSubmit(const CEGUI::EventArgs&)
 
 bool GUILogin::ProcessInput( int InputParam )
 {
-	CEGUI::System::getSingleton().injectChar((CEGUI::utf32)InputParam);
+//	CEGUI::System::getSingleton().injectChar((CEGUI::utf32)InputParam);
 	return true;
 }
 

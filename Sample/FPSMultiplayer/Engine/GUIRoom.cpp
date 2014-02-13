@@ -18,7 +18,7 @@ const unsigned int GUIRoom::LeaveButtonID = 6;
 
 GUIRoom::GUIRoom(eGUIState State)
 : GUIState(State)
-, d_root(CEGUI::WindowManager::getSingleton().loadWindowLayout("Room.layout", "Room"))
+, d_root(CEGUI::WindowManager::getSingleton().loadLayoutFromFile("Room.layout", "Room"))
 , d_historyPos(0)
 {
 
@@ -46,11 +46,11 @@ GUIRoom::GUIRoom(eGUIState State)
 
 
 	// decide where to attach the console main window
-	parent = parent ? parent : CEGUI::System::getSingleton().getGUISheet();
+	parent = parent ? parent : CEGUI::System::getSingleton().getDefaultGUIContext().getRootWindow();
 
 	// attach this window if parent is valid
 	if (parent)
-		parent->addChildWindow(d_root);
+		parent->addChild(d_root);
 
 	d_root->hide();
 }
@@ -80,7 +80,7 @@ bool GUIRoom::handleKeyDown(const CEGUI::EventArgs& args)
 		if (d_historyPos >= 0)
 		{
 			editbox->setText(d_history[d_historyPos]);
-			editbox->setCaratIndex(static_cast<size_t>(-1));
+			editbox->setCaretIndex(static_cast<size_t>(-1));
 		}
 		else
 		{
@@ -95,7 +95,7 @@ bool GUIRoom::handleKeyDown(const CEGUI::EventArgs& args)
 		if (d_historyPos < static_cast<int>(d_history.size()))
 		{
 			editbox->setText(d_history[d_historyPos]);
-			editbox->setCaratIndex(static_cast<size_t>(-1));
+			editbox->setCaretIndex(static_cast<size_t>(-1));
 		}
 		else
 		{
@@ -138,7 +138,7 @@ bool GUIRoom::handleSend(const CEGUI::EventArgs&)
 		// append new text to history output
 		history->setText(history->getText() + edit_text);
 		// scroll to bottom of history output
-		history->setCaratIndex(static_cast<size_t>(-1));
+		history->setCaretIndex(static_cast<size_t>(-1));
 		// erase text in text entry box.
 		editbox->setText("");
 	}
@@ -184,7 +184,7 @@ bool GUIRoom::handleLeave( const CEGUI::EventArgs& args )
 
 bool GUIRoom::ProcessInput( int InputParam )
 {
-	CEGUI::System::getSingleton().injectChar((CEGUI::utf32)InputParam);
+//	CEGUI::System::getSingleton().injectChar((CEGUI::utf32)InputParam);
 	return true;
 }
 
@@ -221,7 +221,7 @@ bool GUIRoom::Notify(BasePacket* pPacket)
 		// append new text to history output
 		history->setText(history->getText() + szMessage);
 		// scroll to bottom of history output
-		history->setCaratIndex(static_cast<size_t>(-1));
+		history->setCaretIndex(static_cast<size_t>(-1));
 
 	}
 

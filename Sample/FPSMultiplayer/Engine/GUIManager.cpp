@@ -1,17 +1,19 @@
 #include "GUIManager.h"
-#include "CEGUI.h"
-#include "CEGUIRenderingRoot.h"
-#include "CEGUIDirect3D9Renderer.h"
-#include "CEGUISystem.h"
-#include "CEGUIDefaultResourceProvider.h"
-#include "CEGUIImageset.h"
-#include "CEGUIFont.h"
-#include "CEGUIScheme.h"
-#include "CEGUIWindowManager.h"
-#include "falagard/CEGUIFalWidgetLookManager.h"
-#include "CEGUIScriptModule.h"
-#include "CEGUIXMLParser.h"
-#include "CEGUIAnimationManager.h"
+#include <CEGUI/CEGUI.h>
+#include "CEGUI/RendererModules/Direct3D9/Renderer.h"
+#include "CEGUI/ImageManager.h"
+//#include "CEGUIRenderingRoot.h"
+//#include "CEGUIDirect3D9Renderer.h"
+//#include "CEGUISystem.h"
+//#include "CEGUIDefaultResourceProvider.h"
+//#include "CEGUIImageset.h"
+//#include "CEGUIFont.h"
+//#include "CEGUIScheme.h"
+//#include "CEGUIWindowManager.h"
+//#include "falagard/CEGUIFalWidgetLookManager.h"
+//#include "CEGUIScriptModule.h"
+//#include "CEGUIXMLParser.h"
+//#include "CEGUIAnimationManager.h"
 
 #include "GUIFSM.h"
 #include "GUILobby.h"
@@ -95,7 +97,7 @@ bool GUIManager::Create( IDirect3DDevice9* pDevice )
 	// set the background image
 	background->setProperty("Image", "set:BackgroundImage image:full_image");
 	// install this as the root GUI sheet
-	System::getSingleton().setGUISheet(background);
+	System::getSingleton().getDefaultGUIContext().setRootWindow(background);
 
 	//FontManager::getSingleton().create("DejaVuSans-10.font");
 	FontManager::getSingleton().create("Batang-26.font");
