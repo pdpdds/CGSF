@@ -46,6 +46,8 @@
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <LinkIncremental>false</LinkIncremental>
+    <OutDir>../VSProject/Bin32\</OutDir>
+    <IntDir>../VSProject/Intermediate/$(Configuration)\$(ProjectName)\</IntDir>
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <ClCompile>
@@ -83,16 +85,24 @@
     <Text Include="ReadMe.txt" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="BitArrayTest.h" />
+    <ClInclude Include="DumpTest.h" />
+    <ClInclude Include="INITest.h" />
+    <ClInclude Include="ITest.h" />
     <ClInclude Include="SFBaseClass.h" />
     <ClInclude Include="SFExtensionClass.h" />
     <ClInclude Include="SFNetworkHandler.h" />
     <ClInclude Include="SFPacketHandler.h" />
     <ClInclude Include="SFSampleDB.h" />
     <ClInclude Include="stdafx.h" />
+    <ClInclude Include="StringTest.h" />
     <ClInclude Include="targetver.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="BitArrayTest.cpp" />
     <ClCompile Include="CGSFTest.cpp" />
+    <ClCompile Include="DumpTest.cpp" />
+    <ClCompile Include="INITest.cpp" />
     <ClCompile Include="SFBaseClass.cpp" />
     <ClCompile Include="SFExtensionClass.cpp" />
     <ClCompile Include="SFPacketHandler.cpp" />
@@ -101,6 +111,7 @@
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Create</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Create</PrecompiledHeader>
     </ClCompile>
+    <ClCompile Include="StringTest.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
