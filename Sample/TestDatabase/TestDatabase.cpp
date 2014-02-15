@@ -9,6 +9,20 @@
 #include <iostream>
 #include "SFJsonPacket.h"
 #include "QueryIdentifier.h"
+#include "SFMSSQLAdaptorImpl.h"
+
+void DatabaseTest()
+{
+	//SFMSSQLAdaptorImpl ODBC;
+
+	_DBConnectionInfo Info = {L"ServiceName", L"test", L"ID", L"Password"};
+
+	/*if(TRUE == ODBC.Initialize(&Info))
+	{					
+		ODBC.OnLoadUser(1, L"jUHANG");
+		
+	}*/
+}
 
 void QueryThread(void* Args)
 {
@@ -36,7 +50,8 @@ int _tmain(int argc, _TCHAR* argv[])
 	       
 	ACE::init();
 
-	SFDatabaseProxy* pProxyLocal = new SFDatabaseProxyLocal<SFFastDBAdaptorImpl>();
+	//SFDatabaseProxy* pProxyLocal = new SFDatabaseProxyLocal<SFFastDBAdaptorImpl>();
+	SFDatabaseProxy* pProxyLocal = new SFDatabaseProxyLocal<SFMSSQLAdaptorImpl>();
 	SFDatabaseProxy* pDatabaseProxy = new SFDatabaseProxyImpl(pProxyLocal);
 
 	pDatabaseProxy->Initialize(1);
@@ -49,3 +64,18 @@ int _tmain(int argc, _TCHAR* argv[])
 
 	return 0;
 }
+
+/*ACE::init();
+SFDatabaseProxy* pProxyLocal = new SFDatabaseProxyLocal();
+SFDatabaseProxy* pProxy = new SFDatabaseProxyImpl(pProxyLocal);
+pProxy->Initialize();
+
+SFObjectPool<SFMessage> Pool(100);
+for(int i= 0; i < 100; i++)
+{
+SFMessage* pMessage = Pool.Alloc();
+pProxy->SendDBRequest(pMessage);
+}
+
+getchar();
+ACE::fini();*/

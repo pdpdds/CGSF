@@ -84,6 +84,9 @@
     <ClInclude Include="SFFastDBAdaptor.h">
       <Filter>DBAdaptor</Filter>
     </ClInclude>
+    <ClInclude Include="SFMSSQLAdaptor.h">
+      <Filter>DBAdaptor</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="stdafx.cpp">
@@ -120,6 +123,9 @@
       <Filter>DBAdaptor</Filter>
     </ClCompile>
     <ClCompile Include="SFFastDBAdaptor.cpp">
+      <Filter>DBAdaptor</Filter>
+    </ClCompile>
+    <ClCompile Include="SFMSSQLAdaptor.cpp">
       <Filter>DBAdaptor</Filter>
     </ClCompile>
   </ItemGroup>

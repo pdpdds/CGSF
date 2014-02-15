@@ -88,6 +88,7 @@
     <ClInclude Include="SFDatabase.h" />
     <ClInclude Include="SFDBAdaptor.h" />
     <ClInclude Include="SFFastDBAdaptor.h" />
+    <ClInclude Include="SFMSSQLAdaptor.h" />
     <ClInclude Include="SFMySQL.h" />
     <ClInclude Include="SFMSSQL.h" />
     <ClInclude Include="SFDataBaseProxy.h" />
@@ -107,6 +108,7 @@
     <ClCompile Include="SFDatabase.cpp" />
     <ClCompile Include="SFDBAdaptor.cpp" />
     <ClCompile Include="SFFastDBAdaptor.cpp" />
+    <ClCompile Include="SFMSSQLAdaptor.cpp" />
     <ClCompile Include="SFMySQL.cpp" />
     <ClCompile Include="SFMSSQL.cpp" />
     <ClCompile Include="SFDBManager.cpp" />

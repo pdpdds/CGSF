@@ -34,4 +34,6 @@ namespace SFUtil
 
 	void SetCurDirToModuleDir();
 
+	std::string GetPluginDirectory ( void );
+
 };

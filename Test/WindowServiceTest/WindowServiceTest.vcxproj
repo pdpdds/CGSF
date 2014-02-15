@@ -11,9 +11,9 @@
     </ProjectConfiguration>
   </ItemGroup>
   <PropertyGroup Label="Globals">
-    <ProjectGuid>{ADE398AE-4C04-478D-8252-F65273AC7E18}</ProjectGuid>
+    <ProjectGuid>{8B7CE646-5378-4F13-8A7A-8218CA197D1E}</ProjectGuid>
     <Keyword>Win32Proj</Keyword>
-    <RootNamespace>CGSFTest</RootNamespace>
+    <RootNamespace>WindowServiceTest</RootNamespace>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
@@ -41,15 +41,9 @@
   <PropertyGroup Label="UserMacros" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <LinkIncremental>true</LinkIncremental>
-    <OutDir>../VSProject/Bin32\</OutDir>
-    <IntDir>../VSProject/Intermediate/$(Configuration)\$(ProjectName)\</IntDir>
-    <IncludePath>D:\Library\OpenSSL-Win32\include;$(IncludePath)</IncludePath>
-    <LibraryPath>D:\Library\OpenSSL-Win32\lib;$(LibraryPath)</LibraryPath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <LinkIncremental>false</LinkIncremental>
-    <OutDir>../VSProject/Bin32\</OutDir>
-    <IntDir>../VSProject/Intermediate/$(Configuration)\$(ProjectName)\</IntDir>
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <ClCompile>
@@ -58,12 +52,12 @@
       <Optimization>Disabled</Optimization>
       <PreprocessorDefinitions>WIN32;_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <SDLCheck>true</SDLCheck>
-      <AdditionalIncludeDirectories>../BaseLayer;../DatabaseLayer;../EngineLayer;../ThirdParty/ACE_wrappers;../EngineLayer/EngineDllInterface;../ThirdParty/LiteZip;../ThirdParty/protobuf-2.4.1/src;../BaseLayer/DataStructure;../BaseLayer/Logger;../ThirdParty/SQLite;../ThirdParty/glog-0.3.2/src/windows;../BaseLayer/External;..\ThirdParty\liblfds\include;../Common/SFPacketStore;../ThirdParty/PCRE/include</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>../../BaseLayer</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
-      <AdditionalLibraryDirectories>../ThirdParty/Lib/Debug;../ThirdParty/ACE_wrappers/lib;../ThirdParty/SQLite;../VSProject/Lib/Debug;../ThirdParty/mysql/lib;..\ThirdParty\liblfds\lib\dynamic;../ThirdParty/pcre/lib</AdditionalLibraryDirectories>
+      <AdditionalLibraryDirectories>../../VSProject/Lib/Debug;../../ThirdParty/ssl/lib</AdditionalLibraryDirectories>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
@@ -87,76 +81,15 @@
     <Text Include="ReadMe.txt" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="..\Common\SFPacketStore\PacketCore.pb.h" />
-    <ClInclude Include="ACELoggerTest.h" />
-    <ClInclude Include="ACETreeTest.h" />
-    <ClInclude Include="BitArrayTest.h" />
-    <ClInclude Include="CompressTest.h" />
-    <ClInclude Include="CRCTest.h" />
-    <ClInclude Include="DataStructureTest.h" />
-    <ClInclude Include="DispatchTest.h" />
-    <ClInclude Include="DumpTest.h" />
-    <ClInclude Include="EncryptTest.h" />
-    <ClInclude Include="FilePackingTest.h" />
-    <ClInclude Include="GLogTest.h" />
-    <ClInclude Include="INITest.h" />
-    <ClInclude Include="ITest.h" />
-    <ClInclude Include="LibfdsTest.h" />
-    <ClInclude Include="LockQueueTest.h" />
-    <ClInclude Include="PCRETest.h" />
-    <ClInclude Include="RegistryTest.h" />
-    <ClInclude Include="RexTest.h" />
-    <ClInclude Include="SendEMailTest.h" />
-    <ClInclude Include="SerializationTest.h" />
-    <ClInclude Include="SFBaseClass.h" />
-    <ClInclude Include="SFExcelTest.h" />
-    <ClInclude Include="SFExtensionClass.h" />
-    <ClInclude Include="SFMathTest.h" />
-    <ClInclude Include="SFPacketHandler.h" />
-    <ClInclude Include="SQLite3Test.h" />
     <ClInclude Include="stdafx.h" />
-    <ClInclude Include="StringTest.h" />
-    <ClInclude Include="SystemCheckTest.h" />
     <ClInclude Include="targetver.h" />
-    <ClInclude Include="TomCryptTest.h" />
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="..\Common\SFPacketStore\PacketCore.pb.cc">
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">NotUsing</PrecompiledHeader>
-    </ClCompile>
-    <ClCompile Include="ACELoggerTest.cpp" />
-    <ClCompile Include="ACETreeTest.cpp" />
-    <ClCompile Include="BitArrayTest.cpp" />
-    <ClCompile Include="CGSFTest.cpp" />
-    <ClCompile Include="CompressTest.cpp" />
-    <ClCompile Include="CRCTest.cpp" />
-    <ClCompile Include="DataStructureTest.cpp" />
-    <ClCompile Include="DispatchTest.cpp" />
-    <ClCompile Include="DumpTest.cpp" />
-    <ClCompile Include="EncryptTest.cpp" />
-    <ClCompile Include="FilePackingTest.cpp" />
-    <ClCompile Include="GLogTest.cpp" />
-    <ClCompile Include="INITest.cpp" />
-    <ClCompile Include="LibfdsTest.cpp" />
-    <ClCompile Include="LockQueueTest.cpp" />
-    <ClCompile Include="PCRETest.cpp" />
-    <ClCompile Include="RegistryTest.cpp" />
-    <ClCompile Include="RexTest.cpp" />
-    <ClCompile Include="SendEMailTest.cpp" />
-    <ClCompile Include="SerializationTest.cpp" />
-    <ClCompile Include="SFBaseClass.cpp" />
-    <ClCompile Include="SFExcelTest.cpp" />
-    <ClCompile Include="SFExtensionClass.cpp" />
-    <ClCompile Include="SFMathTest.cpp" />
-    <ClCompile Include="SFPacketHandler.cpp" />
-    <ClCompile Include="SQLite3Test.cpp" />
     <ClCompile Include="stdafx.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Create</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Create</PrecompiledHeader>
     </ClCompile>
-    <ClCompile Include="StringTest.cpp" />
-    <ClCompile Include="SystemCheckTest.cpp" />
-    <ClCompile Include="TomCryptTest.cpp" />
+    <ClCompile Include="WindowServiceTest.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

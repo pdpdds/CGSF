@@ -1,5 +1,5 @@
 #pragma once
-#include "SFMSSQL.h"
+#include "SFMSSQLAdaptor.h"
 
 class SFStmt_SPLoadUser : public SFStatement
 {
@@ -24,18 +24,20 @@ protected:
 };
 
 
-class SFSampleDB : public SFMSSQL
+class SFMSSQLAdaptorImpl : public SFMSSQLAdaptor
 {
 public:
-	SFSampleDB(void);
-	virtual ~SFSampleDB(void);
+	SFMSSQLAdaptorImpl(void);
+	virtual ~SFMSSQLAdaptorImpl(void);
 
-	BOOL AddStatement();
+	virtual BOOL RegisterDBService() override;
 
-	BOOL SPLoadUser(int nUserID, TCHAR* szUserName);
-
-protected:
+	BOOL OnLoadUser( BasePacket* pMessage );
+		
+protected:		
 
 private:
+	BOOL AddStatement();
+
 	SFStmt_SPLoadUser m_Stmt_SPLoadUser;
 };

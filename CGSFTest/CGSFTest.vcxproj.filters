@@ -19,6 +19,9 @@
     <Filter Include="Test\Dump">
       <UniqueIdentifier>{b518f044-6896-474a-88e2-0de53d50c023}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Test\Dispatch">
+      <UniqueIdentifier>{4a94aabc-e5f8-495d-a528-9d67e16fda96}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <Text Include="ReadMe.txt" />
@@ -28,15 +31,6 @@
       <Filter>헤더 파일</Filter>
     </ClInclude>
     <ClInclude Include="targetver.h">
-      <Filter>헤더 파일</Filter>
-    </ClInclude>
-    <ClInclude Include="SFNetworkHandler.h">
-      <Filter>헤더 파일</Filter>
-    </ClInclude>
-    <ClInclude Include="SFPacketHandler.h">
-      <Filter>헤더 파일</Filter>
-    </ClInclude>
-    <ClInclude Include="SFSampleDB.h">
       <Filter>헤더 파일</Filter>
     </ClInclude>
     <ClInclude Include="ITest.h">
@@ -93,18 +87,48 @@
     <ClInclude Include="LockQueueTest.h">
       <Filter>Test</Filter>
     </ClInclude>
+    <ClInclude Include="ACELoggerTest.h">
+      <Filter>Test</Filter>
+    </ClInclude>
+    <ClInclude Include="ACETreeTest.h">
+      <Filter>Test</Filter>
+    </ClInclude>
+    <ClInclude Include="CRCTest.h">
+      <Filter>Test</Filter>
+    </ClInclude>
+    <ClInclude Include="DispatchTest.h">
+      <Filter>Test</Filter>
+    </ClInclude>
+    <ClInclude Include="SFPacketHandler.h">
+      <Filter>Test\Dispatch</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Common\SFPacketStore\PacketCore.pb.h">
+      <Filter>Test\Dispatch</Filter>
+    </ClInclude>
+    <ClInclude Include="PCRETest.h">
+      <Filter>Test</Filter>
+    </ClInclude>
+    <ClInclude Include="FilePackingTest.h">
+      <Filter>Test</Filter>
+    </ClInclude>
+    <ClInclude Include="DataStructureTest.h">
+      <Filter>Test</Filter>
+    </ClInclude>
+    <ClInclude Include="SQLite3Test.h">
+      <Filter>Test</Filter>
+    </ClInclude>
+    <ClInclude Include="EncryptTest.h">
+      <Filter>Test</Filter>
+    </ClInclude>
+    <ClInclude Include="CompressTest.h">
+      <Filter>Test</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="stdafx.cpp">
       <Filter>소스 파일</Filter>
     </ClCompile>
     <ClCompile Include="CGSFTest.cpp">
-      <Filter>소스 파일</Filter>
-    </ClCompile>
-    <ClCompile Include="SFPacketHandler.cpp">
-      <Filter>소스 파일</Filter>
-    </ClCompile>
-    <ClCompile Include="SFSampleDB.cpp">
       <Filter>소스 파일</Filter>
     </ClCompile>
     <ClCompile Include="INITest.cpp">
@@ -156,6 +180,42 @@
       <Filter>Test</Filter>
     </ClCompile>
     <ClCompile Include="LockQueueTest.cpp">
+      <Filter>Test</Filter>
+    </ClCompile>
+    <ClCompile Include="ACELoggerTest.cpp">
+      <Filter>Test</Filter>
+    </ClCompile>
+    <ClCompile Include="ACETreeTest.cpp">
+      <Filter>Test</Filter>
+    </ClCompile>
+    <ClCompile Include="CRCTest.cpp">
+      <Filter>Test</Filter>
+    </ClCompile>
+    <ClCompile Include="DispatchTest.cpp">
+      <Filter>Test</Filter>
+    </ClCompile>
+    <ClCompile Include="SFPacketHandler.cpp">
+      <Filter>Test\Dispatch</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Common\SFPacketStore\PacketCore.pb.cc">
+      <Filter>Test\Dispatch</Filter>
+    </ClCompile>
+    <ClCompile Include="PCRETest.cpp">
+      <Filter>Test</Filter>
+    </ClCompile>
+    <ClCompile Include="FilePackingTest.cpp">
+      <Filter>Test</Filter>
+    </ClCompile>
+    <ClCompile Include="DataStructureTest.cpp">
+      <Filter>Test</Filter>
+    </ClCompile>
+    <ClCompile Include="SQLite3Test.cpp">
+      <Filter>Test</Filter>
+    </ClCompile>
+    <ClCompile Include="EncryptTest.cpp">
+      <Filter>Test</Filter>
+    </ClCompile>
+    <ClCompile Include="CompressTest.cpp">
       <Filter>Test</Filter>
     </ClCompile>
   </ItemGroup>

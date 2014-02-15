@@ -411,5 +411,21 @@ namespace SFUtil
 		SetCurrentDirectory(szCurrentDirectory);
 	}
 
+	std::string GetPluginDirectory ( void )
+	{
+		char fullfilename[_MAX_PATH];
+		::GetModuleFileNameA ( NULL,
+			fullfilename,
+			_MAX_PATH );
+
+		char drive[_MAX_DRIVE];
+		char dir[_MAX_DIR];
+		char filename[_MAX_FNAME];
+		char ext[_MAX_EXT];
+		::_splitpath_s ( fullfilename, drive, dir, filename, ext );
+
+		return std::string(drive) + std::string(dir) + std::string("plugins");
+	}
+
 	
 }

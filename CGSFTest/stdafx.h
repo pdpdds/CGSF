@@ -29,3 +29,14 @@
 #include <google/protobuf/io/zero_copy_stream_impl_lite.h>
 
 using namespace google;
+
+#pragma comment(lib, "enginelayer.lib")
+#pragma comment(lib, "baselayer.lib")
+#pragma comment(lib, "databaselayer.lib")
+#pragma comment(lib, "libprotobuf.lib")
+
+#ifdef _DEBUG
+#pragma comment(lib, "aced.lib")
+#else
+#pragma comment(lib, "ace.lib")
+#endif
