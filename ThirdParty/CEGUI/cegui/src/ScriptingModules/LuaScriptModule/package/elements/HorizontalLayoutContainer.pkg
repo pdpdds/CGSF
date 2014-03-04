@@ -1,8 +1,0 @@
-/***********************************************************************
-    HorizontalLayoutContainer
-*************************************************************************/
-
-class HorizontalLayoutContainer : public SequentialLayoutContainer
-{
-};
-

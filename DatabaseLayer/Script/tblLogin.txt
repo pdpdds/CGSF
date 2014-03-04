@@ -1,6 +1,0 @@
-
-CREATE TABLE `tbllogin` (
-  `UserName` varchar(16) NOT NULL,
-  `Password` varchar(16) NOT NULL,
-  PRIMARY KEY (`UserName`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8

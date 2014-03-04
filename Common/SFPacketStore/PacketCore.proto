@@ -1,7 +1,0 @@
-package PacketCore;
-
-
-message Auth
-{
-	required int32 EncryptionKey = 1;		
-}

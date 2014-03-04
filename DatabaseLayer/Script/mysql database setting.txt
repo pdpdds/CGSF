@@ -1,5 +1,0 @@
-1) install mysql  
-2) make root/root mysql authentication 
-3) make database in name 'test'
-4) Execute tblLogin.txt in 'test' database
- 
