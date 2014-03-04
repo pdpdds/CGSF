@@ -1,0 +1,7 @@
+#ifndef _QUERY_IDENTIFIER_H
+#define _QUERY_IDENTIFIER_H
+
+#define DBMSG_BOOKINFO 0x1000
+#define DBMSG_SONGINFO 0x1001
+
+#endif

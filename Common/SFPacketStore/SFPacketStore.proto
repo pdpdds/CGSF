@@ -1,0 +1,236 @@
+package SFPacketStore;
+
+enum TeamType
+{
+	NONE = -1;
+	RED = 0;
+	BLUE = 1;
+}
+
+message Login
+{
+	required string UserName = 1;
+	required string Password = 2;
+}
+
+message LoginSuccess
+{
+	required int32 Result = 1;
+	required bytes UserInfo = 2;
+}
+
+message LoginFail
+{
+	required int32 Result = 1;
+}
+
+message TeamInfo
+{
+	required TeamType Type = 1[default = RED];
+
+	message TeamMember
+	{
+		required string Member = 1;
+	}
+
+	repeated TeamMember Member = 6;
+}
+
+message RoomMember
+{
+	message Member
+	{
+		required string Member = 1;
+		required int32 PlayerIndex = 2;
+		required TeamType Type = 3;
+	}
+
+	repeated Member Info = 12;
+}
+
+message EnterTeamMember
+{
+	required string Member = 1;
+	required int32 PlayerIndex = 2;
+	required TeamType Type = 3;
+}
+
+message LeaveTeamMember
+{
+	required string Member = 1;
+	required int32 PlayerIndex = 2;
+	required TeamType Type = 3;
+}
+
+message InvalidPacket
+{
+	required string Arg = 1;
+}
+
+message EnterLobby
+{
+	optional int32 LobbyIndex = 1[default = 0];
+}
+
+message ChatReq
+{
+	required string Message = 1[default = "메세지를 넣으세요"];
+}
+
+message ChatRes
+{
+	required string Sender = 1;
+	required string Message = 2[default = "메세지를 넣으세요"];
+}
+
+message EnterRoom
+{
+	required int32 RoomIndex = 1;
+	required int32 GameMode = 2;
+	optional string Password = 3[default = "None"];
+}
+
+message CreateRoom
+{
+	required int32 GameMode = 1;
+	optional string Password = 2[default = "None"];
+}
+
+message LeaveRoom
+{
+	optional int32 Reason = 1[default = 0];	
+}
+
+message RoomList
+{
+	message RoomInfo
+	{
+	required int32 RoomIndex = 1;
+		required string RoomName = 2;
+		required string RoomChief = 3;
+		required int32 UserCount = 4;
+		required int32 MaxUserCount = 5;
+		required int32 NeedPassword = 6;
+		required int32 GameMode = 7;
+	}
+
+	repeated RoomInfo Info = 10;
+}
+
+message RoomListRefresh
+{
+}
+
+message ChangeTeam
+{
+}
+
+message LoadingStart
+{
+}
+
+message LoadingComplete
+{
+}
+
+message PlayStart
+{
+}
+
+message PlayMove
+{
+	required float PosX = 1;
+	required float PosY = 2;
+	required float PosZ = 3;
+}
+
+message PlayEnd
+{
+
+}
+
+message PlayScoreInfo
+{
+	required int32 RedKillCount = 1;
+	required int32 BlueKillCount = 2;
+}
+
+message PlayPlayerScore
+{
+	required string name = 1;
+	required int32 teamtype = 2;
+	required int32 kill = 3;
+	required int32 death = 4;
+}
+
+message PeerList
+{
+	message PeerInfo
+	{
+		required int32 serial = 1;
+		required bytes Info = 2;
+	}
+
+	repeated PeerInfo Peer = 10;
+}
+
+message MSG_CREATE_PLAYER
+{
+  	required int32 Serial = 1;
+  	required int32 spawnindex = 2;
+}
+
+message MSG_DESTROY_PLAYER
+{
+  	required int32 Serial = 1;
+}
+
+message MSG_PLAYER_MOVE_UPDATE
+{
+  	required bytes moveupdate = 1;
+}
+
+message MSG_PLAYER_LOOK_UPDATE
+{
+  	required bytes lookupdate = 1;
+}
+
+message MSG_PLAYER_HEALTH
+{
+  	required bytes playerhealth = 1;
+}
+
+message MSG_PLAYER_SCORE
+{
+  	required bytes PlayerScore = 1;
+}
+
+message MSG_PLAYER_WEAPON_CHANGE
+{
+  	required bytes WeaponChange = 1;
+}
+
+message MSG_PLAYER_WEAPON_CHANGING
+{
+  	required bytes WeaponChanging = 1;
+}
+
+message MSG_SPAWN_PLAYER
+{
+  	required bytes SpawnPlayer = 1;
+}
+
+message PLAYER_IP
+{
+  	required bytes playerip = 1;
+}
+
+message ADD_PEER
+{
+  	required bytes addpeer = 1;
+}
+
+message DELETE_PEER
+{
+  	required int32 serial = 1;
+}

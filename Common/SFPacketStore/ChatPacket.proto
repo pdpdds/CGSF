@@ -1,0 +1,7 @@
+package ChatPacket;
+
+message Chat
+{
+	required string ChatMessage = 1;
+	
+}

@@ -1,0 +1,203 @@
+# -*- makefile -*-
+# Makefile for Generic HP-Unix with GCC compiler
+
+FAULT_TOLERANT=0
+
+# Default install directory
+PREFIX = /usr/local
+
+# Place where to copy GastDB header files
+INCSPATH=$(PREFIX)/include/fastdb
+
+#Place where to copy Fastdb library
+LIBSPATH=$(PREFIX)/lib
+
+#Place where to copy Fastdb subsql utility
+BINSPATH=$(PREFIX)/bin
+
+ifdef NO_PTHREADS
+OBJS = class.o compiler.o database.o xml.o hashtab.o file.o symtab.o ttree.o rtree.o container.o \
+	cursor.o query.o wwwapi.o unisock.o sync.o localcli.o stdtp.o
+else
+OBJS = class.o compiler.o database.o xml.o hashtab.o file.o symtab.o ttree.o rtree.o container.o \
+	cursor.o query.o wwwapi.o unisock.o sync.o localcli.o stdtp.o server.o
+endif
+
+CLI_OBJS = cli.o unisock.o stdtp.o
+
+INCS = inc/fastdb.h inc/stdtp.h inc/class.h inc/database.h inc/cursor.h inc/reference.h inc/wwwapi.h \
+	inc/cli.h inc/array.h inc/file.h inc/hashtab.h inc/ttree.h inc/rtree.h inc/container.h inc/sync.h \
+	inc/rectangle.h inc/query.h inc/datetime.h 
+
+#
+# threads settings - please comment this lines for single-threaded libs
+#
+
+TFLAGS=-D_REENTRANT -D_THREAD_SAFE
+THRLIBS=-lpthread
+SUFF=_r
+
+STDLIBS =  -lm  $(THRLIBS)
+SOCKLIBS =
+
+VERSION=2
+FASTDB_LIB = libfastdb$(SUFF).a 
+FASTDB_SHARED = libfastdb$(SUFF).so.${VERSION}
+CLI_LIB = libcli$(SUFF).a
+CLI_SHARED = libcli$(SUFF).so.${VERSION}
+
+EXES = subsql
+#FASTDB_LIBS=-L. -lfastdb$(SUFF)
+#CLI_LIBS=-L. -lcli$(SUFF)
+FASTDB_LIBS=$(FASTDB_LIB)
+CLI_LIBS=$(CLI_LIB)
+
+EXAMPLES = 
+WEB_EXAMPLES =
+
+CC = aCC
+
+# DEFS macro is deprecatred, edit inc/config.h file instead
+DEFS = 
+
+#CFLAGS = $(TFLAGS) -c -Wall -O5  $(DEFS) 
+CFLAGS = -c -Iinc -Aa  +W829 $(DEFS) $(TFLAGS)
+#CFLAGS = -c -Iinc -Wall -O0 -DFASTDB_DEBUG=DEBUG_TRACE -g $(DEFS) $(TFLAGS)
+SHFLAGS=-b
+
+
+LD = $(CC)
+LDFLAGS =  $(TFLAGS)
+
+AR = ar
+ARFLAGS = -cru
+
+RANLIB = true
+
+
+all: static shared bins 
+
+static: $(FASTDB_LIB) $(CLI_LIB) 
+
+shared: $(FASTDB_SHARED) $(CLI_SHARED) 
+
+bins: $(EXES) $(EXAMPLES) 
+
+
+class.o: src/class.cpp inc/compiler.h inc/compiler.d inc/symtab.h $(INCS)
+	$(CC) $(CFLAGS) src/class.cpp
+
+compiler.o: src/compiler.cpp inc/compiler.h inc/compiler.d inc/symtab.h $(INCS)
+	$(CC) $(CFLAGS) src/compiler.cpp
+
+query.o: src/query.cpp inc/compiler.h inc/compiler.d inc/symtab.h $(INCS)
+	$(CC) $(CFLAGS) src/query.cpp
+
+database.o: src/database.cpp inc/compiler.h inc/compiler.d inc/symtab.h $(INCS)
+	$(CC) $(CFLAGS) src/database.cpp
+
+xml.o: src/xml.cpp inc/compiler.h inc/compiler.d inc/symtab.h $(INCS)
+	$(CC) $(CFLAGS) src/xml.cpp
+
+localcli.o: src/localcli.cpp inc/compiler.h inc/compiler.d inc/symtab.h inc/localcli.h $(INCS)
+	$(CC) $(CFLAGS) src/localcli.cpp
+
+cursor.o: src/cursor.cpp inc/compiler.h inc/compiler.d $(INCS)
+	$(CC) $(CFLAGS) src/cursor.cpp
+
+hashtab.o: src/hashtab.cpp $(INCS)
+	$(CC) $(CFLAGS) src/hashtab.cpp
+
+file.o: src/file.cpp $(INCS)
+	$(CC) $(CFLAGS) src/file.cpp
+
+stdtp.o: src/stdtp.cpp $(INCS)
+	$(CC) $(CFLAGS) src/stdtp.cpp
+
+sync.o: src/sync.cpp $(INCS)
+	$(CC) $(CFLAGS) src/sync.cpp
+
+symtab.o: src/symtab.cpp inc/symtab.h $(INCS)
+	$(CC) $(CFLAGS) src/symtab.cpp
+
+ttree.o: src/ttree.cpp $(INCS)
+	$(CC) $(CFLAGS) src/ttree.cpp
+
+rtree.o: src/rtree.cpp $(INCS)
+	$(CC) $(CFLAGS) src/rtree.cpp
+
+container.o: src/container.cpp $(INCS)
+	$(CC) $(CFLAGS) src/container.cpp
+
+wwwapi.o: src/wwwapi.cpp inc/wwwapi.h inc/sockio.h inc/stdtp.h
+	$(CC) $(CFLAGS) src/wwwapi.cpp
+
+unisock.o: src/unisock.cpp inc/unisock.h inc/sockio.h inc/stdtp.h
+	$(CC) $(CFLAGS) src/unisock.cpp
+
+cli.o: src/cli.cpp inc/cli.h inc/cliproto.h
+	$(CC) $(CFLAGS) src/cli.cpp
+
+server.o: src/server.cpp inc/server.h inc/cli.h inc/cliproto.h inc/subsql.h inc/compiler.h inc/compiler.d inc/symtab.h $(INCS)
+	$(CC) $(CFLAGS) src/server.cpp
+
+subsql.o: src/subsql.cpp inc/subsql.h inc/compiler.h inc/compiler.d inc/symtab.h $(INCS)
+	$(CC) $(CFLAGS) src/subsql.cpp
+
+$(FASTDB_LIB): $(OBJS)
+	rm -f $(FASTDB_LIB)
+	$(AR) $(ARFLAGS) $(FASTDB_LIB) $(OBJS)
+	$(RANLIB) $(FASTDB_LIB)
+
+$(FASTDB_SHARED): $(OBJS)
+	rm -f $(FASTDB_SHARED)
+	$(CC) $(SHFLAGS) -o $(FASTDB_SHARED) $(OBJS) $(THRLIBS)
+	ln -f -s $(FASTDB_SHARED) libfastdb$(SUFF).so
+
+$(CLI_LIB): $(CLI_OBJS)
+	rm -f $(CLI_LIB)
+	$(AR) $(ARFLAGS) $(CLI_LIB) $(CLI_OBJS)
+	$(RANLIB) $(CLI_LIB)
+
+$(CLI_SHARED): $(CLI_OBJS)
+	rm -f $(CLI_SHARED)
+	$(CC) $(SHFLAGS) -o  $(CLI_SHARED) $(CLI_OBJS) $(THRLIBS)
+	ln -f -s $(CLI_SHARED) libcli$(SUFF).so
+
+
+install: subsql installlib
+	mkdir -p $(BINSPATH)
+	cp subsql $(BINSPATH)
+	strip $(BINSPATH)/subsql
+
+installlib: $(FASTDB_LIB) $(CLI_LIB) $(FASTDB_SHARED) $(CLI_SHARED)
+	mkdir -p $(INCSPATH)
+	cp $(INCS) $(INCSPATH)
+	mkdir -p $(LIBSPATH)
+	cp $(FASTDB_LIB) $(CLI_LIB) $(FASTDB_SHARED) $(CLI_SHARED) $(LIBSPATH)
+	cd $(LIBSPATH); ln -f -s $(FASTDB_SHARED) libfastdb$(SUFF).so
+	cd $(LIBSPATH); ln -f -s $(CLI_SHARED) libcli$(SUFF).so
+
+
+
+uninstall:
+	rm -fr $(INCSPATH)
+	cd $(LIBSPATH); rm -f $(FASTDB_LIB) $(CLI_LIB) $(FASTDB_SHARED) $(CLI_SHARED) libfastdb$(SUFF).so libcli$(SUFF).so
+
+	rm $(BINSPATH)/subsql
+
+cleanobj:
+	rm -fr *.o *.tgz core *~ cxx_repository
+
+cleandbs:
+	rm -f *.fdb
+
+
+clean: cleanobj cleandbs
+	rm -f *.a *.so *.so.* $(EXAMPLES) $(WEB_EXAMPLES) $(EXES)
+
+tgz:	clean
+	cd ..; tar cvzf fastdb.tgz fastdb
+
+copytgz: tgz
+	mcopy -o ../fastdb.tgz a:

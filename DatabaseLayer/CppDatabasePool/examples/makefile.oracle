@@ -1,0 +1,22 @@
+#Righteous Ninja AKA P.S. Ching codediaries.blogspot.com
+
+ORACLE_HOME=D:\oracle\product\10.2.0\client_1\oci
+ORACLE_INCS=$(ORACLE_HOME)\include
+ORACLE_LIBS=$(ORACLE_HOME)\lib\msvc
+
+build: oraclepool.obj exampleoracle.obj crosshelper.obj
+  cl /o oraclex.exe oraclepool.obj exampleoracle.obj crosshelper.obj /link /LIBPATH:$(ORACLE_LIBS) oraocci10.lib
+
+
+exampleoracle.obj: ExampleMySQL.cpp
+	cl /c  ExampleOracle.cpp /D WINDOWSXX -I $(ORACLE_INCS)
+
+oraclepool.obj: ..\oracle\OraclePool.cpp 
+    cl  /c  ..\oracle\OraclePool.cpp /D WINDOWSXX  -I $(ORACLE_INCS)
+
+crosshelper.obj: ..\CrossHelper.cpp
+    cl /c ..\CrossHelper.cpp /D WINDOWSXX 
+
+
+clean:
+  del *.exe *.obj

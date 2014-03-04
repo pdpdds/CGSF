@@ -1,0 +1,38 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Express 2013 for Windows Desktop
+VisualStudioVersion = 12.0.21005.1
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "CasualGameGUI", "..\Sample\CasualGameGUI\CasualGameGUI.vcxproj", "{C7713880-7667-4527-B345-678C40EE43C6}"
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "FPSEngine", "..\Sample\FPSClient\FPSEngine\FPSEngine.vcxproj", "{D189BC23-91A0-4289-A619-AE54446D34AE}"
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "FPSClient", "..\Sample\FPSClient\FPSClient\FPSClient.vcxproj", "{1C25DF11-F817-4704-B87C-289E892446E4}"
+	ProjectSection(ProjectDependencies) = postProject
+		{D189BC23-91A0-4289-A619-AE54446D34AE} = {D189BC23-91A0-4289-A619-AE54446D34AE}
+		{C7713880-7667-4527-B345-678C40EE43C6} = {C7713880-7667-4527-B345-678C40EE43C6}
+	EndProjectSection
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Win32 = Debug|Win32
+		Release|Win32 = Release|Win32
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{C7713880-7667-4527-B345-678C40EE43C6}.Debug|Win32.ActiveCfg = Debug|Win32
+		{C7713880-7667-4527-B345-678C40EE43C6}.Debug|Win32.Build.0 = Debug|Win32
+		{C7713880-7667-4527-B345-678C40EE43C6}.Release|Win32.ActiveCfg = Release|Win32
+		{C7713880-7667-4527-B345-678C40EE43C6}.Release|Win32.Build.0 = Release|Win32
+		{D189BC23-91A0-4289-A619-AE54446D34AE}.Debug|Win32.ActiveCfg = Debug|Win32
+		{D189BC23-91A0-4289-A619-AE54446D34AE}.Debug|Win32.Build.0 = Debug|Win32
+		{D189BC23-91A0-4289-A619-AE54446D34AE}.Release|Win32.ActiveCfg = Release|Win32
+		{D189BC23-91A0-4289-A619-AE54446D34AE}.Release|Win32.Build.0 = Release|Win32
+		{1C25DF11-F817-4704-B87C-289E892446E4}.Debug|Win32.ActiveCfg = Debug|Win32
+		{1C25DF11-F817-4704-B87C-289E892446E4}.Debug|Win32.Build.0 = Debug|Win32
+		{1C25DF11-F817-4704-B87C-289E892446E4}.Release|Win32.ActiveCfg = Release|Win32
+		{1C25DF11-F817-4704-B87C-289E892446E4}.Release|Win32.Build.0 = Release|Win32
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal

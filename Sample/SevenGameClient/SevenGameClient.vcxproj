@@ -1,0 +1,221 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" ToolsVersion="12.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup Label="ProjectConfigurations">
+    <ProjectConfiguration Include="Debug|Win32">
+      <Configuration>Debug</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|Win32">
+      <Configuration>Release</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+  </ItemGroup>
+  <PropertyGroup Label="Globals">
+    <ProjectGuid>{29BFD120-6357-47F7-9811-C56D54E6CDD4}</ProjectGuid>
+    <RootNamespace>VTP2011</RootNamespace>
+    <Keyword>Win32Proj</Keyword>
+    <ProjectName>SevenGameClient</ProjectName>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <PlatformToolset>v120</PlatformToolset>
+    <CharacterSet>Unicode</CharacterSet>
+    <WholeProgramOptimization>true</WholeProgramOptimization>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <PlatformToolset>v120</PlatformToolset>
+    <CharacterSet>Unicode</CharacterSet>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
+  <ImportGroup Label="ExtensionSettings">
+  </ImportGroup>
+  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="PropertySheets">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="PropertySheets">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <PropertyGroup Label="UserMacros" />
+  <PropertyGroup>
+    <_ProjectFileVersion>11.0.50727.1</_ProjectFileVersion>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <OutDir>$(SolutionDir)\GUIBin32\</OutDir>
+    <IntDir>$(SolutionDir)/Intermediate/$(Configuration)\$(ProjectName)\</IntDir>
+    <LinkIncremental>true</LinkIncremental>
+    <LibraryPath>$(LibraryPath)</LibraryPath>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <OutDir>$(SolutionDir)\GUIBin32\</OutDir>
+    <IntDir>$(SolutionDir)/Intermediate/$(Configuration)\$(ProjectName)\</IntDir>
+    <LinkIncremental>false</LinkIncremental>
+    <LibraryPath>$(LibraryPath)</LibraryPath>
+  </PropertyGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <ClCompile>
+      <Optimization>Disabled</Optimization>
+      <AdditionalIncludeDirectories>./sound;./fireeffect;../Vendor/DirectMusic;../Vendor/DXUtil;../CasualGameGUI;../../Common/SFPacketStore;../../EngineLayer;../../Common;../../Common/EngineInterface;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions>WIN32;_DEBUG;_WINDOWS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <MinimalRebuild>true</MinimalRebuild>
+      <BasicRuntimeChecks>EnableFastChecks</BasicRuntimeChecks>
+      <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
+      <PrecompiledHeader>Use</PrecompiledHeader>
+      <WarningLevel>Level3</WarningLevel>
+      <DebugInformationFormat>EditAndContinue</DebugInformationFormat>
+      <DisableSpecificWarnings>4005</DisableSpecificWarnings>
+      <AdditionalOptions>-D_SCL_SECURE_NO_WARNINGS %(AdditionalOptions)</AdditionalOptions>
+    </ClCompile>
+    <Link>
+      <AdditionalLibraryDirectories>../Vendor/DirectMusic;../../ThirdParty/lib/Debug;../../VSProject/Lib/Debug;../../ThirdParty/mysql/lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <SubSystem>Windows</SubSystem>
+      <TargetMachine>MachineX86</TargetMachine>
+      <AdditionalOptions>/safeseh:no %(AdditionalOptions)</AdditionalOptions>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <ClCompile>
+      <Optimization>MaxSpeed</Optimization>
+      <IntrinsicFunctions>true</IntrinsicFunctions>
+      <AdditionalIncludeDirectories>./sound;./fireeffect;../Vendor/DirectMusic;../Vendor/DXUtil;../CasualGameGUI;../../Common/SFPacketStore;../../EngineLayer;../../Common;../../Common/EngineInterface;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions>WIN32;NDEBUG;_WINDOWS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
+      <FunctionLevelLinking>true</FunctionLevelLinking>
+      <PrecompiledHeader>Use</PrecompiledHeader>
+      <WarningLevel>Level3</WarningLevel>
+      <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
+    </ClCompile>
+    <Link>
+      <AdditionalLibraryDirectories>../Vendor/DirectMusic;../Vendor/BASS;../../ThirdParty/lib/Release;../../VSProject/Lib/Release;../../ThirdParty/mysql/lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <SubSystem>Windows</SubSystem>
+      <OptimizeReferences>true</OptimizeReferences>
+      <EnableCOMDATFolding>true</EnableCOMDATFolding>
+      <TargetMachine>MachineX86</TargetMachine>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemGroup>
+    <ClCompile Include="..\..\..\..\Dev\CGSFFinal\Common\SFPacketStore\SevenGamePacket.pb.cc">
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">NotUsing</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">NotUsing</PrecompiledHeader>
+    </ClCompile>
+    <ClCompile Include="..\Vendor\DXUtil\dxstdafx.cpp" />
+    <ClCompile Include="..\Vendor\DXUtil\DXUT.cpp" />
+    <ClCompile Include="..\Vendor\DXUtil\DXUTcamera.cpp" />
+    <ClCompile Include="..\Vendor\DXUtil\DXUTenum.cpp" />
+    <ClCompile Include="..\Vendor\DXUtil\DXUTgui.cpp" />
+    <ClCompile Include="..\Vendor\DXUtil\DXUTguiIME.cpp" />
+    <ClCompile Include="..\Vendor\DXUtil\DXUTmisc.cpp" />
+    <ClCompile Include="..\Vendor\DXUtil\DXUTres.cpp" />
+    <ClCompile Include="..\Vendor\DXUtil\DXUTSettingsDlg.cpp" />
+    <ClCompile Include="..\Vendor\DXUtil\DXUTShapes.cpp" />
+    <ClCompile Include="..\Vendor\DXUtil\ImeUi.cpp" />
+    <ClCompile Include="..\Vendor\DXUtil\SDKmesh.cpp" />
+    <ClCompile Include="..\Vendor\DXUtil\SDKmisc.cpp" />
+    <ClCompile Include="..\Vendor\DXUtil\SDKsound.cpp" />
+    <ClCompile Include="..\Vendor\DXUtil\SDKwavefile.cpp" />
+    <ClCompile Include="..\Vendor\DXUtil\TextBoxCtrl.cpp" />
+    <ClCompile Include="DirectXEntity.cpp" />
+    <ClCompile Include="DirectXSystem.cpp" />
+    <ClCompile Include="DirectXUtil.cpp" />
+    <ClCompile Include="FontObject.cpp" />
+    <ClCompile Include="PictureBox.cpp" />
+    <ClCompile Include="PictureBoxMgr.cpp" />
+    <ClCompile Include="ProgramMain.cpp" />
+    <ClCompile Include="Renderer.cpp" />
+    <ClCompile Include="SevenGame.cpp" />
+    <ClCompile Include="SevenGameMain.cpp" />
+    <ClCompile Include="SevenGameProtocol.cpp" />
+    <ClCompile Include="TextureMgr.cpp" />
+    <ClCompile Include="stdafx.cpp">
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Create</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Create</PrecompiledHeader>
+    </ClCompile>
+    <ClCompile Include="Sound\MP3Player.cpp" />
+    <ClCompile Include="SGManager.cpp" />
+    <ClCompile Include="SGTable.cpp" />
+    <ClCompile Include="SGUser.cpp" />
+    <ClCompile Include="FireEffect\camera.cpp" />
+    <ClCompile Include="FireEffect\d3dUtility.cpp" />
+    <ClCompile Include="FireEffect\pSystem.cpp" />
+    <ClCompile Include="SGState.cpp" />
+    <ClCompile Include="SGStateCardEffect.cpp" />
+    <ClCompile Include="SGStateCardPassEffect.cpp" />
+    <ClCompile Include="SGStateCardTurn.cpp" />
+    <ClCompile Include="SGStateGame.cpp" />
+    <ClCompile Include="SGStateGameOver.cpp" />
+    <ClCompile Include="SGStateManager.cpp" />
+    <ClCompile Include="SGStateStart.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="..\..\..\..\Dev\CGSFFinal\Common\SFPacketStore\SevenGamePacket.pb.h" />
+    <ClInclude Include="..\..\..\..\Dev\CGSFFinal\Common\SFPacketStore\SevenGamePacketID.h" />
+    <ClInclude Include="..\Vendor\DXUtil\dxstdafx.h" />
+    <ClInclude Include="..\Vendor\DXUtil\DXUT.h" />
+    <ClInclude Include="..\Vendor\DXUtil\DXUTcamera.h" />
+    <ClInclude Include="..\Vendor\DXUtil\DXUTenum.h" />
+    <ClInclude Include="..\Vendor\DXUtil\DXUTgui.h" />
+    <ClInclude Include="..\Vendor\DXUtil\DXUTguiIME.h" />
+    <ClInclude Include="..\Vendor\DXUtil\DXUTLockFreePipe.h" />
+    <ClInclude Include="..\Vendor\DXUtil\DXUTmisc.h" />
+    <ClInclude Include="..\Vendor\DXUtil\DXUTres.h" />
+    <ClInclude Include="..\Vendor\DXUtil\DXUTsettingsdlg.h" />
+    <ClInclude Include="..\Vendor\DXUtil\DXUTShapes.h" />
+    <ClInclude Include="..\Vendor\DXUtil\ImeUi.h" />
+    <ClInclude Include="..\Vendor\DXUtil\ScrollBarCtrl.h" />
+    <ClInclude Include="..\Vendor\DXUtil\SDKmesh.h" />
+    <ClInclude Include="..\Vendor\DXUtil\SDKmisc.h" />
+    <ClInclude Include="..\Vendor\DXUtil\SDKsound.h" />
+    <ClInclude Include="..\Vendor\DXUtil\SDKwavefile.h" />
+    <ClInclude Include="..\Vendor\DXUtil\TextBoxCtrl.h" />
+    <ClInclude Include="DirectXEntity.h" />
+    <ClInclude Include="DirectXSystem.h" />
+    <ClInclude Include="DirectXUtil.h" />
+    <ClInclude Include="FontObject.h" />
+    <ClInclude Include="PictureBox.h" />
+    <ClInclude Include="PictureBoxMgr.h" />
+    <ClInclude Include="ProgramMain.h" />
+    <ClInclude Include="Renderer.h" />
+    <ClInclude Include="SevenGame.h" />
+    <ClInclude Include="SevenGameMain.h" />
+    <ClInclude Include="SevenGameProtocol.h" />
+    <ClInclude Include="TextureMgr.h" />
+    <ClInclude Include="CommonStructure.h" />
+    <ClInclude Include="Define.h" />
+    <ClInclude Include="Resource.h" />
+    <ClInclude Include="resource1.h" />
+    <ClInclude Include="stdafx.h" />
+    <ClInclude Include="STLWarning.h" />
+    <ClInclude Include="targetver.h" />
+    <ClInclude Include="Sound\MP3Player.h" />
+    <ClInclude Include="SGManager.h" />
+    <ClInclude Include="SGTable.h" />
+    <ClInclude Include="SGUser.h" />
+    <ClInclude Include="FireEffect\camera.h" />
+    <ClInclude Include="FireEffect\d3dUtility.h" />
+    <ClInclude Include="FireEffect\pSystem.h" />
+    <ClInclude Include="SGState.h" />
+    <ClInclude Include="SGStateCardEffect.h" />
+    <ClInclude Include="SGStateCardPassEffect.h" />
+    <ClInclude Include="SGStateCardTurn.h" />
+    <ClInclude Include="SGStateGame.h" />
+    <ClInclude Include="SGStateGameOver.h" />
+    <ClInclude Include="SGStateManager.h" />
+    <ClInclude Include="SGStateStart.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <Image Include="SevenGame.ico" />
+    <Image Include="small.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <ResourceCompile Include="SevenGame.rc" />
+  </ItemGroup>
+  <ItemGroup>
+    <Text Include="ReadMe.txt" />
+  </ItemGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
+  <ImportGroup Label="ExtensionTargets">
+  </ImportGroup>
+</Project>

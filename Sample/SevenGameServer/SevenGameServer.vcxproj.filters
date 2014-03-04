@@ -1,0 +1,103 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="Resource Files">
+      <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
+      <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
+    </Filter>
+    <Filter Include="Logic">
+      <UniqueIdentifier>{0a5ed4ca-b6f7-47c4-8c70-8fc3b12c7151}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Packet">
+      <UniqueIdentifier>{60a230da-4935-4d5d-beaa-c7ef9a2d16db}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Mode">
+      <UniqueIdentifier>{3eeaa934-81dd-4881-9cd6-a94293f07c10}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Entry">
+      <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
+      <Extensions>cpp;c;cc;cxx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="SGManager.h">
+      <Filter>Logic</Filter>
+    </ClInclude>
+    <ClInclude Include="SGTable.h">
+      <Filter>Logic</Filter>
+    </ClInclude>
+    <ClInclude Include="SGUser.h">
+      <Filter>Logic</Filter>
+    </ClInclude>
+    <ClInclude Include="SelectAlgorithm.h">
+      <Filter>Logic</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Common\SFPacketStore\SevenGamePacket.pb.h">
+      <Filter>Packet</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Common\SFPacketStore\SFPacketStore.pb.h">
+      <Filter>Packet</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Common\SFPacketStore\SevenGamePacketID.h">
+      <Filter>Packet</Filter>
+    </ClInclude>
+    <ClInclude Include="GameModeConstant.h">
+      <Filter>Mode</Filter>
+    </ClInclude>
+    <ClInclude Include="SevenGameProtocol.h">
+      <Filter>Packet</Filter>
+    </ClInclude>
+    <ClInclude Include="targetver.h">
+      <Filter>Entry</Filter>
+    </ClInclude>
+    <ClInclude Include="stdafx.h">
+      <Filter>Entry</Filter>
+    </ClInclude>
+    <ClInclude Include="SGTraining.h">
+      <Filter>Mode</Filter>
+    </ClInclude>
+    <ClInclude Include="SGBattle.h">
+      <Filter>Mode</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="stdafx.cpp">
+      <Filter>Entry</Filter>
+    </ClCompile>
+    <ClCompile Include="SevenGameServer.cpp">
+      <Filter>Entry</Filter>
+    </ClCompile>
+    <ClCompile Include="SGManager.cpp">
+      <Filter>Logic</Filter>
+    </ClCompile>
+    <ClCompile Include="SGTable.cpp">
+      <Filter>Logic</Filter>
+    </ClCompile>
+    <ClCompile Include="SGUser.cpp">
+      <Filter>Logic</Filter>
+    </ClCompile>
+    <ClCompile Include="SelectAlgorithm.cpp">
+      <Filter>Logic</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Common\SFPacketStore\SFPacketStore.pb.cc">
+      <Filter>Packet</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Common\SFPacketStore\SevenGamePacket.pb.cc">
+      <Filter>Packet</Filter>
+    </ClCompile>
+    <ClCompile Include="SevenGameProtocol.cpp">
+      <Filter>Packet</Filter>
+    </ClCompile>
+    <ClCompile Include="SGTraining.cpp">
+      <Filter>Mode</Filter>
+    </ClCompile>
+    <ClCompile Include="SGBattle.cpp">
+      <Filter>Mode</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <Text Include="ReadMe.txt">
+      <Filter>Entry</Filter>
+    </Text>
+  </ItemGroup>
+</Project>

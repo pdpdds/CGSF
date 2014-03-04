@@ -1,0 +1,184 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" ToolsVersion="12.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup Label="ProjectConfigurations">
+    <ProjectConfiguration Include="Debug|Win32">
+      <Configuration>Debug</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|Win32">
+      <Configuration>Release</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+  </ItemGroup>
+  <PropertyGroup Label="Globals" />
+  <PropertyGroup Label="Globals">
+    <ProjectGuid>{6C69EC32-ACD5-4641-AE75-7652221ED3A3}</ProjectGuid>
+    <RootNamespace>CasualGameFramework</RootNamespace>
+    <Keyword>Win32Proj</Keyword>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="Configuration">
+    <ConfigurationType>StaticLibrary</ConfigurationType>
+    <PlatformToolset>v120</PlatformToolset>
+    <CharacterSet>Unicode</CharacterSet>
+    <WholeProgramOptimization>true</WholeProgramOptimization>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
+    <ConfigurationType>StaticLibrary</ConfigurationType>
+    <PlatformToolset>v120</PlatformToolset>
+    <CharacterSet>Unicode</CharacterSet>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
+  <ImportGroup Label="ExtensionSettings">
+  </ImportGroup>
+  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="PropertySheets">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="PropertySheets">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <PropertyGroup Label="UserMacros" />
+  <PropertyGroup>
+    <_ProjectFileVersion>11.0.50522.1</_ProjectFileVersion>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <OutDir>..\..\VSProject\lib\Debug\</OutDir>
+    <IntDir>../../VSProject/Intermediate/$(Configuration)\$(ProjectName)\</IntDir>
+    <TargetName>$(ProjectName)</TargetName>
+    <TargetExt>.lib</TargetExt>
+    <IncludePath>C:\Program Files %28x86%29\Microsoft DirectX SDK %28June 2010%29\Include;$(IncludePath)</IncludePath>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <OutDir>..\..\VSProject\lib\Release\</OutDir>
+    <IntDir>../../VSProject/Intermediate/$(Configuration)\$(ProjectName)\</IntDir>
+    <TargetName>$(ProjectName)</TargetName>
+    <TargetExt>.lib</TargetExt>
+  </PropertyGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <ClCompile>
+      <Optimization>Disabled</Optimization>
+      <AdditionalIncludeDirectories>../../BaseLayer;../../BaseLayer/XML;../../BaseLayer/VMemPool;../../BaseLayer/Logger;../../EngineLayer;../../DatabaseLayer;../../DatabaseLayer/CppDatabasePool;../../DatabaseLayer/CppDatabasePool/mysql;../../Common;../../Common/SFPacketStore;../../Common/EngineInterface;../../ThirdParty/mysql/include;../../P2PLayer/P2PServer;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions>WIN32;_DEBUG;_LIB;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <MinimalRebuild>true</MinimalRebuild>
+      <BasicRuntimeChecks>EnableFastChecks</BasicRuntimeChecks>
+      <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
+      <PrecompiledHeader>Use</PrecompiledHeader>
+      <WarningLevel>Level3</WarningLevel>
+      <DebugInformationFormat>EditAndContinue</DebugInformationFormat>
+      <AdditionalOptions>-D_SCL_SECURE_NO_WARNINGS %(AdditionalOptions)</AdditionalOptions>
+    </ClCompile>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <ClCompile>
+      <Optimization>MaxSpeed</Optimization>
+      <IntrinsicFunctions>true</IntrinsicFunctions>
+      <AdditionalIncludeDirectories>../../BaseLayer;../../BaseLayer/XML;../../BaseLayer/VMemPool;../../BaseLayer/Logger;../../EngineLayer;../../DatabaseLayer;../../DatabaseLayer/CppDatabasePool;../../DatabaseLayer/CppDatabasePool/mysql;../../Common;../../Common/SFPacketStore;../../Common/EngineInterface;../../ThirdParty/mysql/include;../../P2PLayer/P2PServer;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions>WIN32;NDEBUG;_LIB;%(PreprocessorDefinitions);_CRT_SECURE_NO_WARNING</PreprocessorDefinitions>
+      <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
+      <FunctionLevelLinking>true</FunctionLevelLinking>
+      <PrecompiledHeader>Use</PrecompiledHeader>
+      <WarningLevel>Level3</WarningLevel>
+      <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
+      <AdditionalOptions>-D_SCL_SECURE_NO_WARNINGS %(AdditionalOptions)</AdditionalOptions>
+    </ClCompile>
+  </ItemDefinitionGroup>
+  <ItemGroup>
+    <ClInclude Include="..\..\Common\SFPacketStore\PacketCore.pb.h" />
+    <ClInclude Include=".\SFGameConstant.h" />
+    <ClInclude Include=".\SFGameStructure.h" />
+    <ClInclude Include=".\SFLogicCore.h" />
+    <ClInclude Include=".\SFSendPacket.h" />
+    <ClInclude Include=".\stdafx.h" />
+    <ClInclude Include=".\targetver.h" />
+    <ClInclude Include=".\SFGameMode.h" />
+    <ClInclude Include=".\SFGameModeFSM.h" />
+    <ClInclude Include=".\SFLogicContents.h" />
+    <ClInclude Include=".\SFLogicEntry.h" />
+    <ClInclude Include=".\SFP2PSys.h" />
+    <ClInclude Include=".\SFPlayer.h" />
+    <ClInclude Include=".\SFPlayerFSM.h" />
+    <ClInclude Include=".\SFPlayerInit.h" />
+    <ClInclude Include=".\SFPlayerLoading.h" />
+    <ClInclude Include=".\SFPlayerLobby.h" />
+    <ClInclude Include=".\SFPlayerLogin.h" />
+    <ClInclude Include=".\SFPlayerNone.h" />
+    <ClInclude Include=".\SFPlayerPlay.h" />
+    <ClInclude Include=".\SFPlayerPlayEnd.h" />
+    <ClInclude Include=".\SFPlayerPlayReady.h" />
+    <ClInclude Include=".\SFPlayerRoom.h" />
+    <ClInclude Include=".\SFPlayerState.h" />
+    <ClInclude Include=".\SFRoom.h" />
+    <ClInclude Include=".\SFRoomFSM.h" />
+    <ClInclude Include=".\SFRoomLoading.h" />
+    <ClInclude Include=".\SFRoomManager.h" />
+    <ClInclude Include=".\SFRoomNone.h" />
+    <ClInclude Include=".\SFRoomPlay.h" />
+    <ClInclude Include=".\SFRoomPlayEnd.h" />
+    <ClInclude Include=".\SFRoomPlayReady.h" />
+    <ClInclude Include=".\SFRoomState.h" />
+    <ClInclude Include=".\SFRoomWait.h" />
+    <ClInclude Include=".\SFLobby.h" />
+    <ClInclude Include=".\SFTeam.h" />
+    <ClInclude Include="SFCGProtobufProtocol.h" />
+    <ClInclude Include="SFMySQLAdaptorImpl.h" />
+    <ClInclude Include="SFDBProcessorODBC.h" />
+    <ClInclude Include="SFDirectoryWatcher.h" />
+    <ClInclude Include="SFDirectoryWatcherTask.h" />
+    <ClInclude Include="SFPlayerManager.h" />
+    <ClInclude Include="SFSendDBRequest.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="..\..\Common\SFPacketStore\PacketCore.pb.cc">
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">NotUsing</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">NotUsing</PrecompiledHeader>
+    </ClCompile>
+    <ClCompile Include=".\SFLogicCore.cpp" />
+    <ClCompile Include=".\SFSendPacket.cpp" />
+    <ClCompile Include=".\stdafx.cpp">
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Create</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Create</PrecompiledHeader>
+    </ClCompile>
+    <ClCompile Include=".\SFGameMode.cpp" />
+    <ClCompile Include=".\SFGameModeFSM.cpp" />
+    <ClCompile Include=".\SFLogicContents.cpp" />
+    <ClCompile Include=".\SFLogicEntry.cpp" />
+    <ClCompile Include=".\SFP2PSys.cpp" />
+    <ClCompile Include=".\SFPlayer.cpp" />
+    <ClCompile Include=".\SFPlayerFSM.cpp" />
+    <ClCompile Include=".\SFPlayerInit.cpp" />
+    <ClCompile Include=".\SFPlayerLoading.cpp" />
+    <ClCompile Include=".\SFPlayerLobby.cpp" />
+    <ClCompile Include=".\SFPlayerLogin.cpp" />
+    <ClCompile Include=".\SFPlayerNone.cpp" />
+    <ClCompile Include=".\SFPlayerPlay.cpp" />
+    <ClCompile Include=".\SFPlayerPlayEnd.cpp" />
+    <ClCompile Include=".\SFPlayerPlayReady.cpp" />
+    <ClCompile Include=".\SFPlayerRoom.cpp" />
+    <ClCompile Include=".\SFPlayerState.cpp" />
+    <ClCompile Include=".\SFRoom.cpp" />
+    <ClCompile Include=".\SFRoomFSM.cpp" />
+    <ClCompile Include=".\SFRoomLoading.cpp" />
+    <ClCompile Include=".\SFRoomManager.cpp" />
+    <ClCompile Include=".\SFRoomNone.cpp" />
+    <ClCompile Include=".\SFRoomPlay.cpp" />
+    <ClCompile Include=".\SFRoomPlayEnd.cpp" />
+    <ClCompile Include=".\SFRoomPlayReady.cpp" />
+    <ClCompile Include=".\SFRoomState.cpp" />
+    <ClCompile Include=".\SFRoomWait.cpp" />
+    <ClCompile Include=".\SFLobby.cpp" />
+    <ClCompile Include=".\SFTeam.cpp" />
+    <ClCompile Include="SFCGProtobufProtocol.cpp" />
+    <ClCompile Include="SFMySQLAdaptorImpl.cpp" />
+    <ClCompile Include="SFDBProcessorODBC.cpp" />
+    <ClCompile Include="SFDirectoryWatcher.cpp" />
+    <ClCompile Include="SFDirectoryWatcherTask.cpp" />
+    <ClCompile Include="SFPlayerManager.cpp" />
+    <ClCompile Include="SFSendDBRequest.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <Text Include=".\ReadMe.txt" />
+  </ItemGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
+  <ImportGroup Label="ExtensionTargets">
+  </ImportGroup>
+</Project>

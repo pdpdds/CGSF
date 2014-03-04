@@ -1,0 +1,578 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>csharpcli</name>
+    </assembly>
+    <members>
+        <member name="T:CSharpCLI.AutoincrementAttribute">
+            <summary>
+            Class representing autoincrement attribute
+            </summary>
+        </member>
+        <member name="M:CSharpCLI.AutoincrementAttribute.#ctor">
+            <summary>
+            Default constructor
+            </summary>
+        </member>
+        <member name="T:CSharpCLI.CliError">
+            <summary>
+            Exception thrown by Gigabase CLI implementation.
+            It is derived from RuntimeException class so programmer should not delare
+            this exception in throws part.
+            </summary>
+        </member>
+        <member name="M:CSharpCLI.CliError.#ctor(System.String)">
+            <summary>
+             Constructor of the exception object.
+             </summary>
+             <param name="msg">message describing the reason of the fault</param>
+            
+        </member>
+        <member name="T:CSharpCLI.ComBuffer">
+            <summary>
+            Communication buffer used by Java Gigabase CLI to communicate with server
+            </summary>
+        </member>
+        <member name="T:CSharpCLI.Connection">
+            <summary> 
+            Gigabase interface responsible for managing connection with GigaBASE server.
+            Also it implements insert commit, rollback operations 
+            </summary>
+        </member>
+        <member name="M:CSharpCLI.Connection.open(System.String,System.Int32)">
+            <summary>
+            Open onnection with server
+            </summary>
+            <param name="hostAddress">string with server host name</param>
+            <param name="hostPort">integer number with server port</param>
+              
+        </member>
+        <member name="M:CSharpCLI.Connection.open(System.String,System.Int32,System.String,System.String)">
+            <summary>
+            Open connection with server
+            </summary>
+            <param name="hostAddress">string with server host name</param>
+            <param name="hostPort">integer number with server port</param>
+            <param name="userName">user name</param>
+            <param name="userPassword">password</param>
+              
+        </member>
+        <member name="M:CSharpCLI.Connection.addPackage(System.String)">
+             <summary>
+             Add package name to the list of registered package. The name of the each registered 
+             package will be appended to the table name when Java class for the database table is 
+             located.
+             </summary>
+             <param name="pkName">name of the package</param>
+            
+        </member>
+        <member name="M:CSharpCLI.Connection.close">
+             <summary>
+             Close connection with server
+             </summary>
+            
+        </member>
+        <member name="M:CSharpCLI.Connection.createStatement(System.String)">
+            
+             <summary>
+             Create select statement. 
+             </summary>
+             <param name="sql">SubSQL select statement with parameters. Paameters should be
+             started with <code>%</code> character. Each used paramter should be set
+             before execution of the statement</param>
+             
+        </member>
+        <member name="M:CSharpCLI.Connection.commit">
+             <summary>
+             Commit current transaction
+             </summary>
+            
+        </member>
+        <member name="M:CSharpCLI.Connection.precommit">
+             <summary>
+             Release all locks set by the current transaction
+             </summary>
+            
+        </member>
+        <member name="M:CSharpCLI.Connection.rollback">
+             <summary>
+             Rollback curent transaction.Al changes made by current transaction are lost.
+             </summary>
+            
+        </member>
+        <member name="M:CSharpCLI.Connection.insert(System.Object)">
+             <summary>
+             Insert object in the database. There is should be table in the database with
+             name equal to the full class name of the inserted object (comparison is 
+             case sensitive). GigaBASE will store to the database all non-static and 
+             non-transient fields from the class. All Java primitive types, 
+             <code>java.lang.string</code>, arrays of primitive types or strings, <code>java.util.Date</code>
+             are supported by GigaBASE. If <code>int</code> field is marked as <code>volatile</code>, it
+             is assumed to be autoincremented field - unique value to this field is assigned automatically 
+             by GigaBASE. 
+             </summary>
+             <param name="obj">object to be inserted inthe database</param>
+             <returns>reference to the inserted object</returns>
+            
+        </member>
+        <member name="M:CSharpCLI.Connection.createTable(System.Type)">
+             <summary>
+             Create table matching specified class.  Name of the table is equal
+             to class name without any package prefixes. This table will include columns
+             corresponsinf to all non-static and non-transient fields of specified class and base classes
+             of this class. 
+             </summary>
+             <param name="cls">Java class for which table should be created</param>
+             <returns><code>true</code> if table sucessfully created, <code>false</code> 
+             if table already exists, throws <code>CliError</code> exception in case of all other errors</returns>
+            
+        </member>
+        <member name="M:CSharpCLI.Connection.dropTable(System.Type)">
+             <summary>
+             Drop table corresponding to the specified class. 
+             </summary>
+             <param name="cls">Java class for which should be created. Name of the table is the same
+             as name of the class without any package prefixes</param>
+            
+        </member>
+        <member name="M:CSharpCLI.Connection.dropTable(System.String)">
+             <summary>
+             Drop specified table
+             </summary>
+             <param name="tableName">name of the table</param>
+            
+        </member>
+        <member name="M:CSharpCLI.Connection.addIndex(System.String,System.String)">
+             <summary>
+             Add case sensitive index
+             </summary>
+             <param name="tableName">name of the table</param>
+             <param name="fieldName">name of the field</param>
+            
+        </member>
+        <member name="M:CSharpCLI.Connection.addIndex(System.String,System.String,System.Boolean)">
+             <summary>
+             Add case sensitive index
+             </summary>
+             <param name="tableName">name of the table</param>
+             <param name="fieldName">name of the field</param>
+             <param name="caseInsensitive">attribute specifying whether index is case insensitive or not</param>
+            
+        </member>
+        <member name="M:CSharpCLI.Connection.dropIndex(System.String,System.String)">
+             <summary>
+             Drop index
+             </summary>
+             <param name="tableName">name of the table</param>
+             <param name="fieldName">name of the field</param>
+            
+        </member>
+        <member name="M:CSharpCLI.Connection.#ctor">
+            <summary>
+            Default constructor
+            </summary>
+        </member>
+        <member name="T:CSharpCLI.ConnectionPool">
+            <summary>
+            Perform connection pooling
+            </summary>
+        </member>
+        <member name="M:CSharpCLI.ConnectionPool.newConnection(System.String,System.Int32)">
+             <summary>
+             Make new pooled connection. If there is unused connection to this host
+             with the same user name and password
+             </summary>
+             <param name="hostAddress">string with server host name</param>
+             <param name="hostPort">integer number with server port</param>
+            
+        </member>
+        <member name="M:CSharpCLI.ConnectionPool.newConnection(System.String,System.Int32,System.String,System.String)">
+             <summary>
+             Make new pooled connection. If there is unused connection to this host
+             with the same user name and password
+             </summary>
+             <param name="hostAddress">string with server host name</param>
+             <param name="hostPort">integer number with server port</param>
+             <param name="userName">user name</param>
+             <param name="password">password</param>
+            
+        </member>
+        <member name="M:CSharpCLI.ConnectionPool.releaseConnection(CSharpCLI.Connection)">
+             <summary>
+             Return conection to the pool
+             </summary>
+             <param name="conxn">released connection</param>
+            
+        </member>
+        <member name="M:CSharpCLI.ConnectionPool.close">
+            <summary>
+            Physically close all opened connections
+            </summary>
+            
+        </member>
+        <member name="T:CSharpCLI.ObjectSet">
+             <summary>
+             Set of objects returned by select. This class is similar with JDBC ResultSet
+             class and allows navigation though the selected objects in orward or backward 
+             direction 
+             </summary>
+            
+        </member>
+        <member name="M:CSharpCLI.ObjectSet.getFirst">
+             <summary>
+             Get first fetched object
+             </summary>
+             <returns>first object in the set or null if no objects were selected</returns>
+            
+        </member>
+        <member name="M:CSharpCLI.ObjectSet.getLast">
+             <summary>
+             Get last fetched object
+             </summary>
+             <returns>last object in the set or null if no objects were selected</returns>
+            
+        </member>
+        <member name="M:CSharpCLI.ObjectSet.getNext">
+             <summary>
+             Get next fetched object
+             </summary>
+             <returns>next object in the set or null if current object is thelast one in the
+             set or no objects were selected</returns>
+            
+        </member>
+        <member name="M:CSharpCLI.ObjectSet.getPrev">
+             <summary>
+             Get previous fetched object
+             </summary>
+             <returns>previous object in the set or null if the current object is the first
+             one in the set or no objects were selected</returns>
+            
+        </member>
+        <member name="M:CSharpCLI.ObjectSet.skip(System.Int32)">
+             <summary>
+             Skip specified number of objects. 
+             <UL>
+             <LI>if <code>n</code> is positive, then this method has the same effect as
+             executing getNext() mehod <code>n</code> times.</LI>
+             <LI>if <code>n</code> is negative, then this method has the same effect of 
+             executing getPrev() mehod <code>-n</code> times.</LI> 
+             <LI>if <code>n</code> is zero, this method has no effect</LI>    
+             </UL>
+             </summary>
+             <param name="n">number of objects to be skipped</param>
+             <returns>object <code>n</code> positions relative to the current position</returns>
+            
+        </member>
+        <member name="M:CSharpCLI.ObjectSet.getRef">
+             <summary>
+             Get reference to the current object
+             </summary>
+             <returns>return reference to the current object or null if no objects were 
+             selected</returns>
+            
+        </member>
+        <member name="M:CSharpCLI.ObjectSet.update">
+             <summary>
+             Update the current object in the set. Changes made in the current object 
+             are saved in the database
+             </summary>
+            
+        </member>
+        <member name="M:CSharpCLI.ObjectSet.removeAll">
+             <summary>
+             Remove all selected objects. 
+             All objects in the object set are removed from the database.
+             </summary>
+            
+        </member>
+        <member name="M:CSharpCLI.ObjectSet.size">
+             <summary>
+             Get the number of objects in the object set.
+             </summary>
+             <returns>number of the selected objects</returns>
+            
+        </member>
+        <member name="M:CSharpCLI.ObjectSet.close">
+             <summary>
+             Close object set. Any followin operation with this object set will raise an
+             exception.
+             </summary>
+            
+        </member>
+        <member name="T:CSharpCLI.Rectangle">
+            <summary>
+            Class representing R2-rectangle
+            </summary>
+        </member>
+        <member name="F:CSharpCLI.Rectangle.x0">
+            <summary>X coordinate of top left corner</summary>
+        </member>
+        <member name="F:CSharpCLI.Rectangle.y0">
+            <summary>Y coordinate of top left corner</summary>
+        </member>
+        <member name="F:CSharpCLI.Rectangle.x1">
+            <summary>X coordinate of bottom right corner</summary>
+        </member>
+        <member name="F:CSharpCLI.Rectangle.y1">
+            <summary>Y coordinate of bottom right corner</summary>
+        </member>
+        <member name="M:CSharpCLI.Rectangle.GetHashCode">
+             <summary>
+             Hash code method for references
+             </summary>
+            
+        </member>
+        <member name="M:CSharpCLI.Rectangle.ToString">
+             <summary>
+             Print rectangle coordinates
+             </summary>
+            
+        </member>
+        <member name="M:CSharpCLI.Rectangle.distance(CSharpCLI.Rectangle,CSharpCLI.Rectangle)">
+             <summary>
+             Distance between two rectangles
+             </summary>
+             <param name="r">first rectangle</param>
+             <param name="q">second rectangle</param>
+             <returns>distance between two rectangles</returns>
+            
+        </member>
+        <member name="M:CSharpCLI.Rectangle.area">
+             <summary>
+             Rectangle area
+             </summary>
+            
+        </member>
+        <member name="M:CSharpCLI.Rectangle.join(CSharpCLI.Rectangle,CSharpCLI.Rectangle)">
+             <summary>
+             Calculate cover of two rectangles
+             </summary>
+             <param name="p">first rectangle</param>
+             <param name="q">second rectangle</param>
+             <returns>minimal rectangle containing both specified rectangles</returns>
+            
+        </member>
+        <member name="M:CSharpCLI.Rectangle.join(CSharpCLI.Rectangle)">
+            <summary>
+            Calculate cover of two rectangles
+            This rectangle is changesd to be the minimal rectangle containing 
+            original rectangle and specified rectangles
+            </summary>
+            <param name="r">another rectangle</param>
+               
+        </member>
+        <member name="M:CSharpCLI.Rectangle.equals(System.Object)">
+             <summary>
+             Check whether two rectangles are the same
+             </summary>
+            
+        </member>
+        <member name="M:CSharpCLI.Rectangle.overlaps(CSharpCLI.Rectangle)">
+             <summary>
+             Check whether two rectngles overlap
+             </summary>
+            
+        </member>
+        <member name="M:CSharpCLI.Rectangle.contains(CSharpCLI.Rectangle)">
+             <summary>
+             Checks whether this rectangle contains specified <code>r</code> rectangle
+             </summary>
+            
+        </member>
+        <member name="M:CSharpCLI.Rectangle.#ctor(System.Int32,System.Int32,System.Int32,System.Int32)">
+             <summary>
+             Contruct rectangle with specified coordinates
+             </summary>
+            
+        </member>
+        <member name="M:CSharpCLI.Rectangle.#ctor(CSharpCLI.Rectangle)">
+             <summary>
+             Create copy of the rectangle
+             </summary>
+            
+        </member>
+        <member name="M:CSharpCLI.Rectangle.#ctor">
+             <summary>
+             Create rectangle with all zero coordinates
+             </summary>
+            
+        </member>
+        <member name="T:CSharpCLI.Reference">
+             <summary>
+             Class representing references between persistent objects
+             </summary>
+            
+        </member>
+        <member name="M:CSharpCLI.Reference.getOid">
+             <summary>
+             Get object identifier
+             </summary>
+            
+        </member>
+        <member name="M:CSharpCLI.Reference.equals(System.Object)">
+             <summary>
+             Comparison method for references
+             </summary>
+            
+        </member>
+        <member name="M:CSharpCLI.Reference.GetHashCode">
+             <summary>
+             Hash code method for references
+             </summary>
+            
+        </member>
+        <member name="M:CSharpCLI.Reference.ToString">
+            <summary>
+            String representation of reference
+            </summary>
+               
+        </member>
+        <member name="M:CSharpCLI.Reference.#ctor(System.Int32)">
+            
+             <summary>
+             Constructor of reference from integer
+             </summary>
+             <param name="oid">referenced object identifier</param>
+                
+        </member>
+        <member name="T:CSharpCLI.ReferencesAttribute">
+            <summary>
+            Class representing references attribute. This attribute should be used to
+            to specify name of the referenced table for reference or array of reference fields
+            </summary>
+        </member>
+        <member name="M:CSharpCLI.ReferencesAttribute.#ctor(System.String,System.String)">
+             <summary>
+             Specify referenced table and inverse reference field
+             </summary>
+             <param name="tableName">name of referenced table</param>
+             <param name="fieldName">name of inverse reference field in referenced table</param>
+            
+        </member>
+        <member name="M:CSharpCLI.ReferencesAttribute.#ctor(System.String)">
+             <summary>
+             Specify referenced table 
+             </summary>
+             <param name="tableName">name of referenced table</param>
+            
+        </member>
+        <member name="T:CSharpCLI.Statement">
+             <summary>
+             Statement class is used to prepare and execute selct statement
+             </summary>
+            
+        </member>
+        <member name="M:CSharpCLI.Statement.finalize">
+             <summary>
+             Cleanup unreferenced statement
+             </summary>
+            
+        </member>
+        <member name="M:CSharpCLI.Statement.close">
+             <summary> 
+             Close the statement. This method release all resource assoiated with statement
+             at client and server. f close method will not be called, cleanup still
+             will be performed later when garbage collector call finilize method of this
+             object 
+             </summary>
+            
+        </member>
+        <member name="M:CSharpCLI.Statement.setBool(System.String,System.Boolean)">
+             <summary>
+             Set bool parameter
+             </summary>
+             <param name="name">name of the parameter started with <code>%</code> character</param>
+             <param name="value">value of the parameter</param>
+            
+        </member>
+        <member name="M:CSharpCLI.Statement.setByte(System.String,System.Byte)">
+             <summary>
+             Set byte parameter
+             </summary>
+             <param name="name">name of the parameter started with <code>%</code> character</param>
+             <param name="value">value of the parameter</param>
+            
+        </member>
+        <member name="M:CSharpCLI.Statement.setShort(System.String,System.Int16)">
+             <summary>
+             Set short parameter
+             </summary>
+             <param name="name">name of the parameter started with <code>%</code> character</param>
+             <param name="value">value of the parameter</param>
+            
+        </member>
+        <member name="M:CSharpCLI.Statement.setInt(System.String,System.Int32)">
+             <summary>
+             Set integer parameter
+             </summary>
+             <param name="name">name of the parameter started with <code>%</code> character</param>
+             <param name="value">value of the parameter</param>
+            
+        </member>
+        <member name="M:CSharpCLI.Statement.setLong(System.String,System.Int64)">
+             <summary>
+             Set long parameter
+             </summary>
+             <param name="name">name of the parameter started with <code>%</code> character</param>
+             <param name="value">value of the parameter</param>
+            
+        </member>
+        <member name="M:CSharpCLI.Statement.setDouble(System.String,System.Double)">
+             <summary>
+             Set double parameter
+             <param name="name">name of the parameter started with <code>%</code> character</param>
+             <param name="value">value of the parameter</param>
+             </summary>
+            
+        </member>
+        <member name="M:CSharpCLI.Statement.setFloat(System.String,System.Single)">
+             <summary>
+             Set float parameter
+             </summary>
+             <param name="name">name of the parameter started with <code>%</code> character</param>
+             <param name="value">value of the parameter</param>
+            
+        </member>
+        <member name="M:CSharpCLI.Statement.setString(System.String,System.String)">
+             <summary>
+             Set string parameter
+             </summary>
+             <param name="name">name of the parameter started with <code>%</code> character</param>
+             <param name="value">value of the parameter</param>
+            
+        </member>
+        <member name="M:CSharpCLI.Statement.setRef(System.String,CSharpCLI.Reference)">
+             <summary>
+             Set reference parameter
+             </summary>
+             <param name="name">name of the parameter started with <code>%</code> character</param>
+             <param name="value">value of the parameter, <code>null</code> means null reference</param>
+            
+        </member>
+        <member name="M:CSharpCLI.Statement.setRectangle(System.String,CSharpCLI.Rectangle)">
+             <summary>
+             Set rectangle parameter
+             </summary>
+             <param name="name">name of the parameter started with <code>%</code> character</param>
+             <param name="rect">value of the parameter</param>
+            
+        </member>
+        <member name="M:CSharpCLI.Statement.fetch">
+             <summary>
+             Prepare (if needed) and execute select statement
+             </summary>
+             <returns>object set with the selected objects</returns>
+            
+        </member>
+        <member name="M:CSharpCLI.Statement.fetch(System.Boolean)">
+             <summary>
+             Prepare (if needed) and execute select statement
+             Only object set returned by the select for updated statement allows
+             update and deletion of the objects.
+             </summary>
+             <param name="forUpdate">if cursor is opened in for update mode</param>
+             <returns>object set with the selected objects</returns>
+            
+        </member>
+    </members>
+</doc>

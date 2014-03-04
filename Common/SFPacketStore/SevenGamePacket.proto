@@ -1,0 +1,70 @@
+package SevenGamePacket;
+
+message InitCardCount
+{
+	message CardCount
+	{		
+		required int32 PlayerIndex = 1;
+		required int32 CardCount = 2;
+	}	
+
+	repeated CardCount info = 4;
+}
+
+message PlayerID
+{
+	
+	required int32 PlayerIndex = 1;
+	
+}
+
+message MyCardInfo
+{
+	message PlayerCard
+	{		
+		required int32 CardNum = 1;
+		required int32 CardType = 2;
+	}	
+
+	repeated PlayerCard Card = 13;
+}
+
+message TableUpdate
+{
+	message AddCard
+	{		
+		required int32 CardNum = 1;
+		required int32 CardType = 2;
+	}	
+
+	repeated AddCard Card = 52;
+}
+
+message CurrentTurn
+{
+	required int32 PlayerIndex = 1;
+	required string PlayerName = 2;
+}
+
+message TurnPass
+{
+	required int32 PlayerIndex = 1;
+	optional int32 TicketCount = 2[default = 0];
+}
+
+message CardSubmit
+{
+	required int32 PlayerIndex = 1;
+	required int32 CardNum = 2;
+	required int32 CardType = 3;
+}
+
+message Winner
+{
+	required int32 PlayerIndex = 1;
+}
+
+message UserDie
+{
+	required int32 PlayerIndex = 1;
+}

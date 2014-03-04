@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<GUILayout version="4" >
+    <Window type="TaharezLook/ProgressBar" name="LoadingProgressBar" >
+        <Property name="Area" value="{{0,120},{0,149},{0,596},{0,202}}" />
+        <Property name="Font" value="DejaVuSans-12" />
+        <Property name="Text" value="Loading..." />
+        <Property name="StepSize" value="0.01" />
+    </Window>
+</GUILayout>

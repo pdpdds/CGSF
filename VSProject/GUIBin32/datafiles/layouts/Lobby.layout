@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<GUILayout version="4" >
+    <Window type="WindowsLook/FrameWindow" name="Lobby" >
+        <Property name="Area" value="{{0,44},{0,31},{0.3,356},{0.3,261}}" />
+        <Property name="Text" value="CGSF Lobby" />
+        <Window type="WindowsLook/Label" name="Label" >
+            <Property name="Area" value="{{0,28},{0,29},{0,156},{0,61}}" />
+            <Property name="Text" value="Room List" />
+            <Property name="MaxSize" value="{{1,0},{1,0}}" />
+        </Window>
+        <Window type="WindowsLook/Listbox" name="RoomList" >
+            <Property name="Area" value="{{0,27},{0,73},{0,255},{0,335}}" />
+        </Window>
+        <Window type="WindowsLook/Button" name="Refresh" >
+            <Property name="Area" value="{{0,32},{0,350},{0,196},{0,382}}" />
+            <Property name="Text" value="Refresh Room List" />
+        </Window>
+        <Window type="TaharezLook/Button" name="CreateRoom" >
+            <Property name="Area" value="{{0,216},{0,350},{0,405},{0,382}}" />
+            <Property name="Font" value="DejaVuSans-12" />
+            <Property name="Text" value="Create Room" />
+        </Window>
+    </Window>
+</GUILayout>

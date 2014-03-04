@@ -1,0 +1,352 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="Source Files">
+      <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
+      <Extensions>cpp;c;cc;cxx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
+    </Filter>
+    <Filter Include="Header Files">
+      <UniqueIdentifier>{93995380-89BD-4b04-88EB-625FBE52EBFB}</UniqueIdentifier>
+      <Extensions>h;hpp;hxx;hm;inl;inc;xsd</Extensions>
+    </Filter>
+    <Filter Include="Resource Files">
+      <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
+      <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav</Extensions>
+    </Filter>
+    <Filter Include="DXUtil">
+      <UniqueIdentifier>{051aab8f-2f71-44ac-ba14-b99f879c8fc0}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Sound">
+      <UniqueIdentifier>{380c3f59-7841-494b-a81e-7711f38f9565}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Logic">
+      <UniqueIdentifier>{d3911b91-a929-4755-964f-e264e537144a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="FireEffect">
+      <UniqueIdentifier>{7cde39a8-da1d-4080-b21f-b400d4d8a16d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="GameState">
+      <UniqueIdentifier>{50aacbf8-659b-4a6d-8a25-09954dafe52e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Network">
+      <UniqueIdentifier>{0230813f-c910-4237-981f-f4a2251bffea}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="DirectXEntity.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="DirectXUtil.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="FontObject.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="PictureBox.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="PictureBoxMgr.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="ProgramMain.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Renderer.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="SevenGame.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="TextureMgr.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="stdafx.cpp">
+      <Filter>Header Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Sound\MP3Player.cpp">
+      <Filter>Sound</Filter>
+    </ClCompile>
+    <ClCompile Include="SGManager.cpp">
+      <Filter>Logic</Filter>
+    </ClCompile>
+    <ClCompile Include="SGTable.cpp">
+      <Filter>Logic</Filter>
+    </ClCompile>
+    <ClCompile Include="SGUser.cpp">
+      <Filter>Logic</Filter>
+    </ClCompile>
+    <ClCompile Include="FireEffect\camera.cpp">
+      <Filter>FireEffect</Filter>
+    </ClCompile>
+    <ClCompile Include="FireEffect\d3dUtility.cpp">
+      <Filter>FireEffect</Filter>
+    </ClCompile>
+    <ClCompile Include="FireEffect\pSystem.cpp">
+      <Filter>FireEffect</Filter>
+    </ClCompile>
+    <ClCompile Include="SGState.cpp">
+      <Filter>GameState</Filter>
+    </ClCompile>
+    <ClCompile Include="SGStateCardEffect.cpp">
+      <Filter>GameState</Filter>
+    </ClCompile>
+    <ClCompile Include="SGStateCardPassEffect.cpp">
+      <Filter>GameState</Filter>
+    </ClCompile>
+    <ClCompile Include="SGStateCardTurn.cpp">
+      <Filter>GameState</Filter>
+    </ClCompile>
+    <ClCompile Include="SGStateGame.cpp">
+      <Filter>GameState</Filter>
+    </ClCompile>
+    <ClCompile Include="SGStateGameOver.cpp">
+      <Filter>GameState</Filter>
+    </ClCompile>
+    <ClCompile Include="SGStateManager.cpp">
+      <Filter>GameState</Filter>
+    </ClCompile>
+    <ClCompile Include="SGStateStart.cpp">
+      <Filter>GameState</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\Dev\CGSFFinal\Common\SFPacketStore\SevenGamePacket.pb.cc">
+      <Filter>Network</Filter>
+    </ClCompile>
+    <ClCompile Include="SevenGameMain.cpp">
+      <Filter>Network</Filter>
+    </ClCompile>
+    <ClCompile Include="DirectXSystem.cpp">
+      <Filter>Network</Filter>
+    </ClCompile>
+    <ClCompile Include="SevenGameProtocol.cpp">
+      <Filter>Network</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Vendor\DXUtil\dxstdafx.cpp">
+      <Filter>DXUtil</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Vendor\DXUtil\DXUT.cpp">
+      <Filter>DXUtil</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Vendor\DXUtil\DXUTcamera.cpp">
+      <Filter>DXUtil</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Vendor\DXUtil\DXUTenum.cpp">
+      <Filter>DXUtil</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Vendor\DXUtil\DXUTgui.cpp">
+      <Filter>DXUtil</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Vendor\DXUtil\DXUTguiIME.cpp">
+      <Filter>DXUtil</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Vendor\DXUtil\DXUTmisc.cpp">
+      <Filter>DXUtil</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Vendor\DXUtil\DXUTres.cpp">
+      <Filter>DXUtil</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Vendor\DXUtil\DXUTSettingsDlg.cpp">
+      <Filter>DXUtil</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Vendor\DXUtil\DXUTShapes.cpp">
+      <Filter>DXUtil</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Vendor\DXUtil\ImeUi.cpp">
+      <Filter>DXUtil</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Vendor\DXUtil\SDKmesh.cpp">
+      <Filter>DXUtil</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Vendor\DXUtil\SDKmisc.cpp">
+      <Filter>DXUtil</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Vendor\DXUtil\SDKsound.cpp">
+      <Filter>DXUtil</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Vendor\DXUtil\SDKwavefile.cpp">
+      <Filter>DXUtil</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Vendor\DXUtil\TextBoxCtrl.cpp">
+      <Filter>DXUtil</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="DirectXEntity.h">
+      <Filter>Source Files</Filter>
+    </ClInclude>
+    <ClInclude Include="DirectXUtil.h">
+      <Filter>Source Files</Filter>
+    </ClInclude>
+    <ClInclude Include="FontObject.h">
+      <Filter>Source Files</Filter>
+    </ClInclude>
+    <ClInclude Include="PictureBox.h">
+      <Filter>Source Files</Filter>
+    </ClInclude>
+    <ClInclude Include="PictureBoxMgr.h">
+      <Filter>Source Files</Filter>
+    </ClInclude>
+    <ClInclude Include="ProgramMain.h">
+      <Filter>Source Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Renderer.h">
+      <Filter>Source Files</Filter>
+    </ClInclude>
+    <ClInclude Include="SevenGame.h">
+      <Filter>Source Files</Filter>
+    </ClInclude>
+    <ClInclude Include="TextureMgr.h">
+      <Filter>Source Files</Filter>
+    </ClInclude>
+    <ClInclude Include="CommonStructure.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Define.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Resource.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="resource1.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="stdafx.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="STLWarning.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="targetver.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Sound\MP3Player.h">
+      <Filter>Sound</Filter>
+    </ClInclude>
+    <ClInclude Include="SGManager.h">
+      <Filter>Logic</Filter>
+    </ClInclude>
+    <ClInclude Include="SGTable.h">
+      <Filter>Logic</Filter>
+    </ClInclude>
+    <ClInclude Include="SGUser.h">
+      <Filter>Logic</Filter>
+    </ClInclude>
+    <ClInclude Include="FireEffect\camera.h">
+      <Filter>FireEffect</Filter>
+    </ClInclude>
+    <ClInclude Include="FireEffect\d3dUtility.h">
+      <Filter>FireEffect</Filter>
+    </ClInclude>
+    <ClInclude Include="FireEffect\pSystem.h">
+      <Filter>FireEffect</Filter>
+    </ClInclude>
+    <ClInclude Include="SGState.h">
+      <Filter>GameState</Filter>
+    </ClInclude>
+    <ClInclude Include="SGStateCardEffect.h">
+      <Filter>GameState</Filter>
+    </ClInclude>
+    <ClInclude Include="SGStateCardPassEffect.h">
+      <Filter>GameState</Filter>
+    </ClInclude>
+    <ClInclude Include="SGStateCardTurn.h">
+      <Filter>GameState</Filter>
+    </ClInclude>
+    <ClInclude Include="SGStateGame.h">
+      <Filter>GameState</Filter>
+    </ClInclude>
+    <ClInclude Include="SGStateGameOver.h">
+      <Filter>GameState</Filter>
+    </ClInclude>
+    <ClInclude Include="SGStateManager.h">
+      <Filter>GameState</Filter>
+    </ClInclude>
+    <ClInclude Include="SGStateStart.h">
+      <Filter>GameState</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\Dev\CGSFFinal\Common\SFPacketStore\SevenGamePacketID.h">
+      <Filter>Network</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\Dev\CGSFFinal\Common\SFPacketStore\SevenGamePacket.pb.h">
+      <Filter>Network</Filter>
+    </ClInclude>
+    <ClInclude Include="SevenGameMain.h">
+      <Filter>Network</Filter>
+    </ClInclude>
+    <ClInclude Include="DirectXSystem.h">
+      <Filter>Network</Filter>
+    </ClInclude>
+    <ClInclude Include="SevenGameProtocol.h">
+      <Filter>Network</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Vendor\DXUtil\dxstdafx.h">
+      <Filter>DXUtil</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Vendor\DXUtil\DXUT.h">
+      <Filter>DXUtil</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Vendor\DXUtil\DXUTcamera.h">
+      <Filter>DXUtil</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Vendor\DXUtil\DXUTenum.h">
+      <Filter>DXUtil</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Vendor\DXUtil\DXUTgui.h">
+      <Filter>DXUtil</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Vendor\DXUtil\DXUTguiIME.h">
+      <Filter>DXUtil</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Vendor\DXUtil\DXUTLockFreePipe.h">
+      <Filter>DXUtil</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Vendor\DXUtil\DXUTmisc.h">
+      <Filter>DXUtil</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Vendor\DXUtil\DXUTres.h">
+      <Filter>DXUtil</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Vendor\DXUtil\DXUTsettingsdlg.h">
+      <Filter>DXUtil</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Vendor\DXUtil\DXUTShapes.h">
+      <Filter>DXUtil</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Vendor\DXUtil\ImeUi.h">
+      <Filter>DXUtil</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Vendor\DXUtil\ScrollBarCtrl.h">
+      <Filter>DXUtil</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Vendor\DXUtil\SDKmesh.h">
+      <Filter>DXUtil</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Vendor\DXUtil\SDKmisc.h">
+      <Filter>DXUtil</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Vendor\DXUtil\SDKsound.h">
+      <Filter>DXUtil</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Vendor\DXUtil\SDKwavefile.h">
+      <Filter>DXUtil</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Vendor\DXUtil\TextBoxCtrl.h">
+      <Filter>DXUtil</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <Image Include="SevenGame.ico">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="small.ico">
+      <Filter>Resource Files</Filter>
+    </Image>
+  </ItemGroup>
+  <ItemGroup>
+    <ResourceCompile Include="SevenGame.rc">
+      <Filter>Resource Files</Filter>
+    </ResourceCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <Text Include="ReadMe.txt" />
+  </ItemGroup>
+</Project>

@@ -1,0 +1,46 @@
+FastDB is embedded main memory database.
+It is intended to be used in your C/C++ application to provide 
+fast access to persistent data. 
+
+As far as FastDB is embedded database, there is need to start some server which
+will handle client's requests. FastDB is just an library which is linked in client 
+application and provide access to the persistent objects.
+
+To build FastDB library you will need use the proper makefile.
+At Linux and most of other popular Unixes with GCC it is enough to 
+do "make". You can also use standard way for most of unix systems: ./condifure ; make ; sudo make install.
+Alternatively you can look for specialized versions of makefile 
+included in distributive (like makefile.sun), write you own makefile based
+on standard FastDB makefile or customize some existed makefile.
+
+At Windows with Microsoft Visual C++ you can just execute "make.bat" command.
+If error message is printed that "nmake" or "cl" command is not recognized, then
+MS Visual Studio environment variables are not properly set.
+There are two ways to solve the problem:
+1. Run from "Microsoft Visual Studio" menu in start panel, choose "Microsoft Visual Studio Tools", 
+and in it - "Microsoft Visual Studio Command Prompt". The in this window change directory to FastDB home
+and do "make.bat"
+2. In "C:\Program Files\Microsoft Visual Studio .NET 2003\Vc7\bin" directory there is vcvars32.bat file
+(this is the path for VS 2003, but Visual C++ 6.0 has the similar file). Run it to setup environment in current 
+window.
+
+You can also use Microsoft Visual Studio project file (fastdb.sln or fastdb.dsw) and open it with Visual Studio.
+
+In config.h you will find various options for choosing yet or another configuration of FastDB.
+The preferable way of changing configuration is to edit this file (instead of specifying correspondent 
+macros in compiler command line, because in last case there is a risk that you forget to specify somewhere this
+option which cause inconsistency between different modules of your applications and/or FastDB library).
+
+You can use SubSQL utility to inspect content of the database as well as for administration of database.
+SubSQL can be started concurrently with you application. But please notice, that FastDB uses 
+single-writer-multiple-readers database level locking, so if you have performed some modification in SubSQL 
+and did perform commit after it, then application may be blocked until you release (commit or abort) transaction
+in SubSQL.
+
+FastDB distribution also includes a lot of examples and tests located in examples directory. 
+Them are also build by make. These tests are used for three different purposes:
+1. Illustrate FastDB programming approach.
+2. Regression tests
+3. Performance measurement
+
+More information about FastDB can be found in FastDB.htm file which is located in this directory.

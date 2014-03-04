@@ -1,0 +1,26 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 2012
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "P2PClient", "..\P2PLayer\P2PClient\P2PClient.vcxproj", "{AF8B1386-16B1-408F-9B7E-4274F8AD5BC3}"
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "P2PServer", "..\P2PLayer\P2PServer\P2PServer.vcxproj", "{C2DFE144-64D7-4101-A1CE-C441A8F3F24D}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Win32 = Debug|Win32
+		Release|Win32 = Release|Win32
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{AF8B1386-16B1-408F-9B7E-4274F8AD5BC3}.Debug|Win32.ActiveCfg = Debug|Win32
+		{AF8B1386-16B1-408F-9B7E-4274F8AD5BC3}.Debug|Win32.Build.0 = Debug|Win32
+		{AF8B1386-16B1-408F-9B7E-4274F8AD5BC3}.Release|Win32.ActiveCfg = Release|Win32
+		{AF8B1386-16B1-408F-9B7E-4274F8AD5BC3}.Release|Win32.Build.0 = Release|Win32
+		{C2DFE144-64D7-4101-A1CE-C441A8F3F24D}.Debug|Win32.ActiveCfg = Debug|Win32
+		{C2DFE144-64D7-4101-A1CE-C441A8F3F24D}.Debug|Win32.Build.0 = Debug|Win32
+		{C2DFE144-64D7-4101-A1CE-C441A8F3F24D}.Release|Win32.ActiveCfg = Release|Win32
+		{C2DFE144-64D7-4101-A1CE-C441A8F3F24D}.Release|Win32.Build.0 = Release|Win32
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal

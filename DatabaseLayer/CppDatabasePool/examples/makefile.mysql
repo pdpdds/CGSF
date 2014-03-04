@@ -1,0 +1,21 @@
+#Righteous Ninja AKA P.S. Ching codediaries.blogspot.com
+
+MYSQL_HOME=D:\downloads\mysql-connector-c++-noinstall-1.0.5-win32
+MYSQL_INCS=$(MYSQL_HOME)\include
+MYSQL_LIBS=$(MYSQL_HOME)\lib
+
+build: mysqlpool.obj examplemysql.obj crosshelper.obj
+  cl /o mysqlx.exe mysqlpool.obj examplemysql.obj crosshelper.obj /link /LIBPATH:$(MYSQL_LIBS) mysqlcppconn.lib
+
+
+examplemysql.obj: ExampleMySQL.cpp
+	cl /c ExampleMySQL.cpp /D WINDOWSXX -I $(MYSQL_INCS)
+
+mysqlpool.obj: ..\mysql\MySQLPool.cpp 
+    cl /c  ..\mysql\MySQLPool.cpp /D WINDOWSXX  -I $(MYSQL_INCS)
+
+crosshelper.obj: ..\CrossHelper.cpp
+    cl /c ..\CrossHelper.cpp /D WINDOWSXX 
+
+clean:
+  del *.exe *.obj

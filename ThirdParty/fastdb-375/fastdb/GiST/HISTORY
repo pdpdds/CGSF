@@ -1,0 +1,4 @@
+v0.9b1:
+	First version.
+	no support for FindMin/GetNext-style traversal
+	shipped with BTree, RTree, and RSTree demos

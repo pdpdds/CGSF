@@ -1,0 +1,269 @@
+# -*- makefile -*-
+# Makefile for Windows with MinGW
+
+ifdef NO_PTHREADS
+OBJS = class.o compiler.o database.o xml.o hashtab.o file.o symtab.o ttree.o rtree.o container.o \
+	cursor.o query.o wwwapi.o w32sock.o sync.o localcli.o stdtp.o 
+else
+OBJS = class.o compiler.o database.o xml.o hashtab.o file.o symtab.o ttree.o rtree.o container.o \
+	cursor.o query.o wwwapi.o w32sock.o sync.o localcli.o stdtp.o server.o
+endif
+
+CLI_OBJS = cli.o w32sock.o repsock.o stdtp.o 
+
+INCS = inc/fastdb.h inc/stdtp.h inc/class.h inc/database.h inc/cursor.h inc/reference.h inc/wwwapi.h \
+	inc/array.h inc/file.h inc/hashtab.h inc/ttree.h inc/rtree.h inc/container.h inc/sync.h inc/query.h inc/datetime.h inc/sync_w32.h \
+	inc/config.h inc/timeseries.h inc/rectangle.h inc/exception.h
+
+STDLIBS =  -lwsock32
+
+VERSION=2
+FASTDB_LIB = libfastdb.a 
+CLI_LIB = libcli.a
+
+EXES.exe = subsql forcerecovery.exe
+FASTDB_LIBS=$(FASTDB_LIB)
+CLI_LIBS=$(CLI_LIB)
+
+EXAMPLES = guess.exe testdb.exe testleak.exe testjoin.exe testddl.exe testperf.exe testsync.exe testconc.exe testiref.exe testtrav.exe testidx.exe clitest.exe testraw.exe localclitest.exe testspat.exe testtl.exe
+
+WEB_EXAMPLES = cgistub.exe bugdb.exe clidb.exe
+
+CC = g++
+
+# DEFS macro is deprecatred, edit inc/config.h file instead
+DEFS = -Wno-invalid-offsetof
+
+#CFLAGS = $(TFLAGS) -c -Wall -O5 -g
+
+CFLAGS = -c -Iinc -Wall -O0 -g $(DEFS)
+#CFLAGS = -c -Iinc -Wall -O0 -DFASTDB_DEBUG=DEBUG_TRACE -g $(DEFS)
+
+
+LD = $(CC)
+LDFLAGS = -g
+
+AR = ar
+ARFLAGS = -cru
+
+RANLIB = ranlib
+
+all: static bins
+
+static: $(FASTDB_LIB) $(CLI_LIB) 
+
+bins: $(EXES) $(EXAMPLES) 
+
+www: $(FASTDB_SHARED) $(WEB_EXAMPLES)
+
+
+class.o: src/class.cpp inc/compiler.h inc/compiler.d inc/symtab.h $(INCS)
+	$(CC) $(CFLAGS) src/class.cpp
+
+compiler.o: src/compiler.cpp inc/compiler.h inc/compiler.d inc/symtab.h $(INCS)
+	$(CC) $(CFLAGS) src/compiler.cpp
+
+query.o: src/query.cpp inc/compiler.h inc/compiler.d inc/symtab.h $(INCS)
+	$(CC) $(CFLAGS) src/query.cpp
+
+database.o: src/database.cpp inc/compiler.h inc/compiler.d inc/symtab.h $(INCS)
+	$(CC) $(CFLAGS) src/database.cpp
+
+xml.o: src/xml.cpp inc/compiler.h inc/compiler.d inc/symtab.h $(INCS)
+	$(CC) $(CFLAGS) src/xml.cpp
+
+localcli.o: src/localcli.cpp inc/compiler.h inc/compiler.d inc/symtab.h inc/localcli.h $(INCS)
+	$(CC) $(CFLAGS) src/localcli.cpp
+
+cursor.o: src/cursor.cpp inc/compiler.h inc/compiler.d $(INCS)
+	$(CC) $(CFLAGS) src/cursor.cpp
+
+hashtab.o: src/hashtab.cpp $(INCS)
+	$(CC) $(CFLAGS) src/hashtab.cpp
+
+file.o: src/file.cpp $(INCS)
+	$(CC) $(CFLAGS) src/file.cpp
+
+stdtp.o: src/stdtp.cpp $(INCS)
+	$(CC) $(CFLAGS) src/stdtp.cpp
+
+sync.o: src/sync.cpp $(INCS)
+	$(CC) $(CFLAGS) src/sync.cpp
+
+symtab.o: src/symtab.cpp inc/symtab.h $(INCS)
+	$(CC) $(CFLAGS) src/symtab.cpp
+
+ttree.o: src/ttree.cpp $(INCS)
+	$(CC) $(CFLAGS) src/ttree.cpp
+
+rtree.o: src/rtree.cpp $(INCS)
+	$(CC) $(CFLAGS) src/rtree.cpp
+
+container.o: src/container.cpp $(INCS)
+	$(CC) $(CFLAGS) src/container.cpp
+
+wwwapi.o: src/wwwapi.cpp inc/wwwapi.h inc/sockio.h inc/stdtp.h inc/sync.h inc/sync_w32.h inc/config.h
+	$(CC) $(CFLAGS) src/wwwapi.cpp
+
+w32sock.o: src/w32sock.cpp inc/w32sock.h inc/sockio.h inc/stdtp.h
+	$(CC) $(CFLAGS) src/w32sock.cpp
+
+repsock.o: src/repsock.cpp inc/repsock.h inc/sockio.h inc/stdtp.h inc/sync.h inc/sync_w32.h inc/config.h
+	$(CC) $(CFLAGS) src/repsock.cpp
+
+cli.o: src/cli.cpp inc/cli.h inc/cliproto.h inc/repsock.h inc/sockio.h inc/stdtp.h inc/sync.h inc/sync_w32.h inc/config.h
+	$(CC) $(CFLAGS) src/cli.cpp
+
+$(FASTDB_LIB): $(OBJS)
+	rm -f $(FASTDB_LIB)
+	$(AR) $(ARFLAGS) $(FASTDB_LIB) $(OBJS)
+	$(RANLIB) $(FASTDB_LIB)
+
+$(CLI_LIB): $(CLI_OBJS)
+	rm -f $(CLI_LIB)
+	$(AR) $(ARFLAGS) $(CLI_LIB) $(CLI_OBJS)
+	$(RANLIB) $(CLI_LIB)
+
+clitest.o: examples/clitest.c inc/cli.h
+	$(CC) $(CFLAGS) examples/clitest.c
+
+clitest.exe: clitest.o $(CLI_LIB)
+	$(LD) $(LDFLAGS) -o clitest.exe clitest.o $(CLI_LIBS) $(STDLIBS) $(SOCKLIBS)
+
+localclitest.exe: clitest.o $(FASTDB_LIB)
+	$(LD) $(LDFLAGS) -o localclitest.exe clitest.o $(FASTDB_LIBS) $(STDLIBS)
+
+subsql.o: src/subsql.cpp inc/subsql.h inc/compiler.h inc/compiler.d inc/symtab.h $(INCS)
+	$(CC) $(CFLAGS) src/subsql.cpp
+
+server.o: src/server.cpp inc/server.h inc/cli.h inc/cliproto.h inc/subsql.h inc/compiler.h inc/compiler.d inc/symtab.h $(INCS)
+	$(CC) $(CFLAGS) src/server.cpp
+
+subsql.exe: subsql.o $(FASTDB_LIB)
+	$(LD) $(LDFLAGS) -o subsql.exe subsql.o $(FASTDB_LIBS) $(STDLIBS) $(SOCKLIBS)
+
+bugdb.o: examples/bugdb.cpp examples/bugdb.h $(INCS)
+	$(CC) $(CFLAGS) examples/bugdb.cpp
+
+bugdb.exe: bugdb.o  $(FASTDB_LIB)
+	$(LD) $(LDFLAGS) -o bugdb.exe bugdb.o $(FASTDB_LIBS) $(STDLIBS) $(SOCKLIBS)
+
+clidb.o: examples/clidb.cpp examples/clidb.h $(INCS)
+	$(CC) $(CFLAGS) examples/clidb.cpp
+
+clidb.exe: clidb.o  $(FASTDB_LIB)
+	$(LD) $(LDFLAGS) -o clidb.exe clidb.o $(FASTDB_LIBS) $(STDLIBS) $(SOCKLIBS)
+
+cgistub.o: src/cgistub.cpp inc/stdtp.h inc/sockio.h
+	$(CC) $(CFLAGS) src/cgistub.cpp 
+
+cgistub.exe: cgistub.o
+	$(LD) $(LDFLAGS) -o cgistub.exe cgistub.o $(FASTDB_LIBS) $(STDLIBS) $(SOCKLIBS)
+
+
+forcerecovery.o: src/forcerecovery.cpp inc/database.h
+	$(CC) $(CFLAGS) src/forcerecovery.cpp 
+
+forcerecovery.exe: forcerecovery.o
+	$(LD) $(LDFLAGS)  -o forcerecovery.exe forcerecovery.o
+
+
+guess.o: examples/guess.cpp $(INCS)
+	$(CC) $(CFLAGS) examples/guess.cpp 
+
+guess.exe: guess.o $(FASTDB_LIB)
+	$(LD) $(LDFLAGS) -o guess.exe guess.o $(FASTDB_LIBS) $(STDLIBS)
+
+testdb.o: examples/testdb.cpp $(INCS)
+	$(CC) $(CFLAGS) examples/testdb.cpp 
+
+testdb.exe: testdb.o $(FASTDB_LIB)
+	$(LD) $(LDFLAGS) -o testdb.exe testdb.o $(FASTDB_LIBS) $(STDLIBS)
+
+testraw.o: examples/testraw.cpp $(INCS)
+	$(CC) $(CFLAGS) examples/testraw.cpp 
+
+testraw.exe: testraw.o $(FASTDB_LIB)
+	$(LD) $(LDFLAGS) -o testraw.exe testraw.o $(FASTDB_LIBS) $(STDLIBS)
+
+testleak.o: examples/testleak.cpp $(INCS)
+	$(CC) $(CFLAGS) examples/testleak.cpp 
+
+testleak.exe: testleak.o $(FASTDB_LIB)
+	$(LD) $(LDFLAGS) -o testleak.exe testleak.o $(FASTDB_LIBS) $(STDLIBS)
+
+testjoin.o: examples/testjoin.cpp $(INCS)
+	$(CC) $(CFLAGS) examples/testjoin.cpp 
+
+testjoin.exe: testjoin.o $(FASTDB_LIB)
+	$(LD) $(LDFLAGS) -o testjoin.exe testjoin.o $(FASTDB_LIBS) $(STDLIBS)
+
+testddl.o: examples/testddl.cpp $(INCS)
+	$(CC) $(CFLAGS) examples/testddl.cpp 
+
+testddl.exe: testddl.o $(FASTDB_LIB)
+	$(LD) $(LDFLAGS) -o testddl.exe testddl.o $(FASTDB_LIBS) $(STDLIBS)
+
+testperf.o: examples/testperf.cpp $(INCS)
+	$(CC) $(CFLAGS) examples/testperf.cpp 
+
+testperf.exe: testperf.o $(FASTDB_LIB)
+	$(LD) $(LDFLAGS) -o testperf.exe testperf.o $(FASTDB_LIBS) $(STDLIBS)
+
+testidx.o: examples/testidx.cpp $(INCS)
+	$(CC) $(CFLAGS) examples/testidx.cpp 
+
+testidx.exe: testidx.o $(FASTDB_LIB)
+	$(LD) $(LDFLAGS) -o testidx.exe testidx.o $(FASTDB_LIBS) $(STDLIBS)
+
+testtl.o: examples/testtl.cpp $(INCS)
+	$(CC) $(CFLAGS) examples/testtl.cpp 
+
+testtl.exe: testtl.o $(FASTDB_LIB)
+	$(LD) $(LDFLAGS) -o testtl.exe testtl.o $(FASTDB_LIBS) $(STDLIBS)
+
+testspat.o: examples/testspat.cpp $(INCS)
+	$(CC) $(CFLAGS) examples/testspat.cpp 
+
+testspat.exe: testspat.o $(FASTDB_LIB)
+	$(LD) $(LDFLAGS) -o testspat.exe testspat.o $(FASTDB_LIBS) $(STDLIBS)
+
+testsync.o: examples/testsync.cpp $(INCS)
+	$(CC) $(CFLAGS) examples/testsync.cpp 
+
+testsync.exe: testsync.o $(FASTDB_LIB)
+	$(LD) $(LDFLAGS) -o testsync.exe testsync.o $(FASTDB_LIBS) $(STDLIBS)
+
+testconc.o: examples/testconc.cpp $(INCS)
+	$(CC) $(CFLAGS) examples/testconc.cpp 
+
+testconc.exe: testconc.o $(FASTDB_LIB)
+	$(LD) $(LDFLAGS) -o testconc.exe testconc.o $(FASTDB_LIBS) $(STDLIBS)
+
+testiref.o: examples/testiref.cpp $(INCS)
+	$(CC) $(CFLAGS) examples/testiref.cpp 
+
+testiref.exe: testiref.o $(FASTDB_LIB)
+	$(LD) $(LDFLAGS) -o testiref.exe testiref.o $(FASTDB_LIBS) $(STDLIBS)
+
+testtrav.o: examples/testtrav.cpp $(INCS)
+	$(CC) $(CFLAGS) examples/testtrav.cpp 
+
+testtrav.exe: testtrav.o $(FASTDB_LIB)
+	$(LD) $(LDFLAGS) -o testtrav.exe testtrav.o $(FASTDB_LIBS) $(STDLIBS)
+
+
+cleanobj:
+	-del *.o
+	-del javacli/*.class 
+	-del *.jar 
+	-del *.class  
+
+cleandbs:
+	-del *.fdb
+
+
+clean: cleanobj cleandbs
+	-del *.a
+	-del *.exe
+

@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<GUILayout version="4" >
+    <Window type="TaharezLook/FrameWindow" name="Room" >
+        <Property name="Area" value="{{0,45},{0,53},{0.3,467},{0.3,269}}" />
+        <Window type="TaharezLook/Editbox" name="Editbox" >
+            <Property name="Area" value="{{0,14},{0,361},{0,524},{0,393}}" />
+        </Window>
+        <Window type="TaharezLook/Button" name="SendButton" >
+            <Property name="Area" value="{{0,546},{0,360},{0,642},{0,392}}" />
+            <Property name="Text" value="Send" />
+        </Window>
+        <Window type="TaharezLook/Listbox" name="MemberList" >
+            <Property name="Area" value="{{0,379},{0,53},{0,645},{0,195}}" />
+        </Window>
+        <Window type="TaharezLook/Label" name="Label" >
+            <Property name="Area" value="{{0,381},{0,11},{0,509},{0,43}}" />
+            <Property name="Text" value="Member List" />
+            <Property name="MaxSize" value="{{1,0},{1,0}}" />
+        </Window>
+        <Window type="TaharezLook/Button" name="GameStart" >
+            <Property name="Area" value="{{0,380},{0,307},{0,638},{0,339}}" />
+            <Property name="Text" value="GameStart" />
+        </Window>
+        <Window type="TaharezLook/Button" name="LeaveRoom" >
+            <Property name="Area" value="{{0,379},{0,209},{0,518},{0,241}}" />
+            <Property name="Font" value="DejaVuSans-12" />
+            <Property name="Text" value="Leave Room" />
+        </Window>
+        <Window type="TaharezLook/MultiLineEditbox" name="Conversation" >
+            <Property name="Area" value="{{0,16},{0,8},{0,360},{0,343}}" />
+            <Property name="Text" >
+</Property>
+        </Window>
+    </Window>
+</GUILayout>

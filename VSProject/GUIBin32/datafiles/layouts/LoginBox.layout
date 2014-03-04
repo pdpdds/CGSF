@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<GUILayout version="4" >
+    <Window type="TaharezLook/FrameWindow" name="LoginBox" >
+        <Property name="Area" value="{{0,90},{0,39},{0.3,416},{0.3,172}}" />
+        <Property name="Font" value="DejaVuSans-12" />
+        <Property name="Text" value="CGSF Login" />
+        <Property name="SizingEnabled" value="False" />
+        <Window type="TaharezLook/Label" name="GameID" >
+            <Property name="Area" value="{{0,96},{0,117},{0,224},{0,159}}" />
+            <Property name="Font" value="DejaVuSans-12" />
+            <Property name="Text" value="GameID" />
+            <Property name="MaxSize" value="{{1,0},{1,0}}" />
+        </Window>
+        <Window type="TaharezLook/Label" name="Welcome" >
+            <Property name="Area" value="{{0,62},{0,39},{0,606},{0,86}}" />
+            <Property name="Font" value="DejaVuSans-12" />
+            <Property name="Text" value="Welcome to Casual Game Server System Interface" />
+            <Property name="MaxSize" value="{{1,0},{1,0}}" />
+        </Window>
+        <Window type="TaharezLook/Label" name="Password" >
+            <Property name="Area" value="{{0,96},{0,178},{0,224},{0,221}}" />
+            <Property name="Font" value="DejaVuSans-12" />
+            <Property name="Text" value="Password" />
+            <Property name="MaxSize" value="{{1,0},{1,0}}" />
+        </Window>
+        <Window type="TaharezLook/Editbox" name="GameIDInput" >
+            <Property name="Area" value="{{0,255},{0,117},{0,431},{0,161}}" />
+            <Property name="Font" value="DejaVuSans-12" />
+        </Window>
+        <Window type="TaharezLook/Editbox" name="PasswordInput" >
+            <Property name="Area" value="{{0,256},{0,177},{0,431},{0,221}}" />
+            <Property name="Font" value="DejaVuSans-12" />
+        </Window>
+        <Window type="TaharezLook/Button" name="Submit" >
+            <Property name="Area" value="{{0,256},{0,238},{0,431},{0,276}}" />
+            <Property name="Font" value="DejaVuSans-12" />
+            <Property name="Text" value="Submit" />
+        </Window>
+    </Window>
+</GUILayout>

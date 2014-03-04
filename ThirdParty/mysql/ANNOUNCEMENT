@@ -1,0 +1,44 @@
+MySQL Connector/C++
+
+This is a release of MySQL Connector/C++, Oracle's
+dual-license C++ API for connecting client applications
+to MySQL.
+
+Copyright (c) 2008, 2013, Oracle and/or its affiliates. All rights reserved.
+
+--------------------------------------------------------------------------------
+
+Dear MySQL Users,
+
+A new GA (general availability) version of MySQL Connector/C++ has been made available: MySQL Connector/C++ 1.1.2 GA. The MySQL Connector/C++ provides a C++ API for
+connecting client applications to the MySQL Server 5.1 or newer. You can download the production release at:
+
+ http://dev.mysql.com/downloads/connector/cpp/1.1.html
+
+The MySQL driver for C++ offers an easy to use API derived from JDBC 4.0. MySQL Workbench is using it successfully since years. 
+
+The major changes in 1.1.2 are:
+
+- Expired password support. Connection options
+  OPT_CAN_HANDLE_EXPIRED_PASSWORDS(bool, application can deal with expired
+  passwords), and preInit(string, commands to run prior to driver
+  initialization commands) have been introduced. (Bug#15936764/67325)
+
+- postInit connection string has been introduced. Similar to preInit, but
+  commands are run after driver's initialization.
+
+- Statement::executeUpdate can now execute multiple statements.
+  CLIENT_MULTI_STATEMENTS connection option still has to be selected.
+  getUpdateCount will return data for the last executed statement.
+
+- Built against libmysql 5.6.10
+
+You can find further details, including usages examples, in the documentation at:
+
+  http://dev.mysql.com/doc/refman/5.5/en/connector-cpp.html
+
+
+You may also want to contribute to the MySQL Forum on C/C++ at http://forums.mysql.com/list.php?167 or join the MySQL Connector/C++ mailing list
+http://lists.mysql.com/connector-cplusplus .
+
+Enjoy!

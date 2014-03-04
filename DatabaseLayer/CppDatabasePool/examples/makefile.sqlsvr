@@ -1,0 +1,17 @@
+#Righteous Ninja AKA P.S. Ching codediaries.blogspot.com
+
+build:  examplesqlsvr.obj sqlsvrpool.obj crosshelper.obj
+    cl /o sqlsvrx.exe sqlsvrpool.obj examplesqlsvr.obj crosshelper.obj /link odbc32.lib
+
+examplesqlsvr.obj: ExampleSQLSvr.cpp
+    cl /c ExampleSQLSvr.cpp /D WINDOWSXX 
+
+sqlsvrpool.obj: ..\sqlserver\SQLSvrPool.cpp
+    cl /c  ..\sqlserver\SQLSvrPool.cpp /D WINDOWSXX
+
+
+crosshelper.obj: ..\CrossHelper.cpp
+    cl /c ..\CrossHelper.cpp /D WINDOWSXX 
+
+clean:
+  del *.exe *.obj
