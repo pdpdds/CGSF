@@ -1,8 +1,8 @@
 #pragma once
-#include "IEngine.h"
+#include <EngineInterface/IEngine.h>
+#include <EngineInterface/IPacketProtocol.h>
+#include <EngineInterface/INetworkEngine.h>
 #include "SFConfigure.h"
-#include "INetworkEngine.h"
-#include "IPacketProtocol.h"
 #include "ILogicDispatcher.h"
 #include "ILogicEntry.h"
 
