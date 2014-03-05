@@ -86,6 +86,12 @@ BOOL SFCustomHandler::Install()
 	return TRUE;
 }
 
+#ifdef _WIN64
+unsigned __stdcall SFCustomHandler::ProcessException(void* pArg)
+{
+	return 0;
+}
+#else
 unsigned __stdcall SFCustomHandler::ProcessException(void* pArg)
 {
 	PEXCEPTION_POINTERS pExceptionInfo = (PEXCEPTION_POINTERS)(pArg);
@@ -192,6 +198,7 @@ unsigned __stdcall SFCustomHandler::ProcessException(void* pArg)
 
 	return NULL;
 }
+#endif
 
 LONG WINAPI SFCustomHandler::CustomExceptionFilter(PEXCEPTION_POINTERS pExceptionInfo)
 {	

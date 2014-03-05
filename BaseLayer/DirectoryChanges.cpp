@@ -1576,7 +1576,7 @@ UINT CDirectoryChangeWatcher::MonitorDirectoryChanges(LPVOID lpvThis)
         // through the io port's completion key
         if( !GetQueuedCompletionStatus( pThis->m_hCompPort,
                                    &numBytes,
-                                   (LPDWORD) &pdi,//<-- completion Key
+								   (PULONG_PTR)&pdi,//<-- completion Key
                                    &lpOverlapped,
                                    INFINITE) )
 		{//The io completion request failed...

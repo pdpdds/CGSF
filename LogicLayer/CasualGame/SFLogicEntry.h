@@ -4,7 +4,7 @@
 #include "ILogicEntry.h"
 #include "SFDataBaseProxy.h"
 #include "SFDirectoryWatcherTask.h"
-#include "SFPacketStore.pb.h"
+#include <SFPacketStore/SFPacketStore.pb.h>
 #include "SFRoomManager.h"
 #include "SFLobby.h"
 #include "SFRoomFSM.h"

@@ -1,8 +1,8 @@
 #ifndef __P2PMANAGER_H__
 #define __P2PMANAGER_H__
 #include "P2PClient.h"
-#include "IP2PManager.h"
-#include "liblfds.h"
+#include <EngineInterface/IP2PManager.h>
+#include "liblfds611.h"
 
 class IUDPNetworkCallback;
 class CPuPeers;
@@ -35,7 +35,7 @@ protected:
 
 private:
 	SOCKADDR_IN m_sinLocal;
-	struct queue_state* m_pQueue;
+	struct lfds611_queue_state* m_pQueue;
 
 ///////////////////////////////////////////////////////////////////////////////////////
 	BOOL PushPacket(BYTE* pData, int Length);

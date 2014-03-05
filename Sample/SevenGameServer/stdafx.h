@@ -14,9 +14,11 @@
 // TODO: reference additional headers your program requires here
 ///////////////////////////////////////////////////////////////////////////////////
 #include <windows.h>
-#include "SFPacketStore.pb.h"
-#include "SevenGamePacket.pb.h"
-#include "PacketID.h"
+#include <SFPacketStore/SFPacketStore.pb.h>
+#include <SFPacketStore/SevenGamePacket.pb.h>
+#include <SFPacketStore/PacketID.h>
+#include <SFPacketStore/SevenGamePacketID.h>
+
 #ifdef _DEBUG
 #pragma comment(lib, "aced.lib")
 #else
@@ -33,4 +35,3 @@
 #pragma comment(lib, "libglog.lib")
 
 #include "Define.h"
-#include "SevenGamePacketID.h"

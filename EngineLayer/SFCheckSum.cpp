@@ -4,8 +4,6 @@
 #include "stdafx.h"
 #include <crtdbg.h>
 
-#include "SFChecksum.h"
-
 namespace Private 
 {
 #define MAKEQWORD(a, b)	\
@@ -288,102 +286,6 @@ DWORD SFChecksum::FromFileFilemap(LPCWSTR filename, DWORD &dwCrc32)
 
 	if(hFile != NULL) CloseHandle(hFile);
 	if(hFilemap != NULL) CloseHandle(hFilemap);
-
-	dwCrc32 = ~dwCrc32;
-
-	return dwErrorCode;
-}
-
-DWORD SFChecksum::FromFileAssembly(LPCWSTR filename, DWORD &dwCrc32)
-{
-	_ASSERTE(filename);
-	_ASSERTE(lstrlenW(filename));
-
-	DWORD dwErrorCode = NO_ERROR;
-	HANDLE hFile = NULL;
-
-	dwCrc32 = 0xFFFFFFFF;
-
-	try
-	{
-		// Open the file
-		hFile = CreateFileW(filename,
-			GENERIC_READ,
-			FILE_SHARE_READ,
-			NULL,
-			OPEN_EXISTING,
-			FILE_ATTRIBUTE_ARCHIVE | FILE_ATTRIBUTE_HIDDEN | FILE_ATTRIBUTE_READONLY | FILE_ATTRIBUTE_SYSTEM | FILE_FLAG_SEQUENTIAL_SCAN,
-			NULL);
-		if(hFile == INVALID_HANDLE_VALUE)
-			dwErrorCode = GetLastError();
-		else
-		{
-			// There is a bug in the Microsoft compilers where inline assembly
-			// code cannot access static member variables.  This is a work around
-			// for that bug.  For more info see Knowledgebase article Q88092
-			LPVOID ptrCrc32Table = &Private::s_arrdwCrc32Table;
-
-			BYTE buffer[MAX_BUFFER_SIZE];
-			DWORD dwBytesRead;
-			BOOL bSuccess = ReadFile(hFile, buffer, sizeof(buffer), &dwBytesRead, NULL);
-			while (bSuccess && dwBytesRead)
-			{
-				// Register use:
-				//		eax - CRC32 value
-				//		ebx - a lot of things
-				//		ecx - CRC32 value
-				//		edx - address of end of buffer
-				//		esi - address of start of buffer
-				//		edi - CRC32 table
-				__asm
-				{
-					// Save the esi and edi registers
-					push esi
-						push edi
-
-						mov eax, dwCrc32			// Load the pointer to dwCrc32
-						mov ecx, [eax]				// Dereference the pointer to load dwCrc32
-
-					mov edi, ptrCrc32Table		// Load the CRC32 table
-
-						lea esi, buffer				// Load buffer
-						mov ebx, dwBytesRead		// Load dwBytesRead
-						lea edx, [esi + ebx]		// Calculate the end of the buffer
-
-crc32loop:
-					xor eax, eax				// Clear the eax register
-						mov bl, byte ptr [esi]		// Load the current source byte
-
-					mov al, cl					// Copy crc value into eax
-						inc esi						// Advance the source pointer
-
-						xor al, bl					// Create the index into the CRC32 table
-						shr ecx, 8
-
-						mov ebx, [edi + eax * 4]	// Get the value out of the table
-					xor ecx, ebx				// xor with the current byte
-
-						cmp edx, esi				// Have we reached the end of the buffer?
-						jne crc32loop
-
-						// Restore the edi and esi registers
-						pop edi
-						pop esi
-
-						mov eax, dwCrc32			// Load the pointer to dwCrc32
-						mov [eax], ecx				// Write the result
-				}
-				bSuccess = ReadFile(hFile, buffer, sizeof(buffer), &dwBytesRead, NULL);
-			}
-		}
-	}
-	catch (...)
-	{
-		// An unknown exception happened
-		dwErrorCode = ERROR_CRC;
-	}
-
-	if(hFile != NULL) CloseHandle(hFile);
 
 	dwCrc32 = ~dwCrc32;
 

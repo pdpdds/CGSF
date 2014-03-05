@@ -108,9 +108,6 @@
     <ClCompile Include="SGStateStart.cpp">
       <Filter>GameState</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\..\..\Dev\CGSFFinal\Common\SFPacketStore\SevenGamePacket.pb.cc">
-      <Filter>Network</Filter>
-    </ClCompile>
     <ClCompile Include="SevenGameMain.cpp">
       <Filter>Network</Filter>
     </ClCompile>
@@ -167,6 +164,9 @@
     </ClCompile>
     <ClCompile Include="..\Vendor\DXUtil\TextBoxCtrl.cpp">
       <Filter>DXUtil</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Common\SFPacketStore\SevenGamePacket.pb.cc">
+      <Filter>Network</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -263,12 +263,6 @@
     <ClInclude Include="SGStateStart.h">
       <Filter>GameState</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\..\..\Dev\CGSFFinal\Common\SFPacketStore\SevenGamePacketID.h">
-      <Filter>Network</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\..\..\Dev\CGSFFinal\Common\SFPacketStore\SevenGamePacket.pb.h">
-      <Filter>Network</Filter>
-    </ClInclude>
     <ClInclude Include="SevenGameMain.h">
       <Filter>Network</Filter>
     </ClInclude>
@@ -331,6 +325,12 @@
     </ClInclude>
     <ClInclude Include="..\Vendor\DXUtil\TextBoxCtrl.h">
       <Filter>DXUtil</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Common\SFPacketStore\SevenGamePacket.pb.h">
+      <Filter>Network</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Common\SFPacketStore\SevenGamePacketID.h">
+      <Filter>Network</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

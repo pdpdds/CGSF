@@ -4,8 +4,8 @@
 #include "DirectXSystem.h"
 #include "DXUT.h"
 #include "BasePacket.h"
-#include "SevenGamePacketID.h"
-#include "SevenGamePacket.pb.h"
+#include <SFPacketStore/SevenGamePacketID.h>
+#include <SFPacketStore/SevenGamePacket.pb.h>
 #include "SFProtobufPacket.h"
 #include "SGUser.h"
 #include "SGTable.h"

@@ -57,12 +57,9 @@ public:
 	inline SFString& SFString::operator= (SFString& sData)
 	{
 		if(GetStringLength() != sData.GetStringLength())
-		{
-			__asm
-			{
-				int 3
-			}
-
+		{			
+			SFASSERT(0);
+			
 			return *this;
 		}
 

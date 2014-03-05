@@ -15,6 +15,7 @@ char g_pSetUnhandledFilterEntryValue[5] = {0,};
 //MyDummySetUnhandledExceptionFilter가 호출되게 하고 이 함수에서는 어떠한 처리도 수행하지 않음
 //결과적으로 CRT 함수 등의 set_invalid_parameter나 pure_function_call을 따로 구현해 줄 필요가 없게 된다.
 ////////////////////////////////////////////////////////////////////////////////////////
+#ifndef _WIN64
 #ifndef _M_IX86
 #error "The following code only works for x86!"
 #endif
@@ -23,6 +24,7 @@ LPTOP_LEVEL_EXCEPTION_FILTER WINAPI MyDummySetUnhandledExceptionFilter(
 {
 	return NULL;
 }
+#endif
 
 BOOL PreventSetUnhandledExceptionFilter()
 {

@@ -1,6 +1,5 @@
 #pragma once
-//#include <d3dx9math.h>
-#include "IUDPNetworkCallback.h"
+#include <EngineInterface/IUDPNetworkCallback.h>
 
 class UDPCallback : public IUDPNetworkCallback
 {

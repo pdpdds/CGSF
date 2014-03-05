@@ -1,11 +1,11 @@
 #include "stdafx.h"
 #include "CasualGameProtocol.h"
 #include "SFProtobufPacket.h"
-#include "PacketID.h"
-#include "SevenGamePacketID.h"
-#include "PacketCore.pb.h"
-#include "SFPacketStore.pb.h"
-#include "SevenGamePacket.pb.h"
+#include <SFPacketStore/PacketID.h>
+#include <SFPacketStore/SFPacketStore.pb.h>
+#include <SFPacketStore/SevenGamePacketID.h>
+#include <SFPacketStore/PacketCore.pb.h>
+#include <SFPacketStore/SevenGamePacket.pb.h>
 
 CasualGameProtocol::CasualGameProtocol(void)
 {

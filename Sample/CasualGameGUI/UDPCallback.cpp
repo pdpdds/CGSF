@@ -1,10 +1,10 @@
 #include "stdafx.h"
 #include "UDPCallback.h"
-#include "PacketID.h"
 #include "GamePacketStructure.h"
 #include "SFConstant.h"
 #include "SFStructure.h"
-#include "SFPacketStore.pb.h"
+#include <SFPacketStore/PacketID.h>
+#include <SFPacketStore/SFPacketStore.pb.h>
 #include "BasePacket.h"
 #include "SFProtobufPacket.h"
 #include "CasualGameManager.h"

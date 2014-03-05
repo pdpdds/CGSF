@@ -13,7 +13,7 @@
 #include "CommonHeader.h"
 
 #include <windows.h>
-#include "SFPacketStore.pb.h"
+#include <SFPacketStore/SFPacketStore.pb.h>
 
 #ifdef _DEBUG
 #pragma comment(lib, "aced.lib")

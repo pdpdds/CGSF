@@ -15,7 +15,7 @@ public:
 	static unsigned int MakeBuffer( const JsonObjectNode& node, char* buffer, unsigned int bufferLen );
 
 protected:
-	bool AddBuffer(const char* buffer, size_t bufferLen);
+	bool AddBuffer(const char* buffer, unsigned int bufferLen);
 
 private:
 	char*		m_bufferPtr;

@@ -2,14 +2,14 @@
 #include "TCPCallback.h"
 #include "SFNetworkEntry.h"
 #include "BasePacket.h"
-#include "PacketID.h"
 #include <string>
 #include <google/protobuf/io/zero_copy_stream_impl_lite.h>
-#include "SFPacketStore.pb.h"
 #include "SFProtobufPacket.h"
 #include "CasualGameManager.h"
 #include "CasualGameGUI.h"
 #include "NetworkSystem.h"
+#include <SFPacketStore/PacketID.h>
+#include <SFPacketStore/SFPacketStore.pb.h>
 
 
 extern SFNetworkEntry* g_pNetworkEntry;

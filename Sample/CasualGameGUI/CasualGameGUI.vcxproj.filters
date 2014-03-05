@@ -45,12 +45,6 @@
     <ClInclude Include="CasualGameGUI.h">
       <Filter>Source Files</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\..\..\Dev\CGSFFinal\Common\SFPacketStore\PacketCore.pb.h">
-      <Filter>Source Files</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\..\..\Dev\CGSFFinal\Common\SFPacketStore\SFPacketStore.pb.h">
-      <Filter>Source Files</Filter>
-    </ClInclude>
     <ClInclude Include="NetworkSystem.h">
       <Filter>Source Files</Filter>
     </ClInclude>
@@ -78,13 +72,19 @@
     <ClInclude Include="GUILoading.h">
       <Filter>Source Files</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\..\..\Dev\CGSFFinal\Common\SFPacketStore\SevenGamePacket.pb.h">
-      <Filter>Source Files</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\..\..\Dev\CGSFFinal\Common\SFPacketStore\SevenGamePacketID.h">
-      <Filter>Source Files</Filter>
-    </ClInclude>
     <ClInclude Include="CasualGameProtocol.h">
+      <Filter>Source Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Common\SFPacketStore\SevenGamePacket.pb.h">
+      <Filter>Source Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Common\SFPacketStore\SevenGamePacketID.h">
+      <Filter>Source Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Common\SFPacketStore\SFPacketStore.pb.h">
+      <Filter>Source Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Common\SFPacketStore\PacketCore.pb.h">
       <Filter>Source Files</Filter>
     </ClInclude>
   </ItemGroup>
@@ -108,12 +108,6 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="GUIRoom.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\..\..\Dev\CGSFFinal\Common\SFPacketStore\PacketCore.pb.cc">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\..\..\Dev\CGSFFinal\Common\SFPacketStore\SFPacketStore.pb.cc">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="GUIMessageBox.cpp">
@@ -140,10 +134,16 @@
     <ClCompile Include="GUILoading.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\..\..\Dev\CGSFFinal\Common\SFPacketStore\SevenGamePacket.pb.cc">
+    <ClCompile Include="CasualGameProtocol.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="CasualGameProtocol.cpp">
+    <ClCompile Include="..\..\Common\SFPacketStore\SevenGamePacket.pb.cc">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Common\SFPacketStore\SFPacketStore.pb.cc">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Common\SFPacketStore\PacketCore.pb.cc">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>

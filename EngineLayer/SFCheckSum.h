@@ -53,12 +53,4 @@ public:
 	*/
 
 	static DWORD FromFileFilemap(LPCWSTR filename, DWORD &dwCrc32);
-
-	/**
-	* @brief		Assembly 를 이용해 체크섬을 구한다.
-	* @param filename	파일명
-	* @param &dwCrc32  CRC의 값
-	* @return			성공여부 성공시 NO_ERROR 리턴
-	*/
-	static DWORD FromFileAssembly(LPCWSTR filename, DWORD &dwCrc32);
 };

@@ -255,6 +255,8 @@ bool __cdecl CPUInfo::DoesCPUSupportCPUID ()
 {
 	int CPUIDPresent = 0;
 
+#ifndef	_WIN64
+
 #ifdef _WIN32 
 	
 	// Use SEH to determine CPUID presence
@@ -416,15 +418,16 @@ bool __cdecl CPUInfo::RetrieveCPUFeatures ()
 			Features.ExtendedFeatures.APIC_ID = ((CPUAdvanced & 0xFF000000) >> 24);
 		}
 	}
+#endif
 
 	return true;
 }
 
 bool __cdecl CPUInfo::RetrieveCPUIdentity ()
 {
+#ifndef _WIN64
 	int CPUVendor[3];
 	int CPUSignature;
-
 	// Use assembly to detect CPUID information...
 	__try {
 		_asm {
@@ -497,6 +500,9 @@ bool __cdecl CPUInfo::RetrieveCPUIdentity ()
 	ChipID.Family =				((CPUSignature & 0x00000F00) >> 8);		// Bits 11..8 Used
 	ChipID.Model =				((CPUSignature & 0x000000F0) >> 4);		// Bits 7..4 Used
 	ChipID.Revision =			((CPUSignature & 0x0000000F) >> 0);		// Bits 3..0 Used
+#else
+	return FALSE;
+#endif
 
 	return true;
 }
@@ -506,6 +512,7 @@ bool __cdecl CPUInfo::RetrieveCPUCacheDetails ()
 	int L1Cache[4] = { 0, 0, 0, 0 };
 	int L2Cache[4] = { 0, 0, 0, 0 };
 
+#ifndef _WIN64
 	// Check to see if what we are about to do is supported...
 	if (RetrieveCPUExtendedLevelSupport (0x80000005)) {
 		// Use assembly to retrieve the L1 cache information ...
@@ -771,7 +778,9 @@ bool __cdecl CPUInfo::RetrieveClassicalCPUCacheDetails ()
 	// Ok - we now have the maximum TLB, L1, L2, and L3 sizes...
 	if (L3Unified == -1) Features.L3CacheSize = -1;
 	else Features.L3CacheSize = L3Unified;
-
+#else
+	return false;
+#endif
 	return true;
 }
 
@@ -792,6 +801,7 @@ bool __cdecl CPUInfo::RetrieveCPUClockSpeed ()
 
 bool __cdecl CPUInfo::RetrieveClassicalCPUClockSpeed ()
 {
+#ifndef _WIN64
 	LARGE_INTEGER liStart, liEnd, liCountsPerSecond;
 	double dFrequency, dDifference;
 
@@ -835,12 +845,15 @@ bool __cdecl CPUInfo::RetrieveClassicalCPUClockSpeed ()
 	
 	// Save the clock speed.
 	Features.CPUSpeed = (int) dFrequency;
-
+#else
+	return false;
+#endif
 	return true;
 }
 
 bool __cdecl CPUInfo::RetrieveCPUExtendedLevelSupport (int CPULevelToCheck)
 {
+#ifndef _WIN64
 	int MaxCPUExtendedLevel = 0;
 
 	// The extended CPUID is supported by various vendors starting with the following CPU models: 
@@ -910,12 +923,15 @@ bool __cdecl CPUInfo::RetrieveCPUExtendedLevelSupport (int CPULevelToCheck)
 
 	// Check to see if the level provided is supported...
 	if (nLevelWanted > nLevelReturn) return false;
-
+#else
+	return false;
+#endif
 	return true;
 }
 
 bool __cdecl CPUInfo::RetrieveExtendedCPUFeatures ()
 {
+#ifndef _WIN64
 	int CPUExtendedFeatures = 0;
 
 	// Check that we are not using an Intel processor as it does not support this.
@@ -973,12 +989,15 @@ bool __cdecl CPUInfo::RetrieveExtendedCPUFeatures ()
 	if (ChipManufacturer == Cyrix) {
 		Features.ExtendedFeatures.HasMMXPlus =	((CPUExtendedFeatures &	0x01000000) != 0);	// Cyrix specific: Extended MMX --> Bit 24
 	}
-
+#else
+	return false;
+#endif
 	return true;
 }
 
 bool __cdecl CPUInfo::RetrieveProcessorSerialNumber ()
 {
+#ifndef _WIN64
 	int SerialNumber[3];
 
 	// Check to see if the processor supports the processor serial number.
@@ -1187,6 +1206,9 @@ bool __cdecl CPUInfo::RetrieveExtendedCPUIdentity ()
 		// Now move the name forward so that there is no white space.
 		memmove (ChipID.ProcessorName, &(ChipID.ProcessorName[ProcessorNameStartPos]), (CHIPNAME_STRING_LENGTH - ProcessorNameStartPos));
 	}
+#else
+	return false;
+#endif
 
 	return true;
 }
@@ -1474,6 +1496,7 @@ CPUSpeed::~CPUSpeed ()
 
 __int64	__cdecl CPUSpeed::GetCyclesDifference (DELAY_FUNC DelayFunction, unsigned int uiParameter)
 {
+#ifndef _WIN64
 	unsigned int edx1, eax1;
 	unsigned int edx2, eax2;
 		
@@ -1506,8 +1529,12 @@ __int64	__cdecl CPUSpeed::GetCyclesDifference (DELAY_FUNC DelayFunction, unsigne
 	__except (1) {
 		return -1;
 	}
+	return (CPUSPEED_I32TO64(edx2, eax2) - CPUSPEED_I32TO64(edx1, eax1));
+#else
+	return 0;
+#endif
 
-	return (CPUSPEED_I32TO64 (edx2, eax2) - CPUSPEED_I32TO64 (edx1, eax1));
+	
 }
 
 void CPUSpeed::Delay (unsigned int uiMS)

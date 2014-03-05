@@ -262,7 +262,7 @@ BOOL SFStatement::_BindParam (SQLPOINTER pValue,
 										  0, 
 										  m_arrayParamData[m_usBindParam], 
 										  uLen, 
-										  &(m_arrayParamInd[m_usBindParam]));
+										  (SQLLEN*)&(m_arrayParamInd[m_usBindParam]));
 		m_usBindParam++;
 	}
 
@@ -358,7 +358,7 @@ BOOL SFStatement::_BindCol(SQLPOINTER pValue, SQLSMALLINT sValueType, SQLUINTEGE
 	m_sqlReturn = ::SQLBindCol (m_hStmt, 
 		                        m_usBindCol + 1,
 								sValueType,
-								m_arrayColData[m_usBindCol], uLen, &(m_arrayColInd[m_usBindCol]));
+								m_arrayColData[m_usBindCol], uLen, (SQLLEN*)&(m_arrayColInd[m_usBindCol]));
 	m_usBindCol++;
 
 	return SH_SQL_SUCCESS(m_sqlReturn);							  
@@ -641,7 +641,7 @@ int SFQuery::RowCount()
 		return FALSE;
 
 	SQLINTEGER nCount;
-	SQLRETURN sqlReturn = ::SQLRowCount(m_pStatement->GetHandle(), &nCount);
+	SQLRETURN sqlReturn = ::SQLRowCount(m_pStatement->GetHandle(), (SQLLEN*)&nCount);
 
 	m_pStatement->_SetError(sqlReturn);
 

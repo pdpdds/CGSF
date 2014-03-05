@@ -2,21 +2,21 @@
 #include "AllOcfClient.h"
 #include "PuPeers.h"
 #include "P2PManager.h"
-#include "IUDPNetworkCallback.h"
+#include <EngineInterface/IUDPNetworkCallback.h>
 #include <crtdbg.h>
 #include <assert.h>
 #include "P2PData.h"
 
-#pragma comment(lib, "liblfds.lib")
+#pragma comment(lib, "liblfds611.lib")
 
 P2PManager::P2PManager(void)
 {	
-	queue_new(&m_pQueue, 1000);
+	lfds611_queue_new(&m_pQueue, 1000);
 }
 
 P2PManager::~P2PManager(void)
 {
-	queue_delete(m_pQueue, NULL, NULL);
+	lfds611_queue_delete(m_pQueue, NULL, NULL);
 }
 
 BOOL P2PManager::RunP2P(char* szIP, unsigned short Port)
@@ -154,7 +154,7 @@ BOOL P2PManager::Update()
 {
 	P2PData* pP2PData = NULL;
 
-	while (queue_dequeue(m_pQueue,  (void**)&pP2PData))
+	while (lfds611_queue_dequeue(m_pQueue, (void**)&pP2PData))
 	{
 		m_pUDPCallback->HandleUDPNetworkMessage(pP2PData->GetData(), pP2PData->GetDataSize());
 		delete pP2PData;
@@ -194,6 +194,6 @@ BOOL P2PManager::PushPacket(BYTE* pData, int Length)
 	P2PData* pP2PData = new P2PData();
 	pP2PData->Write(pData, Length);
 
-	queue_guaranteed_enqueue(m_pQueue, pP2PData);
+	lfds611_queue_guaranteed_enqueue(m_pQueue, pP2PData);
 	return TRUE;
 }

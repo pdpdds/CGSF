@@ -1,9 +1,9 @@
 #pragma once
-#include "tinyxml.h"
-#include "IXMLStreamReader.h"
-#include "IXMLStreamWriter.h"
-#include "SFXMLStreamWriter.h"
-#include "SFXMLStreamReader.h"
+#include <xml/tinyxml.h>
+#include <xml/IXMLStreamReader.h>
+#include <xml/IXMLStreamWriter.h>
+#include <xml/SFXMLStreamWriter.h>
+#include <xml/SFXMLStreamReader.h>
 
 //////////////////////////////////////////////////////////////
 //Shouter Structure
