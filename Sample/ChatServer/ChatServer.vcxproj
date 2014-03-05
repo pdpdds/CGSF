@@ -47,7 +47,7 @@
     <TargetName>$(ProjectName)</TargetName>
     <TargetExt>.exe</TargetExt>
     <LinkIncremental>true</LinkIncremental>
-    <LibraryPath>$(LibraryPath)</LibraryPath>
+    <LibraryPath>D:\Library\protobuf-2.5.0\vsprojects\Debug;D:\Library\glog-0.3.3\Debug;D:\Library\google-breakpad\src\client\windows\Debug\lib;$(LibraryPath)</LibraryPath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <OutDir>$(SolutionDir)\Bin32\</OutDir>
