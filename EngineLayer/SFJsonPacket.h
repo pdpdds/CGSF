@@ -1,5 +1,5 @@
 #pragma once
-#include "jsonnode.h"
+#include <json/jsonnode.h>
 
 class SFJsonPacket : public BasePacket
 {

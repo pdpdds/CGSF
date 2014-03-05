@@ -1,5 +1,5 @@
 #pragma once
-#include "IPacketProtocol.h"
+#include "EngineInterface/IPacketProtocol.h"
 #include "SFChecksum.h"
 #include "SFPacketIOBuffer.h"
 #include "SFEncryption.h"
