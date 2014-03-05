@@ -1,6 +1,5 @@
 #include "StdAfx.h"
 #include "SFPlayerRoom.h"
-#include "PacketID.h"
 #include "DBMsg.h"
 #include "SFRoomManager.h"
 #include "SFPlayer.h"

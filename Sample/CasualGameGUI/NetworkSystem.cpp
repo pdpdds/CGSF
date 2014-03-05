@@ -18,7 +18,7 @@ NetworkSystem::~NetworkSystem(void)
 {
 }
 
-bool NetworkSystem::Intialize(CasualGameManager* pOwner)
+bool NetworkSystem::Intialize(CasualGameManager* pOwner, IPacketProtocol* pProtocol)
 {
 	g_pNetworkEntry = new SFNetworkEntry();
 
@@ -27,7 +27,6 @@ bool NetworkSystem::Intialize(CasualGameManager* pOwner)
 
 	g_pNetworkEntry->Initialize(pCallback, pUDPCallback);
 
-	IPacketProtocol* pProtocol = new SFPacketProtocol<CasualGameProtocol>;
 	g_pNetworkEntry->SetPacketProtocol(pProtocol);
 
 	ILogicDispatcher* pDispatcher = new SFCasualGameDispatcher();

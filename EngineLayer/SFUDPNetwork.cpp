@@ -1,9 +1,8 @@
 #include "stdafx.h"
 #include "SFUDPNetwork.h"
-#include "PuPeers.h"
-#include "P2PClient.h"
-#include "P2PManager.h"
-#include <windows.h>
+#include <P2PClient/PuPeers.h>
+#include <P2PClient/P2PClient.h>
+#include <P2PClient/P2PManager.h>
 
 HINSTANCE g_pP2PHandle = 0;
 

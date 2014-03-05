@@ -26,6 +26,8 @@
 #include "DXUTRes.h"
 #include "CasualGameManager.h"
 #include "SevenGameMain.h"
+#include "SevenGameProtocol.h"
+#include "SFPacketProtocol.h"
 
 CDXUTDialogResourceManager  g_DialogResourceManager; // manager for shared resources of dialogs
 CModelViewerCamera      g_Camera;
@@ -38,11 +40,9 @@ Camera TheCamera(Camera::AIRCRAFT);
 CasualGameManager* g_pCasualGameManager = 0;
 
 #ifdef _DEBUG
-#pragma comment(lib, "aced.lib")
 #pragma comment(lib, "CEGUIBase-0_d.lib")
 #pragma comment(lib, "CEGUIDirect3D9Renderer-0_d.lib")
 #else
-#pragma comment(lib, "ace.lib")
 #pragma comment(lib, "CEGUIBase-0.lib")
 #pragma comment(lib, "CEGUIDirect3D9Renderer-0.lib")
 #endif
@@ -73,7 +73,8 @@ bool Setup()
 	g_pGameMain = new SevenGameMain();
 	g_pCasualGameManager = new CasualGameManager();
 	
-	g_pCasualGameManager->Initialize(CDirectXSystem::GetInstance()->GetD3DDevice());
+	IPacketProtocol* pProtocol = new SFPacketProtocol<SevenGameProtocol>;
+	g_pCasualGameManager->Initialize(CDirectXSystem::GetInstance()->GetD3DDevice(), pProtocol);
 
 	return true;
 }

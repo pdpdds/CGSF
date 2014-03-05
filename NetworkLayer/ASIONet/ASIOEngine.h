@@ -1,5 +1,5 @@
 #pragma once
-#include "INetworkEngine.h"
+#include <EngineInterface/INetworkEngine.h>
 #include "ChattingServer.h"
 #include "ChattingClient.h"
 

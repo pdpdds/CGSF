@@ -1,9 +1,9 @@
 #include "stdafx.h"
 #include "SFGameProtocol.h"
 #include "SFProtobufPacket.h"
-#include "PacketID.h"
-#include "PacketCore.pb.h"
-#include "SFPacketStore.pb.h"
+#include <SFPacketStore/PacketCore.pb.h>
+#include <SFPacketStore/PacketID.h>
+#include <SFPacketStore/SFPacketStore.pb.h>
 
 SFGameProtocol::SFGameProtocol(void)
 {
@@ -16,52 +16,12 @@ SFGameProtocol::~SFGameProtocol(void)
 
 BasePacket* SFGameProtocol::CreateIncomingPacketFromPacketId( int PacketId )
 {
+	BasePacket* pPacket = CasualGameProtocol::CreateIncomingPacketFromPacketId(PacketId);
+	if (pPacket != NULL)
+		return pPacket;
+
 	switch (PacketId)
 	{
-	case CGSF::Auth:
-		return new SFProtobufPacket<PacketCore::Auth>(PacketId);
-		break;
-
-	case CGSF::LoginSuccess:
-		return new SFProtobufPacket<SFPacketStore::LoginSuccess>(PacketId);
-		break;
-
-	case CGSF::LoginFail:
-		return new SFProtobufPacket<SFPacketStore::LoginFail>(PacketId);
-		break;
-
-	case CGSF::EnterLobby:
-		return new SFProtobufPacket<SFPacketStore::EnterLobby>(PacketId);
-		break;
-
-	case CGSF::ChatRes:
-		return new SFProtobufPacket<SFPacketStore::ChatRes>(PacketId);
-		break;
-
-	case CGSF::CreateRoom:
-		return new SFProtobufPacket<SFPacketStore::CreateRoom>(PacketId);
-		break;
-
-	case CGSF::EnterRoom:
-		return new SFProtobufPacket<SFPacketStore::EnterRoom>(PacketId);
-		break;
-
-	case CGSF::LeaveRoom:
-		return new SFProtobufPacket<SFPacketStore::LeaveRoom>(PacketId);
-		break;
-
-
-	case CGSF::LeaveTeamMember:
-		return new SFProtobufPacket<SFPacketStore::LeaveTeamMember>(PacketId);
-		break;
-
-	case CGSF::EnterTeamMember:
-		return new SFProtobufPacket<SFPacketStore::EnterTeamMember>(PacketId);
-		break;
-
-	case CGSF::LoadingStart:
-		return new SFProtobufPacket<SFPacketStore::LoadingStart>(PacketId);
-		break;
 
 	case CGSF::PeerList:
 			return new SFProtobufPacket<SFPacketStore::PeerList>(PacketId);

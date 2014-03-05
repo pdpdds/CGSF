@@ -4,7 +4,7 @@
 #include "MGServerReceiver.h"
 #include "MGClientReceiver.h"
 #include "Acceptor.h"
-#include "IEngine.h"
+#include <EngineInterface/IEngine.h>
 
 #pragma comment(lib, "ws2_32.lib")
 

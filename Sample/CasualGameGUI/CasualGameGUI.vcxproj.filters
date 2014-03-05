@@ -1,10 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup>
-    <Filter Include="Source Files">
-      <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
-      <Extensions>cpp;c;cc;cxx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
-    </Filter>
     <Filter Include="Header Files">
       <UniqueIdentifier>{93995380-89BD-4b04-88EB-625FBE52EBFB}</UniqueIdentifier>
       <Extensions>h;hpp;hxx;hm;inl;inc;xsd</Extensions>
@@ -13,138 +9,148 @@
       <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
       <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
     </Filter>
+    <Filter Include="Network">
+      <UniqueIdentifier>{5e4f210d-f4d9-4049-97d1-f9968d629c31}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="GUI">
+      <UniqueIdentifier>{5fda5b5b-d525-448a-96a1-c7c04874f6e7}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Entry">
+      <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
+      <Extensions>cpp;c;cc;cxx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <Text Include="ReadMe.txt" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="stdafx.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="targetver.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="GUIFSM.h">
-      <Filter>Source Files</Filter>
-    </ClInclude>
-    <ClInclude Include="GUIGame.h">
-      <Filter>Source Files</Filter>
-    </ClInclude>
-    <ClInclude Include="GUILobby.h">
-      <Filter>Source Files</Filter>
-    </ClInclude>
-    <ClInclude Include="GUIRoom.h">
-      <Filter>Source Files</Filter>
-    </ClInclude>
-    <ClInclude Include="GUIState.h">
-      <Filter>Source Files</Filter>
-    </ClInclude>
-    <ClInclude Include="GUILogin.h">
-      <Filter>Source Files</Filter>
-    </ClInclude>
-    <ClInclude Include="CasualGameGUI.h">
-      <Filter>Source Files</Filter>
-    </ClInclude>
-    <ClInclude Include="NetworkSystem.h">
-      <Filter>Source Files</Filter>
-    </ClInclude>
-    <ClInclude Include="GUIMessageBox.h">
-      <Filter>Source Files</Filter>
+    <ClInclude Include="CasualGameManager.h">
+      <Filter>Entry</Filter>
     </ClInclude>
     <ClInclude Include="UDPCallback.h">
-      <Filter>Source Files</Filter>
+      <Filter>Network</Filter>
     </ClInclude>
     <ClInclude Include="TCPCallback.h">
-      <Filter>Source Files</Filter>
-    </ClInclude>
-    <ClInclude Include="CasualGameManager.h">
-      <Filter>Source Files</Filter>
-    </ClInclude>
-    <ClInclude Include="GUIInit.h">
-      <Filter>Source Files</Filter>
-    </ClInclude>
-    <ClInclude Include="QuitMessageBox.h">
-      <Filter>Source Files</Filter>
-    </ClInclude>
-    <ClInclude Include="IGameMain.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="GUILoading.h">
-      <Filter>Source Files</Filter>
-    </ClInclude>
-    <ClInclude Include="CasualGameProtocol.h">
-      <Filter>Source Files</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\Common\SFPacketStore\SevenGamePacket.pb.h">
-      <Filter>Source Files</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\Common\SFPacketStore\SevenGamePacketID.h">
-      <Filter>Source Files</Filter>
+      <Filter>Network</Filter>
     </ClInclude>
     <ClInclude Include="..\..\Common\SFPacketStore\SFPacketStore.pb.h">
-      <Filter>Source Files</Filter>
+      <Filter>Network</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Common\SFPacketStore\SevenGamePacketID.h">
+      <Filter>Network</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Common\SFPacketStore\SevenGamePacket.pb.h">
+      <Filter>Network</Filter>
     </ClInclude>
     <ClInclude Include="..\..\Common\SFPacketStore\PacketCore.pb.h">
-      <Filter>Source Files</Filter>
+      <Filter>Network</Filter>
+    </ClInclude>
+    <ClInclude Include="NetworkSystem.h">
+      <Filter>Network</Filter>
+    </ClInclude>
+    <ClInclude Include="CasualGameProtocol.h">
+      <Filter>Network</Filter>
+    </ClInclude>
+    <ClInclude Include="QuitMessageBox.h">
+      <Filter>GUI</Filter>
+    </ClInclude>
+    <ClInclude Include="GUIFSM.h">
+      <Filter>GUI</Filter>
+    </ClInclude>
+    <ClInclude Include="GUIGame.h">
+      <Filter>GUI</Filter>
+    </ClInclude>
+    <ClInclude Include="GUIInit.h">
+      <Filter>GUI</Filter>
+    </ClInclude>
+    <ClInclude Include="GUILoading.h">
+      <Filter>GUI</Filter>
+    </ClInclude>
+    <ClInclude Include="GUILobby.h">
+      <Filter>GUI</Filter>
+    </ClInclude>
+    <ClInclude Include="GUILogin.h">
+      <Filter>GUI</Filter>
+    </ClInclude>
+    <ClInclude Include="GUIMessageBox.h">
+      <Filter>GUI</Filter>
+    </ClInclude>
+    <ClInclude Include="GUIRoom.h">
+      <Filter>GUI</Filter>
+    </ClInclude>
+    <ClInclude Include="GUIState.h">
+      <Filter>GUI</Filter>
+    </ClInclude>
+    <ClInclude Include="CasualGameGUI.h">
+      <Filter>GUI</Filter>
+    </ClInclude>
+    <ClInclude Include="targetver.h">
+      <Filter>Entry</Filter>
+    </ClInclude>
+    <ClInclude Include="stdafx.h">
+      <Filter>Entry</Filter>
+    </ClInclude>
+    <ClInclude Include="IGameMain.h">
+      <Filter>Entry</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="stdafx.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="CasualGameGUI.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="GUIFSM.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="GUIGame.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="GUILobby.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="GUILogin.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="GUIRoom.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="GUIMessageBox.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="NetworkSystem.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="TCPCallback.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="UDPCallback.cpp">
-      <Filter>Source Files</Filter>
+      <Filter>Entry</Filter>
     </ClCompile>
     <ClCompile Include="CasualGameManager.cpp">
-      <Filter>Source Files</Filter>
+      <Filter>Entry</Filter>
     </ClCompile>
-    <ClCompile Include="GUIInit.cpp">
-      <Filter>Source Files</Filter>
+    <ClCompile Include="TCPCallback.cpp">
+      <Filter>Network</Filter>
     </ClCompile>
-    <ClCompile Include="QuitMessageBox.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="GUILoading.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="CasualGameProtocol.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\Common\SFPacketStore\SevenGamePacket.pb.cc">
-      <Filter>Source Files</Filter>
+    <ClCompile Include="UDPCallback.cpp">
+      <Filter>Network</Filter>
     </ClCompile>
     <ClCompile Include="..\..\Common\SFPacketStore\SFPacketStore.pb.cc">
-      <Filter>Source Files</Filter>
+      <Filter>Network</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Common\SFPacketStore\SevenGamePacket.pb.cc">
+      <Filter>Network</Filter>
     </ClCompile>
     <ClCompile Include="..\..\Common\SFPacketStore\PacketCore.pb.cc">
-      <Filter>Source Files</Filter>
+      <Filter>Network</Filter>
+    </ClCompile>
+    <ClCompile Include="NetworkSystem.cpp">
+      <Filter>Network</Filter>
+    </ClCompile>
+    <ClCompile Include="CasualGameProtocol.cpp">
+      <Filter>Network</Filter>
+    </ClCompile>
+    <ClCompile Include="GUIFSM.cpp">
+      <Filter>GUI</Filter>
+    </ClCompile>
+    <ClCompile Include="GUIGame.cpp">
+      <Filter>GUI</Filter>
+    </ClCompile>
+    <ClCompile Include="GUIInit.cpp">
+      <Filter>GUI</Filter>
+    </ClCompile>
+    <ClCompile Include="GUILoading.cpp">
+      <Filter>GUI</Filter>
+    </ClCompile>
+    <ClCompile Include="GUILobby.cpp">
+      <Filter>GUI</Filter>
+    </ClCompile>
+    <ClCompile Include="GUILogin.cpp">
+      <Filter>GUI</Filter>
+    </ClCompile>
+    <ClCompile Include="GUIMessageBox.cpp">
+      <Filter>GUI</Filter>
+    </ClCompile>
+    <ClCompile Include="GUIRoom.cpp">
+      <Filter>GUI</Filter>
+    </ClCompile>
+    <ClCompile Include="QuitMessageBox.cpp">
+      <Filter>GUI</Filter>
+    </ClCompile>
+    <ClCompile Include="CasualGameGUI.cpp">
+      <Filter>GUI</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

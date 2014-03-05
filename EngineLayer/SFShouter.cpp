@@ -1,6 +1,6 @@
 #include "stdafx.h"
 #include "SFShouter.h"
-#include "SFXMLStreamWriter.h"
+#include <XML/SFXMLStreamWriter.h>
 
 SFShouter::SFShouter(void)
 {

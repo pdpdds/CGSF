@@ -71,7 +71,7 @@ INT_PTR DeviceEnumeration::Enumerate( IDirect3D9 *d3d )
 		}
 	}
 
-	return DialogBox( NULL, MAKEINTRESOURCE( IDD_GRAPHICS_SETTINGS ), NULL, SettingsDialogProcDirector );
+	return DialogBox(NULL, MAKEINTRESOURCE(IDD_GRAPHICS_SETTINGS), NULL, (DLGPROC)SettingsDialogProcDirector);
 }
 
 //-----------------------------------------------------------------------------

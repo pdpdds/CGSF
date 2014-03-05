@@ -14,14 +14,14 @@ CasualGameManager::~CasualGameManager(void)
 {
 }
 
-bool CasualGameManager::Initialize(LPDIRECT3DDEVICE9 pDevice)
+bool CasualGameManager::Initialize(LPDIRECT3DDEVICE9 pDevice, IPacketProtocol* pPacketProtocol)
 {
 	m_pNetworkSystem = new NetworkSystem();
 	m_pGUISystem = new CasualGameGUI();
 
 	m_pGUISystem->Create(pDevice);
 
-	if(false == m_pNetworkSystem->Intialize(this))
+	if (false == m_pNetworkSystem->Intialize(this, pPacketProtocol))
 	{
 		m_pGUISystem->QuitMessage("Network Intialize Fail!!");
 		return false;

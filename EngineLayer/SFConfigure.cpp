@@ -1,6 +1,6 @@
 #include "stdafx.h"
 #include "SFConfigure.h"
-#include "SFXMLStreamWriter.h"
+#include <XML/SFXMLStreamWriter.h>
 
 SFConfigure::SFConfigure(void)
 {

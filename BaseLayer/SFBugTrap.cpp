@@ -1,6 +1,6 @@
 #include "StdAfx.h"
 #include "SFBugTrap.h"
-#include "Bugtrap.h"
+#include <BugTrap/Bugtrap.h>
 #include <tchar.h>
 #include <new>
 #include "SFExceptionHandlerUtil.h"

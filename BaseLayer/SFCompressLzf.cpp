@@ -1,6 +1,6 @@
 #include "StdAfx.h"
 #include "SFCompressLzf.h"
-#include <lzf.h>
+#include <liblzf/lzf.h>
 
 SFCompressLzf::SFCompressLzf(void)
 {

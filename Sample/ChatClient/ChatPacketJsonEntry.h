@@ -1,6 +1,6 @@
 #pragma once
 #include "ILogicEntry.h"
-#include "VMemPool.h"
+#include <VMemPool/VMemPool.h>
 
 class BasePacket;
 

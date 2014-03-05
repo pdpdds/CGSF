@@ -17,10 +17,10 @@ public:
 	GameMaterial( char *name, char *path = "./" );
 	virtual ~GameMaterial();
 
-	Sound *GetStepSound();
+//	Sound *GetStepSound();
 
 private:
-	LinkedList< Sound > *m_stepSounds;
+//	LinkedList< Sound > *m_stepSounds;
 };
 
 #endif

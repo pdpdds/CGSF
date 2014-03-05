@@ -6,13 +6,12 @@
 // Copyright (c) 2004 Vaughan Young
 //-----------------------------------------------------------------------------
 #include "FPSMain.h"
-#include "PacketID.h"
 #include "CasualGameManager.h"
 #include "NetworkSystem.h"
-#include "PacketID.h"
-#include "SFProtobufPacket.h"
-#include "SFPacketStore.pb.h"
-#include "BasePacket.h"
+#include <SFPacketStore/PacketID.h>
+#include <SFProtobufPacket.h>
+#include <SFPacketStore/SFPacketStore.pb.h>
+#include <BasePacket.h>
 
 extern CasualGameManager* g_pCasualGameManager;
 

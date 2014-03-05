@@ -1,6 +1,6 @@
 #include "StdAfx.h"
 #include "SFMSSQL.h"
-#include "StringConversion.h"
+#include <XML/StringConversion.h>
 
 SFMSSQL::SFMSSQL(void)
 {

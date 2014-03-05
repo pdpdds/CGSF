@@ -7,16 +7,14 @@
 //-----------------------------------------------------------------------------
 #include "FPSMain.h"
 #include "GamePacketStructure.h"
-#include "PacketID.h"
 #include <Windows.h>
-#include "SFPacketStore.pb.h"
+#include <SFPacketStore/PacketID.h>
+#include <SFPacketStore/SFPacketStore.pb.h>
 #include "BasePacket.h"
 #include "SFProtobufPacket.h"
 #include "PeerInfo.h"
-#include "PacketID.h"
 #include "CasualGameManager.h"
 #include "NetworkSystem.h"
-#include "PacketID.h"
 #include "BasePacket.h"
 
 extern CasualGameManager* g_pCasualGameManager;

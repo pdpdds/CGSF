@@ -51,8 +51,8 @@ Weapon::Weapon( Script *script, D3DXVECTOR3 viewWeaponOffset )
 	m_displayFlash = false;
 
 	// Load the shot sound and create an audio path for it.
-	m_shotSound = new Sound( script->GetStringData( "sound" ) );
-	m_shotAudioPath = new AudioPath3D;
+	//m_shotSound = new Sound( script->GetStringData( "sound" ) );
+	//m_shotAudioPath = new AudioPath3D;
 }
 
 //-----------------------------------------------------------------------------
@@ -71,8 +71,8 @@ Weapon::~Weapon()
 	SAFE_DELETE( m_flashes );
 
 	// Destroy the shot sound and its audio path.
-	SAFE_DELETE( m_shotSound );
-	SAFE_DELETE( m_shotAudioPath );
+//	SAFE_DELETE( m_shotSound );
+	//SAFE_DELETE( m_shotAudioPath );
 }
 
 //-----------------------------------------------------------------------------
@@ -138,11 +138,11 @@ void Weapon::Update( float elapsed, bool fire, SceneObject *parent, float viewPo
 			m_muzzelPoint += m_viewWeapon->GetTranslation();
 
 			// Set the shot audio path to use head realative mode.
-			m_shotAudioPath->SetMode( DS3DMODE_HEADRELATIVE );
+			//m_shotAudioPath->SetMode( DS3DMODE_HEADRELATIVE );
 
 			// Update the shot sound's audio path.
-			m_shotAudioPath->SetPosition( m_viewWeapon->GetMesh()->GetReferencePoint( "rp_sight" )->GetTranslation() );
-			m_shotAudioPath->SetVelocity( parent->GetVelocity() );
+			//m_shotAudioPath->SetPosition( m_viewWeapon->GetMesh()->GetReferencePoint( "rp_sight" )->GetTranslation() );
+			//m_shotAudioPath->SetVelocity( parent->GetVelocity() );
 		}
 		else
 		{
@@ -157,15 +157,15 @@ void Weapon::Update( float elapsed, bool fire, SceneObject *parent, float viewPo
 			D3DXVec3TransformCoord( &m_muzzelPoint, &m_muzzelPoint, &transform );
 
 			// Set the shot audio path to use normal mode.
-			m_shotAudioPath->SetMode( DS3DMODE_NORMAL );
+		//	m_shotAudioPath->SetMode( DS3DMODE_NORMAL );
 
 			// Update the shot sound's audio path.
-			m_shotAudioPath->SetPosition( m_muzzelPoint );
-			m_shotAudioPath->SetVelocity( parent->GetVelocity() );
+	//		m_shotAudioPath->SetPosition( m_muzzelPoint );
+	//		m_shotAudioPath->SetVelocity( parent->GetVelocity() );
 		}
 
 		// Play the shot sound.
-		m_shotAudioPath->Play( m_shotSound->GetSegment() );
+	//	m_shotAudioPath->Play( m_shotSound->GetSegment() );
 
 		// Add the new bullet to the bullet manager.
 		g_game->GetBulletManager()->AddBullet( parent, ( (PlayerObject*)parent )->GetEyePoint(), ( (PlayerObject*)parent )->GetForwardVector(), m_velocity, m_range, m_damage );

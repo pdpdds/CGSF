@@ -7,12 +7,11 @@
 //-----------------------------------------------------------------------------
 #include "FPSMain.h"
 #include "GamePacketStructure.h"
-#include "PacketID.h"
+#include <SFPacketStore/PacketID.h>
+#include <SFPacketStore/SFPacketStore.pb.h>
 #include "CasualGameManager.h"
 #include "NetworkSystem.h"
-#include "PacketID.h"
 #include "SFProtobufPacket.h"
-#include "SFPacketStore.pb.h"
 #include "BasePacket.h"
 
 extern CasualGameManager* g_pCasualGameManager;
@@ -124,8 +123,8 @@ PlayerObject::PlayerObject( PlayerInfo *player, Script *script, unsigned long ty
 	PlayAnimation( 0, 0.0f );
 
 	// Create the step sound audio paths.
-	m_leftStepAudioPath = new AudioPath3D;
-	m_rightStepAudioPath = new AudioPath3D;
+//	m_leftStepAudioPath = new AudioPath3D;
+//	m_rightStepAudioPath = new AudioPath3D;
 
 	// Set the friction on this object.
 	SetFriction( 8.0f );
@@ -203,10 +202,10 @@ void PlayerObject::Update( float elapsed, bool addVelocity )
 		Strafe( m_strafe * 4000.0f * elapsed );
 
 	// Update the step audio paths.
-	m_leftStepAudioPath->SetPosition( GetTranslation() + GetMesh()->GetReferencePoint( "rp_left_foot" )->GetTranslation() );
-	m_leftStepAudioPath->SetVelocity( GetVelocity() );
-	m_rightStepAudioPath->SetPosition( GetTranslation() + GetMesh()->GetReferencePoint( "rp_right_foot" )->GetTranslation() );
-	m_rightStepAudioPath->SetVelocity( GetVelocity() );
+//	m_leftStepAudioPath->SetPosition( GetTranslation() + GetMesh()->GetReferencePoint( "rp_left_foot" )->GetTranslation() );
+//	m_leftStepAudioPath->SetVelocity( GetVelocity() );
+//	m_rightStepAudioPath->SetPosition( GetTranslation() + GetMesh()->GetReferencePoint( "rp_right_foot" )->GetTranslation() );
+//	m_rightStepAudioPath->SetVelocity( GetVelocity() );
 
 	// Check if the player is changing their weapon (local player only).
 	static float move = 0.0f;
@@ -760,8 +759,8 @@ HRESULT CALLBACK PlayerObject::HandleCallback( THIS_ UINT Track, LPVOID pCallbac
 		// then play the material's step sound.
 		if( g_engine->GetSceneManager()->RayIntersectScene( &m_stepResult, GetTranslation() + GetMesh()->GetReferencePoint( "rp_left_foot" )->GetTranslation(), D3DXVECTOR3( 0.0f, -1.0f, 0.0f ) ) == true )
 		{
-			if( ( (GameMaterial*)m_stepResult.material )->GetStepSound() != NULL )
-				m_leftStepAudioPath->Play( ( (GameMaterial*)m_stepResult.material )->GetStepSound()->GetSegment() );
+			//if( ( (GameMaterial*)m_stepResult.material )->GetStepSound() != NULL )
+			//	m_leftStepAudioPath->Play( ( (GameMaterial*)m_stepResult.material )->GetStepSound()->GetSegment() );
 		}
 	}
 	else
@@ -773,8 +772,8 @@ HRESULT CALLBACK PlayerObject::HandleCallback( THIS_ UINT Track, LPVOID pCallbac
 		// then play the material's step sound.
 		if( g_engine->GetSceneManager()->RayIntersectScene( &m_stepResult, GetTranslation() + GetMesh()->GetReferencePoint( "rp_right_foot" )->GetTranslation(), D3DXVECTOR3( 0.0f, -1.0f, 0.0f ) ) == true )
 		{
-			if( ( (GameMaterial*)m_stepResult.material )->GetStepSound() != NULL )
-				m_rightStepAudioPath->Play( ( (GameMaterial*)m_stepResult.material )->GetStepSound()->GetSegment() );
+			//if( ( (GameMaterial*)m_stepResult.material )->GetStepSound() != NULL )
+			//	m_rightStepAudioPath->Play( ( (GameMaterial*)m_stepResult.material )->GetStepSound()->GetSegment() );
 		}
 	}
 

@@ -3,7 +3,7 @@
 #include "tchar.h"
 #include <process.h>
 #include "SFExceptionHandlerUtil.h"
-#include <exception_handler.h>
+#include <BreakPad/exception_handler.h>
 
 using namespace google_breakpad;
 

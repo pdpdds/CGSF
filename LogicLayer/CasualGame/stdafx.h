@@ -29,8 +29,9 @@
 #include "SFGameConstant.h"
 #include "SFStructure.h"
 #include "SFGameStructure.h"
-#include "SFPacketStore.pb.h"
-#include "PacketID.h"
+#include <SFPacketStore/SFPacketStore.pb.h>
+#include <SFPacketStore/PacketID.h>
+#include <SFPacketStore/PacketCore.pb.h>
 #include "SFMacro.h"
 #include "SFMessage.h"
 #include "SFSendPacket.h"

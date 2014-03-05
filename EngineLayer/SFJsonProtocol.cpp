@@ -1,9 +1,9 @@
 #include "stdafx.h"
 #include "SFJsonProtocol.h"
-#include "JsonNode.h"
+#include <Json/JsonNode.h>
+#include <EngineInterface/ISession.h>
 #include "SFJsonPacket.h"
 #include "SFProtocol.h"
-#include "ISession.h"
 
 SFJsonProtocol::SFJsonProtocol(void)
 {

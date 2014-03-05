@@ -1,6 +1,6 @@
 #pragma once
 #include "ACEHeader.h"
-#include "INetworkEngine.h"
+#include <EngineInterface\/INetworkEngine.h>
 
 class ACETimeOutHandler : public ACE_Handler
 {

@@ -1,6 +1,6 @@
 #include "stdafx.h"
 #include "SFFastDB.h"
-#include "StringConversion.h"
+#include <XML/StringConversion.h>
 #include "fastdb.h"
 
 /*

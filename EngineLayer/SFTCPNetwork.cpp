@@ -2,16 +2,16 @@
 #include "SFTCPNetwork.h"
 #include "SFMacro.h"
 //#include "GoogleLog.h"
-#include "INetworkEngine.h"
+#include <EngineInterface/INetworkEngine.h>
+#include <EngineInterface/INetworkCallback.h>
+#include <EngineInterface/IPacketProtocol.h>
 #include "SFEngine.h"
 #include "SFIni.h"
 #include "SFConstant.h"
 #include "SFStructure.h"
 #include "SFSinglton.h"
-#include "INetworkCallback.h"
 #include "SFBridgeThread.h"
 #include "ILogicDispatcher.h"
-#include "IPacketProtocol.h"
 
 SFTCPNetwork::SFTCPNetwork(void)
 {

@@ -16,12 +16,12 @@ GameMaterial::GameMaterial( char *name, char *path ) : Material( name, path )
 	Script *script = new Script( name, path );
 
 	// Store the step sounds.
-	m_stepSounds = new LinkedList< Sound >;
+	//m_stepSounds = new LinkedList< Sound >;
 	char stepSound[16] = { "step_sound0" };
 	while( script->GetStringData( stepSound ) != NULL )
 	{
-		m_stepSounds->Add( new Sound( script->GetStringData( stepSound ) ) );
-		sprintf( stepSound, "step_sound%d", m_stepSounds->GetTotalElements() );
+	//	m_stepSounds->Add( new Sound( script->GetStringData( stepSound ) ) );
+	//	sprintf( stepSound, "step_sound%d", m_stepSounds->GetTotalElements() );
 	}
 
 	// Destory the material's script.
@@ -34,13 +34,13 @@ GameMaterial::GameMaterial( char *name, char *path ) : Material( name, path )
 GameMaterial::~GameMaterial()
 {
 	// Destroy the step sounds list.
-	SAFE_DELETE( m_stepSounds );
+	//SAFE_DELETE( m_stepSounds );
 }
 
 //-----------------------------------------------------------------------------
 // Returns a random step sound from the list of step sounds.
 //-----------------------------------------------------------------------------
-Sound *GameMaterial::GetStepSound()
+/*Sound *GameMaterial::GetStepSound()
 {
 	return m_stepSounds->GetRandom();
-}
+}*/

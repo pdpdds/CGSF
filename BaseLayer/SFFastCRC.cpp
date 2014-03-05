@@ -1,7 +1,7 @@
 #include "StdAfx.h"
 #include "SFFastCRC.h"
 #include "./External/crc.h"
-#include "zlib.h"
+#include <zlib/zlib.h>
 #include "7zcrc.h"
 
 static const UINT32 _CRC32[256] = {

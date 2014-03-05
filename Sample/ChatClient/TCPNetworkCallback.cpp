@@ -1,6 +1,6 @@
 #include "StdAfx.h"
 #include "TCPNetworkCallback.h"
-#include "PacketID.h"
+#include <SFPacketStore/PacketID.h>
 #include "SFEngine.h"
 #include "BasePacket.h"
 #include <iostream>

@@ -1,5 +1,5 @@
 #pragma once
-#include "INetworkCallback.h"
+#include <EngineInterface/INetworkCallback.h>
 
 class TCPNetworkCallback : public INetworkCallback
 {

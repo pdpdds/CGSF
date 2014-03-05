@@ -51,8 +51,8 @@ private:
 	bool m_displayFlash; // Indicates if a flash sould be displayed in the current frame.
 	LinkedList< Material > *m_flashes; // Linked list of flashes used by this weapon.
 
-	Sound *m_shotSound; // Shot sound made by this weapon.
-	AudioPath3D *m_shotAudioPath; // Audio path used for playing the shot sound.
+//	Sound *m_shotSound; // Shot sound made by this weapon.
+	//AudioPath3D *m_shotAudioPath; // Audio path used for playing the shot sound.
 };
 
 #endif

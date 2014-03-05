@@ -1,8 +1,8 @@
 #include "stdafx.h"
 #include "ChatProtocol.h"
 #include "SFProtobufPacket.h"
-#include "PacketID.h"
-#include "ChatPacket.pb.h"
+#include <SFPacketStore/PacketID.h>
+#include <SFPacketStore/ChatPacket.pb.h>
 
 ChatProtocol::ChatProtocol(void)
 {

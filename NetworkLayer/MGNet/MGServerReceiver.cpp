@@ -1,6 +1,6 @@
 #include "MGServerReceiver.h"
-#include "INetworkEngine.h"
-#include "IEngine.h"
+#include <EngineInterface/INetworkEngine.h>
+#include <EngineInterface/IEngine.h>
 
 MGServerReceiver::MGServerReceiver(INetworkEngine* pOwner)
 	: m_pOwner(pOwner)

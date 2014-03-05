@@ -1,6 +1,6 @@
 #include "StdAfx.h"
 #include "SFCompressZLib.h"
-#include "zlib.h"
+#include <zlib/zlib.h>
 
 SFCompressZLib::SFCompressZLib(void)
 {

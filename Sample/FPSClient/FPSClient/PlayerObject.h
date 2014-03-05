@@ -105,8 +105,8 @@ private:
 	AnimationCallbackData m_callbackData[2]; // Data used for the foot step call back.
 	RayIntersectionResult m_stepResult; // Used to determine if a foot is touching the ground.
 
-	AudioPath3D *m_leftStepAudioPath; // Audio path for playing the left foot step sound.
-	AudioPath3D *m_rightStepAudioPath; // Audio path for playing the right foot step sound.
+//	AudioPath3D *m_leftStepAudioPath; // Audio path for playing the left foot step sound.
+	//AudioPath3D *m_rightStepAudioPath; // Audio path for playing the right foot step sound.
 };
 
 #endif

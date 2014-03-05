@@ -1,8 +1,8 @@
 #include "StdAfx.h"
 #include "ChatPacketJsonEntry.h"
-#include "PacketID.h"
+#include <SFPacketStore/PacketID.h>
 #include <google/protobuf/io/zero_copy_stream_impl_lite.h>
-#include "ChatPacket.pb.h"
+#include <SFPacketStore/ChatPacket.pb.h>
 #include "SFSinglton.h"
 #include <iostream>
 #include "SFEngine.h"

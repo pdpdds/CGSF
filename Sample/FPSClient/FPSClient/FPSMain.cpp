@@ -10,12 +10,8 @@
 #include "GameMaterial.h"
 #include "CasualGameManager.h"
 #include "FPSGameMain.h"
-
-#ifdef _DEBUG
-#pragma comment(lib, "aced.lib")
-#else
-#pragma comment(lib, "ace.lib")
-#endif
+#include "SFGameProtocol.h"
+#include "SFPacketProtocol.h"
 
 // TODO: reference additional headers your program requires here
 #pragma comment(lib, "imm32.lib")
@@ -37,7 +33,6 @@
 #pragma comment(lib, "d3dx10.lib")
 #pragma comment(lib, "winmm.lib")
 #pragma comment(lib, "comctl32.lib")
-#pragma comment(lib, "dxguid.lib")
 #pragma comment(lib, "dxerr.lib")
 #pragma comment(lib, "dsound.lib")
 
@@ -123,7 +118,8 @@ int APIENTRY _tWinMain(_In_ HINSTANCE hInstance,
 	
 	if(g_engine != NULL)
 	{
-		g_pCasualGameManager->Initialize(g_engine->GetDevice());
+		IPacketProtocol* pProtocol = new SFPacketProtocol<SFGameProtocol>;
+		g_pCasualGameManager->Initialize(g_engine->GetDevice(), pProtocol);
 		g_engine->Run();
 	}
 

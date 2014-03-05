@@ -67,7 +67,7 @@
     <_ProjectFileVersion>11.0.50522.1</_ProjectFileVersion>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
-    <OutDir>..\VSProject\Lib\Debug\</OutDir>
+    <OutDir>..\VSProject\Lib\x86\Debug\</OutDir>
     <IntDir>../VSProject/Intermediate/$(Configuration)\$(ProjectName)\</IntDir>
     <TargetName>$(ProjectName)</TargetName>
     <TargetExt>.lib</TargetExt>
@@ -75,9 +75,11 @@
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <TargetName>$(ProjectName)</TargetName>
     <TargetExt>.lib</TargetExt>
+    <OutDir>..\VSProject\Lib\x64\Debug\</OutDir>
+    <IntDir>../VSProject/Intermediate/$(Configuration)\$(ProjectName)\</IntDir>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
-    <OutDir>..\VSProject\Lib\Release\</OutDir>
+    <OutDir>..\VSProject\Lib\x86\Release\</OutDir>
     <IntDir>../VSProject/Intermediate/$(Configuration)\$(ProjectName)\</IntDir>
     <TargetName>$(ProjectName)</TargetName>
     <TargetExt>.lib</TargetExt>
@@ -89,7 +91,7 @@
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <ClCompile>
       <Optimization>Disabled</Optimization>
-      <AdditionalIncludeDirectories>./VMemPool;./XML;./Logger;./External;../ThirdParty/Breakpad;../ThirdParty/Bugtrap;../ThirdParty/LiteZip;../ThirdParty;../ThirdParty/liblzf;../ThirdParty/zlib;../ThirdParty/ssl/include;./;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>./;./VMemPool;./XML;./Logger;./External;../ThirdParty;../ThirdParty/ACE/include;../ThirdParty/ssl/include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>WIN32;_DEBUG;_LIB;_CRT_SECURE_NO_WARNINGS;_CRT_NON_CONFORMING_SWPRINTFS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <MinimalRebuild>true</MinimalRebuild>
       <BasicRuntimeChecks>EnableFastChecks</BasicRuntimeChecks>
@@ -117,7 +119,7 @@
     <ClCompile>
       <Optimization>MaxSpeed</Optimization>
       <IntrinsicFunctions>true</IntrinsicFunctions>
-      <AdditionalIncludeDirectories>./VMemPool;./XML;./Logger;./External;../ThirdParty/Breakpad;../ThirdParty/Bugtrap;../ThirdParty/LiteZip;../ThirdParty;../ThirdParty/liblzf;../ThirdParty/zlib;../ThirdParty/ssl/include;./;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>./;./VMemPool;./XML;./Logger;./External;../ThirdParty;../ThirdParty/ACE/include;../ThirdParty/ssl/include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>WIN32;NDEBUG;_LIB;%(PreprocessorDefinitions);_CRT_SECURE_NO_WARNINGS;_CRT_NON_CONFORMING_SWPRINTFS</PreprocessorDefinitions>
       <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
       <FunctionLevelLinking>true</FunctionLevelLinking>
@@ -326,7 +328,7 @@
       <Outputs Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">$(PlatformName)\$(ConfigurationName)\7zCrcOpt.obj</Outputs>
       <Outputs Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">$(PlatformName)\$(ConfigurationName)\7zCrcOpt.obj</Outputs>
       <Command Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">ml.exe /safeseh -c -Fo$(PlatformName)\$(ConfigurationName)\7zCrcOpt.obj ./External/7zCrcOpt.asm</Command>
-      <Command Condition="'$(Configuration)|$(Platform)'=='Release|x64'">ml.exe /safeseh -c -Fo$(PlatformName)\$(ConfigurationName)\7zCrcOpt.obj ./External/7zCrcOpt.asm</Command>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Release|x64'">ml64.exe -c /Dx64 -Fo$(PlatformName)\$(ConfigurationName)\7zCrcOpt.obj ./External/7zCrcOpt.asm</Command>
       <Outputs Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">$(PlatformName)\$(ConfigurationName)\7zCrcOpt.obj</Outputs>
       <Outputs Condition="'$(Configuration)|$(Platform)'=='Release|x64'">$(PlatformName)\$(ConfigurationName)\7zCrcOpt.obj</Outputs>
     </CustomBuild>

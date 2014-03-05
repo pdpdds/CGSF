@@ -1,7 +1,7 @@
 #pragma once
 #include "asios.h"
 #include <map>
-#include "ISession.h"
+#include <EngineInterface/ISession.h>
 
 class INetworkEngine;
 

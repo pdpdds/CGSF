@@ -220,7 +220,7 @@ Engine::Engine( EngineSetup *setup )
 	//m_pNetwork = new SFNetworkEntry();
 
 	// Create the sound system.
-	m_soundSystem = new SoundSystem( m_setup->scale );
+	//m_soundSystem = new SoundSystem( m_setup->scale );
 
 	// Create the scene manager.
 	m_sceneManager = new SceneManager( m_setup->scale, m_setup->spawnerPath );
@@ -265,7 +265,7 @@ Engine::~Engine()
 		// Destroy everything.
 		SAFE_DELETE( m_sceneManager );
 //		SAFE_DELETE( m_pGUIManager);
-		SAFE_DELETE( m_soundSystem );
+		//SAFE_DELETE( m_soundSystem );
 		//SAFE_DELETE( m_network );
 		SAFE_DELETE( m_input );
 		SAFE_DELETE( m_meshManager );
@@ -350,7 +350,7 @@ void Engine::Run()
 					m_device->SetTransform( D3DTS_VIEW, viewer.viewer->GetViewMatrix() );
 
 					// Update the 3D sound listener.
-					m_soundSystem->UpdateListener( viewer.viewer->GetForwardVector(), viewer.viewer->GetTranslation(), viewer.viewer->GetVelocity() );
+					//m_soundSystem->UpdateListener( viewer.viewer->GetForwardVector(), viewer.viewer->GetTranslation(), viewer.viewer->GetVelocity() );
 				}
 
 				// Update the current state (if there is one), taking state
@@ -481,7 +481,7 @@ void Engine::ChangeState( unsigned long id )
 				m_currentState->Close();
 
 			// Let the sound system perform garbage collection.
-			m_soundSystem->GarbageCollection();
+			//m_soundSystem->GarbageCollection();
 
 			// Set the new current state and load it.
 			m_currentState = m_states->GetCurrent();

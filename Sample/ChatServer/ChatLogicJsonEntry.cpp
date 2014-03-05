@@ -1,7 +1,7 @@
 #include "stdafx.h"
 #include "ChatLogicJsonEntry.h"
 #include "ChatUser.h"
-#include "PacketID.h"
+#include <SFPacketStore/PacketID.h>
 #include "SFSinglton.h"
 #include <iostream>
 #include "SFEngine.h"

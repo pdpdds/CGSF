@@ -255,6 +255,9 @@
     <ClInclude Include="SFPacketSendGateway.h">
       <Filter>Logic</Filter>
     </ClInclude>
+    <ClInclude Include="ACEHeader.h">
+      <Filter>Common</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <Text Include=".\ReadMe.txt" />

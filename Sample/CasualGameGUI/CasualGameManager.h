@@ -2,6 +2,7 @@
 #include <d3d9.h>
 
 class NetworkSystem;
+class IPacketProtocol;
 class CasualGameGUI;
 
 class CasualGameManager
@@ -10,7 +11,7 @@ public:
 	CasualGameManager(void);
 	virtual ~CasualGameManager(void);
 
-	bool Initialize(LPDIRECT3DDEVICE9 pDevice);
+	bool Initialize(LPDIRECT3DDEVICE9 pDevice, IPacketProtocol* pPacketProtocol);
 	bool Finally();
 
 	bool Render(float fElapsedTime);

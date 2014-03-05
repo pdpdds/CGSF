@@ -1,8 +1,6 @@
 #include "StdAfx.h"
 #include "SFPlayerLobby.h"
 #include "SFPlayer.h"
-#include "SFPacketStore.pb.h"
-#include "PacketID.h"
 #include "DBMsg.h"
 #include "SFRoomManager.h"
 #include "SFSendPacket.h"

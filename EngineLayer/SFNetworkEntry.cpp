@@ -3,7 +3,7 @@
 #include "SFTCPNetwork.h"
 #include "SFUDPNetwork.h"
 #include "SFIni.h"
-#include "StringConversion.h"
+#include <XML/StringConversion.h>
 
 #pragma comment(lib, "BaseLayer.lib")
 

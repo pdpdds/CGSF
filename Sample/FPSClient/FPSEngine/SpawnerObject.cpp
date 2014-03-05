@@ -27,13 +27,13 @@ SpawnerObject::SpawnerObject( char *name, char *path, unsigned long type ) : Sce
 	// Load the sound to play when the spawner's object is collected.
 	if( script->GetStringData( "sound" ) != NULL )
 	{
-		m_sound = new Sound( script->GetStringData( "sound" ) );
-		m_audioPath = new AudioPath3D;
+//		m_sound = new Sound( script->GetStringData( "sound" ) );
+	//	m_audioPath = new AudioPath3D;
 	}
 	else
 	{
-		m_sound = NULL;
-		m_audioPath = NULL;
+	//	m_sound = NULL;
+	//	m_audioPath = NULL;
 	}
 
 	// Load the script for the spawner's object.
@@ -69,8 +69,8 @@ SpawnerObject::~SpawnerObject()
 	SAFE_DELETE_ARRAY( m_name );
 
 	// Destroy the collect sound and its audio path.
-	SAFE_DELETE( m_sound );
-	SAFE_DELETE( m_audioPath );
+	//SAFE_DELETE( m_sound );
+	//SAFE_DELETE( m_audioPath );
 
 	// Destroy the spawner's object script.
 	g_engine->GetScriptManager()->Remove( &m_objectScript );
@@ -99,10 +99,10 @@ void SpawnerObject::Update( float elapsed, bool addVelocity )
 	}
 
 	// Update the collect sound's audio path.
-	if( m_audioPath != NULL )
+	//if( m_audioPath != NULL )
 	{
-		m_audioPath->SetPosition( GetTranslation() );
-		m_audioPath->SetVelocity( GetVelocity() );
+	//	m_audioPath->SetPosition( GetTranslation() );
+	//	m_audioPath->SetVelocity( GetVelocity() );
 	}
 }
 
@@ -125,8 +125,8 @@ void SpawnerObject::CollisionOccurred( SceneObject *object, unsigned long collis
 	SetIgnoreCollisions( true );
 
 	// Play the collected sound.
-	if( m_audioPath != NULL && m_sound != NULL )
-		m_audioPath->Play( m_sound->GetSegment() );
+	//if( m_audioPath != NULL && m_sound != NULL )
+	//	m_audioPath->Play( m_sound->GetSegment() );
 }
 
 //-----------------------------------------------------------------------------

@@ -1,7 +1,7 @@
 #include "stdafx.h"
 #include "SFProtobufProtocol.h"
 #include "SFProtobufPacketImpl.h"
-#include "ISession.h"
+#include <EngineInterface/ISession.h>
 
 #define SignatureStart 16018
 #define SignatureEnd 16108

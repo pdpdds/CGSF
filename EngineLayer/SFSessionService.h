@@ -1,6 +1,6 @@
 #pragma once
-#include "ISessionService.h"
-#include "IPacketProtocol.h"
+#include <EngineInterface/ISessionService.h>
+#include <EngineInterface/IPacketProtocol.h>
 
 class SFSessionService : public ISessionService
 {

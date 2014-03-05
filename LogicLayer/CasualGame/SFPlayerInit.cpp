@@ -2,8 +2,6 @@
 #include "SFPlayerInit.h"
 #include "SFPlayer.h"
 #include "SFDataBaseProxy.h"
-#include "SFPacketStore.pb.h"
-#include "PacketID.h"
 #include "DBMsg.h"
 #include "SFSendPacket.h"
 #include "SFSendDBRequest.h"

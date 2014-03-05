@@ -1,6 +1,6 @@
 #pragma once
-#include "LiteZip.h"
-#include "LiteUnzip.h"
+#include <LiteZip/LiteZip.h>
+#include <LiteZip/LiteUnzip.h>
 
 class SFFilePack
 {

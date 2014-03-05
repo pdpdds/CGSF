@@ -1,12 +1,12 @@
 #include "StdAfx.h"
 #include "ChatLogicEntry.h"
 #include "ChatUser.h"
-#include "PacketID.h"
+#include <SFPacketStore/PacketID.h>
 #include "SFSinglton.h"
 #include <iostream>
 #include "SFEngine.h"
 #include "SFProtobufPacket.h"
-#include "ChatPacket.pb.h"
+#include <SFPacketStore/ChatPacket.pb.h>
 
 using namespace google;
 

@@ -1,6 +1,6 @@
 #pragma once
 #include <SDKDDKVer.h>
-#include "ISession.h"
+#include <EngineInterface/ISession.h>
 
 #include <deque>
 

@@ -5,8 +5,8 @@
 #include <boost/thread.hpp>
 
 #include "Protocol.h"
-#include "INetworkEngine.h"
-#include "ISession.h"
+#include <EngineInterface/INetworkEngine.h>
+#include <EngineInterface/ISession.h>
 
 class ChatClient : public ISession
 {

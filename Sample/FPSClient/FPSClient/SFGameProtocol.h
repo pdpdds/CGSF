@@ -1,8 +1,8 @@
 #pragma once
 #include <wtypes.h>
-#include "SFProtobufProtocol.h"
+#include "CasualGameProtocol.h"
 
-class SFGameProtocol : public SFProtobufProtocol
+class SFGameProtocol : public CasualGameProtocol
 {
 public:
 	SFGameProtocol(void);

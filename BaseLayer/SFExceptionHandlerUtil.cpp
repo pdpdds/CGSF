@@ -28,6 +28,7 @@ LPTOP_LEVEL_EXCEPTION_FILTER WINAPI MyDummySetUnhandledExceptionFilter(
 
 BOOL PreventSetUnhandledExceptionFilter()
 {
+#ifndef _WIN64
 	HMODULE hKernel32 = LoadLibrary(_T("kernel32.dll"));
 
 	if (hKernel32  == NULL) return FALSE;
@@ -54,6 +55,9 @@ BOOL PreventSetUnhandledExceptionFilter()
 		pOrgEntry, newJump, sizeof(pNewFunc) + 1, &bytesWritten);	
 
 	return bRet;
+#else
+	return FALSE;
+#endif
 }
 
 ////////////////////////////////////////////////////////////////////////////////////////

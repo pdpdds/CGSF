@@ -22,4 +22,3 @@
 #include <ace/Task.h>
 #define GLOG_NO_ABBREVIATED_SEVERITIES
 #include "glog/logging.h"
-#pragma comment(lib, "mysqlcppconn.lib")

@@ -1,7 +1,7 @@
 #include "stdafx.h"
 #include "SFCGSFPacketProtocol.h"
 #include "SFCompressor.h"
-#include "ISession.h"
+#include <EngineInterface/ISession.h>
 
 SFCGSFPacketProtocol::SFCGSFPacketProtocol(void)
 {

@@ -1,6 +1,6 @@
 #include "StdAfx.h"
 #include "SFMySQL.h"
-#include "StringConversion.h"
+#include <XML/StringConversion.h>
 #include <functional>
 #include "Macro.h"
 #include "MySQLPool.h"
