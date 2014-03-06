@@ -61,15 +61,15 @@ BOOL SFTCPNetwork::Update()
 
 		if(pPacket != NULL)
 		{
-			if(pPacket->GetPacketType() == SFPacket_Data)
+			if(pPacket->GetPacketType() == SFPACKET_DATA)
 			{
 				m_pTCPCallBack->HandleNetworkMessage(pPacket);
 			}
-			else if(pPacket->GetPacketType() == SFPacket_Connect)
+			else if (pPacket->GetPacketType() == SFPACKET_CONNECT)
 			{
 				m_pTCPCallBack->HandleConnect(pPacket->GetOwnerSerial());
 			}
-			else if(pPacket->GetPacketType() == SFPacket_Disconnect)
+			else if (pPacket->GetPacketType() == SFPACKET_DISCONNECT)
 			{
 				m_pTCPCallBack->HandleDisconnect(pPacket->GetOwnerSerial());
 			}

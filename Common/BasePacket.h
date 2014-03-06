@@ -2,20 +2,20 @@
 
 enum eSFPacketType
 {
-	SFPacket_None = 0,
-	SFPacket_Connect,
-	SFPacket_Data,
-	SFPacket_Timer,
-	SFPacket_Shouter,
-	SFPacket_Disconnect,
-	SFPacket_DB,
-	SFPacket_ServerShutDown,
+	SFPACKET_NONE = 0,
+	SFPACKET_CONNECT,
+	SFPACKET_DATA,
+	SFPACKET_TIMER,
+	SFPACKET_SHOUTER,
+	SFPACKET_DISCONNECT,
+	SFPACKET_DB,
+	SFPACKET_SERVERSHUTDOWN,
 };
 
 class BasePacket
 {
 public:
-	BasePacket(){m_PacketOwnerSerial = -1; m_PacketType = SFPacket_None; m_PacketID = -1;}
+	BasePacket(){ m_PacketOwnerSerial = -1; m_PacketType = SFPACKET_NONE; m_PacketID = -1; }
 	~BasePacket(){}
 
 	void SetPacketType(eSFPacketType PacketType){m_PacketType = PacketType;}

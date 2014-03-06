@@ -29,7 +29,7 @@ BOOL SFSendDBRequest::SendDBRequest(int RequestMsg, DWORD PlayerSerial, BasePack
 
 void SFSendDBRequest::SendToLogic(BasePacket* pMessage)
 {
-	pMessage->SetPacketType(SFPacket_DB);
+	pMessage->SetPacketType(SFPACKET_DB);
 	LogicGatewaySingleton::instance()->PushPacket(pMessage);
 }
 

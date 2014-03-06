@@ -35,25 +35,25 @@ BOOL ChatPacketJsonEntry::ProcessPacket( BasePacket* pPacket)
 {
 	switch (pPacket->GetPacketType())
 	{
-	case SFPacket_Connect:
+	case SFPACKET_CONNECT:
 		{	
 			OnConnectPlayer(pPacket->GetOwnerSerial());
 		}
 		break;
 
-	case SFPacket_Data:
+	case SFPACKET_DATA:
 		{	
 			OnPlayerData(pPacket);
 		}
 		break;
 
-	case SFPacket_Disconnect:
+	case SFPACKET_DISCONNECT:
 		{	
 			OnDisconnectPlayer(pPacket->GetOwnerSerial());
 		}
 		break;
 
-	case SFPacket_Timer:
+	case SFPACKET_TIMER:
 		{	
 			//OnTimer(pCommand->GetOwnerSerial());
 		}

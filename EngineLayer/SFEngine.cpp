@@ -197,12 +197,12 @@ BOOL SFEngine::ShutDown()
 	gServerEnd = TRUE;
 
 	SFPacket* pPacket = PacketPoolSingleton::instance()->Alloc();
-	pPacket->SetPacketType(SFPacket_ServerShutDown);
+	pPacket->SetPacketType(SFPACKET_SERVERSHUTDOWN);
 	PacketSendSingleton::instance()->PushPacket(pPacket);
 
 	BasePacket* pCommand = PacketPoolSingleton::instance()->Alloc();
 	pCommand->SetOwnerSerial(-1);
-	pCommand->SetPacketType(SFPacket_ServerShutDown);
+	pCommand->SetPacketType(SFPACKET_SERVERSHUTDOWN);
 	LogicGatewaySingleton::instance()->PushPacket(pCommand);
 
 	ACE_Thread_Manager::instance()->wait_grp(m_LogicThreadId);
@@ -220,7 +220,7 @@ BOOL SFEngine::ShutDown()
 bool SFEngine::OnConnect(int Serial)
 {
 	BasePacket* pPacket = new BasePacket();
-	pPacket->SetPacketType(SFPacket_Connect);
+	pPacket->SetPacketType(SFPACKET_CONNECT);
 	pPacket->SetOwnerSerial(Serial);
 
 	m_pLogicDispatcher->Dispatch(pPacket);
@@ -231,7 +231,7 @@ bool SFEngine::OnConnect(int Serial)
 bool SFEngine::OnDisconnect(int Serial)
 {
 	BasePacket* pPacket = new BasePacket();
-	pPacket->SetPacketType(SFPacket_Disconnect);
+	pPacket->SetPacketType(SFPACKET_DISCONNECT);
 	pPacket->SetOwnerSerial(Serial);
 
 	m_pLogicDispatcher->Dispatch(pPacket);
@@ -242,7 +242,7 @@ bool SFEngine::OnDisconnect(int Serial)
 bool SFEngine::OnTimer(const void *arg)
 {
 	BasePacket* pPacket = new BasePacket();
-	pPacket->SetPacketType(SFPacket_Timer);
+	pPacket->SetPacketType(SFPACKET_TIMER);
 	pPacket->SetOwnerSerial(-1);
 
 	m_pLogicDispatcher->Dispatch(pPacket);
@@ -266,7 +266,7 @@ BOOL SFEngine::SendRequest(BasePacket* pPacket)
 	}
 
 	pClonePacket->SetDataSize(writtenSize);
-	pClonePacket->SetPacketType(SFPacket_Data);
+	pClonePacket->SetPacketType(SFPACKET_DATA);
 	pClonePacket->SetOwnerSerial(pPacket->GetOwnerSerial());
 
 	return PacketSendSingleton::instance()->PushPacket(pClonePacket);

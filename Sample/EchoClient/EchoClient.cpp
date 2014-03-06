@@ -22,7 +22,8 @@ void EchoInputThread(void* Args)
 	exceptionHandler.Install();
 
 	std::string input;
-	while(1)
+
+	while (g_pNetworkEntry->IsConnected())
 	{
 		std::cin >> input;
 
@@ -55,8 +56,6 @@ int _tmain(int argc, _TCHAR* argv[])
 
 	ILogicDispatcher* pDispatcher = new SFCasualGameDispatcher();
 	g_pNetworkEntry->SetLogicDispatcher(pDispatcher);
-
-	//SFASSERT(TRUE == g_pNetworkEntry->Run());
 
 	g_pNetworkEntry->Run();
 

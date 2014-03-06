@@ -18,7 +18,7 @@ SFMessage* SFDatabase::GetInitMessage(int RequestMsg, DWORD PlayerSerial)
 	pMessage->Initialize(RequestMsg);
 	pMessage->SetPacketID(RequestMsg);
 	pMessage->SetOwnerSerial(PlayerSerial);
-	pMessage->SetPacketType(SFPacket_DB);
+	pMessage->SetPacketType(SFPACKET_DB);
 
 	return pMessage;
 }
@@ -35,7 +35,7 @@ BOOL SFDatabase::RecallDBMsg( SFMessage* pMessage )
 
 BOOL SFDatabase::Call(BasePacket* pMessage)
 {
-	ASSERT(pMessage->GetPacketType() == SFPacket_DB);
+	ASSERT(pMessage->GetPacketType() == SFPACKET_DB);
 	m_pAdaptor->Call(pMessage);
 	RecallDBMsg((SFMessage*)pMessage);
 

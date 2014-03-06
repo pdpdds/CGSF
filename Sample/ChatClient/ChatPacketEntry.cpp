@@ -42,12 +42,12 @@ BOOL ChatPacketEntry::ProcessPacket( BasePacket* pPacket)
 
 		return TRUE;
 	}
-	else if(pPacket->GetPacketType() == SFPacket_Disconnect)
+	else if (pPacket->GetPacketType() == SFPACKET_DISCONNECT)
 	{
 //		g_pEngine->SetProcessing(FALSE);
 		printf("Disconnect Server!!\n");
 	}
-	else if(pPacket->GetPacketType() == SFPacket_Connect)
+	else if (pPacket->GetPacketType() == SFPACKET_CONNECT)
 	{
 		//g_pEngine->SetProcessing(TRUE);
 		printf("Connect Server!!\n");

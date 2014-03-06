@@ -21,11 +21,11 @@ BOOL EchoLogicEntry::Initialize()
 
 BOOL EchoLogicEntry::ProcessPacket(BasePacket* pPacket )
 {
-	if (pPacket->GetPacketType() == SFPacket_Data)
+	if (pPacket->GetPacketType() == SFPACKET_DATA)
 	{
 		g_pEngine->SendRequest(pPacket);
 	}
-	else if (pPacket->GetPacketType() == SFPacket_Connect)
+	else if (pPacket->GetPacketType() == SFPACKET_CONNECT)
 	{
 		int i = 1;
 	}

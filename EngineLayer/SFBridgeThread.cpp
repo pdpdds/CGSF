@@ -17,11 +17,11 @@ void BusinessThread(void* Args)
 
 		switch(pPacket->GetPacketType())
 		{
-		case SFPacket_Connect:
-		case SFPacket_Disconnect:
-		case SFPacket_Timer:
-		case SFPacket_Data:
-		case SFPacket_Shouter:
+		case SFPACKET_CONNECT:
+		case SFPACKET_DISCONNECT:
+		case SFPACKET_TIMER:
+		case SFPACKET_DATA:
+		case SFPACKET_SHOUTER:
 			{
 				delete pPacket;
 			}
@@ -30,12 +30,12 @@ void BusinessThread(void* Args)
 		//프로토콜 버퍼 완성한 다음에 디폴트 프로토콜 처리 고려하자...	
 		//PacketPoolSingleton::instance()->Release((SFPacket*)pPacket);
 			//break;
-		case SFPacket_DB:
+		case SFPACKET_DB:
 			{
 				SFDatabase::RecallDBMsg((SFMessage*)pPacket);
 			}
 			break;
-		case SFPacket_ServerShutDown:
+		case SFPACKET_SERVERSHUTDOWN:
 			return;
 		default:
 			{
@@ -55,7 +55,7 @@ void PacketSendThread(void* Args)
 	{
 		SFPacket* pPacket = (SFPacket*)PacketSendSingleton::instance()->PopPacket();
 
-		if(SFPacket_ServerShutDown == pPacket->GetPacketType())
+		if (SFPACKET_SERVERSHUTDOWN == pPacket->GetPacketType())
 			break;
 
 		pNetworkEngine->SendInternal(pPacket->GetOwnerSerial(), (char*)pPacket->GetDataBuffer(), pPacket->GetDataSize());

@@ -86,7 +86,7 @@ BOOL SFDirectoryWatcherTask::ProcessShouterTask()
 				Sleep(pInfo->SentenceInterval);
  
 			BasePacket* pCommand = PacketPoolSingleton::instance()->Alloc();
-			pCommand->SetPacketType(SFPacket_Shouter);
+			pCommand->SetPacketType(SFPACKET_SHOUTER);
 			pCommand->SetOwnerSerial(-1);
 			//memcpy(pCommand->GetDataBuffer(), iter._Ptr
 

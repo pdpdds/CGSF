@@ -72,7 +72,7 @@ bool SFPacketProtocol<T>::OnReceive(int Serial, char* pBuffer, unsigned int dwTr
 		if(NULL == pPacket)
 			break;
 
-		pPacket->SetPacketType(SFPacket_Data);
+		pPacket->SetPacketType(SFPACKET_DATA);
 		pPacket->SetOwnerSerial(Serial);
 
 		SendPacketLogicLayer(pPacket);

@@ -129,38 +129,38 @@ BOOL SFLogicEntry::ProcessPacket( BasePacket* pBase )
 {
 	switch (pBase->GetPacketType())
 	{
-	case SFPacket_Connect:
+	case SFPACKET_CONNECT:
 		{	
 			OnConnectPlayer(pBase->GetOwnerSerial());
 		}
 		break;
 
-	case SFPacket_Data:
+	case SFPACKET_DATA:
 		{	
 			OnPlayerData((BasePacket*)pBase);
 		}
 		break;
 
-	case SFPacket_Timer:
+	case SFPACKET_TIMER:
 		{	
 			OnTimer((BasePacket*)pBase);
 		}
 		break;
 
-	case SFPacket_Shouter:
+	case SFPACKET_SHOUTER:
 		{	
 			OnShouter((SFPacket*)pBase);
 		}
 		break;
 
 
-	case SFPacket_Disconnect:
+	case SFPACKET_DISCONNECT:
 		{	
 			OnDisconnectPlayer(pBase->GetOwnerSerial());
 		}
 		break;
 
-	case SFPacket_DB:
+	case SFPACKET_DB:
 		{	
 			OnDBResult((SFMessage*)pBase);
 		}
