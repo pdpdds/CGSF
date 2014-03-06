@@ -72,14 +72,16 @@
     <IntDir>../VSProject/Intermediate/$(Configuration)\$(ProjectName)\</IntDir>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
-    <IntDir>../VSProject/Intermediate/$(Configuration)\$(ProjectName)\</IntDir>
+    <IntDir>$(SolutionDir)/Intermediate/$(Configuration)\$(ProjectName)\</IntDir>
     <OutDir>..\VSProject\Lib\x64\Debug\</OutDir>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <OutDir>$(SolutionDir)\lib\x86\Release\</OutDir>
     <IntDir>$(SolutionDir)/Intermediate/$(Configuration)\$(ProjectName)\</IntDir>
   </PropertyGroup>
-  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+    <OutDir>$(SolutionDir)\Lib\x64\Release\</OutDir>
+  </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <ClCompile>
       <PrecompiledHeader>Use</PrecompiledHeader>
@@ -105,7 +107,7 @@
       <Optimization>Disabled</Optimization>
       <PreprocessorDefinitions>WIN32;_DEBUG;_LIB;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <SDLCheck>true</SDLCheck>
-      <AdditionalIncludeDirectories>../Common;../BaseLayer;../BaseLayer/XML;./CppDatabasePool;./CppDatabasePool/mysql;../ThirdParty/Mysql/cppconn;../ThirdParty/Mysql/include;../ThirdParty/fastdb-375/fastdb/inc;../ThirdParty/SQLite</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>../Common;../BaseLayer;./CppDatabasePool;./CppDatabasePool/mysql;../ThirdParty/Mysql/cppconn;../ThirdParty/Mysql/include;../ThirdParty/fastdb-375/fastdb/inc;../ThirdParty/SQLite;../ThirdParty;../ThirdParty/ACE/Include</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Windows</SubSystem>
@@ -148,7 +150,7 @@
       <IntrinsicFunctions>true</IntrinsicFunctions>
       <PreprocessorDefinitions>WIN32;NDEBUG;_LIB;_CRT_SECURE_NO_WARNINGS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <SDLCheck>true</SDLCheck>
-      <AdditionalIncludeDirectories>../Common;../BaseLayer;../BaseLayer/XML;./CppDatabasePool;./CppDatabasePool/mysql;../ThirdParty/Mysql/cppconn;../ThirdParty/Mysql/include;../ThirdParty/fastdb-375/fastdb/inc;../ThirdParty/SQLite</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>../Common;../BaseLayer;./CppDatabasePool;./CppDatabasePool/mysql;../ThirdParty/Mysql/cppconn;../ThirdParty/Mysql/include;../ThirdParty/fastdb-375/fastdb/inc;../ThirdParty/SQLite;../ThirdParty;../ThirdParty/ACE/Include</AdditionalIncludeDirectories>
       <DisableSpecificWarnings>4996</DisableSpecificWarnings>
     </ClCompile>
     <Link>
@@ -158,7 +160,7 @@
       <OptimizeReferences>true</OptimizeReferences>
     </Link>
     <Lib>
-      <AdditionalLibraryDirectories>../ThirdParty/mysql/lib</AdditionalLibraryDirectories>
+      <AdditionalLibraryDirectories>../ThirdParty/mysql/lib/x64</AdditionalLibraryDirectories>
       <AdditionalDependencies>mysqlcppconn.lib</AdditionalDependencies>
     </Lib>
   </ItemDefinitionGroup>

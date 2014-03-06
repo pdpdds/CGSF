@@ -88,6 +88,7 @@
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
     <LibraryPath>$(LibraryPath)</LibraryPath>
     <LinkIncremental>false</LinkIncremental>
+    <OutDir>$(SolutionDir)/GUIBin64/</OutDir>
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <ClCompile>
@@ -147,14 +148,14 @@
       <FunctionLevelLinking>true</FunctionLevelLinking>
       <IntrinsicFunctions>true</IntrinsicFunctions>
       <PreprocessorDefinitions>WIN32;NDEBUG;_WINDOWS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <AdditionalIncludeDirectories>../../../Common;../../../EngineLayer;../../CasualGameGUI;../../Vendor/DirectMusic;../../Vendor/DXUtil;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>../../../Common;../../../EngineLayer;../../CasualGameGUI;../../Vendor/DirectMusic;../../Vendor/DXUtil;../../../ThirdParty;../../../BaseLayer;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Windows</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
       <OptimizeReferences>true</OptimizeReferences>
-      <AdditionalLibraryDirectories>../Vendor/DirectMusic;../../../ThirdParty/lib/Release;$(SolutionDir)/Lib/Release;../../../ThirdParty/mysql/lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalLibraryDirectories>$(SolutionDir)/Lib/x64/Release;$(SolutionDir)/../ThirdParty/lib/x64\Release;../Vendor/DirectMusic;$(SolutionDir)/../ThirdParty/CEGUI/Lib/x64;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>

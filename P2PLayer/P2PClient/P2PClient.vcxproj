@@ -79,7 +79,7 @@
     <TargetExt>.dll</TargetExt>
     <LinkIncremental>true</LinkIncremental>
     <IncludePath>$(IncludePath)</IncludePath>
-    <IntDir>../VSProject/Intermediate/$(Configuration)\$(ProjectName)\</IntDir>
+    <IntDir>$(SolutionDir)/Intermediate/$(Configuration)\$(ProjectName)\</IntDir>
     <OutDir>$(SolutionDir)/Bin64/</OutDir>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
@@ -93,6 +93,7 @@
     <TargetName>$(ProjectName)</TargetName>
     <TargetExt>.dll</TargetExt>
     <LinkIncremental>false</LinkIncremental>
+    <OutDir>$(SolutionDir)/Bin64/</OutDir>
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <ClCompile>
@@ -162,14 +163,14 @@
       <PrecompiledHeader>Use</PrecompiledHeader>
       <WarningLevel>Level3</WarningLevel>
       <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
-      <AdditionalIncludeDirectories>../../Common/Include;../../ThirdParty/liblfds/include;</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>../../Common;../../ThirdParty/liblfds/include</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <SubSystem>Windows</SubSystem>
       <OptimizeReferences>true</OptimizeReferences>
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
-      <AdditionalLibraryDirectories>../../ThirdParty/liblfds/lib/dynamic</AdditionalLibraryDirectories>
+      <AdditionalLibraryDirectories>../../ThirdParty/liblfds/lib/x64/Release</AdditionalLibraryDirectories>
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>

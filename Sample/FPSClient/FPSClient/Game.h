@@ -69,7 +69,7 @@ private:
 	BulletManager *m_bulletManager; // Bullet manager.
 	PlayerManager *m_playerManager; // Player manager.
 
-	Sound *m_music; // The in-game music sound.
+//	Sound *m_music; // The in-game music sound.
 	
 };
 

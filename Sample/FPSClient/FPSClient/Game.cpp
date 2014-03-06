@@ -40,7 +40,7 @@ Game::Game() : State( STATE_GAME )
 	m_playerManager = NULL;
 
 	// Invalidate the in-game music sound.
-	m_music = NULL;
+//	m_music = NULL;
 }
 
 //-----------------------------------------------------------------------------
@@ -65,8 +65,8 @@ void Game::Load()
 	m_playerManager = new PlayerManager;
 
 	// Load and play the in-game music.
-	m_music = new Sound( "./Assets/Sounds/music_loop.wav" );
-	m_music->Play( true );
+//	m_music = new Sound( "./Assets/Sounds/music_loop.wav" );
+//	m_music->Play( true );
 
 	if(g_engine->GetGameStateBlock())	 
 		g_engine->GetGameStateBlock()->Apply();
@@ -107,7 +107,7 @@ void Game::Close()
 	g_engine->GetMaterialManager()->Remove( &m_crosshair );
 
 	// Destroy the in-game music.
-	SAFE_DELETE( m_music );
+	//SAFE_DELETE( m_music );
 }
 
 //-----------------------------------------------------------------------------

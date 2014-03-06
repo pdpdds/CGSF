@@ -67,12 +67,12 @@
   </ImportGroup>
   <PropertyGroup Label="UserMacros" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
-    <IncludePath>$(IncludePath);D:\Library\boost_1_55_0;D:\Library\ACE-6.2.4\ACE_wrappers;D:\Library\protobuf-2.5.0\src;D:\Library\glog-0.3.3\src\windows;D:\Library\google-breakpad\src\client\windows\handler;D:\Library\google-breakpad\src</IncludePath>
+    <IncludePath>$(IncludePath)</IncludePath>
     <OutDir>$(SolutionDir)/lib/x86\debug/</OutDir>
     <IntDir>$(SolutionDir)/Intermediate/$(Configuration)\$(ProjectName)\</IntDir>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
-    <IncludePath>$(IncludePath);D:\Library\boost_1_55_0;D:\Library\ACE-6.2.4\ACE_wrappers;D:\Library\protobuf-2.5.0\src;D:\Library\glog-0.3.3\src\windows;D:\Library\google-breakpad\src\client\windows\handler;D:\Library\google-breakpad\src</IncludePath>
+    <IncludePath>$(IncludePath)</IncludePath>
     <IntDir>$(SolutionDir)/Intermediate/$(Configuration)\$(ProjectName)\</IntDir>
     <OutDir>$(SolutionDir)/lib/x64\debug/</OutDir>
   </PropertyGroup>
@@ -80,7 +80,9 @@
     <OutDir>$(SolutionDir)/lib/x86/Release/</OutDir>
     <IntDir>$(SolutionDir)/Intermediate/$(Configuration)\$(ProjectName)\</IntDir>
   </PropertyGroup>
-  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+    <OutDir>$(SolutionDir)\Lib\x64\Release\</OutDir>
+  </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <ClCompile>
       <PrecompiledHeader>Use</PrecompiledHeader>
@@ -132,7 +134,7 @@
       <FunctionLevelLinking>true</FunctionLevelLinking>
       <IntrinsicFunctions>true</IntrinsicFunctions>
       <PreprocessorDefinitions>WIN32;NDEBUG;_LIB;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <AdditionalIncludeDirectories>../../Vendor/DirectMusic;../../Vendor/DXUtil;../../CasualGameGUI;../../../Common/SFPacketStore;../../../EngineLayer;../../../Common;../../../Common/EngineInterface;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>../../../Common;../../../EngineLayer;../../CasualGameGUI;../../Vendor/DirectMusic;../../Vendor/DXUtil;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Windows</SubSystem>
@@ -162,7 +164,6 @@
     <ClInclude Include="SceneManager.h" />
     <ClInclude Include="SceneObject.h" />
     <ClInclude Include="Scripting.h" />
-    <ClInclude Include="SoundSystem.h" />
     <ClInclude Include="SpawnerObject.h" />
     <ClInclude Include="State.h" />
     <ClInclude Include="stdafx.h" />
@@ -241,9 +242,6 @@
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">NotUsing</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">NotUsing</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|x64'">NotUsing</PrecompiledHeader>
-    </ClCompile>
-    <ClCompile Include="SoundSystem.cpp">
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">NotUsing</PrecompiledHeader>
     </ClCompile>
     <ClCompile Include="SpawnerObject.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">NotUsing</PrecompiledHeader>

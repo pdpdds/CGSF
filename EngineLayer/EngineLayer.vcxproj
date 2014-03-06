@@ -76,7 +76,7 @@
     <TargetName>$(ProjectName)</TargetName>
     <TargetExt>.lib</TargetExt>
     <OutDir>..\VSProject\lib\x64\Debug\</OutDir>
-    <IntDir>../VSProject/Intermediate/$(Configuration)\$(ProjectName)\</IntDir>
+    <IntDir>$(SolutionDir)/Intermediate/$(Configuration)\$(ProjectName)\</IntDir>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <OutDir>$(SolutionDir)\lib\x86\Release\</OutDir>
@@ -87,6 +87,7 @@
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
     <TargetName>$(ProjectName)</TargetName>
     <TargetExt>.lib</TargetExt>
+    <OutDir>$(SolutionDir)\Lib\x64\Release\</OutDir>
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <ClCompile>
@@ -143,7 +144,7 @@
     <ClCompile>
       <Optimization>MaxSpeed</Optimization>
       <IntrinsicFunctions>true</IntrinsicFunctions>
-      <AdditionalIncludeDirectories>../BaseLayer/VMemPool;../Common/EngineInterface;../Common/Include;../BaseLayer;./External;../P2PNetwork;../Common;../ThirdParty/zlib;../ThirdParty/liblzf;../ThirdParty;../Common/SFPacketStore;../ThirdParty/Loki/include;../BaseLayer/XML;../BaseLayer/json;../DatabaseLayer;../P2PLayer/P2PClient;../ThirdParty/liblfds/include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>./External;../Common;../BaseLayer;../DatabaseLayer;../ThirdParty;../ThirdParty/ACE/include;../P2PLayer;../ThirdParty/liblfds/include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>WIN32;NDEBUG;_LIB;%(PreprocessorDefinitions);_CRT_SECURE_NO_WARNINGS</PreprocessorDefinitions>
       <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
       <FunctionLevelLinking>true</FunctionLevelLinking>
@@ -152,6 +153,10 @@
       <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
       <AdditionalOptions>-D_SCL_SECURE_NO_WARNINGS %(AdditionalOptions)</AdditionalOptions>
     </ClCompile>
+    <Lib>
+      <AdditionalDependencies>libglog.lib;aced.lib</AdditionalDependencies>
+      <AdditionalLibraryDirectories>$(SolutionDir)/Lib/x64/Release;../ThirdParty/lib/x64/Release;../ThirdParty/ACE/lib/x64;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+    </Lib>
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include=".\SFExcel.cpp" />

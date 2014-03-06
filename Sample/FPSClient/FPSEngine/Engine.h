@@ -48,7 +48,7 @@
 #include "DeviceEnumeration.h"
 #include "Input.h"
 #include "Network.h"
-#include "SoundSystem.h"
+//#include "SoundSystem.h"
 #include "BoundingVolume.h"
 #include "Material.h"
 #include "Mesh.h"
@@ -132,7 +132,7 @@ public:
 	void SetPlayerID(int PlayerID){m_PlayerID = PlayerID;}
 	int GetPlayerID(){return m_PlayerID;}
 
-	SoundSystem *GetSoundSystem();
+//	SoundSystem *GetSoundSystem();
 	SceneManager *GetSceneManager();
 	IDirect3DStateBlock9* GetGameStateBlock(){return m_pGameStateBlock;}
 
@@ -159,7 +159,7 @@ private:
 	int m_LocalID;
 	int m_PlayerID;
 
-	SoundSystem *m_soundSystem; // Sound system.
+	//SoundSystem *m_soundSystem; // Sound system.
 	SceneManager *m_sceneManager; // Scene manager.
 	IDirect3DStateBlock9* m_pGameStateBlock;
 };

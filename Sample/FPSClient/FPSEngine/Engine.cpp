@@ -547,10 +547,10 @@ Input *Engine::GetInput()
 //-----------------------------------------------------------------------------
 // Returns a pointer to the sound system.
 //-----------------------------------------------------------------------------
-SoundSystem *Engine::GetSoundSystem()
+/*SoundSystem *Engine::GetSoundSystem()
 {
 	return m_soundSystem;
-}
+}*/
 
 //-----------------------------------------------------------------------------
 // Returns a pointer to the scene manager.

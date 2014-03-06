@@ -8,10 +8,18 @@
 
 #pragma comment(lib, "ws2_32.lib")
 
+#ifdef _WIN64
+#ifdef _DEBUG
+#pragma comment(lib, "MyServerLibx64DS.lib")
+#else
+#pragma comment(lib, "MyServerLibx64RS.lib")
+#endif
+#else
 #ifdef _DEBUG
 #pragma comment(lib, "MyServerLib_d.lib")
 #else
 #pragma comment(lib, "MyServerLib.lib")
+#endif
 #endif
 
 INetworkEngine * CreateNetworkEngine(bool Server, IEngine* pEngine)

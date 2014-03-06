@@ -71,13 +71,13 @@
     <IntDir>../../VSProject/Intermediate/$(Configuration)\$(ProjectName)\</IntDir>
     <TargetName>$(ProjectName)</TargetName>
     <TargetExt>.lib</TargetExt>
-    <IncludePath>C:\Program Files %28x86%29\Microsoft DirectX SDK %28June 2010%29\Include;$(IncludePath)</IncludePath>
+    <IncludePath>$(IncludePath)</IncludePath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <TargetName>$(ProjectName)</TargetName>
     <TargetExt>.lib</TargetExt>
-    <IncludePath>C:\Program Files %28x86%29\Microsoft DirectX SDK %28June 2010%29\Include;$(IncludePath)</IncludePath>
-    <IntDir>../../VSProject/Intermediate/$(Configuration)\$(ProjectName)\</IntDir>
+    <IncludePath>$(IncludePath)</IncludePath>
+    <IntDir>$(SolutionDir)/Intermediate/$(Configuration)\$(ProjectName)\</IntDir>
     <OutDir>..\..\VSProject\lib\x64\Debug\</OutDir>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
@@ -89,6 +89,7 @@
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
     <TargetName>$(ProjectName)</TargetName>
     <TargetExt>.lib</TargetExt>
+    <OutDir>$(SolutionDir)\Lib\x64\Release\</OutDir>
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <ClCompile>
@@ -107,7 +108,7 @@
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <ClCompile>
       <Optimization>Disabled</Optimization>
-      <AdditionalIncludeDirectories>../../BaseLayer;../../BaseLayer/XML;../../BaseLayer/VMemPool;../../BaseLayer/Logger;../../EngineLayer;../../DatabaseLayer;../../DatabaseLayer/CppDatabasePool;../../DatabaseLayer/CppDatabasePool/mysql;../../Common;../../Common/SFPacketStore;../../Common/EngineInterface;../../ThirdParty/mysql/include;../../P2PLayer/P2PServer;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>../../Common;../../BaseLayer;../../EngineLayer;../../DatabaseLayer;../../P2PLayer/P2PServer;../../DatabaseLayer/CppDatabasePool;../../DatabaseLayer/CppDatabasePool/mysql;../../ThirdParty;../../ThirdParty/mysql/include;../../ThirdParty/ACE/Include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>WIN32;_DEBUG;_LIB;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <BasicRuntimeChecks>EnableFastChecks</BasicRuntimeChecks>
       <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
@@ -135,7 +136,7 @@
     <ClCompile>
       <Optimization>MaxSpeed</Optimization>
       <IntrinsicFunctions>true</IntrinsicFunctions>
-      <AdditionalIncludeDirectories>../../BaseLayer;../../BaseLayer/XML;../../BaseLayer/VMemPool;../../BaseLayer/Logger;../../EngineLayer;../../DatabaseLayer;../../DatabaseLayer/CppDatabasePool;../../DatabaseLayer/CppDatabasePool/mysql;../../Common;../../Common/SFPacketStore;../../Common/EngineInterface;../../ThirdParty/mysql/include;../../P2PLayer/P2PServer;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>../../Common;../../BaseLayer;../../EngineLayer;../../DatabaseLayer;../../P2PLayer/P2PServer;../../DatabaseLayer/CppDatabasePool;../../DatabaseLayer/CppDatabasePool/mysql;../../ThirdParty;../../ThirdParty/mysql/include;../../ThirdParty/ACE/Include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>WIN32;NDEBUG;_LIB;%(PreprocessorDefinitions);_CRT_SECURE_NO_WARNING</PreprocessorDefinitions>
       <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
       <FunctionLevelLinking>true</FunctionLevelLinking>
