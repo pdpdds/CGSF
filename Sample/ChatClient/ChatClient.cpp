@@ -27,8 +27,6 @@ void EchoInputThread(void* Args)
 		packet.GetData().Add("PacketId", CHAT_PACKET_NUM);
 		packet.GetData().Add("chat", input.c_str());
 		SFNetworkEntry::GetInstance()->TCPSend(&packet);
-
-		SFNetworkEntry::GetInstance()->TCPSend(&packet);
 	}
 }
 

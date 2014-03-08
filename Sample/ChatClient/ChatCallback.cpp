@@ -19,7 +19,7 @@ bool ChatCallback::HandleNetworkMessage(BasePacket* pPacket)
 
 	if (PacketID == CHAT_PACKET_NUM)
 	{
-		std::cout << pJsonPacket->GetData().GetValue<tstring>("chat") << std::endl;
+		std::cout << "Received : " << pJsonPacket->GetData().GetValue<tstring>("chat") << std::endl;
 
 		return TRUE;
 	}
