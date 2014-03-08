@@ -1,5 +1,4 @@
 #include "stdafx.h"
-#include "SFEngine.h"
 #include "EchoLogicEntry.h"
 #include "SFJsonProtocol.h"
 

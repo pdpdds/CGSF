@@ -16,12 +16,12 @@ ChatLogicJsonEntry::~ChatLogicJsonEntry(void)
 {
 }
 
-BOOL ChatLogicJsonEntry::Initialize()
+bool ChatLogicJsonEntry::Initialize()
 {
-	return TRUE;
+	return true;
 }
 
-BOOL ChatLogicJsonEntry::ProcessPacket(BasePacket* pPacket )
+bool ChatLogicJsonEntry::ProcessPacket(BasePacket* pPacket)
 {
 	switch (pPacket->GetPacketType())
 	{
@@ -50,10 +50,10 @@ BOOL ChatLogicJsonEntry::ProcessPacket(BasePacket* pPacket )
 		break;
 
 	default:
-		return FALSE;
+		return false;
 	}
 
-	return TRUE;
+	return true;
 }
 
 BOOL ChatLogicJsonEntry::OnConnectPlayer( int Serial )

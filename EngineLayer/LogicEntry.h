@@ -7,8 +7,8 @@ public:
 	LogicEntry(void);
 	virtual ~LogicEntry(void);
 
-	virtual BOOL Initialize() {return FALSE;}
-	virtual BOOL ProcessPacket(BasePacket* pPacket);
+	virtual bool Initialize() { return FALSE; }
+	virtual bool ProcessPacket(BasePacket* pPacket);
 
 	void SetLogic(ILogicEntry* pLogic)
 	{

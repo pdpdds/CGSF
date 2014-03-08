@@ -10,10 +10,10 @@ LogicEntry::~LogicEntry(void)
 {
 }
 
-BOOL LogicEntry::ProcessPacket( BasePacket* pPacket )
+bool LogicEntry::ProcessPacket(BasePacket* pPacket)
 {
 	if(m_pLogicEntry)
 		m_pLogicEntry->ProcessPacket(pPacket);
 
-	return TRUE;
+	return true;
 }

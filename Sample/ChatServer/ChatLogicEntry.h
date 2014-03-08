@@ -13,7 +13,7 @@ public:
 	ChatLogicEntry(void);
 	virtual ~ChatLogicEntry(void);
 
-	virtual BOOL ProcessPacket(BasePacket* pBasePacket) override;
+	virtual bool ProcessPacket(BasePacket* pBasePacket) override;
 	BOOL SendRequest(BasePacket* pPacket);
 	BOOL Broadcast(BasePacket* pPacket);
 

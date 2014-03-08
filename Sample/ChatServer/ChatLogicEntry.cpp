@@ -19,7 +19,7 @@ ChatLogicEntry::~ChatLogicEntry(void)
 {
 }
 
-BOOL ChatLogicEntry::ProcessPacket(BasePacket* pPacket )
+bool ChatLogicEntry::ProcessPacket(BasePacket* pPacket)
 {
 	switch (pPacket->GetPacketType())
 	{
@@ -48,10 +48,10 @@ BOOL ChatLogicEntry::ProcessPacket(BasePacket* pPacket )
 		break;
 
 	default:
-		return FALSE;
+		return false;
 	}
 
-	return TRUE;
+	return true;
 }
 
 BOOL ChatLogicEntry::OnConnectPlayer( int Serial )

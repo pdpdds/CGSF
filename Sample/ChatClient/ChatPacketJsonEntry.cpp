@@ -31,7 +31,7 @@ BOOL ChatPacketJsonEntry::SendRequest(BasePacket* pPacket)
 //TCP 처리 쓰레드에서 받은 패킷을 메인 쓰레드로 넘길 경우
 //lock free queue를 사용하면 됩니다.(UDP 쓰레드에서 메인 쓰레드로 패킷 넘기는 부분 참조)
 
-BOOL ChatPacketJsonEntry::ProcessPacket( BasePacket* pPacket)
+bool ChatPacketJsonEntry::ProcessPacket(BasePacket* pPacket)
 {
 	switch (pPacket->GetPacketType())
 	{
@@ -60,10 +60,10 @@ BOOL ChatPacketJsonEntry::ProcessPacket( BasePacket* pPacket)
 		break;
 
 	default:
-		return FALSE;
+		return false;
 	}
 
-	return TRUE;
+	return true;
 }
 
 BOOL ChatPacketJsonEntry::OnConnectPlayer( int Serial )

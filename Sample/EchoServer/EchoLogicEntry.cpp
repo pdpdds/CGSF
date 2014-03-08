@@ -1,6 +1,5 @@
 #include "stdafx.h"
 #include "EchoLogicEntry.h"
-#include "SFEngine.h"
 #include "SFJsonPacket.h"
 
 EchoLogicEntry::EchoLogicEntry(void)
@@ -12,22 +11,20 @@ EchoLogicEntry::~EchoLogicEntry(void)
 {
 }
 
-BOOL EchoLogicEntry::Initialize()
+bool EchoLogicEntry::Initialize()
 {
 	return TRUE;
 }
 
-BOOL EchoLogicEntry::ProcessPacket(BasePacket* pPacket )
+bool EchoLogicEntry::ProcessPacket(BasePacket* pPacket )
 {
-	if (pPacket->GetPacketType() == SFPACKET_DATA)
-	{
+	switch (pPacket->GetPacketType())
+	{	
+	case SFPACKET_DATA:		
 		SFEngine::GetInstance()->SendRequest(pPacket);
-	}
-	else if (pPacket->GetPacketType() == SFPACKET_CONNECT)
-	{
-		int i = 1;
+		break;
 	}
 
-	return TRUE;
+	return true;
 }
 

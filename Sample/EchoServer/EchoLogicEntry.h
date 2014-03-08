@@ -9,7 +9,7 @@ public:
 	EchoLogicEntry(void);
 	virtual ~EchoLogicEntry(void);
 
-	virtual BOOL Initialize() override;
-	virtual BOOL ProcessPacket(BasePacket* pBasePacket) override;
+	virtual bool Initialize() override;
+	virtual bool ProcessPacket(BasePacket* pBasePacket) override;
 };
 

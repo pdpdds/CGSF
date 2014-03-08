@@ -32,7 +32,7 @@ BOOL ChatPacketEntry::SendRequest(BasePacket* pPacket)
 //TCP 처리 쓰레드에서 받은 패킷을 메인 쓰레드로 넘길 경우
 //lock free queue를 사용하면 됩니다.(UDP 쓰레드에서 메인 쓰레드로 패킷 넘기는 부분 참조)
 
-BOOL ChatPacketEntry::ProcessPacket( BasePacket* pPacket)
+bool ChatPacketEntry::ProcessPacket(BasePacket* pPacket)
 {
 	if(pPacket->GetPacketID() == CGSF::ChatRes)
 	{
@@ -40,7 +40,7 @@ BOOL ChatPacketEntry::ProcessPacket( BasePacket* pPacket)
 
 		std::cout << pChat->GetData().chatmessage() << std::endl;
 
-		return TRUE;
+		return true;
 	}
 	else if (pPacket->GetPacketType() == SFPACKET_DISCONNECT)
 	{
@@ -55,6 +55,6 @@ BOOL ChatPacketEntry::ProcessPacket( BasePacket* pPacket)
 		m_Serial = pPacket->GetOwnerSerial();
 	}
 
-	return FALSE;
+	return false;
 
 }

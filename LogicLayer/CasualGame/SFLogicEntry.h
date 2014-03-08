@@ -37,10 +37,10 @@ public:
 	SFLogicEntry(void);
 	virtual ~SFLogicEntry(void);
 
-	virtual BOOL Initialize() override;
+	virtual bool Initialize() override;
 	static SFLogicEntry* GetLogicEntry(){return m_pLogicEntry;}
 
-	virtual BOOL ProcessPacket(BasePacket* pBase) override;
+	virtual bool ProcessPacket(BasePacket* pBase) override;
 	
 	BOOL CreateDirectoryWathcer();
 

@@ -14,7 +14,7 @@ SFLogicEntry::SFLogicEntry(void)
 	m_pLogicEntry = this;
 }
 
-BOOL SFLogicEntry::Initialize()
+bool SFLogicEntry::Initialize()
 {
 	SFDatabaseProxy* pProxyLocal = NULL;
 
@@ -59,7 +59,7 @@ BOOL SFLogicEntry::Initialize()
 		if (g_pP2PServerHandle == NULL)
 		{
 			LOG(ERROR) << "P2P Module" << szP2PModule << " Handle Create Fail!!";
-			return FALSE;
+			return false;
 		}
 
 		ACTIVATEP2P_FUNC *pfuncActivate;
@@ -68,7 +68,7 @@ BOOL SFLogicEntry::Initialize()
 		if (pfuncActivate == NULL)
 		{
 			LOG(ERROR) << "P2P Module " << szP2PModule << " => Can't find ActivateP2P Method!!";
-			return FALSE;
+			return false;
 		}
 
 		int Result = pfuncActivate();
@@ -76,13 +76,13 @@ BOOL SFLogicEntry::Initialize()
 		if (Result != 0)
 		{
 			LOG(ERROR) << "P2P Module " << szP2PModule << " Activate fail!!";
-			return FALSE;
+			return false;
 		}
 
 		LOG(INFO) << "P2P Module " << szP2PModule << " Initialize Complete";
 	}
 
-	return TRUE;
+	return true;
 }
 
 BOOL SFLogicEntry::CreateDirectoryWathcer()
@@ -125,7 +125,7 @@ BOOL SFLogicEntry::AddGameMode(int Mode, SFGameMode* pMode)
 	return TRUE;
 }
 
-BOOL SFLogicEntry::ProcessPacket( BasePacket* pBase )
+bool SFLogicEntry::ProcessPacket(BasePacket* pBase)
 {
 	switch (pBase->GetPacketType())
 	{
@@ -167,10 +167,10 @@ BOOL SFLogicEntry::ProcessPacket( BasePacket* pBase )
 		break;
 
 	default:
-		return FALSE;
+		return false;
 	}
 
-	return TRUE;
+	return true;
 }
 
 BOOL SFLogicEntry::OnConnectPlayer( int PlayerSerial )

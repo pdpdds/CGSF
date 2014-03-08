@@ -10,7 +10,7 @@ public:
 	ChatPacketEntry(void);
 	virtual ~ChatPacketEntry(void);
 
-	virtual BOOL ProcessPacket(BasePacket* pPacket) override;
+	virtual bool ProcessPacket(BasePacket* pPacket) override;
 
 	BOOL SendRequest(BasePacket* pPacket);
 
