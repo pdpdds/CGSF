@@ -18,6 +18,7 @@ SFEngine::SFEngine()
 	: m_LogicThreadId(-1)
 	, m_PacketSendThreadId(-1)
 	, m_bServerTerminated(false)
+	, m_pNetworkEngine(0)
 {
 	/*SFConfigure Configure;
 	_EngineConfig* pInfo = Configure.GetConfigureInfo();

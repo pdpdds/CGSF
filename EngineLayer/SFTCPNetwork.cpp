@@ -36,7 +36,7 @@ SFTCPNetwork::~SFTCPNetwork(void)
 
 BOOL SFTCPNetwork::Initialize(char* szModuleName, INetworkCallback* pTCPCallBack)
 {
-	m_TCPClient = new SFEngine();
+	m_TCPClient = SFEngine::GetInstance();
 
 	if (FALSE == m_TCPClient->CreateEngine(szModuleName, FALSE))
 	{
