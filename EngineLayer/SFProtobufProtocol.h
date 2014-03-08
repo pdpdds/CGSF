@@ -20,6 +20,8 @@ public:
 
 	virtual void disposeOutgoingPacket(BasePacket* pPacket);
 	virtual void disposeIncomingPacket(BasePacket* pPacket);
+	BasePacket* CreatePacket(){ return NULL; }
+	bool DisposePacket(BasePacket* pPacket);
 
 protected:
 	virtual BasePacket* CreateIncomingPacketFromPacketId( int PacketId ) = 0;

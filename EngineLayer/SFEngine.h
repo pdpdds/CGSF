@@ -32,9 +32,10 @@ public:
 	SFConfigure* GetConfig(){return &m_Config;}
 	void SetConfig(SFConfigure& Config){m_Config = Config;}
 
-	
 	IPacketProtocol* GetPacketProtocol(){return m_pPacketProtocol;}
 	ILogicDispatcher* GetLogicDispatcher(){return m_pLogicDispatcher;}
+
+	bool ReleasePacket(BasePacket* pPacket);
 
 protected:
 

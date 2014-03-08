@@ -17,10 +17,6 @@ SFNetworkEntry* g_pNetworkEntry = NULL;
 
 void EchoInputThread(void* Args)
 {
-	SFBreakPad exceptionHandler;
-	
-	exceptionHandler.Install();
-
 	std::string input;
 
 	while (g_pNetworkEntry->IsConnected())
@@ -44,9 +40,10 @@ void EchoInputThread(void* Args)
 
 int _tmain(int argc, _TCHAR* argv[])
 {
+	SFBreakPad exceptionHandler;
+	exceptionHandler.Install();
 
 	g_pNetworkEntry = new SFNetworkEntry();
-
 	EchoCallback* pCallback = new EchoCallback();
 
 	g_pNetworkEntry->Initialize(pCallback);

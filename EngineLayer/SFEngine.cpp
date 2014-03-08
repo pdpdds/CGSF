@@ -59,7 +59,7 @@ BOOL SFEngine::CreateLogicThread(ILogicEntry* pLogic)
 {
 	if(pLogic != NULL)
 	{
-		m_LogicThreadId = ACE_Thread_Manager::instance()->spawn_n(1, (ACE_THR_FUNC)BusinessThread, NULL, THR_NEW_LWP, ACE_DEFAULT_THREAD_PRIORITY, 1001);
+		m_LogicThreadId = ACE_Thread_Manager::instance()->spawn_n(1, (ACE_THR_FUNC)BusinessThread, this, THR_NEW_LWP, ACE_DEFAULT_THREAD_PRIORITY, 1001);
 
 		LogicEntrySingleton::instance()->SetLogic(pLogic);
 
@@ -270,4 +270,9 @@ BOOL SFEngine::SendRequest(BasePacket* pPacket)
 	pClonePacket->SetOwnerSerial(pPacket->GetOwnerSerial());
 
 	return PacketSendSingleton::instance()->PushPacket(pClonePacket);
+}
+
+bool SFEngine::ReleasePacket(BasePacket* pPacket)
+{
+	return m_pPacketProtocol->DisposePacket(pPacket);
 }

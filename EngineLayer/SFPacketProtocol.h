@@ -22,8 +22,8 @@ public:
 	bool OnReceive(int Serial, char* pBuffer, unsigned int dwTransferred) override;
 	//bool SendRequest(ISession* pSession, BasePacket* pPacket) override;
 
-	//virtual BasePacket* CreatePacket() override;
-	//virtual bool DisposePacket(BasePacket* pPacket) override;
+	virtual BasePacket* CreatePacket() override;
+	virtual bool DisposePacket(BasePacket* pPacket) override;
 	virtual bool GetPacketData(BasePacket* pPacket, char* buffer, const int BufferSize, unsigned int& writtenSize) override;
 
 	virtual IPacketProtocol* Clone(){return new SFPacketProtocol<T>();}
@@ -33,7 +33,7 @@ public:
 private:
 	T m_Analyzer;
 };
-/*
+
 template <typename T>
 BasePacket* SFPacketProtocol<T>::CreatePacket()
 {
@@ -44,7 +44,7 @@ template <typename T>
 bool SFPacketProtocol<T>::DisposePacket(BasePacket* pPacket)
 {
 	return m_Analyzer.DisposePacket(pPacket);
-}*/
+}
 
 template <typename T>
 bool SFPacketProtocol<T>::GetPacketData(BasePacket* pPacket, char* buffer, const int BufferSize, unsigned int& writtenSize)

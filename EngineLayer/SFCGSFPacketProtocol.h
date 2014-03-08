@@ -12,6 +12,7 @@ public:
 	BasePacket* GetPacket(int& ErrorCode);
 	BOOL AddTransferredData(char* pBuffer, DWORD dwTransferred);
 	bool SendRequest(ISession* pSession, BasePacket* pPacket);
+	bool DisposePacket(BasePacket* pPacket);
 
 protected:
 	BOOL Initialize();

@@ -121,6 +121,9 @@
     <ClCompile Include="SFPacketSendGateway.cpp">
       <Filter>Logic</Filter>
     </ClCompile>
+    <ClCompile Include="PacketAllocator.cpp">
+      <Filter>Packet\PacketProtocol</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include=".\SFExcel.h">
@@ -257,6 +260,9 @@
     </ClInclude>
     <ClInclude Include="ACEHeader.h">
       <Filter>Common</Filter>
+    </ClInclude>
+    <ClInclude Include="PacketAllocator.h">
+      <Filter>Packet\PacketProtocol</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

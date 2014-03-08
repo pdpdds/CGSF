@@ -67,3 +67,11 @@ bool SFCGSFPacketProtocol::SendRequest(ISession* pSession, BasePacket* pPacket)
 	
 	return TRUE;
 }
+
+bool SFCGSFPacketProtocol::DisposePacket(BasePacket* pPacket)
+{
+	SFPacket* pSFPacket = static_cast<SFPacket*>(pPacket);
+
+	SFASSERT(pSFPacket != NULL);
+	return PacketPoolSingleton::instance()->Release(pSFPacket);
+}

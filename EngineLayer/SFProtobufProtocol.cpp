@@ -96,6 +96,12 @@ void SFProtobufProtocol::disposeIncomingPacket( BasePacket* pPacket )
 	delete pPacket;
 }
 
+bool SFProtobufProtocol::DisposePacket(BasePacket* pPacket)
+{
+	delete pPacket;
+	return true;
+}
+
 int SFProtobufProtocol::tryDeframeIncomingPacket( DataBuffer& Buffer, BasePacket*& pPacket, int& PacketId, unsigned int& nExtractedBytes )
 {
 	if(Buffer.GetDataSize() < 8)

@@ -20,13 +20,13 @@ SFTCPNetwork::SFTCPNetwork(void)
 
 SFTCPNetwork::~SFTCPNetwork(void)
 {
-	if(m_pTCPCallBack)
+	if (m_pTCPCallBack)
 	{
 		delete m_pTCPCallBack;
 		m_pTCPCallBack = 0;
 	}
 
-	if(m_TCPClient)
+	if (m_TCPClient)
 	{
 		m_TCPClient->ShutDown();
 		delete m_TCPClient;
@@ -38,7 +38,7 @@ BOOL SFTCPNetwork::Initialize(char* szModuleName, INetworkCallback* pTCPCallBack
 {
 	m_TCPClient = new SFEngine(L"CGSF");
 
-	if(FALSE == m_TCPClient->CreateEngine(szModuleName, FALSE))
+	if (FALSE == m_TCPClient->CreateEngine(szModuleName, FALSE))
 	{
 		return FALSE;
 	}
@@ -55,26 +55,28 @@ BOOL SFTCPNetwork::Start(char* szIP, unsigned short Port)
 
 BOOL SFTCPNetwork::Update()
 {
-	while(1)
+	while (1)
 	{
 		BasePacket* pPacket = LogicGatewaySingleton::instance()->PopPacket(0);
 
-		if(pPacket != NULL)
+		if (pPacket != NULL)
 		{
-			if(pPacket->GetPacketType() == SFPACKET_DATA)
+			switch (pPacket->GetPacketType())
 			{
+
+			case SFPACKET_DATA:		
 				m_pTCPCallBack->HandleNetworkMessage(pPacket);
-			}
-			else if (pPacket->GetPacketType() == SFPACKET_CONNECT)
-			{
+				break;
+
+			case SFPACKET_CONNECT:			
 				m_pTCPCallBack->HandleConnect(pPacket->GetOwnerSerial());
-			}
-			else if (pPacket->GetPacketType() == SFPACKET_DISCONNECT)
-			{
+				break;
+			case  SFPACKET_DISCONNECT:			
 				m_pTCPCallBack->HandleDisconnect(pPacket->GetOwnerSerial());
+				break;
 			}
 
-			//PacketPoolSingleton::instance()->Release(pPacket);
+			m_TCPClient->ReleasePacket(pPacket);
 		}
 		else
 		{
