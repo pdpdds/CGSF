@@ -11,8 +11,6 @@
 #include <SFPacketStore/PacketID.h>
 #include <SFPacketStore/SFPacketStore.pb.h>
 
-
-extern SFNetworkEntry* g_pNetworkEntry;
 extern CasualGameManager* g_pCasualGameManager;
 
 TCPCallback::TCPCallback(CasualGameManager* pOwner)

@@ -11,9 +11,6 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="..\..\EngineDLLInterface\INetworkEngine.h">
-      <Filter>Source</Filter>
-    </ClInclude>
     <ClInclude Include="ACEHeader.h">
       <Filter>Source</Filter>
     </ClInclude>
@@ -38,12 +35,6 @@
     <ClInclude Include="ACETimeOutHandler.h">
       <Filter>Source</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\EngineDLLInterface\ISession.h">
-      <Filter>Source</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\EngineDLLInterface\BasePacket.h">
-      <Filter>Source</Filter>
-    </ClInclude>
     <ClInclude Include="InterlockedValue.h">
       <Filter>Source</Filter>
     </ClInclude>
@@ -51,6 +42,9 @@
       <Filter>Source</Filter>
     </ClInclude>
     <ClInclude Include="Lock.h">
+      <Filter>Source</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Common\BasePacket.h">
       <Filter>Source</Filter>
     </ClInclude>
   </ItemGroup>

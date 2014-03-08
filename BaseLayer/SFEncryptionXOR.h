@@ -6,8 +6,8 @@ public:
 	SFEncryptionXOR();
 	virtual ~SFEncryptionXOR();
 
-	static BOOL Encrypt(BYTE* pSrc, DWORD Length);
-	static BOOL Decrypt(BYTE* pSrc, DWORD Length);
+	static bool Encrypt(BYTE* pSrc, DWORD Length);
+	static bool Decrypt(BYTE* pSrc, DWORD Length);
 
 protected:
 

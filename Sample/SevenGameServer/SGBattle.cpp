@@ -12,8 +12,6 @@
 #include "SGTable.h"
 #include "GameModeConstant.h"
 
-extern SFEngine* g_pEngine;
-
 SGBattle::SGBattle(int Mode)
 : SFGameMode(Mode)
 {
@@ -270,7 +268,7 @@ BOOL SGBattle::SendPlayerID()
 		packet.SetOwnerSerial(pPlayer->GetSerial());
 		packet.GetData().set_playerindex(pPlayer->GetSerial());
 
-		g_pEngine->SendRequest(&packet);
+		SFEngine::GetInstance()->SendRequest(&packet);
 	}
 	
 
@@ -378,7 +376,7 @@ BOOL SGBattle::SendMyCardInfo()
 		}
 					
 		SFASSERT(pSGUser->GetRemainCard() == CardCount);
-		g_pEngine->SendRequest(&myCardInfo);
+		SFEngine::GetInstance()->SendRequest(&myCardInfo);
 	}
 
 	return TRUE;
@@ -396,7 +394,7 @@ BOOL SGBattle::BroadCast(BasePacket& packet)
 		SFPlayer* pPlayer = iter->second;
 		packet.SetOwnerSerial(pPlayer->GetSerial());
 
-		g_pEngine->SendRequest(&packet);
+		SFEngine::GetInstance()->SendRequest(&packet);
 	}
 
 	return TRUE;

@@ -16,7 +16,7 @@ public:
 	virtual ~SFDispatch(void){m_MsgMap.clear();}
 
 	void RegisterMessage(TMsgType Msg, TMsgHandler Method);
-	BOOL HandleMessage(TMsgType Msg, TMsg& Message);
+	bool HandleMessage(TMsgType Msg, TMsg& Message);
 
 protected:
 
@@ -31,7 +31,7 @@ void SFDispatch<typename TMsgType, typename TMsgHandler, typename TMsg>::Registe
 }
 
 template <typename TMsgType, typename TMsgHandler, typename TMsg>
-BOOL SFDispatch<typename TMsgType, typename TMsgHandler, typename TMsg>::HandleMessage(TMsgType MsgType, TMsg& Message)
+bool SFDispatch<typename TMsgType, typename TMsgHandler, typename TMsg>::HandleMessage(TMsgType MsgType, TMsg& Message)
 {
 	MsgMap::iterator iter = m_MsgMap.find(MsgType);
 
@@ -41,10 +41,10 @@ BOOL SFDispatch<typename TMsgType, typename TMsgHandler, typename TMsg>::HandleM
 	}
 	else
 	{
-		return FALSE;
+		return false;
 	}
 
-	return TRUE;
+	return true;
 }
 
 /////////////////////////////////////////////////////////////////////////////
@@ -65,7 +65,7 @@ public:
 	virtual ~SFDispatch_2(void){m_MsgMap.clear();}
 
 	void RegisterMessage(TMsgType Msg, TMsgHandler Method);
-	BOOL HandleMessage(TMsgType Msg, TMsg& Message, TMsg2& Message2);
+	bool HandleMessage(TMsgType Msg, TMsg& Message, TMsg2& Message2);
 
 protected:
 
@@ -80,7 +80,7 @@ void SFDispatch_2<typename TMsgType, typename TMsgHandler, typename TMsg, typena
 }
 
 template <typename TMsgType, typename TMsgHandler, typename TMsg, typename TMsg2>
-BOOL SFDispatch_2<typename TMsgType, typename TMsgHandler, typename TMsg, typename TMsg2>::HandleMessage(TMsgType MsgType, TMsg& Message, TMsg2& Message2)
+bool SFDispatch_2<typename TMsgType, typename TMsgHandler, typename TMsg, typename TMsg2>::HandleMessage(TMsgType MsgType, TMsg& Message, TMsg2& Message2)
 {
 	MsgMap::iterator iter = m_MsgMap.find(MsgType);
 

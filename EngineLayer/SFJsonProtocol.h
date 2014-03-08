@@ -16,7 +16,7 @@ public:
 	BOOL AddTransferredData(char* pBuffer, DWORD dwTransferred);
 	BOOL SendRequest(ISession* pSession, BasePacket* pPacket);
 
-	BOOL DisposePacket(BasePacket* pPacket);
+	bool DisposePacket(BasePacket* pPacket);
 	BasePacket* CreatePacket();
 	bool GetPacketData(BasePacket* pPacket, char* buffer, const int BufferSize, unsigned int& writtenSize);
 

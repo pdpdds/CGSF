@@ -1,11 +1,12 @@
 #include "stdafx.h"
 #include "SFNetworkEntry.h"
+#include "SFCasualGameDispatcher.h"
 #include "SFTCPNetwork.h"
 #include "SFUDPNetwork.h"
 #include "SFIni.h"
 #include <XML/StringConversion.h>
 
-#pragma comment(lib, "BaseLayer.lib")
+SFNetworkEntry* SFNetworkEntry::m_pNetworkEntry = NULL;
 
 SFNetworkEntry::SFNetworkEntry(void)
 	: m_pTCPNetwork(NULL)
@@ -13,9 +14,16 @@ SFNetworkEntry::SFNetworkEntry(void)
 {
 }
 
-
 SFNetworkEntry::~SFNetworkEntry(void)
 {
+}
+
+SFNetworkEntry* SFNetworkEntry::GetInstance()
+{
+	if (m_pNetworkEntry == NULL)
+		m_pNetworkEntry = new SFNetworkEntry();
+
+	return m_pNetworkEntry;
 }
 
 bool SFNetworkEntry::TCPSend(BasePacket* pPacket )
@@ -34,7 +42,7 @@ bool SFNetworkEntry::UDPSend(unsigned char* pMessage, int BufSize )
 	return false;
 }
 
-BOOL SFNetworkEntry::Initialize(INetworkCallback* pTCPCallBack, IUDPNetworkCallback* pUDPCallback)
+bool SFNetworkEntry::Initialize(INetworkCallback* pTCPCallBack, IPacketProtocol* pProtocol, ILogicDispatcher* pDispatcher, IUDPNetworkCallback* pUDPCallback)
 {
 	if(pTCPCallBack == NULL)
 		return FALSE;
@@ -55,29 +63,27 @@ BOOL SFNetworkEntry::Initialize(INetworkCallback* pTCPCallBack, IUDPNetworkCallb
 		m_pUDPNetwork = new SFUDPNetwork();
 		m_pUDPNetwork->Initialize(pUDPCallback);
 	}
-	
-	return TRUE;
-}
 
-void SFNetworkEntry::SetLogicDispatcher(ILogicDispatcher* pDispatcher)
-{
-	m_pTCPNetwork->SetLogicDispatcher(pDispatcher);
-}
-
-void SFNetworkEntry::SetPacketProtocol(IPacketProtocol* pProtocol)
-{
 	m_pTCPNetwork->SetPacketProtocol(pProtocol);
+
+	if (pDispatcher == NULL)
+		pDispatcher = new SFCasualGameDispatcher();
+
+	m_pTCPNetwork->SetLogicDispatcher(pDispatcher);
+	
+	
+	return true;
 }
 
-BOOL SFNetworkEntry::Finally()
+bool SFNetworkEntry::ShutDown()
 {
 	if(m_pTCPNetwork)
 		delete m_pTCPNetwork;
 
-	return TRUE;
+	return true;
 }
 
-BOOL SFNetworkEntry::Run()
+bool SFNetworkEntry::Run()
 {
 	SFIni ini;
 	
@@ -91,30 +97,28 @@ BOOL SFNetworkEntry::Run()
 	std::string str = StringConversion::ToASCII(szIP);
 	if(m_pTCPNetwork->Start((char*)str.c_str(), Port) == FALSE)
 	{
-		return FALSE;
+		return false;
 	}
 
 	if(m_pUDPNetwork)
 	{
 		m_pUDPNetwork->Start();
 	}
-	//char* pMessage = "cgsf";
-	//m_pUDPNetwork->Send(( unsigned char*)pMessage, 5);
-	
-	return TRUE;
+
+	return Update();;
 }
 
-BOOL SFNetworkEntry::Update()
+bool SFNetworkEntry::Update()
 {
 	m_pTCPNetwork->Update();
 
 	if(m_pUDPNetwork)
 		m_pUDPNetwork->Update();
 
-	return TRUE;
+	return true;
 }
 
-BOOL SFNetworkEntry::IsConnected()
+bool SFNetworkEntry::IsConnected()
 {
 	return m_pTCPNetwork->IsConnected();
 }

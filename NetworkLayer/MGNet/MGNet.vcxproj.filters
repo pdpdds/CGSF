@@ -17,9 +17,6 @@
     <ClInclude Include="MGServerReceiver.h">
       <Filter>Source</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\EngineDLLInterface\INetworkEngine.h">
-      <Filter>Source</Filter>
-    </ClInclude>
     <ClInclude Include="MGClientReceiver.h">
       <Filter>Source</Filter>
     </ClInclude>

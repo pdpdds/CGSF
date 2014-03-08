@@ -2,77 +2,60 @@
 //
 
 #include "stdafx.h"
-#include "SFNetworkEntry.h"
 #include "EchoCallback.h"
-#include "BasePacket.h"
+#include "SFNetworkEntry.h"
 #include "SFPacketProtocol.h"
 #include "SFJsonProtocol.h"
 #include "SFJsonPacket.h"
-#include "SFCasualGameDispatcher.h"
 #include <string>
 #include <iostream>
-#include "SFBreakPad.h"
 
-SFNetworkEntry* g_pNetworkEntry = NULL;
+#pragma comment(lib, "EngineLayer.lib")
 
 void EchoInputThread(void* Args)
 {
 	std::string input;
 
-	while (g_pNetworkEntry->IsConnected())
+	while (SFNetworkEntry::GetInstance()->IsConnected())
 	{
 		std::cin >> input;
 
 		if(input.compare("exit") == 0)
 			break;
 
-		if(input.compare("crash") == 0)
-		{
-			char* pNullPtr = 0;
-			*pNullPtr = 'a';
-		}
-
 		SFJsonPacket packet;
 		packet.GetData().Add("ECHO", input.c_str());
-		g_pNetworkEntry->TCPSend(&packet);
+
+		SFNetworkEntry::GetInstance()->TCPSend(&packet);
 	}
 }
 
-int _tmain(int argc, _TCHAR* argv[])
+void ProcessInput()
 {
-	SFBreakPad exceptionHandler;
-	exceptionHandler.Install();
-
-	g_pNetworkEntry = new SFNetworkEntry();
-	EchoCallback* pCallback = new EchoCallback();
-
-	g_pNetworkEntry->Initialize(pCallback);
-
-	IPacketProtocol* pProtocol = new SFPacketProtocol<SFJsonProtocol>;
-	g_pNetworkEntry->SetPacketProtocol(pProtocol);
-
-	ILogicDispatcher* pDispatcher = new SFCasualGameDispatcher();
-	g_pNetworkEntry->SetLogicDispatcher(pDispatcher);
-
-	g_pNetworkEntry->Run();
-
-	g_pNetworkEntry->Update();
-
 	int inputThreadID = ACE_Thread_Manager::instance()->spawn_n(1, (ACE_THR_FUNC)EchoInputThread, NULL, THR_NEW_LWP, ACE_DEFAULT_THREAD_PRIORITY);
 
 	SFASSERT(inputThreadID != -1);
 
-	while(g_pNetworkEntry->IsConnected())
+	while (SFNetworkEntry::GetInstance()->IsConnected())
 	{
-		g_pNetworkEntry->Update();
-	
+		SFNetworkEntry::GetInstance()->Update();
+
 		Sleep(1);
 	}
 
 	ACE_Thread_Manager::instance()->wait_grp(inputThreadID);
+}
 
-	g_pNetworkEntry->Finally();
-	delete g_pNetworkEntry;
+int _tmain(int argc, _TCHAR* argv[])
+{
+	EchoCallback* pCallback = new EchoCallback();
+
+	SFNetworkEntry::GetInstance()->Initialize(pCallback, new SFPacketProtocol<SFJsonProtocol>);
+	SFASSERT(TRUE == SFNetworkEntry::GetInstance()->Run());
+
+	ProcessInput();
+
+	SFNetworkEntry::GetInstance()->ShutDown();
 
 	return 0;
 }

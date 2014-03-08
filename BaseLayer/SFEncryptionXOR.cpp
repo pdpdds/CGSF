@@ -14,7 +14,7 @@ SFEncryptionXOR::~SFEncryptionXOR(void)
 {
 }
 
-BOOL SFEncryptionXOR::Encrypt(BYTE* pSrc, DWORD Length)
+bool SFEncryptionXOR::Encrypt(BYTE* pSrc, DWORD Length)
 {
 	DWORD Remain = Length % sizeof(DWORD);
 	Length -= Remain;
@@ -24,10 +24,10 @@ BOOL SFEncryptionXOR::Encrypt(BYTE* pSrc, DWORD Length)
 		*(DWORD*)(pSrc + i) = *(DWORD*)(pSrc + i) ^ m_EncrytionKey;
 	}
 
-	return TRUE;
+	return true;
 }
 
-BOOL SFEncryptionXOR::Decrypt(BYTE* pSrc, DWORD Length)
+bool SFEncryptionXOR::Decrypt(BYTE* pSrc, DWORD Length)
 {
 	DWORD Remain = Length % sizeof(DWORD);
 	Length -= Remain;
@@ -37,5 +37,5 @@ BOOL SFEncryptionXOR::Decrypt(BYTE* pSrc, DWORD Length)
 		*(DWORD*)(pSrc + i) = *(DWORD*)(pSrc + i) ^ m_EncrytionKey;
 	}
 
-	return TRUE;
+	return true;
 }

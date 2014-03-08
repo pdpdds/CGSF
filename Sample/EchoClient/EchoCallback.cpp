@@ -1,13 +1,11 @@
 #include "stdafx.h"
 #include "EchoCallback.h"
-#include "SFEngine.h"
 #include "SFJsonPacket.h"
 #include <iostream>
 
 EchoCallback::EchoCallback(void)
 {
 }
-
 
 EchoCallback::~EchoCallback(void)
 {

@@ -103,7 +103,7 @@
     </ClCompile>
     <Lib>
       <AdditionalLibraryDirectories>$(SolutionDir)/Lib/x86/debug;../ThirdParty/lib/x86/debug;../ThirdParty/ACE/lib/x86;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
-      <AdditionalDependencies>libglog.lib;aced.lib</AdditionalDependencies>
+      <AdditionalDependencies>libglog.lib;aced.lib;</AdditionalDependencies>
     </Lib>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
@@ -154,7 +154,7 @@
       <AdditionalOptions>-D_SCL_SECURE_NO_WARNINGS %(AdditionalOptions)</AdditionalOptions>
     </ClCompile>
     <Lib>
-      <AdditionalDependencies>libglog.lib;aced.lib</AdditionalDependencies>
+      <AdditionalDependencies>libglog.lib;ace.lib</AdditionalDependencies>
       <AdditionalLibraryDirectories>$(SolutionDir)/Lib/x64/Release;../ThirdParty/lib/x64/Release;../ThirdParty/ACE/lib/x64;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
     </Lib>
   </ItemDefinitionGroup>

@@ -42,5 +42,4 @@
 #include "SFProtobufPacket.h"
 
 using namespace google;
-extern SFEngine* g_pEngine;
 //#pragma comment(lib, "libprotobuf.lib")

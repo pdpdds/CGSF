@@ -14,15 +14,13 @@ public:
 	SFNetworkEntry(void);
 	virtual ~SFNetworkEntry(void);
 
-	BOOL Initialize(INetworkCallback* pTCPCallBack, IUDPNetworkCallback* pUDPCallback = NULL);
-	void SetLogicDispatcher(ILogicDispatcher* pDispatcher);
-	void SetPacketProtocol(IPacketProtocol* pDispatcher);
+	static SFNetworkEntry* GetInstance();
+	bool Initialize(INetworkCallback* pTCPCallBack, IPacketProtocol* pProtocol, ILogicDispatcher* pDispatcher = NULL, IUDPNetworkCallback* pUDPCallback = NULL);
+	bool ShutDown();
 
-	BOOL Finally();
-
-	BOOL Run();
-	BOOL Update();
-	BOOL IsConnected();
+	bool Run();
+	bool Update();
+	bool IsConnected();
 
 	bool TCPSend(BasePacket* pPacket );
 	bool UDPSend(unsigned char* pMessage, int BufSize );
@@ -37,7 +35,7 @@ public:
 protected:
 
 private:
-	SFTCPNetwork* m_pTCPNetwork; //tcp
+	static SFNetworkEntry* m_pNetworkEntry;
+	SFTCPNetwork* m_pTCPNetwork; //TCP
 	SFUDPNetwork *m_pUDPNetwork; // UDP
 };
-

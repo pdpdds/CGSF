@@ -164,9 +164,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClInclude Include="..\..\EngineDLLInterface\BasePacket.h" />
-    <ClInclude Include="..\..\EngineDLLInterface\INetworkEngine.h" />
-    <ClInclude Include="..\..\EngineDLLInterface\ISession.h" />
+    <ClInclude Include="..\..\Common\BasePacket.h" />
     <ClInclude Include="ACEEngine.h" />
     <ClInclude Include="ACEHeader.h" />
     <ClInclude Include=".\SingltonObject.h" />

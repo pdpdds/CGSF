@@ -272,7 +272,7 @@ BOOL SFLogicEntry::OnShouter(BasePacket* pPacket)
 
 BOOL SFLogicEntry::SendRequest(BasePacket* pPacket)
 {
-	return g_pEngine->SendRequest(pPacket);
+	return SFEngine::GetInstance()->SendRequest(pPacket);
 }
 
 /*BOOL SFLogicEntry::Send( int Serial, int PacketID, char* pBuffer, int BufferSize )

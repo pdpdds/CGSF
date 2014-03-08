@@ -156,10 +156,14 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClInclude Include="..\..\EngineDLLInterface\BasePacket.h" />
-    <ClInclude Include="..\..\EngineDLLInterface\INetworkEngine.h" />
-    <ClInclude Include="..\..\EngineDLLInterface\IPacketProtocol.h" />
-    <ClInclude Include="..\..\EngineDLLInterface\ISession.h" />
+    <ClInclude Include="..\..\Common\EngineInterface\IEngine.h" />
+    <ClInclude Include="..\..\Common\EngineInterface\INetworkCallback.h" />
+    <ClInclude Include="..\..\Common\EngineInterface\INetworkEngine.h" />
+    <ClInclude Include="..\..\Common\EngineInterface\IP2PManager.h" />
+    <ClInclude Include="..\..\Common\EngineInterface\IPacketProtocol.h" />
+    <ClInclude Include="..\..\Common\EngineInterface\ISession.h" />
+    <ClInclude Include="..\..\Common\EngineInterface\ISessionService.h" />
+    <ClInclude Include="..\..\Common\EngineInterface\IUDPNetworkCallback.h" />
     <ClInclude Include="ASIOEngine.h" />
     <ClInclude Include="ChattingServer.h" />
     <ClInclude Include="Protocol.h" />

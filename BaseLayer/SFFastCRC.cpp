@@ -25,21 +25,21 @@ SFFastCRC::~SFFastCRC(void)
 {
 }
 
-BOOL SFFastCRC::Initialize()
+bool SFFastCRC::Initialize()
 {
 	crcInit(); 
 
 	return TRUE;
 }
 	
-BOOL SFFastCRC::GetCRC(BYTE* pBuffer, DWORD BufferSize, DWORD& CRC)
+bool SFFastCRC::GetCRC(BYTE* pBuffer, DWORD BufferSize, DWORD& CRC)
 {
 	CRC = crcFast(pBuffer, BufferSize);
 
 	return TRUE;
 }
 
-BOOL SFFastCRC::GetSimpleCRC(BYTE* pBuffer, DWORD BufferSize, DWORD& CRC)
+bool SFFastCRC::GetSimpleCRC(BYTE* pBuffer, DWORD BufferSize, DWORD& CRC)
 {
 	if (pBuffer == NULL) return FALSE;
 
@@ -67,19 +67,19 @@ BOOL SFFastCRC::GetSimpleCRC(BYTE* pBuffer, DWORD BufferSize, DWORD& CRC)
 	return TRUE;
 }
 
-BOOL SFFastCRC::GetZLibCRC(BYTE* pBuffer, DWORD BufferSize, DWORD& CRC)
+bool SFFastCRC::GetZLibCRC(BYTE* pBuffer, DWORD BufferSize, DWORD& CRC)
 {
 	CRC = crc32(CRC, pBuffer, BufferSize);
 	return TRUE;
 }
 
-BOOL SFFastCRC::GetadlerCRC(BYTE* pBuffer, DWORD BufferSize, DWORD& CRC)
+bool SFFastCRC::GetadlerCRC(BYTE* pBuffer, DWORD BufferSize, DWORD& CRC)
 {
 	CRC = adler32(CRC, pBuffer, BufferSize);
 	return TRUE;
 }
 
-BOOL SFFastCRC::Get7zCRC(BYTE* pBuffer, DWORD BufferSize, DWORD& CRC)
+bool SFFastCRC::Get7zCRC(BYTE* pBuffer, DWORD BufferSize, DWORD& CRC)
 {
 	CRC = crc7z(CRC, pBuffer, BufferSize);
 	return TRUE;

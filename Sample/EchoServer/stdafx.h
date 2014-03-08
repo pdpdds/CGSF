@@ -15,9 +15,3 @@
 
 #include <windows.h>
 
-#pragma comment(lib, "zlib.lib")
-#pragma comment(lib, "liblzf.lib")
-#pragma comment(lib, "libprotobuf.lib")
-#pragma comment(lib, "BaseLayer.lib")
-#pragma comment(lib, "EngineLayer.lib")
-#pragma comment(lib, "DatabaseLayer.lib")

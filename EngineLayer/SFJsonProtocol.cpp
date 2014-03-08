@@ -63,10 +63,10 @@ BasePacket* SFJsonProtocol::CreatePacket()
 	return new SFJsonPacket();
 }
 
-BOOL SFJsonProtocol::DisposePacket(BasePacket* pPacket)
+bool SFJsonProtocol::DisposePacket(BasePacket* pPacket)
 {
 	delete pPacket;
-	return TRUE;
+	return true;
 }
 
 bool SFJsonProtocol::GetPacketData(BasePacket* pPacket, char* buffer, const int BufferSize, unsigned int& writtenSize)

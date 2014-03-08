@@ -6,12 +6,10 @@
 
 SFIOCPQueue<int> IOCPQueue;
 
-BOOL gServerEnd = FALSE;
-
 void BusinessThread(void* Args)
 {
 	SFEngine* pEngine = (SFEngine*)Args;
-	while (gServerEnd == FALSE)
+	while (SFEngine::GetInstance()->ServerTerminated() == FALSE)
 	{
 		BasePacket* pPacket = LogicGatewaySingleton::instance()->PopPacket();
 		LogicEntrySingleton::instance()->ProcessPacket(pPacket);
@@ -44,7 +42,7 @@ void PacketSendThread(void* Args)
 	SFEngine* pEngine = (SFEngine*)Args;
 	INetworkEngine* pNetworkEngine = pEngine->GetNetworkEngine();
 
-	while (gServerEnd == FALSE)
+	while (SFEngine::GetInstance()->ServerTerminated() == FALSE)
 	{
 		SFPacket* pPacket = (SFPacket*)PacketSendSingleton::instance()->PopPacket();
 

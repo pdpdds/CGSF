@@ -6,8 +6,6 @@
 #include <iostream>
 #include "SFJsonPacket.h"
 
-//extern SFEngine* g_pEngine;
-
 using namespace google;
 
 TCPNetworkCallback::TCPNetworkCallback(void)

@@ -7,8 +7,6 @@
 #include "SFEngine.h"
 #include "SFJsonPacket.h"
 
-extern SFEngine* g_pEngine;
-
 ChatLogicJsonEntry::ChatLogicJsonEntry(void)
 {
 }
@@ -112,7 +110,7 @@ BOOL ChatLogicJsonEntry::OnPlayerData( BasePacket* pPacket )
 
 BOOL ChatLogicJsonEntry::SendRequest(BasePacket* pPacket)
 {
-	g_pEngine->SendRequest(pPacket);
+	SFEngine::GetInstance()->SendRequest(pPacket);
 
 	return TRUE;
 }

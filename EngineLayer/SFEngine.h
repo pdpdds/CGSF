@@ -10,13 +10,15 @@ class SFEngine : public IEngine
 {
 	friend class SFTCPNetwork;
 public:
-	SFEngine(_TCHAR* pArg);
+	SFEngine();
 	virtual ~SFEngine(void);
 
-	BOOL Start();
-	BOOL Start(char* szIP, unsigned short Port);
-	BOOL Intialize(ILogicEntry* pLogicEntry, IPacketProtocol* pProtocol, ILogicDispatcher* pDispatcher);
-	BOOL ShutDown();
+	static SFEngine* GetInstance();
+
+	bool Start();
+	bool Start(char* szIP, unsigned short Port);
+	bool Intialize(ILogicEntry* pLogicEntry, IPacketProtocol* pProtocol, ILogicDispatcher* pDispatcher = NULL);
+	bool ShutDown();
 
 	virtual ISessionService* CreateSessionService() override;
 	
@@ -24,8 +26,8 @@ public:
 	virtual bool OnDisconnect(int Serial) override;
 	virtual bool OnTimer(const void *arg) override;
 
-	BOOL AddTimer(int timerID, DWORD period, DWORD delay);
-	BOOL SendRequest(BasePacket* pPacket);
+	bool AddTimer(int timerID, DWORD period, DWORD delay);
+	bool SendRequest(BasePacket* pPacket);
 
 	INetworkEngine* GetNetworkEngine(){return m_pNetworkEngine;}
 
@@ -37,16 +39,19 @@ public:
 
 	bool ReleasePacket(BasePacket* pPacket);
 
+	bool ServerTerminated(){ return m_bServerTerminated; }
+
 protected:
 
-	BOOL CreateLogicThread(ILogicEntry* pLogic);
-	BOOL CreatePacketSendThread();
-	BOOL CreateEngine(char* szModuleName, bool Server = false);
+	bool CreateLogicThread(ILogicEntry* pLogic);
+	bool CreatePacketSendThread();
+	bool CreateEngine(char* szModuleName, bool Server = false);
 	
 private:
 	SFConfigure m_Config;
 	int m_PacketSendThreadId;
 	int m_LogicThreadId;
+	bool m_bServerTerminated;
 
 	HINSTANCE m_EngineHandle;
 	INetworkEngine* m_pNetworkEngine;
@@ -55,4 +60,6 @@ private:
 
 	void SetPacketProtocol(IPacketProtocol* pProtocol){m_pPacketProtocol = pProtocol;}
 	void SetLogicDispathcer(ILogicDispatcher* pDispatcher){m_pLogicDispatcher = pDispatcher;}
+
+	static SFEngine* m_pEngine;
 };

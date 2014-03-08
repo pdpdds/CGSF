@@ -3,9 +3,6 @@
 #include "GameModeConstant.h"
 #include "SFLogicEntry.h"
 #include "FPSProtocol.h"
-#include "SFCasualGameDispatcher.h"
-
-SFEngine* g_pEngine = NULL;
 
 int _tmain(int argc, _TCHAR* argv[])
 {
@@ -33,7 +30,6 @@ int _tmain(int argc, _TCHAR* argv[])
 		}
 	}
 }*/
-	g_pEngine = new SFEngine(argv[0]);
 
 ////////////////////////////////////////////////////////////////////
 //Game Mode
@@ -43,19 +39,20 @@ int _tmain(int argc, _TCHAR* argv[])
 	pLogicEntry->AddGameMode(GAMEMODE_FREEFORALL, new SFFreeForAll(GAMEMODE_FREEFORALL));
 	
 /////////////////////////////////////////////////////////////////////
-	if (FALSE == g_pEngine->Intialize(pLogicEntry, new SFPacketProtocol<FPSProtocol>, new SFCasualGameDispatcher()) ||
-		FALSE == g_pEngine->Start())
+	if (FALSE == SFEngine::GetInstance()->Intialize(pLogicEntry, new SFPacketProtocol<FPSProtocol>) ||
+		FALSE == SFEngine::GetInstance()->Start())
 	{
 		google::FlushLogFiles(google::GLOG_INFO);
 		google::FlushLogFiles(google::GLOG_ERROR);
-		delete g_pEngine;
+		
 		return 0;
 	}
 
 	google::FlushLogFiles(google::GLOG_INFO);
 
 	getchar();
-	g_pEngine->ShutDown();
+
+	SFEngine::GetInstance()->ShutDown();
 
 	return 0;
 }

@@ -27,19 +27,31 @@
     <ClInclude Include="ServerSession.h">
       <Filter>Source Files</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\EngineDLLInterface\INetworkEngine.h">
-      <Filter>EngineInterface</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\EngineDLLInterface\ISession.h">
-      <Filter>EngineInterface</Filter>
-    </ClInclude>
     <ClInclude Include="ASIOEngine.h">
       <Filter>Source Files</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\EngineDLLInterface\BasePacket.h">
+    <ClInclude Include="..\..\Common\EngineInterface\IEngine.h">
       <Filter>EngineInterface</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\EngineDLLInterface\IPacketProtocol.h">
+    <ClInclude Include="..\..\Common\EngineInterface\INetworkCallback.h">
+      <Filter>EngineInterface</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Common\EngineInterface\INetworkEngine.h">
+      <Filter>EngineInterface</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Common\EngineInterface\IP2PManager.h">
+      <Filter>EngineInterface</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Common\EngineInterface\IPacketProtocol.h">
+      <Filter>EngineInterface</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Common\EngineInterface\ISession.h">
+      <Filter>EngineInterface</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Common\EngineInterface\ISessionService.h">
+      <Filter>EngineInterface</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Common\EngineInterface\IUDPNetworkCallback.h">
       <Filter>EngineInterface</Filter>
     </ClInclude>
   </ItemGroup>

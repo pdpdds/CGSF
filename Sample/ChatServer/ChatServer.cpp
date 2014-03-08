@@ -4,13 +4,9 @@
 #include "SFEngine.h"
 #include "ChatLogicJsonEntry.h"
 #include "SFJsonProtocol.h"
-#include "SFCasualGameDispatcher.h"
-
-SFEngine* g_pEngine = NULL;
 
 int _tmain(int argc, _TCHAR* argv[])
 {
-	g_pEngine = new SFEngine(argv[0]);
 
 ////////////////////////////////////////////////////////////////////
 //Game Mode
@@ -18,19 +14,19 @@ int _tmain(int argc, _TCHAR* argv[])
 	ChatLogicJsonEntry* pLogicEntry = new ChatLogicJsonEntry();
 	
 /////////////////////////////////////////////////////////////////////
-	if (FALSE == g_pEngine->Intialize(pLogicEntry, new SFPacketProtocol<SFJsonProtocol>, new SFCasualGameDispatcher()) ||
-		FALSE == g_pEngine->Start())
+	if (FALSE == SFEngine::GetInstance()->Intialize(pLogicEntry, new SFPacketProtocol<SFJsonProtocol>) ||
+		FALSE == SFEngine::GetInstance()->Start())
 	{
 		google::FlushLogFiles(google::GLOG_INFO);
 		google::FlushLogFiles(google::GLOG_ERROR);
-		delete g_pEngine;
+	
 		return 0;
 	}
 
 	google::FlushLogFiles(google::GLOG_INFO);
 
 	getchar();
-	g_pEngine->ShutDown();
+	SFEngine::GetInstance()->ShutDown();
 
 	return 0;
 }

@@ -8,8 +8,4 @@ public:
 	virtual ~EchoCallback(void);
 
 	virtual bool HandleNetworkMessage(BasePacket* pPacket) override; 
-
-protected:
-
 };
-

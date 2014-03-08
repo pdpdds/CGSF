@@ -4,10 +4,20 @@
 #include "ace/os_ns_thread.h"
 #include "SFBridgeThread.h"
 #include "SFSessionService.h"
+#include "SFCasualGameDispatcher.h"
 
-SFEngine::SFEngine(TCHAR* pArg)
+#pragma comment(lib, "BaseLayer.lib")
+#pragma comment(lib, "DatabaseLayer.lib")
+#pragma comment(lib, "zlib.lib")
+#pragma comment(lib, "liblzf.lib")
+#pragma comment(lib, "libprotobuf.lib")
+
+SFEngine* SFEngine::m_pEngine = NULL;
+
+SFEngine::SFEngine()
 	: m_LogicThreadId(-1)
 	, m_PacketSendThreadId(-1)
+	, m_bServerTerminated(false)
 {
 	/*SFConfigure Configure;
 	_EngineConfig* pInfo = Configure.GetConfigureInfo();
@@ -22,7 +32,7 @@ SFEngine::SFEngine(TCHAR* pArg)
 	Configure.Write(L"EngineConfig.xml");
 
 	Configure.Write(L"EngineConfig.xml");*/
-	google::InitGoogleLogging((char*)StringConversion::ToASCII(pArg).c_str());
+	google::InitGoogleLogging("CGSF");
 	
 	m_EngineHandle = 0;
 }
@@ -33,29 +43,37 @@ SFEngine::~SFEngine(void)
 		delete m_pNetworkEngine;
 }
 
-BOOL SFEngine::CreateEngine(char* szModuleName, bool Server)
+SFEngine* SFEngine::GetInstance()
+{
+	if (m_pEngine == NULL)
+		m_pEngine = new SFEngine();
+
+	return m_pEngine;
+}
+
+bool SFEngine::CreateEngine(char* szModuleName, bool Server)
 {
 	m_EngineHandle = ::LoadLibraryA(szModuleName);
 
 	if(m_EngineHandle == 0)
-		return FALSE;
+		return false;
 
 	CREATENETWORKENGINE *pfunc;
 	pfunc = (CREATENETWORKENGINE*)::GetProcAddress( m_EngineHandle, "CreateNetworkEngine");
 	m_pNetworkEngine = pfunc(Server, this);
 
 	if(m_pNetworkEngine == NULL)
-		return FALSE;
+		return false;
 
 	if(FALSE == m_pNetworkEngine->Init())
-		return FALSE;
+		return false;
 
 	CreatePacketSendThread();
 	
-	return TRUE;
+	return true;
 }
 
-BOOL SFEngine::CreateLogicThread(ILogicEntry* pLogic)
+bool SFEngine::CreateLogicThread(ILogicEntry* pLogic)
 {
 	if(pLogic != NULL)
 	{
@@ -63,13 +81,13 @@ BOOL SFEngine::CreateLogicThread(ILogicEntry* pLogic)
 
 		LogicEntrySingleton::instance()->SetLogic(pLogic);
 
-		return TRUE;
+		return true;
 	}
 
-	return FALSE;
+	return false;
 }
 
-BOOL SFEngine::CreatePacketSendThread()
+bool SFEngine::CreatePacketSendThread()
 {	
 	m_PacketSendThreadId = ACE_Thread_Manager::instance()->spawn_n(1, (ACE_THR_FUNC)PacketSendThread, this, THR_NEW_LWP, ACE_DEFAULT_THREAD_PRIORITY, 1002);
 
@@ -83,7 +101,7 @@ ISessionService* SFEngine::CreateSessionService()
 	return pService;
 }
 
-BOOL SFEngine::Intialize(ILogicEntry* pLogicEntry, IPacketProtocol* pProtocol, ILogicDispatcher* pDispatcher)
+bool SFEngine::Intialize(ILogicEntry* pLogicEntry, IPacketProtocol* pProtocol, ILogicDispatcher* pDispatcher)
 {
 	LOG(INFO) << "Engine Initialize... ";
 	
@@ -100,26 +118,31 @@ BOOL SFEngine::Intialize(ILogicEntry* pLogicEntry, IPacketProtocol* pProtocol, I
 	LOG(INFO) << "ACE Init ";
 
 	ASSERT(pProtocol != NULL);
-	ASSERT(pDispatcher != NULL);
 
 	SetPacketProtocol(pProtocol);
+
+	if (pDispatcher == NULL)
+	{
+		pDispatcher = new SFCasualGameDispatcher();
+	}
+
 	SetLogicDispathcer(pDispatcher);
 
 	LOG(INFO) << "PacketProtocol Setting";
 	LOG(INFO) << "LogicDispatcher Setting";
 
-	if(FALSE == pLogicEntry->Initialize())
+	if (false == pLogicEntry->Initialize())
 	{
 		LOG(ERROR) << "LogicEntry Intialize Fail!!";
-		return FALSE;
+		return false;
 	}
 
 	LOG(INFO) << "LogicEntry Intialize Success!!";
 
-	if(FALSE == CreateEngine((char*)StringConversion::ToASCII(pInfo->EngineName).c_str(), true))
+	if (false == CreateEngine((char*)StringConversion::ToASCII(pInfo->EngineName).c_str(), true))
 	{
 		LOG(ERROR) << "NetworkEngine : " << StringConversion::ToASCII(pInfo->EngineName).c_str() << " Creation FAIL!!";
-		return FALSE;
+		return false;
 	}
 
 	LOG(INFO) << "NetworkEngine : " << StringConversion::ToASCII(pInfo->EngineName).c_str() << " Creation Success!!";
@@ -127,14 +150,14 @@ BOOL SFEngine::Intialize(ILogicEntry* pLogicEntry, IPacketProtocol* pProtocol, I
 	if(FALSE == CreateLogicThread(pLogicEntry))
 	{
 		LOG(ERROR) << "LogicThread Creation FAIL!!";
-		return FALSE;
+		return false;
 	}
 
 	LOG(INFO) << "LogicThread Creation Success!!";
 
 
 	LOG(INFO) << "Engine Initialize Complete!! ";
-	return TRUE;
+	return true;
 
 	/*int MaxPacketPool = 1000;
 
@@ -145,7 +168,7 @@ BOOL SFEngine::Intialize(ILogicEntry* pLogicEntry, IPacketProtocol* pProtocol, I
 ////////////////////////////////////////////////////////////////////
 //Add Timer
 ////////////////////////////////////////////////////////////////////
-BOOL SFEngine::AddTimer(int timerID, DWORD period, DWORD delay)
+bool SFEngine::AddTimer(int timerID, DWORD period, DWORD delay)
 {
 	_TimerInfo Timer;
 	Timer.TimerID = timerID;
@@ -166,7 +189,7 @@ BOOL SFEngine::AddTimer(int timerID, DWORD period, DWORD delay)
 	return TRUE;
 }
 
-BOOL SFEngine::Start()
+bool SFEngine::Start()
 {
 	_EngineConfig* pInfo = m_Config.GetConfigureInfo();
 
@@ -183,18 +206,16 @@ BOOL SFEngine::Start()
 	return true;
 }
 
-BOOL SFEngine::Start(char* szIP, unsigned short Port)
+bool SFEngine::Start(char* szIP, unsigned short Port)
 {
 	//m_pNetworkEngine->Init();
 
 	return m_pNetworkEngine->Start(szIP, Port);
 }
 
-BOOL extern gServerEnd;
-
-BOOL SFEngine::ShutDown()
+bool SFEngine::ShutDown()
 {
-	gServerEnd = TRUE;
+	m_bServerTerminated = true;
 
 	SFPacket* pPacket = PacketPoolSingleton::instance()->Alloc();
 	pPacket->SetPacketType(SFPACKET_SERVERSHUTDOWN);
@@ -214,7 +235,9 @@ BOOL SFEngine::ShutDown()
 
 	google::ShutdownGoogleLogging();
 
-	return TRUE;
+	delete this;
+
+	return true;
 }
 
 bool SFEngine::OnConnect(int Serial)
@@ -250,7 +273,7 @@ bool SFEngine::OnTimer(const void *arg)
 	return true;
 }
 
-BOOL SFEngine::SendRequest(BasePacket* pPacket)
+bool SFEngine::SendRequest(BasePacket* pPacket)
 {
 	//return GetNetworkEngine()->SendRequest(pPacket);
 
@@ -262,7 +285,7 @@ BOOL SFEngine::SendRequest(BasePacket* pPacket)
 	if(writtenSize == 0)
 	{
 		PacketPoolSingleton::instance()->Release(pClonePacket);
-		return FALSE;
+		return false;
 	}
 
 	pClonePacket->SetDataSize(writtenSize);

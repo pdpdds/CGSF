@@ -24,7 +24,6 @@
     <ClCompile Include="MGServerReceiver.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="..\..\EngineDLLInterface\INetworkEngine.h" />
     <ClInclude Include="MGClientReceiver.h" />
     <ClInclude Include="MGEngine.h" />
     <ClInclude Include="MGServerReceiver.h" />

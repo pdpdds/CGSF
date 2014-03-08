@@ -10,7 +10,6 @@
 
 using namespace google;
 
-extern SFEngine* g_pEngine;
 
 ChatLogicEntry::ChatLogicEntry(void)
 {
@@ -110,7 +109,7 @@ BOOL ChatLogicEntry::OnPlayerData( BasePacket* pPacket )
 
 BOOL ChatLogicEntry::SendRequest(BasePacket* pPacket)
 {
-	g_pEngine->SendRequest(pPacket);
+	SFEngine::GetInstance()->SendRequest(pPacket);
 
 	return TRUE;
 }

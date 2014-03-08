@@ -1,5 +1,6 @@
 #pragma once
 #include <json/jsonnode.h>
+#include "BasePacket.h"
 
 class SFJsonPacket : public BasePacket
 {
@@ -14,4 +15,3 @@ protected:
 private:
 	JsonObjectNode m_Node;
 };
-

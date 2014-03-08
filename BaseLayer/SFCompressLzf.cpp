@@ -10,7 +10,7 @@ SFCompressLzf::~SFCompressLzf(void)
 {
 }
 
-BOOL SFCompressLzf::Compress(BYTE* pDest, int& DestLen, BYTE* pSrc, int SrcLen)
+bool SFCompressLzf::Compress(BYTE* pDest, int& DestLen, BYTE* pSrc, int SrcLen)
 {
 	int Size = lzf_compress(pSrc, SrcLen, pDest, DestLen);
 	DestLen = Size;
@@ -19,7 +19,7 @@ BOOL SFCompressLzf::Compress(BYTE* pDest, int& DestLen, BYTE* pSrc, int SrcLen)
 	return Size > 0;
 }
 
-BOOL SFCompressLzf::Uncompress(BYTE* pDest, int& DestLen, BYTE* pSrc, int SrcLen)
+bool SFCompressLzf::Uncompress(BYTE* pDest, int& DestLen, BYTE* pSrc, int SrcLen)
 {
 	int Size = lzf_decompress(pSrc, SrcLen, pDest, DestLen); 
 	DestLen = Size;

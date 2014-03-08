@@ -8,8 +8,6 @@
 #include "SFProtobufPacket.h"
 #include "SFNetworkEntry.h"
 
-extern SFNetworkEntry* g_pNetworkEntry;
-
 SGStateGame::SGStateGame( SGManager* pManager )
 : SGState(pManager)
 {
@@ -40,7 +38,7 @@ BOOL SGStateGame::OnMessage(int iX, int iY)
 		SFProtobufPacket<SevenGamePacket::TurnPass> turnPass(SevenGame::TurnPass);
 	
 		turnPass.GetData().set_playerindex(pManager->GetMyID());
-		return g_pNetworkEntry->TCPSend(&turnPass);
+		return SFNetworkEntry::GetInstance()->TCPSend(&turnPass);
 	}
 
 	SCardInfo cardInfo;
@@ -52,7 +50,7 @@ BOOL SGStateGame::OnMessage(int iX, int iY)
 		cardSubmit.GetData().set_playerindex(pManager->GetMyID());
 		cardSubmit.GetData().set_cardnum(cardInfo.iCardNum);
 		cardSubmit.GetData().set_cardtype(cardInfo.iCardType);
-		return g_pNetworkEntry->TCPSend(&cardSubmit);
+		return SFNetworkEntry::GetInstance()->TCPSend(&cardSubmit);
 	}
 
 
