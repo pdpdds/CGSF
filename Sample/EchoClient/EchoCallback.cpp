@@ -17,5 +17,5 @@ bool EchoCallback::HandleNetworkMessage(BasePacket* pPacket)
 
 	std::cout << "Received : " << pJsonPacket->GetData().GetValue<tstring>("ECHO") << std::endl;
 
-	return TRUE;
+	return true;
 }

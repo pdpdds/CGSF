@@ -14,4 +14,3 @@
 #include "CommonHeader.h"
 
 #include <windows.h>
-#include <SFPacketStore/SFPacketStore.pb.h>

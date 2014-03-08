@@ -9,8 +9,8 @@
 class SFEngine : public IEngine
 {
 	friend class SFTCPNetwork;
+
 public:
-	SFEngine();
 	virtual ~SFEngine(void);
 
 	static SFEngine* GetInstance();
@@ -48,6 +48,8 @@ protected:
 	bool CreateEngine(char* szModuleName, bool Server = false);
 	
 private:
+	SFEngine();
+
 	SFConfigure m_Config;
 	int m_PacketSendThreadId;
 	int m_LogicThreadId;

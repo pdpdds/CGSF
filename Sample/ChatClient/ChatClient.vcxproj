@@ -179,39 +179,19 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="..\..\Common\SFPacketStore\ChatPacket.pb.cc">
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">NotUsing</PrecompiledHeader>
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">NotUsing</PrecompiledHeader>
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">NotUsing</PrecompiledHeader>
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|x64'">NotUsing</PrecompiledHeader>
-    </ClCompile>
-    <ClCompile Include="..\..\Common\SFPacketStore\PacketCore.pb.cc">
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">NotUsing</PrecompiledHeader>
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">NotUsing</PrecompiledHeader>
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">NotUsing</PrecompiledHeader>
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|x64'">NotUsing</PrecompiledHeader>
-    </ClCompile>
     <ClCompile Include=".\ChatClient.cpp" />
-    <ClCompile Include=".\ChatPacketEntry.cpp" />
     <ClCompile Include=".\stdafx.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Create</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Create</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Create</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Create</PrecompiledHeader>
     </ClCompile>
-    <ClCompile Include=".\TCPNetworkCallback.cpp" />
-    <ClCompile Include="ChatClientProtocol.cpp" />
-    <ClCompile Include="ChatPacketJsonEntry.cpp" />
+    <ClCompile Include="ChatCallback.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="..\..\Common\SFPacketStore\ChatPacket.pb.h" />
-    <ClInclude Include="..\..\Common\SFPacketStore\PacketCore.pb.h" />
-    <ClInclude Include=".\TCPNetworkCallback.h" />
-    <ClInclude Include=".\ChatPacketEntry.h" />
+    <ClInclude Include="ChatCallback.h" />
     <ClInclude Include=".\stdafx.h" />
     <ClInclude Include=".\targetver.h" />
-    <ClInclude Include="ChatClientProtocol.h" />
-    <ClInclude Include="ChatPacketJsonEntry.h" />
   </ItemGroup>
   <ItemGroup>
     <Text Include=".\ReadMe.txt" />

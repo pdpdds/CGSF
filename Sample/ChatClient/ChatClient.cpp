@@ -2,7 +2,7 @@
 
 #include "stdafx.h"
 #include "SFNetworkEntry.h"
-#include "TCPNetworkCallback.h"
+#include "ChatCallback.h"
 #include "BasePacket.h"
 #include "SFPacketProtocol.h"
 #include "SFJsonProtocol.h"
@@ -10,46 +10,52 @@
 #include <string>
 #include <iostream>
 
+#pragma comment(lib, "EngineLayer.lib")
 
 void EchoInputThread(void* Args)
 {
-
 	std::string input;
-	while(1)
+
+	while (SFNetworkEntry::GetInstance()->IsConnected())
 	{
 		std::cin >> input;
 
-		if(input.compare("exit") == 0)
+		if (input.compare("exit") == 0)
 			break;
 
-		if(input.compare("crash") == 0)
-		{
-			char* pNullPtr = 0;
-			*pNullPtr = 'a';
-		}
-
 		SFJsonPacket packet;
-		packet.GetData().Add("PacketId", 1234);
+		packet.GetData().Add("PacketId", CHAT_PACKET_NUM);
 		packet.GetData().Add("chat", input.c_str());
+		SFNetworkEntry::GetInstance()->TCPSend(&packet);
+
 		SFNetworkEntry::GetInstance()->TCPSend(&packet);
 	}
 }
 
+void ProcessInput()
+{
+	int inputThreadID = ACE_Thread_Manager::instance()->spawn_n(1, (ACE_THR_FUNC)EchoInputThread, NULL, THR_NEW_LWP, ACE_DEFAULT_THREAD_PRIORITY);
+
+	SFASSERT(inputThreadID != -1);
+
+	while (SFNetworkEntry::GetInstance()->IsConnected())
+	{
+		SFNetworkEntry::GetInstance()->Update();
+
+		Sleep(1);
+	}
+
+	ACE_Thread_Manager::instance()->wait_grp(inputThreadID);
+}
+
 int _tmain(int argc, _TCHAR* argv[])
 {
-	TCPNetworkCallback* pCallback = new TCPNetworkCallback();
+	ChatCallback* pCallback = new ChatCallback();
 
 	SFNetworkEntry::GetInstance()->Initialize(pCallback, new SFPacketProtocol<SFJsonProtocol>);
 	SFASSERT(TRUE == SFNetworkEntry::GetInstance()->Run());
 
-	int inputThreadID = ACE_Thread_Manager::instance()->spawn_n(1, (ACE_THR_FUNC)EchoInputThread, NULL, THR_NEW_LWP, ACE_DEFAULT_THREAD_PRIORITY);
-
-	while(1)
-	{
-		SFNetworkEntry::GetInstance()->Update();
-	
-		Sleep(1);
-	}
+	ProcessInput();
 
 	SFNetworkEntry::GetInstance()->ShutDown();
 

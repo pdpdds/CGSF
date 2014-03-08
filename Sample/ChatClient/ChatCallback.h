@@ -1,11 +1,11 @@
 #pragma once
 #include <EngineInterface/INetworkCallback.h>
 
-class TCPNetworkCallback : public INetworkCallback
+class ChatCallback : public INetworkCallback
 {
 public:
-	TCPNetworkCallback(void);
-	virtual ~TCPNetworkCallback(void);
+	ChatCallback(void);
+	virtual ~ChatCallback(void);
 
 	virtual bool HandleNetworkMessage(BasePacket* pPacket) override;
 };

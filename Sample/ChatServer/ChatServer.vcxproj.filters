@@ -13,51 +13,36 @@
       <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
       <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav</Extensions>
     </Filter>
+    <Filter Include="ChatImpl">
+      <UniqueIdentifier>{6696e3af-b8e2-44f3-a324-60148e4a2670}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include=".\ChatLogicEntry.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include=".\ChatServer.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include=".\ChatUser.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include=".\stdafx.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\Common\SFPacketStore\ChatPacket.pb.cc">
-      <Filter>Header Files</Filter>
-    </ClCompile>
-    <ClCompile Include="ChatProtocol.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="ChatLogicJsonEntry.cpp">
-      <Filter>Source Files</Filter>
+      <Filter>ChatImpl</Filter>
+    </ClCompile>
+    <ClCompile Include=".\ChatUser.cpp">
+      <Filter>ChatImpl</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include=".\ChatLogicEntry.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include=".\ChatUser.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include=".\stdafx.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include=".\targetver.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\Common\SFPacketStore\ChatPacket.pb.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="ChatProtocol.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="ChatLogicJsonEntry.h">
-      <Filter>Header Files</Filter>
+      <Filter>ChatImpl</Filter>
+    </ClInclude>
+    <ClInclude Include=".\ChatUser.h">
+      <Filter>ChatImpl</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

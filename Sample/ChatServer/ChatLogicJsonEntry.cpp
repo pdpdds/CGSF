@@ -1,11 +1,10 @@
 #include "stdafx.h"
 #include "ChatLogicJsonEntry.h"
-#include "ChatUser.h"
-#include <SFPacketStore/PacketID.h>
-#include "SFSinglton.h"
-#include <iostream>
-#include "SFEngine.h"
 #include "SFJsonPacket.h"
+#include <iostream>
+#include "ChatUser.h"
+
+#define CHAT_PACKET_NUM 0x1234
 
 ChatLogicJsonEntry::ChatLogicJsonEntry(void)
 {
@@ -56,7 +55,7 @@ bool ChatLogicJsonEntry::ProcessPacket(BasePacket* pPacket)
 	return true;
 }
 
-BOOL ChatLogicJsonEntry::OnConnectPlayer( int Serial )
+bool ChatLogicJsonEntry::OnConnectPlayer( int Serial )
 {
 	ChatUser* pUser = new ChatUser();
 	pUser->SetSerial(Serial);
@@ -66,14 +65,14 @@ BOOL ChatLogicJsonEntry::OnConnectPlayer( int Serial )
 	return TRUE;
 }
 
-BOOL ChatLogicJsonEntry::OnDisconnectPlayer( int Serial )
+bool ChatLogicJsonEntry::OnDisconnectPlayer( int Serial )
 {
-	ChatUserMap::iterator iter = m_ChatUserMap.find(Serial);
+	auto& iter = m_ChatUserMap.find(Serial);
 
 	if(iter == m_ChatUserMap.end())
 	{
 		SFASSERT(0);
-		return FALSE;
+		return false;
 	}
 
 	ChatUser* pUser = iter->second;
@@ -85,46 +84,38 @@ BOOL ChatLogicJsonEntry::OnDisconnectPlayer( int Serial )
 	return TRUE;
 }
 
-BOOL ChatLogicJsonEntry::OnPlayerData( BasePacket* pPacket )
+bool ChatLogicJsonEntry::OnPlayerData( BasePacket* pPacket )
 {
 	SFJsonPacket* pJsonPacket = (SFJsonPacket*)pPacket;
 	int PacketID = pJsonPacket->GetData().GetValue<int>("PacketId");
 
-	if(PacketID == 1234)
+	switch (pJsonPacket->GetData().GetValue<int>("PacketId"))
 	{
-		std::cout << pJsonPacket->GetData().GetValue<tstring>("chat") << std::endl;
+	case CHAT_PACKET_NUM:
+	{
+				 std::cout << pJsonPacket->GetData().GetValue<tstring>("chat") << std::endl;
 
-		
-		SFJsonPacket JsonPacket;
-		JsonObjectNode& ObjectNode = JsonPacket.GetData();
-		ObjectNode.Add("PacketId", 1234);
-		ObjectNode.Add("chat", pJsonPacket->GetData().GetValue<tstring>("chat"));
+				 SFJsonPacket JsonPacket;
+				 JsonObjectNode& ObjectNode = JsonPacket.GetData();
+				 ObjectNode.Add("PacketId", CHAT_PACKET_NUM);
+				 ObjectNode.Add("chat", pJsonPacket->GetData().GetValue<tstring>("chat"));
 
-		Broadcast(&JsonPacket);
-
-		return TRUE;
+				 Broadcast(&JsonPacket);				
+	}
+		break;
 	}
 
-	return FALSE;
+	return true;
 }
 
-BOOL ChatLogicJsonEntry::SendRequest(BasePacket* pPacket)
+bool ChatLogicJsonEntry::Broadcast(BasePacket* pPacket)
 {
-	SFEngine::GetInstance()->SendRequest(pPacket);
 
-	return TRUE;
-}
-
-BOOL ChatLogicJsonEntry::Broadcast( BasePacket* pPacket)
-{
-	ChatUserMap::iterator iter = m_ChatUserMap.begin();
-
-	for(;iter != m_ChatUserMap.end(); iter++)
+	for (auto& chatUser : m_ChatUserMap)
 	{
-		//if(pPacket->GetOwnerSerial() != iter->first)
-		pPacket->SetOwnerSerial(iter->first);	
-		SendRequest(pPacket);
+		pPacket->SetOwnerSerial(chatUser.first);
+		SFEngine::GetInstance()->SendRequest(pPacket);
 	}
 
-	return TRUE;
+	return true;
 }

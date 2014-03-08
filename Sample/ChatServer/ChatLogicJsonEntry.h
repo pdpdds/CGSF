@@ -14,13 +14,12 @@ public:
 
 	virtual bool Initialize() override;
 	virtual bool ProcessPacket(BasePacket* pBasePacket) override;
-	BOOL SendRequest(BasePacket* pPacket);
-	BOOL Broadcast(BasePacket* pPacket);
+	bool Broadcast(BasePacket* pPacket);
 
 protected:
-	BOOL OnConnectPlayer(int Serial);
-	BOOL OnPlayerData(BasePacket* pPacket);
-	BOOL OnDisconnectPlayer(int Serial);
+	bool OnConnectPlayer(int Serial);
+	bool OnPlayerData(BasePacket* pPacket);
+	bool OnDisconnectPlayer(int Serial);
 
 private:
 	ChatUserMap m_ChatUserMap;

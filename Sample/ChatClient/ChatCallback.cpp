@@ -1,27 +1,23 @@
 #include "StdAfx.h"
-#include "TCPNetworkCallback.h"
-#include <SFPacketStore/PacketID.h>
-#include "SFEngine.h"
+#include "ChatCallback.h"
 #include "BasePacket.h"
 #include <iostream>
 #include "SFJsonPacket.h"
 
-using namespace google;
-
-TCPNetworkCallback::TCPNetworkCallback(void)
+ChatCallback::ChatCallback(void)
 {
 }
 
-TCPNetworkCallback::~TCPNetworkCallback(void)
+ChatCallback::~ChatCallback(void)
 {
 }
 
-bool TCPNetworkCallback::HandleNetworkMessage(BasePacket* pPacket)
+bool ChatCallback::HandleNetworkMessage(BasePacket* pPacket)
 {
 	SFJsonPacket* pJsonPacket = (SFJsonPacket*)pPacket;
 	int PacketID = pJsonPacket->GetData().GetValue<int>("PacketId");
 
-	if(PacketID == 1234)
+	if (PacketID == CHAT_PACKET_NUM)
 	{
 		std::cout << pJsonPacket->GetData().GetValue<tstring>("chat") << std::endl;
 
