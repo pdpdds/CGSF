@@ -10,22 +10,16 @@
 #include <stdio.h>
 #include <tchar.h>
 
+//additional header
 #include "ACEHeader.h"
-#include "CommonHeader.h"
-// TODO: reference additional headers your program requires here
-///////////////////////////////////////////////////////////////////////////////////
 #include <windows.h>
-#include <SFPacketStore/SFPacketStore.pb.h>
+#include "CommonHeader.h"
+#include "SFEngine.h"
+
 #include <SFPacketStore/SevenGamePacket.pb.h>
-#include <SFPacketStore/SFPacketID.h>
 #include <SFPacketStore/SevenGamePacketID.h>
 
-#pragma comment(lib, "zlib.lib")
-#pragma comment(lib, "liblzf.lib")
-#pragma comment(lib, "libprotobuf.lib")
-#pragma comment(lib, "BaseLayer.lib")
-#pragma comment(lib, "CasualGame.lib")
-#pragma comment(lib, "EngineLayer.lib")
-#pragma comment(lib, "DatabaseLayer.lib")
-
 #include "Define.h"
+
+#pragma comment(lib, "EngineLayer.lib")
+#pragma comment(lib, "CasualGame.lib")

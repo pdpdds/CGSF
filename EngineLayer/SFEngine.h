@@ -40,6 +40,7 @@ public:
 	bool ReleasePacket(BasePacket* pPacket);
 
 	bool ServerTerminated(){ return m_bServerTerminated; }
+	bool ExecuteServiceController(TCHAR* szArg);
 
 protected:
 

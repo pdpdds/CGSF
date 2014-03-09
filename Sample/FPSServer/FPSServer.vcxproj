@@ -187,6 +187,7 @@
   <ItemGroup>
     <ClCompile Include="..\..\Common\SFPacketStore\FPSPacket.pb.cc">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">NotUsing</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">NotUsing</PrecompiledHeader>
     </ClCompile>
     <ClCompile Include=".\FPSServer.cpp" />
     <ClCompile Include=".\stdafx.cpp">

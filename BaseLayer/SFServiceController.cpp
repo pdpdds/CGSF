@@ -7,6 +7,8 @@ BOOL SFServiceController::nServiceRunning;
 DWORD SFServiceController::nServiceCurrentStatus;
 HANDLE SFServiceController::hServiceThread;
 
+LPTHREAD_START_ROUTINE SFServiceController::funcServiceMainEntry;
+
 //////////////////////////////////////////////////////////////
 //서비스용 메시지 박스 함수
 //////////////////////////////////////////////////////////////
@@ -152,22 +154,23 @@ BOOL SFServiceController::StopService( TCHAR* szServiceName )
 	return TRUE;
 }
 
-BOOL SFServiceController::ServiceEntry( TCHAR* szServiceName )
-{
-	SERVICE_TABLE_ENTRY servicetable[]=
+BOOL SFServiceController::ServiceEntry(TCHAR* szServiceName, LPTHREAD_START_ROUTINE ServiceStartEntry)
+{	
+	funcServiceMainEntry = ServiceStartEntry;
+
+	SERVICE_TABLE_ENTRY serviceTable[] =
 	{
-		{szServiceName,(LPSERVICE_MAIN_FUNCTION)ServiceMain},
-		{NULL,NULL}
+		{ szServiceName, (LPSERVICE_MAIN_FUNCTION)ServiceMain },
+		{ NULL, NULL }
 	};
 
-	return StartServiceCtrlDispatcher(servicetable);
+	return StartServiceCtrlDispatcher(serviceTable);
 }
-
 
 void SFServiceController::ServiceMain(DWORD argc, LPTSTR *argv)
 {
 	BOOL success;
-	nServiceStatusHandle=RegisterServiceCtrlHandler(L"AAA",
+	nServiceStatusHandle = RegisterServiceCtrlHandler(argv[0],
 		(LPHANDLER_FUNCTION)ServiceCtrlHandler);
 	if(!nServiceStatusHandle)
 	{
@@ -247,7 +250,7 @@ BOOL SFServiceController::StartServiceThread()
 {	
 	DWORD id;
 	hServiceThread=CreateThread(0,0,
-		(LPTHREAD_START_ROUTINE)ServiceExecutionThread,
+		(LPTHREAD_START_ROUTINE)funcServiceMainEntry,
 		0,0,&id);
 	if(hServiceThread==0)
 	{

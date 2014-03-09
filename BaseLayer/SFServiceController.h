@@ -11,7 +11,7 @@ public:
 	BOOL StartService(TCHAR* szServiceName);
 	BOOL StopService(TCHAR* szServiceName);
 
-	BOOL ServiceEntry(TCHAR* szServiceName);	
+	BOOL ServiceEntry(TCHAR* szServiceName, LPTHREAD_START_ROUTINE ServiceStartEntry);
 
 	static void ServiceMain(DWORD argc, LPTSTR *argv); 
 	static void ServiceCtrlHandler(DWORD nControlCode);
@@ -20,6 +20,7 @@ public:
 		DWORD dwWaitHint);
 	static BOOL StartServiceThread();
 	static DWORD ServiceExecutionThread(LPDWORD param);
+	static LPTHREAD_START_ROUTINE funcServiceMainEntry;
 	
 	static void KillService();
 

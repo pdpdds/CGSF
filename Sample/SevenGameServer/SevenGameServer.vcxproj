@@ -165,7 +165,6 @@
   <ItemGroup>
     <ClInclude Include="..\..\Common\SFPacketStore\SevenGamePacket.pb.h" />
     <ClInclude Include="..\..\Common\SFPacketStore\SevenGamePacketID.h" />
-    <ClInclude Include="..\..\Common\SFPacketStore\SFPacketStore.pb.h" />
     <ClInclude Include="SelectAlgorithm.h" />
     <ClInclude Include="SevenGameProtocol.h" />
     <ClInclude Include="GameModeConstant.h" />
@@ -179,12 +178,6 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\..\Common\SFPacketStore\SevenGamePacket.pb.cc">
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">NotUsing</PrecompiledHeader>
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">NotUsing</PrecompiledHeader>
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">NotUsing</PrecompiledHeader>
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|x64'">NotUsing</PrecompiledHeader>
-    </ClCompile>
-    <ClCompile Include="..\..\Common\SFPacketStore\SFPacketStore.pb.cc">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">NotUsing</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">NotUsing</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">NotUsing</PrecompiledHeader>

@@ -35,9 +35,6 @@
     <ClInclude Include="..\..\Common\SFPacketStore\SevenGamePacket.pb.h">
       <Filter>Packet</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\Common\SFPacketStore\SFPacketStore.pb.h">
-      <Filter>Packet</Filter>
-    </ClInclude>
     <ClInclude Include="..\..\Common\SFPacketStore\SevenGamePacketID.h">
       <Filter>Packet</Filter>
     </ClInclude>
@@ -78,9 +75,6 @@
     </ClCompile>
     <ClCompile Include="SelectAlgorithm.cpp">
       <Filter>Logic</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\Common\SFPacketStore\SFPacketStore.pb.cc">
-      <Filter>Packet</Filter>
     </ClCompile>
     <ClCompile Include="..\..\Common\SFPacketStore\SevenGamePacket.pb.cc">
       <Filter>Packet</Filter>
