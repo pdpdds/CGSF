@@ -29,7 +29,7 @@ int _tmain(int argc, _TCHAR* argv[])
 	SFServiceController Controller;
 	TCHAR szFilePath[MAX_PATH] = { 0, };
 	TCHAR szFileName[MAX_PATH] = { 0, };
-	GetCurrentDirectory(MAX_PATH, szFilePath);
+	GetModuleFileName(NULL, szFilePath, MAX_PATH);
 	SFUtil::GetProgramName(szFileName, MAX_PATH);
 
 	if (argc == 2)
