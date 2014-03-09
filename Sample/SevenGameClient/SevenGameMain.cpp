@@ -10,6 +10,8 @@
 #include "SGUser.h"
 #include "SGTable.h"
 
+#pragma comment(lib, "CasualGame.lib")
+
 SevenGameMain::SevenGameMain(void)
 {
 	m_bPassButtonOverapped = FALSE;

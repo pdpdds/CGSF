@@ -33,22 +33,7 @@
     <ClInclude Include="TCPCallback.h">
       <Filter>Network</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\Common\SFPacketStore\SFPacketStore.pb.h">
-      <Filter>Network</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\Common\SFPacketStore\SevenGamePacketID.h">
-      <Filter>Network</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\Common\SFPacketStore\SevenGamePacket.pb.h">
-      <Filter>Network</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\Common\SFPacketStore\PacketCore.pb.h">
-      <Filter>Network</Filter>
-    </ClInclude>
     <ClInclude Include="NetworkSystem.h">
-      <Filter>Network</Filter>
-    </ClInclude>
-    <ClInclude Include="CasualGameProtocol.h">
       <Filter>Network</Filter>
     </ClInclude>
     <ClInclude Include="QuitMessageBox.h">
@@ -107,19 +92,7 @@
     <ClCompile Include="UDPCallback.cpp">
       <Filter>Network</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\Common\SFPacketStore\SFPacketStore.pb.cc">
-      <Filter>Network</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\Common\SFPacketStore\SevenGamePacket.pb.cc">
-      <Filter>Network</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\Common\SFPacketStore\PacketCore.pb.cc">
-      <Filter>Network</Filter>
-    </ClCompile>
     <ClCompile Include="NetworkSystem.cpp">
-      <Filter>Network</Filter>
-    </ClCompile>
-    <ClCompile Include="CasualGameProtocol.cpp">
       <Filter>Network</Filter>
     </ClCompile>
     <ClCompile Include="GUIFSM.cpp">

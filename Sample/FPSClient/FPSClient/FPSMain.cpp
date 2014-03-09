@@ -10,7 +10,7 @@
 #include "GameMaterial.h"
 #include "CasualGameManager.h"
 #include "FPSGameMain.h"
-#include "SFGameProtocol.h"
+#include "FPSProtocol.h"
 #include "SFPacketProtocol.h"
 
 // TODO: reference additional headers your program requires here
@@ -118,7 +118,7 @@ int APIENTRY _tWinMain(_In_ HINSTANCE hInstance,
 	
 	if(g_engine != NULL)
 	{
-		IPacketProtocol* pProtocol = new SFPacketProtocol<SFGameProtocol>;
+		IPacketProtocol* pProtocol = new SFPacketProtocol<FPSProtocol>;
 		g_pCasualGameManager->Initialize(g_engine->GetDevice(), pProtocol);
 		g_engine->Run();
 	}

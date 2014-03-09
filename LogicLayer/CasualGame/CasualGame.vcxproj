@@ -148,6 +148,7 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClInclude Include="..\..\Common\SFPacketStore\PacketCore.pb.h" />
+    <ClInclude Include="..\..\Common\SFPacketStore\SFPacketStore.pb.h" />
     <ClInclude Include=".\SFGameConstant.h" />
     <ClInclude Include=".\SFGameStructure.h" />
     <ClInclude Include=".\SFLogicCore.h" />
@@ -183,6 +184,7 @@
     <ClInclude Include=".\SFRoomWait.h" />
     <ClInclude Include=".\SFLobby.h" />
     <ClInclude Include=".\SFTeam.h" />
+    <ClInclude Include="SFCGProtobufClientProtocol.h" />
     <ClInclude Include="SFCGProtobufProtocol.h" />
     <ClInclude Include="SFMySQLAdaptorImpl.h" />
     <ClInclude Include="SFDBProcessorODBC.h" />
@@ -197,6 +199,9 @@
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">NotUsing</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">NotUsing</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|x64'">NotUsing</PrecompiledHeader>
+    </ClCompile>
+    <ClCompile Include="..\..\Common\SFPacketStore\SFPacketStore.pb.cc">
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">NotUsing</PrecompiledHeader>
     </ClCompile>
     <ClCompile Include=".\SFLogicCore.cpp" />
     <ClCompile Include=".\SFSendPacket.cpp" />
@@ -235,6 +240,7 @@
     <ClCompile Include=".\SFRoomWait.cpp" />
     <ClCompile Include=".\SFLobby.cpp" />
     <ClCompile Include=".\SFTeam.cpp" />
+    <ClCompile Include="SFCGProtobufClientProtocol.cpp" />
     <ClCompile Include="SFCGProtobufProtocol.cpp" />
     <ClCompile Include="SFMySQLAdaptorImpl.cpp" />
     <ClCompile Include="SFDBProcessorODBC.cpp" />

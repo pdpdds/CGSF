@@ -8,7 +8,7 @@
 #include "CasualGameManager.h"
 #include "CasualGameGUI.h"
 #include "NetworkSystem.h"
-#include <SFPacketStore/PacketID.h>
+#include <SFPacketStore/SFPacketID.h>
 #include <SFPacketStore/SFPacketStore.pb.h>
 
 extern CasualGameManager* g_pCasualGameManager;

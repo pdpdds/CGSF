@@ -8,7 +8,7 @@
 #include "FPSMain.h"
 #include "CasualGameManager.h"
 #include "NetworkSystem.h"
-#include <SFPacketStore/PacketID.h>
+#include <SFPacketStore/FPSPacketID.h>
 #include <SFProtobufPacket.h>
 #include <SFPacketStore/SFPacketStore.pb.h>
 #include <BasePacket.h>
@@ -110,7 +110,7 @@ void PlayerManager::Update( float elapsed )
 	if( lookUpdate + 100 < timeGetTime() && localPlayer->GetEnabled() == true )
 	{
 		PlayerLookUpdateMsg plum;
-		plum.msgid = CGSF::MSG_PLAYER_LOOK_UPDATE;
+		plum.msgid = FPS::MSG_PLAYER_LOOK_UPDATE;
 		plum.PlayerID = localPlayer->GetID();
 		plum.viewTilt = localPlayer->GetViewTilt();
 		plum.rotationY = localPlayer->GetRotation().y;
@@ -169,7 +169,7 @@ void PlayerManager::Update( float elapsed )
 	if( ( m_localMovement == true || moveUpdate + 200 < timeGetTime() ) && localPlayer->GetEnabled() == true )
 	{
 		PlayerMoveUpdateMsg pmum;
-		pmum.msgid = CGSF::MSG_PLAYER_MOVE_UPDATE;
+		pmum.msgid = FPS::MSG_PLAYER_MOVE_UPDATE;
 		pmum.PlayerID = localPlayer->GetID();
 		pmum.translation = localPlayer->GetTranslation();
 		pmum.drive = m_localDrive;

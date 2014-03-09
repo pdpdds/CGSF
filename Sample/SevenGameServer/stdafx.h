@@ -17,7 +17,7 @@
 #include <windows.h>
 #include <SFPacketStore/SFPacketStore.pb.h>
 #include <SFPacketStore/SevenGamePacket.pb.h>
-#include <SFPacketStore/PacketID.h>
+#include <SFPacketStore/SFPacketID.h>
 #include <SFPacketStore/SevenGamePacketID.h>
 
 #pragma comment(lib, "zlib.lib")

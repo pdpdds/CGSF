@@ -29,8 +29,6 @@ BOOL SendLeaveTeamMember(SFPlayer* pPlayer, int PlayerIndex, char* szPlayerName 
 //Logic
 //////////////////////////////////////////////////////////////////////////////////
 BOOL SendCreatePlayer(SFPlayer* pPlayer, SFRoom* pRoom, BOOL ExceptMe = FALSE);
-BOOL SendSpawnPlayer( SFPlayer* pPlayer,SFPlayer* pTarget);
 BOOL SendDestroyPlayer( SFPlayer* pPlayer, int PlayerIndex);
-BOOL SendPlayerHealth( SFPlayer* pPlayer,SFPlayer* pTarget);
 BOOL SendPeerInfo( SFPlayer* pPlayer, SFRoom* pRoom);
 BOOL SendDeletePeer(SFPlayer* pPlayer, int PlayerIndex);

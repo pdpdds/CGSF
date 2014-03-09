@@ -6,7 +6,7 @@
 // Copyright (c) 2004 Vaughan Young
 //-----------------------------------------------------------------------------
 #include "FPSMain.h"
-#include <SFPacketStore/PacketID.h>
+#include <SFPacketStore/SFPacketID.h>
 #include "CommonStructure.h"
 #include <SFPacketStore/SFPacketStore.pb.h>
 #include "BasePacket.h"

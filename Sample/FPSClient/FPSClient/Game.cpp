@@ -8,7 +8,9 @@
 #include "FPSMain.h"
 #include "GamePacketStructure.h"
 #include <Windows.h>
-#include <SFPacketStore/PacketID.h>
+#include <SFPacketStore/FPSPacketID.h>
+#include <SFPacketStore/FPSPacket.pb.h>
+#include <SFPacketStore/SFPacketID.h>
 #include <SFPacketStore/SFPacketStore.pb.h>
 #include "BasePacket.h"
 #include "SFProtobufPacket.h"
@@ -266,7 +268,7 @@ void Game::HandleNetworkMessage(BasePacket* pPacket)
 				spm.PlayerID = g_engine->GetPlayerID();
 				spm.translation = g_engine->GetSceneManager()->GetSpawnPointByID( pMsgCreatePlayer->GetData().spawnindex() )->GetTranslation();
 
-				SFProtobufPacket<SFPacketStore::MSG_SPAWN_PLAYER> request(CGSF::MSG_SPAWN_PLAYER);
+				SFProtobufPacket<FPSPacket::MSG_SPAWN_PLAYER> request(FPS::MSG_SPAWN_PLAYER);
 				request.GetData().set_spawnplayer(&spm, sizeof(SpawnPlayerMsg));
 				g_pCasualGameManager->GetNetwork()->TCPSend(&request);
 			}
@@ -289,9 +291,9 @@ void Game::HandleNetworkMessage(BasePacket* pPacket)
 		}
 		break;
 
-	case CGSF::MSG_SPAWN_PLAYER:
+	case FPS::MSG_SPAWN_PLAYER:
 		{
-			SFProtobufPacket<SFPacketStore::MSG_SPAWN_PLAYER>* pPlayerSpawn = (SFProtobufPacket<SFPacketStore::MSG_SPAWN_PLAYER>*)pPacket;
+								  SFProtobufPacket<FPSPacket::MSG_SPAWN_PLAYER>* pPlayerSpawn = (SFProtobufPacket<FPSPacket::MSG_SPAWN_PLAYER>*)pPacket;
 
 			// Get a pointer to the game specific network message.
 			SpawnPlayerMsg msg;
@@ -322,9 +324,9 @@ void Game::HandleNetworkMessage(BasePacket* pPacket)
 
 	
 
-	case  CGSF::MSG_PLAYER_HEALTH:
+	case  FPS::MSG_PLAYER_HEALTH:
 		{
-			SFProtobufPacket<SFPacketStore::MSG_PLAYER_HEALTH>* pPlayerHealth = (SFProtobufPacket<SFPacketStore::MSG_PLAYER_HEALTH>*)pPacket;
+									SFProtobufPacket<FPSPacket::MSG_PLAYER_HEALTH>* pPlayerHealth = (SFProtobufPacket<FPSPacket::MSG_PLAYER_HEALTH>*)pPacket;
 			
 			PlayerHealthMsg msg;
 			SF_GETPACKET_ARG(&msg, pPlayerHealth->GetData().playerhealth(), PlayerHealthMsg);
@@ -336,9 +338,9 @@ void Game::HandleNetworkMessage(BasePacket* pPacket)
 				m_playerManager->GetPlayer( msg.PlayerID )->Kill();
 		}
 		break;
-	case CGSF::MSG_PLAYER_SCORE:
+	case FPS::MSG_PLAYER_SCORE:
 		{
-			SFProtobufPacket<SFPacketStore::MSG_PLAYER_SCORE>* pPlayerScore = (SFProtobufPacket<SFPacketStore::MSG_PLAYER_SCORE>*)pPacket;
+								  SFProtobufPacket<FPSPacket::MSG_PLAYER_SCORE>* pPlayerScore = (SFProtobufPacket<FPSPacket::MSG_PLAYER_SCORE>*)pPacket;
 
 			PlayerScoreMsg msg;
 			SF_GETPACKET_ARG(&msg, pPlayerScore->GetData().playerscore(), PlayerScoreMsg);
@@ -349,9 +351,9 @@ void Game::HandleNetworkMessage(BasePacket* pPacket)
 		}
 		break;
 
-	case CGSF::MSG_PLAYER_WEAPON_CHANGE:
+	case FPS::MSG_PLAYER_WEAPON_CHANGE:
 		{
-			SFProtobufPacket<SFPacketStore::MSG_PLAYER_WEAPON_CHANGE>* pPlayerWeaponChange = (SFProtobufPacket<SFPacketStore::MSG_PLAYER_WEAPON_CHANGE>*)pPacket;
+										  SFProtobufPacket<FPSPacket::MSG_PLAYER_WEAPON_CHANGE>* pPlayerWeaponChange = (SFProtobufPacket<FPSPacket::MSG_PLAYER_WEAPON_CHANGE>*)pPacket;
 
 			PlayerWeaponChangeMsg msg;
 			SF_GETPACKET_ARG(&msg, pPlayerWeaponChange->GetData().weaponchange(), PlayerWeaponChangeMsg);
@@ -361,9 +363,9 @@ void Game::HandleNetworkMessage(BasePacket* pPacket)
 		}
 		break;
 
-	case CGSF::MSG_PLAYER_WEAPON_CHANGING:
+	case FPS::MSG_PLAYER_WEAPON_CHANGING:
 		{
-			SFProtobufPacket<SFPacketStore::MSG_PLAYER_WEAPON_CHANGING>* pWeaponChanging = (SFProtobufPacket<SFPacketStore::MSG_PLAYER_WEAPON_CHANGING>*)pPacket;
+											 SFProtobufPacket<FPSPacket::MSG_PLAYER_WEAPON_CHANGING>* pWeaponChanging = (SFProtobufPacket<FPSPacket::MSG_PLAYER_WEAPON_CHANGING>*)pPacket;
 
 			PlayerWeaponChangeMsg msg;
 			SF_GETPACKET_ARG(&msg, pWeaponChanging->GetData().weaponchanging(), PlayerWeaponChangeMsg);
@@ -380,7 +382,7 @@ void Game::HandleNetworkMessage( NetworkMessage* pMessage )
 {
 	switch(pMessage->msgid)
 	{
-	case CGSF::MSG_PLAYER_MOVE_UPDATE:
+	case FPS::MSG_PLAYER_MOVE_UPDATE:
 		{
 			// Get a pointer to the game specific network message.
 			PlayerMoveUpdateMsg *msg = (PlayerMoveUpdateMsg *)pMessage;
@@ -411,7 +413,7 @@ void Game::HandleNetworkMessage( NetworkMessage* pMessage )
 		}
 		break;
 
-	case CGSF::MSG_PLAYER_LOOK_UPDATE:
+	case FPS::MSG_PLAYER_LOOK_UPDATE:
 		{
 		
 			// Get a pointer to the game specific network message.

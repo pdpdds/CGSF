@@ -1,7 +1,7 @@
 #pragma once
-#include "CasualGameProtocol.h"
+#include "SFCGProtobufClientProtocol.h"
 
-class SevenGameProtocol : public CasualGameProtocol
+class SevenGameProtocol : public SFCGProtobufClientProtocol
 {
 public:
 	SevenGameProtocol(void);

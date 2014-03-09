@@ -1,7 +1,7 @@
 #include "stdafx.h"
 #include "SevenGameProtocol.h"
 #include "SFProtobufPacket.h"
-#include <SFPacketStore/PacketID.h>
+#include <SFPacketStore/SFPacketID.h>
 #include <SFPacketStore/SevenGamePacketID.h>
 #include <SFPacketStore/PacketCore.pb.h>
 #include <SFPacketStore/SFPacketStore.pb.h>
@@ -17,7 +17,7 @@ SevenGameProtocol::~SevenGameProtocol(void)
 
 BasePacket* SevenGameProtocol::CreateIncomingPacketFromPacketId( int PacketId )
 {
-	BasePacket* pPacket = CasualGameProtocol::CreateIncomingPacketFromPacketId(PacketId);
+	BasePacket* pPacket = SFCGProtobufClientProtocol::CreateIncomingPacketFromPacketId(PacketId);
 	if(pPacket != NULL)
 		return pPacket;
 

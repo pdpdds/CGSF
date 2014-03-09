@@ -214,42 +214,6 @@ BOOL SendDestroyPlayer( SFPlayer* pPlayer, int PlayerIndex)
 	return TRUE;
 }
 
-BOOL SendSpawnPlayer( SFPlayer* pPlayer,SFPlayer* pTarget)
-{
-	SFProtobufPacket<SFPacketStore::MSG_SPAWN_PLAYER> PktMsgSpawnPlayer = SFProtobufPacket<SFPacketStore::MSG_SPAWN_PLAYER>(CGSF::MSG_SPAWN_PLAYER);
-
-	_CharacterInfo* pInfo = pTarget->GetCharacterInfo();
-
-	SpawnPlayerMsg msg;
-	PktMsgSpawnPlayer.SetOwnerSerial(pPlayer->GetSerial());
-	msg.PlayerID = pTarget->GetSerial();
-	msg.translation = pInfo->translation;
-
-	PktMsgSpawnPlayer.GetData().set_spawnplayer(&msg, sizeof(SpawnPlayerMsg));
-
-	SFLogicEntry::GetLogicEntry()->SendRequest(&PktMsgSpawnPlayer);
-	return TRUE;
-}
-
-BOOL SendPlayerHealth( SFPlayer* pPlayer,SFPlayer* pTarget)
-{
- 	SFProtobufPacket<SFPacketStore::MSG_PLAYER_HEALTH> PktPlayerHealth = SFProtobufPacket<SFPacketStore::MSG_PLAYER_HEALTH>(CGSF::MSG_PLAYER_HEALTH);
-	PktPlayerHealth.SetOwnerSerial(pPlayer->GetSerial());
-
-	_CharacterInfo* pInfo = pTarget->GetCharacterInfo();
-
-	PlayerHealthMsg msg;
-	
-	msg.PlayerID = pTarget->GetSerial();
-	msg.health = pInfo->health;
-
-	PktPlayerHealth.GetData().set_playerhealth(&msg, sizeof(SpawnPlayerMsg));
-
-	SFLogicEntry::GetLogicEntry()->SendRequest(&PktPlayerHealth);
-	
-	return TRUE;
-}
-
 BOOL SendPeerInfo( SFPlayer* pPlayer, SFRoom* pRoom)
 {
 	SFProtobufPacket<SFPacketStore::PeerList> PktPeerList = SFProtobufPacket<SFPacketStore::PeerList>(CGSF::PeerList);

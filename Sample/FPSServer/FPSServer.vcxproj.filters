@@ -16,6 +16,9 @@
     <Filter Include="GameMode">
       <UniqueIdentifier>{4efff001-3a80-4c49-afd2-d9639e97de1d}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Packet">
+      <UniqueIdentifier>{3220c736-a450-40b9-a7e3-0bc897134047}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include=".\stdafx.cpp">
@@ -36,14 +39,14 @@
     <ClCompile Include="SFTraining.cpp">
       <Filter>GameMode</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\Common\SFPacketStore\SFPacketStore.pb.cc">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="FPSProtocol.cpp">
-      <Filter>Source Files</Filter>
+      <Filter>Packet</Filter>
     </ClCompile>
-    <ClCompile Include="FPSDefaultProtocol.cpp">
-      <Filter>Source Files</Filter>
+    <ClCompile Include="..\..\Common\SFPacketStore\FPSPacket.pb.cc">
+      <Filter>Packet</Filter>
+    </ClCompile>
+    <ClCompile Include="FPSSendPacket.cpp">
+      <Filter>Packet</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -65,23 +68,23 @@
     <ClInclude Include="SFTraining.h">
       <Filter>GameMode</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\Common\SFPacketStore\SFPacketStore.pb.h">
-      <Filter>Source Files</Filter>
-    </ClInclude>
-    <ClInclude Include="FPSProtocol.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="FPSDefaultProtocol.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="GameModeConstant.h">
       <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="FPSProtocol.h">
+      <Filter>Packet</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Common\SFPacketStore\FPSPacket.pb.h">
+      <Filter>Packet</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Common\SFPacketStore\FPSPacketID.h">
+      <Filter>Packet</Filter>
+    </ClInclude>
+    <ClInclude Include="FPSSendPacket.h">
+      <Filter>Packet</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <Text Include=".\ReadMe.txt" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="..\Common\SFPacketStore\SFPacketStore.proto" />
   </ItemGroup>
 </Project>

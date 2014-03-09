@@ -1,6 +1,6 @@
 #include "stdafx.h"
 #include "GUILobby.h"
-#include <SFPacketStore/PacketID.h>
+#include <SFPacketStore/SFPacketID.h>
 #include <SFPacketStore/SFPacketStore.pb.h>
 #include "BasePacket.h"
 #include "SFProtobufPacket.h"

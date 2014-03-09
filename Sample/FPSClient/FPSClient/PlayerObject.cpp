@@ -7,8 +7,8 @@
 //-----------------------------------------------------------------------------
 #include "FPSMain.h"
 #include "GamePacketStructure.h"
-#include <SFPacketStore/PacketID.h>
-#include <SFPacketStore/SFPacketStore.pb.h>
+#include <SFPacketStore/FPSPacketID.h>
+#include <SFPacketStore/FPSPacket.pb.h>
 #include "CasualGameManager.h"
 #include "NetworkSystem.h"
 #include "SFProtobufPacket.h"
@@ -227,11 +227,11 @@ void PlayerObject::Update( float elapsed, bool addVelocity )
 
 			// Send a message to inform the other players the weapon is ready.
 			PlayerWeaponChangeMsg pwcm;
-			pwcm.msgid = CGSF::MSG_PLAYER_WEAPON_CHANGE;
+			pwcm.msgid = FPS::MSG_PLAYER_WEAPON_CHANGE;
 			pwcm.PlayerID = g_engine->GetPlayerID();
 			pwcm.weapon = m_currentWeapon;
 			
-			SFProtobufPacket<SFPacketStore::MSG_PLAYER_WEAPON_CHANGE> request(CGSF::MSG_PLAYER_WEAPON_CHANGE);
+			SFProtobufPacket<FPSPacket::MSG_PLAYER_WEAPON_CHANGE> request(FPS::MSG_PLAYER_WEAPON_CHANGE);
 			request.GetData().set_weaponchange(&pwcm, sizeof(PlayerWeaponChangeMsg));
 			g_pCasualGameManager->GetNetwork()->TCPSend(&request);
 		}
@@ -380,11 +380,11 @@ void PlayerObject::Hurt( float damage, PlayerObject *attacker )
 
 	// Send a player health update message.
 	PlayerHealthMsg phm;
-	phm.msgid = CGSF::MSG_PLAYER_HEALTH;
+	phm.msgid = FPS::MSG_PLAYER_HEALTH;
 	phm.PlayerID = m_dpnid;
 	phm.health = m_health;
 	
-	SFProtobufPacket<SFPacketStore::MSG_PLAYER_HEALTH> request(CGSF::MSG_PLAYER_HEALTH);
+	SFProtobufPacket<FPSPacket::MSG_PLAYER_HEALTH> request(FPS::MSG_PLAYER_HEALTH);
 	request.GetData().set_playerhealth(&phm, sizeof(PlayerHealthMsg));
 	g_pCasualGameManager->GetNetwork()->TCPSend(&request);
 
@@ -672,10 +672,10 @@ void PlayerObject::ChangeWeapon( char change, char weapon )
 
 	// Send a weapon changing message.
 	NetworkMessage pwcm;
-	pwcm.msgid = CGSF::MSG_PLAYER_WEAPON_CHANGING;
+	pwcm.msgid = FPS::MSG_PLAYER_WEAPON_CHANGING;
 	pwcm.PlayerID = g_engine->GetPlayerID();
 
-	SFProtobufPacket<SFPacketStore::MSG_PLAYER_WEAPON_CHANGING> request(CGSF::MSG_PLAYER_WEAPON_CHANGING);
+	SFProtobufPacket<FPSPacket::MSG_PLAYER_WEAPON_CHANGING> request(FPS::MSG_PLAYER_WEAPON_CHANGING);
 	request.GetData().set_weaponchanging(&pwcm, sizeof(NetworkMessage));
 	g_pCasualGameManager->GetNetwork()->TCPSend(&request);
 }

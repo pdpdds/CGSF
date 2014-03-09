@@ -30,7 +30,7 @@
 #include "SFStructure.h"
 #include "SFGameStructure.h"
 #include <SFPacketStore/SFPacketStore.pb.h>
-#include <SFPacketStore/PacketID.h>
+#include <SFPacketStore/SFPacketID.h>
 #include <SFPacketStore/PacketCore.pb.h>
 #include "SFMacro.h"
 #include "SFMessage.h"

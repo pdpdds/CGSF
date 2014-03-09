@@ -32,6 +32,9 @@
     <Filter Include="Protocol">
       <UniqueIdentifier>{c7b3c0d4-c116-4572-8208-9c4e92d556d1}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Packet">
+      <UniqueIdentifier>{07a2ee6f-dad1-452c-b43b-5c557f749982}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include=".\SFGameConstant.h">
@@ -148,9 +151,6 @@
     <ClInclude Include="SFSendDBRequest.h">
       <Filter>DataBase</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\Common\SFPacketStore\PacketCore.pb.h">
-      <Filter>Common</Filter>
-    </ClInclude>
     <ClInclude Include="SFCGProtobufProtocol.h">
       <Filter>Protocol</Filter>
     </ClInclude>
@@ -162,6 +162,15 @@
     </ClInclude>
     <ClInclude Include="SFPlayerManager.h">
       <Filter>Player</Filter>
+    </ClInclude>
+    <ClInclude Include="SFCGProtobufClientProtocol.h">
+      <Filter>Protocol</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Common\SFPacketStore\SFPacketStore.pb.h">
+      <Filter>Packet</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Common\SFPacketStore\PacketCore.pb.h">
+      <Filter>Packet</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -270,9 +279,6 @@
     <ClCompile Include="SFSendDBRequest.cpp">
       <Filter>DataBase</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\Common\SFPacketStore\PacketCore.pb.cc">
-      <Filter>Common</Filter>
-    </ClCompile>
     <ClCompile Include="SFCGProtobufProtocol.cpp">
       <Filter>Protocol</Filter>
     </ClCompile>
@@ -284,6 +290,15 @@
     </ClCompile>
     <ClCompile Include="SFPlayerManager.cpp">
       <Filter>Player</Filter>
+    </ClCompile>
+    <ClCompile Include="SFCGProtobufClientProtocol.cpp">
+      <Filter>Protocol</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Common\SFPacketStore\SFPacketStore.pb.cc">
+      <Filter>Packet</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Common\SFPacketStore\PacketCore.pb.cc">
+      <Filter>Packet</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

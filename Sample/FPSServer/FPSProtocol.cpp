@@ -20,20 +20,20 @@ BasePacket* FPSProtocol::CreateIncomingPacketFromPacketId( int PacketId )
 
 	switch (PacketId)
 	{
-	case CGSF::MSG_PLAYER_HEALTH:
-		return new SFProtobufPacket<SFPacketStore::MSG_PLAYER_HEALTH>(PacketId);
+	case FPS::MSG_PLAYER_HEALTH:
+		return new SFProtobufPacket<FPSPacket::MSG_PLAYER_HEALTH>(PacketId);
 		break;
-	case CGSF::MSG_SPAWN_PLAYER:
-		return new SFProtobufPacket<SFPacketStore::MSG_SPAWN_PLAYER>(PacketId);
+	case FPS::MSG_SPAWN_PLAYER:
+		return new SFProtobufPacket<FPSPacket::MSG_SPAWN_PLAYER>(PacketId);
 		break;
-	case CGSF::MSG_PLAYER_SCORE:
-		return new SFProtobufPacket<SFPacketStore::MSG_PLAYER_SCORE>(PacketId);
+	case FPS::MSG_PLAYER_SCORE:
+		return new SFProtobufPacket<FPSPacket::MSG_PLAYER_SCORE>(PacketId);
 		break;
-	case CGSF::MSG_PLAYER_WEAPON_CHANGE:
-		return new SFProtobufPacket<SFPacketStore::MSG_PLAYER_WEAPON_CHANGE>(PacketId);
+	case FPS::MSG_PLAYER_WEAPON_CHANGE:
+		return new SFProtobufPacket<FPSPacket::MSG_PLAYER_WEAPON_CHANGE>(PacketId);
 		break;
-	case CGSF::MSG_PLAYER_WEAPON_CHANGING:
-		return new SFProtobufPacket<SFPacketStore::MSG_PLAYER_WEAPON_CHANGING>(PacketId);
+	case FPS::MSG_PLAYER_WEAPON_CHANGING:
+		return new SFProtobufPacket<FPSPacket::MSG_PLAYER_WEAPON_CHANGING>(PacketId);
 		break;
 
 	default:

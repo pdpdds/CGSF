@@ -2,6 +2,7 @@
 #include "FPSGameMain.h"
 #include "FPSMain.h"
 
+#pragma comment(lib, "CasualGame.lib")
 
 FPSGameMain::FPSGameMain(void)
 {

@@ -3,7 +3,6 @@
 #include "SFNetworkEntry.h"
 #include "TCPCallback.h"
 #include "UDPCallback.h"
-#include "CasualGameProtocol.h"
 #include "SFPacketProtocol.h"
 #include "SFCasualGameDispatcher.h"
 

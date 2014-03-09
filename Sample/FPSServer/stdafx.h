@@ -14,8 +14,8 @@
 #include "CommonHeader.h"
 
 #include <windows.h>
-#include <SFPacketStore/SFPacketStore.pb.h>
-#include <SFPacketStore/PacketID.h>
+#include <SFPacketStore/FPSPacket.pb.h>
+#include <SFPacketStore/FPSPacketID.h>
 
 #pragma comment(lib, "zlib.lib")
 #pragma comment(lib, "liblzf.lib")

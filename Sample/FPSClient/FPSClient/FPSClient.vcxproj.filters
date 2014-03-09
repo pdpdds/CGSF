@@ -13,6 +13,9 @@
       <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
       <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
     </Filter>
+    <Filter Include="Packet">
+      <UniqueIdentifier>{e682a873-1ec9-4e56-96e3-f4903d65f296}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <Text Include="ReadMe.txt" />
@@ -45,9 +48,6 @@
     <ClInclude Include="PlayerObject.h">
       <Filter>Source Files</Filter>
     </ClInclude>
-    <ClInclude Include="SFGameProtocol.h">
-      <Filter>Source Files</Filter>
-    </ClInclude>
     <ClInclude Include="Weapon.h">
       <Filter>Source Files</Filter>
     </ClInclude>
@@ -56,6 +56,12 @@
     </ClInclude>
     <ClInclude Include="FPSGameMain.h">
       <Filter>Source Files</Filter>
+    </ClInclude>
+    <ClInclude Include="FPSProtocol.h">
+      <Filter>Packet</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\Common\SFPacketStore\FPSPacket.pb.h">
+      <Filter>Packet</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -80,9 +86,6 @@
     <ClCompile Include="PlayerObject.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="SFGameProtocol.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="Weapon.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
@@ -91,6 +94,12 @@
     </ClCompile>
     <ClCompile Include="Wait.cpp">
       <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="FPSProtocol.cpp">
+      <Filter>Packet</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\Common\SFPacketStore\FPSPacket.pb.cc">
+      <Filter>Packet</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

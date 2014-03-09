@@ -3,7 +3,7 @@
 #include "GamePacketStructure.h"
 #include "SFConstant.h"
 #include "SFStructure.h"
-#include <SFPacketStore/PacketID.h>
+#include <SFPacketStore/SFPacketID.h>
 #include <SFPacketStore/SFPacketStore.pb.h>
 #include "BasePacket.h"
 #include "SFProtobufPacket.h"

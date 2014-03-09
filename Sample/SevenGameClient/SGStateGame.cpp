@@ -2,7 +2,7 @@
 #include "SGStateGame.h"
 #include "SGManager.h"
 #include "DirectXSystem.h"
-#include <SFPacketStore/PacketID.h>
+#include <SFPacketStore/SFPacketID.h>
 #include <SFPacketStore/SevenGamePacketID.h>
 #include <SFPacketStore/SevenGamePacket.pb.h>
 #include "SFProtobufPacket.h"

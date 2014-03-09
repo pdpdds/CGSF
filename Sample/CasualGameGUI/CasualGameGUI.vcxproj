@@ -92,7 +92,7 @@
       <Optimization>Disabled</Optimization>
       <PreprocessorDefinitions>WIN32;_DEBUG;_LIB;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <SDLCheck>false</SDLCheck>
-      <AdditionalIncludeDirectories>..\..\EngineLayer;..\..\Common;..\..\BaseLayer;../../ThirdParty;../../ThirdParty/CEGUI/Include</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>../../EngineLayer;../../Common;../../BaseLayer;../../LogicLayer/CasualGame;../../ThirdParty;../../ThirdParty/CEGUI/Include</AdditionalIncludeDirectories>
       <AdditionalOptions>-D_SCL_SECURE_NO_WARNINGS %(AdditionalOptions)</AdditionalOptions>
     </ClCompile>
     <Link>
@@ -167,13 +167,8 @@
     <Text Include="ReadMe.txt" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="..\..\Common\SFPacketStore\PacketCore.pb.h" />
-    <ClInclude Include="..\..\Common\SFPacketStore\SevenGamePacket.pb.h" />
-    <ClInclude Include="..\..\Common\SFPacketStore\SevenGamePacketID.h" />
-    <ClInclude Include="..\..\Common\SFPacketStore\SFPacketStore.pb.h" />
     <ClInclude Include="CasualGameGUI.h" />
     <ClInclude Include="CasualGameManager.h" />
-    <ClInclude Include="CasualGameProtocol.h" />
     <ClInclude Include="GUIFSM.h" />
     <ClInclude Include="GUIGame.h" />
     <ClInclude Include="GUIInit.h" />
@@ -192,27 +187,8 @@
     <ClInclude Include="UDPCallback.h" />
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="..\..\Common\SFPacketStore\PacketCore.pb.cc">
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">NotUsing</PrecompiledHeader>
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">NotUsing</PrecompiledHeader>
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">NotUsing</PrecompiledHeader>
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|x64'">NotUsing</PrecompiledHeader>
-    </ClCompile>
-    <ClCompile Include="..\..\Common\SFPacketStore\SevenGamePacket.pb.cc">
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">NotUsing</PrecompiledHeader>
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">NotUsing</PrecompiledHeader>
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">NotUsing</PrecompiledHeader>
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|x64'">NotUsing</PrecompiledHeader>
-    </ClCompile>
-    <ClCompile Include="..\..\Common\SFPacketStore\SFPacketStore.pb.cc">
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">NotUsing</PrecompiledHeader>
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">NotUsing</PrecompiledHeader>
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">NotUsing</PrecompiledHeader>
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|x64'">NotUsing</PrecompiledHeader>
-    </ClCompile>
     <ClCompile Include="CasualGameGUI.cpp" />
     <ClCompile Include="CasualGameManager.cpp" />
-    <ClCompile Include="CasualGameProtocol.cpp" />
     <ClCompile Include="GUIFSM.cpp" />
     <ClCompile Include="GUIGame.cpp" />
     <ClCompile Include="GUIInit.cpp" />

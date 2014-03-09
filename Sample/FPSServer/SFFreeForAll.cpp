@@ -4,7 +4,7 @@
 #include "SFRoomPlay.h"
 #include "GamePacketStructure.h"
 #include "SFPlayer.h"
-#include "SFSendPacket.h"
+#include "FPSSendPacket.h"
 #include "BasePacket.h"
 #include "SFProtobufPacket.h"
 
@@ -46,20 +46,20 @@ BOOL SFFreeForAll::ProcessUserRequest( SFPlayer* pPlayer, BasePacket* pPacket )
 	{
 	//case CGSF::MSG_PLAYER_MOVE_UPDATE:
 	//case CGSF::MSG_PLAYER_LOOK_UPDATE:
-	case CGSF::MSG_PLAYER_SCORE:
-	case CGSF::MSG_PLAYER_WEAPON_CHANGE:
-	case CGSF::MSG_PLAYER_WEAPON_CHANGING:
+	case FPS::MSG_PLAYER_SCORE:
+	case FPS::MSG_PLAYER_WEAPON_CHANGE:
+	case FPS::MSG_PLAYER_WEAPON_CHANGING:
 		{
 			pRoom->BroadCast(pPacket);
 
 		}
 		break;
-	case CGSF::MSG_SPAWN_PLAYER:
+	case FPS::MSG_SPAWN_PLAYER:
 		{
 			OnSpawnPlayer(pPlayer, pPacket);
 		}
 		break;
-	case CGSF::MSG_PLAYER_HEALTH:
+	case FPS::MSG_PLAYER_HEALTH:
 		{
 			OnPlayerHealth(pPlayer, pPacket);
 		}
@@ -72,7 +72,7 @@ BOOL SFFreeForAll::OnPlayerHealth(SFPlayer* pPlayer, BasePacket* pPacket)
 {
 	SFRoom* pRoom = GetOwner()->GetOwner();
 
-	SFProtobufPacket<SFPacketStore::MSG_PLAYER_HEALTH>* pHealth = (SFProtobufPacket<SFPacketStore::MSG_PLAYER_HEALTH>*)pPacket;
+	SFProtobufPacket<FPSPacket::MSG_PLAYER_HEALTH>* pHealth = (SFProtobufPacket<FPSPacket::MSG_PLAYER_HEALTH>*)pPacket;
 	
 	PlayerHealthMsg msg;
 
@@ -119,7 +119,7 @@ BOOL SFFreeForAll::OnSpawnPlayer(SFPlayer* pPlayer, BasePacket* pPacket)
 {
 	SFRoom* pRoom = GetOwner()->GetOwner();
 
-	SFProtobufPacket<SFPacketStore::MSG_SPAWN_PLAYER>* pSpawnPlayer = (SFProtobufPacket<SFPacketStore::MSG_SPAWN_PLAYER>*)pPacket;
+	SFProtobufPacket<FPSPacket::MSG_SPAWN_PLAYER>* pSpawnPlayer = (SFProtobufPacket<FPSPacket::MSG_SPAWN_PLAYER>*)pPacket;
 
 	SpawnPlayerMsg msg;
 

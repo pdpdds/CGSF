@@ -1,5 +1,6 @@
 #pragma once
 #include "SFDispatch.h"
+#include "SFGameStructure.h"
 
 class SFPlayer;
 class BasePacket;

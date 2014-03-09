@@ -108,7 +108,7 @@
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <ClCompile>
       <Optimization>Disabled</Optimization>
-      <AdditionalIncludeDirectories>../../Common;../../BaseLayer;../../EngineLayer;../../DatabaseLayer;../../ThirdParty;../../ThirdParty/ACE/Include;../../LogicLayer/CasualGame;../../P2PLayer/P2PServer;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>../../Common;../../BaseLayer;../../EngineLayer;../../DatabaseLayer;../../LogicLayer/CasualGame;../../ThirdParty;../../ThirdParty/ACE/Include;../../P2PLayer/P2PServer;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>WIN32;_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <MinimalRebuild>true</MinimalRebuild>
       <BasicRuntimeChecks>EnableFastChecks</BasicRuntimeChecks>
@@ -185,11 +185,8 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="..\..\Common\SFPacketStore\SFPacketStore.pb.cc">
+    <ClCompile Include="..\..\Common\SFPacketStore\FPSPacket.pb.cc">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">NotUsing</PrecompiledHeader>
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">NotUsing</PrecompiledHeader>
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">NotUsing</PrecompiledHeader>
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|x64'">NotUsing</PrecompiledHeader>
     </ClCompile>
     <ClCompile Include=".\FPSServer.cpp" />
     <ClCompile Include=".\stdafx.cpp">
@@ -198,19 +195,20 @@
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Create</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Create</PrecompiledHeader>
     </ClCompile>
-    <ClCompile Include="FPSDefaultProtocol.cpp" />
     <ClCompile Include="FPSProtocol.cpp" />
+    <ClCompile Include="FPSSendPacket.cpp" />
     <ClCompile Include="SFFreeForAll.cpp" />
     <ClCompile Include="SFSuddenDeath.cpp" />
     <ClCompile Include="SFTeamDeathMatch.cpp" />
     <ClCompile Include="SFTraining.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="..\..\Common\SFPacketStore\SFPacketStore.pb.h" />
+    <ClInclude Include="..\..\Common\SFPacketStore\FPSPacket.pb.h" />
+    <ClInclude Include="..\..\Common\SFPacketStore\FPSPacketID.h" />
     <ClInclude Include=".\stdafx.h" />
     <ClInclude Include=".\targetver.h" />
-    <ClInclude Include="FPSDefaultProtocol.h" />
     <ClInclude Include="FPSProtocol.h" />
+    <ClInclude Include="FPSSendPacket.h" />
     <ClInclude Include="GameModeConstant.h" />
     <ClInclude Include="SFFreeForAll.h" />
     <ClInclude Include="SFSuddenDeath.h" />
@@ -219,9 +217,6 @@
   </ItemGroup>
   <ItemGroup>
     <Text Include=".\ReadMe.txt" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="..\Common\SFPacketStore\SFPacketStore.proto" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

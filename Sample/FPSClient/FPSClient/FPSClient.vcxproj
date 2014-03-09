@@ -96,7 +96,7 @@
       <WarningLevel>Level3</WarningLevel>
       <Optimization>Disabled</Optimization>
       <PreprocessorDefinitions>_CRT_SECURE_NO_WARNINGS;WIN32;_DEBUG;_WINDOWS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <AdditionalIncludeDirectories>../../../Common;../../../EngineLayer;../../CasualGameGUI;../../Vendor/DirectMusic;../../Vendor/DXUtil;../../../ThirdParty;../../../BaseLayer;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>../../../BaseLayer;../../../Common;../../../EngineLayer;../../../LogicLayer/CasualGame;../../CasualGameGUI;../../Vendor/DirectMusic;../../Vendor/DXUtil;../../../ThirdParty;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
     </ClCompile>
     <Link>
@@ -162,6 +162,7 @@
     <Text Include="ReadMe.txt" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="..\..\..\Common\SFPacketStore\FPSPacket.pb.h" />
     <ClInclude Include="Bullet.h" />
     <ClInclude Include="FPSGameMain.h" />
     <ClInclude Include="FPSMain.h" />
@@ -171,12 +172,15 @@
     <ClInclude Include="PlayerManager.h" />
     <ClInclude Include="PlayerObject.h" />
     <ClInclude Include="Resource.h" />
-    <ClInclude Include="SFGameProtocol.h" />
+    <ClInclude Include="FPSProtocol.h" />
     <ClInclude Include="stdafx.h" />
     <ClInclude Include="targetver.h" />
     <ClInclude Include="Weapon.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="..\..\..\Common\SFPacketStore\FPSPacket.pb.cc">
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">NotUsing</PrecompiledHeader>
+    </ClCompile>
     <ClCompile Include="Bullet.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">NotUsing</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">NotUsing</PrecompiledHeader>
@@ -215,7 +219,7 @@
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">NotUsing</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|x64'">NotUsing</PrecompiledHeader>
     </ClCompile>
-    <ClCompile Include="SFGameProtocol.cpp" />
+    <ClCompile Include="FPSProtocol.cpp" />
     <ClCompile Include="stdafx.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Create</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Create</PrecompiledHeader>
