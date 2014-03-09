@@ -3,7 +3,7 @@
 namespace CGSF
 {
 
-typedef enum ePacketID
+typedef enum ePACKET_ID
 {
  	Auth = 1000,
  	Login,
@@ -29,17 +29,8 @@ typedef enum ePacketID
 	PlayStart = 1021,
 	PeerList,
 	
-	MSG_CREATE_PLAYER, //게임 시작시 처음 한번만 또는 난입 한번만...
-	MSG_DESTROY_PLAYER,
-	MSG_PLAYER_HEALTH,
-	MSG_PLAYER_SCORE,
-	MSG_PLAYER_WEAPON_CHANGE,
-	MSG_PLAYER_WEAPON_CHANGING,
-	MSG_SPAWN_PLAYER,
-
-	MSG_PLAYER_MOVE_UPDATE, //이 두개는 UDP로
-	MSG_PLAYER_LOOK_UPDATE, //이 두개는 UDP로
-
+	MSG_CREATE_PLAYER,
+	MSG_DESTROY_PLAYER,	
 	PlayEnd,
 	PlayScoreInfo,
 	PlayPlayerScore,

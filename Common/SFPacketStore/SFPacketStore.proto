@@ -185,41 +185,6 @@ message MSG_DESTROY_PLAYER
   	required int32 Serial = 1;
 }
 
-message MSG_PLAYER_MOVE_UPDATE
-{
-  	required bytes moveupdate = 1;
-}
-
-message MSG_PLAYER_LOOK_UPDATE
-{
-  	required bytes lookupdate = 1;
-}
-
-message MSG_PLAYER_HEALTH
-{
-  	required bytes playerhealth = 1;
-}
-
-message MSG_PLAYER_SCORE
-{
-  	required bytes PlayerScore = 1;
-}
-
-message MSG_PLAYER_WEAPON_CHANGE
-{
-  	required bytes WeaponChange = 1;
-}
-
-message MSG_PLAYER_WEAPON_CHANGING
-{
-  	required bytes WeaponChanging = 1;
-}
-
-message MSG_SPAWN_PLAYER
-{
-  	required bytes SpawnPlayer = 1;
-}
-
 message PLAYER_IP
 {
   	required bytes playerip = 1;
