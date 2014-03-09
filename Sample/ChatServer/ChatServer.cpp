@@ -1,14 +1,14 @@
 // ChatServer.cpp : Defines the entry point for the console application.
 
 #include "stdafx.h"
-#include "ChatLogicJsonEntry.h"
+#include "ChatLogicEntry.h"
 #include "SFJsonProtocol.h"
 
 #pragma comment(lib, "EngineLayer.lib")
 
 int _tmain(int argc, _TCHAR* argv[])
 {
-	ChatLogicJsonEntry* pLogicEntry = new ChatLogicJsonEntry();
+	ChatLogicEntry* pLogicEntry = new ChatLogicEntry();
 
 	SFASSERT(false != SFEngine::GetInstance()->Intialize(pLogicEntry, new SFPacketProtocol<SFJsonProtocol>));
 	SFASSERT(false != SFEngine::GetInstance()->Start());

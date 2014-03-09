@@ -24,10 +24,10 @@
     <ClCompile Include=".\stdafx.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="ChatLogicJsonEntry.cpp">
+    <ClCompile Include=".\ChatUser.cpp">
       <Filter>ChatImpl</Filter>
     </ClCompile>
-    <ClCompile Include=".\ChatUser.cpp">
+    <ClCompile Include="ChatLogicEntry.cpp">
       <Filter>ChatImpl</Filter>
     </ClCompile>
   </ItemGroup>
@@ -38,10 +38,10 @@
     <ClInclude Include=".\targetver.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="ChatLogicJsonEntry.h">
+    <ClInclude Include=".\ChatUser.h">
       <Filter>ChatImpl</Filter>
     </ClInclude>
-    <ClInclude Include=".\ChatUser.h">
+    <ClInclude Include="ChatLogicEntry.h">
       <Filter>ChatImpl</Filter>
     </ClInclude>
   </ItemGroup>

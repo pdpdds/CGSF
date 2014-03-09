@@ -185,13 +185,13 @@
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Create</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Create</PrecompiledHeader>
     </ClCompile>
-    <ClCompile Include="ChatLogicJsonEntry.cpp" />
+    <ClCompile Include="ChatLogicEntry.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include=".\ChatUser.h" />
     <ClInclude Include=".\stdafx.h" />
     <ClInclude Include=".\targetver.h" />
-    <ClInclude Include="ChatLogicJsonEntry.h" />
+    <ClInclude Include="ChatLogicEntry.h" />
   </ItemGroup>
   <ItemGroup>
     <Text Include=".\ReadMe.txt" />
