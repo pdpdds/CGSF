@@ -32,9 +32,6 @@
     <Filter Include="Protocol">
       <UniqueIdentifier>{c7b3c0d4-c116-4572-8208-9c4e92d556d1}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Packet">
-      <UniqueIdentifier>{07a2ee6f-dad1-452c-b43b-5c557f749982}</UniqueIdentifier>
-    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include=".\SFGameConstant.h">
@@ -166,12 +163,6 @@
     <ClInclude Include="SFCGProtobufClientProtocol.h">
       <Filter>Protocol</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\Common\SFPacketStore\SFPacketStore.pb.h">
-      <Filter>Packet</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\Common\SFPacketStore\PacketCore.pb.h">
-      <Filter>Packet</Filter>
-    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include=".\SFLogicCore.cpp">
@@ -293,12 +284,6 @@
     </ClCompile>
     <ClCompile Include="SFCGProtobufClientProtocol.cpp">
       <Filter>Protocol</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\Common\SFPacketStore\SFPacketStore.pb.cc">
-      <Filter>Packet</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\Common\SFPacketStore\PacketCore.pb.cc">
-      <Filter>Packet</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

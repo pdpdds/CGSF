@@ -114,7 +114,7 @@
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <ClCompile>
       <Optimization>Disabled</Optimization>
-      <AdditionalIncludeDirectories>../../BaseLayer;../../EngineLayer;../../Common;../../ThirdParty;../CasualGameGUI;../Vendor/DXUtil;../Vendor/DirectMusic;./fireeffect;./sound;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>../../BaseLayer;../../EngineLayer;../../Common;../../ThirdParty;../CasualGameGUI;../Vendor/DXUtil;../Vendor/DirectMusic;./fireeffect;./sound;../../LogicLayer/CasualGame;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>WIN32;_DEBUG;_WINDOWS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <BasicRuntimeChecks>EnableFastChecks</BasicRuntimeChecks>
       <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
@@ -156,7 +156,7 @@
     <ClCompile>
       <Optimization>MaxSpeed</Optimization>
       <IntrinsicFunctions>true</IntrinsicFunctions>
-      <AdditionalIncludeDirectories>../../BaseLayer;../../EngineLayer;../../Common;../../ThirdParty;../CasualGameGUI;../Vendor/DXUtil;../Vendor/DirectMusic;./fireeffect;./sound;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>../../BaseLayer;../../EngineLayer;../../Common;../../ThirdParty;../CasualGameGUI;../Vendor/DXUtil;../Vendor/DirectMusic;./fireeffect;./sound;../../LogicLayer/CasualGame;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>WIN32;NDEBUG;_WINDOWS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
       <FunctionLevelLinking>true</FunctionLevelLinking>
