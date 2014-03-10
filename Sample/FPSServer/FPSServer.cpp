@@ -13,8 +13,8 @@ int _tmain(int argc, _TCHAR* argv[])
 	pLogicEntry->AddGameMode(GAMEMODE_FREEFORALL, new SFFreeForAll(GAMEMODE_FREEFORALL));
 	
 	/////////////////////////////////////////////////////////////////////
-	SFASSERT(TRUE == SFEngine::GetInstance()->Intialize(pLogicEntry, new SFPacketProtocol<FPSProtocol>));	
-	SFASSERT(TRUE == SFEngine::GetInstance()->Start());
+	SFEngine::GetInstance()->Intialize(pLogicEntry, new SFPacketProtocol<FPSProtocol>);	
+	SFEngine::GetInstance()->Start();
 
 	google::FlushLogFiles(google::GLOG_INFO);
 

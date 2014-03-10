@@ -29,7 +29,7 @@ BOOL SFRoomPlay::OnEnter()
 
 	_GameModeInfo* pInfo = pRoom->GetGameModeInfo();
 
-	SFASSERT(m_pGameModeFSM->SetGameMode(pInfo->GameMode));
+	m_pGameModeFSM->SetGameMode(pInfo->GameMode);
 
 	pRoom->ChangePlayerFSM(PLAYER_STATE_PLAY);
 

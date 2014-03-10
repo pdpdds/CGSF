@@ -60,9 +60,6 @@
     <ClInclude Include="FPSProtocol.h">
       <Filter>Packet</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\..\Common\SFPacketStore\FPSPacket.pb.h">
-      <Filter>Packet</Filter>
-    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="stdafx.cpp">
@@ -96,9 +93,6 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="FPSProtocol.cpp">
-      <Filter>Packet</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\..\Common\SFPacketStore\FPSPacket.pb.cc">
       <Filter>Packet</Filter>
     </ClCompile>
   </ItemGroup>

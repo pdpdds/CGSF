@@ -51,7 +51,7 @@ int _tmain(int argc, _TCHAR* argv[])
 	ChatCallback* pCallback = new ChatCallback();
 
 	SFNetworkEntry::GetInstance()->Initialize(pCallback, new SFPacketProtocol<SFJsonProtocol>);
-	SFASSERT(TRUE == SFNetworkEntry::GetInstance()->Run());
+	SFNetworkEntry::GetInstance()->Run();
 
 	ProcessInput();
 

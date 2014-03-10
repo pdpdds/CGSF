@@ -33,7 +33,7 @@ public:
 		DWORD NumberOfBytesTransferred = 0;
 		LPOVERLAPPED pOverlapped = NULL;
 
-		SFASSERT( FALSE != ::GetQueuedCompletionStatus(m_hIOCP, &NumberOfBytesTransferred, &pCompletionKey, &pOverlapped, INFINITE));
+		::GetQueuedCompletionStatus(m_hIOCP, &NumberOfBytesTransferred, &pCompletionKey, &pOverlapped, INFINITE);
 
 		return (T*)(pCompletionKey);
 	}

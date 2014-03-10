@@ -42,9 +42,6 @@
     <ClCompile Include="FPSProtocol.cpp">
       <Filter>Packet</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\Common\SFPacketStore\FPSPacket.pb.cc">
-      <Filter>Packet</Filter>
-    </ClCompile>
     <ClCompile Include="FPSSendPacket.cpp">
       <Filter>Packet</Filter>
     </ClCompile>
@@ -72,9 +69,6 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="FPSProtocol.h">
-      <Filter>Packet</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\Common\SFPacketStore\FPSPacket.pb.h">
       <Filter>Packet</Filter>
     </ClInclude>
     <ClInclude Include="..\..\Common\SFPacketStore\FPSPacketID.h">

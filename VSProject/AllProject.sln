@@ -107,6 +107,8 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "FPSClient", "..\Sample\FPSC
 		{F7276B81-CD8E-4E0B-ABF5-BAB8FEBE0511} = {F7276B81-CD8E-4E0B-ABF5-BAB8FEBE0511}
 	EndProjectSection
 EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "CommonLayer", "..\Common\CommonLayer.vcxproj", "{FBA50FCE-B1AC-4B9B-82F0-BDC8F762B09D}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Win32 = Debug|Win32
@@ -267,6 +269,12 @@ Global
 		{1C25DF11-F817-4704-B87C-289E892446E4}.Release|Win32.Build.0 = Release|Win32
 		{1C25DF11-F817-4704-B87C-289E892446E4}.Release|x64.ActiveCfg = Release|x64
 		{1C25DF11-F817-4704-B87C-289E892446E4}.Release|x64.Build.0 = Release|x64
+		{FBA50FCE-B1AC-4B9B-82F0-BDC8F762B09D}.Debug|Win32.ActiveCfg = Debug|x64
+		{FBA50FCE-B1AC-4B9B-82F0-BDC8F762B09D}.Debug|Win32.Build.0 = Debug|x64
+		{FBA50FCE-B1AC-4B9B-82F0-BDC8F762B09D}.Debug|x64.ActiveCfg = Debug|Win32
+		{FBA50FCE-B1AC-4B9B-82F0-BDC8F762B09D}.Release|Win32.ActiveCfg = Release|Win32
+		{FBA50FCE-B1AC-4B9B-82F0-BDC8F762B09D}.Release|Win32.Build.0 = Release|Win32
+		{FBA50FCE-B1AC-4B9B-82F0-BDC8F762B09D}.Release|x64.ActiveCfg = Release|Win32
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
