@@ -81,7 +81,7 @@ namespace SFUtil
 		return peSize;
 	}
 
-	INT	GetProgramName( LPWSTR buf, INT len )
+	INT	GetFileName(LPWSTR buf, INT len)
 	{
 		WCHAR szDrive[MAX_PATH], szDir[MAX_PATH], szFilename[MAX_PATH], szExt[MAX_PATH];
 
@@ -109,17 +109,20 @@ namespace SFUtil
 	{
 		static TCHAR szDrive[_MAX_DRIVE];
 		static TCHAR szDirectory[_MAX_DIR];
+		static TCHAR szFullPath[_MAX_DIR];
 		static TCHAR szFileName[_MAX_FNAME];
 		static TCHAR szExtension[_MAX_EXT];
 
 		_tsplitpath_s(szPath, szDrive, szDirectory, szFileName, szExtension );
+
+		_stprintf(szFullPath, _T("%s%s"), szDrive, szDirectory);
 
 		switch(InfoType)
 		{
 		case PATH_DRIVE:
 			return szDrive;
 		case PATH_DIR:
-			return szDirectory;
+			return szFullPath;
 		case PATH_FILENAME:
 			return szFileName;
 		case PATH_EXTENSION:

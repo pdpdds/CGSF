@@ -216,6 +216,9 @@ bool SFEngine::Start(char* szIP, unsigned short Port)
 
 bool SFEngine::ShutDown()
 {
+	LOG(INFO) << "Engine Shut Down!!";
+	google::FlushLogFiles(google::GLOG_INFO);
+
 	m_bServerTerminated = true;
 
 	SFPacket* pPacket = PacketPoolSingleton::instance()->Alloc();

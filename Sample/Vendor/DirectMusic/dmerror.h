@@ -9,7 +9,7 @@
 #ifndef _DMERROR_
 #define _DMERROR_
 
-#define FACILITY_DIRECTMUSIC      0x878       /* Shared with DirectSound */
+//#define FACILITY_DIRECTMUSIC      0x878       /* Shared with DirectSound */
 #define DMUS_ERRBASE              0x1000      /* Make error codes human readable in hex */
 
 #ifndef MAKE_HRESULT

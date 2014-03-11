@@ -194,10 +194,10 @@ void SGManager::ReArrangeUserCard(SGUser* pUser,int &iCount,int iCardCnt)
 		m_CARD[iCount].iCardType = TYPE_SPADE;
 		m_CARD[iCount].iRow = TYPE_SPADE;
 		m_CARD[iCount].iCol = i-1;
-		m_CARD[iCount].CurrentRect.top=HUMAN_PLAYER_POS_Y;
-		m_CARD[iCount].CurrentRect.left=HUMAN_PLAYER_POS_X+(iCount-((iCardCnt)/2)) * CARD_LOOKABLE_PART;				
-		m_CARD[iCount].CurrentRect.bottom=HUMAN_PLAYER_POS_Y + CARD_HEIGHT;				
-		m_CARD[iCount].CurrentRect.right=HUMAN_PLAYER_POS_X+(iCount-((iCardCnt)/2))*CARD_LOOKABLE_PART + CARD_LOOKABLE_PART;				
+		m_CARD[iCount].CurrentRect.top=(LONG)HUMAN_PLAYER_POS_Y;
+		m_CARD[iCount].CurrentRect.left = (LONG)(HUMAN_PLAYER_POS_X + (iCount - ((iCardCnt) / 2)) * CARD_LOOKABLE_PART);
+		m_CARD[iCount].CurrentRect.bottom = (LONG)(HUMAN_PLAYER_POS_Y + CARD_HEIGHT);
+		m_CARD[iCount].CurrentRect.right = (LONG)(HUMAN_PLAYER_POS_X + (iCount - ((iCardCnt) / 2))*CARD_LOOKABLE_PART + CARD_LOOKABLE_PART);
 		iCount++;
 	}
 
@@ -210,10 +210,10 @@ void SGManager::ReArrangeUserCard(SGUser* pUser,int &iCount,int iCardCnt)
 		m_CARD[iCount].iCardType = TYPE_HEART;
 		m_CARD[iCount].iRow = TYPE_HEART;
 		m_CARD[iCount].iCol = i-1;
-		m_CARD[iCount].CurrentRect.top=HUMAN_PLAYER_POS_Y;
-		m_CARD[iCount].CurrentRect.left=HUMAN_PLAYER_POS_X+(iCount-((iCardCnt)/2)) * CARD_LOOKABLE_PART;				
-		m_CARD[iCount].CurrentRect.bottom=HUMAN_PLAYER_POS_Y + CARD_HEIGHT;				
-		m_CARD[iCount].CurrentRect.right=HUMAN_PLAYER_POS_X+(iCount-((iCardCnt)/2))*CARD_LOOKABLE_PART + CARD_LOOKABLE_PART;				
+		m_CARD[iCount].CurrentRect.top = (LONG)HUMAN_PLAYER_POS_Y;
+		m_CARD[iCount].CurrentRect.left = (LONG)(HUMAN_PLAYER_POS_X + (iCount - ((iCardCnt) / 2)) * CARD_LOOKABLE_PART);
+		m_CARD[iCount].CurrentRect.bottom = (LONG)(HUMAN_PLAYER_POS_Y + CARD_HEIGHT);
+		m_CARD[iCount].CurrentRect.right = (LONG)(HUMAN_PLAYER_POS_X + (iCount - ((iCardCnt) / 2))*CARD_LOOKABLE_PART + CARD_LOOKABLE_PART);
 		iCount++;
 	}
 
@@ -226,10 +226,10 @@ void SGManager::ReArrangeUserCard(SGUser* pUser,int &iCount,int iCardCnt)
 		m_CARD[iCount].iCardType = TYPE_DIAMOND;
 		m_CARD[iCount].iRow = TYPE_DIAMOND;
 		m_CARD[iCount].iCol = i-1;
-		m_CARD[iCount].CurrentRect.top=HUMAN_PLAYER_POS_Y;
-		m_CARD[iCount].CurrentRect.left=HUMAN_PLAYER_POS_X+(iCount-((iCardCnt)/2)) * CARD_LOOKABLE_PART;				
-		m_CARD[iCount].CurrentRect.bottom=HUMAN_PLAYER_POS_Y + CARD_HEIGHT;				
-		m_CARD[iCount].CurrentRect.right=HUMAN_PLAYER_POS_X+(iCount-((iCardCnt)/2))*CARD_LOOKABLE_PART + CARD_LOOKABLE_PART;				
+		m_CARD[iCount].CurrentRect.top = (LONG)HUMAN_PLAYER_POS_Y;
+		m_CARD[iCount].CurrentRect.left = (LONG)(HUMAN_PLAYER_POS_X + (iCount - ((iCardCnt) / 2)) * CARD_LOOKABLE_PART);
+		m_CARD[iCount].CurrentRect.bottom = (LONG)(HUMAN_PLAYER_POS_Y + CARD_HEIGHT);
+		m_CARD[iCount].CurrentRect.right = (LONG)(HUMAN_PLAYER_POS_X + (iCount - ((iCardCnt) / 2))*CARD_LOOKABLE_PART + CARD_LOOKABLE_PART);
 		iCount++;
 	}
 
@@ -242,15 +242,15 @@ void SGManager::ReArrangeUserCard(SGUser* pUser,int &iCount,int iCardCnt)
 		m_CARD[iCount].iCardType = TYPE_CLOVER;
 		m_CARD[iCount].iRow = TYPE_CLOVER;
 		m_CARD[iCount].iCol = i-1;
-		m_CARD[iCount].CurrentRect.top=HUMAN_PLAYER_POS_Y;
-		m_CARD[iCount].CurrentRect.left=HUMAN_PLAYER_POS_X+(iCount-((iCardCnt)/2)) * CARD_LOOKABLE_PART;				
-		m_CARD[iCount].CurrentRect.bottom=HUMAN_PLAYER_POS_Y + CARD_HEIGHT;				
-		m_CARD[iCount].CurrentRect.right=HUMAN_PLAYER_POS_X+(iCount-((iCardCnt)/2))*CARD_LOOKABLE_PART + CARD_LOOKABLE_PART;				
+		m_CARD[iCount].CurrentRect.top = (LONG)HUMAN_PLAYER_POS_Y;
+		m_CARD[iCount].CurrentRect.left = (LONG)(HUMAN_PLAYER_POS_X + (iCount - ((iCardCnt) / 2)) * CARD_LOOKABLE_PART);
+		m_CARD[iCount].CurrentRect.bottom = (LONG)(HUMAN_PLAYER_POS_Y + CARD_HEIGHT);
+		m_CARD[iCount].CurrentRect.right = (LONG)(HUMAN_PLAYER_POS_X + (iCount - ((iCardCnt) / 2))*CARD_LOOKABLE_PART + CARD_LOOKABLE_PART);
 		iCount++;		
 	}
 
 	if(iCount >= 1)
-		m_CARD[iCount-1].CurrentRect.right=HUMAN_PLAYER_POS_X+((iCount-1) -((iCardCnt)/2))*CARD_LOOKABLE_PART + CARD_WIDTH;				
+		m_CARD[iCount-1].CurrentRect.right=(LONG)(HUMAN_PLAYER_POS_X+((iCount-1) -((iCardCnt)/2))*CARD_LOOKABLE_PART + CARD_WIDTH);				
 }
 
 BOOL SGManager::GetCardImageIndex( SCardInfo* pInfo, int& iCol, int& iRow )
@@ -323,20 +323,20 @@ void SGManager::SetCardEffectInfo( SCardInfo* pInfo )
 	switch(pInfo->iCardType)
 	{		
 	case TYPE_CLOVER:
-		m_CardEffectInfo.iDestX = (pInfo->iCardNum - 1)*CARD_LOOKABLE_PART+DEFAULT_TABLE_CARD_POS_X;
-		m_CardEffectInfo.iDestY = DEFAULT_TABLE_CARD_POS_Y + CARD_DISTANCE * 3;
+		m_CardEffectInfo.iDestX = (int)((pInfo->iCardNum - 1)*CARD_LOOKABLE_PART + DEFAULT_TABLE_CARD_POS_X);
+		m_CardEffectInfo.iDestY = (int)(DEFAULT_TABLE_CARD_POS_Y + CARD_DISTANCE * 3);
 		break;
 	case TYPE_HEART:
-		m_CardEffectInfo.iDestX = (pInfo->iCardNum - 1)*CARD_LOOKABLE_PART+DEFAULT_TABLE_CARD_POS_X;
-		m_CardEffectInfo.iDestY = DEFAULT_TABLE_CARD_POS_Y + CARD_DISTANCE * 1;
+		m_CardEffectInfo.iDestX = (int)((pInfo->iCardNum - 1)*CARD_LOOKABLE_PART + DEFAULT_TABLE_CARD_POS_X);
+		m_CardEffectInfo.iDestY = (int)(DEFAULT_TABLE_CARD_POS_Y + CARD_DISTANCE * 1);
 		break;
 	case TYPE_DIAMOND:
-		m_CardEffectInfo.iDestX = (pInfo->iCardNum - 1)*CARD_LOOKABLE_PART+DEFAULT_TABLE_CARD_POS_X;
-		m_CardEffectInfo.iDestY = DEFAULT_TABLE_CARD_POS_Y + CARD_DISTANCE * 2;
+		m_CardEffectInfo.iDestX = (int)((pInfo->iCardNum - 1)*CARD_LOOKABLE_PART + DEFAULT_TABLE_CARD_POS_X);
+		m_CardEffectInfo.iDestY = (int)(DEFAULT_TABLE_CARD_POS_Y + CARD_DISTANCE * 2);
 		break;
 	case TYPE_SPADE:
-		m_CardEffectInfo.iDestX = (pInfo->iCardNum - 1)*CARD_LOOKABLE_PART+DEFAULT_TABLE_CARD_POS_X;
-		m_CardEffectInfo.iDestY = DEFAULT_TABLE_CARD_POS_Y;
+		m_CardEffectInfo.iDestX = (int)((pInfo->iCardNum - 1)*CARD_LOOKABLE_PART + DEFAULT_TABLE_CARD_POS_X);
+		m_CardEffectInfo.iDestY = (int)DEFAULT_TABLE_CARD_POS_Y;
 		break;
 	}
 }

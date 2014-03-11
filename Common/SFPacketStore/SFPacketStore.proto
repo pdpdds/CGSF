@@ -74,26 +74,26 @@ message EnterLobby
 
 message ChatReq
 {
-	required string Message = 1[default = "메세지를 넣으세요"];
+	required string Message = 1;
 }
 
 message ChatRes
 {
 	required string Sender = 1;
-	required string Message = 2[default = "메세지를 넣으세요"];
+	required string Message = 2;
 }
 
 message EnterRoom
 {
 	required int32 RoomIndex = 1;
 	required int32 GameMode = 2;
-	optional string Password = 3[default = "None"];
+	optional string Password = 3;
 }
 
 message CreateRoom
 {
 	required int32 GameMode = 1;
-	optional string Password = 2[default = "None"];
+	optional string Password = 2;
 }
 
 message LeaveRoom

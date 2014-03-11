@@ -1187,7 +1187,7 @@ class ChatReq : public ::google::protobuf::Message {
 
   // accessors -------------------------------------------------------
 
-  // required string Message = 1 [default = "\270\336\274\274\301\366\270\246 \263\326\300\270\274\274\277\344"];
+  // required string Message = 1;
   inline bool has_message() const;
   inline void clear_message();
   static const int kMessageFieldNumber = 1;
@@ -1207,7 +1207,6 @@ class ChatReq : public ::google::protobuf::Message {
   ::google::protobuf::UnknownFieldSet _unknown_fields_;
 
   ::std::string* message_;
-  static ::std::string* _default_message_;
 
   mutable int _cached_size_;
   ::google::protobuf::uint32 _has_bits_[(1 + 31) / 32];
@@ -1287,7 +1286,7 @@ class ChatRes : public ::google::protobuf::Message {
   inline ::std::string* release_sender();
   inline void set_allocated_sender(::std::string* sender);
 
-  // required string Message = 2 [default = "\270\336\274\274\301\366\270\246 \263\326\300\270\274\274\277\344"];
+  // required string Message = 2;
   inline bool has_message() const;
   inline void clear_message();
   static const int kMessageFieldNumber = 2;
@@ -1310,7 +1309,6 @@ class ChatRes : public ::google::protobuf::Message {
 
   ::std::string* sender_;
   ::std::string* message_;
-  static ::std::string* _default_message_;
 
   mutable int _cached_size_;
   ::google::protobuf::uint32 _has_bits_[(2 + 31) / 32];
@@ -1392,7 +1390,7 @@ class EnterRoom : public ::google::protobuf::Message {
   inline ::google::protobuf::int32 gamemode() const;
   inline void set_gamemode(::google::protobuf::int32 value);
 
-  // optional string Password = 3 [default = "None"];
+  // optional string Password = 3;
   inline bool has_password() const;
   inline void clear_password();
   static const int kPasswordFieldNumber = 3;
@@ -1418,7 +1416,6 @@ class EnterRoom : public ::google::protobuf::Message {
   ::google::protobuf::int32 roomindex_;
   ::google::protobuf::int32 gamemode_;
   ::std::string* password_;
-  static ::std::string* _default_password_;
 
   mutable int _cached_size_;
   ::google::protobuf::uint32 _has_bits_[(3 + 31) / 32];
@@ -1493,7 +1490,7 @@ class CreateRoom : public ::google::protobuf::Message {
   inline ::google::protobuf::int32 gamemode() const;
   inline void set_gamemode(::google::protobuf::int32 value);
 
-  // optional string Password = 2 [default = "None"];
+  // optional string Password = 2;
   inline bool has_password() const;
   inline void clear_password();
   static const int kPasswordFieldNumber = 2;
@@ -1515,7 +1512,6 @@ class CreateRoom : public ::google::protobuf::Message {
   ::google::protobuf::UnknownFieldSet _unknown_fields_;
 
   ::std::string* password_;
-  static ::std::string* _default_password_;
   ::google::protobuf::int32 gamemode_;
 
   mutable int _cached_size_;
@@ -4091,7 +4087,7 @@ inline void EnterLobby::set_lobbyindex(::google::protobuf::int32 value) {
 
 // ChatReq
 
-// required string Message = 1 [default = "\270\336\274\274\301\366\270\246 \263\326\300\270\274\274\277\344"];
+// required string Message = 1;
 inline bool ChatReq::has_message() const {
   return (_has_bits_[0] & 0x00000001u) != 0;
 }
@@ -4102,8 +4098,8 @@ inline void ChatReq::clear_has_message() {
   _has_bits_[0] &= ~0x00000001u;
 }
 inline void ChatReq::clear_message() {
-  if (message_ != _default_message_) {
-    message_->assign(*_default_message_);
+  if (message_ != &::google::protobuf::internal::kEmptyString) {
+    message_->clear();
   }
   clear_has_message();
 }
@@ -4112,44 +4108,44 @@ inline const ::std::string& ChatReq::message() const {
 }
 inline void ChatReq::set_message(const ::std::string& value) {
   set_has_message();
-  if (message_ == _default_message_) {
+  if (message_ == &::google::protobuf::internal::kEmptyString) {
     message_ = new ::std::string;
   }
   message_->assign(value);
 }
 inline void ChatReq::set_message(const char* value) {
   set_has_message();
-  if (message_ == _default_message_) {
+  if (message_ == &::google::protobuf::internal::kEmptyString) {
     message_ = new ::std::string;
   }
   message_->assign(value);
 }
 inline void ChatReq::set_message(const char* value, size_t size) {
   set_has_message();
-  if (message_ == _default_message_) {
+  if (message_ == &::google::protobuf::internal::kEmptyString) {
     message_ = new ::std::string;
   }
   message_->assign(reinterpret_cast<const char*>(value), size);
 }
 inline ::std::string* ChatReq::mutable_message() {
   set_has_message();
-  if (message_ == _default_message_) {
-    message_ = new ::std::string(*_default_message_);
+  if (message_ == &::google::protobuf::internal::kEmptyString) {
+    message_ = new ::std::string;
   }
   return message_;
 }
 inline ::std::string* ChatReq::release_message() {
   clear_has_message();
-  if (message_ == _default_message_) {
+  if (message_ == &::google::protobuf::internal::kEmptyString) {
     return NULL;
   } else {
     ::std::string* temp = message_;
-    message_ = const_cast< ::std::string*>(_default_message_);
+    message_ = const_cast< ::std::string*>(&::google::protobuf::internal::kEmptyString);
     return temp;
   }
 }
 inline void ChatReq::set_allocated_message(::std::string* message) {
-  if (message_ != _default_message_) {
+  if (message_ != &::google::protobuf::internal::kEmptyString) {
     delete message_;
   }
   if (message) {
@@ -4157,7 +4153,7 @@ inline void ChatReq::set_allocated_message(::std::string* message) {
     message_ = message;
   } else {
     clear_has_message();
-    message_ = const_cast< ::std::string*>(_default_message_);
+    message_ = const_cast< ::std::string*>(&::google::protobuf::internal::kEmptyString);
   }
 }
 
@@ -4235,7 +4231,7 @@ inline void ChatRes::set_allocated_sender(::std::string* sender) {
   }
 }
 
-// required string Message = 2 [default = "\270\336\274\274\301\366\270\246 \263\326\300\270\274\274\277\344"];
+// required string Message = 2;
 inline bool ChatRes::has_message() const {
   return (_has_bits_[0] & 0x00000002u) != 0;
 }
@@ -4246,8 +4242,8 @@ inline void ChatRes::clear_has_message() {
   _has_bits_[0] &= ~0x00000002u;
 }
 inline void ChatRes::clear_message() {
-  if (message_ != _default_message_) {
-    message_->assign(*_default_message_);
+  if (message_ != &::google::protobuf::internal::kEmptyString) {
+    message_->clear();
   }
   clear_has_message();
 }
@@ -4256,44 +4252,44 @@ inline const ::std::string& ChatRes::message() const {
 }
 inline void ChatRes::set_message(const ::std::string& value) {
   set_has_message();
-  if (message_ == _default_message_) {
+  if (message_ == &::google::protobuf::internal::kEmptyString) {
     message_ = new ::std::string;
   }
   message_->assign(value);
 }
 inline void ChatRes::set_message(const char* value) {
   set_has_message();
-  if (message_ == _default_message_) {
+  if (message_ == &::google::protobuf::internal::kEmptyString) {
     message_ = new ::std::string;
   }
   message_->assign(value);
 }
 inline void ChatRes::set_message(const char* value, size_t size) {
   set_has_message();
-  if (message_ == _default_message_) {
+  if (message_ == &::google::protobuf::internal::kEmptyString) {
     message_ = new ::std::string;
   }
   message_->assign(reinterpret_cast<const char*>(value), size);
 }
 inline ::std::string* ChatRes::mutable_message() {
   set_has_message();
-  if (message_ == _default_message_) {
-    message_ = new ::std::string(*_default_message_);
+  if (message_ == &::google::protobuf::internal::kEmptyString) {
+    message_ = new ::std::string;
   }
   return message_;
 }
 inline ::std::string* ChatRes::release_message() {
   clear_has_message();
-  if (message_ == _default_message_) {
+  if (message_ == &::google::protobuf::internal::kEmptyString) {
     return NULL;
   } else {
     ::std::string* temp = message_;
-    message_ = const_cast< ::std::string*>(_default_message_);
+    message_ = const_cast< ::std::string*>(&::google::protobuf::internal::kEmptyString);
     return temp;
   }
 }
 inline void ChatRes::set_allocated_message(::std::string* message) {
-  if (message_ != _default_message_) {
+  if (message_ != &::google::protobuf::internal::kEmptyString) {
     delete message_;
   }
   if (message) {
@@ -4301,7 +4297,7 @@ inline void ChatRes::set_allocated_message(::std::string* message) {
     message_ = message;
   } else {
     clear_has_message();
-    message_ = const_cast< ::std::string*>(_default_message_);
+    message_ = const_cast< ::std::string*>(&::google::protobuf::internal::kEmptyString);
   }
 }
 
@@ -4353,7 +4349,7 @@ inline void EnterRoom::set_gamemode(::google::protobuf::int32 value) {
   gamemode_ = value;
 }
 
-// optional string Password = 3 [default = "None"];
+// optional string Password = 3;
 inline bool EnterRoom::has_password() const {
   return (_has_bits_[0] & 0x00000004u) != 0;
 }
@@ -4364,8 +4360,8 @@ inline void EnterRoom::clear_has_password() {
   _has_bits_[0] &= ~0x00000004u;
 }
 inline void EnterRoom::clear_password() {
-  if (password_ != _default_password_) {
-    password_->assign(*_default_password_);
+  if (password_ != &::google::protobuf::internal::kEmptyString) {
+    password_->clear();
   }
   clear_has_password();
 }
@@ -4374,44 +4370,44 @@ inline const ::std::string& EnterRoom::password() const {
 }
 inline void EnterRoom::set_password(const ::std::string& value) {
   set_has_password();
-  if (password_ == _default_password_) {
+  if (password_ == &::google::protobuf::internal::kEmptyString) {
     password_ = new ::std::string;
   }
   password_->assign(value);
 }
 inline void EnterRoom::set_password(const char* value) {
   set_has_password();
-  if (password_ == _default_password_) {
+  if (password_ == &::google::protobuf::internal::kEmptyString) {
     password_ = new ::std::string;
   }
   password_->assign(value);
 }
 inline void EnterRoom::set_password(const char* value, size_t size) {
   set_has_password();
-  if (password_ == _default_password_) {
+  if (password_ == &::google::protobuf::internal::kEmptyString) {
     password_ = new ::std::string;
   }
   password_->assign(reinterpret_cast<const char*>(value), size);
 }
 inline ::std::string* EnterRoom::mutable_password() {
   set_has_password();
-  if (password_ == _default_password_) {
-    password_ = new ::std::string(*_default_password_);
+  if (password_ == &::google::protobuf::internal::kEmptyString) {
+    password_ = new ::std::string;
   }
   return password_;
 }
 inline ::std::string* EnterRoom::release_password() {
   clear_has_password();
-  if (password_ == _default_password_) {
+  if (password_ == &::google::protobuf::internal::kEmptyString) {
     return NULL;
   } else {
     ::std::string* temp = password_;
-    password_ = const_cast< ::std::string*>(_default_password_);
+    password_ = const_cast< ::std::string*>(&::google::protobuf::internal::kEmptyString);
     return temp;
   }
 }
 inline void EnterRoom::set_allocated_password(::std::string* password) {
-  if (password_ != _default_password_) {
+  if (password_ != &::google::protobuf::internal::kEmptyString) {
     delete password_;
   }
   if (password) {
@@ -4419,7 +4415,7 @@ inline void EnterRoom::set_allocated_password(::std::string* password) {
     password_ = password;
   } else {
     clear_has_password();
-    password_ = const_cast< ::std::string*>(_default_password_);
+    password_ = const_cast< ::std::string*>(&::google::protobuf::internal::kEmptyString);
   }
 }
 
@@ -4449,7 +4445,7 @@ inline void CreateRoom::set_gamemode(::google::protobuf::int32 value) {
   gamemode_ = value;
 }
 
-// optional string Password = 2 [default = "None"];
+// optional string Password = 2;
 inline bool CreateRoom::has_password() const {
   return (_has_bits_[0] & 0x00000002u) != 0;
 }
@@ -4460,8 +4456,8 @@ inline void CreateRoom::clear_has_password() {
   _has_bits_[0] &= ~0x00000002u;
 }
 inline void CreateRoom::clear_password() {
-  if (password_ != _default_password_) {
-    password_->assign(*_default_password_);
+  if (password_ != &::google::protobuf::internal::kEmptyString) {
+    password_->clear();
   }
   clear_has_password();
 }
@@ -4470,44 +4466,44 @@ inline const ::std::string& CreateRoom::password() const {
 }
 inline void CreateRoom::set_password(const ::std::string& value) {
   set_has_password();
-  if (password_ == _default_password_) {
+  if (password_ == &::google::protobuf::internal::kEmptyString) {
     password_ = new ::std::string;
   }
   password_->assign(value);
 }
 inline void CreateRoom::set_password(const char* value) {
   set_has_password();
-  if (password_ == _default_password_) {
+  if (password_ == &::google::protobuf::internal::kEmptyString) {
     password_ = new ::std::string;
   }
   password_->assign(value);
 }
 inline void CreateRoom::set_password(const char* value, size_t size) {
   set_has_password();
-  if (password_ == _default_password_) {
+  if (password_ == &::google::protobuf::internal::kEmptyString) {
     password_ = new ::std::string;
   }
   password_->assign(reinterpret_cast<const char*>(value), size);
 }
 inline ::std::string* CreateRoom::mutable_password() {
   set_has_password();
-  if (password_ == _default_password_) {
-    password_ = new ::std::string(*_default_password_);
+  if (password_ == &::google::protobuf::internal::kEmptyString) {
+    password_ = new ::std::string;
   }
   return password_;
 }
 inline ::std::string* CreateRoom::release_password() {
   clear_has_password();
-  if (password_ == _default_password_) {
+  if (password_ == &::google::protobuf::internal::kEmptyString) {
     return NULL;
   } else {
     ::std::string* temp = password_;
-    password_ = const_cast< ::std::string*>(_default_password_);
+    password_ = const_cast< ::std::string*>(&::google::protobuf::internal::kEmptyString);
     return temp;
   }
 }
 inline void CreateRoom::set_allocated_password(::std::string* password) {
-  if (password_ != _default_password_) {
+  if (password_ != &::google::protobuf::internal::kEmptyString) {
     delete password_;
   }
   if (password) {
@@ -4515,7 +4511,7 @@ inline void CreateRoom::set_allocated_password(::std::string* password) {
     password_ = password;
   } else {
     clear_has_password();
-    password_ = const_cast< ::std::string*>(_default_password_);
+    password_ = const_cast< ::std::string*>(&::google::protobuf::internal::kEmptyString);
   }
 }
 

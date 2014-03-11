@@ -96,7 +96,7 @@
       <GenerateDebugInformation>true</GenerateDebugInformation>
     </Link>
     <Lib>
-      <AdditionalLibraryDirectories>../ThirdParty/mysql/lib/x86</AdditionalLibraryDirectories>
+      <AdditionalLibraryDirectories>../ThirdParty/mysql/lib/x86/Debug</AdditionalLibraryDirectories>
       <AdditionalDependencies>mysqlcppconn.lib</AdditionalDependencies>
     </Lib>
   </ItemDefinitionGroup>
@@ -114,7 +114,7 @@
       <GenerateDebugInformation>true</GenerateDebugInformation>
     </Link>
     <Lib>
-      <AdditionalLibraryDirectories>../ThirdParty/mysql/lib/x64</AdditionalLibraryDirectories>
+      <AdditionalLibraryDirectories>../ThirdParty/mysql/lib/x64/debug</AdditionalLibraryDirectories>
       <AdditionalDependencies>mysqlcppconn.lib</AdditionalDependencies>
     </Lib>
   </ItemDefinitionGroup>
@@ -137,8 +137,8 @@
       <OptimizeReferences>true</OptimizeReferences>
     </Link>
     <Lib>
-      <AdditionalDependencies>mysqlcppconn.lib</AdditionalDependencies>
-      <AdditionalLibraryDirectories>../ThirdParty/mysql/lib/x86</AdditionalLibraryDirectories>
+      <AdditionalDependencies>mysqlcppconn.lib;</AdditionalDependencies>
+      <AdditionalLibraryDirectories>../ThirdParty/mysql/lib/x86/Release</AdditionalLibraryDirectories>
     </Lib>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
@@ -160,7 +160,7 @@
       <OptimizeReferences>true</OptimizeReferences>
     </Link>
     <Lib>
-      <AdditionalLibraryDirectories>../ThirdParty/mysql/lib/x64</AdditionalLibraryDirectories>
+      <AdditionalLibraryDirectories>../ThirdParty/mysql/lib/x64/release</AdditionalLibraryDirectories>
       <AdditionalDependencies>mysqlcppconn.lib</AdditionalDependencies>
     </Lib>
   </ItemDefinitionGroup>

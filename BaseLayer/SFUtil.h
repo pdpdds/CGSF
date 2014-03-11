@@ -12,7 +12,7 @@ namespace SFUtil
 	};
 
 	DWORD GetPESize(LPCTSTR filename); //PE(Portable Executable) 파일의 사이즈를 얻는다.
-	INT	GetProgramName( LPWSTR buf, INT len ); //실행파일의 이름을 얻는다.
+	INT	GetFileName( LPWSTR buf, INT len ); //실행파일의 이름을 얻는다.
 	TCHAR* ExtractPathInfo(TCHAR* szPath, eExtractPathInfoType InfoType); //파일 경로로부터 필요 정보를 분해한다.
 	TCHAR* BuildPath(TCHAR* szDrive, TCHAR* szDirectory, TCHAR* szFileName, TCHAR* szExtension); //해당 파일과 관련된 완전한 경로를 구축한다.
 	void ShowFileProperties(HWND hwnd, LPTSTR lpszFile); //파일의 정보를 얻는다.

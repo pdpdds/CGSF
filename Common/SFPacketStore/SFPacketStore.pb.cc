@@ -774,16 +774,12 @@ void protobuf_ShutdownFile_SFPacketStore_2eproto() {
   delete EnterLobby_reflection_;
   delete ChatReq::default_instance_;
   delete ChatReq_reflection_;
-  delete ChatReq::_default_message_;
   delete ChatRes::default_instance_;
   delete ChatRes_reflection_;
-  delete ChatRes::_default_message_;
   delete EnterRoom::default_instance_;
   delete EnterRoom_reflection_;
-  delete EnterRoom::_default_password_;
   delete CreateRoom::default_instance_;
   delete CreateRoom_reflection_;
-  delete CreateRoom::_default_password_;
   delete LeaveRoom::default_instance_;
   delete LeaveRoom_reflection_;
   delete RoomList::default_instance_;
@@ -848,35 +844,34 @@ void protobuf_AddDesc_SFPacketStore_2eproto() {
     "er\022\016\n\006Member\030\001 \002(\t\022\023\n\013PlayerIndex\030\002 \002(\005\022"
     "%\n\004Type\030\003 \002(\0162\027.SFPacketStore.TeamType\"\034"
     "\n\rInvalidPacket\022\013\n\003Arg\030\001 \002(\t\"#\n\nEnterLob"
-    "by\022\025\n\nLobbyIndex\030\001 \001(\005:\0010\"-\n\007ChatReq\022\"\n\007"
-    "Message\030\001 \002(\t:\021\270\336\274\274\301\366\270\246 \263\326\300\270\274\274\277\344\"=\n\007Chat"
-    "Res\022\016\n\006Sender\030\001 \002(\t\022\"\n\007Message\030\002 \002(\t:\021\270\336"
-    "\274\274\301\366\270\246 \263\326\300\270\274\274\277\344\"H\n\tEnterRoom\022\021\n\tRoomInde"
-    "x\030\001 \002(\005\022\020\n\010GameMode\030\002 \002(\005\022\026\n\010Password\030\003 "
-    "\001(\t:\004None\"6\n\nCreateRoom\022\020\n\010GameMode\030\001 \002("
-    "\005\022\026\n\010Password\030\002 \001(\t:\004None\"\036\n\tLeaveRoom\022\021"
-    "\n\006Reason\030\001 \001(\005:\0010\"\320\001\n\010RoomList\022.\n\004Info\030\n"
-    " \003(\0132 .SFPacketStore.RoomList.RoomInfo\032\223"
-    "\001\n\010RoomInfo\022\021\n\tRoomIndex\030\001 \002(\005\022\020\n\010RoomNa"
-    "me\030\002 \002(\t\022\021\n\tRoomChief\030\003 \002(\t\022\021\n\tUserCount"
-    "\030\004 \002(\005\022\024\n\014MaxUserCount\030\005 \002(\005\022\024\n\014NeedPass"
-    "word\030\006 \002(\005\022\020\n\010GameMode\030\007 \002(\005\"\021\n\017RoomList"
-    "Refresh\"\014\n\nChangeTeam\"\016\n\014LoadingStart\"\021\n"
-    "\017LoadingComplete\"\013\n\tPlayStart\"4\n\010PlayMov"
-    "e\022\014\n\004PosX\030\001 \002(\002\022\014\n\004PosY\030\002 \002(\002\022\014\n\004PosZ\030\003 "
-    "\002(\002\"\t\n\007PlayEnd\"<\n\rPlayScoreInfo\022\024\n\014RedKi"
-    "llCount\030\001 \002(\005\022\025\n\rBlueKillCount\030\002 \002(\005\"N\n\017"
-    "PlayPlayerScore\022\014\n\004name\030\001 \002(\t\022\020\n\010teamtyp"
-    "e\030\002 \002(\005\022\014\n\004kill\030\003 \002(\005\022\r\n\005death\030\004 \002(\005\"d\n\010"
-    "PeerList\022.\n\004Peer\030\n \003(\0132 .SFPacketStore.P"
-    "eerList.PeerInfo\032(\n\010PeerInfo\022\016\n\006serial\030\001"
-    " \002(\005\022\014\n\004Info\030\002 \002(\014\"7\n\021MSG_CREATE_PLAYER\022"
-    "\016\n\006Serial\030\001 \002(\005\022\022\n\nspawnindex\030\002 \002(\005\"$\n\022M"
-    "SG_DESTROY_PLAYER\022\016\n\006Serial\030\001 \002(\005\"\035\n\tPLA"
-    "YER_IP\022\020\n\010playerip\030\001 \002(\014\"\033\n\010ADD_PEER\022\017\n\007"
-    "addpeer\030\001 \002(\014\"\035\n\013DELETE_PEER\022\016\n\006serial\030\001"
-    " \002(\005*0\n\010TeamType\022\021\n\004NONE\020\377\377\377\377\377\377\377\377\377\001\022\007\n\003R"
-    "ED\020\000\022\010\n\004BLUE\020\001", 1814);
+    "by\022\025\n\nLobbyIndex\030\001 \001(\005:\0010\"\032\n\007ChatReq\022\017\n\007"
+    "Message\030\001 \002(\t\"*\n\007ChatRes\022\016\n\006Sender\030\001 \002(\t"
+    "\022\017\n\007Message\030\002 \002(\t\"B\n\tEnterRoom\022\021\n\tRoomIn"
+    "dex\030\001 \002(\005\022\020\n\010GameMode\030\002 \002(\005\022\020\n\010Password\030"
+    "\003 \001(\t\"0\n\nCreateRoom\022\020\n\010GameMode\030\001 \002(\005\022\020\n"
+    "\010Password\030\002 \001(\t\"\036\n\tLeaveRoom\022\021\n\006Reason\030\001"
+    " \001(\005:\0010\"\320\001\n\010RoomList\022.\n\004Info\030\n \003(\0132 .SFP"
+    "acketStore.RoomList.RoomInfo\032\223\001\n\010RoomInf"
+    "o\022\021\n\tRoomIndex\030\001 \002(\005\022\020\n\010RoomName\030\002 \002(\t\022\021"
+    "\n\tRoomChief\030\003 \002(\t\022\021\n\tUserCount\030\004 \002(\005\022\024\n\014"
+    "MaxUserCount\030\005 \002(\005\022\024\n\014NeedPassword\030\006 \002(\005"
+    "\022\020\n\010GameMode\030\007 \002(\005\"\021\n\017RoomListRefresh\"\014\n"
+    "\nChangeTeam\"\016\n\014LoadingStart\"\021\n\017LoadingCo"
+    "mplete\"\013\n\tPlayStart\"4\n\010PlayMove\022\014\n\004PosX\030"
+    "\001 \002(\002\022\014\n\004PosY\030\002 \002(\002\022\014\n\004PosZ\030\003 \002(\002\"\t\n\007Pla"
+    "yEnd\"<\n\rPlayScoreInfo\022\024\n\014RedKillCount\030\001 "
+    "\002(\005\022\025\n\rBlueKillCount\030\002 \002(\005\"N\n\017PlayPlayer"
+    "Score\022\014\n\004name\030\001 \002(\t\022\020\n\010teamtype\030\002 \002(\005\022\014\n"
+    "\004kill\030\003 \002(\005\022\r\n\005death\030\004 \002(\005\"d\n\010PeerList\022."
+    "\n\004Peer\030\n \003(\0132 .SFPacketStore.PeerList.Pe"
+    "erInfo\032(\n\010PeerInfo\022\016\n\006serial\030\001 \002(\005\022\014\n\004In"
+    "fo\030\002 \002(\014\"7\n\021MSG_CREATE_PLAYER\022\016\n\006Serial\030"
+    "\001 \002(\005\022\022\n\nspawnindex\030\002 \002(\005\"$\n\022MSG_DESTROY"
+    "_PLAYER\022\016\n\006Serial\030\001 \002(\005\"\035\n\tPLAYER_IP\022\020\n\010"
+    "playerip\030\001 \002(\014\"\033\n\010ADD_PEER\022\017\n\007addpeer\030\001 "
+    "\002(\014\"\035\n\013DELETE_PEER\022\016\n\006serial\030\001 \002(\005*0\n\010Te"
+    "amType\022\021\n\004NONE\020\377\377\377\377\377\377\377\377\377\001\022\007\n\003RED\020\000\022\010\n\004BL"
+    "UE\020\001", 1764);
   ::google::protobuf::MessageFactory::InternalRegisterGeneratedFile(
     "SFPacketStore.proto", &protobuf_RegisterTypes);
   Login::default_instance_ = new Login();
@@ -890,17 +885,9 @@ void protobuf_AddDesc_SFPacketStore_2eproto() {
   LeaveTeamMember::default_instance_ = new LeaveTeamMember();
   InvalidPacket::default_instance_ = new InvalidPacket();
   EnterLobby::default_instance_ = new EnterLobby();
-  ChatReq::_default_message_ =
-      new ::std::string("\270\336\274\274\301\366\270\246 \263\326\300\270\274\274\277\344", 17);
   ChatReq::default_instance_ = new ChatReq();
-  ChatRes::_default_message_ =
-      new ::std::string("\270\336\274\274\301\366\270\246 \263\326\300\270\274\274\277\344", 17);
   ChatRes::default_instance_ = new ChatRes();
-  EnterRoom::_default_password_ =
-      new ::std::string("None", 4);
   EnterRoom::default_instance_ = new EnterRoom();
-  CreateRoom::_default_password_ =
-      new ::std::string("None", 4);
   CreateRoom::default_instance_ = new CreateRoom();
   LeaveRoom::default_instance_ = new LeaveRoom();
   RoomList::default_instance_ = new RoomList();
@@ -3791,7 +3778,6 @@ void EnterLobby::Swap(EnterLobby* other) {
 
 // ===================================================================
 
-::std::string* ChatReq::_default_message_ = NULL;
 #ifndef _MSC_VER
 const int ChatReq::kMessageFieldNumber;
 #endif  // !_MSC_VER
@@ -3812,7 +3798,7 @@ ChatReq::ChatReq(const ChatReq& from)
 
 void ChatReq::SharedCtor() {
   _cached_size_ = 0;
-  message_ = const_cast< ::std::string*>(_default_message_);
+  message_ = const_cast< ::std::string*>(&::google::protobuf::internal::kEmptyString);
   ::memset(_has_bits_, 0, sizeof(_has_bits_));
 }
 
@@ -3821,7 +3807,7 @@ ChatReq::~ChatReq() {
 }
 
 void ChatReq::SharedDtor() {
-  if (message_ != _default_message_) {
+  if (message_ != &::google::protobuf::internal::kEmptyString) {
     delete message_;
   }
   if (this != default_instance_) {
@@ -3852,8 +3838,8 @@ ChatReq* ChatReq::New() const {
 void ChatReq::Clear() {
   if (_has_bits_[0 / 32] & (0xffu << (0 % 32))) {
     if (has_message()) {
-      if (message_ != _default_message_) {
-        message_->assign(*_default_message_);
+      if (message_ != &::google::protobuf::internal::kEmptyString) {
+        message_->clear();
       }
     }
   }
@@ -3867,7 +3853,7 @@ bool ChatReq::MergePartialFromCodedStream(
   ::google::protobuf::uint32 tag;
   while ((tag = input->ReadTag()) != 0) {
     switch (::google::protobuf::internal::WireFormatLite::GetTagFieldNumber(tag)) {
-      // required string Message = 1 [default = "\270\336\274\274\301\366\270\246 \263\326\300\270\274\274\277\344"];
+      // required string Message = 1;
       case 1: {
         if (::google::protobuf::internal::WireFormatLite::GetTagWireType(tag) ==
             ::google::protobuf::internal::WireFormatLite::WIRETYPE_LENGTH_DELIMITED) {
@@ -3901,7 +3887,7 @@ bool ChatReq::MergePartialFromCodedStream(
 
 void ChatReq::SerializeWithCachedSizes(
     ::google::protobuf::io::CodedOutputStream* output) const {
-  // required string Message = 1 [default = "\270\336\274\274\301\366\270\246 \263\326\300\270\274\274\277\344"];
+  // required string Message = 1;
   if (has_message()) {
     ::google::protobuf::internal::WireFormat::VerifyUTF8String(
       this->message().data(), this->message().length(),
@@ -3918,7 +3904,7 @@ void ChatReq::SerializeWithCachedSizes(
 
 ::google::protobuf::uint8* ChatReq::SerializeWithCachedSizesToArray(
     ::google::protobuf::uint8* target) const {
-  // required string Message = 1 [default = "\270\336\274\274\301\366\270\246 \263\326\300\270\274\274\277\344"];
+  // required string Message = 1;
   if (has_message()) {
     ::google::protobuf::internal::WireFormat::VerifyUTF8String(
       this->message().data(), this->message().length(),
@@ -3939,7 +3925,7 @@ int ChatReq::ByteSize() const {
   int total_size = 0;
 
   if (_has_bits_[0 / 32] & (0xffu << (0 % 32))) {
-    // required string Message = 1 [default = "\270\336\274\274\301\366\270\246 \263\326\300\270\274\274\277\344"];
+    // required string Message = 1;
     if (has_message()) {
       total_size += 1 +
         ::google::protobuf::internal::WireFormatLite::StringSize(
@@ -4018,7 +4004,6 @@ void ChatReq::Swap(ChatReq* other) {
 
 // ===================================================================
 
-::std::string* ChatRes::_default_message_ = NULL;
 #ifndef _MSC_VER
 const int ChatRes::kSenderFieldNumber;
 const int ChatRes::kMessageFieldNumber;
@@ -4041,7 +4026,7 @@ ChatRes::ChatRes(const ChatRes& from)
 void ChatRes::SharedCtor() {
   _cached_size_ = 0;
   sender_ = const_cast< ::std::string*>(&::google::protobuf::internal::kEmptyString);
-  message_ = const_cast< ::std::string*>(_default_message_);
+  message_ = const_cast< ::std::string*>(&::google::protobuf::internal::kEmptyString);
   ::memset(_has_bits_, 0, sizeof(_has_bits_));
 }
 
@@ -4053,7 +4038,7 @@ void ChatRes::SharedDtor() {
   if (sender_ != &::google::protobuf::internal::kEmptyString) {
     delete sender_;
   }
-  if (message_ != _default_message_) {
+  if (message_ != &::google::protobuf::internal::kEmptyString) {
     delete message_;
   }
   if (this != default_instance_) {
@@ -4089,8 +4074,8 @@ void ChatRes::Clear() {
       }
     }
     if (has_message()) {
-      if (message_ != _default_message_) {
-        message_->assign(*_default_message_);
+      if (message_ != &::google::protobuf::internal::kEmptyString) {
+        message_->clear();
       }
     }
   }
@@ -4120,7 +4105,7 @@ bool ChatRes::MergePartialFromCodedStream(
         break;
       }
 
-      // required string Message = 2 [default = "\270\336\274\274\301\366\270\246 \263\326\300\270\274\274\277\344"];
+      // required string Message = 2;
       case 2: {
         if (::google::protobuf::internal::WireFormatLite::GetTagWireType(tag) ==
             ::google::protobuf::internal::WireFormatLite::WIRETYPE_LENGTH_DELIMITED) {
@@ -4164,7 +4149,7 @@ void ChatRes::SerializeWithCachedSizes(
       1, this->sender(), output);
   }
 
-  // required string Message = 2 [default = "\270\336\274\274\301\366\270\246 \263\326\300\270\274\274\277\344"];
+  // required string Message = 2;
   if (has_message()) {
     ::google::protobuf::internal::WireFormat::VerifyUTF8String(
       this->message().data(), this->message().length(),
@@ -4191,7 +4176,7 @@ void ChatRes::SerializeWithCachedSizes(
         1, this->sender(), target);
   }
 
-  // required string Message = 2 [default = "\270\336\274\274\301\366\270\246 \263\326\300\270\274\274\277\344"];
+  // required string Message = 2;
   if (has_message()) {
     ::google::protobuf::internal::WireFormat::VerifyUTF8String(
       this->message().data(), this->message().length(),
@@ -4219,7 +4204,7 @@ int ChatRes::ByteSize() const {
           this->sender());
     }
 
-    // required string Message = 2 [default = "\270\336\274\274\301\366\270\246 \263\326\300\270\274\274\277\344"];
+    // required string Message = 2;
     if (has_message()) {
       total_size += 1 +
         ::google::protobuf::internal::WireFormatLite::StringSize(
@@ -4302,7 +4287,6 @@ void ChatRes::Swap(ChatRes* other) {
 
 // ===================================================================
 
-::std::string* EnterRoom::_default_password_ = NULL;
 #ifndef _MSC_VER
 const int EnterRoom::kRoomIndexFieldNumber;
 const int EnterRoom::kGameModeFieldNumber;
@@ -4327,7 +4311,7 @@ void EnterRoom::SharedCtor() {
   _cached_size_ = 0;
   roomindex_ = 0;
   gamemode_ = 0;
-  password_ = const_cast< ::std::string*>(_default_password_);
+  password_ = const_cast< ::std::string*>(&::google::protobuf::internal::kEmptyString);
   ::memset(_has_bits_, 0, sizeof(_has_bits_));
 }
 
@@ -4336,7 +4320,7 @@ EnterRoom::~EnterRoom() {
 }
 
 void EnterRoom::SharedDtor() {
-  if (password_ != _default_password_) {
+  if (password_ != &::google::protobuf::internal::kEmptyString) {
     delete password_;
   }
   if (this != default_instance_) {
@@ -4369,8 +4353,8 @@ void EnterRoom::Clear() {
     roomindex_ = 0;
     gamemode_ = 0;
     if (has_password()) {
-      if (password_ != _default_password_) {
-        password_->assign(*_default_password_);
+      if (password_ != &::google::protobuf::internal::kEmptyString) {
+        password_->clear();
       }
     }
   }
@@ -4415,7 +4399,7 @@ bool EnterRoom::MergePartialFromCodedStream(
         break;
       }
 
-      // optional string Password = 3 [default = "None"];
+      // optional string Password = 3;
       case 3: {
         if (::google::protobuf::internal::WireFormatLite::GetTagWireType(tag) ==
             ::google::protobuf::internal::WireFormatLite::WIRETYPE_LENGTH_DELIMITED) {
@@ -4460,7 +4444,7 @@ void EnterRoom::SerializeWithCachedSizes(
     ::google::protobuf::internal::WireFormatLite::WriteInt32(2, this->gamemode(), output);
   }
 
-  // optional string Password = 3 [default = "None"];
+  // optional string Password = 3;
   if (has_password()) {
     ::google::protobuf::internal::WireFormat::VerifyUTF8String(
       this->password().data(), this->password().length(),
@@ -4487,7 +4471,7 @@ void EnterRoom::SerializeWithCachedSizes(
     target = ::google::protobuf::internal::WireFormatLite::WriteInt32ToArray(2, this->gamemode(), target);
   }
 
-  // optional string Password = 3 [default = "None"];
+  // optional string Password = 3;
   if (has_password()) {
     ::google::protobuf::internal::WireFormat::VerifyUTF8String(
       this->password().data(), this->password().length(),
@@ -4522,7 +4506,7 @@ int EnterRoom::ByteSize() const {
           this->gamemode());
     }
 
-    // optional string Password = 3 [default = "None"];
+    // optional string Password = 3;
     if (has_password()) {
       total_size += 1 +
         ::google::protobuf::internal::WireFormatLite::StringSize(
@@ -4609,7 +4593,6 @@ void EnterRoom::Swap(EnterRoom* other) {
 
 // ===================================================================
 
-::std::string* CreateRoom::_default_password_ = NULL;
 #ifndef _MSC_VER
 const int CreateRoom::kGameModeFieldNumber;
 const int CreateRoom::kPasswordFieldNumber;
@@ -4632,7 +4615,7 @@ CreateRoom::CreateRoom(const CreateRoom& from)
 void CreateRoom::SharedCtor() {
   _cached_size_ = 0;
   gamemode_ = 0;
-  password_ = const_cast< ::std::string*>(_default_password_);
+  password_ = const_cast< ::std::string*>(&::google::protobuf::internal::kEmptyString);
   ::memset(_has_bits_, 0, sizeof(_has_bits_));
 }
 
@@ -4641,7 +4624,7 @@ CreateRoom::~CreateRoom() {
 }
 
 void CreateRoom::SharedDtor() {
-  if (password_ != _default_password_) {
+  if (password_ != &::google::protobuf::internal::kEmptyString) {
     delete password_;
   }
   if (this != default_instance_) {
@@ -4673,8 +4656,8 @@ void CreateRoom::Clear() {
   if (_has_bits_[0 / 32] & (0xffu << (0 % 32))) {
     gamemode_ = 0;
     if (has_password()) {
-      if (password_ != _default_password_) {
-        password_->assign(*_default_password_);
+      if (password_ != &::google::protobuf::internal::kEmptyString) {
+        password_->clear();
       }
     }
   }
@@ -4703,7 +4686,7 @@ bool CreateRoom::MergePartialFromCodedStream(
         break;
       }
 
-      // optional string Password = 2 [default = "None"];
+      // optional string Password = 2;
       case 2: {
         if (::google::protobuf::internal::WireFormatLite::GetTagWireType(tag) ==
             ::google::protobuf::internal::WireFormatLite::WIRETYPE_LENGTH_DELIMITED) {
@@ -4743,7 +4726,7 @@ void CreateRoom::SerializeWithCachedSizes(
     ::google::protobuf::internal::WireFormatLite::WriteInt32(1, this->gamemode(), output);
   }
 
-  // optional string Password = 2 [default = "None"];
+  // optional string Password = 2;
   if (has_password()) {
     ::google::protobuf::internal::WireFormat::VerifyUTF8String(
       this->password().data(), this->password().length(),
@@ -4765,7 +4748,7 @@ void CreateRoom::SerializeWithCachedSizes(
     target = ::google::protobuf::internal::WireFormatLite::WriteInt32ToArray(1, this->gamemode(), target);
   }
 
-  // optional string Password = 2 [default = "None"];
+  // optional string Password = 2;
   if (has_password()) {
     ::google::protobuf::internal::WireFormat::VerifyUTF8String(
       this->password().data(), this->password().length(),
@@ -4793,7 +4776,7 @@ int CreateRoom::ByteSize() const {
           this->gamemode());
     }
 
-    // optional string Password = 2 [default = "None"];
+    // optional string Password = 2;
     if (has_password()) {
       total_size += 1 +
         ::google::protobuf::internal::WireFormatLite::StringSize(

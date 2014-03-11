@@ -61,14 +61,14 @@ BOOL SGStateCardEffect::OnRender( float fElapsedTime )
 		pManager->UpdateTableState(pCardInfo);
 
 		pRenderer->OnRenderRegion(fElapsedTime, PICTUREBOX_CARDSET,
-			pCardEffectInfo->iDestX, 
-			pCardEffectInfo->iDestY,
+			(float)pCardEffectInfo->iDestX,
+			(float)pCardEffectInfo->iDestY,
 			((float)(iCol))/CARDNUM_CARDSET_WIDTH,  
 			((float)(iRow))/CARDNUM_CARDSET_HEIGHT,
-			CARDRATIO_CARDSET_WIDTH,
-			CARDRATIO_CARDSET_HEIGHT,
-			CARD_WIDTH,
-			CARD_HEIGHT);
+			(float)CARDRATIO_CARDSET_WIDTH,
+			(float)CARDRATIO_CARDSET_HEIGHT,
+			(float)CARD_WIDTH,
+			(float)CARD_HEIGHT);
 
 		pManager->ChangeState(ENUM_SGCARDTURN);
 	}

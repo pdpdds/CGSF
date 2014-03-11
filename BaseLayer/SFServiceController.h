@@ -24,12 +24,13 @@ public:
 	
 	static void KillService();
 
+	static BOOL nServiceRunning;
+	static HANDLE killServiceEvent;
+
 protected:
 
 private:
 	static SERVICE_STATUS_HANDLE nServiceStatusHandle; 
-	static HANDLE killServiceEvent;
-	static BOOL nServiceRunning;
 	static DWORD nServiceCurrentStatus;
 	static HANDLE hServiceThread;
 };

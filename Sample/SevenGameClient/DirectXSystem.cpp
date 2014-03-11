@@ -376,7 +376,7 @@ BOOL CDirectXSystem::InitEnvironment()
 	m_pBackGround->m_Info.iPosY = 0;
 	m_pBackGround->m_Info.iWidth = GetWidth();
 	m_pBackGround->m_Info.iHeight = GetHeight();
-	_tcscpy(m_pBackGround->m_Info.szGUICaption, _T("./Image/Background.jpg"));
+	_tcscpy_s(m_pBackGround->m_Info.szGUICaption, _T("./Image/Background.jpg"));
 
 
 	//////////////////////////////////////////////////////////////////////
@@ -448,16 +448,16 @@ BOOL CDirectXSystem::InitEnvironment()
 	pPictureBox  = new CPictureBox();
 	pPictureBox->m_Info.iPosX = 0;
 	pPictureBox->m_Info.iPosY = 0;
-	pPictureBox->m_Info.iWidth = CARD_HEIGHT;
-	pPictureBox->m_Info.iHeight = CARD_WIDTH;
+	pPictureBox->m_Info.iWidth = (int)CARD_HEIGHT;
+	pPictureBox->m_Info.iHeight = (int)CARD_WIDTH;
 	_tcscpy_s(pPictureBox->m_Info.szGUICaption, _T("./Image/CardBack_Rotate.bmp"));
 	m_PictureBoxMgr.AddPictureBox(PICTUREBOX_CARDHORIZON, pPictureBox);
 
 	pPictureBox  = new CPictureBox();
 	pPictureBox->m_Info.iPosX = 0;
 	pPictureBox->m_Info.iPosY = 0;
-	pPictureBox->m_Info.iWidth = CARD_WIDTH;
-	pPictureBox->m_Info.iHeight = CARD_HEIGHT;
+	pPictureBox->m_Info.iWidth = (int)CARD_WIDTH;
+	pPictureBox->m_Info.iHeight = (int)CARD_HEIGHT;
 	_tcscpy_s(pPictureBox->m_Info.szGUICaption, _T("./Image/CardBack.bmp"));
 	m_PictureBoxMgr.AddPictureBox(PICTUREBOX_VERTICAL, pPictureBox);
 
@@ -572,7 +572,6 @@ HRESULT CDirectXSystem::Create3DSprite(LPDIRECT3DTEXTURE9 &Test_Texture,LPDIRECT
 {
 	IDirect3DDevice9* pd3dDevice = m_pd3dDevice;
 	TCHAR szFilename[MAX_PATH];
-	WCHAR wFileName[MAX_PATH];
 	HRESULT hr;
 	if(Test_Buffer==NULL)
 	{ 
@@ -705,14 +704,14 @@ BOOL CDirectXSystem::DrawCard(float fElapsedTime)
 		if(paTable[i] != -1)	 
 		{
 			pCardSet->OnRenderRegion(fElapsedTime, 
-				(i-1)*CARD_LOOKABLE_PART + DEFAULT_TABLE_CARD_POS_X,
-				DEFAULT_TABLE_CARD_POS_Y,
+				(float)((i - 1)*CARD_LOOKABLE_PART + DEFAULT_TABLE_CARD_POS_X),
+				(float)DEFAULT_TABLE_CARD_POS_Y,
 				((float)((i-1)))/CARDNUM_CARDSET_WIDTH,  
 				((float)(3))/CARDNUM_CARDSET_HEIGHT,
-				CARDRATIO_CARDSET_WIDTH,
-				CARDRATIO_CARDSET_HEIGHT,
-				CARD_WIDTH,
-				CARD_HEIGHT);
+				(float)CARDRATIO_CARDSET_WIDTH,
+				(float)CARDRATIO_CARDSET_HEIGHT,
+				(float)CARD_WIDTH,
+				(float)CARD_HEIGHT);
 		}  			
 	}
 
@@ -722,14 +721,14 @@ BOOL CDirectXSystem::DrawCard(float fElapsedTime)
 		if(paTable[i] != -1)	   
 		{
 			pCardSet->OnRenderRegion(fElapsedTime, 
-				(i-1)*CARD_LOOKABLE_PART+DEFAULT_TABLE_CARD_POS_X,
-				DEFAULT_TABLE_CARD_POS_Y + CARD_DISTANCE,
+				(float)((i - 1)*CARD_LOOKABLE_PART + DEFAULT_TABLE_CARD_POS_X),
+				(float)(DEFAULT_TABLE_CARD_POS_Y + CARD_DISTANCE),
 				((float)((i-1)))/CARDNUM_CARDSET_WIDTH,  
 				((float)(1))/CARDNUM_CARDSET_HEIGHT,
-				CARDRATIO_CARDSET_WIDTH,
-				CARDRATIO_CARDSET_HEIGHT,
-				CARD_WIDTH,
-				CARD_HEIGHT);
+				(float)CARDRATIO_CARDSET_WIDTH,
+				(float)CARDRATIO_CARDSET_HEIGHT,
+				(float)CARD_WIDTH,
+				(float)CARD_HEIGHT);
 		}  								
 	}
 
@@ -739,14 +738,14 @@ BOOL CDirectXSystem::DrawCard(float fElapsedTime)
 		if(paTable[i] != -1)	   
 		{
 			pCardSet->OnRenderRegion(fElapsedTime, 
-				(i-1)*CARD_LOOKABLE_PART+DEFAULT_TABLE_CARD_POS_X,
-				DEFAULT_TABLE_CARD_POS_Y + CARD_DISTANCE * 2,
+				(float)((i - 1)*CARD_LOOKABLE_PART + DEFAULT_TABLE_CARD_POS_X),
+				(float)(DEFAULT_TABLE_CARD_POS_Y + CARD_DISTANCE * 2),
 				((float)((i-1)))/CARDNUM_CARDSET_WIDTH,  
 				((float)(2))/CARDNUM_CARDSET_HEIGHT,
-				CARDRATIO_CARDSET_WIDTH,
-				CARDRATIO_CARDSET_HEIGHT,
-				CARD_WIDTH,
-				CARD_HEIGHT);
+				(float)CARDRATIO_CARDSET_WIDTH,
+				(float)CARDRATIO_CARDSET_HEIGHT,
+				(float)CARD_WIDTH,
+				(float)CARD_HEIGHT);
 		}  		  									
 	}
 
@@ -756,14 +755,14 @@ BOOL CDirectXSystem::DrawCard(float fElapsedTime)
 		if(paTable[i] != -1)	   
 		{
 			pCardSet->OnRenderRegion(fElapsedTime, 
-				(i-1)*CARD_LOOKABLE_PART+DEFAULT_TABLE_CARD_POS_X,
-				DEFAULT_TABLE_CARD_POS_Y + CARD_DISTANCE * 3,
+				(float)((i - 1)*CARD_LOOKABLE_PART + DEFAULT_TABLE_CARD_POS_X),
+				(float)(DEFAULT_TABLE_CARD_POS_Y + CARD_DISTANCE * 3),
 				((float)((i-1)))/CARDNUM_CARDSET_WIDTH,  
 				((float)(0))/CARDNUM_CARDSET_HEIGHT,
-				CARDRATIO_CARDSET_WIDTH,
-				CARDRATIO_CARDSET_HEIGHT,
-				CARD_WIDTH,
-				CARD_HEIGHT);
+				(float)CARDRATIO_CARDSET_WIDTH,
+				(float)CARDRATIO_CARDSET_HEIGHT,
+				(float)CARD_WIDTH,
+				(float)CARD_HEIGHT);
 		}  						
 	}
 	//End
@@ -799,7 +798,7 @@ BOOL CDirectXSystem::DrawCard(float fElapsedTime)
 		if( count == 1 )	
 		{
 			for(int i=0; i < CardNum;i++)							
-				pCardHorizon->OnRender(fElapsedTime, SILENCE_PLAYER_CARD_POS_X, SILENCE_PLAYER_CARD_POS_Y + (i-((CardNum)/2)) * CARD_LOOKABLE_PART);
+				pCardHorizon->OnRender(fElapsedTime, (float)SILENCE_PLAYER_CARD_POS_X, (float)(SILENCE_PLAYER_CARD_POS_Y + (i - ((CardNum) / 2)) * CARD_LOOKABLE_PART));
 
 			if( iPassTicket >= 0 )				
 			{
@@ -821,7 +820,7 @@ BOOL CDirectXSystem::DrawCard(float fElapsedTime)
 		{			
 
 			for(int i=0;i<CardNum;i++)	
-				pCardVertical->OnRender(fElapsedTime, GENIUS_PLAYER_POS_X + (i-((CardNum)/2))*CARD_LOOKABLE_PART, GENIUS_PLAYER_POS_Y);
+				pCardVertical->OnRender(fElapsedTime, (float)(GENIUS_PLAYER_POS_X + (i - ((CardNum) / 2))*CARD_LOOKABLE_PART), (float)GENIUS_PLAYER_POS_Y);
 
 
 			if( iPassTicket >= 0 )				
@@ -846,7 +845,7 @@ BOOL CDirectXSystem::DrawCard(float fElapsedTime)
 		if( count == 3 )	
 		{
 			for(int i=0;i<CardNum;i++)			
-				pCardHorizon->OnRender(fElapsedTime, DETECTIVE_PLAYER_POS_X, DETECTIVE_PLAYER_POS_Y + (i-((CardNum)/2))*CARD_LOOKABLE_PART);
+				pCardHorizon->OnRender(fElapsedTime, (float)DETECTIVE_PLAYER_POS_X, (float)DETECTIVE_PLAYER_POS_Y + (i - ((CardNum) / 2))*(float)CARD_LOOKABLE_PART);
 
 			if( iPassTicket >= 0 )				
 			{
@@ -894,14 +893,14 @@ BOOL CDirectXSystem::DrawCard(float fElapsedTime)
 
 
 			pCardSet->OnRenderRegion(fElapsedTime, 
-				HUMAN_PLAYER_POS_X + (i-((iCardCnt)/2))*CARD_LOOKABLE_PART, 
-				HUMAN_PLAYER_POS_Y,
+				(float)(HUMAN_PLAYER_POS_X + (i - ((iCardCnt) / 2))*CARD_LOOKABLE_PART),
+				(float)HUMAN_PLAYER_POS_Y,
 				((float)(pCardInfo[i].iCol))/CARDNUM_CARDSET_WIDTH,  
 				((float)(pCardInfo[i].iRow))/CARDNUM_CARDSET_HEIGHT,
-				CARDRATIO_CARDSET_WIDTH,
-				CARDRATIO_CARDSET_HEIGHT,
-				CARD_WIDTH,
-				CARD_HEIGHT);
+				(float)CARDRATIO_CARDSET_WIDTH,
+				(float)CARDRATIO_CARDSET_HEIGHT,
+				(float)CARD_WIDTH,
+				(float)CARD_HEIGHT);
 
 		}
 	}

@@ -9,15 +9,18 @@
 #include "SFUtil.h"
 #include "SFBreakPad.h"
 
+SFServiceController g_ServiceController;
+bool ControlService(int argc, _TCHAR** argv);
+
 static DWORD StartSevenGameService(LPDWORD param)
 {
 	SFBreakPad exceptionHandler;
-	exceptionHandler.Install();	
+	exceptionHandler.Install();
 
 	TCHAR szFilePath[MAX_PATH] = { 0, };
-	TCHAR szFileName[MAX_PATH] = { 0, };
 	GetModuleFileName(NULL, szFilePath, MAX_PATH);
-	SetCurrentDirectory(L"D:\\CGSF2013\\trunk\\VSProject\\Bin32");
+	TCHAR* szPath = SFUtil::ExtractPathInfo(szFilePath, SFUtil::PATH_DIR);
+	SetCurrentDirectory(szPath);
 
 	SFLogicEntry* pLogicEntry = new SFLogicEntry();
 	pLogicEntry->AddGameMode(GAMEMODE_TRAINING, new SGTraining(GAMEMODE_TRAINING));
@@ -30,10 +33,11 @@ static DWORD StartSevenGameService(LPDWORD param)
 
 	google::FlushLogFiles(google::GLOG_INFO);
 
-	while (1)
-	{
-		Sleep(1000);
-	}
+#ifdef _DEBUG
+	getchar();
+#else
+	WaitForSingleObject(SFServiceController::killServiceEvent, INFINITE);
+#endif
 
 	SFEngine::GetInstance()->ShutDown();
 
@@ -42,38 +46,44 @@ static DWORD StartSevenGameService(LPDWORD param)
 
 int _tmain(int argc, _TCHAR* argv[])
 {
-	SFServiceController Controller;
+	if (argc == 2)
+	{
+		ControlService(argc, argv);
+		return 0;
+	}
+
+#ifdef _DEBUG	
+	StartSevenGameService(NULL);
+	
+#else	
+	g_ServiceController.ServiceEntry(argv[0], (LPTHREAD_START_ROUTINE)StartSevenGameService	);
+#endif		
+
+	return 0;
+}
+
+bool ControlService(int argc, _TCHAR** argv)
+{
 	TCHAR szFilePath[MAX_PATH] = { 0, };
 	TCHAR szFileName[MAX_PATH] = { 0, };
 	GetModuleFileName(NULL, szFilePath, MAX_PATH);
-	SFUtil::GetProgramName(szFileName, MAX_PATH);
+	SFUtil::GetFileName(szFileName, MAX_PATH);
+	TCHAR* szPath = SFUtil::ExtractPathInfo(szFilePath, SFUtil::PATH_DIR);
+	SetCurrentDirectory(szPath);
 
 	if (argc == 2)
 	{
 		if (_tcsicmp(argv[1], L"-i") == 0)
 		{
-			return Controller.InstallService(szFileName, szFileName, szFilePath);
+			return g_ServiceController.InstallService(szFileName, szFileName, szFilePath);
 		}
 		else if (_tcsicmp(argv[1], L"-u") == 0)
 		{
-			return  Controller.DeleteService(szFileName);
+			return  g_ServiceController.DeleteService(szFileName);
 		}
 
 		printf("usage : filename -i(-u)\n");
-
-		return 0;
 	}
 
-#ifdef _DEBUG
-	{
-		StartSevenGameService(NULL);
-		getchar();
-	}
-#else
-	{
-		Controller.ServiceEntry(szFileName, (LPTHREAD_START_ROUTINE)StartSevenGameService	);
-	}
-#endif		
-
-	return 0;
+	return false;
 }
