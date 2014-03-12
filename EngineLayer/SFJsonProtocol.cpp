@@ -4,6 +4,7 @@
 #include <EngineInterface/ISession.h>
 #include "SFJsonPacket.h"
 #include "SFProtocol.h"
+#include "SFEngine.h"
 
 SFJsonProtocol::SFJsonProtocol(void)
 {
@@ -26,7 +27,7 @@ BOOL SFJsonProtocol::Reset()
 	return TRUE;
 }
 
-BOOL SFJsonProtocol::SendRequest(ISession* pSession, BasePacket* pPacket)
+BOOL SFJsonProtocol::SendRequest(BasePacket* pPacket)
 {
 	SFJsonPacket* pJsonPacket = (SFJsonPacket*)pPacket;
 	JsonObjectNode& ObjectNode = pJsonPacket->GetData();
@@ -35,7 +36,7 @@ BOOL SFJsonProtocol::SendRequest(ISession* pSession, BasePacket* pPacket)
 	char buffer[BufferSize] = {0,};
 	unsigned int writtenSize = JsonBuilder::MakeBuffer(ObjectNode, buffer, BufferSize);
 	
-	pSession->SendInternal(buffer, writtenSize);
+	SFEngine::GetInstance()->SendInternal(pJsonPacket->GetOwnerSerial(), buffer, writtenSize);
 
 	return TRUE;
 }
@@ -77,7 +78,7 @@ bool SFJsonProtocol::GetPacketData(BasePacket* pPacket, char* buffer, const int 
 	writtenSize = JsonBuilder::MakeBuffer(ObjectNode, buffer, BufferSize);
 
 	if(writtenSize == 0)
-		return FALSE;
+		return false;
 
-	return TRUE;
+	return true;
 }

@@ -11,8 +11,8 @@ public:
 	virtual ~IPacketProtocol() {}
 
 	virtual bool OnReceive(int Serial, char* pBuffer, unsigned int dwTransferred) = 0;
-	//virtual bool SendRequest(ISession* pSession, BasePacket* pPacket) = 0;
-	virtual BasePacket* CreatePacket() = 0;
+	virtual bool SendRequest(BasePacket* pPacket) = 0;
+	//virtual BasePacket* CreatePacket() = 0;
 	virtual bool DisposePacket(BasePacket* pPacket) = 0;
 
 	virtual bool GetPacketData(BasePacket* pPacket, char* buffer, const int BufferSize, unsigned int& writtenSize) = 0;

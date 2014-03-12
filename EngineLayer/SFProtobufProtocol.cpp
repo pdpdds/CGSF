@@ -2,6 +2,7 @@
 #include "SFProtobufProtocol.h"
 #include "SFProtobufPacketImpl.h"
 #include <EngineInterface/ISession.h>
+#include "SFEngine.h"
 
 #define SignatureStart 16018
 #define SignatureEnd 16108
@@ -39,7 +40,7 @@ BOOL SFProtobufProtocol::Reset()
 	return TRUE;
 }
 
-/*BOOL SFProtobufProtocol::SendRequest(ISession* pSession, BasePacket* pPacket)
+BOOL SFProtobufProtocol::SendRequest(BasePacket* pPacket)
 {
 	unsigned int uWrittenBytes = 0;
 	int iResult = serializeOutgoingPacket(*pPacket, oBuffer, uWrittenBytes);
@@ -49,12 +50,12 @@ BOOL SFProtobufProtocol::Reset()
 	}
 
 	unsigned int uSize = oBuffer.GetDataSize();
-	pSession->SendInternal(oBuffer.GetBuffer(), uSize);
+	SFEngine::GetInstance()->SendInternal(pPacket->GetOwnerSerial(), oBuffer.GetBuffer(), uSize);
 
 	oBuffer.Pop(uSize);
 
 	return true;
-}*/
+}
 
 bool SFProtobufProtocol::GetPacketData(BasePacket* pPacket, char* buffer, const int BufferSize, unsigned int& writtenSize)
 {

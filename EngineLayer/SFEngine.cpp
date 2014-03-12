@@ -277,14 +277,12 @@ bool SFEngine::OnTimer(const void *arg)
 	return true;
 }
 
-bool SFEngine::SendRequest(BasePacket* pPacket)
+bool SFEngine::SendDelayedRequest(BasePacket* pPacket)
 {
-	//return GetNetworkEngine()->SendRequest(pPacket);
-
 	SFPacket* pClonePacket = PacketPoolSingleton::instance()->Alloc();
 
 	unsigned int writtenSize;
-	bool result = m_pPacketProtocol->GetPacketData(pPacket, (char*)pClonePacket->GetDataBuffer(), MAX_PACKET_DATA, writtenSize);
+	bool result = m_pPacketProtocol->GetPacketData(pPacket, (char*)pClonePacket->GetHeader(), MAX_PACKET_DATA, writtenSize);
 
 	if(writtenSize == 0)
 	{
@@ -297,6 +295,16 @@ bool SFEngine::SendRequest(BasePacket* pPacket)
 	pClonePacket->SetOwnerSerial(pPacket->GetOwnerSerial());
 
 	return PacketSendSingleton::instance()->PushPacket(pClonePacket);
+}
+
+bool SFEngine::SendRequest(BasePacket* pPacket)
+{
+	return GetPacketProtocol()->SendRequest(pPacket);
+}
+
+bool SFEngine::SendInternal(int ownerSerial, char* buffer, unsigned int bufferSize)
+{
+	return GetNetworkEngine()->SendInternal(ownerSerial, buffer, bufferSize);
 }
 
 bool SFEngine::ReleasePacket(BasePacket* pPacket)

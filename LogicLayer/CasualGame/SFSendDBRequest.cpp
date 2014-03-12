@@ -18,10 +18,10 @@ BOOL SFSendDBRequest::SendDBRequest(SFMessage* pMessage)
 ///////////////////////////////////////////////////////////////////////////////////////
 BOOL SFSendDBRequest::SendDBRequest(int RequestMsg, DWORD PlayerSerial, BasePacket* pPacket)
 {
-	SFPacket* Packet = (SFPacket*)pPacket;
+	SFPacket* pSFPacket = (SFPacket*)pPacket;
 
 	SFMessage* pMessage = SFDatabase::GetInitMessage(RequestMsg, PlayerSerial);
-	pMessage->Write(Packet->GetDataBuffer(), Packet->GetDataSize());
+	pMessage->Write(pSFPacket->GetDataBuffer(), pSFPacket->GetDataSize());
 	SFLogicEntry::GetLogicEntry()->GetDataBaseProxy()->SendDBRequest(pMessage);
 
 	return TRUE;

@@ -7,8 +7,17 @@
 
 SFFastCRC SFPacket::m_FastCRC;
 
-SFPacket::SFPacket(void)
+SFPacket::SFPacket(USHORT packetID)
 {
+	m_Header.packetID = packetID;
+
+	Initialize();
+}
+
+SFPacket::SFPacket()
+{
+	m_Header.packetID = 0;
+
 	Initialize();
 }
 
@@ -18,9 +27,15 @@ SFPacket::~SFPacket(void)
 
 BOOL SFPacket::Initialize()
 {
-	memset(&m_Header, 0, sizeof(SFPacketHeader));
+	m_Header.packetOption = 0;
+	m_Header.dataCRC = 0;
+	m_Header.dataSize = 0;
 
 	ResetDataBuffer();
+
+	m_usCurrentReadPosition = 0;
+
+	m_bEncoded = false;
 
 	return TRUE;
 }
@@ -34,6 +49,9 @@ bool SFPacket::Encode()
 {
 	int PacketOption = CGSF_PACKET_OPTION;
 
+	if (m_bEncoded == true)
+		return true;
+
 	if(GetDataSize() < 0 || GetDataSize() > MAX_PACKET_DATA)
 	{
 		SFASSERT(0);
@@ -42,7 +60,6 @@ bool SFPacket::Encode()
 
 	if(GetDataSize() == 0)
 	{
-		m_Header.PacketLen = sizeof(SFPacketHeader);
 		return true;
 	}
 
@@ -61,7 +78,6 @@ bool SFPacket::Encode()
 			 return false;
 		 }
 
-		 m_Header.PacketLen = sizeof(SFPacketHeader) + DestSize;
 		 memcpy(m_pPacketData, pDestBuf, DestSize);
 		 SetDataSize(DestSize);
 	}
@@ -91,10 +107,12 @@ bool SFPacket::Encode()
 			return false;
 		}
 
-		m_Header.DataCRC = dwDataCRC;
+		m_Header.dataCRC = dwDataCRC;
 	}
 
 	m_Header.SetPacketOption(PacketOption);
+
+	m_bEncoded = true;
 
 	return true;
 }
@@ -117,7 +135,7 @@ BOOL SFPacket::Decode(int& ErrorCode)
 
 	if (TRUE == pHeader->CheckEncryption())
 	{	
-		if(FALSE == SFEncrytion<SFEncryptionXOR>::Decrypt((BYTE*)GetDataBuffer(), pHeader->PacketLen - sizeof(SFPacketHeader)))
+		if(FALSE == SFEncrytion<SFEncryptionXOR>::Decrypt((BYTE*)GetDataBuffer(), GetDataSize()))
 		{
 			SFASSERT(0);
 			ErrorCode = PACKETIO_ERROR_DATA_ENCRYPTION;
@@ -142,8 +160,10 @@ BOOL SFPacket::Decode(int& ErrorCode)
 			return FALSE;
 		}
 
-		pHeader->PacketLen = DestSize + sizeof(SFPacketHeader);
+		SetDataSize(DestSize);
 	}
+
+	BasePacket::SetPacketID(pHeader->packetID);
 
 	return TRUE;
 }
@@ -167,7 +187,7 @@ BOOL SFPacket::CheckDataCRC()
 
 	BOOL Result = m_FastCRC.GetZLibCRC((BYTE*)m_pPacketData, GetDataSize(), dwDataCRC);
 
-	if(TRUE != Result || dwDataCRC != GetHeader()->DataCRC)
+	if(TRUE != Result || dwDataCRC != GetHeader()->dataCRC)
 	{
 		SFASSERT(0);
 		return FALSE;

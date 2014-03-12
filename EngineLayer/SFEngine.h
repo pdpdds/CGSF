@@ -27,7 +27,9 @@ public:
 	virtual bool OnTimer(const void *arg) override;
 
 	bool AddTimer(int timerID, DWORD period, DWORD delay);
+	bool SendDelayedRequest(BasePacket* pPacket);
 	bool SendRequest(BasePacket* pPacket);
+	bool SendInternal(int ownerSerial, char* buffer, unsigned int bufferSize);
 
 	INetworkEngine* GetNetworkEngine(){return m_pNetworkEngine;}
 

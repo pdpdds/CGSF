@@ -4,25 +4,27 @@
 
 typedef struct tag_SFPacketHeader
 {
-	USHORT PacketLen;
-	DWORD  PacketOption;
-	DWORD  DataCRC;
+	USHORT packetID;
+	DWORD  packetOption;
+	DWORD  dataCRC;
+	USHORT dataSize;
 
 	tag_SFPacketHeader()
 	{
 		Clear();
 	}
 
-	inline BOOL CheckDataCRC(){return (PacketOption & PACKET_OPTION_DATACRC) != 0;}
-	inline BOOL CheckEncryption(){return (PacketOption & PACKET_OPTION_ENCRYPTION) != 0;}
-	inline BOOL CheckCompressed(){return (PacketOption & PACKET_OPTION_COMPRESS) != 0;}
-	inline void SetPacketOption(DWORD Option){ PacketOption = Option;}
+	inline BOOL CheckDataCRC(){ return (packetOption & PACKET_OPTION_DATACRC) != 0; }
+	inline BOOL CheckEncryption(){ return (packetOption & PACKET_OPTION_ENCRYPTION) != 0; }
+	inline BOOL CheckCompressed(){ return (packetOption & PACKET_OPTION_COMPRESS) != 0; }
+	inline void SetPacketOption(DWORD Option){ packetOption = Option; }
 
 	void Clear()
 	{
-		PacketLen = 0;
-		PacketOption = 0;
-		DataCRC = 0;
+		packetID = 0;
+		packetOption = 0;
+		dataCRC = 0;
+		dataSize = 0;
 	}
 }SFPacketHeader;
 

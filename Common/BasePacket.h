@@ -16,7 +16,7 @@ class BasePacket
 {
 public:
 	BasePacket(){ m_PacketOwnerSerial = -1; m_PacketType = SFPACKET_NONE; m_PacketID = -1; }
-	~BasePacket(){}
+	virtual ~BasePacket() {}
 
 	void SetPacketType(eSFPacketType PacketType){m_PacketType = PacketType;}
 	eSFPacketType GetPacketType(){return m_PacketType;}

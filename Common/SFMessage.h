@@ -89,6 +89,15 @@ public:
 		return *this;
 	}
 
+	inline SFMessage& SFMessage::operator << (float Data)
+	{
+		memcpy(&m_aDataBuffer[m_usDataSize], &Data, sizeof(float));
+		m_usDataSize += sizeof(float);
+
+		SFASSERT(m_usDataSize <= MAX_MESSAGE_BUFFER);
+		return *this;
+	}
+
 	inline SFMessage& SFMessage::operator << (char* szStr)
 	{
 		int len = strlen(szStr);
@@ -161,6 +170,15 @@ public:
 	{
 		memcpy(&Data, &m_aDataBuffer[m_usCurrentReadPosition], sizeof(DWORD));
 		m_usCurrentReadPosition += sizeof(DWORD);
+
+		SFASSERT(m_usCurrentReadPosition <= MAX_MESSAGE_BUFFER);
+		return *this;
+	}
+
+	inline SFMessage& SFMessage::operator >> (float& Data)
+	{
+		memcpy(&Data, &m_aDataBuffer[m_usCurrentReadPosition], sizeof(float));
+		m_usCurrentReadPosition += sizeof(float);
 
 		SFASSERT(m_usCurrentReadPosition <= MAX_MESSAGE_BUFFER);
 		return *this;
