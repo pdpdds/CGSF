@@ -29,9 +29,6 @@
     <ClCompile Include="stdafx.cpp">
       <Filter>소스 파일</Filter>
     </ClCompile>
-    <ClCompile Include="SFPacketStore\ChatPacket.pb.cc">
-      <Filter>소스 파일</Filter>
-    </ClCompile>
     <ClCompile Include="SFPacketStore\FPSPacket.pb.cc">
       <Filter>소스 파일</Filter>
     </ClCompile>
@@ -42,6 +39,9 @@
       <Filter>소스 파일</Filter>
     </ClCompile>
     <ClCompile Include="SFPacketStore\SFPacketStore.pb.cc">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="SFPacketStore\ProtocolPacket.pb.cc">
       <Filter>소스 파일</Filter>
     </ClCompile>
   </ItemGroup>

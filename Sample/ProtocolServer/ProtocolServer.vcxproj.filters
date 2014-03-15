@@ -27,6 +27,15 @@
     <ClInclude Include="ProtocolLogicEntry.h">
       <Filter>소스 파일</Filter>
     </ClInclude>
+    <ClInclude Include="ProtocolProtobufHandler.h">
+      <Filter>소스 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="ProtocolJsonHandler.h">
+      <Filter>소스 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="ProtocolServerProtocol.h">
+      <Filter>소스 파일</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="stdafx.cpp">
@@ -35,7 +44,13 @@
     <ClCompile Include="ProtocolServer.cpp">
       <Filter>소스 파일</Filter>
     </ClCompile>
-    <ClCompile Include="ProtocolLogicEntry.cpp">
+    <ClCompile Include="ProtocolJsonHandler.cpp">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="ProtocolProtobufHandler.cpp">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="ProtocolServerProtocol.cpp">
       <Filter>소스 파일</Filter>
     </ClCompile>
   </ItemGroup>

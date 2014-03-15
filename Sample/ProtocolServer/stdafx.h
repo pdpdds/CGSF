@@ -15,3 +15,6 @@
 #include <windows.h>
 #include "CommonHeader.h"
 #include "SFEngine.h"
+
+#include "../../Common/SFPacketStore/ProtocolPacket.pb.h"
+#include "../../Common/SFPacketStore/ProtocolPacketID.h"

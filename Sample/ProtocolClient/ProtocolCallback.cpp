@@ -12,10 +12,6 @@ ProtocolCallback::~ProtocolCallback(void)
 }
 
 bool ProtocolCallback::HandleNetworkMessage(BasePacket* pPacket)
-{
-	//SFJsonPacket* pJsonPacket = (SFJsonPacket*)pPacket;
-
-	//std::cout << "Received : " << pJsonPacket->GetData().GetValue<tstring>("ECHO") << std::endl;
-
+{	
 	return true;
 }

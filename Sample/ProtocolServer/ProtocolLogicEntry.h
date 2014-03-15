@@ -4,21 +4,42 @@
 
 class BasePacket;
 
+template <typename T>
 class ProtocolLogicEntry : public ILogicEntry
 {
 public:
-	ProtocolLogicEntry(void);
-	virtual ~ProtocolLogicEntry(void);
+	ProtocolLogicEntry(void){}
+	virtual ~ProtocolLogicEntry(void){}
 
 	virtual bool Initialize() override;
 	virtual bool ProcessPacket(BasePacket* pBasePacket) override;
 
-protected:
-	bool OnPacketSample1(BasePacket* pPacket);
-	bool OnPacketSample2(BasePacket* pPacket);
-	bool OnPacketSample3(BasePacket* pPacket);
-	bool OnPacketSample4(BasePacket* pPacket);
+protected:	
 
 private:
+	T m_PacketHandler;	
 	SFDispatch<USHORT, std::tr1::function<BOOL(BasePacket*)>, BasePacket*> m_Dispatch;
 };
+
+template<typename T>
+bool ProtocolLogicEntry<T>::Initialize()
+{
+	m_Dispatch.RegisterMessage(Protocol::Sample1, std::tr1::bind(&T::OnPacketSample1, &(this->m_PacketHandler), std::tr1::placeholders::_1));
+	m_Dispatch.RegisterMessage(Protocol::Sample2, std::tr1::bind(&T::OnPacketSample2, &(this->m_PacketHandler), std::tr1::placeholders::_1));
+	m_Dispatch.RegisterMessage(Protocol::Sample3, std::tr1::bind(&T::OnPacketSample3, &(this->m_PacketHandler), std::tr1::placeholders::_1));
+	m_Dispatch.RegisterMessage(Protocol::Sample4, std::tr1::bind(&T::OnPacketSample4, &(this->m_PacketHandler), std::tr1::placeholders::_1));
+
+	return true;
+}
+
+template<typename T>
+bool ProtocolLogicEntry<T>::ProcessPacket(BasePacket* pPacket)
+{
+	switch (pPacket->GetPacketType())
+	{
+	case SFPACKET_DATA:
+		return m_Dispatch.HandleMessage(pPacket->GetPacketID(), pPacket);
+	}
+
+	return true;
+}

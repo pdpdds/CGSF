@@ -27,6 +27,9 @@
     <ClInclude Include="ProtocolCallback.h">
       <Filter>헤더 파일</Filter>
     </ClInclude>
+    <ClInclude Include="ProtocolClientProtocol.h">
+      <Filter>소스 파일</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="stdafx.cpp">
@@ -36,6 +39,9 @@
       <Filter>소스 파일</Filter>
     </ClCompile>
     <ClCompile Include="ProtocolCallback.cpp">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="ProtocolClientProtocol.cpp">
       <Filter>소스 파일</Filter>
     </ClCompile>
   </ItemGroup>

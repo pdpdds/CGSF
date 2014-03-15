@@ -1,0 +1,22 @@
+package ProtocolPacket;
+
+message Sample1
+{
+	required float speed = 1;
+	required float move = 2;
+}
+
+message Sample2
+{
+	
+}
+
+message Sample3
+{
+	
+}
+
+message Sample4
+{
+	
+}
