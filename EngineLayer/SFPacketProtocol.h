@@ -19,16 +19,16 @@ public:
 	SFPacketProtocol(){}
 	virtual ~SFPacketProtocol(void){}
 
-	bool OnReceive(int Serial, char* pBuffer, unsigned int dwTransferred) override;
+	bool OnReceive(int serial, char* pBuffer, unsigned int dwTransferred) override;
+	virtual bool DisposePacket(BasePacket* pPacket) override;
+	virtual bool SendRequest(BasePacket* pPacket) override;
+	void SendPacketLogicLayer(BasePacket* pPacket);
 	
 	//virtual BasePacket* CreatePacket() override;
-	virtual bool DisposePacket(BasePacket* pPacket) override;
 	virtual bool GetPacketData(BasePacket* pPacket, char* buffer, const int BufferSize, unsigned int& writtenSize) override;
-	virtual bool SendRequest(BasePacket* pPacket) override;
+
 
 	virtual IPacketProtocol* Clone(){return new SFPacketProtocol<T>();}
-
-	void SendPacketLogicLayer(BasePacket* pPacket);
 
 private:
 	T m_Analyzer;

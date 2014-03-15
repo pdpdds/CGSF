@@ -2,8 +2,14 @@
 #include "SFJsonPacket.h"
 
 
-SFJsonPacket::SFJsonPacket(void)
+SFJsonPacket::SFJsonPacket(USHORT usPacketId)
 {
+	m_Node.Add("PacketId", usPacketId);
+}
+
+SFJsonPacket::SFJsonPacket()
+{
+	
 }
 
 

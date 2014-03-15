@@ -26,15 +26,29 @@ void EchoInputThread(void* Args)
 
 		if (input.compare("1") == 0)
 		{
-			//SFMessage message;
-			SFPacket packet(PACKET_SAMPLE1);
-			
+			SFPacket packet(PACKET_SAMPLE1);	
 
 			float speed = 10.0f;
 			float move = 100.0f;
 			packet << speed << move;
 
-			packet.SetPacketID(PACKET_SAMPLE1);
+			SFNetworkEntry::GetInstance()->TCPSend(&packet);
+		}
+		if (input.compare("2") == 0)
+		{
+			SFPacket packet(PACKET_SAMPLE2);
+
+			SFNetworkEntry::GetInstance()->TCPSend(&packet);
+		}
+		if (input.compare("3") == 0)
+		{
+			SFPacket packet(PACKET_SAMPLE3);
+
+			SFNetworkEntry::GetInstance()->TCPSend(&packet);
+		}
+		if (input.compare("4") == 0)
+		{
+			SFPacket packet(PACKET_SAMPLE4);
 
 			SFNetworkEntry::GetInstance()->TCPSend(&packet);
 		}

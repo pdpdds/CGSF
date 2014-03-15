@@ -12,6 +12,7 @@
 
 #pragma comment(lib, "EngineLayer.lib")
 
+
 void EchoInputThread(void* Args)
 {
 	std::string input;
@@ -23,7 +24,7 @@ void EchoInputThread(void* Args)
 		if(input.compare("exit") == 0)
 			break;
 
-		SFJsonPacket packet;
+		SFJsonPacket packet(1000);
 		packet.GetData().Add("ECHO", input.c_str());
 
 		SFNetworkEntry::GetInstance()->TCPSend(&packet);

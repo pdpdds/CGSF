@@ -87,17 +87,15 @@ bool ChatLogicEntry::OnDisconnectPlayer(int Serial)
 bool ChatLogicEntry::OnPlayerData(BasePacket* pPacket)
 {
 	SFJsonPacket* pJsonPacket = (SFJsonPacket*)pPacket;
-	int PacketID = pJsonPacket->GetData().GetValue<int>("PacketId");
 
-	switch (pJsonPacket->GetData().GetValue<int>("PacketId"))
+	switch (pPacket->GetPacketID())
 	{
 	case CHAT_PACKET_NUM:
 	{
 				 std::cout << pJsonPacket->GetData().GetValue<tstring>("chat") << std::endl;
 
-				 SFJsonPacket JsonPacket;
+				 SFJsonPacket JsonPacket(CHAT_PACKET_NUM);
 				 JsonObjectNode& ObjectNode = JsonPacket.GetData();
-				 ObjectNode.Add("PacketId", CHAT_PACKET_NUM);
 				 ObjectNode.Add("chat", pJsonPacket->GetData().GetValue<tstring>("chat"));
 
 				 Broadcast(&JsonPacket);				

@@ -55,6 +55,9 @@ BasePacket* SFJsonProtocol::GetPacket(int& ErrorCode)
 		DisposePacket(pPacket);
 		return NULL;
 	}
+
+	int packetId = pPacket->GetData().GetValue<int>("PacketId");
+	pPacket->SetPacketID(packetId);
 	
 	return pPacket;
 }

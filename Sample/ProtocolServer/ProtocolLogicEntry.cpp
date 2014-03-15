@@ -19,6 +19,9 @@ ProtocolLogicEntry::~ProtocolLogicEntry(void)
 bool ProtocolLogicEntry::Initialize()
 {
 	m_Dispatch.RegisterMessage(PACKET_SAMPLE1, std::tr1::bind(&ProtocolLogicEntry::OnPacketSample1, this, std::tr1::placeholders::_1));
+	m_Dispatch.RegisterMessage(PACKET_SAMPLE2, std::tr1::bind(&ProtocolLogicEntry::OnPacketSample2, this, std::tr1::placeholders::_1));
+	m_Dispatch.RegisterMessage(PACKET_SAMPLE3, std::tr1::bind(&ProtocolLogicEntry::OnPacketSample3, this, std::tr1::placeholders::_1));
+	m_Dispatch.RegisterMessage(PACKET_SAMPLE4, std::tr1::bind(&ProtocolLogicEntry::OnPacketSample4, this, std::tr1::placeholders::_1));
 
 	return true;
 }
@@ -41,22 +44,27 @@ bool ProtocolLogicEntry::OnPacketSample1(BasePacket* pPacket)
 	float speed = 0.0f;
 	float move = 0.0f;
 	
-	*pSFPacket >> speed >> move;
+	*pSFPacket >> speed >> move; 
+
+	printf("PACKET_SAMPLE1 received!! speed : %f, move : %f\n", speed, move);
 	
 	return true;
 }
 
 bool ProtocolLogicEntry::OnPacketSample2(BasePacket* pPacket)
 {
+	printf("PACKET_SAMPLE2 received!!\n");
 	return true;
 }
 
 bool ProtocolLogicEntry::OnPacketSample3(BasePacket* pPacket)
 {
+	printf("PACKET_SAMPLE3 received!!\n");
 	return true;
 }
 
 bool ProtocolLogicEntry::OnPacketSample4(BasePacket* pPacket)
 {
+	printf("PACKET_SAMPLE4 received!!\n");
 	return true;
 }

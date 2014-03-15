@@ -4,8 +4,10 @@
 
 class SFJsonPacket : public BasePacket
 {
+	friend class SFJsonProtocol;
+
 public:
-	SFJsonPacket();
+	SFJsonPacket(USHORT usPacketId);
 	~SFJsonPacket(void);
 
 	JsonObjectNode&	GetData(){return m_Node;}
@@ -13,5 +15,6 @@ public:
 protected:
 
 private:
+	SFJsonPacket();
 	JsonObjectNode m_Node;
 };
