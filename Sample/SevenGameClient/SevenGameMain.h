@@ -30,7 +30,7 @@ public:
 	void TurnPass(BasePacket* pPacket);
 	void CardSubmit(BasePacket* pPacket);
 	void UserDie(BasePacket* pPacket);
-	void SevenGameMain::OnWinner(BasePacket* pPacket);
+	void Winner(BasePacket* pPacket);
 
 private:
 	SGManager *m_SevenGameManger;

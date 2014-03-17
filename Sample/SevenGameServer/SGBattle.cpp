@@ -17,10 +17,15 @@ SGBattle::SGBattle(int Mode)
 {
 	m_DispatchingSystem.RegisterMessage(SevenGame::TurnPass, std::tr1::bind(&SGBattle::OnTurnPass, this, std::tr1::placeholders::_1, std::tr1::placeholders::_2));
 	m_DispatchingSystem.RegisterMessage(SevenGame::CardSubmit, std::tr1::bind(&SGBattle::OnCardSubmit, this, std::tr1::placeholders::_1, std::tr1::placeholders::_2));
+
+	m_SevenGameManger = new SGManager();
+	m_SevenGameManger->AllocateObjcet(SEVENGAME_MEMBER_NUM, MAX_PASS_TICKET); // create four User, 3 pass ticket!!
 }
 
 SGBattle::~SGBattle(void)
 {
+	delete m_SevenGameManger;
+	m_SevenGameManger = NULL;
 }
 
 
@@ -38,17 +43,14 @@ BOOL SGBattle::OnEnter( int GameMode )
 	m_GameState = SG_GAME_PLAY;
 	m_dwLastPlayTickCount = GetTickCount();
 
-	m_SevenGameManger = new SGManager();
-	m_SevenGameManger->AllocateObjcet(SEVENGAME_MEMBER_NUM, MAX_PASS_TICKET); // create four User, 3 pass ticket!!
-
 	SFASSERT(roomMember.size() != 0 && roomMember.size() <= SEVENGAME_MEMBER_NUM);
 
-	SFRoom::RoomMemberMap::iterator iter = roomMember.begin();
+	m_SevenGameManger->Reset();
 
 	int playerCount = 0;
-	for(;iter != roomMember.end(); iter++)
+	for (auto& iter : roomMember)
 	{
-		SFPlayer* pPlayer = iter->second;
+		SFPlayer* pPlayer = iter.second;
 		m_SevenGameManger->AddUser(pPlayer->GetSerial());
 
 		playerCount++;
@@ -86,9 +88,6 @@ void SGBattle::ResetGame()
 
 BOOL SGBattle::Onleave()
 {
-	delete m_SevenGameManger;
-	m_SevenGameManger = 0;
-
 	return TRUE;
 }
 

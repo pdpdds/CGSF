@@ -16,16 +16,21 @@ SGManager::SGManager()
 
 SGManager::~SGManager()
 {
+	Reset();
+
 	if(m_pTable)
 		delete m_pTable;
 
 	if(m_pMainEngine)
 		delete m_pMainEngine; 
+}
 
-	for(auto& user : m_userlist)
+void SGManager::Reset()
+{
+	for (auto& user : m_userlist)
 	{
 		delete user;
-	} 
+	}
 
 	m_userlist.clear();
 	m_listUserOrder.clear();

@@ -11,6 +11,7 @@ public:
 	SGManager();
 	virtual ~SGManager();
 
+	void Reset();
 	void AllocateObjcet(int iUserNum, int iPassTicket);
     void InitializeData();
 	void CardDistribue();

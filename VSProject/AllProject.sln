@@ -1,6 +1,6 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio Express 2013 for Windows Desktop
+# Visual Studio 2013
 VisualStudioVersion = 12.0.21005.1
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "BaseLayer", "..\BaseLayer\BaseLayer.vcxproj", "{835E9346-EC73-421D-8C4B-16C4673E3680}"
@@ -114,6 +114,7 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "ProtocolServer", "..\Sample
 	ProjectSection(ProjectDependencies) = postProject
 		{835E9346-EC73-421D-8C4B-16C4673E3680} = {835E9346-EC73-421D-8C4B-16C4673E3680}
 		{F7276B81-CD8E-4E0B-ABF5-BAB8FEBE0511} = {F7276B81-CD8E-4E0B-ABF5-BAB8FEBE0511}
+		{FBA50FCE-B1AC-4B9B-82F0-BDC8F762B09D} = {FBA50FCE-B1AC-4B9B-82F0-BDC8F762B09D}
 	EndProjectSection
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "ProtocolClient", "..\Sample\ProtocolClient\ProtocolClient.vcxproj", "{05D76A3B-9D97-4C67-9CC4-4D8DB1C91EDC}"

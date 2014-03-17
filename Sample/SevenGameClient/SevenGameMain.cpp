@@ -47,57 +47,39 @@ bool SevenGameMain::Notify(BasePacket* pPacket)
 	switch(pPacket->GetPacketID())
 	{
 	case SevenGame::InitCardCount:
-		{
-			InitializeTable(pPacket);
-		}
+		InitializeTable(pPacket);
 		break;
+
 	case SevenGame::PlayerID:
-		{			
-			SetPlayerID(pPacket);
-		}
+		SetPlayerID(pPacket);
 		break;
 
 	case SevenGame::MyCardInfo:
-		{			
-			SetMyCard(pPacket);
-		}
+		SetMyCard(pPacket);
 		break;
 
 	case SevenGame::TableUpdate:
-		{
-			UpdateTable(pPacket);			
-		}
+		UpdateTable(pPacket);
 		break;
 
 	case SevenGame::CurrentTurn:
-		{
-			SetCurrentTurn(pPacket);			
-		}
+		SetCurrentTurn(pPacket);
 		break;
 
 	case SevenGame::Winner:
-		{
-			OnWinner(pPacket);
-		}
+		Winner(pPacket);
 		break;
 
-	case SevenGame::UserDie:
-		{
-			UserDie(pPacket);
-			
-		}
+	case SevenGame::UserDie:		
+		UserDie(pPacket);
 		break;
 
 	case SevenGame::TurnPass:
-		{
-			TurnPass(pPacket);
-		}
+		TurnPass(pPacket);
 		break;
 
-	case SevenGame::CardSubmit:
-		{
-			CardSubmit(pPacket);
-		}
+	case SevenGame::CardSubmit:		
+		CardSubmit(pPacket);
 		break;
 	}
 
@@ -292,7 +274,7 @@ void SevenGameMain::UserDie(BasePacket* pPacket)
 	pUser->SetRemainCard(0);
 }
 
-void SevenGameMain::OnWinner(BasePacket* pPacket)
+void SevenGameMain::Winner(BasePacket* pPacket)
 {
 	SFProtobufPacket<SevenGamePacket::Winner>* pWinner = (SFProtobufPacket<SevenGamePacket::Winner>*)pPacket;
 	int playerIndex = pWinner->GetData().playerindex();
