@@ -83,7 +83,7 @@
     <Text Include="ReadMe.txt" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="ProtocolJsonHandler.h" />
+    <ClInclude Include="ProtocolCGSFHandler.h" />
     <ClInclude Include="ProtocolLogicEntry.h" />
     <ClInclude Include="ProtocolProtobufHandler.h" />
     <ClInclude Include="ProtocolServerProtocol.h" />
@@ -91,7 +91,7 @@
     <ClInclude Include="targetver.h" />
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="ProtocolJsonHandler.cpp" />
+    <ClCompile Include="ProtocolCGSFHandler.cpp" />
     <ClCompile Include="ProtocolProtobufHandler.cpp" />
     <ClCompile Include="ProtocolServer.cpp" />
     <ClCompile Include="ProtocolServerProtocol.cpp" />

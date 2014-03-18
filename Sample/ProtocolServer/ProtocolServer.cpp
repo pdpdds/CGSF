@@ -4,7 +4,7 @@
 #include "stdafx.h"
 #include "ProtocolLogicEntry.h"
 #include "SFCGSFPacketProtocol.h"
-#include "ProtocolJsonHandler.h"
+#include "ProtocolCGSFHandler.h"
 #include "ProtocolProtobufHandler.h"
 #include "ProtocolServerProtocol.h"
 
@@ -12,10 +12,12 @@
 
 int _tmain(int argc, _TCHAR* argv[])
 {
-	//ProtocolLogicEntry<ProtocolJsonHandler>* pLogicEntry = new ProtocolLogicEntry<ProtocolJsonHandler>();
-	ProtocolLogicEntry<ProtocolProtobufHandler>* pLogicEntry = new ProtocolLogicEntry<ProtocolProtobufHandler>();
+	ProtocolLogicEntry<ProtocolCGSFHandler>* pLogicEntry = new ProtocolLogicEntry<ProtocolCGSFHandler>();
+	SFEngine::GetInstance()->Intialize(pLogicEntry, new SFPacketProtocol<SFCGSFPacketProtocol>);
 
-	SFEngine::GetInstance()->Intialize(pLogicEntry, new SFPacketProtocol<ProtocolServerProtocol>);
+	//ProtocolLogicEntry<ProtocolProtobufHandler>* pLogicEntry = new ProtocolLogicEntry<ProtocolProtobufHandler>();
+	//SFEngine::GetInstance()->Intialize(pLogicEntry, new SFPacketProtocol<ProtocolServerProtocol>);
+
 	SFEngine::GetInstance()->Start();
 
 	google::FlushLogFiles(google::GLOG_INFO);
