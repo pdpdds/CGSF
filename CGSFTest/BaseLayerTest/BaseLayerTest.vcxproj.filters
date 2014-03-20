@@ -102,9 +102,6 @@
     <ClInclude Include="SFPacketHandler.h">
       <Filter>Test\Dispatch</Filter>
     </ClInclude>
-    <ClInclude Include="..\Common\SFPacketStore\PacketCore.pb.h">
-      <Filter>Test\Dispatch</Filter>
-    </ClInclude>
     <ClInclude Include="PCRETest.h">
       <Filter>Test</Filter>
     </ClInclude>
@@ -195,9 +192,6 @@
       <Filter>Test</Filter>
     </ClCompile>
     <ClCompile Include="SFPacketHandler.cpp">
-      <Filter>Test\Dispatch</Filter>
-    </ClCompile>
-    <ClCompile Include="..\Common\SFPacketStore\PacketCore.pb.cc">
       <Filter>Test\Dispatch</Filter>
     </ClCompile>
     <ClCompile Include="PCRETest.cpp">

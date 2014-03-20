@@ -10,10 +10,11 @@
 #include <stdio.h>
 #include <tchar.h>
 
+
+#include "ACEHeader.h"
+#include <windows.h>
 #include "CommonHeader.h"
 #include "DBStruct.h"
-
-#include <windows.h>
 
 #include "SFDatabaseProxy.h"
 #include "SFDatabaseProxyLocal.h"

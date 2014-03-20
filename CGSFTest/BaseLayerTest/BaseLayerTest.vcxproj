@@ -58,13 +58,13 @@
       <Optimization>Disabled</Optimization>
       <PreprocessorDefinitions>WIN32;_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <SDLCheck>false</SDLCheck>
-      <AdditionalIncludeDirectories>../BaseLayer;../DatabaseLayer;../EngineLayer;../EngineLayer/EngineDllInterface;../ThirdParty/LiteZip;../BaseLayer/DataStructure;../BaseLayer/Logger;../ThirdParty/SQLite;../BaseLayer/External;..\ThirdParty\liblfds\include;../Common/SFPacketStore;../ThirdParty/PCRE/include;../ThirdParty/ssl/include</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>../../BaseLayer;../../DatabaseLayer;../../EngineLayer;../../EngineLayer/EngineDllInterface;../../ThirdParty/LiteZip;../../BaseLayer/DataStructure;../../BaseLayer/Logger;../../ThirdParty/SQLite;../../BaseLayer/External;../../ThirdParty\liblfds\include;../../Common/SFPacketStore;../../ThirdParty/PCRE/include;../../ThirdParty/ssl/include;../../ThirdParty/ACE/include;../../ThirdParty;../../Common</AdditionalIncludeDirectories>
       <AdditionalOptions>-D_SCL_SECURE_NO_WARNINGS %(AdditionalOptions)</AdditionalOptions>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
-      <AdditionalLibraryDirectories>../ThirdParty/Lib/Debug;../ThirdParty/SQLite;../VSProject/Lib/Debug;../ThirdParty/mysql/lib;..\ThirdParty\liblfds\lib\dynamic;../ThirdParty/pcre/lib;../ThirdParty/ssl/lib</AdditionalLibraryDirectories>
+      <AdditionalLibraryDirectories>../../ThirdParty/Lib/x86/Debug;../../ThirdParty/SQLite;../../VSProject/Lib/x86/Debug;../../ThirdParty/mysql/lib;../../ThirdParty\liblfds\lib\x86/debug;../../ThirdParty/pcre/lib;../../ThirdParty/ssl/lib;../../ThirdParty/ace/lib/x86</AdditionalLibraryDirectories>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
@@ -88,7 +88,6 @@
     <Text Include="ReadMe.txt" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="..\Common\SFPacketStore\PacketCore.pb.h" />
     <ClInclude Include="ACELoggerTest.h" />
     <ClInclude Include="ACETreeTest.h" />
     <ClInclude Include="BitArrayTest.h" />
@@ -122,9 +121,6 @@
     <ClInclude Include="TomCryptTest.h" />
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="..\Common\SFPacketStore\PacketCore.pb.cc">
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">NotUsing</PrecompiledHeader>
-    </ClCompile>
     <ClCompile Include="ACELoggerTest.cpp" />
     <ClCompile Include="ACETreeTest.cpp" />
     <ClCompile Include="BitArrayTest.cpp" />

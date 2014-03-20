@@ -1,17 +1,17 @@
 #include "stdafx.h"
 #include "LibfdsTest.h"
-#include "liblfds.h"
+#include "liblfds611.h"
 #include "Mmsystem.h"
 
 #pragma comment(lib, "Winmm.lib")
 
-#pragma comment(lib, "liblfds.lib")
+#pragma comment(lib, "liblfds611.lib")
 
 static void PushThread(void* Args)
 {
 	
 
-	struct stack_state* pStack = (struct stack_state*)Args;
+	struct lfds611_stack_state* pStack = (struct lfds611_stack_state*)Args;
 
 	for(int i = 0; i < 3000; i++)
 	{
@@ -19,19 +19,19 @@ static void PushThread(void* Args)
 		*p = i;
 		
 		//stack_push(pStack, p);
-		stack_guaranteed_push(pStack, p);
+		lfds611_stack_guaranteed_push(pStack, p);
 		
 	}
 }
 
 static void PopThread(void* Args)
 {
-	struct stack_state* pStack = (struct stack_state*)Args;
+	struct lfds611_stack_state* pStack = (struct lfds611_stack_state*)Args;
 
 	while(1)
 	{
 		int* t = NULL;
-		int i = stack_pop(pStack, (void**)&t);
+		int i = lfds611_stack_pop(pStack, (void**)&t);
 
 		if(t != NULL)
 		{
@@ -56,8 +56,8 @@ LibfdsTest::~LibfdsTest(void)
 
 bool LibfdsTest::Run()
 {
-	struct stack_state* pStack = NULL;
-	stack_new(&pStack, 10000);
+	struct lfds611_stack_state* pStack = NULL;
+	lfds611_stack_new(&pStack, 10000);
 
 	ACE::init();
 

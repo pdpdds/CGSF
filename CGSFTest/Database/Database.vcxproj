@@ -54,12 +54,12 @@
       <Optimization>Disabled</Optimization>
       <PreprocessorDefinitions>WIN32;_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <SDLCheck>true</SDLCheck>
-      <AdditionalIncludeDirectories>../../BaseLayer/VMemPool;../../BaseLayer;../../ThirdParty/Breakpad;../../ThirdParty/Bugtrap;../../ThirdParty/glog/src/windows;../../ThirdParty/protobuf-2.4.1/src;../../BaseLayer/XML;../../BaseLayer/json;../../ThirdParty/glog-0.3.2/src/windows;../../DatabaseLayer;../../EngineLayer/EngineDLLInterface;../../ThirdParty/ACE_wrappers;../../EngineLayer;../../ThirdParty/fastdb-375/fastdb/inc;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>../../BaseLayer;../../DatabaseLayer;../../EngineLayer;../../EngineLayer/EngineDllInterface;../../ThirdParty/LiteZip;../../BaseLayer/DataStructure;../../BaseLayer/Logger;../../ThirdParty/SQLite;../../BaseLayer/External;../../ThirdParty\liblfds\include;../../Common/SFPacketStore;../../ThirdParty/PCRE/include;../../ThirdParty/ssl/include;../../ThirdParty/ACE/include;../../ThirdParty;../../Common;../../ThirdParty\fastdb-375\fastdb\inc</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
-      <AdditionalLibraryDirectories>../../ThirdParty/Bugtrap;../../ThirdParty/SQLite;../../VSProject/Lib/Debug;../../ThirdParty/Lib/debug;../../ThirdParty/MySql/lib;../../ThirdParty/Ace_Wrappers/lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalLibraryDirectories>../../ThirdParty/Bugtrap;../../ThirdParty/SQLite;../../VSProject/Lib/x86/Debug/;../../ThirdParty/Lib/x86/debug;../../ThirdParty/MySql/lib;../../ThirdParty/ace/lib/x86;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
       <IgnoreSpecificDefaultLibraries>
       </IgnoreSpecificDefaultLibraries>
     </Link>
