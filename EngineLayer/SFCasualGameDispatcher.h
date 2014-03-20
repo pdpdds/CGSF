@@ -9,5 +9,6 @@ public:
 	virtual ~SFCasualGameDispatcher(void);
 
 	virtual void Dispatch(BasePacket* pPacket) override;
+	static void BusinessThread(void* Args);
 };
 

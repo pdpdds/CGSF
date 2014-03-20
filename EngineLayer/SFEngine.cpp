@@ -78,7 +78,7 @@ bool SFEngine::CreateLogicThread(ILogicEntry* pLogic)
 {
 	if(pLogic != NULL)
 	{
-		m_LogicThreadId = ACE_Thread_Manager::instance()->spawn_n(1, (ACE_THR_FUNC)BusinessThread, this, THR_NEW_LWP, ACE_DEFAULT_THREAD_PRIORITY, 1001);
+		m_LogicThreadId = ACE_Thread_Manager::instance()->spawn_n(m_pLogicDispatcher->GetLogicThreadCount(), (ACE_THR_FUNC)m_pLogicDispatcher->GetBusinessThreadFunc(), this, THR_NEW_LWP, ACE_DEFAULT_THREAD_PRIORITY, 1001);
 
 		LogicEntrySingleton::instance()->SetLogic(pLogic);
 
