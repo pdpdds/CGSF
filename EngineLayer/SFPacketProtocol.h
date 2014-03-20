@@ -21,8 +21,7 @@ public:
 
 	bool OnReceive(int serial, char* pBuffer, unsigned int dwTransferred) override;
 	virtual bool DisposePacket(BasePacket* pPacket) override;
-	virtual bool SendRequest(BasePacket* pPacket) override;
-	void SendPacketLogicLayer(BasePacket* pPacket);
+	virtual bool SendRequest(BasePacket* pPacket) override;	
 	
 	//virtual BasePacket* CreatePacket() override;
 	virtual bool GetPacketData(BasePacket* pPacket, char* buffer, const int BufferSize, unsigned int& writtenSize) override;
@@ -80,8 +79,8 @@ bool SFPacketProtocol<T>::OnReceive(int Serial, char* pBuffer, unsigned int dwTr
 
 		pPacket->SetPacketType(SFPACKET_DATA);
 		pPacket->SetOwnerSerial(Serial);
-
-		SendPacketLogicLayer(pPacket);
+		
+		SendDummy(pPacket);
 	}
 	while(TRUE);
 	
@@ -100,15 +99,3 @@ bool SFPacketProtocol<T>::SendRequest(ISession* pSession, BasePacket* pPacket)
 
 	return true;
 }*/
-
-////////////////////////////////////////////////////////////////////////////////
-//언제가 될지는 모르겠지만....
-//캐쥬얼 게임 구조를 완성하고 난 뒤 MMO 서버를 제작한다면
-//이 부분이 수정될 것이다...
-//20121121 -> ???????
-////////////////////////////////////////////////////////////////////////////////
-template <typename T>
-void SFPacketProtocol<T>::SendPacketLogicLayer(BasePacket* pPacket)
-{
-	SendDummy(pPacket);
-}

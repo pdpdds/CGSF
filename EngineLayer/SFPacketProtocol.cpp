@@ -1,8 +1,8 @@
 #include "StdAfx.h"
 #include "SFPacketProtocol.h"
-
+#include "SFEngine.h"
 
 void SendDummy(BasePacket* pPacket)
 {
-	LogicGatewaySingleton::instance()->PushPacket(pPacket);
+	SFEngine::GetInstance()->GetLogicDispatcher()->Dispatch(pPacket);
 }
