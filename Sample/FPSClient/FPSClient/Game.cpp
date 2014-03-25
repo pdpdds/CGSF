@@ -312,17 +312,6 @@ void Game::HandleNetworkMessage(BasePacket* pPacket)
 			}
 		}
 		break;
-/*
-	case CGSF::MSG_TERMINATE_SESSION:
-		{
-			// Switch to the menu state.
-			g_engine->ChangeState( STATE_MENU );
-
-			break;
-		}
-*/
-
-	
 
 	case  FPS::MSG_PLAYER_HEALTH:
 		{

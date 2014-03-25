@@ -79,14 +79,13 @@ BOOL SFFreeForAll::OnPlayerHealth(SFPlayer* pPlayer, BasePacket* pPacket)
 	SF_GETPACKET_ARG(&msg, pHealth->GetData().playerhealth(), PlayerHealthMsg);
 
 	SFPlayer* pHurtPlayer = NULL;
-	SFRoom::RoomMemberMap MemberMap = pRoom->GetRoomMemberMap();
-	SFRoom::RoomMemberMap::iterator iter = MemberMap.begin();
+	SFRoom::RoomMemberMap mapMember = pRoom->GetRoomMemberMap();
 
-	for(; iter != MemberMap.end();iter++)
+	for (auto& iter : mapMember)
 	{
-		if(iter->second->GetSerial() == msg.PlayerID)
+		if(iter.second->GetSerial() == msg.PlayerID)
 		{
-			pHurtPlayer = iter->second;
+			pHurtPlayer = iter.second;
 			break;
 		}
 	}
@@ -103,12 +102,10 @@ BOOL SFFreeForAll::OnPlayerHealth(SFPlayer* pPlayer, BasePacket* pPacket)
 		pInfo->IsAlive = false;
 		pInfo->DeathTime = GetTickCount();
 	}
-	
-	iter = MemberMap.begin();
 
-	for(; iter != MemberMap.end();iter++)
+	for (auto& iter : mapMember)
 	{
-		SFPlayer* pTarget = iter->second;
+		SFPlayer* pTarget = iter.second;
 		SendPlayerHealth(pTarget, pHurtPlayer);
 	}
 
@@ -129,12 +126,11 @@ BOOL SFFreeForAll::OnSpawnPlayer(SFPlayer* pPlayer, BasePacket* pPacket)
 	pInfo->translation = msg.translation;
 	pInfo->IsAlive = true;
 
-	SFRoom::RoomMemberMap MemberMap = pRoom->GetRoomMemberMap();
-	SFRoom::RoomMemberMap::iterator iter = MemberMap.begin();
+	SFRoom::RoomMemberMap mapMember = pRoom->GetRoomMemberMap();
 
-	for(; iter != MemberMap.end();iter++)
+	for (auto& iter : mapMember)
 	{
-		SFPlayer* pTarget = iter->second;
+		SFPlayer* pTarget = iter.second;
 		SendSpawnPlayer(pTarget, pPlayer);
 	}
 

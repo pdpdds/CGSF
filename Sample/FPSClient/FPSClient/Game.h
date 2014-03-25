@@ -45,16 +45,7 @@ public:
 	virtual void Render(float elapsed);
 
 	BulletManager *GetBulletManager();
-
-	//void HandleNetworkMessage( ReceivedMessage *msg );
 	void HandleNetworkMessage( NetworkMessage* pMessage ) override;
-
-/////////////////////////////////////////////////////////////////////////////////////
-//20120606 박주항
-//게임씬을 로드했다 하더라도 게임 시작전 같은 경우 입력을 허용하지 않을것이고
-//게임이 끝나면 결과창을 보여주며 입력이 허용이 안되는 등 여러 상태가 존재할 것이므로
-//네트워크 메세지와 업데이트 관련해서는 내부 상태에 따라 처리를 하도록 변경한다.
-/////////////////////////////////////////////////////////////////////////////////////
 	virtual void HandleNetworkMessage(BasePacket* pPacket) override;
 	virtual void Update( float elapsed ) override;
 
