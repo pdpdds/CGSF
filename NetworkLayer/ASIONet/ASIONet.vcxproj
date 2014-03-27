@@ -165,13 +165,13 @@
     <ClInclude Include="..\..\Common\EngineInterface\ISessionService.h" />
     <ClInclude Include="..\..\Common\EngineInterface\IUDPNetworkCallback.h" />
     <ClInclude Include="ASIOEngine.h" />
-    <ClInclude Include="ChattingServer.h" />
+    <ClInclude Include="ASIOServer.h" />
     <ClInclude Include="Protocol.h" />
     <ClInclude Include="ServerSession.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="ASIOEngine.cpp" />
-    <ClCompile Include="ChattingClient.h" />
+    <ClCompile Include="ASIOClient.h" />
     <ClCompile Include="ServerSession.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

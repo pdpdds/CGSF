@@ -107,6 +107,10 @@ void ProtoclInputThread2(void* Args)
 
 void ProcessInput()
 {
+	Sleep(1000);
+
+	SFNetworkEntry::GetInstance()->Update();
+
 	int inputThreadID = ACE_Thread_Manager::instance()->spawn_n(1, (ACE_THR_FUNC)ProtoclInputThread2, NULL, THR_NEW_LWP, ACE_DEFAULT_THREAD_PRIORITY);
 
 	SFASSERT(inputThreadID != -1);

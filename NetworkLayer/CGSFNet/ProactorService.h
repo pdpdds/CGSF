@@ -4,7 +4,7 @@
 #include <ACE/Message_Block.h>
 #include "InterlockedValue.h"
 
-#include <EngineInterface\/ISession.h>
+#include <EngineInterface/ISession.h>
 
 class BaseClass;
 

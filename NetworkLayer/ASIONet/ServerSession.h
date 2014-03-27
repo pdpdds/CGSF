@@ -10,12 +10,12 @@
 #include "Protocol.h"
 
 
-class ChatServer;
+class ASIOServer;
 
 class Session : public ISession
 {
 public:
-	Session(int nSessionID, boost::asio::io_service& io_service, ChatServer* pServer);
+	Session(int nSessionID, boost::asio::io_service& io_service, ASIOServer* pServer);
 	~Session();
 
 	int SessionID() { return m_nSessionID; }
@@ -53,8 +53,9 @@ private:
 	bool m_bCompletedWrite;
 
 	std::deque< char* > m_SendDataQueue;
+	std::deque< int > m_SendDataSizeQueue;
 
 	std::string m_Name;
 
-	ChatServer* m_pServer;
+	ASIOServer* m_pServer;
 };

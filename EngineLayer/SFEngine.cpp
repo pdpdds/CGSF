@@ -33,6 +33,8 @@ SFEngine::SFEngine()
 	Configure.Write(L"EngineConfig.xml");
 
 	Configure.Write(L"EngineConfig.xml");*/
+
+	ACE::init();
 	google::InitGoogleLogging("CGSF");
 	
 	m_EngineHandle = 0;

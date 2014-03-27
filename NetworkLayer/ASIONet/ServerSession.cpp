@@ -1,8 +1,8 @@
 #include "ServerSession.h"
-#include "ChattingServer.h"
+#include "ASIOServer.h"
 
 
-Session::Session(int nSessionID, boost::asio::io_service& io_service, ChatServer* pServer)
+Session::Session(int nSessionID, boost::asio::io_service& io_service, ASIOServer* pServer)
 		: m_Socket(io_service)
 		, m_nSessionID( nSessionID )
 		, m_pServer( pServer )
@@ -17,6 +17,8 @@ Session::~Session()
 		delete[] m_SendDataQueue.front();
 		m_SendDataQueue.pop_front();
 	}
+
+	m_SendDataSizeQueue.clear();
 }
 
 void Session::Init()
@@ -46,6 +48,8 @@ void Session::PostSend( const bool bImmediately, const int nSize, char* pData )
 		memcpy( pSendData, pData, nSize);
 
 		m_SendDataQueue.push_back( pSendData );
+
+		m_SendDataSizeQueue.push_back(nSize);
 	}
 	else
 	{
@@ -71,15 +75,17 @@ void Session::handle_write(const boost::system::error_code& error, size_t bytes_
 	delete[] m_SendDataQueue.front();
 	m_SendDataQueue.pop_front();
 
+	m_SendDataSizeQueue.pop_front();
+
 	if( m_SendDataQueue.empty() == false )
 	{
 		m_bCompletedWrite = false;
 
 		char* pData = m_SendDataQueue.front();
 		
-		PACKET_HEADER* pHeader = (PACKET_HEADER*)pData;
+		int nSize = m_SendDataSizeQueue.front();
 
-		PostSend( true, pHeader->nSize, pData );
+		PostSend(true, nSize, pData);
 	}
 	else
 	{
@@ -118,41 +124,4 @@ void Session::SendInternal(char* pBuffer, int BufferSize, int ownerSerial)
 {
 	PostSend(false, BufferSize, pBuffer);
 }
-
-/*
-memcpy( &m_PacketBuffer[ m_nPacketBufferMark ], m_ReceiveBuffer.data(), bytes_transferred );
-		
-		int nPacketData = m_nPacketBufferMark + bytes_transferred;
-		int nReadData = 0;
-		
-		while( nPacketData > 0 )
-		{
-			if( nPacketData < sizeof(PACKET_HEADER) ) 
-			{
-				break;
-			}
-
-			PACKET_HEADER* pHeader = (PACKET_HEADER*)&m_PacketBuffer[nReadData];
-			
-			if( pHeader->nSize <= nPacketData )
-			{
-				m_pServer->ProcessPacket( m_nSessionID, &m_PacketBuffer[nReadData] );
-				
-				nPacketData -= pHeader->nSize;
-				nReadData += pHeader->nSize;
-			}
-			else
-			{
-				break;
-			}
-		}
-
-		if( nPacketData > 0 )
-		{
-			char TempBuffer[MAX_RECEIVE_BUFFER_LEN] = {0,};
-			memcpy( &TempBuffer[ 0 ], &m_PacketBuffer[nReadData], nPacketData );
-			memcpy( &m_PacketBuffer[ 0 ], &TempBuffer[0], nPacketData );
-		}
-
-		m_nPacketBufferMark = nPacketData;*/
 

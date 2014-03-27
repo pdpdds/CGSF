@@ -26,7 +26,7 @@ void ProactorService::open( ACE_HANDLE h, ACE_Message_Block& MessageBlock )
 		delete this;
 		return;
 	}
-
+	
 	m_pTimerLock = new InterlockedValue();
 	m_pTimerLock->Release();
 

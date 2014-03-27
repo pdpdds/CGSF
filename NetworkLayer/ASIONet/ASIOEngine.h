@@ -1,7 +1,7 @@
 #pragma once
 #include <EngineInterface/INetworkEngine.h>
-#include "ChattingServer.h"
-#include "ChattingClient.h"
+#include "ASIOServer.h"
+#include "ASIOClient.h"
 
 const int MAX_SESSION_COUNT = 100;
 
@@ -26,7 +26,7 @@ protected:
 
 private:
 	boost::asio::io_service io_service;
-	ChatServer* m_pServer;
+	ASIOServer* m_pServer;
 };
 
 class ASIOClientEngine : public INetworkEngine
@@ -50,6 +50,6 @@ protected:
 
 private:
 	boost::asio::io_service io_service;
-	ChatClient* m_pClient;
+	ASIOClient* m_pClient;
 };
 

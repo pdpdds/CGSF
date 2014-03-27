@@ -21,7 +21,7 @@ ASIOServerEngine::~ASIOServerEngine(void)
 
 bool ASIOServerEngine::Init()
 {
-	m_pServer = new ChatServer(io_service, this);
+	m_pServer = new ASIOServer(io_service, this);
 	m_pServer->Init( MAX_SESSION_COUNT );	
 	return true;
 }
@@ -75,12 +75,12 @@ ASIOClientEngine::~ASIOClientEngine(void)
 
 bool ASIOClientEngine::Init()
 {	
-	m_pClient = new ChatClient(io_service, this);
+	m_pClient = new ASIOClient(io_service, this);
 
 	return true;
 }
 
-bool ASIOClientEngine::Start(char* szIP, unsigned short Port)
+bool ASIOClientEngine::Start(char* szIP, unsigned short port)
 {
 	auto endpoint = boost::asio::ip::tcp::endpoint(boost::asio::ip::address::from_string("127.0.0.1"), PORT_NUMBER);
 	m_pClient->Connect( endpoint );
