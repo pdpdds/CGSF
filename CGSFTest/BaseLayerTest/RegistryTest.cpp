@@ -14,16 +14,16 @@ RegistryTest::~RegistryTest(void)
 bool RegistryTest::Run()
 {
 
-SFRegistry Reg(HKEY_LOCAL_MACHINE);
+	SFRegistry Reg(HKEY_LOCAL_MACHINE);
 
-	if(TRUE == Reg.CreateRegistryKey(L"SOFTWARE\\JUHANG"))
+	if(TRUE == Reg.CreateRegistryKey(L"SOFTWARE\\CGSF"))
 	{
 		DWORD dwValue;
 
 		Reg.SetValue(L"TEST1", 555);
 		Reg.GetValue(L"TEST1", dwValue);
 		Reg.DeleteValue(L"TEST1");
-		Reg.DeleteKey(L"SOFTWARE\\JUHANG");
+		Reg.DeleteKey(L"SOFTWARE\\CGSF");
 	}
 
 	return true;

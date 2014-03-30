@@ -38,6 +38,9 @@
     <Filter Include="ClientInterface">
       <UniqueIdentifier>{f64f9b76-faa7-4823-a693-7a97f55ce284}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Dispatcher">
+      <UniqueIdentifier>{3939b047-9ae7-4ae1-a0e7-28cb11d41e07}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include=".\SFExcel.cpp">
@@ -77,9 +80,6 @@
       <Filter>Packet\ProtobufPacket</Filter>
     </ClCompile>
     <ClCompile Include="SFEngine.cpp">
-      <Filter>Network</Filter>
-    </ClCompile>
-    <ClCompile Include=".\SFCasualGameDispatcher.cpp">
       <Filter>Network</Filter>
     </ClCompile>
     <ClCompile Include=".\SFSessionService.cpp">
@@ -123,6 +123,9 @@
     </ClCompile>
     <ClCompile Include="PacketAllocator.cpp">
       <Filter>Packet\PacketProtocol</Filter>
+    </ClCompile>
+    <ClCompile Include=".\SFCasualGameDispatcher.cpp">
+      <Filter>Dispatcher</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -204,12 +207,6 @@
     <ClInclude Include=".\EngineDLLInterface\ISessionService.h">
       <Filter>Network</Filter>
     </ClInclude>
-    <ClInclude Include="ILogicDispatcher.h">
-      <Filter>Network</Filter>
-    </ClInclude>
-    <ClInclude Include=".\SFCasualGameDispatcher.h">
-      <Filter>Network</Filter>
-    </ClInclude>
     <ClInclude Include=".\SFSessionService.h">
       <Filter>Network</Filter>
     </ClInclude>
@@ -263,6 +260,12 @@
     </ClInclude>
     <ClInclude Include="PacketAllocator.h">
       <Filter>Packet\PacketProtocol</Filter>
+    </ClInclude>
+    <ClInclude Include=".\SFCasualGameDispatcher.h">
+      <Filter>Dispatcher</Filter>
+    </ClInclude>
+    <ClInclude Include="ILogicDispatcher.h">
+      <Filter>Dispatcher</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

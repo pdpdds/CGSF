@@ -25,7 +25,7 @@
 
 int _tmain(int argc, _TCHAR* argv[])
 {
-	CompressTest test;
+	DumpTest test;
 	test.Run();
 	getchar();
 		

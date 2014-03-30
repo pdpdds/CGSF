@@ -1,6 +1,6 @@
 #include "stdafx.h"
 #include "SendEMailTest.h"
-#include "CSMTP.h"
+//#include "CSMTP.h"
 
 SendEMailTest::SendEMailTest(void)
 {
@@ -13,7 +13,7 @@ SendEMailTest::~SendEMailTest(void)
 
 bool SendEMailTest::Run()
 {
-	
+	/*
 	bool bError = false;
 
 	try
@@ -74,6 +74,6 @@ bool SendEMailTest::Run()
 	}
 	if(!bError)
 		std::cout << "Mail was send successfully.\n";
-
+*/
 	return true;
 }

@@ -4,7 +4,7 @@
 #include "SFPacketHandler.h"
 
 
-#define PACKET_NUM_AUTH 0x1000
+#define PACKET_NUM_AUTH 1000
 
 void sampleFunc(BasePacket* packet)
 {

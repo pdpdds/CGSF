@@ -41,8 +41,8 @@
   <PropertyGroup Label="UserMacros" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <LinkIncremental>true</LinkIncremental>
-    <OutDir>../VSProject/Bin32\</OutDir>
-    <IntDir>../VSProject/Intermediate/$(Configuration)\$(ProjectName)\</IntDir>
+    <OutDir>$(SolutionDir)/Bin32\</OutDir>
+    <IntDir>$(SolutionDir)/Intermediate/$(Configuration)\$(ProjectName)\</IntDir>
     <IncludePath>D:\Library\OpenSSL-Win32\include;$(IncludePath)</IncludePath>
     <LibraryPath>D:\Library\OpenSSL-Win32\lib;$(LibraryPath)</LibraryPath>
   </PropertyGroup>
@@ -74,14 +74,17 @@
       <Optimization>MaxSpeed</Optimization>
       <FunctionLevelLinking>true</FunctionLevelLinking>
       <IntrinsicFunctions>true</IntrinsicFunctions>
-      <PreprocessorDefinitions>WIN32;NDEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>WIN32;NDEBUG;_CONSOLE;_CRT_SECURE_NO_WARNINGS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <SDLCheck>true</SDLCheck>
+      <AdditionalIncludeDirectories>../../BaseLayer;../../DatabaseLayer;../../EngineLayer;../../EngineLayer/EngineDllInterface;../../ThirdParty/LiteZip;../../BaseLayer/DataStructure;../../BaseLayer/Logger;../../ThirdParty/SQLite;../../BaseLayer/External;../../ThirdParty\liblfds\include;../../Common/SFPacketStore;../../ThirdParty/PCRE/include;../../ThirdParty/ssl/include;../../ThirdParty/ACE/include;../../ThirdParty;../../Common</AdditionalIncludeDirectories>
+      <DisableSpecificWarnings>4996</DisableSpecificWarnings>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
       <OptimizeReferences>true</OptimizeReferences>
+      <AdditionalLibraryDirectories>../../ThirdParty/Lib/x86/Release;../../ThirdParty/SQLite;../../VSProject/Lib/x86/Release;../../ThirdParty/mysql/lib;../../ThirdParty\liblfds\lib\x86/Release;../../ThirdParty/pcre/lib;../../ThirdParty/ssl/lib;../../ThirdParty/ace/lib/x86</AdditionalLibraryDirectories>
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
