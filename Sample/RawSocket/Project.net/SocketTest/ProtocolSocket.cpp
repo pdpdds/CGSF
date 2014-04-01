@@ -25,6 +25,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 #include "SFPacket.h"
 
 #define PACKETIO_SIZE					8096
+#define PACKET_SAMPLE1 10000
 
 ProtocolSocket::ProtocolSocket(ISocketHandler& h)
 :TcpSocket(h)
@@ -47,7 +48,7 @@ void ProtocolSocket::OnConnect()
 {	
 	printf("Welcome.\n");	
 
-	SFPacket packet(10000);
+	SFPacket packet(PACKET_SAMPLE1);
 	float speed = 10.0f;
 	float move = 235.0f;
 	packet << speed << move;
@@ -65,7 +66,7 @@ void ProtocolSocket::OnRawData(const char *buf, size_t len)
 	if (false == GetPacket(&packet, errorCode))
 		return;
 	
-	if (packet.GetHeader()->packetID == 10000)
+	if (packet.GetHeader()->packetID == PACKET_SAMPLE1)
 	{
 		static_cast<ProtocolHandler&>(Handler()).OnSample1(this, &packet);
 	}
