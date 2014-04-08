@@ -214,15 +214,9 @@
     <ClInclude Include=".\LogicEntry.h" />
     <ClInclude Include=".\SFLogicGateway.h" />
     <ClInclude Include=".\SFSinglton.h" />
-    <ClInclude Include=".\INetworkFramework.h" />
     <ClInclude Include=".\SFEngine.h" />
     <ClInclude Include="ACEHeader.h" />
     <ClInclude Include="DataBuffer.h" />
-    <ClInclude Include="EngineDLLInterface\BasePacket.h" />
-    <ClInclude Include="EngineDLLInterface\IEngine.h" />
-    <ClInclude Include="EngineDLLInterface\INetworkEngine.h" />
-    <ClInclude Include=".\EngineDLLInterface\ISessionService.h" />
-    <ClInclude Include="EngineDLLInterface\ISession.h" />
     <ClInclude Include="CommonHeader.h" />
     <ClInclude Include="ILogicDispatcher.h" />
     <ClInclude Include="PacketAllocator.h" />

@@ -171,19 +171,10 @@
     <ClInclude Include="SFStructure.h">
       <Filter>Common</Filter>
     </ClInclude>
-    <ClInclude Include="EngineDLLInterface\INetworkEngine.h">
-      <Filter>Network</Filter>
-    </ClInclude>
     <ClInclude Include=".\SFBridgeThread.h">
       <Filter>Network</Filter>
     </ClInclude>
-    <ClInclude Include=".\INetworkFramework.h">
-      <Filter>Network</Filter>
-    </ClInclude>
     <ClInclude Include=".\SFEngine.h">
-      <Filter>Network</Filter>
-    </ClInclude>
-    <ClInclude Include="EngineDLLInterface\ISession.h">
       <Filter>Network</Filter>
     </ClInclude>
     <ClInclude Include="SFProtobufPacketImpl.h">
@@ -204,16 +195,7 @@
     <ClInclude Include="DataBuffer.h">
       <Filter>Packet\ProtobufPacket</Filter>
     </ClInclude>
-    <ClInclude Include=".\EngineDLLInterface\ISessionService.h">
-      <Filter>Network</Filter>
-    </ClInclude>
     <ClInclude Include=".\SFSessionService.h">
-      <Filter>Network</Filter>
-    </ClInclude>
-    <ClInclude Include="EngineDLLInterface\IEngine.h">
-      <Filter>Network</Filter>
-    </ClInclude>
-    <ClInclude Include="EngineDLLInterface\BasePacket.h">
       <Filter>Network</Filter>
     </ClInclude>
     <ClInclude Include="SFJsonProtocol.h">
