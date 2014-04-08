@@ -5,6 +5,7 @@
 #include "SFBridgeThread.h"
 #include "SFSessionService.h"
 #include "SFCasualGameDispatcher.h"
+#include "SFUtil.h"
 
 #pragma comment(lib, "BaseLayer.lib")
 #pragma comment(lib, "DatabaseLayer.lib")
@@ -20,22 +21,9 @@ SFEngine::SFEngine()
 	, m_bServerTerminated(false)
 	, m_pNetworkEngine(0)
 {
-	/*SFConfigure Configure;
-	_EngineConfig* pInfo = Configure.GetConfigureInfo();
-	pInfo->EngineName = L"CGSFEngine.dll";
-	pInfo->P2PModuleName = L"P2PServer.dll";
-	pInfo->ServerIP = L"127.0.0.1";
-	pInfo->ServerPort = 25251;
-	pInfo->PacketProtocol = L"Protobuf";
-	pInfo->HostName = L"Juhang";
-	pInfo->TimerList.push_back(TIMER_1_SEC);
-	pInfo->LogDirectory = L"d:\\cgsflog\\";
-	Configure.Write(L"EngineConfig.xml");
-
-	Configure.Write(L"EngineConfig.xml");*/
-
 	ACE::init();
 	google::InitGoogleLogging("CGSF");
+	m_Config.Read(L"EngineConfig.xml");
 	
 	m_EngineHandle = 0;
 }
@@ -104,18 +92,29 @@ ISessionService* SFEngine::CreateSessionService()
 	return pService;
 }
 
+ void SFEngine::SetLogFolder()
+{
+	WCHAR szFilePath[MAX_PATH] = { 0, };
+	GetModuleFileName(NULL, szFilePath, MAX_PATH);
+
+	WCHAR* szPath = SFUtil::ExtractPathInfo(szFilePath, SFUtil::PATH_DIR);
+	SetCurrentDirectory(szPath);
+
+	std::wstring szLogPath = szPath;
+	szLogPath += L"Log\\";
+
+	google::SetLogDestination(google::GLOG_INFO, (char*)StringConversion::ToASCII(szLogPath).c_str());
+	google::SetLogDestination(google::GLOG_WARNING, (char*)StringConversion::ToASCII(szLogPath).c_str());
+	google::SetLogDestination(google::GLOG_ERROR, (char*)StringConversion::ToASCII(szLogPath).c_str());
+
+	LOG(INFO) << "Log Destination " << (char*)StringConversion::ToASCII(szLogPath).c_str();
+}
+
 bool SFEngine::Intialize(ILogicEntry* pLogicEntry, IPacketProtocol* pProtocol, ILogicDispatcher* pDispatcher)
 {
+	SetLogFolder();
+
 	LOG(INFO) << "Engine Initialize... ";
-	
-	m_Config.Read(L"EngineConfig.xml");
-	_EngineConfig* pInfo = m_Config.GetConfigureInfo();
-
-	google::SetLogDestination(google::GLOG_INFO, (char*)StringConversion::ToASCII(pInfo->LogDirectory).c_str()); 
-	google::SetLogDestination(google::GLOG_WARNING, (char*)StringConversion::ToASCII(pInfo->LogDirectory).c_str()); 
-	google::SetLogDestination(google::GLOG_ERROR, (char*)StringConversion::ToASCII(pInfo->LogDirectory).c_str()); 
-
-	LOG(INFO) << "Log Destination " << (char*)StringConversion::ToASCII(pInfo->LogDirectory).c_str();
 
 	ACE::init();
 	LOG(INFO) << "ACE Init ";
@@ -142,6 +141,7 @@ bool SFEngine::Intialize(ILogicEntry* pLogicEntry, IPacketProtocol* pProtocol, I
 
 	LOG(INFO) << "LogicEntry Intialize Success!!";
 
+	_EngineConfig* pInfo = m_Config.GetConfigureInfo();
 	if (false == CreateEngine((char*)StringConversion::ToASCII(pInfo->EngineName).c_str(), true))
 	{
 		LOG(ERROR) << "NetworkEngine : " << StringConversion::ToASCII(pInfo->EngineName).c_str() << " Creation FAIL!!";
@@ -219,15 +219,16 @@ bool SFEngine::Start(char* szIP, unsigned short Port)
 bool SFEngine::ShutDown()
 {
 	LOG(INFO) << "Engine Shut Down!!";
+
 	google::FlushLogFiles(google::GLOG_INFO);
 
 	m_bServerTerminated = true;
 
-	SFPacket* pPacket = PacketPoolSingleton::instance()->Alloc();
-	pPacket->SetPacketType(SFPACKET_SERVERSHUTDOWN);
-	PacketSendSingleton::instance()->PushPacket(pPacket);
-
 	BasePacket* pCommand = PacketPoolSingleton::instance()->Alloc();
+	pCommand->SetPacketType(SFPACKET_SERVERSHUTDOWN);
+	PacketSendSingleton::instance()->PushPacket(pCommand);
+
+	pCommand = PacketPoolSingleton::instance()->Alloc();
 	pCommand->SetOwnerSerial(-1);
 	pCommand->SetPacketType(SFPACKET_SERVERSHUTDOWN);
 	LogicGatewaySingleton::instance()->PushPacket(pCommand);

@@ -69,8 +69,7 @@ bool SFNetworkEntry::Initialize(INetworkCallback* pTCPCallBack, IPacketProtocol*
 	if (pDispatcher == NULL)
 		pDispatcher = new SFCasualGameDispatcher();
 
-	m_pTCPNetwork->SetLogicDispatcher(pDispatcher);
-	
+	m_pTCPNetwork->SetLogicDispatcher(pDispatcher);	
 	
 	return true;
 }

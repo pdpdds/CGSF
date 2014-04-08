@@ -73,12 +73,14 @@
       <IntrinsicFunctions>true</IntrinsicFunctions>
       <PreprocessorDefinitions>WIN32;NDEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <SDLCheck>true</SDLCheck>
+      <AdditionalIncludeDirectories>../../BaseLayer;../../DatabaseLayer;../../EngineLayer;../../EngineLayer/EngineDllInterface;../../ThirdParty/LiteZip;../../BaseLayer/DataStructure;../../BaseLayer/Logger;../../ThirdParty/SQLite;../../BaseLayer/External;../../ThirdParty\liblfds\include;../../Common/SFPacketStore;../../ThirdParty/PCRE/include;../../ThirdParty/ssl/include;../../ThirdParty/ACE/include;../../ThirdParty;../../Common;../../ThirdParty\fastdb-375\fastdb\inc</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
       <OptimizeReferences>true</OptimizeReferences>
+      <AdditionalLibraryDirectories>../../ThirdParty/Bugtrap;../../ThirdParty/SQLite;../../VSProject/Lib/x86/Release/;../../ThirdParty/Lib/x86/Release;../../ThirdParty/MySql/lib;../../ThirdParty/ace/lib/x86;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>

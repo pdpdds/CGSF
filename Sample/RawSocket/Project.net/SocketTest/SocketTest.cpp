@@ -12,9 +12,7 @@
 #include <ListenSocket.h>
 #include <Utility.h>
 #include <Parse.h>
-#include <HttpGetSocket.h>
 #include <Socket.h>
-#include <HttpDebugSocket.h>
 #include <iostream>
 
 #ifdef SOCKETS_NAMESPACE

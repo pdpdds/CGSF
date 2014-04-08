@@ -13,9 +13,6 @@
       <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
       <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
     </Filter>
-    <Filter Include="EngineInterface">
-      <UniqueIdentifier>{31e5c044-318e-4e5d-8844-91f8f5f3a582}</UniqueIdentifier>
-    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Protocol.h">
@@ -26,30 +23,6 @@
     </ClInclude>
     <ClInclude Include="ASIOEngine.h">
       <Filter>Source Files</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\Common\EngineInterface\IEngine.h">
-      <Filter>EngineInterface</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\Common\EngineInterface\INetworkCallback.h">
-      <Filter>EngineInterface</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\Common\EngineInterface\INetworkEngine.h">
-      <Filter>EngineInterface</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\Common\EngineInterface\IP2PManager.h">
-      <Filter>EngineInterface</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\Common\EngineInterface\IPacketProtocol.h">
-      <Filter>EngineInterface</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\Common\EngineInterface\ISession.h">
-      <Filter>EngineInterface</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\Common\EngineInterface\ISessionService.h">
-      <Filter>EngineInterface</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\Common\EngineInterface\IUDPNetworkCallback.h">
-      <Filter>EngineInterface</Filter>
     </ClInclude>
     <ClInclude Include="ASIOServer.h">
       <Filter>Source Files</Filter>

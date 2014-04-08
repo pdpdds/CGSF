@@ -98,7 +98,7 @@ bool LockQueueTest::Run()
 
 	GPG::node<int>* pNode = new GPG::node<int>(-1);
 	GPG::LockFreeQueue<int> GPGQueue(pNode);
-	SFASSERT(true == TestLockQueue((ACE_THR_FUNC)LockFreeProducer, (ACE_THR_FUNC)LockFreeConsumer, &GPGQueue));
+	VERIFY(true == TestLockQueue((ACE_THR_FUNC)LockFreeProducer, (ACE_THR_FUNC)LockFreeConsumer, &GPGQueue));
 	SFASSERT(totalElementCount == releaseCount);
 	
 	printf("allocation count : %d, dealloc count : %d\n", totalElementCount, releaseCount);
@@ -115,7 +115,7 @@ bool LockQueueTest::Run()
 	totalElementCount = 0;
 	releaseCount = 0;
 
-	SFASSERT(true == TestLockQueue((ACE_THR_FUNC)IOCPProducerThread, (ACE_THR_FUNC)IOCPConsumerThread, &IOCPQueue));
+	VERIFY(true == TestLockQueue((ACE_THR_FUNC)IOCPProducerThread, (ACE_THR_FUNC)IOCPConsumerThread, &IOCPQueue));
 	SFASSERT(totalElementCount == releaseCount);
 
 	printf("allocation count : %d, dealloc count : %d\n", totalElementCount, releaseCount);
@@ -127,26 +127,17 @@ bool LockQueueTest::TestLockQueue(ACE_THR_FUNC producer, ACE_THR_FUNC consumer, 
 {
 	ACE::init();
 
-	SYSTEM_INFO si;
-	GetSystemInfo(&si);
+	int threadCount = 4;
 
-	int OptimalThreadCount = si.dwNumberOfProcessors * 2;
+	totalElementCount = threadCount * MAX_ELEMENT_COUNT;
 
-	totalElementCount = OptimalThreadCount * MAX_ELEMENT_COUNT;
+	int producerGroupID = ACE_Thread_Manager::instance()->spawn_n(threadCount, producer, pArg, THR_NEW_LWP, ACE_DEFAULT_THREAD_PRIORITY, 1);
 
-	int producerGroupID = ACE_Thread_Manager::instance()->spawn_n(OptimalThreadCount, producer, pArg, THR_NEW_LWP, ACE_DEFAULT_THREAD_PRIORITY, 1);
+	SFASSERT(producerGroupID != -1);
+	
+	int consumerGroupID = ACE_Thread_Manager::instance()->spawn_n(threadCount, consumer, pArg, THR_NEW_LWP, ACE_DEFAULT_THREAD_PRIORITY, 2);
 
-	if(producerGroupID == -1)
-	{
-		SFASSERT(0);
-	}
-
-	int consumerGroupID = ACE_Thread_Manager::instance()->spawn_n(OptimalThreadCount, consumer, pArg, THR_NEW_LWP, ACE_DEFAULT_THREAD_PRIORITY, 2);
-
-	if(consumerGroupID == -1)
-	{
-		SFASSERT(0);
-	}
+	SFASSERT(consumerGroupID != -1);
 
 	ACE_Thread_Manager::instance()->wait_grp(producerGroupID);
 	ACE_Thread_Manager::instance()->wait_grp(consumerGroupID);

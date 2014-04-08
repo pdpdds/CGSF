@@ -29,7 +29,6 @@ SFTCPNetwork::~SFTCPNetwork(void)
 	if (m_TCPClient)
 	{
 		m_TCPClient->ShutDown();
-		delete m_TCPClient;
 		m_TCPClient = 0;
 	}
 }

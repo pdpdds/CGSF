@@ -11,8 +11,9 @@
 #include <rtcapi.h>
 #include <Shellapi.h>
 #include <dbghelp.h>
-
 #include <float.h>
+
+#pragma comment(lib, "BaseLayer.lib")
 void sigfpe_test()
 { 
     // Code taken from http://www.devx.com/cplus/Article/34993/1954

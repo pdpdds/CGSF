@@ -25,27 +25,18 @@ bool ChatLogicEntry::ProcessPacket(BasePacket* pPacket)
 	switch (pPacket->GetPacketType())
 	{
 	case SFPACKET_CONNECT:
-		{	
-			OnConnectPlayer(pPacket->GetOwnerSerial());
-		}
+		OnConnectPlayer(pPacket->GetOwnerSerial());
 		break;
 
 	case SFPACKET_DATA:
-		{	
-			OnPlayerData(pPacket);
-		}
+		OnPlayerData(pPacket);
 		break;
 
-	case SFPACKET_DISCONNECT:
-		{	
-			OnDisconnectPlayer(pPacket->GetOwnerSerial());
-		}
+	case SFPACKET_DISCONNECT:	
+		OnDisconnectPlayer(pPacket->GetOwnerSerial());
 		break;
 
 	case SFPACKET_TIMER:
-		{	
-			//OnTimer(pCommand->GetOwnerSerial());
-		}
 		break;
 
 	default:
@@ -62,7 +53,7 @@ bool ChatLogicEntry::OnConnectPlayer(int Serial)
 
 	m_ChatUserMap.insert(ChatUserMap::value_type(Serial, pUser));
 
-	return TRUE;
+	return true;
 }
 
 bool ChatLogicEntry::OnDisconnectPlayer(int Serial)
@@ -81,7 +72,7 @@ bool ChatLogicEntry::OnDisconnectPlayer(int Serial)
 
 	m_ChatUserMap.erase(iter);
 
-	return TRUE;
+	return true;
 }
 
 bool ChatLogicEntry::OnPlayerData(BasePacket* pPacket)
@@ -91,15 +82,15 @@ bool ChatLogicEntry::OnPlayerData(BasePacket* pPacket)
 	switch (pPacket->GetPacketID())
 	{
 	case CHAT_PACKET_NUM:
-	{
-				 std::cout << pJsonPacket->GetData().GetValue<tstring>("chat") << std::endl;
 
-				 SFJsonPacket JsonPacket(CHAT_PACKET_NUM);
-				 JsonObjectNode& ObjectNode = JsonPacket.GetData();
-				 ObjectNode.Add("chat", pJsonPacket->GetData().GetValue<tstring>("chat"));
+		std::cout << pJsonPacket->GetData().GetValue<tstring>("chat") << std::endl;
 
-				 Broadcast(&JsonPacket);				
-	}
+		SFJsonPacket JsonPacket(CHAT_PACKET_NUM);
+		JsonObjectNode& ObjectNode = JsonPacket.GetData();
+		ObjectNode.Add("chat", pJsonPacket->GetData().GetValue<tstring>("chat"));
+
+		Broadcast(&JsonPacket);
+
 		break;
 	}
 
@@ -108,7 +99,6 @@ bool ChatLogicEntry::OnPlayerData(BasePacket* pPacket)
 
 bool ChatLogicEntry::Broadcast(BasePacket* pPacket)
 {
-
 	for (auto& chatUser : m_ChatUserMap)
 	{
 		pPacket->SetOwnerSerial(chatUser.first);

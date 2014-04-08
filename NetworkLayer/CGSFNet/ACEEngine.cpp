@@ -46,9 +46,9 @@ bool ACEServerEngine::Start(char* szIP, unsigned short Port)
 
 	int OptimalThreadCount =si.dwNumberOfProcessors * 2;
 
-	m_WorkThreadGroupID = ACE_Thread_Manager::instance()->spawn_n(OptimalThreadCount, (ACE_THR_FUNC)ProactorWorkerThread, NULL, THR_NEW_LWP, ACE_DEFAULT_THREAD_PRIORITY, 1);
+	m_workThreadGroupID = ACE_Thread_Manager::instance()->spawn_n(OptimalThreadCount, (ACE_THR_FUNC)ProactorWorkerThread, NULL, THR_NEW_LWP, ACE_DEFAULT_THREAD_PRIORITY, 1);
 
-	if(m_WorkThreadGroupID == -1)
+	if (m_workThreadGroupID == -1)
 	{
 		return false;
 	}
@@ -67,9 +67,9 @@ bool ACEServerEngine::Start(char* szIP, unsigned short Port)
 
 bool ACEServerEngine::Shutdown()
 {
-	//ACE_Thread_Manager::instance()->wait_grp(m_WorkThreadGroupID);
+	ACE_Proactor::instance()->close();
+	ACE_Thread_Manager::instance()->wait_grp(m_workThreadGroupID);
 
-	//ACE_Thread_Manager::instance()->wait_grp(m_LogicThreadGroupID);
 	ACE::fini();
 
 	return true;
@@ -126,9 +126,9 @@ bool ACEClientEngine::Init()
 
 	int OptimalThreadCount = 1;
 
-	m_WorkThreadGroupID = ACE_Thread_Manager::instance()->spawn_n(OptimalThreadCount, (ACE_THR_FUNC)ProactorWorkerThread, NULL, THR_NEW_LWP, ACE_DEFAULT_THREAD_PRIORITY, 1);
+	m_workThreadGroupID = ACE_Thread_Manager::instance()->spawn_n(OptimalThreadCount, (ACE_THR_FUNC)ProactorWorkerThread, NULL, THR_NEW_LWP, ACE_DEFAULT_THREAD_PRIORITY, 1);
 
-	if(m_WorkThreadGroupID == -1)
+	if (m_workThreadGroupID == -1)
 	{
 		assert(0);
 		return FALSE;
@@ -159,7 +159,7 @@ bool ACEClientEngine::Start(char* szIP, unsigned short Port)
 
 bool ACEClientEngine::Shutdown()
 {
-	//ACE_Thread_Manager::instance()->wait_grp(m_WorkThreadGroupID);
+	ACE_Thread_Manager::instance()->join(m_workThreadGroupID);
 
 	ACE::fini();
 

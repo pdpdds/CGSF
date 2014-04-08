@@ -49,24 +49,18 @@ public:
 	{
 		out.Begin(L"Struct");
 		out.Write(L"EngineName",m_ConfigureInfo.EngineName);
-		out.Write(L"P2PModuleName",m_ConfigureInfo.P2PModuleName);
 		out.Write(L"ServerIP",m_ConfigureInfo.ServerIP);
 		out.Write(L"ServerPort",m_ConfigureInfo.ServerPort);
-		out.Write(L"PacketProtocol",m_ConfigureInfo.PacketProtocol);
 		out.Write(L"HostName",m_ConfigureInfo.HostName);
-		out.Write(L"TimerList",m_ConfigureInfo.TimerList);
 		out.Write(L"LogDirectory",m_ConfigureInfo.LogDirectory);
 	}
 
 	void Deserialize(IXMLStreamReader& in) {
 		in.Begin(L"Struct");
 		in.Read(L"EngineName",m_ConfigureInfo.EngineName);
-		in.Read(L"P2PModuleName",m_ConfigureInfo.P2PModuleName);
 		in.Read(L"ServerIP",m_ConfigureInfo.ServerIP);
 		in.Read(L"ServerPort",m_ConfigureInfo.ServerPort);
-		in.Read(L"PacketProtocol",m_ConfigureInfo.PacketProtocol);
 		in.Read(L"HostName",m_ConfigureInfo.HostName);
-		in.Read(L"TimerList",m_ConfigureInfo.TimerList);
 		in.Read(L"LogDirectory",m_ConfigureInfo.LogDirectory);
 	}
 

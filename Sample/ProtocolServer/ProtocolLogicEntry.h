@@ -39,6 +39,8 @@ bool ProtocolLogicEntry<T>::ProcessPacket(BasePacket* pPacket)
 	{
 	case SFPACKET_DATA:
 		return m_Dispatch.HandleMessage(pPacket->GetPacketID(), pPacket);
+	case SFPACKET_CONNECT:
+		printf("new user coming!!\n");
 	}
 
 	return true;

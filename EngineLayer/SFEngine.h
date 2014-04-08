@@ -44,6 +44,8 @@ public:
 	bool ServerTerminated(){ return m_bServerTerminated; }
 	bool ExecuteServiceController(TCHAR* szArg);
 
+	void SetLogFolder();
+
 protected:
 
 	bool CreateLogicThread(ILogicEntry* pLogic);

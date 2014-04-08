@@ -12,6 +12,7 @@
 
 #pragma comment(lib, "EngineLayer.lib")
 
+#define ECHO_PACKET_ID 1000
 
 void EchoInputThread(void* Args)
 {
@@ -24,7 +25,7 @@ void EchoInputThread(void* Args)
 		if(input.compare("exit") == 0)
 			break;
 
-		SFJsonPacket packet(1000);
+		SFJsonPacket packet(ECHO_PACKET_ID);
 		packet.GetData().Add("ECHO", input.c_str());
 
 		SFNetworkEntry::GetInstance()->TCPSend(&packet);

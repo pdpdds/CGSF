@@ -23,7 +23,7 @@ public:
 protected:
 
 private:
-	int m_WorkThreadGroupID;
+	int m_workThreadGroupID;
 	ProactorAcceptor m_Acceptor;
 	ACETimeOutHandler m_TimeOutHandler;
 };
@@ -47,7 +47,7 @@ public:
 protected:
 
 private:
-	int m_WorkThreadGroupID;
+	int m_workThreadGroupID;
 	ProactorService* m_ProactorService;
 	ACETimeOutHandler m_TimeOutHandler;
 };

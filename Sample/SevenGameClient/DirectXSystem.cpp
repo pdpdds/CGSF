@@ -38,6 +38,7 @@ psys::PSystem* g_pFireEffect = 0;
 Camera TheCamera(Camera::AIRCRAFT);
 
 CasualGameManager* g_pCasualGameManager = 0;
+IGameMain* g_pGameMain = 0;
 
 #ifdef _DEBUG
 #pragma comment(lib, "CEGUIBase-0_d.lib")
@@ -55,7 +56,6 @@ CasualGameManager* g_pCasualGameManager = 0;
 #pragma comment(lib, "DatabaseLayer.lib")
 #pragma comment(lib, "libprotobuf.lib")
 
-IGameMain* g_pGameMain = 0;
 //
 bool Setup()
 {
