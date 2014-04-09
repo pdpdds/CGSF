@@ -44,8 +44,6 @@ BOOL SFFreeForAll::ProcessUserRequest( SFPlayer* pPlayer, BasePacket* pPacket )
 
 	switch(pPacket->GetPacketID())
 	{
-	//case CGSF::MSG_PLAYER_MOVE_UPDATE:
-	//case CGSF::MSG_PLAYER_LOOK_UPDATE:
 	case FPS::MSG_PLAYER_SCORE:
 	case FPS::MSG_PLAYER_WEAPON_CHANGE:
 	case FPS::MSG_PLAYER_WEAPON_CHANGING:

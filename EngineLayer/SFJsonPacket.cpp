@@ -4,7 +4,7 @@
 
 SFJsonPacket::SFJsonPacket(USHORT usPacketId)
 {
-	m_Node.Add("PacketId", usPacketId);
+	m_Header.packetID = usPacketId;
 }
 
 SFJsonPacket::SFJsonPacket()

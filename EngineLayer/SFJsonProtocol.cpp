@@ -32,32 +32,53 @@ BOOL SFJsonProtocol::SendRequest(BasePacket* pPacket)
 	SFJsonPacket* pJsonPacket = (SFJsonPacket*)pPacket;
 	JsonObjectNode& ObjectNode = pJsonPacket->GetData();
 
-	const int BufferSize = 1024;
+	const int BufferSize = MaxBufferSize;
 	char buffer[BufferSize] = {0,};
-	unsigned int writtenSize = JsonBuilder::MakeBuffer(ObjectNode, buffer, BufferSize);
+
+//////////////////////////////////////////////////
+//header copy
+//////////////////////////////////////////////////
+	memcpy(buffer, pJsonPacket->GetHeader(), sizeof(SFPacketHeader));
+	unsigned int writtenSize = JsonBuilder::MakeBuffer(ObjectNode, buffer + sizeof(SFPacketHeader), BufferSize - sizeof(SFPacketHeader));
+	*((unsigned short*)buffer + 5) = writtenSize;
 	
-	SFEngine::GetInstance()->SendInternal(pJsonPacket->GetOwnerSerial(), buffer, writtenSize);
+	SFEngine::GetInstance()->SendInternal(pJsonPacket->GetOwnerSerial(), buffer, sizeof(SFPacketHeader) + writtenSize);
 
 	return TRUE;
+}
+
+bool SFJsonProtocol::GetCompleteNote(SFJsonPacket* pPacket)
+{
+	if (m_builder.GetUsedBufferSize() < sizeof(SFPacketHeader))
+		return false;
+
+	memcpy(pPacket->GetHeader(), m_builder.GetBuffer(), sizeof(SFPacketHeader));
+
+	SFPacketHeader* pHeader = pPacket->GetHeader();
+
+	if (pHeader->dataSize > MaxBufferSize - sizeof(SFPacketHeader))
+		return false;
+
+	if (m_builder.GetUsedBufferSize() < pHeader->dataSize + sizeof(SFPacketHeader))
+		return false;
+
+	m_builder.IncReadOffset(sizeof(SFPacketHeader));
+	
+	return m_builder.PopCompleteNode(pPacket->GetData(), pHeader->dataSize);
 }
 
 BasePacket* SFJsonProtocol::GetPacket(int& ErrorCode)
 {
 	ErrorCode = PACKETIO_ERROR_NONE;
-	//SFASSERT(m_builder.PopCompleteNode(dstRootNode));
+
 	SFJsonPacket* pPacket = (SFJsonPacket*)CreatePacket();
 
-	BOOL bResult = m_builder.PopCompleteNode(pPacket->GetData());
-
-	if(FALSE == bResult)
+	if (false == GetCompleteNote(pPacket))
 	{
 		//ErrorCode = SFProtocol::eIncompletePacket;
 		DisposePacket(pPacket);
 		return NULL;
 	}
-
-	int packetId = pPacket->GetData().GetValue<int>("PacketId");
-	pPacket->SetPacketID(packetId);
 	
 	return pPacket;
 }

@@ -24,5 +24,7 @@ protected:
 
 private:
 	JsonBuilder m_builder;
+
+	bool GetCompleteNote(SFJsonPacket* pPacket);
 };
 

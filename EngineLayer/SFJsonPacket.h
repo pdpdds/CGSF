@@ -11,10 +11,12 @@ public:
 	~SFJsonPacket(void);
 
 	JsonObjectNode&	GetData(){return m_Node;}
-
+	SFPacketHeader* GetHeader() { return &m_Header; }
 protected:
 
 private:
 	SFJsonPacket();
 	JsonObjectNode m_Node;
+
+	SFPacketHeader m_Header;
 };

@@ -13,21 +13,21 @@ BOOL SFPacketIOBuffer::GetPacket(SFPacket* pPacket, int& ErrorCode)
 {
 	ErrorCode = PACKETIO_ERROR_NONE;
 
-	USHORT HeaderSize = pPacket->GetHeaderSize();
+	USHORT headerSize = pPacket->GetHeaderSize();
 
-	if(GetUsedBufferSize() < HeaderSize)
+	if (GetUsedBufferSize() < headerSize)
 	{
 		return FALSE;
 	}
 
-	if(HeaderSize != GetData((char*)pPacket->GetHeader(), HeaderSize))
+	if (headerSize != GetData((char*)pPacket->GetHeader(), headerSize))
 	{
 		ErrorCode = PACKETIO_ERROR_HEADER;
 	}
 
 	int PacketSize = pPacket->GetPacketSize();
 
-	int DataSize = PacketSize - HeaderSize;
+	int DataSize = PacketSize - headerSize;
 
 	if(DataSize > MAX_PACKET_DATA)
 	{

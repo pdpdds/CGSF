@@ -2,10 +2,8 @@
 #include "JsonBuilder.h"
 #include "JsonNode.h"
 
-const unsigned int	MaxBufferSize = 1024*4;
-
-const char* Seperator = "\r\n";
-const int SeperatorLen = strlen(Seperator);
+//const char* Seperator = "\r\n";
+//const int SeperatorLen = strlen(Seperator);
 
 JsonBuilder::JsonBuilder() 
 	: m_bufferPtr(NULL)
@@ -34,18 +32,24 @@ void JsonBuilder::PushBuffer( const char* buffer, size_t bufferLen )
 	}
 }
 
-bool JsonBuilder::PopCompleteNode( JsonObjectNode& node )
+bool JsonBuilder::PopCompleteNode( JsonObjectNode& node, unsigned short dataSize )
 {
-	std::string totalContent(&m_bufferPtr[m_readOffset], m_writtenOffset);
-	size_t pos = totalContent.find(Seperator);
-	if (std::string::npos == pos)
-		return false;
+	//std::string totalContent(&m_bufferPtr[m_readOffset], m_writtenOffset);
+	//size_t pos = totalContent.find(Seperator);
+	//if (std::string::npos == pos)
+		//return false;
 
-	unsigned int usedSize = node.Parse(&m_bufferPtr[m_readOffset], pos);
+	unsigned int usedSize = node.Parse(&m_bufferPtr[m_readOffset], dataSize);
 	if (0 == usedSize)
 		return false;
+
+	if (usedSize != dataSize)
+	{
+		SFASSERT(0);
+		return false;
+	}
 	
-	m_readOffset += usedSize+SeperatorLen;
+	m_readOffset += usedSize;
 	if (m_readOffset == m_writtenOffset)
 	{
 		m_readOffset = 0;
@@ -70,6 +74,7 @@ unsigned int JsonBuilder::MakeBuffer( const JsonObjectNode& node, char* buffer, 
 	if (bufferLen < contentStr.length())
 		return 0;
 	memcpy(buffer, contentStr.c_str(), contentStr.length());
-	memcpy(&buffer[contentStr.length()], Seperator, SeperatorLen);
-	return (unsigned int)(contentStr.length()+SeperatorLen);
+	return (unsigned int)(contentStr.length());
+	//memcpy(&buffer[contentStr.length()], Seperator, SeperatorLen);
+	//return (unsigned int)(contentStr.length()+SeperatorLen);
 }
