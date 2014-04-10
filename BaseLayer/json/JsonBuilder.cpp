@@ -43,13 +43,13 @@ bool JsonBuilder::PopCompleteNode( JsonObjectNode& node, unsigned short dataSize
 	if (0 == usedSize)
 		return false;
 
-	if (usedSize != dataSize)
+	/*if (usedSize != dataSize)
 	{
 		SFASSERT(0);
 		return false;
-	}
+	}*/
 	
-	m_readOffset += usedSize;
+	m_readOffset += dataSize;
 	if (m_readOffset == m_writtenOffset)
 	{
 		m_readOffset = 0;
