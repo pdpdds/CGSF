@@ -55,6 +55,7 @@ bool SFJsonProtocol::GetCompleteNote(SFJsonPacket* pPacket)
 	memcpy(pPacket->GetHeader(), m_builder.GetBuffer(), sizeof(SFPacketHeader));
 
 	SFPacketHeader* pHeader = pPacket->GetHeader();
+	pPacket->SetPacketID(pHeader->packetID);
 
 	if (pHeader->dataSize > MaxBufferSize - sizeof(SFPacketHeader))
 		return false;

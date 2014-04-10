@@ -16,4 +16,4 @@
 #include "CommonHeader.h"
 #include "SFEngine.h"
 
-#define CHAT_PACKET_NUM 0x1234
+#define CHAT_PACKET_NUM 1000

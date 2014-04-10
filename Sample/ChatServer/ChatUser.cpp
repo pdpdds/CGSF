@@ -9,3 +9,9 @@ ChatUser::ChatUser(void)
 ChatUser::~ChatUser(void)
 {
 }
+
+void ChatUser::SetName(int serial)
+{
+	m_szName = "test";
+	m_szName += std::to_string(serial);
+}

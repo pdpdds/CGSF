@@ -15,6 +15,7 @@ public:
 	virtual bool Initialize() override;
 	virtual bool ProcessPacket(BasePacket* pBasePacket) override;
 	bool Broadcast(BasePacket* pPacket);
+	ChatUser* FindUser(int serial);
 
 protected:
 	bool OnConnectPlayer(int Serial);

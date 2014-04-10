@@ -18,7 +18,7 @@ GameMaterial::GameMaterial( char *name, char *path ) : Material( name, path )
 	// Store the step sounds.
 	//m_stepSounds = new LinkedList< Sound >;
 	char stepSound[16] = { "step_sound0" };
-	while( script->GetStringData( stepSound ) != NULL )
+	//while( script->GetStringData( stepSound ) != NULL )
 	{
 	//	m_stepSounds->Add( new Sound( script->GetStringData( stepSound ) ) );
 	//	sprintf( stepSound, "step_sound%d", m_stepSounds->GetTotalElements() );

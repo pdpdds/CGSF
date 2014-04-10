@@ -4,7 +4,7 @@
 #include <iostream>
 #include "ChatUser.h"
 
-#define CHAT_PACKET_NUM 0x1234
+#define CHAT_PACKET_NUM 1000
 
 ChatLogicEntry::ChatLogicEntry(void)
 {
@@ -50,6 +50,7 @@ bool ChatLogicEntry::OnConnectPlayer(int Serial)
 {
 	ChatUser* pUser = new ChatUser();
 	pUser->SetSerial(Serial);
+	pUser->SetName(Serial);
 
 	m_ChatUserMap.insert(ChatUserMap::value_type(Serial, pUser));
 
@@ -82,11 +83,16 @@ bool ChatLogicEntry::OnPlayerData(BasePacket* pPacket)
 	switch (pPacket->GetPacketID())
 	{
 	case CHAT_PACKET_NUM:
+		ChatUser* pUser = FindUser(pPacket->GetOwnerSerial());
 
-		std::cout << pJsonPacket->GetData().GetValue<tstring>("chat") << std::endl;
+		if (pUser == NULL)
+			return false;
+
+		std::cout << pUser->GetName().c_str() << " : " << pJsonPacket->GetData().GetValue<tstring>("chat") << std::endl;
 
 		SFJsonPacket JsonPacket(CHAT_PACKET_NUM);
 		JsonObjectNode& ObjectNode = JsonPacket.GetData();
+		ObjectNode.Add("who", pUser->GetName());
 		ObjectNode.Add("chat", pJsonPacket->GetData().GetValue<tstring>("chat"));
 
 		Broadcast(&JsonPacket);
@@ -106,4 +112,16 @@ bool ChatLogicEntry::Broadcast(BasePacket* pPacket)
 	}
 
 	return true;
+}
+
+ChatUser* ChatLogicEntry::FindUser(int serial)
+{
+	auto& iter = m_ChatUserMap.find(serial);
+
+	if (iter == m_ChatUserMap.end())
+	{
+		return NULL;
+	}
+
+	return iter->second;
 }
