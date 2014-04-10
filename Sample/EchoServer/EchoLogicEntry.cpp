@@ -13,7 +13,7 @@ EchoLogicEntry::~EchoLogicEntry(void)
 
 bool EchoLogicEntry::Initialize()
 {
-	return TRUE;
+	return true;
 }
 
 bool EchoLogicEntry::ProcessPacket(BasePacket* pPacket )
