@@ -14,10 +14,14 @@ namespace ChatClientNET
     {
         ClientNetwork Network = new ClientNetwork();
         PacketBufferManager PacketBuffer = new PacketBufferManager();
-        Queue<JsonPacketData> MessageQueue = new Queue<JsonPacketData>();
 
+        Queue<JsonPacketData> RecvPacketQueue = new Queue<JsonPacketData>();
+        Queue<byte[]> SendPacketQueue = new Queue<byte[]>();
+
+        bool IsNetworkThreadRunning = false;
         System.Threading.Thread NetworkReadThread = null;
-        bool IsNetworkReadThreadRunning = false;
+        System.Threading.Thread NetworkSendThread = null;
+        
         
         System.Windows.Threading.DispatcherTimer dispatcherUITimer;
 
@@ -35,9 +39,11 @@ namespace ChatClientNET
         {
             PacketBuffer.Init((8096 * 10), 12, 512);
 
-            IsNetworkReadThreadRunning = true;
+            IsNetworkThreadRunning = true;
             NetworkReadThread = new System.Threading.Thread(this.NetworkReadProcess);
             NetworkReadThread.Start();
+            NetworkSendThread = new System.Threading.Thread(this.NetworkSendProcess);
+            NetworkSendThread.Start();
 
             dispatcherUITimer = new System.Windows.Threading.DispatcherTimer();
             dispatcherUITimer.Tick += new EventHandler(ReadPacketQueueProcess);
@@ -51,8 +57,9 @@ namespace ChatClientNET
 
         private void MainForm_FormClosing(object sender, FormClosingEventArgs e)
         {
-            IsNetworkReadThreadRunning = false;
+            IsNetworkThreadRunning = false;
             NetworkReadThread.Join();
+            NetworkSendThread.Join();
         }
 
         // 접속하기
@@ -94,13 +101,7 @@ namespace ChatClientNET
             string jsonstring = Newtonsoft.Json.JsonConvert.SerializeObject(request);
             byte[] bodyData = Encoding.UTF8.GetBytes(jsonstring);
 
-            List<byte> dataSource = new List<byte>();
-            dataSource.AddRange(BitConverter.GetBytes((UInt16)PACKET_ID_CHAT));
-            dataSource.AddRange(BitConverter.GetBytes((UInt32)0));
-            dataSource.AddRange(BitConverter.GetBytes((UInt32)0));
-            dataSource.AddRange(BitConverter.GetBytes((UInt16)bodyData.Length));
-                        
-            Network.Send(dataSource.ToArray());
+            PostSendPacket((UInt16)PACKET_ID_CHAT, bodyData);
         }
 
 
@@ -112,12 +113,27 @@ namespace ChatClientNET
                 btnDisconnect.Enabled = false;
             }
 
+            RecvPacketQueue.Clear();
+            SendPacketQueue.Clear();
+
             labelConnState.Text = "서버 접속이 끊어짐";
+        }
+
+        void PostSendPacket(UInt16 packetID, byte[] bodyData)
+        {
+            List<byte> dataSource = new List<byte>();
+            dataSource.AddRange(BitConverter.GetBytes(packetID));
+            dataSource.AddRange(BitConverter.GetBytes((UInt32)0));
+            dataSource.AddRange(BitConverter.GetBytes((UInt32)0));
+            dataSource.AddRange(BitConverter.GetBytes((UInt16)bodyData.Length));
+            dataSource.AddRange(bodyData);
+
+            SendPacketQueue.Enqueue(dataSource.ToArray());
         }
 
         void NetworkReadProcess()
         {
-            while (IsNetworkReadThreadRunning)
+            while (IsNetworkThreadRunning)
             {
                 if (Network.IsConnected() == false)
                 {
@@ -146,14 +162,42 @@ namespace ChatClientNET
                         packet.JsonFormatData = new byte[packet.DataSize];
                         Buffer.BlockCopy(recvData.Array, (recvData.Offset + 12), packet.JsonFormatData, 0, (data.Count - 12));
                         
-                        lock (((System.Collections.ICollection)MessageQueue).SyncRoot)
+                        lock (((System.Collections.ICollection)RecvPacketQueue).SyncRoot)
                         {
-                            MessageQueue.Enqueue(packet);
+                            RecvPacketQueue.Enqueue(packet);
                         }
                     }
                 }
                 else
                 {
+                    var packet = new JsonPacketData();
+                    packet.PacketID = PACKET_ID_DISCONNECTED;
+                    packet.DataSize = 0;
+                    
+                    lock (((System.Collections.ICollection)RecvPacketQueue).SyncRoot)
+                    {
+                        RecvPacketQueue.Enqueue(packet);
+                    }
+                }
+            }
+        }
+
+        void NetworkSendProcess()
+        {
+            while (IsNetworkThreadRunning)
+            {
+                if (Network.IsConnected() == false)
+                {
+                    continue;
+                }
+
+                lock (((System.Collections.ICollection)RecvPacketQueue).SyncRoot)
+                {
+                    if (SendPacketQueue.Count > 0)
+                    {
+                        var packet = SendPacketQueue.Dequeue();
+                        Network.Send(packet);
+                    }
                 }
             }
         }
@@ -165,11 +209,11 @@ namespace ChatClientNET
             try
             {
                 JsonPacketData packet = null;
-                lock (((System.Collections.ICollection)MessageQueue).SyncRoot)
+                lock (((System.Collections.ICollection)RecvPacketQueue).SyncRoot)
                 {
-                    if (MessageQueue.Count() > 0)
+                    if (RecvPacketQueue.Count() > 0)
                     {
-                        packet = MessageQueue.Dequeue();
+                        packet = RecvPacketQueue.Dequeue();
                     }
                 }
 

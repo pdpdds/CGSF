@@ -67,7 +67,7 @@ namespace ChatClientNET
                 return new ArraySegment<byte>();
             }
 
-            var bodySize = BitConverter.ToInt32(PacketData, (ReadPos+8));
+            var bodySize = BitConverter.ToUInt16(PacketData, (ReadPos+10));
             var packetDataSize = HeaderSize + bodySize;
 
             if (enableReadSize < packetDataSize)
