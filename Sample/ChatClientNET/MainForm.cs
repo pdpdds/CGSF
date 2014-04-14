@@ -57,6 +57,8 @@ namespace ChatClientNET
 
         private void MainForm_FormClosing(object sender, FormClosingEventArgs e)
         {
+            Network.Close();
+
             IsNetworkThreadRunning = false;
             NetworkReadThread.Join();
             NetworkSendThread.Join();
