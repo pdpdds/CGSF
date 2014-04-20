@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<RelativeLayout
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent" xmlns:android="http://schemas.android.com/apk/res/android">
+    <EditText
+            android:layout_width="227dp"
+            android:layout_height="wrap_content"
+            android:text="New EditText"
+            android:id="@+id/editText"
+            android:layout_alignParentLeft="true" android:layout_alignParentBottom="true"/>
+    <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Send"
+            android:id="@+id/sendbutton"
+            android:layout_alignParentRight="true" android:layout_alignTop="@+id/editText"
+            android:layout_toRightOf="@+id/editText"/>
+    <EditText
+            android:layout_width="146dp"
+            android:layout_height="wrap_content"
+            android:text="127.0.0.1"
+            android:id="@+id/ipaddress" android:layout_alignLeft="@+id/editText" android:layout_alignParentTop="true"
+            android:layout_alignRight="@+id/editText"/>
+    <Button
+            android:layout_width="109dp"
+            android:layout_height="wrap_content"
+            android:text="Connect"
+            android:id="@+id/connectbutton" android:layout_alignLeft="@+id/editText" android:layout_alignParentTop="true"
+            android:layout_marginTop="42dp"/>
+    <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Disconnect"
+            android:id="@+id/disconnectbutton"
+            android:layout_toRightOf="@+id/connectbutton" android:layout_alignTop="@+id/connectbutton"/>
+    <EditText
+            android:layout_width="97dp"
+            android:layout_height="wrap_content"
+            android:text="25251"
+            android:id="@+id/port"
+            android:layout_alignTop="@+id/ipaddress"
+            android:layout_alignRight="@+id/sendbutton"
+            android:layout_toRightOf="@+id/editText"/>
+    <ScrollView
+            android:layout_width="184dp"
+            android:layout_height="172dp"
+            android:id="@+id/scrollView"
+            android:layout_below="@+id/connectbutton" android:layout_alignLeft="@+id/editText"
+            android:layout_alignRight="@+id/sendbutton" android:layout_above="@+id/editText"/>
+</RelativeLayout>
