@@ -257,9 +257,28 @@ inline void Reader::Scan(Tokens& tokens, InputStream& inputStream)
 
 inline void Reader::EatWhiteSpace(InputStream& inputStream)
 {
-   while (inputStream.EOS() == false && 
-          ::isspace(inputStream.Peek()))
-      inputStream.Get();
+	while (inputStream.EOS() == false)
+	{
+		int peakData = inputStream.Peek();
+
+		if (peakData >= -1 && peakData <= 255)
+		{
+			if (::isspace(peakData))
+			{
+				inputStream.Get();
+			}
+			else
+			{
+				break;
+			}
+		}
+		else
+		{
+			break;
+		}
+				
+	}
+     
 }
 
 inline void Reader::MatchExpectedString(const std::string& sExpected, InputStream& inputStream)

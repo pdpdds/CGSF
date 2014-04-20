@@ -41,7 +41,10 @@ bool JsonBuilder::PopCompleteNode( JsonObjectNode& node, unsigned short dataSize
 
 	unsigned int usedSize = node.Parse(&m_bufferPtr[m_readOffset], dataSize);
 	if (0 == usedSize)
+	{
+		m_readOffset += dataSize;
 		return false;
+	}
 
 	/*if (usedSize != dataSize)
 	{
