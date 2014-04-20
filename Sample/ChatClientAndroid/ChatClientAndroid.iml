@@ -15,8 +15,8 @@
     </content>
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />
-    <orderEntry type="library" name="JavaSockets-0.1" level="project" />
     <orderEntry type="library" name="com.googlecode.json-simple:json-simple:1.1" level="project" />
+    <orderEntry type="library" name="JavaSockets-0.1" level="project" />
   </component>
 </module>
 

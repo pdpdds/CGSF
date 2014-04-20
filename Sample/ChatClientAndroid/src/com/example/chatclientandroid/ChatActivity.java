@@ -10,8 +10,6 @@ import net.alhem.jsockets.StdoutLog;
 
 public class ChatActivity extends Activity implements View.OnClickListener
 {
-
-
     /** Called when the activity is first created. */
     @Override
     public void onCreate(Bundle savedInstanceState)
@@ -30,14 +28,13 @@ public class ChatActivity extends Activity implements View.OnClickListener
         switch(v.getId()){
 
             case R.id.connectbutton:
-                         int i = 1;
                 Button button = (Button)findViewById(R.id.connectbutton);
                 button.setEnabled(false);;
 
                 StdLog log = new StdoutLog();
                 SocketHandler h = new SocketHandler(log);
                 ChatClientSocket chatSocket = new  ChatClientSocket(h, this);
-                chatSocket.Open( "54.186.29.198", 25251 );
+                chatSocket.Open( "127.0.0.1", 25251 );
                 h.Add( chatSocket );
 
                 while (!chatSocket.quit) // forever
@@ -46,7 +43,6 @@ public class ChatActivity extends Activity implements View.OnClickListener
                 }
 
                 break;
-
         }
     }
 }
