@@ -41,6 +41,8 @@ public class ChatActivity extends Activity implements View.OnClickListener
                 {
                     h.Select(1, 0);
                 }
+            case R.id.chatmessage:
+                //ProcessChat();
 
                 break;
         }
