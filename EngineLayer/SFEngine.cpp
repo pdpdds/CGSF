@@ -103,6 +103,8 @@ ISessionService* SFEngine::CreateSessionService()
 	std::wstring szLogPath = szPath;
 	szLogPath += L"Log\\";
 
+	CreateDirectory(szLogPath.c_str(), NULL);
+
 	google::SetLogDestination(google::GLOG_INFO, (char*)StringConversion::ToASCII(szLogPath).c_str());
 	google::SetLogDestination(google::GLOG_WARNING, (char*)StringConversion::ToASCII(szLogPath).c_str());
 	google::SetLogDestination(google::GLOG_ERROR, (char*)StringConversion::ToASCII(szLogPath).c_str());
