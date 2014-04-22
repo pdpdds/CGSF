@@ -3,6 +3,7 @@ package com.cgsf.chatclientandroid;
 import net.alhem.jsockets.SocketHandler;
 import net.alhem.jsockets.StdLog;
 import net.alhem.jsockets.StdoutLog;
+import org.json.simple.JSONObject;
 
 import java.util.Queue;
 
@@ -15,6 +16,7 @@ import java.util.Queue;
  */
 public class ChatClient implements Runnable {
 
+    final static short CHAT_PACKET_NUM = 1000;
     ChatActivity activity = null;
     Queue<String> queue = null;
     String szIP;
@@ -43,6 +45,7 @@ public class ChatClient implements Runnable {
         StdLog log = new StdoutLog();
         SocketHandler h = new SocketHandler(log);
         ChatClientSocket chatSocket = new  ChatClientSocket(h);
+        chatSocket.SetOwner(this);
         chatSocket.Open( szIP, port );
         h.Add( chatSocket );
         h.Select(1, 0);
@@ -50,6 +53,14 @@ public class ChatClient implements Runnable {
         while (isStop == false) // forever
         {
             h.Select(1, 0);
+            String szChatMessage = queue.poll();
+            if(szChatMessage != null)
+            {
+                JSONObject obj = new JSONObject();
+                obj.put("chat", szChatMessage);
+
+                chatSocket.SendPacket(CHAT_PACKET_NUM, obj);
+            }
         }
     }
 }

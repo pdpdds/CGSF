@@ -1,10 +1,12 @@
 package com.cgsf.chatclientandroid;
 
 import android.app.Activity;
+import android.content.Context;
 import android.graphics.Typeface;
 import android.os.Bundle;
 import android.os.Handler;
 import android.view.View;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ScrollView;
@@ -34,14 +36,14 @@ public class ChatActivity extends Activity implements View.OnClickListener
         Button button = (Button)findViewById(R.id.connectbutton);
         Button disconnectButton = (Button)findViewById(R.id.disconnectbutton);
         Button sendButton = (Button)findViewById(R.id.sendbutton);
+        Button exitButton = (Button)findViewById(R.id.exitbutton);
 
         button.setOnClickListener(this);
         disconnectButton.setOnClickListener(this);
         sendButton.setOnClickListener(this);
+        exitButton.setOnClickListener(this);
 
         TextView chatView = (TextView)findViewById(R.id.textView);
-     //   Typeface font= Typeface.createFromAsset(getAssets(), "TAU_BHON.TTF");
-     //   chatView.setTypeface(font);
 
         chatView.append("CGSF 채팅 클라이언트 안드로이드\n");
     }
@@ -82,6 +84,9 @@ public class ChatActivity extends Activity implements View.OnClickListener
                     queue.offer(szChat);
                 }
 
+                InputMethodManager imm = (InputMethodManager)getSystemService(Context.INPUT_METHOD_SERVICE);
+                imm.hideSoftInputFromWindow(chatText.getWindowToken(), 0);
+
                 break;
 
             case R.id.disconnectbutton:
@@ -91,6 +96,10 @@ public class ChatActivity extends Activity implements View.OnClickListener
                 if(chatClient != null)
                     chatClient.setStop();
 
+                break;
+
+            case R.id.exitbutton:
+                System.exit(0);
                 break;
         }
     }

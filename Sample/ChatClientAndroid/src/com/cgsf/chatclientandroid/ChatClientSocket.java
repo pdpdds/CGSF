@@ -32,8 +32,6 @@ public class ChatClientSocket extends TcpSocket
     public void SetOwner(ChatClient chatClient)
     {
         this.chatClient = chatClient;
-
-
     }
 
     public static void writeLittleEndianInteger(int i, OutputStream ops)
@@ -64,11 +62,6 @@ public class ChatClientSocket extends TcpSocket
     public void OnConnect()
     {
         chatClient.ProcessChatMessage("서버와 연결되었습니다\n");
-
-        JSONObject obj = new JSONObject();
-        obj.put("chat", "박주항");
-
-        SendPacket((short)1000, obj);
     }
 
     public void SendPacket(short packetID, JSONObject obj)
@@ -85,7 +78,7 @@ public class ChatClientSocket extends TcpSocket
             writeLittleEndianInteger(0, dos);
 
            String szStr = obj.toString();
-            byte [] utf8 = szStr.getBytes("UTF-16LE");
+            byte [] utf8 = szStr.getBytes();
 
             writeLittleEndianShort((short)utf8.length, dos);
 
