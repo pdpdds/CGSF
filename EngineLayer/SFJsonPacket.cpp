@@ -4,7 +4,7 @@
 
 SFJsonPacket::SFJsonPacket(USHORT usPacketId)
 {
-	m_Header.packetID = usPacketId;
+	m_packetHeader.packetID = usPacketId;
 }
 
 SFJsonPacket::SFJsonPacket()

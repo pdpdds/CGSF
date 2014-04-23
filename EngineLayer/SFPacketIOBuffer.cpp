@@ -9,44 +9,42 @@ SFPacketIOBuffer::~SFPacketIOBuffer(void)
 {
 }
 
-BOOL SFPacketIOBuffer::GetPacket(SFPacket* pPacket, int& ErrorCode)
+bool SFPacketIOBuffer::GetPacket(SFPacketHeader& header, char* pBuffer, int& errorCode)
 {
-	ErrorCode = PACKETIO_ERROR_NONE;
+	errorCode = PACKETIO_ERROR_NONE;
 
-	USHORT headerSize = pPacket->GetHeaderSize();
+	USHORT headerSize = sizeof(SFPacketHeader);
 
 	if (GetUsedBufferSize() < headerSize)
 	{
-		return FALSE;
+		return false;
 	}
 
-	if (headerSize != GetData((char*)pPacket->GetHeader(), headerSize))
+	if (headerSize != GetData((char*)&header, headerSize))
 	{
-		ErrorCode = PACKETIO_ERROR_HEADER;
+		errorCode = PACKETIO_ERROR_HEADER;
 	}
 
-	int PacketSize = pPacket->GetPacketSize();
+	int dataSize = header.dataSize;
 
-	int DataSize = PacketSize - headerSize;
-
-	if(DataSize > MAX_PACKET_DATA)
+	if (dataSize > MAX_PACKET_DATA)
 	{
-		ErrorCode = PACKETIO_ERROR_DATA;
-		return FALSE;
+		errorCode = PACKETIO_ERROR_DATA;
+		return false;
 	}
 
-	if(GetUsedBufferSize() < DataSize)
+	if (GetUsedBufferSize() < dataSize)
 	{
-		return FALSE;
+		return false;
 	}
 
-	int GetDataSize = GetData((char*)pPacket->GetDataBuffer(), DataSize);
+	int getDataSize = GetData((char*)pBuffer, dataSize);
 
-	if(DataSize != GetDataSize)
+	if (dataSize != getDataSize)
 	{
-		ErrorCode = PACKETIO_ERROR_DATA;
-		return FALSE;
+		errorCode = PACKETIO_ERROR_DATA;
+		return false;
 	}
 
-	return TRUE;
+	return true;
 }

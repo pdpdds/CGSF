@@ -22,25 +22,25 @@ SFProtobufProtocol::~SFProtobufProtocol(void)
 
 }
 
-BOOL SFProtobufProtocol::Initialize()
+bool SFProtobufProtocol::Initialize()
 {
 
-	return TRUE;
+	return true;
 }
 
-BOOL SFProtobufProtocol::AddTransferredData(char* pBuffer, DWORD dwTransferred)
+bool SFProtobufProtocol::AddTransferredData(char* pBuffer, DWORD dwTransferred)
 {
 	m_Buffer.Append(pBuffer,dwTransferred);
 
-	return TRUE;
+	return true;
 }
 
-BOOL SFProtobufProtocol::Reset()
+bool SFProtobufProtocol::Reset()
 {
-	return TRUE;
+	return true;
 }
 
-BOOL SFProtobufProtocol::SendRequest(BasePacket* pPacket)
+bool SFProtobufProtocol::SendRequest(BasePacket* pPacket)
 {
 	unsigned int uWrittenBytes = 0;
 	int iResult = serializeOutgoingPacket(*pPacket, oBuffer, uWrittenBytes);

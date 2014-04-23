@@ -36,6 +36,9 @@
     <ClInclude Include="ProtocolCGSFHandler.h">
       <Filter>소스 파일</Filter>
     </ClInclude>
+    <ClInclude Include="ProtocolMsgPackHandler.h">
+      <Filter>소스 파일</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="stdafx.cpp">
@@ -51,6 +54,9 @@
       <Filter>소스 파일</Filter>
     </ClCompile>
     <ClCompile Include="ProtocolCGSFHandler.cpp">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="ProtocolMsgPackHandler.cpp">
       <Filter>소스 파일</Filter>
     </ClCompile>
   </ItemGroup>

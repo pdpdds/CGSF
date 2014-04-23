@@ -34,8 +34,8 @@ public:
 		SetPacketType(pSource->GetPacketType());
 	}
 
-	virtual bool Encode() {return false;}
-	virtual bool Decode(char* pBuf, unsigned int nSize) {return false;}
+	virtual bool Encode() { return true; }
+	virtual bool Decode(char* pBuf, unsigned int nSize) {return true;}
 
 protected:
 

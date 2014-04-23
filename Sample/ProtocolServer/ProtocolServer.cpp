@@ -7,16 +7,21 @@
 #include "ProtocolCGSFHandler.h"
 #include "ProtocolProtobufHandler.h"
 #include "ProtocolServerProtocol.h"
+#include "SFMsgPackProtocol.h"
+#include "ProtocolMsgPackHandler.h"
 
 #pragma comment(lib, "EngineLayer.lib")
 
 int _tmain(int argc, _TCHAR* argv[])
 {
-	ProtocolLogicEntry<ProtocolCGSFHandler>* pLogicEntry = new ProtocolLogicEntry<ProtocolCGSFHandler>();
-	SFEngine::GetInstance()->Intialize(pLogicEntry, new SFPacketProtocol<SFCGSFPacketProtocol>);
+	//ProtocolLogicEntry<ProtocolCGSFHandler>* pLogicEntry = new ProtocolLogicEntry<ProtocolCGSFHandler>();
+	//SFEngine::GetInstance()->Intialize(pLogicEntry, new SFPacketProtocol<SFCGSFPacketProtocol>);
 
 	//ProtocolLogicEntry<ProtocolProtobufHandler>* pLogicEntry = new ProtocolLogicEntry<ProtocolProtobufHandler>();
 	//SFEngine::GetInstance()->Intialize(pLogicEntry, new SFPacketProtocol<ProtocolServerProtocol>);
+
+	ProtocolLogicEntry<ProtocolMsgPackHandler>* pLogicEntry = new ProtocolLogicEntry<ProtocolMsgPackHandler>();
+	SFEngine::GetInstance()->Intialize(pLogicEntry, new SFPacketProtocol<SFMsgPackProtocol>);
 
 	SFEngine::GetInstance()->Start();
 

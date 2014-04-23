@@ -11,10 +11,10 @@ public:
 	SFJsonProtocol(void);
 	virtual ~SFJsonProtocol(void);
 
-	BOOL Reset();
-	BasePacket* GetPacket(int& ErrorCode);
-	BOOL AddTransferredData(char* pBuffer, DWORD dwTransferred);
-	BOOL SendRequest(BasePacket* pPacket);
+	bool Reset();
+	BasePacket* GetPacket(int& errorCode);
+	bool AddTransferredData(char* pBuffer, DWORD dwTransferred);
+	bool SendRequest(BasePacket* pPacket);
 
 	bool DisposePacket(BasePacket* pPacket);
 	BasePacket* CreatePacket();
@@ -25,6 +25,6 @@ protected:
 private:
 	JsonBuilder m_builder;
 
-	bool GetCompleteNote(SFJsonPacket* pPacket);
+	bool GetCompleteNode(SFJsonPacket* pPacket);
 };
 

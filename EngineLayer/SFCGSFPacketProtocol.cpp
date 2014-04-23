@@ -17,26 +17,26 @@ SFCGSFPacketProtocol::~SFCGSFPacketProtocol(void)
 	m_pPacketIOBuffer = NULL;
 }
 
-BOOL SFCGSFPacketProtocol::Initialize()
+bool SFCGSFPacketProtocol::Initialize()
 {
 	m_pPacketIOBuffer = new SFPacketIOBuffer();
 	m_pPacketIOBuffer->AllocIOBuf(PACKETIO_SIZE);
 
-	return TRUE;
+	return true;
 }
 
-BasePacket* SFCGSFPacketProtocol::GetPacket(int& ErrorCode)
+BasePacket* SFCGSFPacketProtocol::GetPacket(int& errorCode)
 {
 	SFPacket* pPacket = PacketPoolSingleton::instance()->Alloc();
 	pPacket->Initialize();
 
-	if(FALSE == m_pPacketIOBuffer->GetPacket(pPacket, ErrorCode))
+	if (FALSE == m_pPacketIOBuffer->GetPacket(*pPacket->GetHeader(), (char*)pPacket->GetDataBuffer(), errorCode))
 	{
 		PacketPoolSingleton::instance()->Release(pPacket);
 		return NULL;
 	}
 
-	if(FALSE == pPacket->Decode(ErrorCode))
+	if (FALSE == pPacket->Decode(errorCode))
 	{
 		PacketPoolSingleton::instance()->Release(pPacket);
 		return NULL;
@@ -45,18 +45,18 @@ BasePacket* SFCGSFPacketProtocol::GetPacket(int& ErrorCode)
 	return pPacket;
 }
 
-BOOL SFCGSFPacketProtocol::AddTransferredData(char* pBuffer, DWORD dwTransferred)
+bool SFCGSFPacketProtocol::AddTransferredData(char* pBuffer, DWORD dwTransferred)
 {
 	m_pPacketIOBuffer->AppendData(pBuffer, dwTransferred);
 
-	return TRUE;
+	return true;
 }
 
-BOOL SFCGSFPacketProtocol::Reset()
+bool SFCGSFPacketProtocol::Reset()
 {
 	m_pPacketIOBuffer->InitIOBuf();
 
-	return TRUE;
+	return true;
 }
 
 bool SFCGSFPacketProtocol::SendRequest(BasePacket* pPacket)

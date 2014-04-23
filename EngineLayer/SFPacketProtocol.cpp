@@ -2,7 +2,7 @@
 #include "SFPacketProtocol.h"
 #include "SFEngine.h"
 
-void SendDummy(BasePacket* pPacket)
+void SendLogicLayer(BasePacket* pPacket)
 {
 	SFEngine::GetInstance()->GetLogicDispatcher()->Dispatch(pPacket);
 }

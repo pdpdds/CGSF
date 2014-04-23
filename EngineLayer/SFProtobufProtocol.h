@@ -11,10 +11,10 @@ public:
 	SFProtobufProtocol(void);
 	virtual ~SFProtobufProtocol(void);
 
-	BOOL Reset();
+	bool Reset();
 	BasePacket* GetPacket(int& ErrorCode);
-	BOOL AddTransferredData(char* pBuffer, DWORD dwTransferred);
-	BOOL SendRequest(BasePacket* pPacket);
+	bool AddTransferredData(char* pBuffer, DWORD dwTransferred);
+	bool SendRequest(BasePacket* pPacket);
 
 	bool GetPacketData(BasePacket* pPacket, char* buffer, const int BufferSize, unsigned int& writtenSize);
 
@@ -35,7 +35,7 @@ protected:
 	virtual int decodeIncomingPacket(BasePacket* pPacket, int& PacketId);
 
 protected:
-	BOOL Initialize();
+	bool Initialize();
 
 private:
 	DataBuffer m_Buffer;

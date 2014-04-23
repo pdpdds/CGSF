@@ -41,6 +41,9 @@
     <Filter Include="Dispatcher">
       <UniqueIdentifier>{3939b047-9ae7-4ae1-a0e7-28cb11d41e07}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Packet\MessagePack">
+      <UniqueIdentifier>{750eec34-09eb-4ce7-898d-2d93ba78aca8}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include=".\SFExcel.cpp">
@@ -126,6 +129,12 @@
     </ClCompile>
     <ClCompile Include=".\SFCasualGameDispatcher.cpp">
       <Filter>Dispatcher</Filter>
+    </ClCompile>
+    <ClCompile Include="SFMsgPackPacket.cpp">
+      <Filter>Packet\MessagePack</Filter>
+    </ClCompile>
+    <ClCompile Include="SFMsgPackProtocol.cpp">
+      <Filter>Packet\MessagePack</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -248,6 +257,12 @@
     </ClInclude>
     <ClInclude Include="ILogicDispatcher.h">
       <Filter>Dispatcher</Filter>
+    </ClInclude>
+    <ClInclude Include="SFMsgPackPacket.h">
+      <Filter>Packet\MessagePack</Filter>
+    </ClInclude>
+    <ClInclude Include="SFMsgPackProtocol.h">
+      <Filter>Packet\MessagePack</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

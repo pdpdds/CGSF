@@ -15,19 +15,19 @@ SFJsonProtocol::~SFJsonProtocol(void)
 {
 }
 
-BOOL SFJsonProtocol::AddTransferredData(char* pBuffer, DWORD dwTransferred)
+bool SFJsonProtocol::AddTransferredData(char* pBuffer, DWORD dwTransferred)
 {
 	m_builder.PushBuffer(pBuffer, dwTransferred);
 
-	return TRUE;
+	return true;
 }
 
-BOOL SFJsonProtocol::Reset()
+bool SFJsonProtocol::Reset()
 {
-	return TRUE;
+	return true;
 }
 
-BOOL SFJsonProtocol::SendRequest(BasePacket* pPacket)
+bool SFJsonProtocol::SendRequest(BasePacket* pPacket)
 {
 	SFJsonPacket* pJsonPacket = (SFJsonPacket*)pPacket;
 	JsonObjectNode& ObjectNode = pJsonPacket->GetData();
@@ -44,10 +44,10 @@ BOOL SFJsonProtocol::SendRequest(BasePacket* pPacket)
 	
 	SFEngine::GetInstance()->SendInternal(pJsonPacket->GetOwnerSerial(), buffer, sizeof(SFPacketHeader) + writtenSize);
 
-	return TRUE;
+	return true;
 }
 
-bool SFJsonProtocol::GetCompleteNote(SFJsonPacket* pPacket)
+bool SFJsonProtocol::GetCompleteNode(SFJsonPacket* pPacket)
 {
 	if (m_builder.GetUsedBufferSize() < sizeof(SFPacketHeader))
 		return false;
@@ -74,7 +74,7 @@ BasePacket* SFJsonProtocol::GetPacket(int& ErrorCode)
 
 	SFJsonPacket* pPacket = (SFJsonPacket*)CreatePacket();
 
-	if (false == GetCompleteNote(pPacket))
+	if (false == GetCompleteNode(pPacket))
 	{
 		//ErrorCode = SFProtocol::eIncompletePacket;
 		DisposePacket(pPacket);
