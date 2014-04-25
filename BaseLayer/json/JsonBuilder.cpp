@@ -10,8 +10,14 @@ JsonBuilder::JsonBuilder()
 	, m_writtenOffset(0)
 	, m_readOffset(0)
 {
-	m_bufferPtr = new char[MaxBufferSize];
-	memset(m_bufferPtr, 0, MaxBufferSize);
+	
+}
+
+void JsonBuilder::PrepareBuffer(int ioSize)
+{
+	m_bufferPtr = new char[ioSize];
+	memset(m_bufferPtr, 0, ioSize);
+	m_ioSize = ioSize;
 }
 
 JsonBuilder::~JsonBuilder()
@@ -63,7 +69,7 @@ bool JsonBuilder::PopCompleteNode( JsonObjectNode& node, unsigned short dataSize
 
 bool JsonBuilder::AddBuffer( const char* buffer, unsigned int bufferLen )
 {
-	if ((m_writtenOffset+bufferLen)>MaxBufferSize)
+	if ((m_writtenOffset + bufferLen) > m_ioSize)
 		return false;
 
 	memcpy(&m_bufferPtr[m_writtenOffset], buffer, bufferLen);

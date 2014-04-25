@@ -98,8 +98,7 @@ BOOL SFIOBuffer::AllocIOBuf( int iBufSize )
 		iBufSize = MAX_IO_SIZE;
 
 	if(iBufSize > MAX_IO_SIZE)
-	{
-		//SFLog
+	{		
 		return FALSE;
 	}
 

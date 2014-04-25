@@ -4,10 +4,11 @@
 #include "SFProtocol.h"
 #include "SFMsgPackPacket.h"
 #include "SFEngine.h"
+#include "glog/logging.h"
 
 SFMsgPackProtocol::SFMsgPackProtocol()
 {
-	Initialize();
+
 }
 
 SFMsgPackProtocol::~SFMsgPackProtocol()
@@ -18,10 +19,12 @@ SFMsgPackProtocol::~SFMsgPackProtocol()
 	m_pPacketIOBuffer = NULL;
 }
 
-bool SFMsgPackProtocol::Initialize()
+bool SFMsgPackProtocol::Initialize(int ioBufferSize, USHORT packetSize)
 {
 	m_pPacketIOBuffer = new SFPacketIOBuffer();
-	m_pPacketIOBuffer->AllocIOBuf(PACKETIO_SIZE);
+	m_pPacketIOBuffer->AllocIOBuf(ioBufferSize);
+
+	SFPacket::SetMaxPacketSize(packetSize);
 
 	return true;
 }
@@ -84,15 +87,25 @@ bool SFMsgPackProtocol::SendRequest(BasePacket* pPacket)
 {
 	SFMsgPackPacket* pMsgPackPacket = (SFMsgPackPacket*)pPacket;
 
-	const int BufferSize = 8192;
-	char buffer[BufferSize] = { 0, };
+	const int bufferSize = 8192;
+	char buffer[bufferSize] = { 0, };
 
 	//////////////////////////////////////////////////
 	//header copy
 	//////////////////////////////////////////////////
 	memcpy(buffer, pMsgPackPacket->GetHeader(), sizeof(SFPacketHeader));
 	int nonParsedSize = pMsgPackPacket->GetData().nonparsed_size();
+
+	if (bufferSize < nonParsedSize + sizeof(SFPacketHeader))
+	{
+		LOG(WARNING) << "packet date is bigger than buffersize";
+		return false;
+	}
+
 	memcpy(buffer + sizeof(SFPacketHeader), pMsgPackPacket->GetData().nonparsed_buffer(), nonParsedSize);
+
+	//데이터 사이즈를 헤더에 쓴다.
+	//12바이트 헤더의 마지막 2바이트에 기록
 	*((unsigned short*)buffer + 5) = nonParsedSize;
 
 	SFEngine::GetInstance()->SendInternal(pMsgPackPacket->GetOwnerSerial(), buffer, sizeof(SFPacketHeader)+nonParsedSize);

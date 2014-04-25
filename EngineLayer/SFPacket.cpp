@@ -5,54 +5,67 @@
 #include "SFCompressZLib.h"
 #include "SFChecksum.h"
 
+USHORT SFPacket::m_packetMaxSize = PACKET_DEFAULT_PACKET_SIZE;
 SFFastCRC SFPacket::m_FastCRC;
 
 SFPacket::SFPacket(USHORT packetID)
-{
-	m_Header.packetID = packetID;
-
+{	
+	m_pPacketBuffer = new BYTE[m_packetMaxSize];
+	m_pHeader = (SFPacketHeader*)m_pPacketBuffer;
+	
 	Initialize();
+
+	m_pHeader->packetID = packetID;
+
 }
 
 SFPacket::SFPacket()
-{
-	m_Header.packetID = 0;
+{	
+	m_pPacketBuffer = new BYTE[m_packetMaxSize];
+	m_pHeader = (SFPacketHeader*)m_pPacketBuffer;
+	m_pHeader->packetID = 0;
 
 	Initialize();
 }
 
 SFPacket::~SFPacket(void)
 {
+	SF_SAFE_RELEASE(m_pPacketBuffer);
 }
 
 BOOL SFPacket::Initialize()
 {
-	m_Header.packetOption = 0;
-	m_Header.dataCRC = 0;
-	m_Header.dataSize = 0;
+	m_pHeader->packetOption = 0;
+	m_pHeader->dataCRC = 0;
+	m_pHeader->dataSize = 0;
 
-	ResetDataBuffer();
+	ResetBuffer();
 
-	m_usCurrentReadPosition = 0;
+	m_usCurrentReadPosition = sizeof(SFPacketHeader);
 
 	m_bEncoded = false;
 
 	return TRUE;
 }
 
+void SFPacket::ResetBuffer()
+{
+	memset(m_pPacketBuffer, 0, m_packetMaxSize);
+}
+
 void SFPacket::ResetDataBuffer()
 {
-	memset(m_pPacketData, 0, sizeof(MAX_PACKET_DATA));
+	memset(m_pPacketBuffer + sizeof(SFPacketHeader), 0, m_packetMaxSize - sizeof(SFPacketHeader));
 }
 
 bool SFPacket::Encode()
 {
-	int PacketOption = CGSF_PACKET_OPTION;
+	int packetOption = CGSF_PACKET_OPTION;
 
 	if (m_bEncoded == true)
 		return true;
 
-	if(GetDataSize() < 0 || GetDataSize() > MAX_PACKET_DATA)
+	if (GetDataSize() < 0 || GetDataSize() > m_packetMaxSize - sizeof(SFPacketHeader))
 	{
 		SFASSERT(0);
 		return false;
@@ -63,14 +76,14 @@ bool SFPacket::Encode()
 		return true;
 	}
 
-	BYTE pDestBuf[4096] = {0,};
-	int DestSize = 4096;
+	BYTE pDestBuf[MAX_PACKET_SIZE] = { 0, };
+	int destSize = GetMaxPacketSize() - sizeof(SFPacketHeader);
 
 	DWORD dwResult = 0;
 
-	if (PacketOption & PACKET_OPTION_COMPRESS && GetDataSize() >= PACKET_COMPRESS_LIMIT)
+	if (packetOption & PACKET_OPTION_COMPRESS && GetDataSize() >= PACKET_COMPRESS_LIMIT)
 	{
-		dwResult = SFCompressor<SFCompressLzf>::GetCompressor()->Compress(pDestBuf, DestSize, GetDataBuffer(), GetDataSize());
+		dwResult = SFCompressor<SFCompressLzf>::GetCompressor()->Compress(pDestBuf, destSize, GetData(), GetDataSize());
 
 		 if(dwResult != TRUE)
 		 {
@@ -78,17 +91,17 @@ bool SFPacket::Encode()
 			 return false;
 		 }
 
-		 memcpy(m_pPacketData, pDestBuf, DestSize);
-		 SetDataSize(DestSize);
+		 memcpy(GetData(), pDestBuf, destSize);
+		 SetDataSize(destSize);
 	}
 	else
 	{
-		PacketOption = PacketOption & (~PACKET_OPTION_COMPRESS);
+		packetOption = packetOption & (~PACKET_OPTION_COMPRESS);
 	}
 
-	if (PacketOption & PACKET_OPTION_ENCRYPTION)
+	if (packetOption & PACKET_OPTION_ENCRYPTION)
 	{
-		if(false == SFEncrytion<SFEncryptionXOR>::Encrypt((BYTE*)m_pPacketData, GetDataSize()))
+		if(false == SFEncrytion<SFEncryptionXOR>::Encrypt((BYTE*)GetData(), GetDataSize()))
 		{
 			SFASSERT(0);
 			return false;
@@ -97,9 +110,9 @@ bool SFPacket::Encode()
 
 	DWORD dwDataCRC = 0;
 
-	if (PacketOption & PACKET_OPTION_DATACRC)
+	if (packetOption & PACKET_OPTION_DATACRC)
 	{
-		BOOL Result = SFPacket::GetDataCRC((BYTE*)m_pPacketData, GetDataSize(), dwDataCRC);
+		BOOL Result = SFPacket::GetDataCRC((BYTE*)GetData(), GetDataSize(), dwDataCRC);
 		
 		if(false == Result)
 		{
@@ -107,60 +120,61 @@ bool SFPacket::Encode()
 			return false;
 		}
 
-		m_Header.dataCRC = dwDataCRC;
+		m_pHeader->dataCRC = dwDataCRC;
 	}
 
-	m_Header.SetPacketOption(PacketOption);
+	m_pHeader->SetPacketOption(packetOption);
 
 	m_bEncoded = true;
 
 	return true;
 }
 
-BOOL SFPacket::Decode(int& ErrorCode)
+BOOL SFPacket::Decode(int& errorCode)
 {
 	SFPacketHeader* pHeader = GetHeader();
 
 	if(TRUE == pHeader->CheckDataCRC())
 	{
-		BOOL Result = CheckDataCRC();
+		BOOL result = CheckDataCRC();
 
-		if(TRUE != Result)
+		if (TRUE != result)
 		{
-			//SFLOG_WARN(L"Packet CRC Check Fail!! %d %d", pHeader->DataCRC, dwDataCRC);
-			ErrorCode = PACKETIO_ERROR_DATA_CRC;
+			LOG(WARNING) << "Packet CRC Check Fail!!";
+			
+			errorCode = PACKETIO_ERROR_DATA_CRC;
 			return FALSE;
 		}
 	}
 
 	if (TRUE == pHeader->CheckEncryption())
 	{	
-		if(FALSE == SFEncrytion<SFEncryptionXOR>::Decrypt((BYTE*)GetDataBuffer(), GetDataSize()))
+		if(FALSE == SFEncrytion<SFEncryptionXOR>::Decrypt((BYTE*)GetData(), GetDataSize()))
 		{
 			SFASSERT(0);
-			ErrorCode = PACKETIO_ERROR_DATA_ENCRYPTION;
+			errorCode = PACKETIO_ERROR_DATA_ENCRYPTION;
 			return FALSE;
 		}
 	}
 
 	if(TRUE == pHeader->CheckCompressed())
 	{
-		BYTE pSrcBuf[MAX_PACKET_DATA] = {0,};
-		int DestSize = MAX_PACKET_DATA;
+		BYTE pSrcBuf[MAX_IO_SIZE] = { 0, };
+		int destSize = GetMaxPacketSize();
 
-		memcpy(pSrcBuf, GetDataBuffer(), GetDataSize());
+		memcpy(pSrcBuf, GetData(), GetDataSize());
 		ResetDataBuffer();
 
-		if(FALSE == SFCompressor<SFCompressLzf>::GetCompressor()->Uncompress(GetDataBuffer(), DestSize, pSrcBuf, GetDataSize()))
+		if (FALSE == SFCompressor<SFCompressLzf>::GetCompressor()->Uncompress(GetData(), destSize, pSrcBuf, destSize))
 		{
 			//SFLOG_WARN(L"Packet Uncompress Fail!! %d %d", pHeader->DataCRC, dwDataCRC);
 
-			ErrorCode = PACKETIO_ERROR_DATA_COMPRESS;
+			errorCode = PACKETIO_ERROR_DATA_COMPRESS;
 
 			return FALSE;
 		}
 
-		SetDataSize(DestSize);
+		SetDataSize(destSize);
 	}
 
 	BasePacket::SetPacketID(pHeader->packetID);
@@ -182,18 +196,18 @@ BOOL SFPacket::GetDataCRC(BYTE* pDataBuf, DWORD DataSize, DWORD& dwDataCRC)
 }
 
 BOOL SFPacket::CheckDataCRC()
-{
-	 DWORD dwDataCRC = 0;
+{	 
+	DWORD dwDataCRC = 0;
 
-	BOOL Result = m_FastCRC.GetZLibCRC((BYTE*)m_pPacketData, GetDataSize(), dwDataCRC);
+	BOOL result = GetDataCRC((BYTE*)GetData(), GetDataSize(), dwDataCRC);
 
-	if(TRUE != Result || dwDataCRC != GetHeader()->dataCRC)
+	if (TRUE != result || dwDataCRC != GetHeader()->dataCRC)
 	{
 		SFASSERT(0);
 		return FALSE;
 	}
 
-	//DWORD dwResult = SFChecksum::FromBuffer((BYTE*)m_pPacketData, SrcSize, dwDataCRC);
+	//DWORD dwResult = SFChecksum::FromBuffer((BYTE*)GetDataBuffer(), SrcSize, dwDataCRC);
 
 
 	/*if(ERROR_SUCCESS != dwResult)

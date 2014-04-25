@@ -13,7 +13,7 @@
 SFProtobufProtocol::SFProtobufProtocol(void)
 	:oBuffer(nSendBufferSize), m_Buffer(nReceiveBufferSize)
 {
-	Initialize();
+	
 }
 
 
@@ -22,9 +22,9 @@ SFProtobufProtocol::~SFProtobufProtocol(void)
 
 }
 
-bool SFProtobufProtocol::Initialize()
+bool SFProtobufProtocol::Initialize(int ioBufferSize, USHORT packetSize)
 {
-
+	SFPacket::SetMaxPacketSize(packetSize);
 	return true;
 }
 

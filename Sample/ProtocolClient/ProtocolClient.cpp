@@ -162,7 +162,7 @@ void ProtoclInputThread3(void* Args)
 void ProcessInput()
 {
 
-	int inputThreadID = ACE_Thread_Manager::instance()->spawn_n(1, (ACE_THR_FUNC)ProtoclInputThread3, NULL, THR_NEW_LWP, ACE_DEFAULT_THREAD_PRIORITY);
+	int inputThreadID = ACE_Thread_Manager::instance()->spawn_n(1, (ACE_THR_FUNC)ProtoclInputThread, NULL, THR_NEW_LWP, ACE_DEFAULT_THREAD_PRIORITY);
 
 	SFASSERT(inputThreadID != -1);
 
@@ -180,7 +180,7 @@ int _tmain(int argc, _TCHAR* argv[])
 {
 	ProtocolCallback* pCallback = new ProtocolCallback();
 
-	SFNetworkEntry::GetInstance()->Initialize(pCallback, new SFPacketProtocol<SFMsgPackProtocol>);
+	SFNetworkEntry::GetInstance()->Initialize(pCallback, new SFPacketProtocol<SFCGSFPacketProtocol>(MAX_IO_SIZE, MAX_PACKET_SIZE));
 	SFNetworkEntry::GetInstance()->Run();
 
 	ProcessInput();

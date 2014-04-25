@@ -1,7 +1,5 @@
 #pragma once
 
-const unsigned int	MaxBufferSize = 1024 * 4;
-
 class JsonObjectNode;
 
 class JsonBuilder
@@ -15,6 +13,7 @@ public:
 	bool PopCompleteNode(JsonObjectNode& node, unsigned short dataSize);
 
 	static unsigned int MakeBuffer( const JsonObjectNode& node, char* buffer, unsigned int bufferLen );
+	void PrepareBuffer(int ioSize);
 
 	unsigned int GetUsedBufferSize() { return m_writtenOffset - m_readOffset; }
 	char* GetBuffer(){ return &m_bufferPtr[m_readOffset]; }
@@ -27,5 +26,5 @@ private:
 	char*		m_bufferPtr;
 	unsigned int	m_writtenOffset;
 	unsigned int	m_readOffset;
-
+	int m_ioSize;
 };

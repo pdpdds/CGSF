@@ -1,18 +1,21 @@
 #pragma once
 
-#define SF_GETPACKET_ARG(a,b,c) memcpy(a,b.c_str(), sizeof(c));
+#define MAX_IO_SIZE 16384
+#define MAX_PACKET_SIZE 8192
 
 #define ENCRYPTION_KEY 0xAFB7E3D9
 
-#define PACKETIO_SIZE					8096
+#define PACKET_DEFAULT_IO_SIZE					8192
+#define PACKET_DEFAULT_PACKET_SIZE				4096
+
 #define PACKETIO_ERROR_NONE				0
 #define PACKETIO_ERROR_HEADER			-1
 #define PACKETIO_ERROR_DATA				-2
+
 #define PACKETIO_ERROR_DATA_CRC			-3
 #define PACKETIO_ERROR_DATA_COMPRESS	-4
 #define PACKETIO_ERROR_DATA_ENCRYPTION	-5
 
-#define MAX_PACKET_DATA 2048
 #define PACKET_COMPRESS_LIMIT 1024
 
 /////////////////////////////////////////////////////////////////////////
@@ -39,3 +42,8 @@ typedef enum eDBResult
 	DBRESULT_STATE_SUCCESS = 0,
 };
 
+////////////////////////////////////////////////////////////////////////
+//MACRO
+////////////////////////////////////////////////////////////////////////
+#define SF_GETPACKET_ARG(a,b,c) memcpy(a,b.c_str(), sizeof(c));
+#define SF_SAFE_RELEASE(a) if(a) delete a;

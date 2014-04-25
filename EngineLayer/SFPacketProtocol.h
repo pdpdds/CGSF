@@ -1,8 +1,8 @@
 #pragma once
 // ============================================================================
-// 엔진 레이어 SFPacketProtocol 클래스
-// by pdpdds
-// 유저가 전송한 네트워크 데이터를 저장하고 패킷의 생성 및 처분, 그리고 유저에게 패킷을 전송하는 역할을 담당하는 템플릿 클래스입니다.
+// SFPacketProtocol 클래스
+// author : pdpdds
+// desc : 유저가 전송한 네트워크 데이터를 저장하고 패킷의 생성 및 처분, 그리고 유저에게 패킷을 전송하는 역할을 담당하는 템플릿 클래스입니다.
 // 실제 데이터의 처리는 템플릿으로 제공된 클래스가 담당합니다.
 // ============================================================================
 
@@ -23,7 +23,8 @@ template <typename T>
 class SFPacketProtocol : public IPacketProtocol
 {
 public:
-	SFPacketProtocol(){}
+	SFPacketProtocol();
+	SFPacketProtocol(int bufferIOSize, USHORT packetDataSize);
 	virtual ~SFPacketProtocol(void){}
 
 	// ----------------------------------------------------------------
@@ -70,12 +71,17 @@ private:
 	T m_Analyzer;
 };
 
-/*
 template <typename T>
-BasePacket* SFPacketProtocol<T>::CreatePacket()
+SFPacketProtocol<T>::SFPacketProtocol()
 {
-	return m_Analyzer.CreatePacket();
-}*/
+	m_Analyzer.Initialize();
+}
+
+template <typename T>
+SFPacketProtocol<T>::SFPacketProtocol(int bufferIOSize, USHORT packetDataSize)
+{
+	m_Analyzer.Initialize(bufferIOSize, packetDataSize);
+}
 
 template <typename T>
 bool SFPacketProtocol<T>::DisposePacket(BasePacket* pPacket)
@@ -129,3 +135,10 @@ bool SFPacketProtocol<T>::OnReceive(int Serial, char* pBuffer, unsigned int dwTr
 
 	return true;
 }
+
+/*
+template <typename T>
+BasePacket* SFPacketProtocol<T>::CreatePacket()
+{
+return m_Analyzer.CreatePacket();
+}*/

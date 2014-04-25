@@ -2,8 +2,6 @@
 
 class SFIOBuffer
 {
-	#define MAX_IO_SIZE 16384
-
 public:
 	SFIOBuffer();
 	virtual ~SFIOBuffer();

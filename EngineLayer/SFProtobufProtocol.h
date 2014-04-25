@@ -1,6 +1,7 @@
 #pragma once
 #include "SFProtocol.h"
 #include "DataBuffer.h"
+#include "SFConstant.h"
 
 class ISession;
 class BasePacket;
@@ -10,6 +11,8 @@ class SFProtobufProtocol : public SFProtocol
 public:
 	SFProtobufProtocol(void);
 	virtual ~SFProtobufProtocol(void);
+
+	bool Initialize(int ioBufferSize = PACKET_DEFAULT_IO_SIZE, USHORT packetSize = PACKET_DEFAULT_PACKET_SIZE);
 
 	bool Reset();
 	BasePacket* GetPacket(int& ErrorCode);
@@ -35,7 +38,6 @@ protected:
 	virtual int decodeIncomingPacket(BasePacket* pPacket, int& PacketId);
 
 protected:
-	bool Initialize();
 
 private:
 	DataBuffer m_Buffer;

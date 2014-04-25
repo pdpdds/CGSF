@@ -15,6 +15,13 @@ SFJsonProtocol::~SFJsonProtocol(void)
 {
 }
 
+bool SFJsonProtocol::Initialize(int ioBufferSize, USHORT packetSize)
+{
+	SFPacket::SetMaxPacketSize(packetSize);
+	m_builder.PrepareBuffer(ioBufferSize);
+	return true;
+}
+
 bool SFJsonProtocol::AddTransferredData(char* pBuffer, DWORD dwTransferred)
 {
 	m_builder.PushBuffer(pBuffer, dwTransferred);
@@ -32,8 +39,9 @@ bool SFJsonProtocol::SendRequest(BasePacket* pPacket)
 	SFJsonPacket* pJsonPacket = (SFJsonPacket*)pPacket;
 	JsonObjectNode& ObjectNode = pJsonPacket->GetData();
 
-	const int BufferSize = MaxBufferSize;
-	char buffer[BufferSize] = {0,};
+	const int BufferSize = SFPacket::GetMaxPacketSize();
+	char* buffer = new char[BufferSize];
+	memset(buffer, 0, BufferSize);
 
 //////////////////////////////////////////////////
 //header copy
@@ -43,6 +51,8 @@ bool SFJsonProtocol::SendRequest(BasePacket* pPacket)
 	*((unsigned short*)buffer + 5) = writtenSize;
 	
 	SFEngine::GetInstance()->SendInternal(pJsonPacket->GetOwnerSerial(), buffer, sizeof(SFPacketHeader) + writtenSize);
+
+	delete buffer;
 
 	return true;
 }
@@ -57,7 +67,7 @@ bool SFJsonProtocol::GetCompleteNode(SFJsonPacket* pPacket)
 	SFPacketHeader* pHeader = pPacket->GetHeader();
 	pPacket->SetPacketID(pHeader->packetID);
 
-	if (pHeader->dataSize > MaxBufferSize - sizeof(SFPacketHeader))
+	if (pHeader->dataSize > SFPacket::GetMaxPacketSize() - sizeof(SFPacketHeader))
 		return false;
 
 	if (m_builder.GetUsedBufferSize() < pHeader->dataSize + sizeof(SFPacketHeader))
@@ -100,10 +110,14 @@ bool SFJsonProtocol::GetPacketData(BasePacket* pPacket, char* buffer, const int 
 	SFJsonPacket* pJsonPacket = (SFJsonPacket*)pPacket;
 	JsonObjectNode& ObjectNode = pJsonPacket->GetData();
 
-	writtenSize = JsonBuilder::MakeBuffer(ObjectNode, buffer, BufferSize);
+	memcpy(buffer, pJsonPacket->GetHeader(), sizeof(SFPacketHeader));
+	
+	writtenSize = JsonBuilder::MakeBuffer(ObjectNode, buffer + sizeof(SFPacketHeader), BufferSize);
 
 	if(writtenSize == 0)
 		return false;
+
+	writtenSize += sizeof(SFPacketHeader);
 
 	return true;
 }

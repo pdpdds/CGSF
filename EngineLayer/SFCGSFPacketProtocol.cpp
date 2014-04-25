@@ -6,7 +6,7 @@
 
 SFCGSFPacketProtocol::SFCGSFPacketProtocol(void)
 {
-	Initialize();
+	
 }
 
 SFCGSFPacketProtocol::~SFCGSFPacketProtocol(void)
@@ -17,10 +17,12 @@ SFCGSFPacketProtocol::~SFCGSFPacketProtocol(void)
 	m_pPacketIOBuffer = NULL;
 }
 
-bool SFCGSFPacketProtocol::Initialize()
+bool SFCGSFPacketProtocol::Initialize(int ioBufferSize, USHORT packetSize)
 {
 	m_pPacketIOBuffer = new SFPacketIOBuffer();
-	m_pPacketIOBuffer->AllocIOBuf(PACKETIO_SIZE);
+	m_pPacketIOBuffer->AllocIOBuf(ioBufferSize);
+
+	SFPacket::SetMaxPacketSize(packetSize);
 
 	return true;
 }
@@ -30,7 +32,7 @@ BasePacket* SFCGSFPacketProtocol::GetPacket(int& errorCode)
 	SFPacket* pPacket = PacketPoolSingleton::instance()->Alloc();
 	pPacket->Initialize();
 
-	if (FALSE == m_pPacketIOBuffer->GetPacket(*pPacket->GetHeader(), (char*)pPacket->GetDataBuffer(), errorCode))
+	if (FALSE == m_pPacketIOBuffer->GetPacket(*pPacket->GetHeader(), (char*)pPacket->GetData(), errorCode))
 	{
 		PacketPoolSingleton::instance()->Release(pPacket);
 		return NULL;
@@ -64,7 +66,7 @@ bool SFCGSFPacketProtocol::SendRequest(BasePacket* pPacket)
 	SFPacket* pSFPacket = (SFPacket*)pPacket;
 	pSFPacket->Encode();
 
-	SFEngine::GetInstance()->SendInternal(pSFPacket->GetOwnerSerial(), (char*)pSFPacket->GetHeader(), pSFPacket->GetHeaderSize() + pSFPacket->GetDataSize());
+	SFEngine::GetInstance()->SendInternal(pSFPacket->GetOwnerSerial(), (char*)pSFPacket->GetHeader(), pSFPacket->GetPacketSize());
 	
 	return TRUE;
 }
@@ -77,18 +79,18 @@ bool SFCGSFPacketProtocol::DisposePacket(BasePacket* pPacket)
 	return PacketPoolSingleton::instance()->Release(pSFPacket);
 }
 
-bool SFCGSFPacketProtocol::GetPacketData(BasePacket* pPacket, char* buffer, const int BufferSize, unsigned int& writtenSize)
+bool SFCGSFPacketProtocol::GetPacketData(BasePacket* pPacket, char* buffer, const int bufferSize, unsigned int& writtenSize)
 {
 	writtenSize = 0;
 
 	SFPacket* pSFPacket = (SFPacket*)pPacket;
 
-	if (pSFPacket->GetDataSize() == 0)
+	if (pSFPacket->GetPacketSize() == 0)
 	{
 		return true;
 	}
 
-	if (pSFPacket->GetDataSize() > BufferSize)
+	if (pSFPacket->GetPacketSize() > bufferSize)
 	{
 		SFASSERT(0);
 		return false;
@@ -96,8 +98,8 @@ bool SFCGSFPacketProtocol::GetPacketData(BasePacket* pPacket, char* buffer, cons
 
 	pSFPacket->Encode();
 
-	memcpy(buffer, pSFPacket->GetDataBuffer(), pSFPacket->GetDataSize());
-	writtenSize = pSFPacket->GetDataSize();
+	memcpy(buffer, pSFPacket->GetHeader(), pSFPacket->GetPacketSize());
+	writtenSize = pSFPacket->GetPacketSize();
 
 	return true;
 }

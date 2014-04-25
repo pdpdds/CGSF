@@ -11,6 +11,8 @@ public:
 	SFJsonProtocol(void);
 	virtual ~SFJsonProtocol(void);
 
+	bool Initialize(int ioBufferSize = PACKET_DEFAULT_IO_SIZE, USHORT packetDataSize = PACKET_DEFAULT_PACKET_SIZE);
+
 	bool Reset();
 	BasePacket* GetPacket(int& errorCode);
 	bool AddTransferredData(char* pBuffer, DWORD dwTransferred);

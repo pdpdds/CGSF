@@ -27,7 +27,7 @@ bool SFPacketIOBuffer::GetPacket(SFPacketHeader& header, char* pBuffer, int& err
 
 	int dataSize = header.dataSize;
 
-	if (dataSize > MAX_PACKET_DATA)
+	if (dataSize > SFPacket::GetMaxPacketSize() - sizeof(SFPacketHeader))
 	{
 		errorCode = PACKETIO_ERROR_DATA;
 		return false;

@@ -15,7 +15,7 @@ void PacketSendThread(void* Args)
 		if (SFPACKET_SERVERSHUTDOWN == pPacket->GetPacketType())
 			break;
 
-		pNetworkEngine->SendInternal(pPacket->GetOwnerSerial(), (char*)pPacket->GetDataBuffer(), pPacket->GetDataSize());
+		pNetworkEngine->SendInternal(pPacket->GetOwnerSerial(), (char*)pPacket->GetHeader(), pPacket->GetPacketSize());
 		PacketPoolSingleton::instance()->Release(pPacket);
 	}
 }

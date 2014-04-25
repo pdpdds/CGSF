@@ -287,7 +287,7 @@ bool SFEngine::SendDelayedRequest(BasePacket* pPacket)
 	SFPacket* pClonePacket = PacketPoolSingleton::instance()->Alloc();
 
 	unsigned int writtenSize;
-	bool result = m_pPacketProtocol->GetPacketData(pPacket, (char*)pClonePacket->GetHeader(), MAX_PACKET_DATA, writtenSize);
+	bool result = m_pPacketProtocol->GetPacketData(pPacket, (char*)pClonePacket->GetHeader(), SFPacket::GetMaxPacketSize(), writtenSize);
 
 	if(writtenSize == 0)
 	{
@@ -295,7 +295,6 @@ bool SFEngine::SendDelayedRequest(BasePacket* pPacket)
 		return false;
 	}
 
-	pClonePacket->SetDataSize(writtenSize);
 	pClonePacket->SetPacketType(SFPACKET_DATA);
 	pClonePacket->SetOwnerSerial(pPacket->GetOwnerSerial());
 
