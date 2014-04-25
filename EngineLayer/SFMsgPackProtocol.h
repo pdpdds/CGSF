@@ -17,7 +17,7 @@ public:
 	SFMsgPackProtocol();
 	virtual ~SFMsgPackProtocol();
 
-	bool Initialize(int ioBufferSize = PACKET_DEFAULT_IO_SIZE, USHORT packetDataSize = PACKET_DEFAULT_PACKET_SIZE);
+	bool Initialize(int ioBufferSize, USHORT packetDataSize);
 
 	// ----------------------------------------------------------------
 	//  Name:           Reset

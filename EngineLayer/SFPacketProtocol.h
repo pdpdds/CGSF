@@ -69,18 +69,38 @@ private:
 	//					GetPacketData 메소드는 빈 메소드로 만들어 두도록 한다.
 	// ----------------------------------------------------------------
 	T m_Analyzer;
+	static int m_ioSize;
+	static int m_packetSize;
 };
+
+template <typename T>
+int SFPacketProtocol<T>::m_ioSize = PACKET_DEFAULT_IO_SIZE;
+
+template <typename T>
+int SFPacketProtocol<T>::m_packetSize = PACKET_DEFAULT_PACKET_SIZE;
 
 template <typename T>
 SFPacketProtocol<T>::SFPacketProtocol()
 {
-	m_Analyzer.Initialize();
+	m_Analyzer.Initialize(m_ioSize, m_packetSize);
 }
 
 template <typename T>
 SFPacketProtocol<T>::SFPacketProtocol(int bufferIOSize, USHORT packetDataSize)
 {
-	m_Analyzer.Initialize(bufferIOSize, packetDataSize);
+	if (bufferIOSize > MAX_IO_SIZE)
+		bufferIOSize = MAX_IO_SIZE;
+
+	if (packetDataSize > MAX_PACKET_SIZE)
+		packetDataSize = MAX_PACKET_SIZE;
+
+	if (packetDataSize > bufferIOSize)
+		packetDataSize = bufferIOSize;
+
+	m_ioSize = bufferIOSize;
+	m_packetSize = packetDataSize;
+
+	m_Analyzer.Initialize(m_ioSize, m_packetSize);
 }
 
 template <typename T>

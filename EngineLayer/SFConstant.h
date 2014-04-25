@@ -1,12 +1,12 @@
 #pragma once
 
-#define MAX_IO_SIZE 16384
-#define MAX_PACKET_SIZE 8192
+#define MAX_IO_SIZE 16384 //시스템상에서 제한을 두는 IO 최대치
+#define MAX_PACKET_SIZE 8192 //시스템상에서 제한을 두는 패킷 사이즈 최대치
 
 #define ENCRYPTION_KEY 0xAFB7E3D9
 
-#define PACKET_DEFAULT_IO_SIZE					8192
-#define PACKET_DEFAULT_PACKET_SIZE				4096
+#define PACKET_DEFAULT_IO_SIZE					8192 //디폴트 IO 사이즈
+#define PACKET_DEFAULT_PACKET_SIZE				4096 //디폴트 패킷 사이즈
 
 #define PACKETIO_ERROR_NONE				0
 #define PACKETIO_ERROR_HEADER			-1

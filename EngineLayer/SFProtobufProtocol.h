@@ -12,7 +12,7 @@ public:
 	SFProtobufProtocol(void);
 	virtual ~SFProtobufProtocol(void);
 
-	bool Initialize(int ioBufferSize = PACKET_DEFAULT_IO_SIZE, USHORT packetSize = PACKET_DEFAULT_PACKET_SIZE);
+	bool Initialize(int ioBufferSize, USHORT packetDataSize);
 
 	bool Reset();
 	BasePacket* GetPacket(int& ErrorCode);
