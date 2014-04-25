@@ -12,6 +12,7 @@
 #include "SFPacketIOBuffer.h"
 #include "SFEncryption.h"
 #include "SFEncryptionXOR.h"
+#include "SFBaseProtocol.h"
 
 #include "Macro.h"
 
@@ -20,7 +21,7 @@ class BasePacket;
 void SendLogicLayer(BasePacket* pPacket);
 
 template <typename T>
-class SFPacketProtocol : public IPacketProtocol
+class SFPacketProtocol : public IPacketProtocol, public SFBaseProtocol 
 {
 public:
 	SFPacketProtocol();
@@ -68,16 +69,8 @@ private:
 	//					AddTransferredData, DisposePacket, SendRequest GetPacket 메소드를 반드시 구현해야 된다.
 	//					GetPacketData 메소드는 빈 메소드로 만들어 두도록 한다.
 	// ----------------------------------------------------------------
-	T m_Analyzer;
-	static int m_ioSize;
-	static int m_packetSize;
+	T m_Analyzer;	
 };
-
-template <typename T>
-int SFPacketProtocol<T>::m_ioSize = PACKET_DEFAULT_IO_SIZE;
-
-template <typename T>
-int SFPacketProtocol<T>::m_packetSize = PACKET_DEFAULT_PACKET_SIZE;
 
 template <typename T>
 SFPacketProtocol<T>::SFPacketProtocol()

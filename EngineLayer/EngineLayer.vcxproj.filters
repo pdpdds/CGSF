@@ -124,9 +124,6 @@
     <ClCompile Include="SFPacketSendGateway.cpp">
       <Filter>Logic</Filter>
     </ClCompile>
-    <ClCompile Include="PacketAllocator.cpp">
-      <Filter>Packet\PacketProtocol</Filter>
-    </ClCompile>
     <ClCompile Include=".\SFCasualGameDispatcher.cpp">
       <Filter>Dispatcher</Filter>
     </ClCompile>
@@ -135,6 +132,9 @@
     </ClCompile>
     <ClCompile Include="SFMsgPackProtocol.cpp">
       <Filter>Packet\MessagePack</Filter>
+    </ClCompile>
+    <ClCompile Include="SFBaseProtocol.cpp">
+      <Filter>Packet\PacketProtocol</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -249,9 +249,6 @@
     <ClInclude Include="ACEHeader.h">
       <Filter>Common</Filter>
     </ClInclude>
-    <ClInclude Include="PacketAllocator.h">
-      <Filter>Packet\PacketProtocol</Filter>
-    </ClInclude>
     <ClInclude Include=".\SFCasualGameDispatcher.h">
       <Filter>Dispatcher</Filter>
     </ClInclude>
@@ -263,6 +260,9 @@
     </ClInclude>
     <ClInclude Include="SFMsgPackProtocol.h">
       <Filter>Packet\MessagePack</Filter>
+    </ClInclude>
+    <ClInclude Include="SFBaseProtocol.h">
+      <Filter>Packet\PacketProtocol</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

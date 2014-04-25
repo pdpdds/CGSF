@@ -1,0 +1,17 @@
+#include "stdafx.h"
+#include "SFBaseProtocol.h"
+
+
+SFBaseProtocol::SFBaseProtocol()
+{
+}
+
+
+SFBaseProtocol::~SFBaseProtocol()
+{
+}
+
+int SFBaseProtocol::m_ioSize = PACKET_DEFAULT_IO_SIZE;
+
+USHORT SFBaseProtocol::m_packetSize = PACKET_DEFAULT_PACKET_SIZE;
+

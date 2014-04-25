@@ -179,7 +179,7 @@
     <ClCompile Include=".\LogicEntry.cpp" />
     <ClCompile Include=".\SFLogicGateway.cpp" />
     <ClCompile Include="DataBuffer.cpp" />
-    <ClCompile Include="PacketAllocator.cpp" />
+    <ClCompile Include="SFBaseProtocol.cpp" />
     <ClCompile Include="SFCGSFPacketProtocol.cpp" />
     <ClCompile Include="SFConfigure.cpp" />
     <ClCompile Include="SFEngine.cpp" />
@@ -221,7 +221,7 @@
     <ClInclude Include="DataBuffer.h" />
     <ClInclude Include="CommonHeader.h" />
     <ClInclude Include="ILogicDispatcher.h" />
-    <ClInclude Include="PacketAllocator.h" />
+    <ClInclude Include="SFBaseProtocol.h" />
     <ClInclude Include="SFConfigure.h" />
     <ClInclude Include="SFConstant.h" />
     <ClInclude Include="SFCGSFPacketProtocol.h" />
