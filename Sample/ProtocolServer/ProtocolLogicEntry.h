@@ -18,16 +18,16 @@ protected:
 
 private:
 	T m_PacketHandler;	
-	SFDispatch<USHORT, std::tr1::function<BOOL(BasePacket*)>, BasePacket*> m_Dispatch;
+	SFDispatch<USHORT, std::function<bool(BasePacket*)>, BasePacket*> m_Dispatch;
 };
 
 template<typename T>
 bool ProtocolLogicEntry<T>::Initialize()
 {
-	m_Dispatch.RegisterMessage(Protocol::Sample1, std::tr1::bind(&T::OnPacketSample1, &(this->m_PacketHandler), std::tr1::placeholders::_1));
-	m_Dispatch.RegisterMessage(Protocol::Sample2, std::tr1::bind(&T::OnPacketSample2, &(this->m_PacketHandler), std::tr1::placeholders::_1));
-	m_Dispatch.RegisterMessage(Protocol::Sample3, std::tr1::bind(&T::OnPacketSample3, &(this->m_PacketHandler), std::tr1::placeholders::_1));
-	m_Dispatch.RegisterMessage(Protocol::Sample4, std::tr1::bind(&T::OnPacketSample4, &(this->m_PacketHandler), std::tr1::placeholders::_1));
+	m_Dispatch.RegisterMessage(Protocol::Sample1, std::bind(&T::OnPacketSample1, &(this->m_PacketHandler), std::tr1::placeholders::_1));
+	m_Dispatch.RegisterMessage(Protocol::Sample2, std::bind(&T::OnPacketSample2, &(this->m_PacketHandler), std::tr1::placeholders::_1));
+	m_Dispatch.RegisterMessage(Protocol::Sample3, std::bind(&T::OnPacketSample3, &(this->m_PacketHandler), std::tr1::placeholders::_1));
+	m_Dispatch.RegisterMessage(Protocol::Sample4, std::bind(&T::OnPacketSample4, &(this->m_PacketHandler), std::tr1::placeholders::_1));
 
 	return true;
 }
