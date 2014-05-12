@@ -41,8 +41,6 @@ void ProactorService::open( ACE_HANDLE h, ACE_Message_Block& MessageBlock )
 	ISession::OnConnect(this->m_Serial);
 
 	PostRecv();
-
-	return;
 }
 
 void ProactorService::PostRecv()

@@ -55,10 +55,10 @@ BOOL SFFastDBAdaptorImpl::OnBookInfo( BasePacket* pMessage )
 
 	SFMessage* pMsg = (SFMessage*)pMessage;
 
-	//*pMsg >> (char*)szName;
+	*pMsg >> (char*)szName;
 
 	dbQuery query;
-	query = "szName=","dffddfdf";
+	query = "szName=", szName;
 	dbCursor<tblBookInfo>  BookInfo;
 
 	if(BookInfo.select(query) > 0)

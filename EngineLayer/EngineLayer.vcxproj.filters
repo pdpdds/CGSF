@@ -136,6 +136,9 @@
     <ClCompile Include="SFBaseProtocol.cpp">
       <Filter>Packet\PacketProtocol</Filter>
     </ClCompile>
+    <ClCompile Include="SFProtobufPacket.cpp">
+      <Filter>Packet\ProtobufPacket</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include=".\SFExcel.h">

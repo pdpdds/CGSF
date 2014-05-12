@@ -191,6 +191,7 @@
     <ClCompile Include="SFMsgPackProtocol.cpp" />
     <ClCompile Include="SFNetworkEntry.cpp" />
     <ClCompile Include="SFPacketSendGateway.cpp" />
+    <ClCompile Include="SFProtobufPacket.cpp" />
     <ClCompile Include="SFProtobufPacketImpl.cpp" />
     <ClCompile Include="SFProtobufProtocol.cpp" />
     <ClCompile Include="SFProtocol.cpp" />
