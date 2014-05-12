@@ -15,7 +15,13 @@
 int _tmain(int argc, _TCHAR* argv[])
 {
 	ProtocolLogicEntry<ProtocolCGSFHandler>* pLogicEntry = new ProtocolLogicEntry<ProtocolCGSFHandler>();
-	SFEngine::GetInstance()->Intialize(pLogicEntry, new SFPacketProtocol<SFCGSFPacketProtocol>(MAX_IO_SIZE, MAX_PACKET_SIZE));
+	
+	SFBaseProtocol::SetPacketOption(0);
+	//SFBaseProtocol::SetPacketOption(CGSF_PACKET_OPTION);
+	SFPacketProtocol<SFCGSFPacketProtocol>* pProtocol = new SFPacketProtocol<SFCGSFPacketProtocol>(MAX_IO_SIZE, MAX_PACKET_SIZE);
+	
+	SFEngine::GetInstance()->Intialize(pLogicEntry, pProtocol);
+
 
 	//ProtocolLogicEntry<ProtocolProtobufHandler>* pLogicEntry = new ProtocolLogicEntry<ProtocolProtobufHandler>();
 	//SFEngine::GetInstance()->Intialize(pLogicEntry, new SFPacketProtocol<ProtocolServerProtocol>);

@@ -6,6 +6,7 @@
 #include "SFChecksum.h"
 
 USHORT SFPacket::m_packetMaxSize = PACKET_DEFAULT_PACKET_SIZE;
+
 SFFastCRC SFPacket::m_FastCRC;
 
 SFPacket::SFPacket(USHORT packetID)
@@ -60,7 +61,7 @@ void SFPacket::ResetDataBuffer()
 
 bool SFPacket::Encode()
 {
-	int packetOption = CGSF_PACKET_OPTION;
+	int packetOption = SFBaseProtocol::GetPacketOption();
 
 	if (m_bEncoded == true)
 		return true;

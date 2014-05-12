@@ -250,5 +250,5 @@ private:
 	static SFFastCRC m_FastCRC;
 	bool m_bEncoded;
 
-	static USHORT m_packetMaxSize;
+	static USHORT m_packetMaxSize;	
 };
