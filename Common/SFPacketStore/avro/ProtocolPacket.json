@@ -1,0 +1,9 @@
+{
+     "type": "record", 
+     "name": "Sample1",
+     "fields" : [
+         {"name": "speed", "type": "float"},    
+         {"name": "move", "type" : "float"}
+     ]
+}
+

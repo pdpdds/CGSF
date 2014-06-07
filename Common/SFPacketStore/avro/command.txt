@@ -1,0 +1,1 @@
+avrogencpp -i ProtocolPacket.json -o AvroProtocolPacket.hh -n ProtocolPacket
