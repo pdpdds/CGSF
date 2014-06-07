@@ -9,18 +9,22 @@
 #include "ProtocolServerProtocol.h"
 #include "SFMsgPackProtocol.h"
 #include "ProtocolMsgPackHandler.h"
+#include "ProtocolAvroProtocol.h"
+#include "ProtocolAvroHandler.h"
 
 #pragma comment(lib, "EngineLayer.lib")
 
 int _tmain(int argc, _TCHAR* argv[])
 {
-	ProtocolLogicEntry<ProtocolCGSFHandler>* pLogicEntry = new ProtocolLogicEntry<ProtocolCGSFHandler>();
+	//ProtocolLogicEntry<ProtocolCGSFHandler>* pLogicEntry = new ProtocolLogicEntry<ProtocolCGSFHandler>();
 	
-	SFBaseProtocol::SetPacketOption(0);
+	//SFBaseProtocol::SetPacketOption(0);
 	//SFBaseProtocol::SetPacketOption(CGSF_PACKET_OPTION);
-	SFPacketProtocol<SFCGSFPacketProtocol>* pProtocol = new SFPacketProtocol<SFCGSFPacketProtocol>(MAX_IO_SIZE, MAX_PACKET_SIZE);
+	//SFPacketProtocol<SFCGSFPacketProtocol>* pProtocol = new SFPacketProtocol<SFCGSFPacketProtocol>(MAX_IO_SIZE, MAX_PACKET_SIZE);
+	//SFEngine::GetInstance()->Intialize(pLogicEntry, pProtocol);
 	
-	SFEngine::GetInstance()->Intialize(pLogicEntry, pProtocol);
+	ProtocolLogicEntry<ProtocolAvroHandler>* pLogicEntry = new ProtocolLogicEntry<ProtocolAvroHandler>();
+	SFEngine::GetInstance()->Intialize(pLogicEntry, new SFPacketProtocol<ProtocolAvroProtocol>(MAX_IO_SIZE, MAX_PACKET_SIZE));
 
 
 	//ProtocolLogicEntry<ProtocolProtobufHandler>* pLogicEntry = new ProtocolLogicEntry<ProtocolProtobufHandler>();

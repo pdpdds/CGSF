@@ -126,7 +126,7 @@ public class ChatClientSocket extends TcpSocket
             m_ioBuffer.clear();
             return;
         }
-        //m_ioBuffer.get(header, 0, CHAT_PACKET_HEDER_SIZE);
+
         short packetid = m_ioBuffer.getShort();
         int dataCrc = m_ioBuffer.getInt();
         int packetOption = m_ioBuffer.getInt();

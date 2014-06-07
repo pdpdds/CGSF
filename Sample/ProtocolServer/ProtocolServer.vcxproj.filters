@@ -4,20 +4,62 @@
     <Text Include="ReadMe.txt" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="ProtocolCGSFHandler.h" />
     <ClInclude Include="ProtocolLogicEntry.h" />
-    <ClInclude Include="ProtocolMsgPackHandler.h" />
-    <ClInclude Include="ProtocolProtobufHandler.h" />
-    <ClInclude Include="ProtocolServerProtocol.h" />
     <ClInclude Include="stdafx.h" />
     <ClInclude Include="targetver.h" />
+    <ClInclude Include="ProtocolServerProtocol.h">
+      <Filter>ProtoBuf</Filter>
+    </ClInclude>
+    <ClInclude Include="ProtocolProtobufHandler.h">
+      <Filter>ProtoBuf</Filter>
+    </ClInclude>
+    <ClInclude Include="ProtocolMsgPackHandler.h">
+      <Filter>MsgPack</Filter>
+    </ClInclude>
+    <ClInclude Include="ProtocolAvroHandler.h">
+      <Filter>Avro</Filter>
+    </ClInclude>
+    <ClInclude Include="ProtocolAvroProtocol.h">
+      <Filter>Avro</Filter>
+    </ClInclude>
+    <ClInclude Include="ProtocolCGSFHandler.h">
+      <Filter>CGSF</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="ProtocolCGSFHandler.cpp" />
-    <ClCompile Include="ProtocolMsgPackHandler.cpp" />
-    <ClCompile Include="ProtocolProtobufHandler.cpp" />
     <ClCompile Include="ProtocolServer.cpp" />
-    <ClCompile Include="ProtocolServerProtocol.cpp" />
     <ClCompile Include="stdafx.cpp" />
+    <ClCompile Include="ProtocolServerProtocol.cpp">
+      <Filter>ProtoBuf</Filter>
+    </ClCompile>
+    <ClCompile Include="ProtocolProtobufHandler.cpp">
+      <Filter>ProtoBuf</Filter>
+    </ClCompile>
+    <ClCompile Include="ProtocolMsgPackHandler.cpp">
+      <Filter>MsgPack</Filter>
+    </ClCompile>
+    <ClCompile Include="ProtocolAvroHandler.cpp">
+      <Filter>Avro</Filter>
+    </ClCompile>
+    <ClCompile Include="ProtocolAvroProtocol.cpp">
+      <Filter>Avro</Filter>
+    </ClCompile>
+    <ClCompile Include="ProtocolCGSFHandler.cpp">
+      <Filter>CGSF</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <Filter Include="ProtoBuf">
+      <UniqueIdentifier>{c3faac10-bc87-4286-8542-00a72a6e5692}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="MsgPack">
+      <UniqueIdentifier>{d254d0ca-f58c-48f3-8b14-19a7f87c63a8}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Avro">
+      <UniqueIdentifier>{1b078ec4-0455-450e-959a-61e152c720d3}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="CGSF">
+      <UniqueIdentifier>{50059652-e3eb-403f-83df-3ddcff77226f}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
 </Project>

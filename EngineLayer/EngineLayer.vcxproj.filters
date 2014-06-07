@@ -44,6 +44,9 @@
     <Filter Include="Packet\MessagePack">
       <UniqueIdentifier>{750eec34-09eb-4ce7-898d-2d93ba78aca8}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Packet\Avro">
+      <UniqueIdentifier>{3dac66bd-2f2b-48ab-99bf-366608c6b780}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include=".\SFExcel.cpp">
@@ -138,6 +141,12 @@
     </ClCompile>
     <ClCompile Include="SFProtobufPacket.cpp">
       <Filter>Packet\ProtobufPacket</Filter>
+    </ClCompile>
+    <ClCompile Include="SFAvroProtocol.cpp">
+      <Filter>Packet\Avro</Filter>
+    </ClCompile>
+    <ClCompile Include="SFAvroPacketImpl.cpp">
+      <Filter>Packet\Avro</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -266,6 +275,15 @@
     </ClInclude>
     <ClInclude Include="SFBaseProtocol.h">
       <Filter>Packet\PacketProtocol</Filter>
+    </ClInclude>
+    <ClInclude Include="SFAvroPacket.h">
+      <Filter>Packet\Avro</Filter>
+    </ClInclude>
+    <ClInclude Include="SFAvroProtocol.h">
+      <Filter>Packet\Avro</Filter>
+    </ClInclude>
+    <ClInclude Include="SFAvroPacketImpl.h">
+      <Filter>Packet\Avro</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

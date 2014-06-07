@@ -10,6 +10,7 @@
 #include <msgpack.hpp>
 
 class SFMsgPackPacket;
+class SFPacketIOBuffer;
 
 class SFMsgPackProtocol
 {

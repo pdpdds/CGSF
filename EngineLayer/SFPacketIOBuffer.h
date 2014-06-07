@@ -11,4 +11,6 @@ public:
 	virtual ~SFPacketIOBuffer(void);
 
 	bool GetPacket(SFPacketHeader& header, char* pBuffer, int& errorCode);
+
+	bool GetHeader(SFPacketHeader& header, int& errorCode);
 };

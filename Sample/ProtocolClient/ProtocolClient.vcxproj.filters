@@ -13,6 +13,15 @@
       <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
       <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
     </Filter>
+    <Filter Include="Avro">
+      <UniqueIdentifier>{39e6c7e7-dd9e-4de2-911c-633c5f45b813}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Protobuf">
+      <UniqueIdentifier>{2fedf14d-a7e2-4bae-a4a6-149b9685677d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Callback">
+      <UniqueIdentifier>{99939690-3173-4057-9bf6-680af4f6da94}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <Text Include="ReadMe.txt" />
@@ -24,11 +33,17 @@
     <ClInclude Include="targetver.h">
       <Filter>헤더 파일</Filter>
     </ClInclude>
-    <ClInclude Include="ProtocolCallback.h">
-      <Filter>헤더 파일</Filter>
+    <ClInclude Include="AvroClientProtocol.h">
+      <Filter>Avro</Filter>
     </ClInclude>
     <ClInclude Include="ProtocolClientProtocol.h">
-      <Filter>소스 파일</Filter>
+      <Filter>Protobuf</Filter>
+    </ClInclude>
+    <ClInclude Include="ProtocolCallback.h">
+      <Filter>Callback</Filter>
+    </ClInclude>
+    <ClInclude Include="Input.h">
+      <Filter>헤더 파일</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -38,10 +53,16 @@
     <ClCompile Include="ProtocolClient.cpp">
       <Filter>소스 파일</Filter>
     </ClCompile>
-    <ClCompile Include="ProtocolCallback.cpp">
-      <Filter>소스 파일</Filter>
+    <ClCompile Include="AvroClientProtocol.cpp">
+      <Filter>Avro</Filter>
     </ClCompile>
     <ClCompile Include="ProtocolClientProtocol.cpp">
+      <Filter>Protobuf</Filter>
+    </ClCompile>
+    <ClCompile Include="ProtocolCallback.cpp">
+      <Filter>Callback</Filter>
+    </ClCompile>
+    <ClCompile Include="Input.cpp">
       <Filter>소스 파일</Filter>
     </ClCompile>
   </ItemGroup>
