@@ -9,6 +9,7 @@ public:
 	virtual ~INetworkCallback(void){}
 
 	virtual bool HandleNetworkMessage(BasePacket* pPacket) = 0;
+	virtual bool HandleRPC(BasePacket* pPacket){ return false; }
 	virtual void HandleConnect(int Serial)
 	{
 //		printf("Connected\n"); 

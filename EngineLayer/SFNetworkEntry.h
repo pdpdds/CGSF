@@ -7,6 +7,7 @@ class IUDPNetworkCallback;
 class BasePacket;
 class ILogicDispatcher;
 class IPacketProtocol;
+class IRPCInterface;
 
 class SFNetworkEntry
 {
@@ -31,6 +32,7 @@ public:
 
 	bool AddPeer(int Serial, int ExternalIP, short ExternalPort, int LocalIP, short LocalPort);
 	bool DeletePeer(int Serial);
+
 
 protected:
 

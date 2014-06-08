@@ -134,7 +134,11 @@ bool SFPacketProtocol<T>::OnReceive(int Serial, char* pBuffer, unsigned int dwTr
 		if(NULL == pPacket)
 			break;
 
-		pPacket->SetPacketType(SFPACKET_DATA);
+		if (SFPACKET_RPC_PACKET == pPacket->GetPacketID())
+			pPacket->SetPacketType(SFPACKET_RPC);
+		else
+			pPacket->SetPacketType(SFPACKET_DATA);
+
 		pPacket->SetOwnerSerial(Serial);
 		
 		SendLogicLayer(pPacket);

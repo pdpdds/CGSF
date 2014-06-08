@@ -10,5 +10,6 @@ public:
 
 	virtual void Dispatch(BasePacket* pPacket) override;
 	static void BusinessThread(void* Args);
+	static void RPCThread(void* Args);
 };
 

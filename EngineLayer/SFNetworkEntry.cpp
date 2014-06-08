@@ -131,3 +131,4 @@ bool SFNetworkEntry::DeletePeer(int Serial)
 {
 	return m_pUDPNetwork->DeletePeer(Serial);
 }
+

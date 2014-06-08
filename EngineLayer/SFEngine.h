@@ -6,6 +6,8 @@
 #include "ILogicDispatcher.h"
 #include "ILogicEntry.h"
 
+class IRPCInterface;
+
 class SFEngine : public IEngine
 {
 	friend class SFTCPNetwork;
@@ -45,6 +47,10 @@ public:
 	bool ExecuteServiceController(TCHAR* szArg);
 
 	void SetLogFolder();
+	void RegisterRPCManager(IRPCInterface* pInterface);
+	IRPCInterface* GetRPCManager(){ return m_pRPCInterface; }
+
+	bool IsServer(){ return m_isServer; }
 
 protected:
 
@@ -65,8 +71,12 @@ private:
 	IPacketProtocol* m_pPacketProtocol;
 	ILogicDispatcher* m_pLogicDispatcher;
 
+	IRPCInterface* m_pRPCInterface;
+
 	void SetPacketProtocol(IPacketProtocol* pProtocol){m_pPacketProtocol = pProtocol;}
 	void SetLogicDispathcer(ILogicDispatcher* pDispatcher){m_pLogicDispatcher = pDispatcher;}
 
 	static SFEngine* m_pEngine;
+
+	bool m_isServer;
 };

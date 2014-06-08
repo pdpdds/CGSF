@@ -47,3 +47,5 @@ typedef enum eDBResult
 ////////////////////////////////////////////////////////////////////////
 #define SF_GETPACKET_ARG(a,b,c) memcpy(a,b.c_str(), sizeof(c));
 #define SF_SAFE_RELEASE(a) if(a) delete a;
+
+#define SFPACKET_RPC_PACKET 60000

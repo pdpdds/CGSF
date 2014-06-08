@@ -15,11 +15,14 @@
 
 SFTCPNetwork::SFTCPNetwork(void)
 {
+	lfds611_queue_new(&m_pQueue, 1000);
 }
 
 
 SFTCPNetwork::~SFTCPNetwork(void)
 {
+	lfds611_queue_delete(m_pQueue, NULL, NULL);
+
 	if (m_pTCPCallBack)
 	{
 		delete m_pTCPCallBack;
@@ -65,17 +68,24 @@ BOOL SFTCPNetwork::Update()
 
 			case SFPACKET_DATA:		
 				m_pTCPCallBack->HandleNetworkMessage(pPacket);
+				m_TCPClient->ReleasePacket(pPacket);
+				break;
+
+			case SFPACKET_RPC:
+				lfds611_queue_guaranteed_enqueue(m_pQueue, pPacket);
 				break;
 
 			case SFPACKET_CONNECT:			
 				m_pTCPCallBack->HandleConnect(pPacket->GetOwnerSerial());
+				delete pPacket;
 				break;
 			case  SFPACKET_DISCONNECT:			
 				m_pTCPCallBack->HandleDisconnect(pPacket->GetOwnerSerial());
+				delete pPacket;
 				break;
 			}
 
-			m_TCPClient->ReleasePacket(pPacket);
+			
 		}
 		else
 		{
@@ -114,4 +124,14 @@ void SFTCPNetwork::SetPacketProtocol(IPacketProtocol* pProtocol)
 bool SFTCPNetwork::IsConnected()
 {
 	return m_pTCPCallBack->IsConnected();
+}
+
+
+BasePacket* SFTCPNetwork::GetRPCResult()
+{
+	BasePacket* pPacket = NULL;
+
+	lfds611_queue_dequeue(m_pQueue, (void**)&pPacket);
+	
+	return pPacket;
 }

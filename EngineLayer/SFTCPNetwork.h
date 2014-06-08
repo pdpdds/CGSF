@@ -3,6 +3,7 @@
 //#include "GoogleLog.h"
 #include "SFMacro.h"
 #include "SFEngine.h"
+#include "liblfds611.h"
 
 class INetworkCallback;
 
@@ -24,10 +25,14 @@ public:
 	void SetPacketProtocol(IPacketProtocol* pProtocol);
 
 	bool IsConnected();
+
+	BasePacket* GetRPCResult();
+
 protected:
 
 private:
 	SFEngine* m_TCPClient; // TCP
 	INetworkCallback* m_pTCPCallBack;
+	struct lfds611_queue_state* m_pQueue;
 };
 

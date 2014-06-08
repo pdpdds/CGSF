@@ -47,6 +47,9 @@
     <Filter Include="Packet\Avro">
       <UniqueIdentifier>{3dac66bd-2f2b-48ab-99bf-366608c6b780}</UniqueIdentifier>
     </Filter>
+    <Filter Include="RPC">
+      <UniqueIdentifier>{6107468a-89a2-4917-959b-5b906163b3fd}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include=".\SFExcel.cpp">
@@ -147,6 +150,18 @@
     </ClCompile>
     <ClCompile Include="SFAvroPacketImpl.cpp">
       <Filter>Packet\Avro</Filter>
+    </ClCompile>
+    <ClCompile Include="RPC\CPstream.cpp">
+      <Filter>RPC</Filter>
+    </ClCompile>
+    <ClCompile Include="RPCManager.cpp">
+      <Filter>RPC</Filter>
+    </ClCompile>
+    <ClCompile Include="SFRPCGateway.cpp">
+      <Filter>RPC</Filter>
+    </ClCompile>
+    <ClCompile Include="RPCClientTransportLayer.cpp">
+      <Filter>RPC</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -284,6 +299,48 @@
     </ClInclude>
     <ClInclude Include="SFAvroPacketImpl.h">
       <Filter>Packet\Avro</Filter>
+    </ClInclude>
+    <ClInclude Include="RPC\CPstream.h">
+      <Filter>RPC</Filter>
+    </ClInclude>
+    <ClInclude Include="RPC\IPersistence.h">
+      <Filter>RPC</Filter>
+    </ClInclude>
+    <ClInclude Include="RPC\proxy.hpp">
+      <Filter>RPC</Filter>
+    </ClInclude>
+    <ClInclude Include="RPC\service_define_template.h">
+      <Filter>RPC</Filter>
+    </ClInclude>
+    <ClInclude Include="RPC\service_err.hpp">
+      <Filter>RPC</Filter>
+    </ClInclude>
+    <ClInclude Include="RPC\service_method.h">
+      <Filter>RPC</Filter>
+    </ClInclude>
+    <ClInclude Include="RPC\typetraits.hpp">
+      <Filter>RPC</Filter>
+    </ClInclude>
+    <ClInclude Include="RPCManager.h">
+      <Filter>RPC</Filter>
+    </ClInclude>
+    <ClInclude Include="RPC\transport.hpp">
+      <Filter>RPC</Filter>
+    </ClInclude>
+    <ClInclude Include="RPC\serviceDef.h">
+      <Filter>RPC</Filter>
+    </ClInclude>
+    <ClInclude Include="RPC\testinterface.h">
+      <Filter>RPC</Filter>
+    </ClInclude>
+    <ClInclude Include="IRPCInterface.h">
+      <Filter>RPC</Filter>
+    </ClInclude>
+    <ClInclude Include="SFRPCGateway.h">
+      <Filter>RPC</Filter>
+    </ClInclude>
+    <ClInclude Include="RPCClientTransportLayer.h">
+      <Filter>RPC</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

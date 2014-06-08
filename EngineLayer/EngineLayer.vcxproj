@@ -92,7 +92,7 @@
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <ClCompile>
       <Optimization>Disabled</Optimization>
-      <AdditionalIncludeDirectories>./External;../Common;../BaseLayer;../DatabaseLayer;../ThirdParty;../ThirdParty/ACE/include;../P2PLayer;../ThirdParty/liblfds/include;../ThirdParty/msgpack/include;../ThirdParty/avro/include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>./External;../Common;../BaseLayer;../DatabaseLayer;../ThirdParty;../ThirdParty/ACE/include;../P2PLayer;../ThirdParty/liblfds/include;../ThirdParty/msgpack/include;../ThirdParty/avro/include;./RPC;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>WIN32;_DEBUG;_LIB;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <MinimalRebuild>true</MinimalRebuild>
       <BasicRuntimeChecks>EnableFastChecks</BasicRuntimeChecks>
@@ -102,14 +102,14 @@
       <DebugInformationFormat>EditAndContinue</DebugInformationFormat>
     </ClCompile>
     <Lib>
-      <AdditionalLibraryDirectories>$(SolutionDir)/Lib/x86/debug;../ThirdParty/lib/x86/debug;../ThirdParty/ACE/lib/x86;../ThirdParty/MsgPack/lib/x86;../ThirdParty/Avro/lib/x86/Debug;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
-      <AdditionalDependencies>libglog.lib;aced.lib;commonlayer.lib;msgpackd.lib;avrocpp_s.lib</AdditionalDependencies>
+      <AdditionalLibraryDirectories>$(SolutionDir)/Lib/x86/debug;../ThirdParty/lib/x86/debug;../ThirdParty/ACE/lib/x86;../ThirdParty/MsgPack/lib/x86;../ThirdParty/Avro/lib/x86/Debug;$(SolutionDir)/../ThirdParty/liblfds/lib/x86/debug;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalDependencies>libglog.lib;aced.lib;commonlayer.lib;msgpackd.lib;avrocpp_s.lib;liblfds611.lib</AdditionalDependencies>
     </Lib>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <ClCompile>
       <Optimization>Disabled</Optimization>
-      <AdditionalIncludeDirectories>./External;../Common;../BaseLayer;../DatabaseLayer;../ThirdParty;../ThirdParty/ACE/include;../P2PLayer;../ThirdParty/liblfds/include;../ThirdParty/msgpack/include;../ThirdParty/avro/include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>./External;../Common;../BaseLayer;../DatabaseLayer;../ThirdParty;../ThirdParty/ACE/include;../P2PLayer;../ThirdParty/liblfds/include;../ThirdParty/msgpack/include;../ThirdParty/avro/include;./RPC;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>WIN32;_DEBUG;_LIB;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <BasicRuntimeChecks>EnableFastChecks</BasicRuntimeChecks>
       <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
@@ -118,15 +118,15 @@
       <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
     </ClCompile>
     <Lib>
-      <AdditionalLibraryDirectories>$(SolutionDir)/Lib/x64/debug;../ThirdParty/lib/x64/debug;../ThirdParty/ACE/lib/x64;../ThirdParty/MsgPack/lib/x64;../ThirdParty/Avro/lib/x64/Debug;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
-      <AdditionalDependencies>libglog.lib;aced.lib;commonlayer.lib;msgpackd.lib;avrocpp_s.lib</AdditionalDependencies>
+      <AdditionalLibraryDirectories>$(SolutionDir)/Lib/x64/debug;../ThirdParty/lib/x64/debug;../ThirdParty/ACE/lib/x64;../ThirdParty/MsgPack/lib/x64;../ThirdParty/Avro/lib/x64/Debug;$(SolutionDir)/../ThirdParty/liblfds/lib/x64/DEBUG;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalDependencies>libglog.lib;aced.lib;commonlayer.lib;msgpackd.lib;avrocpp_s.lib;liblfds611.lib</AdditionalDependencies>
     </Lib>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <ClCompile>
       <Optimization>MaxSpeed</Optimization>
       <IntrinsicFunctions>true</IntrinsicFunctions>
-      <AdditionalIncludeDirectories>./External;../Common;../BaseLayer;../DatabaseLayer;../ThirdParty;../ThirdParty/ACE/include;../P2PLayer;../ThirdParty/liblfds/include;../ThirdParty/msgpack/include;../ThirdParty/avro/include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>./External;../Common;../BaseLayer;../DatabaseLayer;../ThirdParty;../ThirdParty/ACE/include;../P2PLayer;../ThirdParty/liblfds/include;../ThirdParty/msgpack/include;../ThirdParty/avro/include;./RPC;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>WIN32;NDEBUG;_LIB;%(PreprocessorDefinitions);_CRT_SECURE_NO_WARNINGS</PreprocessorDefinitions>
       <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
       <FunctionLevelLinking>true</FunctionLevelLinking>
@@ -136,15 +136,15 @@
       <AdditionalOptions>-D_SCL_SECURE_NO_WARNINGS %(AdditionalOptions)</AdditionalOptions>
     </ClCompile>
     <Lib>
-      <AdditionalLibraryDirectories>$(SolutionDir)/Lib/x86/Release;../ThirdParty/lib/x86/Release;../ThirdParty/ACE/lib/x86;../ThirdParty/MsgPack/lib/x86;../ThirdParty/Avro/lib/x86/Release;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
-      <AdditionalDependencies>libglog.lib;ace.lib;commonlayer.lib;msgpack.lib;avrocpp_s.lib</AdditionalDependencies>
+      <AdditionalLibraryDirectories>$(SolutionDir)/Lib/x86/Release;../ThirdParty/lib/x86/Release;../ThirdParty/ACE/lib/x86;../ThirdParty/MsgPack/lib/x86;../ThirdParty/Avro/lib/x86/Release;$(SolutionDir)/../ThirdParty/liblfds/lib/x86/RELEASE;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalDependencies>libglog.lib;ace.lib;commonlayer.lib;msgpack.lib;avrocpp_s.lib;liblfds611.lib</AdditionalDependencies>
     </Lib>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
     <ClCompile>
       <Optimization>MaxSpeed</Optimization>
       <IntrinsicFunctions>true</IntrinsicFunctions>
-      <AdditionalIncludeDirectories>./External;../Common;../BaseLayer;../DatabaseLayer;../ThirdParty;../ThirdParty/ACE/include;../P2PLayer;../ThirdParty/liblfds/include;../ThirdParty/msgpack/include;../ThirdParty/avro/include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>./External;../Common;../BaseLayer;../DatabaseLayer;../ThirdParty;../ThirdParty/ACE/include;../P2PLayer;../ThirdParty/liblfds/include;../ThirdParty/msgpack/include;../ThirdParty/avro/include;./RPC;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>WIN32;NDEBUG;_LIB;%(PreprocessorDefinitions);_CRT_SECURE_NO_WARNINGS</PreprocessorDefinitions>
       <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
       <FunctionLevelLinking>true</FunctionLevelLinking>
@@ -154,8 +154,8 @@
       <AdditionalOptions>-D_SCL_SECURE_NO_WARNINGS %(AdditionalOptions)</AdditionalOptions>
     </ClCompile>
     <Lib>
-      <AdditionalDependencies>libglog.lib;ace.lib;commonlayer.lib;msgpack.lib;avrocpp_s.lib</AdditionalDependencies>
-      <AdditionalLibraryDirectories>$(SolutionDir)/Lib/x64/Release;../ThirdParty/lib/x64/Release;../ThirdParty/ACE/lib/x64;../ThirdParty/MsgPack/lib/x64;../ThirdParty/Avro/lib/x64/Release;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalDependencies>libglog.lib;ace.lib;commonlayer.lib;msgpack.lib;avrocpp_s.lib;liblfds611.lib</AdditionalDependencies>
+      <AdditionalLibraryDirectories>$(SolutionDir)/Lib/x64/Release;../ThirdParty/lib/x64/Release;../ThirdParty/ACE/lib/x64;../ThirdParty/MsgPack/lib/x64;../ThirdParty/Avro/lib/x64/Release;$(SolutionDir)/../ThirdParty/liblfds/lib/x64/RELEASE;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
     </Lib>
   </ItemDefinitionGroup>
   <ItemGroup>
@@ -178,7 +178,10 @@
     </ClCompile>
     <ClCompile Include=".\LogicEntry.cpp" />
     <ClCompile Include=".\SFLogicGateway.cpp" />
+    <ClCompile Include="RPCClientTransportLayer.cpp" />
     <ClCompile Include="DataBuffer.cpp" />
+    <ClCompile Include="RPCManager.cpp" />
+    <ClCompile Include="RPC\CPstream.cpp" />
     <ClCompile Include="SFAvroPacketImpl.cpp" />
     <ClCompile Include="SFAvroProtocol.cpp" />
     <ClCompile Include="SFBaseProtocol.cpp" />
@@ -197,6 +200,7 @@
     <ClCompile Include="SFProtobufPacketImpl.cpp" />
     <ClCompile Include="SFProtobufProtocol.cpp" />
     <ClCompile Include="SFProtocol.cpp" />
+    <ClCompile Include="SFRPCGateway.cpp" />
     <ClCompile Include="SFShouter.cpp" />
     <ClCompile Include="SFTCPNetwork.cpp" />
     <ClCompile Include="SFUDPNetwork.cpp" />
@@ -224,6 +228,19 @@
     <ClInclude Include="DataBuffer.h" />
     <ClInclude Include="CommonHeader.h" />
     <ClInclude Include="ILogicDispatcher.h" />
+    <ClInclude Include="IRPCInterface.h" />
+    <ClInclude Include="RPCClientTransportLayer.h" />
+    <ClInclude Include="RPCManager.h" />
+    <ClInclude Include="RPC\CPstream.h" />
+    <ClInclude Include="RPC\IPersistence.h" />
+    <ClInclude Include="RPC\proxy.hpp" />
+    <ClInclude Include="RPC\serviceDef.h" />
+    <ClInclude Include="RPC\service_define_template.h" />
+    <ClInclude Include="RPC\service_err.hpp" />
+    <ClInclude Include="RPC\service_method.h" />
+    <ClInclude Include="RPC\testinterface.h" />
+    <ClInclude Include="RPC\transport.hpp" />
+    <ClInclude Include="RPC\typetraits.hpp" />
     <ClInclude Include="SFAvroPacket.h" />
     <ClInclude Include="SFAvroPacketImpl.h" />
     <ClInclude Include="SFAvroProtocol.h" />
@@ -243,6 +260,7 @@
     <ClInclude Include="SFProtobufPacketImpl.h" />
     <ClInclude Include="SFProtobufProtocol.h" />
     <ClInclude Include="SFProtocol.h" />
+    <ClInclude Include="SFRPCGateway.h" />
     <ClInclude Include="SFShouter.h" />
     <ClInclude Include="SFStructure.h" />
     <ClInclude Include="SFTCPNetwork.h" />

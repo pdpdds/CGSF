@@ -2,14 +2,17 @@
 #include "SFCasualGameDispatcher.h"
 #include "SFEngine.h"
 #include "SFDatabase.h"
+#include "IRPCInterface.h"
+#include "SFPacket.h"
+#include "SFEngine.h"
 
 //로직 쓰레드 수행 메소드 설정 및 로직쓰레드의 개수 설정
 SFCasualGameDispatcher::SFCasualGameDispatcher(void)
 {
 	m_nLogicThreadCnt = 1;
 	m_funcBusnessThread = (void*)SFCasualGameDispatcher::BusinessThread;
+	m_funcRPCThread = (void*)SFCasualGameDispatcher::RPCThread;
 }
-
 
 SFCasualGameDispatcher::~SFCasualGameDispatcher(void)
 {
@@ -18,7 +21,14 @@ SFCasualGameDispatcher::~SFCasualGameDispatcher(void)
 //로직게이트웨이 큐에 패킷을 큐잉한다.
 void SFCasualGameDispatcher::Dispatch(BasePacket* pPacket)
 {
-	LogicGatewaySingleton::instance()->PushPacket(pPacket);
+	if (pPacket->GetPacketType() == SFPACKET_RPC && SFEngine::GetInstance()->IsServer())
+	{
+		RPCGatewaySingleton::instance()->PushPacket(pPacket);
+	}
+	else
+	{
+		LogicGatewaySingleton::instance()->PushPacket(pPacket);
+	}
 }
 
 void SFCasualGameDispatcher::BusinessThread(void* Args)
@@ -54,6 +64,26 @@ void SFCasualGameDispatcher::BusinessThread(void* Args)
 		default:
 			SFASSERT(0);
 		}
+	}
+}
+
+void SFCasualGameDispatcher::RPCThread(void* Args)
+{
+	SFEngine* pEngine = (SFEngine*)Args;
+	IRPCInterface* pRPC = pEngine->GetRPCManager();
+
+
+	while (SFEngine::GetInstance()->ServerTerminated() == FALSE)
+	{
+		//로직게이트웨이 큐에서 패킷을 꺼낸다.
+		//BasePacket* pPacket = RPCGatewaySingleton::instance()->PopPacket();
+
+//20140608 임시..
+		SFPacket* pPacket = (SFPacket*)RPCGatewaySingleton::instance()->PopPacket();
+	
+		pRPC->ProcessRPCService(pPacket);
+
+		delete pPacket;
 	}
 }
 

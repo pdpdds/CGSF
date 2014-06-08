@@ -20,6 +20,8 @@ SFEngine::SFEngine()
 	, m_PacketSendThreadId(-1)
 	, m_bServerTerminated(false)
 	, m_pNetworkEngine(0)
+	, m_pRPCInterface(0)
+	, m_isServer(false)
 {
 	ACE::init();
 	google::InitGoogleLogging("CGSF");
@@ -42,8 +44,10 @@ SFEngine* SFEngine::GetInstance()
 	return m_pEngine;
 }
 
-bool SFEngine::CreateEngine(char* szModuleName, bool Server)
+bool SFEngine::CreateEngine(char* szModuleName, bool server)
 {
+	m_isServer = server;
+
 	m_EngineHandle = ::LoadLibraryA(szModuleName);
 
 	if(m_EngineHandle == 0)
@@ -51,7 +55,7 @@ bool SFEngine::CreateEngine(char* szModuleName, bool Server)
 
 	CREATENETWORKENGINE *pfunc;
 	pfunc = (CREATENETWORKENGINE*)::GetProcAddress( m_EngineHandle, "CreateNetworkEngine");
-	m_pNetworkEngine = pfunc(Server, this);
+	m_pNetworkEngine = pfunc(server, this);
 
 	if(m_pNetworkEngine == NULL)
 		return false;
@@ -76,6 +80,14 @@ bool SFEngine::CreateLogicThread(ILogicEntry* pLogic)
 	}
 
 	return false;
+}
+
+void SFEngine::RegisterRPCManager(IRPCInterface* pInterface)
+{
+	m_pRPCInterface = pInterface;
+
+	ACE_Thread_Manager::instance()->spawn_n(4, (ACE_THR_FUNC)m_pLogicDispatcher->GetRPCThreadFunc(), this, THR_NEW_LWP, ACE_DEFAULT_THREAD_PRIORITY, 1003);
+
 }
 
 bool SFEngine::CreatePacketSendThread()
