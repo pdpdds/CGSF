@@ -8,6 +8,7 @@
 
 //로직 쓰레드 수행 메소드 설정 및 로직쓰레드의 개수 설정
 SFCasualGameDispatcher::SFCasualGameDispatcher(void)
+: ILogicDispatcher(true)
 {
 	m_nLogicThreadCnt = 1;
 	m_funcBusnessThread = (void*)SFCasualGameDispatcher::BusinessThread;
@@ -16,6 +17,18 @@ SFCasualGameDispatcher::SFCasualGameDispatcher(void)
 
 SFCasualGameDispatcher::~SFCasualGameDispatcher(void)
 {
+}
+
+void SFCasualGameDispatcher::Finally()
+{
+	BasePacket* pCommand = PacketPoolSingleton::instance()->Alloc();
+	pCommand->SetPacketType(SFPACKET_SERVERSHUTDOWN);
+	PacketSendSingleton::instance()->PushPacket(pCommand);
+
+	pCommand = PacketPoolSingleton::instance()->Alloc();
+	pCommand->SetOwnerSerial(-1);
+	pCommand->SetPacketType(SFPACKET_SERVERSHUTDOWN);
+	LogicGatewaySingleton::instance()->PushPacket(pCommand);
 }
 
 //로직게이트웨이 큐에 패킷을 큐잉한다.

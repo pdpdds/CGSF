@@ -62,8 +62,6 @@ bool SFEngine::CreateEngine(char* szModuleName, bool server)
 
 	if(FALSE == m_pNetworkEngine->Init())
 		return false;
-
-	CreatePacketSendThread();
 	
 	return true;
 }
@@ -164,14 +162,24 @@ bool SFEngine::Intialize(ILogicEntry* pLogicEntry, IPacketProtocol* pProtocol, I
 
 	LOG(INFO) << "NetworkEngine : " << StringConversion::ToASCII(pInfo->EngineName).c_str() << " Creation Success!!";
 
-	if(FALSE == CreateLogicThread(pLogicEntry))
+
+	if (pDispatcher->GetBusinessThreadNeeded())
 	{
-		LOG(ERROR) << "LogicThread Creation FAIL!!";
-		return false;
+
+		if (FALSE == CreateLogicThread(pLogicEntry))
+		{
+			LOG(ERROR) << "LogicThread Creation FAIL!!";
+			return false;
+		}
+
+		CreatePacketSendThread();
+
+		LOG(INFO) << "LogicThread Creation Success!!";
 	}
-
-	LOG(INFO) << "LogicThread Creation Success!!";
-
+	else
+	{
+		LogicEntrySingleton::instance()->SetLogic(pLogicEntry);
+	}
 
 	LOG(INFO) << "Engine Initialize Complete!! ";
 	return true;
@@ -238,17 +246,14 @@ bool SFEngine::ShutDown()
 
 	m_bServerTerminated = true;
 
-	BasePacket* pCommand = PacketPoolSingleton::instance()->Alloc();
-	pCommand->SetPacketType(SFPACKET_SERVERSHUTDOWN);
-	PacketSendSingleton::instance()->PushPacket(pCommand);
+	m_pLogicDispatcher->Finally();
 
-	pCommand = PacketPoolSingleton::instance()->Alloc();
-	pCommand->SetOwnerSerial(-1);
-	pCommand->SetPacketType(SFPACKET_SERVERSHUTDOWN);
-	LogicGatewaySingleton::instance()->PushPacket(pCommand);
-
-	ACE_Thread_Manager::instance()->wait_grp(m_LogicThreadId);
-	ACE_Thread_Manager::instance()->wait_grp(m_PacketSendThreadId);
+	if (m_pLogicDispatcher->GetBusinessThreadNeeded() == true)
+	{
+		ACE_Thread_Manager::instance()->wait_grp(m_LogicThreadId);
+		ACE_Thread_Manager::instance()->wait_grp(m_PacketSendThreadId);
+	}
+	
 
 	m_pNetworkEngine->Shutdown();
 

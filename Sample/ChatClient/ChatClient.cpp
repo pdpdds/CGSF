@@ -9,6 +9,7 @@
 #include "SFJsonPacket.h"
 #include <string>
 #include <iostream>
+#include "SFClassicDispatcher.h"
 
 #pragma comment(lib, "EngineLayer.lib")
 

@@ -186,6 +186,7 @@
     <ClCompile Include="SFAvroProtocol.cpp" />
     <ClCompile Include="SFBaseProtocol.cpp" />
     <ClCompile Include="SFCGSFPacketProtocol.cpp" />
+    <ClCompile Include="SFClassicDispatcher.cpp" />
     <ClCompile Include="SFConfigure.cpp" />
     <ClCompile Include="SFEngine.cpp" />
     <ClCompile Include=".\SFCasualGameDispatcher.cpp" />
@@ -245,6 +246,7 @@
     <ClInclude Include="SFAvroPacketImpl.h" />
     <ClInclude Include="SFAvroProtocol.h" />
     <ClInclude Include="SFBaseProtocol.h" />
+    <ClInclude Include="SFClassicDispatcher.h" />
     <ClInclude Include="SFConfigure.h" />
     <ClInclude Include="SFConstant.h" />
     <ClInclude Include="SFCGSFPacketProtocol.h" />

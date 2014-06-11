@@ -3,6 +3,7 @@
 #include "stdafx.h"
 #include "ChatLogicEntry.h"
 #include "SFJsonProtocol.h"
+#include "SFClassicDispatcher.h"
 
 #pragma comment(lib, "EngineLayer.lib")
 

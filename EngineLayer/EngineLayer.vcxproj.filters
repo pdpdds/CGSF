@@ -163,6 +163,9 @@
     <ClCompile Include="RPCClientTransportLayer.cpp">
       <Filter>RPC</Filter>
     </ClCompile>
+    <ClCompile Include="SFClassicDispatcher.cpp">
+      <Filter>Dispatcher</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include=".\SFExcel.h">
@@ -341,6 +344,9 @@
     </ClInclude>
     <ClInclude Include="RPCClientTransportLayer.h">
       <Filter>RPC</Filter>
+    </ClInclude>
+    <ClInclude Include="SFClassicDispatcher.h">
+      <Filter>Dispatcher</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
