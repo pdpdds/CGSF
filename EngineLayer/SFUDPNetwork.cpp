@@ -1,8 +1,8 @@
 #include "stdafx.h"
 #include "SFUDPNetwork.h"
-#include <P2PClient/PuPeers.h>
-#include <P2PClient/P2PClient.h>
-#include <P2PClient/P2PManager.h>
+#include "OCFP2PClient/PuPeers.h"
+#include "interface/P2PClient.h"
+#include "OCFP2PClient/P2PManager.h"
 
 HINSTANCE g_pP2PHandle = 0;
 
@@ -18,9 +18,9 @@ SFUDPNetwork::~SFUDPNetwork(void)
 		::FreeLibrary(g_pP2PHandle);
 }
 
-bool SFUDPNetwork::Initialize(IUDPNetworkCallback* pCallback)
+bool SFUDPNetwork::Initialize(IUDPNetworkCallback* pCallback, TCHAR* szP2PModuleName)
 {
-	g_pP2PHandle = ::LoadLibrary(L"P2PClient.dll");
+	g_pP2PHandle = ::LoadLibrary(szP2PModuleName);
 
 	if(g_pP2PHandle == NULL)
 		return false;
@@ -64,10 +64,10 @@ bool SFUDPNetwork::Send(unsigned char* pData, unsigned int Length )
 bool SFUDPNetwork::AddPeer( int Serial, int ExternalIP, short ExternalPort, int LocalIP, short LocalPort )
 {
 	PeerAddressInfo Info;
-	Info.ExternalIP = ExternalIP;
-	Info.ExternalPort = ExternalPort;
-	Info.LocalIP = LocalIP;
-	Info.LocalPort = LocalPort;
+	Info.externalIP = ExternalIP;
+	Info.externalPort = ExternalPort;
+	Info.localIP = LocalIP;
+	Info.localPort = LocalPort;
 
 	BYTE PeerIndex = 0;
 	m_P2PModule->AddPeer(&Info, PeerIndex);

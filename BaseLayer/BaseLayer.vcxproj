@@ -173,13 +173,6 @@
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|x64'">NotUsing</PrecompiledHeader>
     </ClCompile>
     <ClCompile Include="External\crc.cpp" />
-    <ClCompile Include="External\CSmtp.cpp">
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">NotUsing</PrecompiledHeader>
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">NotUsing</PrecompiledHeader>
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">NotUsing</PrecompiledHeader>
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|x64'">NotUsing</PrecompiledHeader>
-      <DisableSpecificWarnings Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">4996;4267</DisableSpecificWarnings>
-    </ClCompile>
     <ClCompile Include="External\md5.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">NotUsing</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">NotUsing</PrecompiledHeader>
@@ -209,6 +202,12 @@
     <ClCompile Include="SFSubject.cpp" />
     <ClCompile Include="SFUtil.cpp" />
     <ClCompile Include="StackWalker.cpp" />
+    <ClCompile Include="TinyThread\tinythread.cpp">
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">NotUsing</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">NotUsing</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">NotUsing</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|x64'">NotUsing</PrecompiledHeader>
+    </ClCompile>
     <ClCompile Include="VMemPool\BitSet.cpp" />
     <ClCompile Include="XML\StringConversion.cpp" />
     <ClCompile Include="XML\tinystr.cpp" />
@@ -256,7 +255,6 @@
     <ClInclude Include="External\7zcrc.h" />
     <ClInclude Include="External\base64.h" />
     <ClInclude Include="External\crc.h" />
-    <ClInclude Include="External\CSmtp.h" />
     <ClInclude Include="External\md5.h" />
     <ClInclude Include="GeneralPool.h" />
     <ClInclude Include="GPGLockFreeQueue.h" />

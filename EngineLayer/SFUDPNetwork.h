@@ -17,7 +17,7 @@ public:
 	SFUDPNetwork();
 	virtual ~SFUDPNetwork(void);
 
-	bool Initialize(IUDPNetworkCallback* pCallback);
+	bool Initialize(IUDPNetworkCallback* pCallback, TCHAR* szP2PModuleName);
 	bool Start();
 	BOOL Update();
 

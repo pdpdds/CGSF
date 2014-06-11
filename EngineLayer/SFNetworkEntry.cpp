@@ -49,9 +49,10 @@ bool SFNetworkEntry::Initialize(INetworkCallback* pTCPCallBack, IPacketProtocol*
 
 	SFIni ini;
 	WCHAR szEngine[MAX_PATH];
-
+	TCHAR szP2PModuleName[MAX_PATH];
 	ini.SetPathName(_T("./Connection.ini"));
 	ini.GetString(L"Engine",L"NAME",szEngine, MAX_PATH);
+	ini.GetString(L"P2PModule", L"NAME", szP2PModuleName, MAX_PATH);
 
 	std::string str = StringConversion::ToASCII(szEngine);
 
@@ -61,7 +62,7 @@ bool SFNetworkEntry::Initialize(INetworkCallback* pTCPCallBack, IPacketProtocol*
 	if(pUDPCallback)
 	{
 		m_pUDPNetwork = new SFUDPNetwork();
-		m_pUDPNetwork->Initialize(pUDPCallback);
+		m_pUDPNetwork->Initialize(pUDPCallback, szP2PModuleName);
 	}
 
 	m_pTCPNetwork->SetPacketProtocol(pProtocol);

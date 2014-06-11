@@ -51,6 +51,9 @@
     <Filter Include="MemoryPool\VMemPool">
       <UniqueIdentifier>{139bed01-f0bc-4517-8e92-7b7961dc9c8c}</UniqueIdentifier>
     </Filter>
+    <Filter Include="TinyThread">
+      <UniqueIdentifier>{540ae730-32e7-43de-acd4-f8d28286f4d5}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include=".\cpu_info.cpp">
@@ -161,9 +164,6 @@
     <ClCompile Include="External\crc.cpp">
       <Filter>External</Filter>
     </ClCompile>
-    <ClCompile Include="External\CSmtp.cpp">
-      <Filter>External</Filter>
-    </ClCompile>
     <ClCompile Include="External\md5.cpp">
       <Filter>External</Filter>
     </ClCompile>
@@ -196,6 +196,9 @@
     </ClCompile>
     <ClCompile Include="VMemPool\BitSet.cpp">
       <Filter>MemoryPool\VMemPool</Filter>
+    </ClCompile>
+    <ClCompile Include="TinyThread\tinythread.cpp">
+      <Filter>TinyThread</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -404,9 +407,6 @@
       <Filter>External</Filter>
     </ClInclude>
     <ClInclude Include="External\crc.h">
-      <Filter>External</Filter>
-    </ClInclude>
-    <ClInclude Include="External\CSmtp.h">
       <Filter>External</Filter>
     </ClInclude>
     <ClInclude Include="External\md5.h">

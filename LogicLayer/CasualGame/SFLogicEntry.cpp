@@ -4,7 +4,7 @@
 #include "SFMacro.h"
 #include "SFMySQLAdaptorImpl.h"
 #include "SFPlayerManager.h"
-#include "P2PServer.h"
+#include "interface/P2PServer.h"
 
 SFLogicEntry* SFLogicEntry::m_pLogicEntry = NULL;
 HINSTANCE g_pP2PServerHandle = 0;
