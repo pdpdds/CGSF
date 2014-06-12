@@ -196,10 +196,7 @@
     <ClCompile Include="SFFString.cpp" />
     <ClCompile Include="SFList.cpp" />
     <ClCompile Include="SFMinidump.cpp" />
-    <ClCompile Include="SFObject.cpp" />
-    <ClCompile Include="SFObserver.cpp" />
     <ClCompile Include="SFStackWalker.cpp" />
-    <ClCompile Include="SFSubject.cpp" />
     <ClCompile Include="SFUtil.cpp" />
     <ClCompile Include="StackWalker.cpp" />
     <ClCompile Include="TinyThread\tinythread.cpp">
@@ -289,13 +286,10 @@
     <ClInclude Include="SFLockQueue.h" />
     <ClInclude Include="SFMath.h" />
     <ClInclude Include="SFMinidump.h" />
-    <ClInclude Include="SFObject.h" />
     <ClInclude Include="SFObjectPool.h" />
-    <ClInclude Include="SFObserver.h" />
     <ClInclude Include="SFQueue.h" />
     <ClInclude Include="SFStackWalker.h" />
     <ClInclude Include="SFString.h" />
-    <ClInclude Include="SFSubject.h" />
     <ClInclude Include="SFTimer.h" />
     <ClInclude Include="SFTree.h" />
     <ClInclude Include="SFTSSyncQueue.h" />

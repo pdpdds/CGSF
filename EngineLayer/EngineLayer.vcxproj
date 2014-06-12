@@ -196,6 +196,8 @@
     <ClCompile Include="SFMsgPackPacket.cpp" />
     <ClCompile Include="SFMsgPackProtocol.cpp" />
     <ClCompile Include="SFNetworkEntry.cpp" />
+    <ClCompile Include="SFObject.cpp" />
+    <ClCompile Include="SFObserver.cpp" />
     <ClCompile Include="SFPacketSendGateway.cpp" />
     <ClCompile Include="SFProtobufPacket.cpp" />
     <ClCompile Include="SFProtobufPacketImpl.cpp" />
@@ -203,6 +205,7 @@
     <ClCompile Include="SFProtocol.cpp" />
     <ClCompile Include="SFRPCGateway.cpp" />
     <ClCompile Include="SFShouter.cpp" />
+    <ClCompile Include="SFSubject.cpp" />
     <ClCompile Include="SFTCPNetwork.cpp" />
     <ClCompile Include="SFUDPNetwork.cpp" />
   </ItemGroup>
@@ -257,6 +260,8 @@
     <ClInclude Include="SFMsgPackPacket.h" />
     <ClInclude Include="SFMsgPackProtocol.h" />
     <ClInclude Include="SFNetworkEntry.h" />
+    <ClInclude Include="SFObject.h" />
+    <ClInclude Include="SFObserver.h" />
     <ClInclude Include="SFPacketSendGateway.h" />
     <ClInclude Include="SFProtobufPacket.h" />
     <ClInclude Include="SFProtobufPacketImpl.h" />
@@ -265,6 +270,7 @@
     <ClInclude Include="SFRPCGateway.h" />
     <ClInclude Include="SFShouter.h" />
     <ClInclude Include="SFStructure.h" />
+    <ClInclude Include="SFSubject.h" />
     <ClInclude Include="SFTCPNetwork.h" />
     <ClInclude Include="SFUDPNetwork.h" />
   </ItemGroup>

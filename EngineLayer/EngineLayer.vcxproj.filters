@@ -50,6 +50,9 @@
     <Filter Include="RPC">
       <UniqueIdentifier>{6107468a-89a2-4917-959b-5b906163b3fd}</UniqueIdentifier>
     </Filter>
+    <Filter Include="src">
+      <UniqueIdentifier>{12fdbb0e-6319-4186-aa65-cef494e100f6}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include=".\SFExcel.cpp">
@@ -165,6 +168,15 @@
     </ClCompile>
     <ClCompile Include="SFClassicDispatcher.cpp">
       <Filter>Dispatcher</Filter>
+    </ClCompile>
+    <ClCompile Include="SFObject.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="SFObserver.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="SFSubject.cpp">
+      <Filter>src</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -347,6 +359,15 @@
     </ClInclude>
     <ClInclude Include="SFClassicDispatcher.h">
       <Filter>Dispatcher</Filter>
+    </ClInclude>
+    <ClInclude Include="SFObject.h">
+      <Filter>src</Filter>
+    </ClInclude>
+    <ClInclude Include="SFObserver.h">
+      <Filter>src</Filter>
+    </ClInclude>
+    <ClInclude Include="SFSubject.h">
+      <Filter>src</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

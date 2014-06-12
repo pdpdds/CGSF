@@ -173,15 +173,6 @@
     <ClCompile Include="SFList.cpp">
       <Filter>Syncronization</Filter>
     </ClCompile>
-    <ClCompile Include="SFObserver.cpp">
-      <Filter>Syncronization</Filter>
-    </ClCompile>
-    <ClCompile Include="SFSubject.cpp">
-      <Filter>Syncronization</Filter>
-    </ClCompile>
-    <ClCompile Include="SFObject.cpp">
-      <Filter>Syncronization</Filter>
-    </ClCompile>
     <ClCompile Include="GeneralPool.cpp">
       <Filter>MemoryPool</Filter>
     </ClCompile>
@@ -433,22 +424,13 @@
     <ClInclude Include="SFObjectPool.h">
       <Filter>Syncronization</Filter>
     </ClInclude>
-    <ClInclude Include="SFObserver.h">
-      <Filter>Syncronization</Filter>
-    </ClInclude>
     <ClInclude Include="SFQueue.h">
-      <Filter>Syncronization</Filter>
-    </ClInclude>
-    <ClInclude Include="SFSubject.h">
       <Filter>Syncronization</Filter>
     </ClInclude>
     <ClInclude Include="SFTree.h">
       <Filter>Syncronization</Filter>
     </ClInclude>
     <ClInclude Include="SFTSSyncQueue.h">
-      <Filter>Syncronization</Filter>
-    </ClInclude>
-    <ClInclude Include="SFObject.h">
       <Filter>Syncronization</Filter>
     </ClInclude>
     <ClInclude Include="GeneralPool.h">
