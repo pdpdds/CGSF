@@ -16,11 +16,9 @@
 SFEngine* SFEngine::m_pEngine = NULL;
 
 SFEngine::SFEngine()
-	: m_LogicThreadId(-1)
-	, m_PacketSendThreadId(-1)
+	: m_PacketSendThreadId(-1)
 	, m_bServerTerminated(false)
 	, m_pNetworkEngine(0)
-	, m_pRPCInterface(0)
 	, m_isServer(false)
 {
 	ACE::init();
@@ -66,26 +64,10 @@ bool SFEngine::CreateEngine(char* szModuleName, bool server)
 	return true;
 }
 
-bool SFEngine::CreateLogicThread(ILogicEntry* pLogic)
+void SFEngine::AddRPCService(IRPCService* pService)
 {
-	if(pLogic != NULL)
-	{
-		m_LogicThreadId = ACE_Thread_Manager::instance()->spawn_n(m_pLogicDispatcher->GetLogicThreadCount(), (ACE_THR_FUNC)m_pLogicDispatcher->GetBusinessThreadFunc(), this, THR_NEW_LWP, ACE_DEFAULT_THREAD_PRIORITY, 1001);
-
-		LogicEntrySingleton::instance()->SetLogic(pLogic);
-
-		return true;
-	}
-
-	return false;
-}
-
-void SFEngine::RegisterRPCManager(IRPCInterface* pInterface)
-{
-	m_pRPCInterface = pInterface;
-
-	ACE_Thread_Manager::instance()->spawn_n(4, (ACE_THR_FUNC)m_pLogicDispatcher->GetRPCThreadFunc(), this, THR_NEW_LWP, ACE_DEFAULT_THREAD_PRIORITY, 1003);
-
+	m_pLogicDispatcher->AddRPCService(pService);
+	
 }
 
 bool SFEngine::CreatePacketSendThread()
@@ -124,12 +106,11 @@ ISessionService* SFEngine::CreateSessionService()
 
 bool SFEngine::Intialize(ILogicEntry* pLogicEntry, IPacketProtocol* pProtocol, ILogicDispatcher* pDispatcher)
 {
-	SetLogFolder();
-
 	LOG(INFO) << "Engine Initialize... ";
 
+	SetLogFolder();
+
 	ACE::init();
-	LOG(INFO) << "ACE Init ";
 
 	ASSERT(pProtocol != NULL);
 
@@ -142,52 +123,36 @@ bool SFEngine::Intialize(ILogicEntry* pLogicEntry, IPacketProtocol* pProtocol, I
 
 	SetLogicDispathcer(pDispatcher);
 
-	LOG(INFO) << "PacketProtocol Setting";
-	LOG(INFO) << "LogicDispatcher Setting";
-
+	LOG(INFO) << "Logic Entry Initialize";
 	if (false == pLogicEntry->Initialize())
 	{
 		LOG(ERROR) << "LogicEntry Intialize Fail!!";
 		return false;
 	}
 
-	LOG(INFO) << "LogicEntry Intialize Success!!";
-
 	_EngineConfig* pInfo = m_Config.GetConfigureInfo();
-	if (false == CreateEngine((char*)StringConversion::ToASCII(pInfo->EngineName).c_str(), true))
+	
+	std::string szNetworkEngineName = StringConversion::ToASCII(pInfo->EngineName);
+	LOG(INFO) << "NetworkEngine Create : " << szNetworkEngineName.c_str();
+	
+	if (false == CreateEngine((char*)szNetworkEngineName.c_str(), true))
 	{
-		LOG(ERROR) << "NetworkEngine : " << StringConversion::ToASCII(pInfo->EngineName).c_str() << " Creation FAIL!!";
+		LOG(ERROR) << "NetworkEngine : " << szNetworkEngineName.c_str() << " Creation FAIL!!";
 		return false;
 	}
 
-	LOG(INFO) << "NetworkEngine : " << StringConversion::ToASCII(pInfo->EngineName).c_str() << " Creation Success!!";
+	LOG(INFO) << "NetworkEngine : " << szNetworkEngineName.c_str() << " Creation Success!!";
 
-
-	if (pDispatcher->GetBusinessThreadNeeded())
+	if (false == pDispatcher->CreateLogicSystem(pLogicEntry))
 	{
-
-		if (FALSE == CreateLogicThread(pLogicEntry))
-		{
-			LOG(ERROR) << "LogicThread Creation FAIL!!";
-			return false;
-		}
-
-		CreatePacketSendThread();
-
-		LOG(INFO) << "LogicThread Creation Success!!";
+		LOG(ERROR) << "Logic System Creation FAIL!!";
+		return false;
 	}
-	else
-	{
-		LogicEntrySingleton::instance()->SetLogic(pLogicEntry);
-	}
+
+	CreatePacketSendThread();
 
 	LOG(INFO) << "Engine Initialize Complete!! ";
 	return true;
-
-	/*int MaxPacketPool = 1000;
-
-	PacketPoolSingleton::instance()->Init(MaxPacketPool);*/
-
 }
 
 ////////////////////////////////////////////////////////////////////
@@ -246,14 +211,9 @@ bool SFEngine::ShutDown()
 
 	m_bServerTerminated = true;
 
-	m_pLogicDispatcher->Finally();
+	m_pLogicDispatcher->ShutDownLogicSystem();
 
-	if (m_pLogicDispatcher->GetBusinessThreadNeeded() == true)
-	{
-		ACE_Thread_Manager::instance()->wait_grp(m_LogicThreadId);
-		ACE_Thread_Manager::instance()->wait_grp(m_PacketSendThreadId);
-	}
-	
+	ACE_Thread_Manager::instance()->wait_grp(m_PacketSendThreadId);
 
 	m_pNetworkEngine->Shutdown();
 
@@ -299,25 +259,6 @@ bool SFEngine::OnTimer(const void *arg)
 	return true;
 }
 
-bool SFEngine::SendDelayedRequest(BasePacket* pPacket)
-{
-	SFPacket* pClonePacket = PacketPoolSingleton::instance()->Alloc();
-
-	unsigned int writtenSize;
-	bool result = m_pPacketProtocol->GetPacketData(pPacket, (char*)pClonePacket->GetHeader(), SFPacket::GetMaxPacketSize(), writtenSize);
-
-	if(writtenSize == 0)
-	{
-		PacketPoolSingleton::instance()->Release(pClonePacket);
-		return false;
-	}
-
-	pClonePacket->SetPacketType(SFPACKET_DATA);
-	pClonePacket->SetOwnerSerial(pPacket->GetOwnerSerial());
-
-	return PacketSendSingleton::instance()->PushPacket(pClonePacket);
-}
-
 bool SFEngine::SendRequest(BasePacket* pPacket)
 {
 	return GetPacketProtocol()->SendRequest(pPacket);
@@ -331,4 +272,26 @@ bool SFEngine::SendInternal(int ownerSerial, char* buffer, unsigned int bufferSi
 bool SFEngine::ReleasePacket(BasePacket* pPacket)
 {
 	return m_pPacketProtocol->DisposePacket(pPacket);
+}
+
+////////////////////////////////////////////////////////////////////////////
+//아래 메소드 부터는 수정이 필요함
+////////////////////////////////////////////////////////////////////////////
+bool SFEngine::SendDelayedRequest(BasePacket* pPacket)
+{
+	SFPacket* pClonePacket = PacketPoolSingleton::instance()->Alloc();
+
+	unsigned int writtenSize;
+	bool result = m_pPacketProtocol->GetPacketData(pPacket, (char*)pClonePacket->GetHeader(), SFPacket::GetMaxPacketSize(), writtenSize);
+
+	if (writtenSize == 0)
+	{
+		PacketPoolSingleton::instance()->Release(pClonePacket);
+		return false;
+	}
+
+	pClonePacket->SetPacketType(SFPACKET_DATA);
+	pClonePacket->SetOwnerSerial(pPacket->GetOwnerSerial());
+
+	return PacketSendSingleton::instance()->PushPacket(pClonePacket);
 }

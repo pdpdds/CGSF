@@ -50,7 +50,7 @@
     <Filter Include="RPC">
       <UniqueIdentifier>{6107468a-89a2-4917-959b-5b906163b3fd}</UniqueIdentifier>
     </Filter>
-    <Filter Include="src">
+    <Filter Include="Pattern">
       <UniqueIdentifier>{12fdbb0e-6319-4186-aa65-cef494e100f6}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
@@ -157,9 +157,6 @@
     <ClCompile Include="RPC\CPstream.cpp">
       <Filter>RPC</Filter>
     </ClCompile>
-    <ClCompile Include="RPCManager.cpp">
-      <Filter>RPC</Filter>
-    </ClCompile>
     <ClCompile Include="SFRPCGateway.cpp">
       <Filter>RPC</Filter>
     </ClCompile>
@@ -170,13 +167,16 @@
       <Filter>Dispatcher</Filter>
     </ClCompile>
     <ClCompile Include="SFObject.cpp">
-      <Filter>src</Filter>
+      <Filter>Pattern</Filter>
     </ClCompile>
     <ClCompile Include="SFObserver.cpp">
-      <Filter>src</Filter>
+      <Filter>Pattern</Filter>
     </ClCompile>
     <ClCompile Include="SFSubject.cpp">
-      <Filter>src</Filter>
+      <Filter>Pattern</Filter>
+    </ClCompile>
+    <ClCompile Include="RPCService.cpp">
+      <Filter>RPC</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -336,9 +336,6 @@
     <ClInclude Include="RPC\typetraits.hpp">
       <Filter>RPC</Filter>
     </ClInclude>
-    <ClInclude Include="RPCManager.h">
-      <Filter>RPC</Filter>
-    </ClInclude>
     <ClInclude Include="RPC\transport.hpp">
       <Filter>RPC</Filter>
     </ClInclude>
@@ -346,9 +343,6 @@
       <Filter>RPC</Filter>
     </ClInclude>
     <ClInclude Include="RPC\testinterface.h">
-      <Filter>RPC</Filter>
-    </ClInclude>
-    <ClInclude Include="IRPCInterface.h">
       <Filter>RPC</Filter>
     </ClInclude>
     <ClInclude Include="SFRPCGateway.h">
@@ -361,13 +355,19 @@
       <Filter>Dispatcher</Filter>
     </ClInclude>
     <ClInclude Include="SFObject.h">
-      <Filter>src</Filter>
+      <Filter>Pattern</Filter>
     </ClInclude>
     <ClInclude Include="SFObserver.h">
-      <Filter>src</Filter>
+      <Filter>Pattern</Filter>
     </ClInclude>
     <ClInclude Include="SFSubject.h">
-      <Filter>src</Filter>
+      <Filter>Pattern</Filter>
+    </ClInclude>
+    <ClInclude Include="RPCService.h">
+      <Filter>RPC</Filter>
+    </ClInclude>
+    <ClInclude Include="IRPCService.h">
+      <Filter>RPC</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

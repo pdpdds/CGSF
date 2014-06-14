@@ -1,4 +1,4 @@
 #pragma once
 
-void BusinessThread(void* Args);
+void LogicThread(void* Args);
 void PacketSendThread(void* Args);

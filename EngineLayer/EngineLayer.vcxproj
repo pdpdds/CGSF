@@ -180,7 +180,7 @@
     <ClCompile Include=".\SFLogicGateway.cpp" />
     <ClCompile Include="RPCClientTransportLayer.cpp" />
     <ClCompile Include="DataBuffer.cpp" />
-    <ClCompile Include="RPCManager.cpp" />
+    <ClCompile Include="RPCService.cpp" />
     <ClCompile Include="RPC\CPstream.cpp" />
     <ClCompile Include="SFAvroPacketImpl.cpp" />
     <ClCompile Include="SFAvroProtocol.cpp" />
@@ -232,9 +232,9 @@
     <ClInclude Include="DataBuffer.h" />
     <ClInclude Include="CommonHeader.h" />
     <ClInclude Include="ILogicDispatcher.h" />
-    <ClInclude Include="IRPCInterface.h" />
+    <ClInclude Include="IRPCService.h" />
     <ClInclude Include="RPCClientTransportLayer.h" />
-    <ClInclude Include="RPCManager.h" />
+    <ClInclude Include="RPCService.h" />
     <ClInclude Include="RPC\CPstream.h" />
     <ClInclude Include="RPC\IPersistence.h" />
     <ClInclude Include="RPC\proxy.hpp" />

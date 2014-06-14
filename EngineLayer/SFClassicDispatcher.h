@@ -8,6 +8,8 @@ public:
 	virtual ~SFClassicDispatcher();
 
 	virtual void Dispatch(BasePacket* pPacket) override;
-	virtual void Finally() override;
+	
+	virtual bool CreateLogicSystem(ILogicEntry* pLogicEntry) override;
+	virtual bool ShutDownLogicSystem() override;
 };
 

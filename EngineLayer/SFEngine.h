@@ -29,10 +29,11 @@ public:
 	virtual bool OnTimer(const void *arg) override;
 
 	bool AddTimer(int timerID, DWORD period, DWORD delay);
-	bool SendDelayedRequest(BasePacket* pPacket);
 	bool SendRequest(BasePacket* pPacket);
 	bool SendInternal(int ownerSerial, char* buffer, unsigned int bufferSize);
 
+	bool SendDelayedRequest(BasePacket* pPacket);
+	
 	INetworkEngine* GetNetworkEngine(){return m_pNetworkEngine;}
 
 	SFConfigure* GetConfig(){return &m_Config;}
@@ -44,12 +45,9 @@ public:
 	bool ReleasePacket(BasePacket* pPacket);
 
 	bool ServerTerminated(){ return m_bServerTerminated; }
-	bool ExecuteServiceController(TCHAR* szArg);
 
 	void SetLogFolder();
-	void RegisterRPCManager(IRPCInterface* pInterface);
-	IRPCInterface* GetRPCManager(){ return m_pRPCInterface; }
-
+	void AddRPCService(IRPCService* pService);
 	bool IsServer(){ return m_isServer; }
 
 protected:
@@ -62,16 +60,13 @@ private:
 	SFEngine();
 
 	SFConfigure m_Config;
-	int m_PacketSendThreadId;
-	int m_LogicThreadId;
+	int m_PacketSendThreadId;	
 	bool m_bServerTerminated;
 
 	HINSTANCE m_EngineHandle;
 	INetworkEngine* m_pNetworkEngine;
 	IPacketProtocol* m_pPacketProtocol;
 	ILogicDispatcher* m_pLogicDispatcher;
-
-	IRPCInterface* m_pRPCInterface;
 
 	void SetPacketProtocol(IPacketProtocol* pProtocol){m_pPacketProtocol = pProtocol;}
 	void SetLogicDispathcer(ILogicDispatcher* pDispatcher){m_pLogicDispatcher = pDispatcher;}

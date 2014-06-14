@@ -2,17 +2,17 @@
 #include "stdafx.h"
 #include "service_define_template.h"
 #include "serviceDef.h"
-#include "IRPCInterface.h"
+#include "IRPCService.h"
 
 template<class Service>
-class RPCManager : public IRPCInterface
+class RPCService : public IRPCService
 
 {
 public:
-	RPCManager(Service & service)
+	RPCService(Service & service)
 		: _service(service) {}
 
-	virtual ~RPCManager(){}
+	virtual ~RPCService(){}
 
 	virtual void ProcessRPCService(SFPacket* pSFPacket)
 	{

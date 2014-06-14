@@ -1,10 +1,10 @@
 #pragma once
 
-class IRPCInterface
+class IRPCService
 {
 public:
-	IRPCInterface(){}
-	virtual ~IRPCInterface(){}
+	IRPCService(){}
+	virtual ~IRPCService(){}
 
 	virtual void ProcessRPCService(SFPacket* pSFPacket) = 0;
 };

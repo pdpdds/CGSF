@@ -9,7 +9,7 @@
 #include "SFPacket.h"
 #include <string>
 #include <iostream>
-#include "RPCManager.h"
+#include "RPCService.h"
 #include "../Common/RPCProject/testclient.h"
 #include "proxy.hpp"
 #include "RPCClientTransportLayer.h"

@@ -2,26 +2,18 @@
 #define  _ILOGICDISPATCHER_H_
 
 class BasePacket;
+class ILogicEntry;
+class IRPCService;
 
 class ILogicDispatcher
 {  
 public:  	 
-	ILogicDispatcher(bool businessThreadNeeded){ m_businessThreadNeeded = businessThreadNeeded; }
 	virtual void Dispatch(BasePacket* pPacket) = 0;
-	virtual void Finally() = 0;
 
-	int GetLogicThreadCount(){ return m_nLogicThreadCnt; }
-	void* GetBusinessThreadFunc(){ return m_funcBusnessThread;}
-	void* GetRPCThreadFunc(){ return m_funcRPCThread; }
+	virtual bool CreateLogicSystem(ILogicEntry* pLogicEntry) = 0;
+	virtual bool ShutDownLogicSystem() = 0;
 
-	int m_nLogicThreadCnt;
-	void* m_funcBusnessThread;
-	void* m_funcRPCThread;
-
-	bool GetBusinessThreadNeeded(){ return m_businessThreadNeeded; }
-
-private:
-	bool m_businessThreadNeeded;
+	virtual bool AddRPCService(IRPCService* pService) {return false;}
 };
 
 #endif // _ILOGICDISPATCHER_H_
