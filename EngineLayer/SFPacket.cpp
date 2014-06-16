@@ -219,3 +219,15 @@ BOOL SFPacket::CheckDataCRC()
 
 	return TRUE;
 }
+
+BasePacket* SFPacket::Clone()
+{
+	SFPacket* pClone = new SFPacket();
+	pClone->CopyBaseHeader(this);
+	memcpy(pClone->m_pHeader, m_pHeader, sizeof(SFPacketHeader));
+	memcpy(pClone->m_pPacketBuffer, m_pPacketBuffer, m_packetMaxSize);
+	pClone->m_bEncoded = m_bEncoded;
+	pClone->m_usCurrentReadPosition = m_usCurrentReadPosition;
+	
+	return pClone;
+}

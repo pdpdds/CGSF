@@ -24,6 +24,7 @@ ACEServerEngine::ACEServerEngine(IEngine* pEngine)
 	: INetworkEngine(pEngine)
 	, m_Acceptor(this)
 	, m_TimeOutHandler(this)
+	, m_acceptorIndex(1)
 {
 }
 
@@ -39,7 +40,7 @@ bool ACEServerEngine::Init()
 	return true;
 }
 
-bool ACEServerEngine::Start(char* szIP, unsigned short Port)
+bool ACEServerEngine::Start(char* szIP, unsigned short port)
 {
 	SYSTEM_INFO si;
 	GetSystemInfo(&si);
@@ -57,7 +58,7 @@ bool ACEServerEngine::Start(char* szIP, unsigned short Port)
 
 	ACE_INET_Addr listen_addr;
 
-	listen_addr.set(Port);
+	listen_addr.set(port);
 
 	if(0 != m_Acceptor.open(listen_addr, 0, 1, ACE_DEFAULT_BACKLOG, 1, 0, 1, 1, 1024))
 		return false;
@@ -104,6 +105,52 @@ bool ACEServerEngine::CreateTimerTask(unsigned int TimerID, unsigned int StartTi
 		return false;
 
 	return true;
+}
+
+int ACEServerEngine::AddConnector(char* szIP, unsigned short port)
+{
+	ACE_SOCK_Stream* stream = new ACE_SOCK_Stream();
+	ACE_INET_Addr connectAddr(port, szIP);
+	ACE_SOCK_Connector connector;
+	int result = connector.connect(*stream, connectAddr);
+	if (-1 == result)
+		return false;
+
+	int acceptorNum = m_acceptorIndex;
+
+	ProactorService* pService = new ProactorService(acceptorNum, true);
+	pService->SetOwner(this);
+
+	ACE_Message_Block mb;
+	pService->open(stream->get_handle(), mb);
+	delete stream;
+	stream = NULL;
+
+	m_acceptorIndex++;
+	return acceptorNum;
+}
+
+int ACEServerEngine::AddListener(char* szIP, unsigned short port)
+{
+	ACE_INET_Addr listen_addr;
+
+	int acceptorNum = m_acceptorIndex;
+
+	ProactorServerAcceptor* pAcceptor = new ProactorServerAcceptor(this);
+	listen_addr.set(port);
+
+	if (0 != pAcceptor->open(listen_addr, 0, 1, ACE_DEFAULT_BACKLOG, 1, 0, 1, 1, 1024))
+	{
+		delete pAcceptor;
+		return -1;
+	}
+
+	pAcceptor->SetAcceptorNum(acceptorNum);
+
+	m_mapServerAcceptor.insert(std::make_pair(acceptorNum, pAcceptor));
+	m_acceptorIndex++;
+
+	return acceptorNum;
 }
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////

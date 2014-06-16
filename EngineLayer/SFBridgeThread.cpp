@@ -6,16 +6,16 @@
 void PacketSendThread(void* Args)
 {
 	SFEngine* pEngine = (SFEngine*)Args;
-	INetworkEngine* pNetworkEngine = pEngine->GetNetworkEngine();
+	IPacketProtocol* pPacketProtocol = pEngine->GetPacketProtocol();
 
-	while (SFEngine::GetInstance()->ServerTerminated() == FALSE)
+	while (1)
 	{
-		SFPacket* pPacket = (SFPacket*)PacketSendSingleton::instance()->PopPacket();
+		BasePacket* pPacket = PacketSendSingleton::instance()->PopPacket();
 
 		if (SFPACKET_SERVERSHUTDOWN == pPacket->GetPacketType())
 			break;
 
-		pNetworkEngine->SendInternal(pPacket->GetOwnerSerial(), (char*)pPacket->GetHeader(), pPacket->GetPacketSize());
-		PacketPoolSingleton::instance()->Release(pPacket);
+		pEngine->SendRequest(pPacket);
+		pPacketProtocol->DisposePacket(pPacket);
 	}
 }

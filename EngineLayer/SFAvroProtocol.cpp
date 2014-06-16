@@ -102,7 +102,6 @@ bool SFAvroProtocol::SendRequest(BasePacket* pPacket)
 	char buffer[bufferSize] = { 0, };
 	
 
-
 	//////////////////////////////////////////////////
 	//header copy
 	//////////////////////////////////////////////////
@@ -123,10 +122,5 @@ bool SFAvroProtocol::SendRequest(BasePacket* pPacket)
 
 	SFEngine::GetInstance()->SendInternal(pAvroPacket->GetOwnerSerial(), buffer, sizeof(SFPacketHeader)+writtenSize);
 
-	return true;
-}
-
-bool SFAvroProtocol::GetPacketData(BasePacket* pPacket, char* buffer, const int BufferSize, unsigned int& writtenSize)
-{
 	return true;
 }

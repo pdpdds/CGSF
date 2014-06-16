@@ -92,7 +92,7 @@
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <ClCompile>
       <Optimization>Disabled</Optimization>
-      <AdditionalIncludeDirectories>./External;../Common;../BaseLayer;../DatabaseLayer;../ThirdParty;../ThirdParty/ACE/include;../P2PLayer;../ThirdParty/liblfds/include;../ThirdParty/msgpack/include;../ThirdParty/avro/include;./RPC;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>./External;../Common;../BaseLayer;../DatabaseLayer;../ThirdParty;../ThirdParty/ACE/include;../P2PLayer;../ThirdParty/liblfds/include;../ThirdParty/msgpack/include;../ThirdParty/avro/include;./RPC;../ThirdParty/zeromq/include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>WIN32;_DEBUG;_LIB;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <MinimalRebuild>true</MinimalRebuild>
       <BasicRuntimeChecks>EnableFastChecks</BasicRuntimeChecks>
@@ -109,7 +109,7 @@
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <ClCompile>
       <Optimization>Disabled</Optimization>
-      <AdditionalIncludeDirectories>./External;../Common;../BaseLayer;../DatabaseLayer;../ThirdParty;../ThirdParty/ACE/include;../P2PLayer;../ThirdParty/liblfds/include;../ThirdParty/msgpack/include;../ThirdParty/avro/include;./RPC;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>./External;../Common;../BaseLayer;../DatabaseLayer;../ThirdParty;../ThirdParty/ACE/include;../P2PLayer;../ThirdParty/liblfds/include;../ThirdParty/msgpack/include;../ThirdParty/avro/include;./RPC;../ThirdParty/zeromq/include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>WIN32;_DEBUG;_LIB;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <BasicRuntimeChecks>EnableFastChecks</BasicRuntimeChecks>
       <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
@@ -126,7 +126,7 @@
     <ClCompile>
       <Optimization>MaxSpeed</Optimization>
       <IntrinsicFunctions>true</IntrinsicFunctions>
-      <AdditionalIncludeDirectories>./External;../Common;../BaseLayer;../DatabaseLayer;../ThirdParty;../ThirdParty/ACE/include;../P2PLayer;../ThirdParty/liblfds/include;../ThirdParty/msgpack/include;../ThirdParty/avro/include;./RPC;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>./External;../Common;../BaseLayer;../DatabaseLayer;../ThirdParty;../ThirdParty/ACE/include;../P2PLayer;../ThirdParty/liblfds/include;../ThirdParty/msgpack/include;../ThirdParty/avro/include;./RPC;../ThirdParty/zeromq/include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>WIN32;NDEBUG;_LIB;%(PreprocessorDefinitions);_CRT_SECURE_NO_WARNINGS</PreprocessorDefinitions>
       <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
       <FunctionLevelLinking>true</FunctionLevelLinking>
@@ -144,7 +144,7 @@
     <ClCompile>
       <Optimization>MaxSpeed</Optimization>
       <IntrinsicFunctions>true</IntrinsicFunctions>
-      <AdditionalIncludeDirectories>./External;../Common;../BaseLayer;../DatabaseLayer;../ThirdParty;../ThirdParty/ACE/include;../P2PLayer;../ThirdParty/liblfds/include;../ThirdParty/msgpack/include;../ThirdParty/avro/include;./RPC;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>./External;../Common;../BaseLayer;../DatabaseLayer;../ThirdParty;../ThirdParty/ACE/include;../P2PLayer;../ThirdParty/liblfds/include;../ThirdParty/msgpack/include;../ThirdParty/avro/include;./RPC;../ThirdParty/zeromq/include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>WIN32;NDEBUG;_LIB;%(PreprocessorDefinitions);_CRT_SECURE_NO_WARNINGS</PreprocessorDefinitions>
       <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
       <FunctionLevelLinking>true</FunctionLevelLinking>
@@ -178,6 +178,7 @@
     </ClCompile>
     <ClCompile Include=".\LogicEntry.cpp" />
     <ClCompile Include=".\SFLogicGateway.cpp" />
+    <ClCompile Include="CommunityManager.cpp" />
     <ClCompile Include="RPCClientTransportLayer.cpp" />
     <ClCompile Include="DataBuffer.cpp" />
     <ClCompile Include="RPCService.cpp" />
@@ -214,7 +215,6 @@
     <ClInclude Include=".\SFIni.h" />
     <ClInclude Include=".\SFFactory.h" />
     <ClInclude Include=".\SFMacro.h" />
-    <ClInclude Include=".\SFMessage.h" />
     <ClInclude Include=".\stdafx.h" />
     <ClInclude Include=".\targetver.h" />
     <ClInclude Include=".\SFCheckSum.h" />
@@ -229,8 +229,10 @@
     <ClInclude Include=".\SFSinglton.h" />
     <ClInclude Include=".\SFEngine.h" />
     <ClInclude Include="ACEHeader.h" />
+    <ClInclude Include="CommunityManager.h" />
     <ClInclude Include="DataBuffer.h" />
     <ClInclude Include="CommonHeader.h" />
+    <ClInclude Include="IConnection.h" />
     <ClInclude Include="ILogicDispatcher.h" />
     <ClInclude Include="IRPCService.h" />
     <ClInclude Include="RPCClientTransportLayer.h" />

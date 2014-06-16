@@ -2,9 +2,11 @@
 #include "SingltonObject.h"
 #include <Assert.h>
 
-ProactorService::ProactorService()
+ProactorService::ProactorService(int acceptorId, bool bServerObject)
 	: m_bServiceCloseFlag(false)
 	, m_pTimerLock(0)
+	, m_acceptorId(acceptorId)
+	, m_bServerObject(bServerObject)
 {
 }
 
@@ -38,7 +40,7 @@ void ProactorService::open( ACE_HANDLE h, ACE_Message_Block& MessageBlock )
 
 	RegisterTimer();
 
-	ISession::OnConnect(this->m_Serial);
+	ISession::OnConnect(this->m_Serial, m_bServerObject);
 
 	PostRecv();
 }
@@ -66,7 +68,7 @@ void ProactorService::handle_read_stream( const ACE_Asynch_Read_Stream::Result& 
 	}
 	else
 	{
-		if(false == ISession::OnReceive(Block.rd_ptr(), Block.length()))
+		if (false == ISession::OnReceive(Block.rd_ptr(), Block.length(), m_bServerObject))
 		{
 			Block.release();
 			ReserveClose();
@@ -103,7 +105,7 @@ void ProactorService::ReserveClose()
 	UnregisterTimer();
 	ProactorServiceMapSingleton::instance()->UnRegister(m_Serial);
 
-	ISession::OnDisconnect(this->m_Serial);
+	ISession::OnDisconnect(this->m_Serial, m_bServerObject);
 
 	m_bServiceCloseFlag = true;
 }

@@ -10,3 +10,4 @@ SFAvroPacketImpl::SFAvroPacketImpl()
 SFAvroPacketImpl::~SFAvroPacketImpl()
 {
 }
+

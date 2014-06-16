@@ -2,6 +2,9 @@
 #include <EngineInterface\/INetworkEngine.h>
 #include "ProactorAcceptor.h"
 #include "ACETimeOutHandler.h"
+#include <map>
+
+typedef std::map<int, ProactorServerAcceptor*> mapServerAcceptor;
 
 class ACEServerEngine : public INetworkEngine
 {
@@ -20,12 +23,17 @@ public:
 	virtual bool CheckTimerImpl() override; //default timer »ç¿ë
 	virtual bool CreateTimerTask(unsigned int TimerID, unsigned int StartTime, unsigned int Period) override;
 
+	virtual int AddConnector(char* szIP, unsigned short port) override;
+	virtual int AddListener(char* szIP, unsigned short port) override;
+
 protected:
+	int m_acceptorIndex;
 
 private:
 	int m_workThreadGroupID;
 	ProactorAcceptor m_Acceptor;
 	ACETimeOutHandler m_TimeOutHandler;
+	mapServerAcceptor m_mapServerAcceptor;
 };
 
 class ACEClientEngine : public INetworkEngine

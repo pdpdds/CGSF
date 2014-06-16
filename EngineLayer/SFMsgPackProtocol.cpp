@@ -112,8 +112,3 @@ bool SFMsgPackProtocol::SendRequest(BasePacket* pPacket)
 
 	return true;
 }
-
-bool SFMsgPackProtocol::GetPacketData(BasePacket* pPacket, char* buffer, const int BufferSize, unsigned int& writtenSize)
-{
-	return true;
-}

@@ -17,7 +17,6 @@ SFEngine* SFEngine::m_pEngine = NULL;
 
 SFEngine::SFEngine()
 	: m_PacketSendThreadId(-1)
-	, m_bServerTerminated(false)
 	, m_pNetworkEngine(0)
 	, m_isServer(false)
 {
@@ -84,18 +83,21 @@ ISessionService* SFEngine::CreateSessionService()
 	return pService;
 }
 
- void SFEngine::SetLogFolder()
+void SFEngine::SetLogFolder(TCHAR* szPath)
 {
 	WCHAR szFilePath[MAX_PATH] = { 0, };
 	GetModuleFileName(NULL, szFilePath, MAX_PATH);
 
-	WCHAR* szPath = SFUtil::ExtractPathInfo(szFilePath, SFUtil::PATH_DIR);
-	SetCurrentDirectory(szPath);
+	WCHAR* path = SFUtil::ExtractPathInfo(szFilePath, SFUtil::PATH_DIR);
+	SetCurrentDirectory(path);
 
-	std::wstring szLogPath = szPath;
+	std::wstring szLogPath = path;
 	szLogPath += L"Log\\";
 
 	CreateDirectory(szLogPath.c_str(), NULL);
+
+	if (szPath)
+		szLogPath = szPath;
 
 	google::SetLogDestination(google::GLOG_INFO, (char*)StringConversion::ToASCII(szLogPath).c_str());
 	google::SetLogDestination(google::GLOG_WARNING, (char*)StringConversion::ToASCII(szLogPath).c_str());
@@ -179,28 +181,26 @@ bool SFEngine::AddTimer(int timerID, DWORD period, DWORD delay)
 	return TRUE;
 }
 
-bool SFEngine::Start()
+bool SFEngine::Start(char* szIP, unsigned short port)
 {
 	_EngineConfig* pInfo = m_Config.GetConfigureInfo();
 
 	LOG(INFO) << "Engine Starting... IP : " << (char*)StringConversion::ToASCII(pInfo->ServerIP).c_str() << " Port : " << pInfo->ServerPort;
 	
-	if(false == m_pNetworkEngine->Start((char*)StringConversion::ToASCII(pInfo->ServerIP).c_str(), pInfo->ServerPort))
+	bool bResult = false;
+	if (szIP != 0 && port != 0)
+		bResult = m_pNetworkEngine->Start(szIP, port);
+	else
+		bResult = m_pNetworkEngine->Start((char*)StringConversion::ToASCII(pInfo->ServerIP).c_str(), pInfo->ServerPort);
+	
+	if (bResult == false)
 	{
 		LOG(ERROR) << "Engine Start Fail!!";
 		return false;
 	}
-
 	LOG(INFO) << "Engine Start!!";
 
 	return true;
-}
-
-bool SFEngine::Start(char* szIP, unsigned short Port)
-{
-	//m_pNetworkEngine->Init();
-
-	return m_pNetworkEngine->Start(szIP, Port);
 }
 
 bool SFEngine::ShutDown()
@@ -209,9 +209,11 @@ bool SFEngine::ShutDown()
 
 	google::FlushLogFiles(google::GLOG_INFO);
 
-	m_bServerTerminated = true;
-
 	m_pLogicDispatcher->ShutDownLogicSystem();
+
+	BasePacket* pCommand = PacketPoolSingleton::instance()->Alloc();
+	pCommand->SetPacketType(SFPACKET_SERVERSHUTDOWN);
+	PacketSendSingleton::instance()->PushPacket(pCommand);
 
 	ACE_Thread_Manager::instance()->wait_grp(m_PacketSendThreadId);
 
@@ -226,7 +228,7 @@ bool SFEngine::ShutDown()
 	return true;
 }
 
-bool SFEngine::OnConnect(int Serial)
+bool SFEngine::OnConnect(int Serial, bool bServerObject)
 {
 	BasePacket* pPacket = new BasePacket();
 	pPacket->SetPacketType(SFPACKET_CONNECT);
@@ -237,7 +239,7 @@ bool SFEngine::OnConnect(int Serial)
 	return true;
 }
 
-bool SFEngine::OnDisconnect(int Serial)
+bool SFEngine::OnDisconnect(int Serial, bool bServerObject)
 {
 	BasePacket* pPacket = new BasePacket();
 	pPacket->SetPacketType(SFPACKET_DISCONNECT);
@@ -259,9 +261,34 @@ bool SFEngine::OnTimer(const void *arg)
 	return true;
 }
 
-bool SFEngine::SendRequest(BasePacket* pPacket)
+bool SFEngine::SendRequest(BasePacket* pPacket, bool bDirectSend)
 {
-	return GetPacketProtocol()->SendRequest(pPacket);
+	if (bDirectSend)
+		return GetPacketProtocol()->SendRequest(pPacket);
+
+	BasePacket* pClone = pPacket->Clone();
+
+	if (pClone == NULL)
+	{
+		LOG(ERROR) << "clone packet error!!";
+	}
+		
+	return PacketSendSingleton::instance()->PushPacket(pClone);
+}
+
+bool SFEngine::SendRequest(BasePacket* pPacket, std::vector<int>& ownerList)
+{
+	bool bResult = false;
+	auto iter = ownerList.begin();
+	for (; iter != ownerList.end(); iter++)
+	{
+		if (false == GetPacketProtocol()->SendRequest(pPacket))
+		{
+			DLOG(ERROR) << "broad cast fail";
+		}
+	}
+
+	return true;
 }
 
 bool SFEngine::SendInternal(int ownerSerial, char* buffer, unsigned int bufferSize)
@@ -274,24 +301,12 @@ bool SFEngine::ReleasePacket(BasePacket* pPacket)
 	return m_pPacketProtocol->DisposePacket(pPacket);
 }
 
-////////////////////////////////////////////////////////////////////////////
-//아래 메소드 부터는 수정이 필요함
-////////////////////////////////////////////////////////////////////////////
-bool SFEngine::SendDelayedRequest(BasePacket* pPacket)
+int SFEngine::AddConnector(char* szIP, unsigned short port)
 {
-	SFPacket* pClonePacket = PacketPoolSingleton::instance()->Alloc();
+	return GetNetworkEngine()->AddConnector(szIP, port);
+}
 
-	unsigned int writtenSize;
-	bool result = m_pPacketProtocol->GetPacketData(pPacket, (char*)pClonePacket->GetHeader(), SFPacket::GetMaxPacketSize(), writtenSize);
-
-	if (writtenSize == 0)
-	{
-		PacketPoolSingleton::instance()->Release(pClonePacket);
-		return false;
-	}
-
-	pClonePacket->SetPacketType(SFPACKET_DATA);
-	pClonePacket->SetOwnerSerial(pPacket->GetOwnerSerial());
-
-	return PacketSendSingleton::instance()->PushPacket(pClonePacket);
+int SFEngine::AddListener(char* szIP, unsigned short port)
+{
+	return GetNetworkEngine()->AddListener(szIP, port);
 }

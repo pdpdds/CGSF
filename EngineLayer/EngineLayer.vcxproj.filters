@@ -53,6 +53,9 @@
     <Filter Include="Pattern">
       <UniqueIdentifier>{12fdbb0e-6319-4186-aa65-cef494e100f6}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Community">
+      <UniqueIdentifier>{99bff1f9-865a-4798-b807-35c6d5256c74}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include=".\SFExcel.cpp">
@@ -178,6 +181,9 @@
     <ClCompile Include="RPCService.cpp">
       <Filter>RPC</Filter>
     </ClCompile>
+    <ClCompile Include="CommunityManager.cpp">
+      <Filter>Community</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include=".\SFExcel.h">
@@ -190,9 +196,6 @@
       <Filter>Common</Filter>
     </ClInclude>
     <ClInclude Include=".\SFMacro.h">
-      <Filter>Common</Filter>
-    </ClInclude>
-    <ClInclude Include=".\SFMessage.h">
       <Filter>Common</Filter>
     </ClInclude>
     <ClInclude Include=".\stdafx.h">
@@ -368,6 +371,12 @@
     </ClInclude>
     <ClInclude Include="IRPCService.h">
       <Filter>RPC</Filter>
+    </ClInclude>
+    <ClInclude Include="IConnection.h">
+      <Filter>Community</Filter>
+    </ClInclude>
+    <ClInclude Include="CommunityManager.h">
+      <Filter>Community</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

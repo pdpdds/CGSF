@@ -14,22 +14,22 @@ class ISession
 
 	virtual void SendInternal(char* pBuffer, int BufferSize, int ownerSerial = -1) = 0;
 
-	void OnConnect(int Serial)
+	void OnConnect(int Serial, bool bServerObject = false)
 	{
 		m_pSessionService = m_pOwner->GetEngine()->CreateSessionService();
 		m_pSessionService->SetSerial(Serial);
-		m_pOwner->GetEngine()->OnConnect(Serial);
+		m_pOwner->GetEngine()->OnConnect(Serial, bServerObject);
 	}
 
-	void OnDisconnect(int Serial)
+	void OnDisconnect(int Serial, bool bServerObject = false)
 	{
-		m_pOwner->GetEngine()->OnDisconnect(Serial);
+		m_pOwner->GetEngine()->OnDisconnect(Serial, bServerObject);
 		delete m_pSessionService;
 	}
 
-	bool OnReceive(char* pData, unsigned short Length)
+	bool OnReceive(char* pData, unsigned short Length, bool bServerObject = false)
 	{
-		return m_pSessionService->OnReceive(pData, Length);
+		return m_pSessionService->OnReceive(pData, Length, bServerObject);
 	}
 
 	/*

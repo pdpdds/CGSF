@@ -19,8 +19,6 @@ public:
 	bool AddTransferredData(char* pBuffer, DWORD dwTransferred);
 	bool SendRequest(BasePacket* pPacket);
 
-	bool GetPacketData(BasePacket* pPacket, char* buffer, const int BufferSize, unsigned int& writtenSize);
-
 	virtual void disposeOutgoingPacket(BasePacket* pPacket);
 	virtual void disposeIncomingPacket(BasePacket* pPacket);
 	BasePacket* CreatePacket(){ return NULL; }

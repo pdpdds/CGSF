@@ -78,28 +78,3 @@ bool SFCGSFPacketProtocol::DisposePacket(BasePacket* pPacket)
 	SFASSERT(pSFPacket != NULL);
 	return PacketPoolSingleton::instance()->Release(pSFPacket);
 }
-
-bool SFCGSFPacketProtocol::GetPacketData(BasePacket* pPacket, char* buffer, const int bufferSize, unsigned int& writtenSize)
-{
-	writtenSize = 0;
-
-	SFPacket* pSFPacket = (SFPacket*)pPacket;
-
-	if (pSFPacket->GetPacketSize() == 0)
-	{
-		return true;
-	}
-
-	if (pSFPacket->GetPacketSize() > bufferSize)
-	{
-		SFASSERT(0);
-		return false;
-	}
-
-	pSFPacket->Encode();
-
-	memcpy(buffer, pSFPacket->GetHeader(), pSFPacket->GetPacketSize());
-	writtenSize = pSFPacket->GetPacketSize();
-
-	return true;
-}

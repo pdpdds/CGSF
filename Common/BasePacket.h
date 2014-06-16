@@ -36,6 +36,8 @@ public:
 		SetPacketType(pSource->GetPacketType());
 	}
 
+	virtual BasePacket* Clone(){ return NULL; }
+
 	virtual bool Encode() { return true; }
 	virtual bool Decode(char* pBuf, unsigned int nSize) {return true;}
 

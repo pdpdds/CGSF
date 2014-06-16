@@ -32,7 +32,7 @@ public:
 	//  Name:           OnReceive
 	//  Description:    유저가 전송한 데이터를 처리한다. 	
 	// ----------------------------------------------------------------
-	bool OnReceive(int serial, char* pBuffer, unsigned int dwTransferred) override;
+	bool OnReceive(int serial, char* pBuffer, unsigned int dwTransferred, bool bServerObject) override;
 	
 	// ----------------------------------------------------------------
 	//  Name:           SendRequest
@@ -52,13 +52,6 @@ public:
 	// ----------------------------------------------------------------
 	virtual IPacketProtocol* Clone(){ return new SFPacketProtocol<T>(); }
 	
-	// ----------------------------------------------------------------
-	//  Name:           GetPacketData
-	//  Description:    로직쓰레드가 패킷 인코딩을 하지 않도록 패킷의 데이터만 뽑아내는 메소드이다.
-	//					현재 개발중인 메소드임
-	// ----------------------------------------------------------------
-	virtual bool GetPacketData(BasePacket* pPacket, char* buffer, const int BufferSize, unsigned int& writtenSize) override;
-
 	//virtual BasePacket* CreatePacket() override;
 
 private:
@@ -103,19 +96,13 @@ bool SFPacketProtocol<T>::DisposePacket(BasePacket* pPacket)
 }
 
 template <typename T>
-bool SFPacketProtocol<T>::GetPacketData(BasePacket* pPacket, char* buffer, const int BufferSize, unsigned int& writtenSize)
-{
-	return m_Analyzer.GetPacketData(pPacket, buffer, BufferSize, writtenSize);
-}
-
-template <typename T>
 bool SFPacketProtocol<T>::SendRequest(BasePacket* pPacket)
 {
 	return m_Analyzer.SendRequest(pPacket);
 }
 
 template <typename T>
-bool SFPacketProtocol<T>::OnReceive(int Serial, char* pBuffer, unsigned int dwTransferred)
+bool SFPacketProtocol<T>::OnReceive(int Serial, char* pBuffer, unsigned int dwTransferred, bool bServerObject)
 {
 	bool bRet = m_Analyzer.AddTransferredData(pBuffer, dwTransferred);
 

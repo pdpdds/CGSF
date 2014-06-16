@@ -22,8 +22,6 @@ public:
 	bool DisposePacket(BasePacket* pPacket);
 	//BasePacket* CreatePacket();
 
-	bool GetPacketData(BasePacket* pPacket, char* buffer, const int BufferSize, unsigned int& writtenSize);
-
 	virtual BasePacket* CreateIncomingPacketFromPacketId(int PacketId) = 0;
 
 protected:

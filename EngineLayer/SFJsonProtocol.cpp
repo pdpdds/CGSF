@@ -104,20 +104,3 @@ bool SFJsonProtocol::DisposePacket(BasePacket* pPacket)
 	delete pPacket;
 	return true;
 }
-
-bool SFJsonProtocol::GetPacketData(BasePacket* pPacket, char* buffer, const int BufferSize, unsigned int& writtenSize)
-{
-	SFJsonPacket* pJsonPacket = (SFJsonPacket*)pPacket;
-	JsonObjectNode& ObjectNode = pJsonPacket->GetData();
-
-	memcpy(buffer, pJsonPacket->GetHeader(), sizeof(SFPacketHeader));
-	
-	writtenSize = JsonBuilder::MakeBuffer(ObjectNode, buffer + sizeof(SFPacketHeader), BufferSize);
-
-	if(writtenSize == 0)
-		return false;
-
-	writtenSize += sizeof(SFPacketHeader);
-
-	return true;
-}

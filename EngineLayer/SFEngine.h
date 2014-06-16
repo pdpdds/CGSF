@@ -16,23 +16,27 @@ public:
 	virtual ~SFEngine(void);
 
 	static SFEngine* GetInstance();
+	void SetLogFolder(TCHAR* szPath = NULL);
 
-	bool Start();
-	bool Start(char* szIP, unsigned short Port);
+	bool Start(char* szIP = NULL, unsigned short port = 0);
 	bool Intialize(ILogicEntry* pLogicEntry, IPacketProtocol* pProtocol, ILogicDispatcher* pDispatcher = NULL);
 	bool ShutDown();
 
 	virtual ISessionService* CreateSessionService() override;
 	
-	virtual bool OnConnect(int Serial) override;
-	virtual bool OnDisconnect(int Serial) override;
+	virtual bool OnConnect(int Serial, bool bServerObject = false) override;
+	virtual bool OnDisconnect(int Serial, bool bServerObject = false) override;
 	virtual bool OnTimer(const void *arg) override;
 
 	bool AddTimer(int timerID, DWORD period, DWORD delay);
-	bool SendRequest(BasePacket* pPacket);
+	bool SendRequest(BasePacket* pPacket, bool bDirectSend = true);
+	bool SendRequest(BasePacket* pPacket, std::vector<int>& ownerList);
 	bool SendInternal(int ownerSerial, char* buffer, unsigned int bufferSize);
+	bool ReleasePacket(BasePacket* pPacket);
 
-	bool SendDelayedRequest(BasePacket* pPacket);
+	int  AddListener(char* szIP, unsigned short port);
+	int  AddConnector(char* szIP, unsigned short port);
+	void AddRPCService(IRPCService* pService);
 	
 	INetworkEngine* GetNetworkEngine(){return m_pNetworkEngine;}
 
@@ -42,17 +46,9 @@ public:
 	IPacketProtocol* GetPacketProtocol(){return m_pPacketProtocol;}
 	ILogicDispatcher* GetLogicDispatcher(){return m_pLogicDispatcher;}
 
-	bool ReleasePacket(BasePacket* pPacket);
-
-	bool ServerTerminated(){ return m_bServerTerminated; }
-
-	void SetLogFolder();
-	void AddRPCService(IRPCService* pService);
 	bool IsServer(){ return m_isServer; }
 
 protected:
-
-	bool CreateLogicThread(ILogicEntry* pLogic);
 	bool CreatePacketSendThread();
 	bool CreateEngine(char* szModuleName, bool Server = false);
 	
@@ -61,7 +57,6 @@ private:
 
 	SFConfigure m_Config;
 	int m_PacketSendThreadId;	
-	bool m_bServerTerminated;
 
 	HINSTANCE m_EngineHandle;
 	INetworkEngine* m_pNetworkEngine;

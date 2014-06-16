@@ -19,6 +19,8 @@ public:
 	SFPacketHeader* GetHeader() { return &m_packetHeader; }
 	msgpack::unpacker&	GetData(){ return m_unpacker; }
 
+	virtual BasePacket* Clone() override;
+
 protected:
 
 private:

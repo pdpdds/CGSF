@@ -17,6 +17,16 @@ public:
 	{
 		return m_Packet;
 	}
+	
+	virtual BasePacket* Clone()
+	{
+		SFProtobufPacket* pClone = new SFProtobufPacket<T>(getServiceId());
+		pClone->CopyBaseHeader(this);
+		pClone->m_Packet = m_Packet;
+
+		return pClone;
+	}
+
 
 protected:
 

@@ -235,10 +235,10 @@ public:
 		m_usCurrentReadPosition += bufferSize;
 	}
 
-	
-
 	static void SetMaxPacketSize(USHORT packetSize) { m_packetMaxSize = packetSize; }
 	static USHORT GetMaxPacketSize(){ return m_packetMaxSize; }
+
+	virtual BasePacket* Clone() override;
 
 protected:
 

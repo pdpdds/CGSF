@@ -8,20 +8,17 @@
 
 bool SFCasualGameDispatcher::m_bLogicEnd = false;
 
-//로직 쓰레드 수행 메소드 설정 및 로직쓰레드의 개수 설정
+
 SFCasualGameDispatcher::SFCasualGameDispatcher(void)
-: m_LogicThreadGroupId(-1)
 {
+//캐쥬얼 게임 프레임 워크의 로직 쓰레드 수는 하나임
 	m_nLogicThreadCnt = 1;
-	m_funcLogicThread = (void*)SFCasualGameDispatcher::LogicThread;
-	m_funcRPCThread = (void*)SFCasualGameDispatcher::RPCThread;
 }
 
 SFCasualGameDispatcher::~SFCasualGameDispatcher(void)
 {
 }
 
-//로직게이트웨이 큐에 패킷을 큐잉한다.
 void SFCasualGameDispatcher::Dispatch(BasePacket* pPacket)
 {
 	if (pPacket->GetPacketType() == SFPACKET_RPC && SFEngine::GetInstance()->IsServer())
@@ -34,9 +31,10 @@ void SFCasualGameDispatcher::Dispatch(BasePacket* pPacket)
 	}
 }
 
-void SFCasualGameDispatcher::LogicThread(void* Args)
+void SFCasualGameDispatcher::LogicThreadProc(void* Args)
 {
-	SFEngine* pEngine = (SFEngine*)Args;
+	SFEngine* pEngine = SFEngine::GetInstance();
+
 	while (m_bLogicEnd == false)
 	{
 //로직게이트웨이 큐에서 패킷을 꺼낸다.
@@ -70,7 +68,7 @@ void SFCasualGameDispatcher::LogicThread(void* Args)
 	}
 }
 
-void SFCasualGameDispatcher::RPCThread(void* Args)
+void SFCasualGameDispatcher::RPCThreadProc(void* Args)
 {
 	SFCasualGameDispatcher* pDisPatcher = (SFCasualGameDispatcher*)Args;
 	while (m_bLogicEnd == false)
@@ -89,11 +87,11 @@ void SFCasualGameDispatcher::RPCThread(void* Args)
 
 bool SFCasualGameDispatcher::CreateLogicSystem(ILogicEntry* pLogicEntry)
 {	
-	m_LogicThreadGroupId = ACE_Thread_Manager::instance()->spawn_n(GetLogicThreadCount(), (ACE_THR_FUNC)GetLogicThreadFunc(), this, THR_NEW_LWP, ACE_DEFAULT_THREAD_PRIORITY);
+	ACE_Thread_Manager::instance()->spawn_n(m_nLogicThreadCnt, (ACE_THR_FUNC)LogicThreadProc, this, THR_NEW_LWP, ACE_DEFAULT_THREAD_PRIORITY);
 
 	LogicEntrySingleton::instance()->SetLogic(pLogicEntry);
 
-	ACE_Thread_Manager::instance()->spawn_n(4, (ACE_THR_FUNC)GetRPCThreadFunc(), this, THR_NEW_LWP, ACE_DEFAULT_THREAD_PRIORITY);
+	ACE_Thread_Manager::instance()->spawn_n(4, (ACE_THR_FUNC)RPCThreadProc, this, THR_NEW_LWP, ACE_DEFAULT_THREAD_PRIORITY);
 
 	return true;
 }
@@ -103,15 +101,9 @@ bool SFCasualGameDispatcher::ShutDownLogicSystem()
 	m_bLogicEnd = true;
 
 	BasePacket* pCommand = PacketPoolSingleton::instance()->Alloc();
-	pCommand->SetPacketType(SFPACKET_SERVERSHUTDOWN);
-	PacketSendSingleton::instance()->PushPacket(pCommand);
-
-	pCommand = PacketPoolSingleton::instance()->Alloc();
 	pCommand->SetOwnerSerial(-1);
 	pCommand->SetPacketType(SFPACKET_SERVERSHUTDOWN);
 	LogicGatewaySingleton::instance()->PushPacket(pCommand);
-
-	ACE_Thread_Manager::instance()->wait_grp(m_LogicThreadGroupId);
 
 	return true;
 }

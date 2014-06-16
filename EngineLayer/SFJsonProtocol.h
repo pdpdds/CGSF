@@ -20,7 +20,6 @@ public:
 
 	bool DisposePacket(BasePacket* pPacket);
 	BasePacket* CreatePacket();
-	bool GetPacketData(BasePacket* pPacket, char* buffer, const int BufferSize, unsigned int& writtenSize);
 
 protected:
 

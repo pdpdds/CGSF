@@ -28,6 +28,8 @@ public:
 
 	virtual bool Encode(avro::EncoderPtr e) override;
 	virtual bool Decode(char* pBuf, unsigned int nSize) override;
+	virtual BasePacket* Clone() override;
+
 
 protected:
 
@@ -55,4 +57,15 @@ bool SFAvroPacket<T>::Decode(char* pBuf, unsigned int nSize)
 	avro::decode(*d, m_Packet);*/
 	memcpy(&m_Packet, pBuf, sizeof(T));
 	return true;
+}
+
+template <typename T>
+BasePacket* SFAvroPacket<T>::Clone()
+{
+	SFAvroPacket<T>* pClone = new SFAvroPacket<T>(GetPacketID());
+	pClone->CopyBaseHeader(this);
+	pClone->m_Packet = m_Packet;
+	memcpy(pClone->GetHeader(), GetHeader(), sizeof(SFPacketHeader));
+
+	return pClone;
 }

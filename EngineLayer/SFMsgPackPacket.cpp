@@ -16,3 +16,8 @@ SFMsgPackPacket::SFMsgPackPacket()
 SFMsgPackPacket::~SFMsgPackPacket()
 {
 }
+
+BasePacket* SFMsgPackPacket::Clone()
+{
+	return NULL;
+}

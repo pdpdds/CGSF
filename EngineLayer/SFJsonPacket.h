@@ -12,6 +12,9 @@ public:
 
 	JsonObjectNode&	GetData(){return m_Node;}
 	SFPacketHeader* GetHeader() { return &m_packetHeader; }
+
+	virtual BasePacket* Clone() override;
+
 protected:
 
 private:

@@ -57,29 +57,6 @@ bool SFProtobufProtocol::SendRequest(BasePacket* pPacket)
 	return true;
 }
 
-bool SFProtobufProtocol::GetPacketData(BasePacket* pPacket, char* buffer, const int BufferSize, unsigned int& writtenSize)
-{
-	unsigned int uWrittenBytes = 0;
-	int iResult = serializeOutgoingPacket(*pPacket, oBuffer, uWrittenBytes);
-	
-	if (iResult!= SFProtocol::Success)
-	{
-		return false;
-	}
-
-	unsigned int uSize = oBuffer.GetDataSize();
-
-	if(uSize == 0)
-		return false;
-
-	memcpy(buffer, oBuffer.GetBuffer(), uSize);
-	writtenSize = uSize;
-
-	oBuffer.Pop(uSize);
-
-	return true;
-}
-
 ///////////////////////////////////////////////////////////////////////////////////////////////////////
 ///////////////////////////////////////////////////////////////////////////////////////////////////////
 int SFProtobufProtocol::decodeIncomingPacket( BasePacket* pPacket, int& serviceId )

@@ -57,12 +57,6 @@ public:
 	// ----------------------------------------------------------------
 	BasePacket* CreatePacket();
 
-	// ----------------------------------------------------------------
-	//  Name:           GetPacketData
-	//  Description:    개발중인 메소드. 일단 무조건 true를 반환하도록 구현해 놓는다.
-	// ----------------------------------------------------------------
-	bool GetPacketData(BasePacket* pPacket, char* buffer, const int BufferSize, unsigned int& writtenSize);
-
 protected:
 
 private:
