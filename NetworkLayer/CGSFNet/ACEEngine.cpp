@@ -118,7 +118,7 @@ int ACEServerEngine::AddConnector(char* szIP, unsigned short port)
 
 	int acceptorNum = m_acceptorIndex;
 
-	ProactorService* pService = new ProactorService(acceptorNum, true);
+	ProactorService* pService = new ProactorService(acceptorNum);
 	pService->SetOwner(this);
 
 	ACE_Message_Block mb;
@@ -127,7 +127,7 @@ int ACEServerEngine::AddConnector(char* szIP, unsigned short port)
 	stream = NULL;
 
 	m_acceptorIndex++;
-	return acceptorNum;
+	return pService->GetSerial();
 }
 
 int ACEServerEngine::AddListener(char* szIP, unsigned short port)

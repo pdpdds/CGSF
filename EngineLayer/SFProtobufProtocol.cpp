@@ -50,7 +50,7 @@ bool SFProtobufProtocol::SendRequest(BasePacket* pPacket)
 	}
 
 	unsigned int uSize = oBuffer.GetDataSize();
-	SFEngine::GetInstance()->SendInternal(pPacket->GetOwnerSerial(), oBuffer.GetBuffer(), uSize);
+	SFEngine::GetInstance()->SendInternal(pPacket->GetSerial(), oBuffer.GetBuffer(), uSize);
 
 	oBuffer.Pop(uSize);
 

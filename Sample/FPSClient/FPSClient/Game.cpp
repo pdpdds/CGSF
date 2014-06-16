@@ -77,7 +77,7 @@ void Game::Load()
 	g_engine->GetSceneManager()->LoadScene( "Abandoned City.txt", "./Assets/Scenes/" );
 
 	/*SFProtobufPacket<SFPacketStore::LoadingComplete> PktLoadingComplete(CGSF::LoadingComplete);
-	PktLoadingComplete.SetOwnerSerial(g_engine->GetLocalID());
+	PktLoadingComplete.SetSerial(g_engine->GetLocalID());
 
 	g_pCasualGameManager->GetNetwork()->TCPSend(&PktLoadingComplete);*/
 
@@ -172,7 +172,7 @@ void Game::Update( float elapsed )
 	if( g_engine->GetInput()->GetKeyPress( DIK_ESCAPE ) )
 	{
 		SFProtobufPacket<SFPacketStore::LeaveRoom> leaveRoom(CGSF::LeaveRoom);
-		leaveRoom.SetOwnerSerial(g_engine->GetLocalID());
+		leaveRoom.SetSerial(g_engine->GetLocalID());
 
 		g_pCasualGameManager->GetNetwork()->TCPSend(&leaveRoom);
 	}

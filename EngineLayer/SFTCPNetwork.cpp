@@ -76,11 +76,11 @@ BOOL SFTCPNetwork::Update()
 				break;
 
 			case SFPACKET_CONNECT:			
-				m_pTCPCallBack->HandleConnect(pPacket->GetOwnerSerial());
+				m_pTCPCallBack->HandleConnect(pPacket->GetSerial());
 				delete pPacket;
 				break;
 			case  SFPACKET_DISCONNECT:			
-				m_pTCPCallBack->HandleDisconnect(pPacket->GetOwnerSerial());
+				m_pTCPCallBack->HandleDisconnect(pPacket->GetSerial());
 				delete pPacket;
 				break;
 			}
@@ -107,7 +107,7 @@ BOOL SFTCPNetwork::SendRequest(BasePacket* pPacket)
 	PacketSend.MakePacket((BYTE*)pMessage, BufSize, CGSF_PACKET_OPTION);
 	*/
 
-	pPacket->SetOwnerSerial(m_pTCPCallBack->GetSerial());
+	pPacket->SetSerial(m_pTCPCallBack->GetSerial());
 	return m_TCPClient->SendRequest(pPacket);
 }
 

@@ -59,7 +59,7 @@ BOOL SFDBProcessorODBC::OnLogin( BasePacket* pPacket )
 ////////////////////////////////////////////////////////////////////////////////
 //결과를 로직 쓰레드로 보내야 할 경우
 ////////////////////////////////////////////////////////////////////////////////
-	SFMessage* pMsg = SFSendDBRequest::GetInitMessage(pMessage->GetCommand(), pMessage->GetOwnerSerial());
+	SFMessage* pMsg = SFSendDBRequest::GetInitMessage(pMessage->GetCommand(), pMessage->GetSerial());
 //	*pMsg << Result;
 	SFSendDBRequest::SendToLogic(pMsg);
 	

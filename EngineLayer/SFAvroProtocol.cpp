@@ -120,7 +120,7 @@ bool SFAvroProtocol::SendRequest(BasePacket* pPacket)
 	//12바이트 헤더의 마지막 2바이트에 기록
 	*((unsigned short*)buffer + 5) = writtenSize;
 
-	SFEngine::GetInstance()->SendInternal(pAvroPacket->GetOwnerSerial(), buffer, sizeof(SFPacketHeader)+writtenSize);
+	SFEngine::GetInstance()->SendInternal(pAvroPacket->GetSerial(), buffer, sizeof(SFPacketHeader)+writtenSize);
 
 	return true;
 }

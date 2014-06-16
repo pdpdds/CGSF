@@ -61,7 +61,7 @@ int ProactorServerAcceptor::validate_connection(const ACE_Asynch_Accept::Result&
 
 ProactorService* ProactorServerAcceptor::make_handler()
 {
-	ProactorService* pProactorService = new ProactorService(m_acceptorNum, true);
+	ProactorService* pProactorService = new ProactorService(m_acceptorNum);
 	pProactorService->SetOwner(m_pOwner);
 
 	return pProactorService;

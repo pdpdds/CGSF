@@ -137,7 +137,7 @@ bool GUILobby::handleSubmit(const CEGUI::EventArgs&)
 	}
 
 	SFProtobufPacket<SFPacketStore::ChatReq> PktChatReq(CGSF::ChatReq);
-	//PktChatReq.SetOwnerSerial(g_engine->GetLocalID());
+	//PktChatReq.SetSerial(g_engine->GetLocalID());
 	PktChatReq.GetData().set_message(edit_text.c_str());
 
 	//	g_engine->GetNetwork()->TCPSend(&PktChatReq);

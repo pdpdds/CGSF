@@ -2,6 +2,7 @@
 #include "SFConstant.h"
 #include "SFStructure.h"
 #include "SFMacro.h"
+#include "BasePacket.h"
 
 #define GOOGLE_GLOG_DLL_DECL
 #define GLOG_NO_ABBREVIATED_SEVERITIES

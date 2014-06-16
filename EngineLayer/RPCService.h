@@ -54,7 +54,7 @@ public:
 	{
 		SFPacket packet(SFPACKET_RPC_PACKET);
 		//packet.Write((const BYTE*)pSFPacket->GetHeader(), sizeof(SFPacketHeader));
-		packet.SetOwnerSerial(pSFPacket->GetOwnerSerial());
+		packet.SetSerial(pSFPacket->GetSerial());
 		packet.Write((const BYTE*)oa.buf(), oa.bufSize());
 
 

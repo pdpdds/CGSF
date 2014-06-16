@@ -188,7 +188,7 @@ bool SFEngine::Start(char* szIP, unsigned short port)
 	LOG(INFO) << "Engine Starting... IP : " << (char*)StringConversion::ToASCII(pInfo->ServerIP).c_str() << " Port : " << pInfo->ServerPort;
 	
 	bool bResult = false;
-	if (szIP != 0 && port != 0)
+	if (port != 0)
 		bResult = m_pNetworkEngine->Start(szIP, port);
 	else
 		bResult = m_pNetworkEngine->Start((char*)StringConversion::ToASCII(pInfo->ServerIP).c_str(), pInfo->ServerPort);
@@ -228,22 +228,24 @@ bool SFEngine::ShutDown()
 	return true;
 }
 
-bool SFEngine::OnConnect(int Serial, bool bServerObject)
+bool SFEngine::OnConnect(int Serial, int acceptorId)
 {
 	BasePacket* pPacket = new BasePacket();
+	pPacket->SetAcceptorId(acceptorId);
 	pPacket->SetPacketType(SFPACKET_CONNECT);
-	pPacket->SetOwnerSerial(Serial);
+	pPacket->SetSerial(Serial);
 
 	m_pLogicDispatcher->Dispatch(pPacket);
 	
 	return true;
 }
 
-bool SFEngine::OnDisconnect(int Serial, bool bServerObject)
+bool SFEngine::OnDisconnect(int Serial, int acceptorId)
 {
 	BasePacket* pPacket = new BasePacket();
+	pPacket->SetAcceptorId(acceptorId);
 	pPacket->SetPacketType(SFPACKET_DISCONNECT);
-	pPacket->SetOwnerSerial(Serial);
+	pPacket->SetSerial(Serial);
 
 	m_pLogicDispatcher->Dispatch(pPacket);
 	
@@ -254,7 +256,7 @@ bool SFEngine::OnTimer(const void *arg)
 {
 	BasePacket* pPacket = new BasePacket();
 	pPacket->SetPacketType(SFPACKET_TIMER);
-	pPacket->SetOwnerSerial(-1);
+	pPacket->SetSerial(-1);
 
 	m_pLogicDispatcher->Dispatch(pPacket);
 

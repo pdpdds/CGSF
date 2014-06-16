@@ -101,7 +101,7 @@ bool SFCasualGameDispatcher::ShutDownLogicSystem()
 	m_bLogicEnd = true;
 
 	BasePacket* pCommand = PacketPoolSingleton::instance()->Alloc();
-	pCommand->SetOwnerSerial(-1);
+	pCommand->SetSerial(-1);
 	pCommand->SetPacketType(SFPACKET_SERVERSHUTDOWN);
 	LogicGatewaySingleton::instance()->PushPacket(pCommand);
 

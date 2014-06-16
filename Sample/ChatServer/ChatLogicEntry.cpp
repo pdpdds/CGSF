@@ -25,7 +25,7 @@ bool ChatLogicEntry::ProcessPacket(BasePacket* pPacket)
 	switch (pPacket->GetPacketType())
 	{
 	case SFPACKET_CONNECT:
-		OnConnectPlayer(pPacket->GetOwnerSerial());
+		OnConnectPlayer(pPacket->GetSerial());
 		break;
 
 	case SFPACKET_DATA:
@@ -33,7 +33,7 @@ bool ChatLogicEntry::ProcessPacket(BasePacket* pPacket)
 		break;
 
 	case SFPACKET_DISCONNECT:	
-		OnDisconnectPlayer(pPacket->GetOwnerSerial());
+		OnDisconnectPlayer(pPacket->GetSerial());
 		break;
 
 	case SFPACKET_TIMER:
@@ -83,7 +83,7 @@ bool ChatLogicEntry::OnPlayerData(BasePacket* pPacket)
 	switch (pPacket->GetPacketID())
 	{
 	case CHAT_PACKET_NUM:
-		ChatUser* pUser = FindUser(pPacket->GetOwnerSerial());
+		ChatUser* pUser = FindUser(pPacket->GetSerial());
 
 		if (pUser == NULL)
 			return false;
@@ -107,7 +107,7 @@ bool ChatLogicEntry::Broadcast(BasePacket* pPacket)
 {
 	for (auto& chatUser : m_ChatUserMap)
 	{
-		pPacket->SetOwnerSerial(chatUser.first);
+		pPacket->SetSerial(chatUser.first);
 		SFEngine::GetInstance()->SendRequest(pPacket);
 	}
 

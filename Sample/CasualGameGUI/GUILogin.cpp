@@ -73,7 +73,7 @@ bool GUILogin::handleSubmit(const CEGUI::EventArgs&)
 		return false;
 
 	SFProtobufPacket<SFPacketStore::Login> PktLogin(CGSF::Login);
-//	PktLogin.SetOwnerSerial(g_engine->GetLocalID());
+//	PktLogin.SetSerial(g_engine->GetLocalID());
 	PktLogin.GetData().set_username(edit_text.c_str());
 	PktLogin.GetData().set_password(edit_text2.c_str());
 

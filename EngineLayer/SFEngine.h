@@ -24,8 +24,8 @@ public:
 
 	virtual ISessionService* CreateSessionService() override;
 	
-	virtual bool OnConnect(int Serial, bool bServerObject = false) override;
-	virtual bool OnDisconnect(int Serial, bool bServerObject = false) override;
+	virtual bool OnConnect(int Serial, int acceptorId = 0) override;
+	virtual bool OnDisconnect(int Serial, int acceptorId = 0) override;
 	virtual bool OnTimer(const void *arg) override;
 
 	bool AddTimer(int timerID, DWORD period, DWORD delay);

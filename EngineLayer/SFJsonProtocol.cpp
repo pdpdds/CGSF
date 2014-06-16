@@ -50,7 +50,7 @@ bool SFJsonProtocol::SendRequest(BasePacket* pPacket)
 	unsigned int writtenSize = JsonBuilder::MakeBuffer(ObjectNode, buffer + sizeof(SFPacketHeader), BufferSize - sizeof(SFPacketHeader));
 	*((unsigned short*)buffer + 5) = writtenSize;
 	
-	SFEngine::GetInstance()->SendInternal(pJsonPacket->GetOwnerSerial(), buffer, sizeof(SFPacketHeader) + writtenSize);
+	SFEngine::GetInstance()->SendInternal(pJsonPacket->GetSerial(), buffer, sizeof(SFPacketHeader) + writtenSize);
 
 	delete buffer;
 

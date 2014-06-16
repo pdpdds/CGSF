@@ -66,7 +66,7 @@ bool SFCGSFPacketProtocol::SendRequest(BasePacket* pPacket)
 	SFPacket* pSFPacket = (SFPacket*)pPacket;
 	pSFPacket->Encode();
 
-	SFEngine::GetInstance()->SendInternal(pSFPacket->GetOwnerSerial(), (char*)pSFPacket->GetHeader(), pSFPacket->GetPacketSize());
+	SFEngine::GetInstance()->SendInternal(pSFPacket->GetSerial(), (char*)pSFPacket->GetHeader(), pSFPacket->GetPacketSize());
 	
 	return TRUE;
 }

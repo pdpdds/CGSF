@@ -264,7 +264,7 @@ BOOL SGBattle::SendPlayerID()
 		SFPlayer* pPlayer = iter->second;
 		
 		SFProtobufPacket<SevenGamePacket::PlayerID> packet(SevenGame::PlayerID);
-		packet.SetOwnerSerial(pPlayer->GetSerial());
+		packet.SetSerial(pPlayer->GetSerial());
 		packet.GetData().set_playerindex(pPlayer->GetSerial());
 
 		SFEngine::GetInstance()->SendRequest(&packet);
@@ -312,7 +312,7 @@ BOOL SGBattle::SendMyCardInfo()
 		SFProtobufPacket<SevenGamePacket::MyCardInfo> myCardInfo(SevenGame::MyCardInfo);
 
 		SFPlayer* pPlayer = iter->second;
-		myCardInfo.SetOwnerSerial(pPlayer->GetSerial());
+		myCardInfo.SetSerial(pPlayer->GetSerial());
 
 		SGUser* pSGUser = m_SevenGameManger->FindUser(pPlayer->GetSerial());
 
@@ -391,7 +391,7 @@ BOOL SGBattle::BroadCast(BasePacket& packet)
 	for(;iter != roomMember.end(); iter++)
 	{
 		SFPlayer* pPlayer = iter->second;
-		packet.SetOwnerSerial(pPlayer->GetSerial());
+		packet.SetSerial(pPlayer->GetSerial());
 
 		SFEngine::GetInstance()->SendRequest(&packet);
 	}

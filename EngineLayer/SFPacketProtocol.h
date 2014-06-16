@@ -32,7 +32,7 @@ public:
 	//  Name:           OnReceive
 	//  Description:    유저가 전송한 데이터를 처리한다. 	
 	// ----------------------------------------------------------------
-	bool OnReceive(int serial, char* pBuffer, unsigned int dwTransferred, bool bServerObject) override;
+	bool OnReceive(int serial, char* pBuffer, unsigned int dwTransferred, int acceptorId) override;
 	
 	// ----------------------------------------------------------------
 	//  Name:           SendRequest
@@ -102,7 +102,7 @@ bool SFPacketProtocol<T>::SendRequest(BasePacket* pPacket)
 }
 
 template <typename T>
-bool SFPacketProtocol<T>::OnReceive(int Serial, char* pBuffer, unsigned int dwTransferred, bool bServerObject)
+bool SFPacketProtocol<T>::OnReceive(int Serial, char* pBuffer, unsigned int dwTransferred, int acceptorId)
 {
 	bool bRet = m_Analyzer.AddTransferredData(pBuffer, dwTransferred);
 
@@ -126,7 +126,8 @@ bool SFPacketProtocol<T>::OnReceive(int Serial, char* pBuffer, unsigned int dwTr
 		else
 			pPacket->SetPacketType(SFPACKET_DATA);
 
-		pPacket->SetOwnerSerial(Serial);
+		pPacket->SetSerial(Serial);	
+		pPacket->SetAcceptorId(acceptorId);
 		
 		SendLogicLayer(pPacket);
 	}

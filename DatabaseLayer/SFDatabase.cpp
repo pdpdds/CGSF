@@ -17,7 +17,7 @@ SFMessage* SFDatabase::GetInitMessage(int RequestMsg, DWORD PlayerSerial)
 	SFASSERT(pMessage != NULL);
 	pMessage->Initialize(RequestMsg);
 	pMessage->SetPacketID(RequestMsg);
-	pMessage->SetOwnerSerial(PlayerSerial);
+	pMessage->SetSerial(PlayerSerial);
 	pMessage->SetPacketType(SFPACKET_DB);
 
 	return pMessage;

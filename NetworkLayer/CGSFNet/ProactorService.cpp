@@ -2,11 +2,10 @@
 #include "SingltonObject.h"
 #include <Assert.h>
 
-ProactorService::ProactorService(int acceptorId, bool bServerObject)
+ProactorService::ProactorService(int acceptorId)
 	: m_bServiceCloseFlag(false)
 	, m_pTimerLock(0)
 	, m_acceptorId(acceptorId)
-	, m_bServerObject(bServerObject)
 {
 }
 
@@ -34,13 +33,13 @@ void ProactorService::open( ACE_HANDLE h, ACE_Message_Block& MessageBlock )
 
 	m_bServiceCloseFlag = false;
 
-	m_Serial = ProactorServiceMapSingleton::instance()->Register(this);
+	m_serial = ProactorServiceMapSingleton::instance()->Register(this);
 
-	assert(m_Serial != INVALID_ID);
+	assert(m_serial != INVALID_ID);
 
 	RegisterTimer();
 
-	ISession::OnConnect(this->m_Serial, m_bServerObject);
+	ISession::OnConnect(this->m_serial, m_acceptorId);
 
 	PostRecv();
 }
@@ -68,7 +67,7 @@ void ProactorService::handle_read_stream( const ACE_Asynch_Read_Stream::Result& 
 	}
 	else
 	{
-		if (false == ISession::OnReceive(Block.rd_ptr(), Block.length(), m_bServerObject))
+		if (false == ISession::OnReceive(Block.rd_ptr(), Block.length(), m_acceptorId))
 		{
 			Block.release();
 			ReserveClose();
@@ -92,7 +91,7 @@ void ProactorService::RegisterTimer()
 
 void ProactorService::UnregisterTimer()
 {
-	ProactorServiceMapSingleton::instance()->UnRegister(m_Serial);
+	ProactorServiceMapSingleton::instance()->UnRegister(m_serial);
 }
 
 void ProactorService::ReserveClose()
@@ -103,9 +102,9 @@ void ProactorService::ReserveClose()
 	this->handle(ACE_INVALID_HANDLE);	
 
 	UnregisterTimer();
-	ProactorServiceMapSingleton::instance()->UnRegister(m_Serial);
+	ProactorServiceMapSingleton::instance()->UnRegister(m_serial);
 
-	ISession::OnDisconnect(this->m_Serial, m_bServerObject);
+	ISession::OnDisconnect(this->m_serial, m_acceptorId);
 
 	m_bServiceCloseFlag = true;
 }

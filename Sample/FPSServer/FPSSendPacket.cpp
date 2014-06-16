@@ -13,7 +13,7 @@ BOOL SendSpawnPlayer(SFPlayer* pPlayer, SFPlayer* pTarget)
 	_CharacterInfo* pInfo = pTarget->GetCharacterInfo();
 
 	SpawnPlayerMsg msg;
-	PktMsgSpawnPlayer.SetOwnerSerial(pPlayer->GetSerial());
+	PktMsgSpawnPlayer.SetSerial(pPlayer->GetSerial());
 	msg.PlayerID = pTarget->GetSerial();
 	msg.translation = pInfo->translation;
 
@@ -26,7 +26,7 @@ BOOL SendSpawnPlayer(SFPlayer* pPlayer, SFPlayer* pTarget)
 BOOL SendPlayerHealth(SFPlayer* pPlayer, SFPlayer* pTarget)
 {
 	SFProtobufPacket<FPSPacket::MSG_PLAYER_HEALTH> PktPlayerHealth = SFProtobufPacket<FPSPacket::MSG_PLAYER_HEALTH>(FPS::MSG_PLAYER_HEALTH);
-	PktPlayerHealth.SetOwnerSerial(pPlayer->GetSerial());
+	PktPlayerHealth.SetSerial(pPlayer->GetSerial());
 
 	_CharacterInfo* pInfo = pTarget->GetCharacterInfo();
 

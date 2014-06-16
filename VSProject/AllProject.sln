@@ -133,6 +133,16 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "SDLP2PServer", "..\P2PLayer
 		{835E9346-EC73-421D-8C4B-16C4673E3680} = {835E9346-EC73-421D-8C4B-16C4673E3680}
 	EndProjectSection
 EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "ServerListener", "..\Sample\ServerListener\ServerListener.vcxproj", "{5730DE4F-BEA1-42BA-857E-7EF4D7F5A8C8}"
+	ProjectSection(ProjectDependencies) = postProject
+		{F7276B81-CD8E-4E0B-ABF5-BAB8FEBE0511} = {F7276B81-CD8E-4E0B-ABF5-BAB8FEBE0511}
+	EndProjectSection
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "ServerConnector", "..\Sample\ServerConnector\ServerConnector.vcxproj", "{448F9D05-7F45-4033-A03C-98C18DEB0329}"
+	ProjectSection(ProjectDependencies) = postProject
+		{F7276B81-CD8E-4E0B-ABF5-BAB8FEBE0511} = {F7276B81-CD8E-4E0B-ABF5-BAB8FEBE0511}
+	EndProjectSection
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Win32 = Debug|Win32
@@ -345,6 +355,22 @@ Global
 		{61D1F49B-438E-4C9D-9A27-3071ACF19D05}.Release|Win32.Build.0 = Release|Win32
 		{61D1F49B-438E-4C9D-9A27-3071ACF19D05}.Release|x64.ActiveCfg = Release|x64
 		{61D1F49B-438E-4C9D-9A27-3071ACF19D05}.Release|x64.Build.0 = Release|x64
+		{5730DE4F-BEA1-42BA-857E-7EF4D7F5A8C8}.Debug|Win32.ActiveCfg = Debug|Win32
+		{5730DE4F-BEA1-42BA-857E-7EF4D7F5A8C8}.Debug|Win32.Build.0 = Debug|Win32
+		{5730DE4F-BEA1-42BA-857E-7EF4D7F5A8C8}.Debug|x64.ActiveCfg = Debug|x64
+		{5730DE4F-BEA1-42BA-857E-7EF4D7F5A8C8}.Debug|x64.Build.0 = Debug|x64
+		{5730DE4F-BEA1-42BA-857E-7EF4D7F5A8C8}.Release|Win32.ActiveCfg = Release|Win32
+		{5730DE4F-BEA1-42BA-857E-7EF4D7F5A8C8}.Release|Win32.Build.0 = Release|Win32
+		{5730DE4F-BEA1-42BA-857E-7EF4D7F5A8C8}.Release|x64.ActiveCfg = Release|x64
+		{5730DE4F-BEA1-42BA-857E-7EF4D7F5A8C8}.Release|x64.Build.0 = Release|x64
+		{448F9D05-7F45-4033-A03C-98C18DEB0329}.Debug|Win32.ActiveCfg = Debug|Win32
+		{448F9D05-7F45-4033-A03C-98C18DEB0329}.Debug|Win32.Build.0 = Debug|Win32
+		{448F9D05-7F45-4033-A03C-98C18DEB0329}.Debug|x64.ActiveCfg = Debug|x64
+		{448F9D05-7F45-4033-A03C-98C18DEB0329}.Debug|x64.Build.0 = Debug|x64
+		{448F9D05-7F45-4033-A03C-98C18DEB0329}.Release|Win32.ActiveCfg = Release|Win32
+		{448F9D05-7F45-4033-A03C-98C18DEB0329}.Release|Win32.Build.0 = Release|Win32
+		{448F9D05-7F45-4033-A03C-98C18DEB0329}.Release|x64.ActiveCfg = Release|x64
+		{448F9D05-7F45-4033-A03C-98C18DEB0329}.Release|x64.Build.0 = Release|x64
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

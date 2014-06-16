@@ -108,7 +108,7 @@ bool SFMsgPackProtocol::SendRequest(BasePacket* pPacket)
 	//12바이트 헤더의 마지막 2바이트에 기록
 	*((unsigned short*)buffer + 5) = nonParsedSize;
 
-	SFEngine::GetInstance()->SendInternal(pMsgPackPacket->GetOwnerSerial(), buffer, sizeof(SFPacketHeader)+nonParsedSize);
+	SFEngine::GetInstance()->SendInternal(pMsgPackPacket->GetSerial(), buffer, sizeof(SFPacketHeader)+nonParsedSize);
 
 	return true;
 }

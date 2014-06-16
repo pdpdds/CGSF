@@ -131,7 +131,7 @@ bool SFLogicEntry::ProcessPacket(BasePacket* pBase)
 	{
 	case SFPACKET_CONNECT:
 		{	
-			OnConnectPlayer(pBase->GetOwnerSerial());
+			OnConnectPlayer(pBase->GetSerial());
 		}
 		break;
 
@@ -156,7 +156,7 @@ bool SFLogicEntry::ProcessPacket(BasePacket* pBase)
 
 	case SFPACKET_DISCONNECT:
 		{	
-			OnDisconnectPlayer(pBase->GetOwnerSerial());
+			OnDisconnectPlayer(pBase->GetSerial());
 		}
 		break;
 
@@ -231,7 +231,7 @@ BOOL SFLogicEntry::OnDisconnectPlayer( int PlayerSerial )
 
 BOOL SFLogicEntry::OnPlayerData( BasePacket* pPacket )
 {
-	PlayerMap::iterator iter = m_PlayerMap.find(pPacket->GetOwnerSerial());
+	PlayerMap::iterator iter = m_PlayerMap.find(pPacket->GetSerial());
 
 	if(iter == m_PlayerMap.end())
 	{
@@ -246,7 +246,7 @@ BOOL SFLogicEntry::OnPlayerData( BasePacket* pPacket )
 
 BOOL SFLogicEntry::OnDBResult(SFMessage* pMessage)
 {
-	PlayerMap::iterator iter = m_PlayerMap.find(pMessage->GetOwnerSerial());
+	PlayerMap::iterator iter = m_PlayerMap.find(pMessage->GetSerial());
 
 	if(iter == m_PlayerMap.end())
 	{

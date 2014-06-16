@@ -11,7 +11,7 @@ class BaseClass;
 class ProactorService : public ACE_Service_Handler, public ISession
 {
 public:
-	ProactorService(int acceptorId = 0, bool bServerObject = false);
+	ProactorService(int acceptorId = 0);
 	virtual ~ProactorService(void);
 
 	virtual void open(ACE_HANDLE h, ACE_Message_Block& MessageBlock) override;
@@ -22,7 +22,8 @@ public:
 	void PostRecv();
 	
 	void SendInternal(char* pBuffer, int BufferSize, int ownerSerial = -1) override;	
-	void SetSerial(int Serial){m_Serial = Serial;}
+	void SetSerial(int serial){m_serial = serial;}
+	int GetSerial(){ return m_serial; }
 
 protected:
 	void RegisterTimer();
@@ -33,10 +34,9 @@ private:
 	ACE_Asynch_Write_Stream m_AsyncWriter;
 	ACE_Asynch_Read_Stream m_AsyncReader;
 
-	int m_Serial;
+	int m_serial;
 	int m_acceptorId;
 	InterlockedValue* m_pTimerLock;
 
 	bool m_bServiceCloseFlag;
-	bool m_bServerObject;
 };

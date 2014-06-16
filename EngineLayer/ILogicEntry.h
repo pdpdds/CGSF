@@ -11,6 +11,7 @@ public:
 
 	virtual bool Initialize() = 0;
 	virtual bool ProcessPacket(BasePacket* pPacket) = 0;
+	virtual bool ProcessServerPacket(int acceptorId, BasePacket* pPacket) { return false; }
 
 	void SetP2PService(bool bP2PService){m_bP2PService = bP2PService;}
 	bool GetP2PService(){return m_bP2PService;}

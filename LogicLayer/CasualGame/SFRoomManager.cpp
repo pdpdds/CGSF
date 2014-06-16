@@ -21,7 +21,7 @@ BOOL SFRoomManager::SendRoomPage( SFPlayerLobby* pLobbyState, int PageIndex /*= 
 		//return TRUE;
 
 	SFProtobufPacket<SFPacketStore::RoomList> roomList = SFProtobufPacket<SFPacketStore::RoomList>(CGSF::RoomList);
-	roomList.SetOwnerSerial(pOwner->GetSerial());
+	roomList.SetSerial(pOwner->GetSerial());
 
 	if(m_ActiveRoomMap.size() <= MAX_ROOM_COUNT_PER_PAGE)
 	{
