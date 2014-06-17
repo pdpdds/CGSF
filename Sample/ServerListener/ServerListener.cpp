@@ -13,13 +13,13 @@ int _tmain(int argc, _TCHAR* argv[])
 	SFEngine::GetInstance()->Intialize(pLogicEntry, new SFPacketProtocol<SFJsonProtocol>);
 
 	int listenerId = -1;
-	listenerId = SFEngine::GetInstance()->AddListener(0, 10000);
+	listenerId = SFEngine::GetInstance()->AddListener(nullptr, 10000);
 	SFASSERT(listenerId != -1);
 
-	listenerId = SFEngine::GetInstance()->AddListener(0, 10001);
+	listenerId = SFEngine::GetInstance()->AddListener(nullptr, 10001);
 	SFASSERT(listenerId != -1);
 
-	listenerId = SFEngine::GetInstance()->AddListener(0, 10002);
+	listenerId = SFEngine::GetInstance()->AddListener(nullptr, 10002);
 	SFASSERT(listenerId != -1);
 
 	SFEngine::GetInstance()->Start();
