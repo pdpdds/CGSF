@@ -4,18 +4,18 @@
 void *AllocPtr(int nSize)
 {
 	void *p = malloc(nSize);
-	nSize = _msize(p);
+	nSize = (int)_msize(p);
 	memset(p, 0, nSize);
 	return p;
 }
 
 void *ReAllocPtr(void *p, int nSize)
 {
-	int nOldSize = _msize(p);
+	int nOldSize = (int)_msize(p);
 	p = realloc(p, nSize);
 	if(nSize > nOldSize)
 	{
-		nSize = _msize(p);
+		nSize = (int)_msize(p);
 		memset((char*)p+nOldSize, 0, nSize-nOldSize);
 	}
 	return p;
@@ -812,7 +812,7 @@ int SFBitArray::Bmp2Array(vector<int> &nArray)
 
 void SFBitArray::Append2Array(vector<int> &nArray)
 {
-	int nArraySize = nArray.size();
+	int nArraySize = (int)nArray.size();
 	nArray.resize(nArraySize+GetCount());
 	BYTE by;
 	for(int nBit, nByte = 0; nByte < m_nLength; nByte++)

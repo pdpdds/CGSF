@@ -190,11 +190,12 @@
 	#pragma warning (disable : 4290) // C++ Exception Specification ignored
 	#pragma warning (disable : 4127) // Conditional expression is constant
 	#pragma warning (disable : 4097) // typedef name used as synonym for class name
-
+	
 	// AV - 22/08/2000
 	// To avoid "identifier was truncated to '255' characters in the debug information"
 	#pragma warning (disable : 4786)
 
+	#pragma warning (disable : 4267)
 #endif
 
 #ifndef STDSTRING_H
@@ -754,11 +755,11 @@ template<typename CT> inline int sslen(const CT* pT)
 }
 inline SS_NOTHROW int sslen(const std::string& s)
 {
-	return s.length();
+	return (int)s.length();
 }
 inline SS_NOTHROW int sslen(const std::wstring& s)
 {
-	return s.length();
+	return (int)s.length();
 }
 
 
@@ -807,7 +808,7 @@ inline void	ssasn(std::string& sDst, PCSTR pA)
 inline void	ssasn(std::string& sDst, const std::wstring& sSrc)
 {
 #ifdef SS_ANSI
-	int nLen	= sSrc.size();
+	int nLen	= (int)sSrc.size();
 	sDst.resize(0);
 	sDst.resize(nLen);
 	StdCodeCvt(const_cast<SS_PTRTYPE>(sDst.data()), sSrc.c_str(), nLen);

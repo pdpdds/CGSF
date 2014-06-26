@@ -195,6 +195,8 @@
 #include "DelayedDirectoryChangeHandler.h"
 #include "CStdString.h"
 
+#pragma warning (disable : 4267)
+
 #ifdef _DEBUG
 #undef THIS_FILE
 static char THIS_FILE[]=__FILE__;

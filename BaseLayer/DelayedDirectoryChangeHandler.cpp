@@ -977,7 +977,7 @@ DWORD GetPathOffsetBasedOnFilterFlags(CDirChangeNotification * pNot, DWORD dwFil
 		//set the offset to support FILTERS_CHECK_FILE_NAME_ONLY
 		TCHAR * pSlash  = _tcsrchr(pNot->m_szFileName1, _T('\\'));
 		if( pSlash )
-			dwFileNameOffset = (++pSlash - pNot->m_szFileName1);
+			dwFileNameOffset = (DWORD)(++pSlash - pNot->m_szFileName1);
 
 		//
 		//	Because file name change notifications take place in the same directory,

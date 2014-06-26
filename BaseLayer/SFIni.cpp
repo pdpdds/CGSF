@@ -106,12 +106,12 @@ DWORD SFIni::GetPathName(LPTSTR lpBuffer, DWORD dwBufSize) const
 	if (lpBuffer != NULL)
 	{
 		_tcsncpy(lpBuffer, m_pszPathName, dwBufSize);
-		dwLen = _tcslen(lpBuffer);
+		dwLen = (DWORD)_tcslen(lpBuffer);
 	}
 	else
 	{
 		// just calculate the required buffer size
-		dwLen = _tcslen(m_pszPathName);
+		dwLen = (DWORD)_tcslen(m_pszPathName);
 	}
 	return dwLen;
 }
@@ -135,7 +135,7 @@ DWORD SFIni::GetString(LPCTSTR lpSection, LPCTSTR lpKey, LPTSTR lpBuffer, DWORD 
 		*lpBuffer = _T('\0');
 
 	LPTSTR psz = __GetStringDynamic(lpSection, lpKey, lpDefault);
-	DWORD dwLen = _tcslen(psz);
+	DWORD dwLen = (DWORD)_tcslen(psz);
 
 	if (lpBuffer != NULL)
 	{
@@ -204,7 +204,7 @@ DWORD SFIni::GetArray(LPCTSTR lpSection, LPCTSTR lpKey, LPTSTR lpBuffer, DWORD d
 		if (lpBuffer == NULL)
 		{
 			// just calculate the required buffer size
-			const DWORD MAX_LEN = _tcslen(psz) + 2;
+			const DWORD MAX_LEN = (DWORD)(_tcslen(psz) + 2);
 			LPTSTR p = new TCHAR[MAX_LEN + 1];
 			dwCopied = __StringSplit(psz, p, MAX_LEN, lpDelimiter, bTrimString);
 			delete [] p;
@@ -382,7 +382,7 @@ BOOL SFIni::WriteChar(LPCTSTR lpSection, LPCTSTR lpKey, TCHAR c) const
 DWORD SFIni::GetDataBlock(LPCTSTR lpSection, LPCTSTR lpKey, LPVOID lpBuffer, DWORD dwBufSize, DWORD dwOffset) const
 {
 	LPTSTR psz = __GetStringDynamic(lpSection, lpKey);
-	DWORD dwLen = _tcslen(psz) / 2;
+	DWORD dwLen = (DWORD)(_tcslen(psz) / 2);
 	if (dwLen <= dwOffset)
 	{
 		delete [] psz;
@@ -798,11 +798,11 @@ DWORD SFIni::__StringSplit(LPCTSTR lpString, LPTSTR lpBuffer, DWORD dwBufSize, L
 	if (lpDelimiter != NULL && *lpDelimiter == _T('\0'))
 	{
 		_tcsncpy(lpBuffer, lpString, dwBufSize - 1);
-		return _tcslen(lpBuffer);
+		return (DWORD)_tcslen(lpBuffer);
 	}
 
 	LPTSTR pszDel = (lpDelimiter == NULL) ? _tcsdup(DEF_PROFILE_DELIMITER) : _tcsdup(lpDelimiter);
-	const DWORD DEL_LEN = _tcslen(pszDel);
+	const DWORD DEL_LEN = (DWORD)_tcslen(pszDel);
 	LPTSTR lpTarget = lpBuffer;
 
 	// Search through lpString for delimiter matches, and extract sub strings out
@@ -815,7 +815,7 @@ DWORD SFIni::__StringSplit(LPCTSTR lpString, LPTSTR lpBuffer, DWORD dwBufSize, L
 		if (bTrimString)
 			__TrimString(pszSeg);
 
-		const DWORD SEG_LEN = _tcslen(pszSeg);
+		const DWORD SEG_LEN = (DWORD)_tcslen(pszSeg);
 		const DWORD COPY_LEN = min(SEG_LEN, dwBufSize - dwCopied);
 
 		// Need to avoid buffer overflow
@@ -837,7 +837,7 @@ DWORD SFIni::__StringSplit(LPCTSTR lpString, LPTSTR lpBuffer, DWORD dwBufSize, L
 	if (bTrimString)
 		__TrimString(pszSeg);
 
-	const DWORD SEG_LEN = _tcslen(pszSeg);
+	const DWORD SEG_LEN = (DWORD)_tcslen(pszSeg);
 	const DWORD COPY_LEN = min(SEG_LEN, dwBufSize - dwCopied);
 
 	if (COPY_LEN > 0)
@@ -861,7 +861,7 @@ BOOL SFIni::ParseDNTString(LPCTSTR lpString, SUBSTRPROC lpFnStrProc, LPVOID lpPa
 		return FALSE;
 
 	LPCTSTR p = lpString;
-	DWORD dwLen = _tcslen(p);
+	DWORD dwLen = (DWORD)_tcslen(p);
 
 	while (dwLen > 0)
 	{
@@ -869,7 +869,7 @@ BOOL SFIni::ParseDNTString(LPCTSTR lpString, SUBSTRPROC lpFnStrProc, LPVOID lpPa
 			return FALSE;
 
 		p = &p[dwLen + 1];
-		dwLen = _tcslen(p);
+		dwLen = (DWORD)_tcslen(p);
 	}
 	return TRUE;
 }
@@ -907,7 +907,7 @@ BOOL CALLBACK SFIni:: __KeyPairProc(LPCTSTR lpString, LPVOID lpParam)
 
 	// trim
 	__TrimString(psz);
-	DWORD dwNameLen = _tcslen(psz);
+	DWORD dwNameLen = (DWORD)_tcslen(psz);
 	DWORD dwCopyLen = 0;
 	
 	//copy to the buffer
@@ -1036,7 +1036,7 @@ BOOL SFIni::__TrimString(LPTSTR lpString)
 		return FALSE;
 
 	BOOL bTrimmed = FALSE;
-	int nLen = _tcslen(lpString);
+	int nLen = (int)_tcslen(lpString);
 
 	// '\n' and '\r' are actually not possible in this case, but anyway...
 	

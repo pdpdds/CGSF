@@ -28,6 +28,8 @@
 #include "base64.h"
 #include <iostream>
 
+#pragma warning (disable : 4267)
+
 static const std::string base64_chars = 
              "ABCDEFGHIJKLMNOPQRSTUVWXYZ"
              "abcdefghijklmnopqrstuvwxyz"

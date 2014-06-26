@@ -100,7 +100,7 @@ public:
 
 	inline SFMessage& SFMessage::operator << (char* szStr)
 	{
-		int len = strlen(szStr);
+		int len = (int)strlen(szStr);
 		SFASSERT(len > 0);
 
 		memcpy(&m_aDataBuffer[m_usDataSize], szStr, len);
@@ -196,7 +196,7 @@ public:
 	inline SFMessage& SFMessage::operator >> (char* szStr)
 	{
 		strcpy_s(szStr, strlen((char*)&m_aDataBuffer[m_usCurrentReadPosition])+1, (char*)&m_aDataBuffer[m_usCurrentReadPosition]);
-		m_usCurrentReadPosition += strlen((char*)&m_aDataBuffer[m_usCurrentReadPosition])+1;
+		m_usCurrentReadPosition += (USHORT)(strlen((char*)&m_aDataBuffer[m_usCurrentReadPosition]) + 1);
 
 		SFASSERT(m_usCurrentReadPosition <= MAX_MESSAGE_BUFFER);
 

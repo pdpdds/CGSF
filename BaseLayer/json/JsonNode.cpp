@@ -249,7 +249,7 @@ unsigned int JsonObjectNode::Parse( const char* content, size_t len )
 		return 0;
 	}
 
-	return ToString().length();
+	return (INT)ToString().length();
 }
 
 //////////////////////////////////////////////////////////////////////////

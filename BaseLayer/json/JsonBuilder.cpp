@@ -31,7 +31,7 @@ JsonBuilder::~JsonBuilder()
 
 void JsonBuilder::PushBuffer( const char* buffer, size_t bufferLen )
 {
-	if (false == AddBuffer(buffer, bufferLen))
+	if (false == AddBuffer(buffer, (UINT)bufferLen))
 	{
 		// Todo : AllocBuffer
 		// AddBuffer(buffer, bufferLen);
@@ -69,7 +69,7 @@ bool JsonBuilder::PopCompleteNode( JsonObjectNode& node, unsigned short dataSize
 
 bool JsonBuilder::AddBuffer( const char* buffer, unsigned int bufferLen )
 {
-	if ((m_writtenOffset + bufferLen) > m_ioSize)
+	if ((INT)(m_writtenOffset + bufferLen) > m_ioSize)
 		return false;
 
 	memcpy(&m_bufferPtr[m_writtenOffset], buffer, bufferLen);

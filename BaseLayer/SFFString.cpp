@@ -697,7 +697,7 @@ int SFFString::split(SFFStringVector& retVec,char delimiter)
 
         ++endIndex;
     }
-    return retVec.size();
+    return (INT)retVec.size();
 }
 
 //======================================================================================================================

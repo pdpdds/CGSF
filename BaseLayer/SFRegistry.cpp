@@ -65,7 +65,7 @@ BOOL SFRegistry::SetValue(const  TCHAR* szChildKey, const TCHAR* szChildKeyValue
 	TCHAR szValue[150];
 	_tcscpy_s( szValue, (const wchar_t *)szChildKeyValue );
 	if( ERROR_SUCCESS  != RegSetValueEx(m_hRegKey, szChildKey, 0, REG_SZ, 
-		(BYTE* const)&szValue, ((_tcslen(szValue)+1)) * sizeof(TCHAR)))
+		(BYTE* const)&szValue, ((DWORD)(_tcslen(szValue) + 1)) * sizeof(TCHAR)))
 	{		
 		return false;
 	}	

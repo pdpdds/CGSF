@@ -32,7 +32,7 @@ distribution.
 #include <ctype.h>
 #include "tinystr.h"
 
-
+#pragma warning (disable : 4267)
 
 	// TiXmlString constructor, based on a C string
 	TiXmlString::TiXmlString (const WCHAR* instring)
