@@ -25,14 +25,14 @@ class SFPacketProtocol : public IPacketProtocol, public SFBaseProtocol
 {
 public:
 	SFPacketProtocol();
-	SFPacketProtocol(int bufferIOSize, USHORT packetDataSize);
-	virtual ~SFPacketProtocol(void){}
+	SFPacketProtocol(INT bufferIOSize, USHORT packetDataSize);
+	virtual ~SFPacketProtocol(void) {}
 
 	// ----------------------------------------------------------------
 	//  Name:           OnReceive
 	//  Description:    유저가 전송한 데이터를 처리한다. 	
 	// ----------------------------------------------------------------
-	bool OnReceive(int serial, char* pBuffer, unsigned int dwTransferred, int acceptorId) override;
+	bool OnReceive(INT serial, char* pBuffer, UINT dwTransferred, INT acceptorId) override;
 	
 	// ----------------------------------------------------------------
 	//  Name:           SendRequest
@@ -50,7 +50,7 @@ public:
 	//  Name:           Clone
 	//  Description:    패킷프로토콜 클래스 객체를 생성한다.
 	// ----------------------------------------------------------------
-	virtual IPacketProtocol* Clone(){ return new SFPacketProtocol<T>(); }
+	virtual IPacketProtocol* Clone() { return new SFPacketProtocol<T>(); }
 	
 	//virtual BasePacket* CreatePacket() override;
 
@@ -72,7 +72,7 @@ SFPacketProtocol<T>::SFPacketProtocol()
 }
 
 template <typename T>
-SFPacketProtocol<T>::SFPacketProtocol(int bufferIOSize, USHORT packetDataSize)
+SFPacketProtocol<T>::SFPacketProtocol(INT bufferIOSize, USHORT packetDataSize)
 {
 	if (bufferIOSize > MAX_IO_SIZE)
 		bufferIOSize = MAX_IO_SIZE;
@@ -102,9 +102,9 @@ bool SFPacketProtocol<T>::SendRequest(BasePacket* pPacket)
 }
 
 template <typename T>
-bool SFPacketProtocol<T>::OnReceive(int Serial, char* pBuffer, unsigned int dwTransferred, int acceptorId)
+bool SFPacketProtocol<T>::OnReceive(INT Serial, char* pBuffer, UINT dwTransferred, INT acceptorId)
 {
-	bool bRet = m_Analyzer.AddTransferredData(pBuffer, dwTransferred);
+	auto bRet = m_Analyzer.AddTransferredData(pBuffer, dwTransferred);
 
 	if(false == bRet)
 	{
@@ -112,7 +112,7 @@ bool SFPacketProtocol<T>::OnReceive(int Serial, char* pBuffer, unsigned int dwTr
 		return false;
 	}
 
-	int iErrorCode = PACKETIO_ERROR_NONE;
+	auto iErrorCode = PACKETIO_ERROR_NONE;
 	
 	do
 	{

@@ -11,7 +11,7 @@ SFBaseProtocol::~SFBaseProtocol()
 {
 }
 
-int SFBaseProtocol::m_ioSize = PACKET_DEFAULT_IO_SIZE;
+INT SFBaseProtocol::m_ioSize = PACKET_DEFAULT_IO_SIZE;
 
 USHORT SFBaseProtocol::m_packetSize = PACKET_DEFAULT_PACKET_SIZE;
 
