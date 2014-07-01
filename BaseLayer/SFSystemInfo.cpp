@@ -75,10 +75,10 @@ BOOL SFSystemInfo::InitializeOSInfo()
 	ZeroMemory (&osvi, sizeof (OSVERSIONINFOEX));
 	osvi.dwOSVersionInfoSize = sizeof (OSVERSIONINFOEX);
 
-	if (!(bOsVersionInfoEx = GetVersionEx ((OSVERSIONINFO *) &osvi))) {
+	if (!(bOsVersionInfoEx = GetVersionEx((OSVERSIONINFO *)&osvi))) {
 		// If OSVERSIONINFOEX doesn't work, try OSVERSIONINFO.
 		osvi.dwOSVersionInfoSize = sizeof (OSVERSIONINFO);
-		if (!GetVersionEx ((OSVERSIONINFO *) &osvi)) return FALSE;
+		if (!GetVersionEx((OSVERSIONINFO *)&osvi)) return FALSE;
 	}
 
 	m_OSInfo->dwOSMajorVer = osvi.dwMajorVersion;

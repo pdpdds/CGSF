@@ -70,7 +70,10 @@ BOOL SFFilePack::Finally()
 }
 
 bool SFFilePack::PackDir(TCHAR* pFileName, TCHAR* pDirFullPath, int DirFullPathLen )
-{		
+{	
+	UNREFERENCED_PARAMETER(DirFullPathLen);
+	UNREFERENCED_PARAMETER(pDirFullPath);
+
 	HZIP		hz;
 	DWORD		result;
 
@@ -247,7 +250,7 @@ bool SFFilePack::PackMemoryRaw(TCHAR* pZipFileName, unsigned char* pBuffer, int 
 	bool bResult = false;		
 
 	// Here is some data in memory which we'll compress into our zip file
-	const TCHAR Data[] =	_T("This is a test of LiteZip.dll's raw mode.\r\n\r\nHopefully this worked!\r\n");
+	//const TCHAR Data[] =	_T("This is a test of LiteZip.dll's raw mode.\r\n\r\nHopefully this worked!\r\n");
 
 	/************************** main() *************************
 	* Program entry point.
@@ -592,6 +595,8 @@ bad:
 
 bool SFFilePack::UnPackResMemAll( TCHAR* pResourceName)
 {		
+	UNREFERENCED_PARAMETER(pResourceName);
+
 	HUNZIP		huz;
 	DWORD		result;
 	bool bResult = false;
@@ -702,6 +707,9 @@ unsigned char* SFFilePack::UnPackResMem( TCHAR* pExtractedFileName, int& BufferS
 
 unsigned char* SFFilePack::UnPackMemoryRaw( TCHAR* pZipFileName, unsigned char* pBuffer, int BufferSize )
 {
+	UNREFERENCED_PARAMETER(pBuffer);
+	UNREFERENCED_PARAMETER(BufferSize);
+
 	HUNZIP		huz;
 	DWORD		result;		
 	unsigned char	*buffer = NULL;

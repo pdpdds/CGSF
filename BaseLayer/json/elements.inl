@@ -12,6 +12,8 @@ Author: Terry Caton
 #include <algorithm>
 #include <map>
 
+#pragma warning (disable : 4100)
+
 /*  
 
 TODO:

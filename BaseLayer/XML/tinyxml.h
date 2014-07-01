@@ -28,6 +28,7 @@ distribution.
 #ifdef _MSC_VER
 #pragma warning( disable : 4530 )
 #pragma warning( disable : 4786 )
+#pragma warning (disable : 4244)
 #endif
 #include <ctype.h>
 #include <assert.h>

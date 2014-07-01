@@ -1,6 +1,8 @@
 #include "StdAfx.h"
 #include "SFBitArray.h"
 
+#pragma warning (disable : 4244)
+
 void *AllocPtr(int nSize)
 {
 	void *p = malloc(nSize);
@@ -305,7 +307,7 @@ void SFBitArray::Compress(BYTE *src, int nSrcLen, BYTE *&des, int &nDesLen)
 			nRunLength = 1;
 			while(nRunLength < COMPRESS_COUNT && nByte < nSrcLen && src[nByte] == byType)
 				nRunLength++, nByte++;
-			*(COMPRESS_TYPE*)(des+nDesLen) = nRunLength;
+			*(COMPRESS_TYPE*)(des+nDesLen) = (WORD)nRunLength;
 			nDesLen += COMPRESS_SIZE;
 		}
 	}
@@ -374,7 +376,7 @@ bool SFBitArray::SetAt(BYTE *&src, int &nSrcLen, int nBit)
 						if(nDesByte == nDesLen+nRunLength-1)
 						{	// (0|count-1|byte) last byte
 							// change the run length
-							*(COMPRESS_TYPE*)(src+nByte) = nDesByte-nDesLen;
+							*(COMPRESS_TYPE*)(src + nByte) = nDesByte - nDesLen;
 							// increment buffer index after the old run length
 							nByte += COMPRESS_SIZE;
 						}
@@ -382,7 +384,7 @@ bool SFBitArray::SetAt(BYTE *&src, int &nSrcLen, int nBit)
 						{	// (0|count1|byte|0|count2) middle byte
 							nAddedSize += 1+COMPRESS_SIZE;
 							// change the run length
-							*(COMPRESS_TYPE*)(src+nByte) = nDesByte-nDesLen;
+							*(COMPRESS_TYPE*)(src + nByte) = nDesByte - nDesLen;
 							// increment buffer index after the old run length
 							nByte += COMPRESS_SIZE;
 						}
@@ -399,7 +401,7 @@ bool SFBitArray::SetAt(BYTE *&src, int &nSrcLen, int nBit)
 						// increment buffer size new byte(one) + Zero byte + reminder run length
 						nSrcLen += nAddedSize;
 						if(nAddedSize > 1)	// save the reminder run length
-							*(COMPRESS_TYPE*)(src+nByte+2) = nRunLength-1-(nDesByte-nDesLen);
+							*(COMPRESS_TYPE*)(src + nByte + 2) = (WORD)(nRunLength - 1 - (nDesByte - nDesLen));
 					}
 					else
 					{	// remove the zero count 
@@ -430,7 +432,7 @@ bool SFBitArray::SetAt(BYTE *&src, int &nSrcLen, int nBit)
 						{	// increment previous runlength only
 							memmove(src+nByte, src+nByte+1, nSrcLen-nByte-1);
 							src[--nSrcLen] = 0;
-							*(COMPRESS_TYPE*)(src+nByte-COMPRESS_SIZE) = nRunLength+1;
+							*(COMPRESS_TYPE*)(src + nByte - COMPRESS_SIZE) = (WORD)nRunLength + 1;
 						}
 						else	if(nByte+2 < nSrcLen && src[nByte+1] == 0xff && *(COMPRESS_TYPE*)(src+nByte+2) != COMPRESS_COUNT)
 						{	// increment next runlength only
@@ -467,7 +469,7 @@ bool SFBitArray::SetAt(BYTE *&src, int &nSrcLen, int nBit)
 	else
 		src = (BYTE*)ReAllocPtr(src, nSrcLen);
 	while(nRun > 0)
-		*(COMPRESS_TYPE*)(src+nSrcLen-(nRun--)*(1+COMPRESS_SIZE)) = (nLength>=COMPRESS_COUNT?COMPRESS_COUNT:nLength), nLength -= COMPRESS_COUNT;
+		*(COMPRESS_TYPE*)(src + nSrcLen - (nRun--)*(1 + COMPRESS_SIZE)) = (WORD)(nLength >= COMPRESS_COUNT ? COMPRESS_COUNT : nLength), nLength -= COMPRESS_COUNT;
 	SetBit(src+nSrcLen-1, nBit&7);
 	return true;
 }

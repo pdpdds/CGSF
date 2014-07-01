@@ -14,6 +14,8 @@
 #include <Shellapi.h>
 #include <dbghelp.h>
 
+#pragma warning (disable : 4100)
+
 #ifndef _AddressOfReturnAddress
 
 // Taken from: http://msdn.microsoft.com/en-us/library/s975zw7k(VS.71).aspx

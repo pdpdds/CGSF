@@ -3,6 +3,7 @@
 #include <tchar.h>
 #include <ShellAPI.h>
 
+#pragma warning (disable : 4189)
 
 CDiskManager::CDiskManager():
 pGetFileSizeEx(NULL)

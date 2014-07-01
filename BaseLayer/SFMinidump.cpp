@@ -30,7 +30,7 @@ unsigned __stdcall SFMinidump::InstallMiniDump(void* pArg)
 	PreventSetUnhandledExceptionFilter();
 	std::set_new_handler(New_OutOfMemory_Handler);
 
-	SFMinidump* pMiniDump = (SFMinidump*)pArg;
+	//SFMinidump* pMiniDump = (SFMinidump*)pArg;
 
 	WaitForSingleObject(m_hTheadCrashEvent, INFINITE);
 	
@@ -72,7 +72,7 @@ BOOL SFMinidump::Install()
 BOOL SFMinidump::ProcessMiniDump(EXCEPTION_POINTERS* pException)
 {
 	LONG retval = EXCEPTION_CONTINUE_SEARCH;
-	HWND hParent = NULL;						// find a better value for your app
+	//HWND hParent = NULL;						// find a better value for your app
 
 	// firstly see if dbghelp.dll is around and has the function we need
 	// look next to the EXE first, as the one in System32 might be old 

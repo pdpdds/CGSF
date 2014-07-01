@@ -6,6 +6,8 @@
 #include <stdlib.h>
 #include <string>
 
+#pragma warning (disable : 4244) 
+
 typedef std::basic_string<char> tstring;
 
 namespace Datatype

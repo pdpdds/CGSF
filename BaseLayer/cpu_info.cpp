@@ -17,6 +17,9 @@
 #include "stdafx.h"
 #include "cpu_info.h"
 
+#pragma warning (disable : 4189) 
+#pragma warning (disable : 4100)
+
 // --------------------------------------------------------
 //
 //         Constructor Functions - CPUInfo Class

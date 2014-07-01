@@ -169,6 +169,8 @@ BOOL SFServiceController::ServiceEntry(TCHAR* szServiceName, LPTHREAD_START_ROUT
 
 void SFServiceController::ServiceMain(DWORD argc, LPTSTR *argv)
 {
+	UNREFERENCED_PARAMETER(argc);
+
 	BOOL success;
 	nServiceStatusHandle = RegisterServiceCtrlHandler(argv[0],
 		(LPHANDLER_FUNCTION)ServiceCtrlHandler);
@@ -265,6 +267,8 @@ BOOL SFServiceController::StartServiceThread()
 
 DWORD SFServiceController::ServiceExecutionThread(LPDWORD param)
 {
+	UNREFERENCED_PARAMETER(param);
+
 	while(nServiceRunning)
 	{		
 		Beep(450,150);
