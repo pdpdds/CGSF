@@ -1192,7 +1192,7 @@ void StackWalker::OnSymInit(LPCSTR szSearchPath, DWORD symOptions, LPCSTR szUser
   //OnOutput(buffer);
   // Also display the OS-version
 #if _MSC_VER <= 1200
-  OSVERSIONINFOA ver;
+  /*OSVERSIONINFOA ver;
   ZeroMemory(&ver, sizeof(OSVERSIONINFOA));
   ver.dwOSVersionInfoSize = sizeof(ver);
   if (GetVersionExA(&ver) != FALSE)
@@ -1200,10 +1200,10 @@ void StackWalker::OnSymInit(LPCSTR szSearchPath, DWORD symOptions, LPCSTR szUser
     _snprintf_s(buffer, STACKWALK_MAX_NAMELEN, "OS-Version: %d.%d.%d (%s)\n", 
       ver.dwMajorVersion, ver.dwMinorVersion, ver.dwBuildNumber,
       ver.szCSDVersion);
-    //OnOutput(buffer);
-  }
+	OnOutput(buffer);
+  }*/
 #else
-  OSVERSIONINFOEXA ver;
+  /*OSVERSIONINFOEXA ver;
   ZeroMemory(&ver, sizeof(OSVERSIONINFOEXA));
   ver.dwOSVersionInfoSize = sizeof(ver);
   if (GetVersionExA( (OSVERSIONINFOA*) &ver) != FALSE)
@@ -1211,12 +1211,13 @@ void StackWalker::OnSymInit(LPCSTR szSearchPath, DWORD symOptions, LPCSTR szUser
     _snprintf_s(buffer, STACKWALK_MAX_NAMELEN, "OS-Version: %d.%d.%d (%s) 0x%x-0x%x\n", 
       ver.dwMajorVersion, ver.dwMinorVersion, ver.dwBuildNumber,
       ver.szCSDVersion, ver.wSuiteMask, ver.wProductType);
-    //OnOutput(buffer);
-  }
+    OnOutput(buffer);
+  }*/
 #endif
 }
 
 void StackWalker::OnOutput(LPCSTR buffer)
 {
+	UNREFERENCED_PARAMETER(buffer);
   //OutputDebugStringA(buffer);
 }
