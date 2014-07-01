@@ -595,6 +595,8 @@ long  CDirectoryChangeHandler::ReferencesWatcher(CDirectoryChangeWatcher * pDirC
 
 long CDirectoryChangeHandler::ReleaseReferenceToWatcher(CDirectoryChangeWatcher * pDirChangeWatcher)
 {
+	UNREFERENCED_PARAMETER(pDirChangeWatcher);
+
 	ASSERT( m_pDirChangeWatcher == pDirChangeWatcher );
 	SFLockHelper lock(&m_csWatcher);
 	long nRef;

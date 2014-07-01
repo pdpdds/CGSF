@@ -17,6 +17,8 @@
  #include "stdafx.h"
 #include "crc.h"
 
+#pragma warning (disable : 4244) 
+#pragma warning (disable : 4505) 
 
 /*
  * Derive parameters from the standard-specific parameters in crc.h.

@@ -25,6 +25,8 @@ LONG WINAPI SFMinidump::CreateMiniDump(PEXCEPTION_POINTERS pException)
 
 unsigned __stdcall SFMinidump::InstallMiniDump(void* pArg)
 {
+	UNREFERENCED_PARAMETER(pArg);
+
 	SetUnhandledExceptionFilter(CreateMiniDump);
 
 	PreventSetUnhandledExceptionFilter();

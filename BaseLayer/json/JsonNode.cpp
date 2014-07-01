@@ -1,7 +1,12 @@
 #include "StdAfx.h"
 #include "JsonNode.h"
+
+#pragma warning( push )
+#pragma warning (disable : 4512)
 #include "json/reader.h"
 #include "json/writer.h"
+#pragma warning( pop )
+
 #include "json/elements.h"
 
 //////////////////////////////////////////////////////////////////////////

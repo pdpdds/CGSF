@@ -15,6 +15,8 @@ void InvalidParameterHandler (PCTSTR expression,
 							  unsigned int line,
 							  uintptr_t pReserved)
 {
+	UNREFERENCED_PARAMETER(pReserved);
+
 	_tprintf(_T("function %s\n"), function);
 	_tprintf(_T("File %s Line %d\n"), file, line);
 	_tprintf(_T("expression %s\n"), expression);
@@ -74,7 +76,7 @@ BOOL SFCustomHandler::Install()
 	_CrtSetReportMode(_CRT_ASSERT, 0);
 
 	_invalid_parameter_handler newHandler = InvalidParameterHandler;
-	_invalid_parameter_handler oldHandler = _set_invalid_parameter_handler(newHandler);
+	/*_invalid_parameter_handler oldHandler =*/ _set_invalid_parameter_handler(newHandler);
 
 	_set_purecall_handler(PureFunctionCallHandler);
 
@@ -89,6 +91,8 @@ BOOL SFCustomHandler::Install()
 #ifdef _WIN64
 unsigned __stdcall SFCustomHandler::ProcessException(void* pArg)
 {
+	UNREFERENCED_PARAMETER(pArg);
+
 	return 0;
 }
 #else

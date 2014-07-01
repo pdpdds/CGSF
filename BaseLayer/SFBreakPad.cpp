@@ -18,6 +18,11 @@ static bool BreakPadHandlerCallBack(const wchar_t* dump_path,
 									MDRawAssertionInfo* assertion,
 									bool succeeded)
 {
+	UNREFERENCED_PARAMETER(assertion);
+	UNREFERENCED_PARAMETER(exinfo);
+	UNREFERENCED_PARAMETER(context);
+	UNREFERENCED_PARAMETER(dump_path);
+
 	printf("%s is dumped\n", minidump_id);
 
 	return succeeded;
