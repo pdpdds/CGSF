@@ -15,7 +15,7 @@
 class BasePacket
 {
 public:
-	BasePacket(){ m_serial = -1; m_packetType = SFPACKET_NONE; m_PacketID = -1; }
+	BasePacket(){ m_serial = -1; m_packetType = (unsigned int)SFPACKET_NONE; m_PacketID = (unsigned short)-1; }
 	virtual ~BasePacket() {}
 
 	void SetPacketType(unsigned int PacketType){ m_packetType = PacketType; }
@@ -39,7 +39,7 @@ public:
 	virtual BasePacket* Clone(){ return NULL; }
 
 	virtual bool Encode() { return true; }
-	virtual bool Decode(char* pBuf, unsigned int nSize) {return true;}
+	virtual bool Decode(char* pBuf, unsigned int nSize) { UNREFERENCED_PARAMETER(pBuf); UNREFERENCED_PARAMETER(nSize); return true; }
 
 protected:
 

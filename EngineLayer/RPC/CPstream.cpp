@@ -114,7 +114,7 @@ void CPstream::AddObject (IPersistence *pObj)
 
 int CPstream::FindObject (IPersistence *pObj)
 {
-   int size = m_apObj.size();
+   int size = (int)m_apObj.size();
    for (int i = 0 ; i < size ; ++i)
 	{
 	   if (m_apObj[i] == pObj)
@@ -131,7 +131,7 @@ char* CPstream::buf()
 }
 unsigned int CPstream::bufSize()
 {
-   return fs.size();
+	return (unsigned int)fs.size();
 }
 
 bool CPstream::isLoading()

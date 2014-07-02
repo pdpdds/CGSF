@@ -254,6 +254,8 @@ bool SFEngine::OnDisconnect(int Serial, int acceptorId)
 
 bool SFEngine::OnTimer(const void *arg)
 {
+	UNREFERENCED_PARAMETER(arg);
+
 	BasePacket* pPacket = new BasePacket();
 	pPacket->SetPacketType(SFPACKET_TIMER);
 	pPacket->SetSerial(-1);
@@ -280,7 +282,7 @@ bool SFEngine::SendRequest(BasePacket* pPacket, bool bDirectSend)
 
 bool SFEngine::SendRequest(BasePacket* pPacket, std::vector<int>& ownerList)
 {
-	bool bResult = false;
+	//bool bResult = false;
 	auto iter = ownerList.begin();
 	for (; iter != ownerList.end(); iter++)
 	{

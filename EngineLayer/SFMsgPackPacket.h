@@ -5,7 +5,13 @@
 // desc : MessagePack 프로토콜을 위한 패킷 클래스
 // ============================================================================
 
+#pragma warning( push )
+#pragma warning (disable : 4244)
+#pragma warning (disable : 4267)
+#pragma warning (disable : 4100)
 #include <msgpack.hpp>
+#pragma warning( pop )
+
 #include "BasePacket.h"
 
 class SFMsgPackPacket : public BasePacket

@@ -9,7 +9,7 @@ class TestArg : public IPersistence
 public:
    virtual void Serialize(CPstream & strm)
    {
-      ;
+	   UNREFERENCED_PARAMETER(strm);
    }
 public:
    virtual void doSomething(){};

@@ -395,11 +395,13 @@ class Arg <void,true> //: public IPersistence
 {
 public:
    virtual void Serialize(CPstream & ar)
-   {}
+   {
+	   UNREFERENCED_PARAMETER(ar);
+   }
 
 public:
-   Arg(void (void),bool isServerSide){}
-   Arg(bool isServerSide = true){}
+	Arg(void(void), bool isServerSide){ UNREFERENCED_PARAMETER(isServerSide); }
+	Arg(bool isServerSide = true){ UNREFERENCED_PARAMETER(isServerSide);  }
    ~Arg() {}
    void ref() {}
    void deRef() {}

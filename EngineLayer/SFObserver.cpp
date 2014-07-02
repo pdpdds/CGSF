@@ -1,6 +1,9 @@
 #include "StdAfx.h"
 #include "SFObserver.h"
 
+#pragma warning (disable : 4100) 
+
+
 SFObserver::SFObserver(void)
 {
 }

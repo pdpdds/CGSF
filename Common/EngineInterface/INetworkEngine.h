@@ -1,6 +1,9 @@
 #ifndef INETWORKENGINE_H_
 #define INETWORKENGINE_H_
 
+#pragma warning( push )
+#pragma warning (disable : 4100) 
+
 #ifdef NETWORKENGINE_EXPORTS
 #define NETWORKENGINEDECL __declspec(dllexport)
 #else
@@ -66,6 +69,9 @@ protected:
 
 private:
 };
+
+#pragma warning( pop )
+
 
 typedef INetworkEngine* (CREATENETWORKENGINE)(bool Server, IEngine* pEngine);
 extern "C" NETWORKENGINEDECL INetworkEngine* CreateNetworkEngine(bool Server, IEngine* pEngine);

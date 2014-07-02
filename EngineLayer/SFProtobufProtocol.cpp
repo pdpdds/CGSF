@@ -4,6 +4,8 @@
 #include <EngineInterface/ISession.h>
 #include "SFEngine.h"
 
+#pragma warning (disable : 4100) 
+
 #define SignatureStart 16018
 #define SignatureEnd 16108
 
@@ -173,7 +175,7 @@ int SFProtobufProtocol::frameOutgoingPacket( BasePacket& packet, DataBuffer& buf
 {
 	SFProtobufPacketImpl& gPacket = (SFProtobufPacketImpl&) packet;
 
-	nWrittenBytes = 6 + gPacket.getEncodedStream()->size() + 2;
+	nWrittenBytes = (unsigned int)(6 + gPacket.getEncodedStream()->size() + 2);
 
 	if(nWrittenBytes > buffer.getRemainingSize())
 		return SFProtocol::eInsufficientBuffer;

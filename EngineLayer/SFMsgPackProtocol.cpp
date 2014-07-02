@@ -94,7 +94,7 @@ bool SFMsgPackProtocol::SendRequest(BasePacket* pPacket)
 	//header copy
 	//////////////////////////////////////////////////
 	memcpy(buffer, pMsgPackPacket->GetHeader(), sizeof(SFPacketHeader));
-	int nonParsedSize = pMsgPackPacket->GetData().nonparsed_size();
+	int nonParsedSize = (int)pMsgPackPacket->GetData().nonparsed_size();
 
 	if (bufferSize < nonParsedSize + sizeof(SFPacketHeader))
 	{

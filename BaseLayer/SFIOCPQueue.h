@@ -19,7 +19,7 @@ public:
 	{
 		if(0 == ::PostQueuedCompletionStatus(m_hIOCP, 0, (ULONG_PTR)pMsg, NULL))
 		{
-			DWORD dwError =GetLastError();
+			//DWORD dwError =GetLastError();
 			return FALSE;
 		}
 		return TRUE;

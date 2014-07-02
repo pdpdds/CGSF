@@ -12,6 +12,10 @@
 //
 #define PU_PEERS_MAXCOUNT						255
 
+#pragma warning( push )
+#pragma warning( disable:4244 )
+
+
 ////////////////////////////////////////////////////////////////////////////////
 //
 // 통신 타입을 정하기 위해서...
@@ -243,4 +247,5 @@ private:
 };
 
 
+#pragma warning( pop )
 #endif

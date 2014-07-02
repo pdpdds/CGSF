@@ -30,7 +30,7 @@ BOOL SFExcel::Finally()
 
 BOOL SFExcel::Read( char* szFileName, int SheetIndex )
 {
-	clock_t t1 = clock();
+	//clock_t t1 = clock();
 	_RecordsetPtr RecordSetPtr;
 
 	int iCellCount = 0;
@@ -57,8 +57,8 @@ BOOL SFExcel::Read( char* szFileName, int SheetIndex )
 	}
 
 
-	clock_t t2 = clock();
-	double t = (double)(t2 - t1) / CLOCKS_PER_SEC;    
+	//clock_t t2 = clock();
+	//double t = (double)(t2 - t1) / CLOCKS_PER_SEC;    
 
 	return TRUE;
 }

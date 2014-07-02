@@ -1,5 +1,10 @@
 #pragma once
+#pragma warning( push )
+#pragma warning (disable : 4189) 
+#pragma warning (disable : 4100)
+#pragma warning (disable : 4267) 
 #include <zmq.hpp>
+#pragma warning( pop )
 #include <string>
 #include <iostream>
 

@@ -93,7 +93,7 @@ bool SFPacket::Encode()
 		 }
 
 		 memcpy(GetData(), pDestBuf, destSize);
-		 SetDataSize(destSize);
+		 SetDataSize((USHORT)destSize);
 	}
 	else
 	{
@@ -175,7 +175,7 @@ BOOL SFPacket::Decode(int& errorCode)
 			return FALSE;
 		}
 
-		SetDataSize(destSize);
+		SetDataSize((USHORT)destSize);
 	}
 
 	BasePacket::SetPacketID(pHeader->packetID);

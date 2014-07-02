@@ -114,13 +114,13 @@ public:
 
 	inline SFPacket& SFPacket::operator << (char* szStr)
 	{
-		int len = strlen(szStr);
+		int len = (int)strlen(szStr);
 
 		if (len <= 0 || GetPacketSize() + len + 1 > m_packetMaxSize)
 			return *this;
 
 		memcpy(&m_pPacketBuffer[GetPacketSize()], szStr, len);
-		m_pHeader->dataSize += len;
+		m_pHeader->dataSize += (USHORT)len;
 		m_pPacketBuffer[GetPacketSize()] = 0;
 		m_pHeader->dataSize++;
 		
@@ -133,7 +133,7 @@ public:
 			return;
 
 		memcpy(&m_pPacketBuffer[GetPacketSize()], pBuffer, bufferSize);
-		m_pHeader->dataSize += bufferSize;
+		m_pHeader->dataSize += (USHORT)bufferSize;
 
 	}
 
@@ -216,12 +216,12 @@ public:
 
 	inline SFPacket& SFPacket::operator >> (char* szStr)
 	{
-		int strLen = strlen((char*)&m_pPacketBuffer[m_usCurrentReadPosition]);
+		int strLen = (int)strlen((char*)&m_pPacketBuffer[m_usCurrentReadPosition]);
 		if (m_usCurrentReadPosition + strLen + 1 > m_packetMaxSize)
 			return *this;
 
 		strcpy_s(szStr, strLen + 1, (char*)&m_pPacketBuffer[m_usCurrentReadPosition]);
-		m_usCurrentReadPosition += strLen + 1;
+		m_usCurrentReadPosition += (USHORT)(strLen + 1);
 
 		return *this;
 	}
@@ -232,7 +232,7 @@ public:
 			return;
 
 		memcpy(pBuffer, &m_pPacketBuffer[m_usCurrentReadPosition], bufferSize);
-		m_usCurrentReadPosition += bufferSize;
+		m_usCurrentReadPosition += (USHORT)bufferSize;
 	}
 
 	static void SetMaxPacketSize(USHORT packetSize) { m_packetMaxSize = packetSize; }

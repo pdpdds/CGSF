@@ -17,7 +17,7 @@ public:
 
 	BOOL PropagateMessage(SFMessage* pMessage);
 
-	int GetObserverCount(){return m_Observerlist.size();}
+	int GetObserverCount(){ return (int)m_Observerlist.size();}
 
 protected:
 	BOOL CheckDuplicate(SFObserver* pObject);

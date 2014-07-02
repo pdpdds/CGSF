@@ -3,6 +3,8 @@
 #include "tinyxml.h"
 #include "StringConversion.h"
 
+
+
 class SFXMLStreamReader : public IXMLStreamReader
 {
 	TiXmlDocument* pXmlDoc;
@@ -248,6 +250,8 @@ public:
 
 	unsigned int Read(const WCHAR* name, WCHAR* buffer, unsigned int size) 
 	{
+		UNREFERENCED_PARAMETER(size);
+
 		TiXmlNode *pNode = GetNode(name);
 		if(!pNode)
 			return 0;
@@ -257,11 +261,13 @@ public:
 
 		wcscpy_s(buffer, wcslen(wstr.c_str()) + 1, wstr.c_str());
 
-		return wstr.size();
+		return (unsigned int)wstr.size();
 	}
 
 	unsigned int Read(const WCHAR* name, CHAR* buffer, unsigned int size)
 	{
+		UNREFERENCED_PARAMETER(size);
+
 		TiXmlNode *pNode = GetNode(name);
 		if(!pNode)
 			return 0;
@@ -271,7 +277,8 @@ public:
 
 		strcpy_s(buffer, strlen(str.c_str()) + 1, str.c_str());
 
-		return str.size();
+		return (unsigned int)str.size();
 	}
 
 };
+

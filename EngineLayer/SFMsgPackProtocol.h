@@ -7,7 +7,12 @@
 // 프로토콜 클래스는 연결된 소켓에 1:1 대응을 한다.
 // ============================================================================
 
+#pragma warning( push )
+#pragma warning (disable : 4244) 
+#pragma warning (disable : 4267)
+#pragma warning (disable : 4100)
 #include <msgpack.hpp>
+#pragma warning( pop )
 
 class SFMsgPackPacket;
 class SFPacketIOBuffer;

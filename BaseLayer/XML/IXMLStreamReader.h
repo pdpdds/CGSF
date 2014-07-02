@@ -9,6 +9,9 @@
 
 #pragma warning( push )
 #pragma warning( disable:4512 ) 
+#pragma warning( disable:4189 )
+#pragma warning( disable:4267 )
+#pragma warning( disable:4100 )
 
 class IXMLStreamReader
 {

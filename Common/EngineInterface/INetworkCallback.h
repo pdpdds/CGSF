@@ -1,5 +1,8 @@
 #pragma once
 
+#pragma warning( push )
+#pragma warning( disable:4100 )
+
 class BasePacket;
 
 class INetworkCallback
@@ -32,3 +35,5 @@ private:
 	int m_Serial;
 	bool m_isConnected;
 };
+
+#pragma warning( pop )

@@ -29,6 +29,8 @@
 #include "CppSQLite3.h"
 #include <cstdlib>
 
+#pragma warning (disable : 4267) 
+
 // Named constant for passing to CppSQLite3Exception when passing it a string
 // that cannot be deleted.
 static const bool DONT_DELETE_MSG=false;

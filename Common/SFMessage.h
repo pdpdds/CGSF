@@ -104,7 +104,7 @@ public:
 		SFASSERT(len > 0);
 
 		memcpy(&m_aDataBuffer[m_usDataSize], szStr, len);
-		m_usDataSize += len;
+		m_usDataSize += (USHORT)len;
 		m_aDataBuffer[m_usDataSize] = 0;
 		m_usDataSize++;
 
@@ -206,7 +206,7 @@ public:
 	void SFMessage::Read(BYTE* pBuffer, int BufferSize)
 	{
 		memcpy(pBuffer, &m_aDataBuffer[m_usCurrentReadPosition], BufferSize);
-		m_usCurrentReadPosition += BufferSize;
+		m_usCurrentReadPosition += (USHORT)BufferSize;
 
 		SFASSERT(m_usCurrentReadPosition <= MAX_MESSAGE_BUFFER);
 	}
@@ -214,7 +214,7 @@ public:
 	void SFMessage::Write(const BYTE* pBuffer, int BufferSize)
 	{
 		memcpy(&m_aDataBuffer[m_usDataSize], pBuffer, BufferSize);
-		m_usDataSize += BufferSize;
+		m_usDataSize += (USHORT)BufferSize;
 
 		SFASSERT(m_usDataSize <= MAX_MESSAGE_BUFFER);
 	}

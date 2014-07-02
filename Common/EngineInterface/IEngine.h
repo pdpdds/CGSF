@@ -1,5 +1,8 @@
 #pragma once
 
+#pragma warning( push )
+#pragma warning (disable : 4100) 
+
 class ISessionService;
 
 class IEngine
@@ -25,6 +28,8 @@ public:
 	////////////////////////////////////////////////////////////////////////////////////////////////////
 	//타이머 이벤트가 발생할 때
 	////////////////////////////////////////////////////////////////////////////////////////////////////
-	virtual bool OnTimer(const void *arg){return false;}
+	virtual bool OnTimer(const void *arg){ return false; }
 
 };
+
+#pragma warning( pop )

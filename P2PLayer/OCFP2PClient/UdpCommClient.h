@@ -8,6 +8,9 @@
 #ifndef __UDPCOMMCLIENT_H__
 #define __UDPCOMMCLIENT_H__
 
+#pragma warning( push )
+#pragma warning( disable:4100 )
+
 ////////////////////////////////////////////////////////////////////////////////
 //
 class CUdpCommClient: public CCriticalClient, public CThreadClient
@@ -86,4 +89,6 @@ private:
 	HANDLE m_hQuit;
 };
 
+
+#pragma warning( pop )
 #endif

@@ -11,6 +11,9 @@
 
 using namespace std;
 
+#pragma warning( push )
+#pragma warning( disable:4100 )
+
 //
 class CPuPeers: public CCtrlPeers
 {
@@ -57,5 +60,7 @@ public:
 
 	virtual void OnRelayDataPeerEx(const SOCKADDR_IN& stRemote, const SOCKADDR_IN& stDstRemote, PU_PEERADDRTYPE enumAddrType, ULONG ulLen, const BYTE* pbyBuff) {}
 };
+
+#pragma warning( pop )
 
 #endif

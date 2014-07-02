@@ -33,6 +33,8 @@ void SFCasualGameDispatcher::Dispatch(BasePacket* pPacket)
 
 void SFCasualGameDispatcher::LogicThreadProc(void* Args)
 {
+	UNREFERENCED_PARAMETER(Args);
+
 	SFEngine* pEngine = SFEngine::GetInstance();
 
 	while (m_bLogicEnd == false)

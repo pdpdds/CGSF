@@ -4,6 +4,8 @@
 #include "interface/P2PClient.h"
 #include "OCFP2PClient/P2PManager.h"
 
+#pragma warning (disable : 4244) 
+
 HINSTANCE g_pP2PHandle = 0;
 
 SFUDPNetwork::SFUDPNetwork()

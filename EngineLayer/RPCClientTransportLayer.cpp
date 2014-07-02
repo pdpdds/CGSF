@@ -23,8 +23,8 @@ void RPCClientTransportLayer::recv(std::string &outBuf) throw(ServiceException)
 {
 	SFPacket* pPacket = NULL;
 
-	DWORD dwCurrentTime = GetTickCount();
-	DWORD dwLastTime = dwCurrentTime;
+	//DWORD dwCurrentTime = GetTickCount();
+	//DWORD dwLastTime = dwCurrentTime;
 
 	while (pPacket == NULL)
 	{
@@ -40,7 +40,7 @@ void RPCClientTransportLayer::recv(std::string &outBuf) throw(ServiceException)
 
 	if (pPacket != NULL)
 	{
-		int size = pPacket->GetDataSize();
+		//int size = pPacket->GetDataSize();
 		outBuf.append((const char*)pPacket->GetData(), pPacket->GetDataSize());
 		SFEngine::GetInstance()->ReleasePacket(pPacket);
 	}

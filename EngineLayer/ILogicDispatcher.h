@@ -1,6 +1,9 @@
 #ifndef _ILOGICDISPATCHER_H_
 #define  _ILOGICDISPATCHER_H_
 
+#pragma warning( push )
+#pragma warning( disable:4100 ) 
+
 class BasePacket;
 class ILogicEntry;
 class IRPCService;
@@ -15,5 +18,7 @@ public:
 
 	virtual bool AddRPCService(IRPCService* pService) {return false;}
 };
+
+#pragma warning( pop )
 
 #endif // _ILOGICDISPATCHER_H_

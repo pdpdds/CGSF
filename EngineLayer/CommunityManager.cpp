@@ -1,6 +1,9 @@
 #include "stdafx.h"
 #include "CommunityManager.h"
 
+#pragma warning (disable : 4189) 
+#pragma warning (disable : 4100) 
+
 CommunityManager::CommunityManager()
 {
 	m_pContext = new zmq::context_t(1);

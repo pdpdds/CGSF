@@ -106,7 +106,7 @@ public:
          (*this) >> tmpStr;
          ch = new char[tmpStr.size()+1];
          string::const_iterator it = tmpStr.begin();
-         copyData(ch, it, tmpStr.size());
+         copyData(ch, it, (int)tmpStr.size());
          ch[tmpStr.size()] = '\0';
       }
       else
@@ -167,7 +167,7 @@ public :
    {
       // For performance , the saving op use reference input.
     //  unsigned int size = TransportHelper::h2NByteOrder(ch.size());
-	  unsigned int size = ch.size();
+	   unsigned int size = (unsigned int)ch.size();
       fs.append((const char*)&size, sizeof(size));
       fs.append(ch.data(), ch.size());
       return *this;
@@ -177,7 +177,7 @@ public :
    { 
       // For performance , the saving op use reference input.
      // unsigned int size = TransportHelper::h2NByteOrder(ch.size());
-	  unsigned int size = ch.size();
+	   unsigned int size = (unsigned int)ch.size();
       fs.append((const char*)&size, sizeof(size));
       fs.append(ch.data(), ch.size());
       return *this;
