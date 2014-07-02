@@ -264,7 +264,6 @@
     <ClInclude Include="json\writer.h" />
     <ClInclude Include="Logger\ACELogger.h" />
     <ClInclude Include="Logger\GoogleLog.h" />
-    <ClInclude Include="Logger\SFLog.h" />
     <ClInclude Include="Macro.h" />
     <ClInclude Include="SFBreakPad.h" />
     <ClInclude Include="SFBugTrap.h" />
