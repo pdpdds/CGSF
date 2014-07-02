@@ -100,8 +100,9 @@ void SFEngine::SetLogFolder(TCHAR* szPath)
 		szLogPath = szPath;
 
 	google::SetLogDestination(google::GLOG_INFO, (char*)StringConversion::ToASCII(szLogPath).c_str());
-	google::SetLogDestination(google::GLOG_WARNING, (char*)StringConversion::ToASCII(szLogPath).c_str());
-	google::SetLogDestination(google::GLOG_ERROR, (char*)StringConversion::ToASCII(szLogPath).c_str());
+	// INFO와 같은 폴더를 정의해서 파일 중복으로 경고나 에러 로그를 찍을 때 에러 발생.
+	//google::SetLogDestination(google::GLOG_WARNING, (char*)StringConversion::ToASCII(szLogPath).c_str());
+	//google::SetLogDestination(google::GLOG_ERROR, (char*)StringConversion::ToASCII(szLogPath).c_str());
 
 	LOG(INFO) << "Log Destination " << (char*)StringConversion::ToASCII(szLogPath).c_str();
 }
@@ -131,7 +132,7 @@ bool SFEngine::Intialize(ILogicEntry* pLogicEntry, IPacketProtocol* pProtocol, I
 		LOG(ERROR) << "LogicEntry Intialize Fail!!";
 		return false;
 	}
-
+	
 	_EngineConfig* pInfo = m_Config.GetConfigureInfo();
 	
 	std::string szNetworkEngineName = StringConversion::ToASCII(pInfo->EngineName);
