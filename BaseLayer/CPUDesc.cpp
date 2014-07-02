@@ -40,10 +40,10 @@ DWORD CountSetBits(ULONG_PTR bitMask)
 		return bitSetCount;
 	}
 
-BOOL CCPUDesc::Initialize()
+bool CCPUDesc::Initialize()
 {
 	if(NULL != m_pCPUInfo)
-		return FALSE;
+		return false;
 
 	m_pCPUInfo = new CPUInfo();
 
@@ -64,12 +64,12 @@ BOOL CCPUDesc::Initialize()
 	if(m_dwProcessorsNum)
 	{
 		if(FALSE == ProcessGetDetailedProcessInfo())
-			return FALSE;
+			return false;
 	}
 
 	ProcessGetCacheInfo();
 
-	return TRUE;
+	return true;
 }
 
 char* CCPUDesc::GetVendorID()
@@ -134,7 +134,7 @@ DWORD WINAPI GetProcessorInformation (LPVOID lpParameter)
 	// State the APIC ID if one is present.
 	if (CPU->DoesCPUSupportFeature (APIC_FEATURE)) 
 	{				
-		pProcessorInfo->bAPICPresent = TRUE;		
+		pProcessorInfo->bAPICPresent = true;		
 		// Attempt to display the ID of the APIC.
 		pProcessorInfo->APICID = CPU->GetProcessorAPICID ();
 	}
@@ -142,33 +142,33 @@ DWORD WINAPI GetProcessorInformation (LPVOID lpParameter)
 	// State if the processor supports the Advanced Configuration and Power Interface [ACPI].
 	if (CPU->DoesCPUSupportFeature (ACPI_FEATURE)) 
 	{
-		pProcessorInfo->bACPICapable = TRUE;
+		pProcessorInfo->bACPICapable = true;
 	}
 			
 	// State if the processor supports a thermal monitor.
 	if (CPU->DoesCPUSupportFeature (THERMALMONITOR_FEATURE))
 	{
-		pProcessorInfo->bOnChipThermalMonitor = TRUE;
+		pProcessorInfo->bOnChipThermalMonitor = true;
 	}
 
 	
 	if (CPU->DoesCPUSupportFeature (L1CACHE_FEATURE)) 
 	{
-		pProcessorInfo->bL1Cache = TRUE;
+		pProcessorInfo->bL1Cache = true;
 		pProcessorInfo->L1CacheSize = CPU->GetProcessorCacheXSize (L1CACHE_FEATURE);
 	}
 
 	// State the size of the L2 cache if present.
 	if (CPU->DoesCPUSupportFeature (L2CACHE_FEATURE)) 
 	{
-		pProcessorInfo->bL2Cache = TRUE;
+		pProcessorInfo->bL2Cache = true;
 		pProcessorInfo->L2CacheSize = CPU->GetProcessorCacheXSize (L2CACHE_FEATURE);
 	}
 
 	// State the size of the L3 cache if present.
 	if (CPU->DoesCPUSupportFeature (L3CACHE_FEATURE)) 
 	{
-		pProcessorInfo->bL3Cache = TRUE;
+		pProcessorInfo->bL3Cache = true;
 		pProcessorInfo->L3CacheSize = CPU->GetProcessorCacheXSize (L3CACHE_FEATURE);
 	}
 							
@@ -195,80 +195,80 @@ DWORD WINAPI GetProcessorInformation (LPVOID lpParameter)
 	// State if CMOV instructions are present.
 	if (CPU->DoesCPUSupportFeature (CMOV_FEATURE)) 
 	{
-		pProcessorInfo->bCMOVInstructions = TRUE;
+		pProcessorInfo->bCMOVInstructions = true;
 	}
 
 	// State if MTRR instructions are present.
 	if (CPU->DoesCPUSupportFeature (MTRR_FEATURE)) 
 	{	
-		pProcessorInfo->bMTRRInstructions = TRUE;
+		pProcessorInfo->bMTRRInstructions = true;
 	}
 
 	// State if MMX instructions are present.
 	if (CPU->DoesCPUSupportFeature (MMX_FEATURE)) 
 	{
-		pProcessorInfo->bMMXInstructions = TRUE;
+		pProcessorInfo->bMMXInstructions = true;
 	}
 
 	// State if MMX+ instructions are present.
 	if (CPU->DoesCPUSupportFeature (MMX_PLUS_FEATURE)) 
 	{		
-		pProcessorInfo->bMMXPlusInstructions = TRUE;
+		pProcessorInfo->bMMXPlusInstructions = true;
 	}
 
 	// State if SSE instructions are present.
 	if (CPU->DoesCPUSupportFeature (SSE_FEATURE)) 
 	{
-		pProcessorInfo->bSSEInstructions = TRUE;
+		pProcessorInfo->bSSEInstructions = true;
 	}
 
 	// State if SSE FP instructions are present.
 	if (CPU->DoesCPUSupportFeature (SSE_FP_FEATURE)) 
 	{
-		pProcessorInfo->bSSEFPInstructions = TRUE;
+		pProcessorInfo->bSSEFPInstructions = true;
 	}
 
 	// State if SSE MMX instructions are present.
 	if (CPU->DoesCPUSupportFeature (SSE_MMX_FEATURE)) 
 	{
-		pProcessorInfo->bMMXInstructions = TRUE;
+		pProcessorInfo->bMMXInstructions = true;
 	}
 
 	// State if SSE2 instructions are present.
 	if (CPU->DoesCPUSupportFeature (SSE2_FEATURE)) 
 	{
-		pProcessorInfo->bSSE2Instructions = TRUE;
+		pProcessorInfo->bSSE2Instructions = true;
 	}
 
 	// State if 3DNow! instructions are present.
 	if (CPU->DoesCPUSupportFeature (AMD_3DNOW_FEATURE)) 
 	{
-		pProcessorInfo->bAMD3DNowInstructions = TRUE;
+		pProcessorInfo->bAMD3DNowInstructions = true;
 	}
 
 	// State if 3DNow!+ instructions are present.
 	if (CPU->DoesCPUSupportFeature (AMD_3DNOW_PLUS_FEATURE)) 
 	{
-		pProcessorInfo->bAMD3DNowPlusInstructions = TRUE;
+		pProcessorInfo->bAMD3DNowPlusInstructions = true;
 	}
 
 	// State if Hyperthreading instructions are present.
 	if (CPU->DoesCPUSupportFeature (HYPERTHREAD_FEATURE)) 
 	{
-		pProcessorInfo->bHyperthreadingInstructions = TRUE;
+		pProcessorInfo->bHyperthreadingInstructions = true;
 		pProcessorInfo->LogicalProcessorsPerPhysical = CPU->GetLogicalProcessorsPerPhysical ();
 	}
 
 	// State if the processor is MP capable.
 	if (CPU->DoesCPUSupportFeature (MP_CAPABLE)) 
 	{
-		pProcessorInfo->bMultiprocessorCapable = TRUE;
+		pProcessorInfo->bMultiprocessorCapable = true;
 	}
 
 	// State if IA64 instructions are present.
 	if (CPU->DoesCPUSupportFeature (IA64_FEATURE)) 
 	{
-		pProcessorInfo->bIA64Instructions = TRUE;
+		pProcessorInfo->bIA64Instructions = true;
 	}	
 	
 	delete CPU;
@@ -276,15 +276,15 @@ DWORD WINAPI GetProcessorInformation (LPVOID lpParameter)
 	return 0;	
 }
 
-BOOL CCPUDesc::ProcessGetDetailedProcessInfo()
+bool CCPUDesc::ProcessGetDetailedProcessInfo()
 {
 	// For each processor; spawn a CPU thread to access details.
 
 	if (0 == m_dwProcessorsNum)
-		return FALSE;
+		return false;
 
 	if (NULL != m_aDetailProcessorInfo)
-		return FALSE;
+		return false;
 
 	m_aDetailProcessorInfo = new PROCESSORINFO[m_dwProcessorsNum];
 	HANDLE * ahThread = NULL;
@@ -296,7 +296,7 @@ BOOL CCPUDesc::ProcessGetDetailedProcessInfo()
 	if (NULL == m_aDetailProcessorInfo ||
 		NULL == ahThread ||
 		NULL == aThreadID)
-		return FALSE;
+		return false;
 
 	for (DWORD dwCounter = 0; dwCounter < m_dwProcessorsNum; dwCounter ++) 
 	{				
@@ -310,13 +310,13 @@ BOOL CCPUDesc::ProcessGetDetailedProcessInfo()
 
 		if (ahThread[dwCounter] == NULL)
 		{
-			return FALSE;
+			return false;
 		}
 		
 		// Set the threads affinity to the correct processor.
 		if (SetThreadAffinityMask (ahThread[dwCounter], dwCounter + 1) == 0) 
 		{
-			return FALSE;
+			return false;
 		}
 
 		ResumeThread (ahThread[dwCounter]);
@@ -332,7 +332,7 @@ BOOL CCPUDesc::ProcessGetDetailedProcessInfo()
 	delete ahThread;
 	delete aThreadID;
 	 
-	return TRUE;
+	return true;
 }
 
 typedef BOOL (WINAPI *LPFN_GLPI)(
@@ -340,10 +340,10 @@ typedef BOOL (WINAPI *LPFN_GLPI)(
     PDWORD);
 
 
-BOOL CCPUDesc::ProcessGetCacheInfo()
+bool CCPUDesc::ProcessGetCacheInfo()
 {
 	LPFN_GLPI glpi;
-    BOOL done = FALSE;
+    bool done = false;
     PSYSTEM_LOGICAL_PROCESSOR_INFORMATION buffer = NULL;
     PSYSTEM_LOGICAL_PROCESSOR_INFORMATION ptr = NULL;
     DWORD returnLength = 0;    
@@ -376,18 +376,18 @@ BOOL CCPUDesc::ProcessGetCacheInfo()
                 if (NULL == buffer) 
                 {
                     //_tprintf(TEXT("\nError: Allocation failure\n"));
-                    return FALSE;
+                    return false;
                 }
             } 
             else 
             {
                // _tprintf(TEXT("\nError %d\n"), GetLastError());
-                return FALSE;
+                return false;
             }
         } 
         else
         {
-            done = TRUE;
+            done = true;
         }
     }
 
@@ -444,5 +444,5 @@ BOOL CCPUDesc::ProcessGetCacheInfo()
     
     free(buffer);
 
-	return TRUE;
+	return true;
 }

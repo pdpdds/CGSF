@@ -10,44 +10,44 @@ typedef struct tagProcessorInfo
 	char szSerialNumber[128];
 
 // On-Chip Hardware Features
-	BOOL bAPICPresent;
+	bool bAPICPresent;
 	int APICID;
-	BOOL bACPICapable;
-	BOOL bOnChipThermalMonitor;
+	bool bACPICapable;
+	bool bOnChipThermalMonitor;
 	
-	BOOL bL1Cache;
+	bool bL1Cache;
 	int  L1CacheSize;
-	BOOL bL2Cache;
+	bool bL2Cache;
 	int  L2CacheSize;
-	BOOL bL3Cache;
+	bool bL3Cache;
 	int  L3CacheSize;
 
 //Power Management Features
-	BOOL bTemperatureSensingDiode;	
-	BOOL bFrequencyIDControl;	
-	BOOL bVoltageIDControl;
+	bool bTemperatureSensingDiode;
+	bool bFrequencyIDControl;
+	bool bVoltageIDControl;
 
 //Supported Features
-	BOOL bCMOVInstructions;
+	bool bCMOVInstructions;
 
-	BOOL bMTRRInstructions;
-	BOOL bMMXInstructions;
-	BOOL bMMXPlusInstructions;
+	bool bMTRRInstructions;
+	bool bMMXInstructions;
+	bool bMMXPlusInstructions;
 
-	BOOL bSSEInstructions;
+	bool bSSEInstructions;
 
-	BOOL bSSEFPInstructions;
-	BOOL bSSEMMXInstructions;
-	BOOL bSSE2Instructions;
+	bool bSSEFPInstructions;
+	bool bSSEMMXInstructions;
+	bool bSSE2Instructions;
 
-	BOOL bAMD3DNowInstructions;
-	BOOL bAMD3DNowPlusInstructions;
+	bool bAMD3DNowInstructions;
+	bool bAMD3DNowPlusInstructions;
 
-	BOOL bHyperthreadingInstructions;
+	bool bHyperthreadingInstructions;
 	int LogicalProcessorsPerPhysical;
 
-	BOOL bMultiprocessorCapable;
-	BOOL bIA64Instructions;
+	bool bMultiprocessorCapable;
+	bool bIA64Instructions;
 
 	tagProcessorInfo()
 	{				
@@ -82,11 +82,11 @@ public:
 	DWORD GetL2CacheSize(){return m_processorL2CacheSize;}
 	DWORD GetL3CacheSize(){return m_processorL3CacheSize;}
 
-	BOOL ProcessGetDetailedProcessInfo();
-	BOOL ProcessGetCacheInfo();
+	bool ProcessGetDetailedProcessInfo();
+	bool ProcessGetCacheInfo();
 
 protected:
-	BOOL Initialize();
+	bool Initialize();
 
 private:
 	bool m_bSupportCPUID;

@@ -17,5 +17,6 @@
 #include <stdio.h>
 #include <tchar.h>
 #include <string>
+#include <memory>
 
 #include "Macro.h"
