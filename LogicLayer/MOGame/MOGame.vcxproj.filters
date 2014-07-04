@@ -1,0 +1,531 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="소스 파일">
+      <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
+      <Extensions>cpp;c;cc;cxx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
+    </Filter>
+    <Filter Include="헤더 파일">
+      <UniqueIdentifier>{93995380-89BD-4b04-88EB-625FBE52EBFB}</UniqueIdentifier>
+      <Extensions>h;hh;hpp;hxx;hm;inl;inc;xsd</Extensions>
+    </Filter>
+    <Filter Include="리소스 파일">
+      <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
+      <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
+    </Filter>
+    <Filter Include="utils">
+      <UniqueIdentifier>{6db11c02-22b6-4126-b114-46248a11d35c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="script">
+      <UniqueIdentifier>{657f9c49-a8ca-43fc-b5d8-e5217367d400}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="common">
+      <UniqueIdentifier>{9fbb659c-d1ac-49bc-a864-67d91fd6974c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="net">
+      <UniqueIdentifier>{fed5adfb-9529-4020-8d84-01d30f106cf5}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="dal">
+      <UniqueIdentifier>{c356c59b-965a-4c7e-9523-2cbfc73dc292}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="chat">
+      <UniqueIdentifier>{034fcf45-c1f6-403b-bbbe-35de8b8c3cfb}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <Text Include="ReadMe.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="stdafx.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="targetver.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="map.h">
+      <Filter>소스 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="mapreader.h">
+      <Filter>소스 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="mapmanager.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="attribute.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="attributeinfo.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="attributemanager.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="being.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="timeout.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="statuseffect.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="statusmanager.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="mapcomposite.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="state.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="charactercomponent.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="component.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="abilitycomponent.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="entity.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="abilitymanager.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="actorcomponent.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="idmanager.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="accountconnection.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="trade.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="collisiondetection.h">
+      <Filter>소스 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="utils\base64.h">
+      <Filter>utils</Filter>
+    </ClInclude>
+    <ClInclude Include="utils\functors.h">
+      <Filter>utils</Filter>
+    </ClInclude>
+    <ClInclude Include="utils\logger.h">
+      <Filter>utils</Filter>
+    </ClInclude>
+    <ClInclude Include="utils\mathutils.h">
+      <Filter>utils</Filter>
+    </ClInclude>
+    <ClInclude Include="utils\point.h">
+      <Filter>utils</Filter>
+    </ClInclude>
+    <ClInclude Include="utils\processorutils.h">
+      <Filter>utils</Filter>
+    </ClInclude>
+    <ClInclude Include="utils\sha256.h">
+      <Filter>utils</Filter>
+    </ClInclude>
+    <ClInclude Include="utils\speedconv.h">
+      <Filter>utils</Filter>
+    </ClInclude>
+    <ClInclude Include="utils\string.h">
+      <Filter>utils</Filter>
+    </ClInclude>
+    <ClInclude Include="utils\stringfilter.h">
+      <Filter>utils</Filter>
+    </ClInclude>
+    <ClInclude Include="utils\throwerror.h">
+      <Filter>utils</Filter>
+    </ClInclude>
+    <ClInclude Include="utils\time.h">
+      <Filter>utils</Filter>
+    </ClInclude>
+    <ClInclude Include="utils\timer.h">
+      <Filter>utils</Filter>
+    </ClInclude>
+    <ClInclude Include="utils\tokencollector.h">
+      <Filter>utils</Filter>
+    </ClInclude>
+    <ClInclude Include="utils\tokendispenser.h">
+      <Filter>utils</Filter>
+    </ClInclude>
+    <ClInclude Include="utils\xml.h">
+      <Filter>utils</Filter>
+    </ClInclude>
+    <ClInclude Include="scripting\luascript.h">
+      <Filter>script</Filter>
+    </ClInclude>
+    <ClInclude Include="scripting\luautil.h">
+      <Filter>script</Filter>
+    </ClInclude>
+    <ClInclude Include="scripting\script.h">
+      <Filter>script</Filter>
+    </ClInclude>
+    <ClInclude Include="scripting\scriptmanager.h">
+      <Filter>script</Filter>
+    </ClInclude>
+    <ClInclude Include="common\configuration.h">
+      <Filter>common</Filter>
+    </ClInclude>
+    <ClInclude Include="common\defines.h">
+      <Filter>common</Filter>
+    </ClInclude>
+    <ClInclude Include="common\inventorydata.h">
+      <Filter>common</Filter>
+    </ClInclude>
+    <ClInclude Include="common\manaserv_protocol.h">
+      <Filter>common</Filter>
+    </ClInclude>
+    <ClInclude Include="common\permissionmanager.h">
+      <Filter>common</Filter>
+    </ClInclude>
+    <ClInclude Include="common\resourcemanager.h">
+      <Filter>common</Filter>
+    </ClInclude>
+    <ClInclude Include="net\bandwidth.h">
+      <Filter>net</Filter>
+    </ClInclude>
+    <ClInclude Include="net\connection.h">
+      <Filter>net</Filter>
+    </ClInclude>
+    <ClInclude Include="net\connectionhandler.h">
+      <Filter>net</Filter>
+    </ClInclude>
+    <ClInclude Include="net\messagein.h">
+      <Filter>net</Filter>
+    </ClInclude>
+    <ClInclude Include="net\messageout.h">
+      <Filter>net</Filter>
+    </ClInclude>
+    <ClInclude Include="net\netcomputer.h">
+      <Filter>net</Filter>
+    </ClInclude>
+    <ClInclude Include="buysell.h">
+      <Filter>소스 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="commandhandler.h">
+      <Filter>소스 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="effect.h">
+      <Filter>소스 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="emotemanager.h">
+      <Filter>소스 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="gamehandler.h">
+      <Filter>소스 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="inventory.h">
+      <Filter>소스 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="item.h">
+      <Filter>소스 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="itemmanager.h">
+      <Filter>소스 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="monster.h">
+      <Filter>소스 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="monstermanager.h">
+      <Filter>소스 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="npc.h">
+      <Filter>소스 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="postman.h">
+      <Filter>소스 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="quest.h">
+      <Filter>소스 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="settingsmanager.h">
+      <Filter>소스 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="spawnareacomponent.h">
+      <Filter>소스 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="triggerareacomponent.h">
+      <Filter>소스 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="utils\zlib.h">
+      <Filter>utils</Filter>
+    </ClInclude>
+    <ClInclude Include="dal\dalexcept.h">
+      <Filter>dal</Filter>
+    </ClInclude>
+    <ClInclude Include="dal\dataprovider.h">
+      <Filter>dal</Filter>
+    </ClInclude>
+    <ClInclude Include="dal\dataproviderfactory.h">
+      <Filter>dal</Filter>
+    </ClInclude>
+    <ClInclude Include="dal\mysqldataprovider.h">
+      <Filter>dal</Filter>
+    </ClInclude>
+    <ClInclude Include="dal\recordset.h">
+      <Filter>dal</Filter>
+    </ClInclude>
+    <ClInclude Include="chat-server\chatchannel.h">
+      <Filter>chat</Filter>
+    </ClInclude>
+    <ClInclude Include="chat-server\chatchannelmanager.h">
+      <Filter>chat</Filter>
+    </ClInclude>
+    <ClInclude Include="chat-server\chatclient.h">
+      <Filter>chat</Filter>
+    </ClInclude>
+    <ClInclude Include="chat-server\chathandler.h">
+      <Filter>chat</Filter>
+    </ClInclude>
+    <ClInclude Include="chat-server\guild.h">
+      <Filter>chat</Filter>
+    </ClInclude>
+    <ClInclude Include="chat-server\guildmanager.h">
+      <Filter>chat</Filter>
+    </ClInclude>
+    <ClInclude Include="chat-server\party.h">
+      <Filter>chat</Filter>
+    </ClInclude>
+    <ClInclude Include="chat-server\post.h">
+      <Filter>chat</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="stdafx.cpp">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="map.cpp">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="mapreader.cpp">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="mapmanager.cpp">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="attribute.cpp">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="attributeinfo.cpp">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="attributemanager.cpp">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="being.cpp">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="timeout.cpp">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="statuseffect.cpp">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="statusmanager.cpp">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="mapcomposite.cpp">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="state.cpp">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="charactercomponent.cpp">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="abilitycomponent.cpp">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="entity.cpp">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="abilitymanager.cpp">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="actorcomponent.cpp">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="accountconnection.cpp">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="trade.cpp">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="main-game.cpp">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="collisiondetection.cpp">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="utils\base64.cpp">
+      <Filter>utils</Filter>
+    </ClCompile>
+    <ClCompile Include="utils\logger.cpp">
+      <Filter>utils</Filter>
+    </ClCompile>
+    <ClCompile Include="utils\mathutils.cpp">
+      <Filter>utils</Filter>
+    </ClCompile>
+    <ClCompile Include="utils\processorutils.cpp">
+      <Filter>utils</Filter>
+    </ClCompile>
+    <ClCompile Include="utils\sha256.cpp">
+      <Filter>utils</Filter>
+    </ClCompile>
+    <ClCompile Include="utils\speedconv.cpp">
+      <Filter>utils</Filter>
+    </ClCompile>
+    <ClCompile Include="utils\string.cpp">
+      <Filter>utils</Filter>
+    </ClCompile>
+    <ClCompile Include="utils\stringfilter.cpp">
+      <Filter>utils</Filter>
+    </ClCompile>
+    <ClCompile Include="utils\timer.cpp">
+      <Filter>utils</Filter>
+    </ClCompile>
+    <ClCompile Include="utils\tokencollector.cpp">
+      <Filter>utils</Filter>
+    </ClCompile>
+    <ClCompile Include="utils\tokendispenser.cpp">
+      <Filter>utils</Filter>
+    </ClCompile>
+    <ClCompile Include="utils\xml.cpp">
+      <Filter>utils</Filter>
+    </ClCompile>
+    <ClCompile Include="scripting\lua.cpp">
+      <Filter>script</Filter>
+    </ClCompile>
+    <ClCompile Include="scripting\luascript.cpp">
+      <Filter>script</Filter>
+    </ClCompile>
+    <ClCompile Include="scripting\luautil.cpp">
+      <Filter>script</Filter>
+    </ClCompile>
+    <ClCompile Include="scripting\script.cpp">
+      <Filter>script</Filter>
+    </ClCompile>
+    <ClCompile Include="scripting\scriptmanager.cpp">
+      <Filter>script</Filter>
+    </ClCompile>
+    <ClCompile Include="common\configuration.cpp">
+      <Filter>common</Filter>
+    </ClCompile>
+    <ClCompile Include="common\permissionmanager.cpp">
+      <Filter>common</Filter>
+    </ClCompile>
+    <ClCompile Include="common\resourcemanager.cpp">
+      <Filter>common</Filter>
+    </ClCompile>
+    <ClCompile Include="net\bandwidth.cpp">
+      <Filter>net</Filter>
+    </ClCompile>
+    <ClCompile Include="net\connection.cpp">
+      <Filter>net</Filter>
+    </ClCompile>
+    <ClCompile Include="net\connectionhandler.cpp">
+      <Filter>net</Filter>
+    </ClCompile>
+    <ClCompile Include="net\messagein.cpp">
+      <Filter>net</Filter>
+    </ClCompile>
+    <ClCompile Include="net\messageout.cpp">
+      <Filter>net</Filter>
+    </ClCompile>
+    <ClCompile Include="net\netcomputer.cpp">
+      <Filter>net</Filter>
+    </ClCompile>
+    <ClCompile Include="buysell.cpp">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="commandhandler.cpp">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="effect.cpp">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="emotemanager.cpp">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="gamehandler.cpp">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="inventory.cpp">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="item.cpp">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="itemmanager.cpp">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="monster.cpp">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="monstermanager.cpp">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="npc.cpp">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="quest.cpp">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="settingsmanager.cpp">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="spawnareacomponent.cpp">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="triggerareacomponent.cpp">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="utils\zlib.cpp">
+      <Filter>utils</Filter>
+    </ClCompile>
+    <ClCompile Include="dal\dataprovider.cpp">
+      <Filter>dal</Filter>
+    </ClCompile>
+    <ClCompile Include="dal\dataproviderfactory.cpp">
+      <Filter>dal</Filter>
+    </ClCompile>
+    <ClCompile Include="dal\mysqldataprovider.cpp">
+      <Filter>dal</Filter>
+    </ClCompile>
+    <ClCompile Include="dal\recordset.cpp">
+      <Filter>dal</Filter>
+    </ClCompile>
+    <ClCompile Include="chat-server\chatchannel.cpp">
+      <Filter>chat</Filter>
+    </ClCompile>
+    <ClCompile Include="chat-server\chatchannelmanager.cpp">
+      <Filter>chat</Filter>
+    </ClCompile>
+    <ClCompile Include="chat-server\chathandler.cpp">
+      <Filter>chat</Filter>
+    </ClCompile>
+    <ClCompile Include="chat-server\guild.cpp">
+      <Filter>chat</Filter>
+    </ClCompile>
+    <ClCompile Include="chat-server\guildhandler.cpp">
+      <Filter>chat</Filter>
+    </ClCompile>
+    <ClCompile Include="chat-server\guildmanager.cpp">
+      <Filter>chat</Filter>
+    </ClCompile>
+    <ClCompile Include="chat-server\party.cpp">
+      <Filter>chat</Filter>
+    </ClCompile>
+    <ClCompile Include="chat-server\partyhandler.cpp">
+      <Filter>chat</Filter>
+    </ClCompile>
+    <ClCompile Include="chat-server\post.cpp">
+      <Filter>chat</Filter>
+    </ClCompile>
+  </ItemGroup>
+</Project>

@@ -35,6 +35,8 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "ServerConnector", "..\Sampl
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "ServerListener", "..\Sample\ServerListener\ServerListener.vcxproj", "{5730DE4F-BEA1-42BA-857E-7EF4D7F5A8C8}"
 EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "ManaServer", "..\Sample\ManaServer\ManaServer.vcxproj", "{6C7C014F-1570-4070-A691-2C5680BB618E}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Win32 = Debug|Win32
@@ -147,6 +149,12 @@ Global
 		{5730DE4F-BEA1-42BA-857E-7EF4D7F5A8C8}.Release|Win32.Build.0 = Release|Win32
 		{5730DE4F-BEA1-42BA-857E-7EF4D7F5A8C8}.Release|x64.ActiveCfg = Release|x64
 		{5730DE4F-BEA1-42BA-857E-7EF4D7F5A8C8}.Release|x64.Build.0 = Release|x64
+		{6C7C014F-1570-4070-A691-2C5680BB618E}.Debug|Win32.ActiveCfg = Debug|Win32
+		{6C7C014F-1570-4070-A691-2C5680BB618E}.Debug|Win32.Build.0 = Debug|Win32
+		{6C7C014F-1570-4070-A691-2C5680BB618E}.Debug|x64.ActiveCfg = Debug|Win32
+		{6C7C014F-1570-4070-A691-2C5680BB618E}.Release|Win32.ActiveCfg = Release|Win32
+		{6C7C014F-1570-4070-A691-2C5680BB618E}.Release|Win32.Build.0 = Release|Win32
+		{6C7C014F-1570-4070-A691-2C5680BB618E}.Release|x64.ActiveCfg = Release|Win32
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

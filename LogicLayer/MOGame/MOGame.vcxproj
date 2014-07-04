@@ -1,0 +1,264 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" ToolsVersion="12.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup Label="ProjectConfigurations">
+    <ProjectConfiguration Include="Debug|Win32">
+      <Configuration>Debug</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|Win32">
+      <Configuration>Release</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+  </ItemGroup>
+  <PropertyGroup Label="Globals">
+    <ProjectGuid>{4DEE1006-36C5-4A5B-8A44-AB4CC0BB6205}</ProjectGuid>
+    <Keyword>Win32Proj</Keyword>
+    <RootNamespace>MOGame</RootNamespace>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
+    <ConfigurationType>StaticLibrary</ConfigurationType>
+    <UseDebugLibraries>true</UseDebugLibraries>
+    <PlatformToolset>v120</PlatformToolset>
+    <CharacterSet>Unicode</CharacterSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="Configuration">
+    <ConfigurationType>StaticLibrary</ConfigurationType>
+    <UseDebugLibraries>false</UseDebugLibraries>
+    <PlatformToolset>v120</PlatformToolset>
+    <WholeProgramOptimization>true</WholeProgramOptimization>
+    <CharacterSet>Unicode</CharacterSet>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
+  <ImportGroup Label="ExtensionSettings">
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <PropertyGroup Label="UserMacros" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <OutDir>$(SolutionDir)\lib\x86\Debug\</OutDir>
+    <IntDir>$(SolutionDir)/Intermediate/$(Configuration)\$(ProjectName)\</IntDir>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <OutDir>$(SolutionDir)\lib\x86\Release\</OutDir>
+    <IntDir>$(SolutionDir)/Intermediate/$(Configuration)\$(ProjectName)\</IntDir>
+  </PropertyGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <ClCompile>
+      <PrecompiledHeader>NotUsing</PrecompiledHeader>
+      <WarningLevel>Level3</WarningLevel>
+      <Optimization>Disabled</Optimization>
+      <PreprocessorDefinitions>WIN32;_DEBUG;_LIB;_CRT_SECURE_NO_WARNINGS;MYSQL_SUPPORT;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <SDLCheck>true</SDLCheck>
+      <AdditionalIncludeDirectories>../../Common;../../BaseLayer;../../EngineLayer;../../DatabaseLayer;../../P2PLayer;../../DatabaseLayer/CppDatabasePool;../../DatabaseLayer/CppDatabasePool/mysql;../../ThirdParty;../../ThirdParty/mysql/include;../../ThirdParty/ACE/Include;./;../../ThirdParty/libxml/Include;../../ThirdParty/enet/Include;../../ThirdParty/sigc++;../../ThirdParty/argtable2-13\src;../../ThirdParty/lua-5.2.3/src;../../ThirdParty/physfs\include;../../ThirdParty/SQLite;../../ThirdParty/MySQL;../;../../ThirdParty/zlib;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <DisableSpecificWarnings>4800;4244</DisableSpecificWarnings>
+    </ClCompile>
+    <Link>
+      <SubSystem>Windows</SubSystem>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+    </Link>
+    <Lib>
+      <AdditionalLibraryDirectories>
+      </AdditionalLibraryDirectories>
+    </Lib>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <ClCompile>
+      <WarningLevel>Level3</WarningLevel>
+      <PrecompiledHeader>NotUsing</PrecompiledHeader>
+      <Optimization>MaxSpeed</Optimization>
+      <FunctionLevelLinking>true</FunctionLevelLinking>
+      <IntrinsicFunctions>true</IntrinsicFunctions>
+      <PreprocessorDefinitions>WIN32;NDEBUG;_LIB;_CRT_SECURE_NO_WARNINGS;MYSQL_SUPPORT;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <SDLCheck>true</SDLCheck>
+      <AdditionalIncludeDirectories>../../Common;../../BaseLayer;../../EngineLayer;../../DatabaseLayer;../../P2PLayer;../../DatabaseLayer/CppDatabasePool;../../DatabaseLayer/CppDatabasePool/mysql;../../ThirdParty;../../ThirdParty/mysql/include;../../ThirdParty/ACE/Include;./;../../ThirdParty/libxml/Include;../../ThirdParty/enet/Include;../../ThirdParty/sigc++;../../ThirdParty/argtable2-13\src;../../ThirdParty/lua-5.2.3/src;../../ThirdParty/physfs\include;../../ThirdParty/SQLite;../../ThirdParty/MySQL;../;../../ThirdParty/zlib;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <DisableSpecificWarnings>4800</DisableSpecificWarnings>
+    </ClCompile>
+    <Link>
+      <SubSystem>Windows</SubSystem>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <EnableCOMDATFolding>true</EnableCOMDATFolding>
+      <OptimizeReferences>true</OptimizeReferences>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemGroup>
+    <Text Include="ReadMe.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="abilitycomponent.h" />
+    <ClInclude Include="abilitymanager.h" />
+    <ClInclude Include="accountconnection.h" />
+    <ClInclude Include="actorcomponent.h" />
+    <ClInclude Include="attribute.h" />
+    <ClInclude Include="attributeinfo.h" />
+    <ClInclude Include="attributemanager.h" />
+    <ClInclude Include="being.h" />
+    <ClInclude Include="buysell.h" />
+    <ClInclude Include="charactercomponent.h" />
+    <ClInclude Include="chat-server\chatchannel.h" />
+    <ClInclude Include="chat-server\chatchannelmanager.h" />
+    <ClInclude Include="chat-server\chatclient.h" />
+    <ClInclude Include="chat-server\chathandler.h" />
+    <ClInclude Include="chat-server\guild.h" />
+    <ClInclude Include="chat-server\guildmanager.h" />
+    <ClInclude Include="chat-server\party.h" />
+    <ClInclude Include="chat-server\post.h" />
+    <ClInclude Include="collisiondetection.h" />
+    <ClInclude Include="commandhandler.h" />
+    <ClInclude Include="common\configuration.h" />
+    <ClInclude Include="common\defines.h" />
+    <ClInclude Include="common\inventorydata.h" />
+    <ClInclude Include="common\manaserv_protocol.h" />
+    <ClInclude Include="common\permissionmanager.h" />
+    <ClInclude Include="common\resourcemanager.h" />
+    <ClInclude Include="component.h" />
+    <ClInclude Include="dal\dalexcept.h" />
+    <ClInclude Include="dal\dataprovider.h" />
+    <ClInclude Include="dal\dataproviderfactory.h" />
+    <ClInclude Include="dal\mysqldataprovider.h" />
+    <ClInclude Include="dal\recordset.h" />
+    <ClInclude Include="effect.h" />
+    <ClInclude Include="emotemanager.h" />
+    <ClInclude Include="entity.h" />
+    <ClInclude Include="gamehandler.h" />
+    <ClInclude Include="idmanager.h" />
+    <ClInclude Include="inventory.h" />
+    <ClInclude Include="item.h" />
+    <ClInclude Include="itemmanager.h" />
+    <ClInclude Include="map.h" />
+    <ClInclude Include="mapcomposite.h" />
+    <ClInclude Include="mapmanager.h" />
+    <ClInclude Include="mapreader.h" />
+    <ClInclude Include="monster.h" />
+    <ClInclude Include="monstermanager.h" />
+    <ClInclude Include="net\bandwidth.h" />
+    <ClInclude Include="net\connection.h" />
+    <ClInclude Include="net\connectionhandler.h" />
+    <ClInclude Include="net\messagein.h" />
+    <ClInclude Include="net\messageout.h" />
+    <ClInclude Include="net\netcomputer.h" />
+    <ClInclude Include="npc.h" />
+    <ClInclude Include="postman.h" />
+    <ClInclude Include="quest.h" />
+    <ClInclude Include="scripting\luascript.h" />
+    <ClInclude Include="scripting\luautil.h" />
+    <ClInclude Include="scripting\script.h" />
+    <ClInclude Include="scripting\scriptmanager.h" />
+    <ClInclude Include="settingsmanager.h" />
+    <ClInclude Include="spawnareacomponent.h" />
+    <ClInclude Include="state.h" />
+    <ClInclude Include="statuseffect.h" />
+    <ClInclude Include="statusmanager.h" />
+    <ClInclude Include="stdafx.h" />
+    <ClInclude Include="targetver.h" />
+    <ClInclude Include="timeout.h" />
+    <ClInclude Include="trade.h" />
+    <ClInclude Include="triggerareacomponent.h" />
+    <ClInclude Include="utils\base64.h" />
+    <ClInclude Include="utils\functors.h" />
+    <ClInclude Include="utils\logger.h" />
+    <ClInclude Include="utils\mathutils.h" />
+    <ClInclude Include="utils\point.h" />
+    <ClInclude Include="utils\processorutils.h" />
+    <ClInclude Include="utils\sha256.h" />
+    <ClInclude Include="utils\speedconv.h" />
+    <ClInclude Include="utils\string.h" />
+    <ClInclude Include="utils\stringfilter.h" />
+    <ClInclude Include="utils\throwerror.h" />
+    <ClInclude Include="utils\time.h" />
+    <ClInclude Include="utils\timer.h" />
+    <ClInclude Include="utils\tokencollector.h" />
+    <ClInclude Include="utils\tokendispenser.h" />
+    <ClInclude Include="utils\xml.h" />
+    <ClInclude Include="utils\zlib.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="abilitycomponent.cpp" />
+    <ClCompile Include="abilitymanager.cpp" />
+    <ClCompile Include="accountconnection.cpp" />
+    <ClCompile Include="actorcomponent.cpp" />
+    <ClCompile Include="attribute.cpp" />
+    <ClCompile Include="attributeinfo.cpp" />
+    <ClCompile Include="attributemanager.cpp" />
+    <ClCompile Include="being.cpp" />
+    <ClCompile Include="buysell.cpp" />
+    <ClCompile Include="charactercomponent.cpp" />
+    <ClCompile Include="chat-server\chatchannel.cpp" />
+    <ClCompile Include="chat-server\chatchannelmanager.cpp" />
+    <ClCompile Include="chat-server\chathandler.cpp" />
+    <ClCompile Include="chat-server\guild.cpp" />
+    <ClCompile Include="chat-server\guildhandler.cpp" />
+    <ClCompile Include="chat-server\guildmanager.cpp" />
+    <ClCompile Include="chat-server\party.cpp" />
+    <ClCompile Include="chat-server\partyhandler.cpp" />
+    <ClCompile Include="chat-server\post.cpp" />
+    <ClCompile Include="collisiondetection.cpp" />
+    <ClCompile Include="commandhandler.cpp" />
+    <ClCompile Include="common\configuration.cpp" />
+    <ClCompile Include="common\permissionmanager.cpp" />
+    <ClCompile Include="common\resourcemanager.cpp" />
+    <ClCompile Include="dal\dataprovider.cpp" />
+    <ClCompile Include="dal\dataproviderfactory.cpp" />
+    <ClCompile Include="dal\mysqldataprovider.cpp" />
+    <ClCompile Include="dal\recordset.cpp" />
+    <ClCompile Include="effect.cpp" />
+    <ClCompile Include="emotemanager.cpp" />
+    <ClCompile Include="entity.cpp" />
+    <ClCompile Include="gamehandler.cpp" />
+    <ClCompile Include="inventory.cpp" />
+    <ClCompile Include="item.cpp" />
+    <ClCompile Include="itemmanager.cpp" />
+    <ClCompile Include="main-game.cpp" />
+    <ClCompile Include="map.cpp" />
+    <ClCompile Include="mapcomposite.cpp" />
+    <ClCompile Include="mapmanager.cpp" />
+    <ClCompile Include="mapreader.cpp" />
+    <ClCompile Include="monster.cpp" />
+    <ClCompile Include="monstermanager.cpp" />
+    <ClCompile Include="net\bandwidth.cpp" />
+    <ClCompile Include="net\connection.cpp" />
+    <ClCompile Include="net\connectionhandler.cpp" />
+    <ClCompile Include="net\messagein.cpp" />
+    <ClCompile Include="net\messageout.cpp" />
+    <ClCompile Include="net\netcomputer.cpp" />
+    <ClCompile Include="npc.cpp" />
+    <ClCompile Include="quest.cpp" />
+    <ClCompile Include="scripting\lua.cpp" />
+    <ClCompile Include="scripting\luascript.cpp" />
+    <ClCompile Include="scripting\luautil.cpp" />
+    <ClCompile Include="scripting\script.cpp" />
+    <ClCompile Include="scripting\scriptmanager.cpp" />
+    <ClCompile Include="settingsmanager.cpp" />
+    <ClCompile Include="spawnareacomponent.cpp" />
+    <ClCompile Include="state.cpp" />
+    <ClCompile Include="statuseffect.cpp" />
+    <ClCompile Include="statusmanager.cpp" />
+    <ClCompile Include="stdafx.cpp">
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Create</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Create</PrecompiledHeader>
+    </ClCompile>
+    <ClCompile Include="timeout.cpp" />
+    <ClCompile Include="trade.cpp" />
+    <ClCompile Include="triggerareacomponent.cpp" />
+    <ClCompile Include="utils\base64.cpp" />
+    <ClCompile Include="utils\logger.cpp" />
+    <ClCompile Include="utils\mathutils.cpp" />
+    <ClCompile Include="utils\processorutils.cpp" />
+    <ClCompile Include="utils\sha256.cpp" />
+    <ClCompile Include="utils\speedconv.cpp" />
+    <ClCompile Include="utils\string.cpp" />
+    <ClCompile Include="utils\stringfilter.cpp" />
+    <ClCompile Include="utils\timer.cpp" />
+    <ClCompile Include="utils\tokencollector.cpp" />
+    <ClCompile Include="utils\tokendispenser.cpp" />
+    <ClCompile Include="utils\xml.cpp" />
+    <ClCompile Include="utils\zlib.cpp" />
+  </ItemGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
+  <ImportGroup Label="ExtensionTargets">
+  </ImportGroup>
+</Project>
