@@ -18,7 +18,7 @@ public:
     virtual bool Shutdown() override;
 
 	virtual bool SendInternal(int ownerSerial, char* buffer, unsigned int bufferSize) override;
-	virtual bool Disconnect(int Serial) override;
+	virtual bool Disconnect(int serial) override;
 
 protected:
 
@@ -35,11 +35,11 @@ public:
 	virtual ~MGClientEngine(void);
 
 	virtual bool Init() override;
-	virtual bool Start(char* szIP, unsigned short Port) override;
+	virtual bool Start(char* szIP, unsigned short port) override;
     virtual bool Shutdown() override;
 
 	virtual bool SendInternal(int ownerSerial, char* buffer, unsigned int bufferSize) override;
-	virtual bool Disconnect(int Serial) override;
+	virtual bool Disconnect(int serial) override;
 
 protected:
 

@@ -123,13 +123,13 @@ bool SFNetworkEntry::IsConnected()
 	return m_pTCPNetwork->IsConnected();
 }
 
-bool SFNetworkEntry::AddPeer(int Serial, int ExternalIP, short ExternalPort, int LocalIP, short LocalPort)
+bool SFNetworkEntry::AddPeer(int serial, int externalIP, short externalPort, int localIP, short localPort)
 {
-	return m_pUDPNetwork->AddPeer(Serial, ExternalIP, ExternalPort, LocalIP, LocalPort);
+	return m_pUDPNetwork->AddPeer(serial, externalIP, externalPort, localIP, localPort);
 }
 
-bool SFNetworkEntry::DeletePeer(int Serial)
+bool SFNetworkEntry::DeletePeer(int serial)
 {
-	return m_pUDPNetwork->DeletePeer(Serial);
+	return m_pUDPNetwork->DeletePeer(serial);
 }
 

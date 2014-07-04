@@ -88,14 +88,14 @@ bool TCPCallback::HandleNetworkMessage(BasePacket* pPacket)
 	return true;
 }
 
-void TCPCallback::HandleConnect(int Serial)
+void TCPCallback::HandleConnect(int serial)
 {
-	SetSerial(Serial);
+	SetSerial(serial);
 	printf("Connected\n");
 
 }
 
-void TCPCallback::HandleDisconnect(int Serial)
+void TCPCallback::HandleDisconnect(int serial)
 {
 	m_pOwner->GetGUI()->QuitMessage("Network Connection Loss!!");
 	printf("Disconnected\n");

@@ -130,29 +130,29 @@ public:
 private:
 	SFLock m_lock;	
 
-	/*BOOL Send(int Serial, USHORT PacketID, ::google::protobuf::Message* pMessage, int BufSize )
+	/*BOOL Send(int serial, USHORT packetID, ::google::protobuf::Message* pMessage, int bufSize )
 	{
-		SFProactorService* pProactorService = Get(Serial);
+		SFProactorService* pProactorService = Get(serial);
 
 		if(pProactorService != NULL)
 		{
-			pProactorService->Send(PacketID, pMessage, BufSize);
+			pProactorService->Send(packetID, pMessage, bufSize);
 		}
 
-		return TRUE;
+		return true;
 	}*/
 
 
-	/*BOOL Send(int Serial, SFPacket* pPacket)
+	/*bool Send(int serial, SFPacket* pPacket)
 	{
-		SFProactorService* pProactorService = Get(Serial);
+		SFProactorService* pProactorService = Get(serial);
 
 		if(pProactorService != NULL)
 		{
 			pProactorService->Send(pPacket);
 		}
 
-		return TRUE;
+		return true;
 	}
 
 	*/

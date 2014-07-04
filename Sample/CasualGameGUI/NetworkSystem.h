@@ -13,9 +13,9 @@ public:
 	bool Intialize(CasualGameManager* pOwner, IPacketProtocol* pProtocol);
 	bool Update();
 	bool TCPSend(BasePacket* pPacket );
-	bool UDPSend(unsigned char* pMessage, int BufSize );
+	bool UDPSend(unsigned char* pMessage, int bufSize );
 
-	bool AddPeer(int Serial, int ExternalIP, short ExternalPort, int LocalIP, short LocalPort);
-	bool DeletePeer(int Serial);
+	bool AddPeer(int serial, int externalIP, short externalPort, int localIP, short localPort);
+	bool DeletePeer(int serial);
 };
 

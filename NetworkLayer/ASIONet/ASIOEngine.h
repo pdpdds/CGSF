@@ -17,7 +17,7 @@ public:
 
 	virtual bool SendInternal(int ownerSerial, char* buffer, unsigned int bufferSize) override;
 
-	virtual bool Disconnect(int Serial) override;
+	virtual bool Disconnect(int serial) override;
 
 	virtual bool CheckTimerImpl() override; //default timer 사용
 	virtual bool CreateTimerTask(unsigned int TimerID, unsigned int StartTime, unsigned int Period) override;
@@ -36,15 +36,15 @@ public:
 	virtual ~ASIOClientEngine(void);
 
 	virtual bool Init() override;
-	virtual bool Start(char* szIP, unsigned short Port) override;
+	virtual bool Start(char* szIP, unsigned short port) override;
     virtual bool Shutdown() override;
 
 	virtual bool SendInternal(int ownerSerial, char* buffer, unsigned int bufferSize) override;
 
-	virtual bool Disconnect(int Serial) override;
+	virtual bool Disconnect(int serial) override;
 
 	virtual bool CheckTimerImpl() override; //default timer 사용
-	virtual bool CreateTimerTask(unsigned int TimerID, unsigned int StartTime, unsigned int Period) override;
+	virtual bool CreateTimerTask(unsigned int timerID, unsigned int startTime, unsigned int period) override;
 
 protected:
 

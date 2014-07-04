@@ -9,18 +9,18 @@ SFP2PSys::~SFP2PSys(void)
 {
 }
 
-BOOL SFP2PSys::AddPeer(int Serial, _PeerInfo& Info)
+BOOL SFP2PSys::AddPeer(int serial, _PeerInfo& info)
 {
-	m_PeerMap.insert(std::make_pair(Serial, Info));
+	m_PeerMap.insert(std::make_pair(serial, info));
 
 	//SFASSERT(0);
 
 	return TRUE;
 }
 
-BOOL SFP2PSys::DeletePeer(int Serial)
+BOOL SFP2PSys::DeletePeer(int serial)
 {
-	m_PeerMap.erase(Serial);
+	m_PeerMap.erase(serial);
 
 	return TRUE;
 }

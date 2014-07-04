@@ -46,7 +46,7 @@ bool ASIOServerEngine::SendInternal(int ownerSerial, char* buffer, unsigned int 
 	return true;
 }
 
-bool ASIOServerEngine::Disconnect(int Serial)
+bool ASIOServerEngine::Disconnect(int serial)
 {
 	return true;
 }
@@ -101,7 +101,7 @@ bool ASIOClientEngine::SendInternal(int ownerSerial, char* buffer, unsigned int 
 	return true;
 }
 
-bool ASIOClientEngine::Disconnect(int Serial)
+bool ASIOClientEngine::Disconnect(int serial)
 {
 	return true;
 }
@@ -111,7 +111,7 @@ bool ASIOClientEngine::CheckTimerImpl()
 	return false;
 }
 
-bool ASIOClientEngine::CreateTimerTask(unsigned int TimerID, unsigned int StartTime, unsigned int Period)
+bool ASIOClientEngine::CreateTimerTask(unsigned int timerID, unsigned int startTime, unsigned int period)
 {	
 	return true;
 }

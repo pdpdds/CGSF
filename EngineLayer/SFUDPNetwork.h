@@ -22,16 +22,16 @@ public:
 	BOOL Update();
 
 	bool Send( unsigned char* pData, unsigned int Length);
-	bool AddPeer(int Serial, int ExternalIP, short ExternalPort, int LocalIP, short LocalPort);
-	bool DeletePeer(int Serial);
+	bool AddPeer(int serial, int externalIP, short externalPort, int localIP, short localPort);
+	bool DeletePeer(int serial);
 
 protected:
 
 private:
 
-	IP2PManager* m_P2PModule;
-	SerialPeerMap m_SerialPeerMap;
+	IP2PManager* m_p2pModule;
+	SerialPeerMap m_serialPeerMap;
 
-	char m_IP[20];
-	unsigned short m_Port;
+	char m_szIP[20];
+	unsigned short m_port;
 };

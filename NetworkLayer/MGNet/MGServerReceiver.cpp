@@ -69,20 +69,20 @@ void MGServerReceiver::SendInternal(char* pBuffer, int BufferSize, int ownerSeri
 ////////////////////////////////////////////////////////
 //제대로 동작하는지 확인해 볼 필요가 있다...
 ////////////////////////////////////////////////////////
-bool MGServerReceiver::Disconnect(int Serial)
+bool MGServerReceiver::Disconnect(int serial)
 {
 	Synchronized es(&m_SessionLock);
 
-	SessionMap::iterator iter = m_SessionMap.find(Serial);
+	SessionMap::iterator iter = m_SessionMap.find(serial);
 
 	if(iter == m_SessionMap.end())
 	{
 		return FALSE;
 	}
 
-	iter->second.psender->releaseSocketUniqueId(Serial);
+	iter->second.psender->releaseSocketUniqueId(serial);
            
-	m_SessionMap.erase(Serial);
+	m_SessionMap.erase(serial);
 
 	return true;
 }

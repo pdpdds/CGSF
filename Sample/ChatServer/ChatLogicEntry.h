@@ -18,9 +18,9 @@ public:
 	ChatUser* FindUser(int serial);
 
 protected:
-	bool OnConnectPlayer(int Serial);
+	bool OnConnectPlayer(int serial);
 	bool OnPlayerData(BasePacket* pPacket);
-	bool OnDisconnectPlayer(int Serial);
+	bool OnDisconnectPlayer(int serial);
 
 private:
 	ChatUserMap m_ChatUserMap;

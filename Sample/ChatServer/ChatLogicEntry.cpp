@@ -46,20 +46,20 @@ bool ChatLogicEntry::ProcessPacket(BasePacket* pPacket)
 	return true;
 }
 
-bool ChatLogicEntry::OnConnectPlayer(int Serial)
+bool ChatLogicEntry::OnConnectPlayer(int serial)
 {
 	ChatUser* pUser = new ChatUser();
-	pUser->SetSerial(Serial);
-	pUser->SetName(Serial);
+	pUser->SetSerial(serial);
+	pUser->SetName(serial);
 
-	m_ChatUserMap.insert(ChatUserMap::value_type(Serial, pUser));
+	m_ChatUserMap.insert(ChatUserMap::value_type(serial, pUser));
 
 	return true;
 }
 
-bool ChatLogicEntry::OnDisconnectPlayer(int Serial)
+bool ChatLogicEntry::OnDisconnectPlayer(int serial)
 {
-	auto& iter = m_ChatUserMap.find(Serial);
+	auto& iter = m_ChatUserMap.find(serial);
 
 	if(iter == m_ChatUserMap.end())
 	{

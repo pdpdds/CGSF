@@ -15,16 +15,16 @@
 class BasePacket
 {
 public:
-	BasePacket(){ m_serial = -1; m_packetType = (unsigned int)SFPACKET_NONE; m_PacketID = (unsigned short)-1; }
+	BasePacket(){ m_serial = -1; m_packetType = (unsigned int)SFPACKET_NONE; m_packetID = (unsigned short)-1; }
 	virtual ~BasePacket() {}
 
 	void SetPacketType(unsigned int PacketType){ m_packetType = PacketType; }
 	unsigned int GetPacketType(){ return m_packetType; }
 
-	inline unsigned short GetPacketID(){return m_PacketID;}
-	inline void SetPacketID(unsigned short PacketID){m_PacketID = PacketID;}
+	inline unsigned short GetPacketID(){return m_packetID;}
+	inline void SetPacketID(unsigned short packetID){m_packetID = packetID;}
 	
-	void SetSerial(int Serial){ m_serial = Serial; }
+	void SetSerial(int serial){ m_serial = serial; }
 	int GetSerial(){ return m_serial; }
 	void SetAcceptorId(int acceptorId){ m_acceptorId = acceptorId; }
 	int GetAcceptorId(){ return m_acceptorId; }
@@ -47,5 +47,5 @@ private:
 	int m_serial;
 	int m_acceptorId;
 	unsigned int m_packetType;
-	unsigned short m_PacketID;
+	unsigned short m_packetID;
 };

@@ -30,9 +30,9 @@ void MGClientReceiver::notifyReleaseSocket(ASSOCKDESCEX& sockdesc)
 
 	ISession::OnDisconnect(sockdesc.assockUid);
 
-	Synchronized es(&m_SessionLock);
+	Synchronized es(&m_sessionLock);
            
-	m_SessionMap.erase(sockdesc.assockUid);
+	m_sessionMap.erase(sockdesc.assockUid);
 
 	sockdesc.psender->releaseSocketUniqueId(sockdesc.assockUid);
 }
@@ -41,9 +41,9 @@ void MGClientReceiver::notifyMessage(ASSOCKDESCEX& sockdesc, size_t length, char
 {
 	if(false == ISession::OnReceive(data, length))
 	{
-		Synchronized es(&m_SessionLock);
+		Synchronized es(&m_sessionLock);
            
-		m_SessionMap.erase(sockdesc.assockUid);
+		m_sessionMap.erase(sockdesc.assockUid);
 
 		sockdesc.psender->releaseSocketUniqueId(sockdesc.assockUid);
 	}
@@ -57,19 +57,19 @@ void MGClientReceiver::notifyConnectingResult(INT32 requestID, ASSOCKDESCEX& soc
 
 		ISession::OnConnect(sockdesc.assockUid);
 
-		Synchronized es(&m_SessionLock);
-		m_SessionMap.insert(std::make_pair(sockdesc.assockUid, sockdesc));
+		Synchronized es(&m_sessionLock);
+		m_sessionMap.insert(std::make_pair(sockdesc.assockUid, sockdesc));
 	}
 	
 }
 
 void MGClientReceiver::SendInternal(char* pBuffer, int BufferSize, int ownerSerial)
 {
-	Synchronized es(&m_SessionLock);
+	Synchronized es(&m_sessionLock);
 
-	SessionMap::iterator iter = m_SessionMap.find(ownerSerial);
+	SessionMap::iterator iter = m_sessionMap.find(ownerSerial);
 
-	if(iter == m_SessionMap.end())
+	if(iter == m_sessionMap.end())
 	{
 		return;
 	}
@@ -80,20 +80,20 @@ void MGClientReceiver::SendInternal(char* pBuffer, int BufferSize, int ownerSeri
 ////////////////////////////////////////////////////////
 //제대로 동작하는지 확인해 볼 필요가 있다...
 ////////////////////////////////////////////////////////
-bool MGClientReceiver::Disconnect(int Serial)
+bool MGClientReceiver::Disconnect(int serial)
 {
-	Synchronized es(&m_SessionLock);
+	Synchronized es(&m_sessionLock);
 
-	SessionMap::iterator iter = m_SessionMap.find(Serial);
+	SessionMap::iterator iter = m_sessionMap.find(serial);
 
-	if(iter == m_SessionMap.end())
+	if(iter == m_sessionMap.end())
 	{
 		return FALSE;
 	}
 
-	iter->second.psender->releaseSocketUniqueId(Serial);
+	iter->second.psender->releaseSocketUniqueId(serial);
            
-	m_SessionMap.erase(Serial);
+	m_sessionMap.erase(serial);
 
 	return true;
 

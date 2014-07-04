@@ -42,18 +42,18 @@ bool NetworkSystem::TCPSend(BasePacket* pPacket )
 	return SFNetworkEntry::GetInstance()->TCPSend(pPacket);
 }
 
-bool NetworkSystem::UDPSend(unsigned char* pMessage, int BufSize )
+bool NetworkSystem::UDPSend(unsigned char* pMessage, int bufSize )
 {
-	return SFNetworkEntry::GetInstance()->UDPSend(pMessage, BufSize);
+	return SFNetworkEntry::GetInstance()->UDPSend(pMessage, bufSize);
 }
 
-bool NetworkSystem::AddPeer(int Serial, int ExternalIP, short ExternalPort, int LocalIP, short LocalPort)
+bool NetworkSystem::AddPeer(int serial, int externalIP, short externalPort, int localIP, short localPort)
 {
-	return SFNetworkEntry::GetInstance()->AddPeer(Serial, ExternalIP, ExternalPort, LocalIP, LocalPort);
+	return SFNetworkEntry::GetInstance()->AddPeer(serial, externalIP, externalPort, localIP, localPort);
 }
 
-bool NetworkSystem::DeletePeer(int Serial)
+bool NetworkSystem::DeletePeer(int serial)
 {
-	return SFNetworkEntry::GetInstance()->DeletePeer(Serial);
+	return SFNetworkEntry::GetInstance()->DeletePeer(serial);
 }
 

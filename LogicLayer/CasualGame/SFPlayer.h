@@ -18,7 +18,7 @@ public:
 	BOOL Initialize();
 	BOOL Finally();
 	BOOL Reset();
-	void SetSerial(int Serial){m_Serial = Serial;}
+	void SetSerial(int serial){m_serial = serial;}
 
 	BOOL ChangeState(ePlayerState State);
 	ePlayerState GetPlayerState();
@@ -29,42 +29,42 @@ public:
 	std::string m_username;
 	std::string m_password;
 
-	int GetSerial(){return m_Serial;}
+	int GetSerial(){return m_serial;}
 
-	int GetRoomIndex(){return m_RoomIndex;}
-	void SetRoomIndex(int RoomIndex){m_RoomIndex = RoomIndex;}
+	int GetRoomIndex(){return m_roomIndex;}
+	void SetRoomIndex(int RoomIndex){m_roomIndex = RoomIndex;}
 
-	_UserInfo* GetUserInfo(){return &m_UserInfo;}
+	_UserInfo* GetUserInfo(){return &m_userInfo;}
 
-	void SetMyTeam(eTeamType Type){m_TeamType = Type;}
-	eTeamType GetMyTeam(){return m_TeamType;}
+	void SetMyTeam(eTeamType Type){m_teamType = Type;}
+	eTeamType GetMyTeam(){return m_teamType;}
 
 	BOOL GetLoadingComplete(){return m_bLoadingComplete;}
 	void SetLoadingComplete(BOOL bLoading){m_bLoadingComplete = bLoading;}
 
-	void SetSpawnIndex(int Index){m_SpawnIndex = Index;}
-	int GetSpawnIndex(){return m_SpawnIndex;}
+	void SetSpawnIndex(int Index){m_spawnIndex = Index;}
+	int GetSpawnIndex(){return m_spawnIndex;}
 
-	_CharacterInfo* GetCharacterInfo(){return &m_CharacterInfo;}
+	_CharacterInfo* GetCharacterInfo(){return &m_characterInfo;}
 
-	void SetIPInfo(_PeerInfo& Info){m_Info = Info;}
-	_PeerInfo& GetIPInfo(){return m_Info;}
+	void SetIPInfo(_PeerInfo& info){ m_info = info; }
+	_PeerInfo& GetIPInfo(){ return m_info; }
 
 protected:
 
 private:
 	SFPlayerFSM* m_pFSM;
-	int m_Serial;
+	int m_serial;
 
-	int m_RoomIndex;
-	_UserInfo m_UserInfo;
+	int m_roomIndex;
+	_UserInfo m_userInfo;
 
-	eTeamType m_TeamType;
+	eTeamType m_teamType;
 
 	BOOL m_bLoadingComplete;
 
-	int m_SpawnIndex;
+	int m_spawnIndex;
 
-	_CharacterInfo m_CharacterInfo;
-	_PeerInfo m_Info;
+	_CharacterInfo m_characterInfo;
+	_PeerInfo m_info;
 };

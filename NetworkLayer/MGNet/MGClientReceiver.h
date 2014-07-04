@@ -17,17 +17,17 @@ public:
 	virtual void notifyMessage(ASSOCKDESCEX& sockdesc, size_t length, char* data) override;
 	virtual void notifyConnectingResult(INT32 requestID, ASSOCKDESCEX& sockdesc, DWORD error);
 
-	virtual void SendInternal(char* pBuffer, int BufferSize, int ownerSerial = -1) override;
+	virtual void SendInternal(char* pBuffer, int bufferSize, int ownerSerial = -1) override;
 
-	bool Disconnect(int Serial);
+	bool Disconnect(int serial);
 
 protected:
 
 private:
 //멀티쓰레드로 접근해서
-	SessionMap m_SessionMap;
-	CriticalSectionLock m_SessionLock;
-	ASSOCKDESCEX m_SocketDesc;
+	SessionMap m_sessionMap;
+	CriticalSectionLock m_sessionLock;
+	ASSOCKDESCEX m_socketDesc;
 	
 	INetworkEngine* m_pOwner;
 };

@@ -5,9 +5,9 @@ class SFRoom;
 
 BOOL SendToClient(SFPlayer* pPlayer, BasePacket* pPacket);
 
-BOOL SendAuthPacket(int Serial);
+BOOL SendAuthPacket(int serial);
 
-BOOL SendLoginResult(SFPlayer* pPlayer,int Result);
+BOOL SendLoginResult(SFPlayer* pPlayer,int result);
 BOOL SendEnterLobby(SFPlayer* pPlayer);
 
 BOOL SendCreateRoom( SFPlayer* pPlayer, int GameMode );
@@ -28,7 +28,7 @@ BOOL SendLeaveTeamMember(SFPlayer* pPlayer, int PlayerIndex, char* szPlayerName 
 //////////////////////////////////////////////////////////////////////////////////
 //Logic
 //////////////////////////////////////////////////////////////////////////////////
-BOOL SendCreatePlayer(SFPlayer* pPlayer, SFRoom* pRoom, BOOL ExceptMe = FALSE);
+BOOL SendCreatePlayer(SFPlayer* pPlayer, SFRoom* pRoom, BOOL exceptMe = FALSE);
 BOOL SendDestroyPlayer( SFPlayer* pPlayer, int PlayerIndex);
 BOOL SendPeerInfo( SFPlayer* pPlayer, SFRoom* pRoom);
 BOOL SendDeletePeer(SFPlayer* pPlayer, int PlayerIndex);

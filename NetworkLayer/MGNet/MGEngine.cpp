@@ -91,9 +91,9 @@ bool MGServerEngine::SendInternal(int ownerSerial, char* buffer, unsigned int bu
 	return true;
 }
 
-bool MGServerEngine::Disconnect(int Serial)
+bool MGServerEngine::Disconnect(int serial)
 {
-	m_pServerReceiver->Disconnect(Serial);
+	m_pServerReceiver->Disconnect(serial);
 	return true;
 }
 
@@ -155,8 +155,8 @@ bool MGClientEngine::SendInternal(int ownerSerial, char* buffer, unsigned int bu
 	return true;
 }
 
-bool MGClientEngine::Disconnect(int Serial)
+bool MGClientEngine::Disconnect(int serial)
 {
-	m_pClientReceiver->Disconnect(Serial);
+	m_pClientReceiver->Disconnect(serial);
 	return true;
 }

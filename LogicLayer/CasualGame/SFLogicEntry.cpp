@@ -275,15 +275,15 @@ BOOL SFLogicEntry::SendRequest(BasePacket* pPacket)
 	return SFEngine::GetInstance()->SendRequest(pPacket);
 }
 
-/*BOOL SFLogicEntry::Send( int Serial, int PacketID, char* pBuffer, int BufferSize )
+/*BOOL SFLogicEntry::Send( int serial, int packetID, char* pBuffer, int bufferSize )
 {
-	int HeaderSize = sizeof(SFPacketHeader);
+	int headerSize = sizeof(SFPacketHeader);
 
-	SFPacket PacketSend;
+	SFPacket packetSend;
 
-	PacketSend.SetPacketID(PacketID);
+	packetSend.SetPacketID(packetID);
 
-	PacketSend.MakePacket((BYTE*)pBuffer, BufferSize, CGSF_PACKET_OPTION);
+	packetSend.MakePacket((BYTE*)pBuffer, bufferSize, CGSF_PACKET_OPTION);
 
-	return g_pEngine->GetNetworkEngine()->Send(Serial, (char*)PacketSend.GetHeader(), PacketSend.GetHeaderSize() + PacketSend.GetDataSize());
+	return g_pEngine->GetNetworkEngine()->Send(serial, (char*)packetSend.GetHeader(), packetSend.GetHeaderSize() + packetSend.GetDataSize());
 }*/

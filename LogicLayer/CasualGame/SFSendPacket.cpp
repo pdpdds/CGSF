@@ -6,41 +6,41 @@
 #include "SFP2PSys.h"
 #include "SFProtobufPacket.h"
 
-BOOL SendAuthPacket(int Serial)
+BOOL SendAuthPacket(int serial)
 {
-	SFProtobufPacket<PacketCore::Auth> Auth = SFProtobufPacket<PacketCore::Auth>(CGSF::Auth);
-	Auth.SetSerial(Serial);
-	Auth.SetPacketID(CGSF::Auth);
+	SFProtobufPacket<PacketCore::Auth> auth = SFProtobufPacket<PacketCore::Auth>(CGSF::Auth);
+	auth.SetSerial(serial);
+	auth.SetPacketID(CGSF::Auth);
 
-	Auth.GetData().set_encryptionkey(ENCRYPTION_KEY);
+	auth.GetData().set_encryptionkey(ENCRYPTION_KEY);
 
-	SFLogicEntry::GetLogicEntry()->SendRequest(&Auth);
+	SFLogicEntry::GetLogicEntry()->SendRequest(&auth);
 
 	return TRUE;
 }
 
-BOOL SendLoginResult( SFPlayer* pPlayer,int Result )
+BOOL SendLoginResult( SFPlayer* pPlayer,int result )
 {
 	_UserInfo* pUserInfo = pPlayer->GetUserInfo();	
 	pUserInfo->Serial = pPlayer->GetSerial();
 
-	if(Result == 0)
+	if (result == 0)
 	{
-		SFProtobufPacket<SFPacketStore::LoginSuccess> LoginSuccess = SFProtobufPacket<SFPacketStore::LoginSuccess>(CGSF::LoginSuccess);
-		LoginSuccess.SetSerial(pPlayer->GetSerial());
+		SFProtobufPacket<SFPacketStore::LoginSuccess> loginSuccess = SFProtobufPacket<SFPacketStore::LoginSuccess>(CGSF::LoginSuccess);
+		loginSuccess.SetSerial(pPlayer->GetSerial());
 	
-		LoginSuccess.GetData().set_result(Result);
-		LoginSuccess.GetData().set_userinfo((const char*)pPlayer->GetUserInfo(), sizeof(_UserInfo));
+		loginSuccess.GetData().set_result(result);
+		loginSuccess.GetData().set_userinfo((const char*)pPlayer->GetUserInfo(), sizeof(_UserInfo));
 		
-		SFLogicEntry::GetLogicEntry()->SendRequest(&LoginSuccess);
+		SFLogicEntry::GetLogicEntry()->SendRequest(&loginSuccess);
 	}
 	else
 	{
-		SFProtobufPacket<SFPacketStore::LoginFail> LoginFail = SFProtobufPacket<SFPacketStore::LoginFail>(CGSF::LoginFail);
-		LoginFail.SetSerial(pPlayer->GetSerial());
-		LoginFail.GetData().set_result(Result);
+		SFProtobufPacket<SFPacketStore::LoginFail> loginFail = SFProtobufPacket<SFPacketStore::LoginFail>(CGSF::LoginFail);
+		loginFail.SetSerial(pPlayer->GetSerial());
+		loginFail.GetData().set_result(result);
 		
-		SFLogicEntry::GetLogicEntry()->SendRequest(&LoginFail);
+		SFLogicEntry::GetLogicEntry()->SendRequest(&loginFail);
 	}
 
 	return TRUE;
@@ -64,48 +64,48 @@ BOOL SendPlayStart( SFPlayer* pPlayer )
 
 BOOL SendPlayEnd( SFPlayer* pPlayer )
 {
-	SFProtobufPacket<SFPacketStore::PlayEnd> PlayEnd = SFProtobufPacket<SFPacketStore::PlayEnd>(CGSF::PlayEnd);
-	PlayEnd.SetSerial(pPlayer->GetSerial());
-	SFLogicEntry::GetLogicEntry()->SendRequest(&PlayEnd);
+	SFProtobufPacket<SFPacketStore::PlayEnd> playEnd = SFProtobufPacket<SFPacketStore::PlayEnd>(CGSF::PlayEnd);
+	playEnd.SetSerial(pPlayer->GetSerial());
+	SFLogicEntry::GetLogicEntry()->SendRequest(&playEnd);
 
 	return TRUE;
 }
 
 BOOL SendEnterLobby( SFPlayer* pPlayer )
 {
-	SFProtobufPacket<SFPacketStore::EnterLobby> EnterLobby = SFProtobufPacket<SFPacketStore::EnterLobby>(CGSF::EnterLobby);
-	EnterLobby.SetSerial(pPlayer->GetSerial());
-	SFLogicEntry::GetLogicEntry()->SendRequest(&EnterLobby);
+	SFProtobufPacket<SFPacketStore::EnterLobby> enterLobby = SFProtobufPacket<SFPacketStore::EnterLobby>(CGSF::EnterLobby);
+	enterLobby.SetSerial(pPlayer->GetSerial());
+	SFLogicEntry::GetLogicEntry()->SendRequest(&enterLobby);
 
 	return TRUE;
 }
 
 BOOL SendCreateRoom( SFPlayer* pPlayer, int GameMode )
 {
-	SFProtobufPacket<SFPacketStore::CreateRoom> CreateRoom = SFProtobufPacket<SFPacketStore::CreateRoom>(CGSF::CreateRoom);
-	CreateRoom.SetSerial(pPlayer->GetSerial());
-	CreateRoom.GetData().set_gamemode(GameMode);
-	SFLogicEntry::GetLogicEntry()->SendRequest(&CreateRoom);
+	SFProtobufPacket<SFPacketStore::CreateRoom> createRoom = SFProtobufPacket<SFPacketStore::CreateRoom>(CGSF::CreateRoom);
+	createRoom.SetSerial(pPlayer->GetSerial());
+	createRoom.GetData().set_gamemode(GameMode);
+	SFLogicEntry::GetLogicEntry()->SendRequest(&createRoom);
 
 	return TRUE;
 }
 
-BOOL SendEnterRoom( SFPlayer* pPlayer, int GameMode, int RoomIndex )
+BOOL SendEnterRoom( SFPlayer* pPlayer, int gameMode, int roomIndex )
 {
-	SFProtobufPacket<SFPacketStore::EnterRoom> EnterRoom = SFProtobufPacket<SFPacketStore::EnterRoom>(CGSF::EnterRoom);
-	EnterRoom.SetSerial(pPlayer->GetSerial());
-	EnterRoom.GetData().set_gamemode(GameMode);
-	EnterRoom.GetData().set_roomindex(RoomIndex);
-	SFLogicEntry::GetLogicEntry()->SendRequest(&EnterRoom);
+	SFProtobufPacket<SFPacketStore::EnterRoom> enterRoom = SFProtobufPacket<SFPacketStore::EnterRoom>(CGSF::EnterRoom);
+	enterRoom.SetSerial(pPlayer->GetSerial());
+	enterRoom.GetData().set_gamemode(gameMode);
+	enterRoom.GetData().set_roomindex(roomIndex);
+	SFLogicEntry::GetLogicEntry()->SendRequest(&enterRoom);
 
 	return TRUE;
 }
 
 BOOL SendLeaveRoom( SFPlayer* pPlayer )
 {
-	SFProtobufPacket<SFPacketStore::LeaveRoom> LeaveRoom = SFProtobufPacket<SFPacketStore::LeaveRoom>(CGSF::LeaveRoom);
-	LeaveRoom.SetSerial(pPlayer->GetSerial());
-	SFLogicEntry::GetLogicEntry()->SendRequest(&LeaveRoom);
+	SFProtobufPacket<SFPacketStore::LeaveRoom> leaveRoom = SFProtobufPacket<SFPacketStore::LeaveRoom>(CGSF::LeaveRoom);
+	leaveRoom.SetSerial(pPlayer->GetSerial());
+	SFLogicEntry::GetLogicEntry()->SendRequest(&leaveRoom);
 
 	return TRUE;
 }
@@ -138,12 +138,12 @@ BOOL SendRoomMember(SFPlayer* pPlayer, SFRoom* pRoom)
 	return TRUE;
 }
 
-BOOL SendEnterTeamMember( SFPlayer* pPlayer, int PlayerIndex, char* szPlayerName )
+BOOL SendEnterTeamMember( SFPlayer* pPlayer, int playerIndex, char* szPlayerName )
 {
 	SFProtobufPacket<SFPacketStore::EnterTeamMember> enterTeamMember = SFProtobufPacket<SFPacketStore::EnterTeamMember>(CGSF::EnterTeamMember);
 	enterTeamMember.SetSerial(pPlayer->GetSerial());
 	enterTeamMember.GetData().set_member(szPlayerName);
-	enterTeamMember.GetData().set_playerindex(PlayerIndex);
+	enterTeamMember.GetData().set_playerindex(playerIndex);
 	enterTeamMember.GetData().set_type(SFPacketStore::TeamType(0));
 
 	SFLogicEntry::GetLogicEntry()->SendRequest(&enterTeamMember);
@@ -151,13 +151,13 @@ BOOL SendEnterTeamMember( SFPlayer* pPlayer, int PlayerIndex, char* szPlayerName
 	return TRUE;
 }
 
-BOOL SendLeaveTeamMember( SFPlayer* pPlayer, int PlayerIndex, char* szPlayerName )
+BOOL SendLeaveTeamMember( SFPlayer* pPlayer, int playerIndex, char* szPlayerName )
 {
 	SFProtobufPacket<SFPacketStore::LeaveTeamMember> leaveTeamMember = SFProtobufPacket<SFPacketStore::LeaveTeamMember>(CGSF::LeaveTeamMember);
 	leaveTeamMember.SetSerial(pPlayer->GetSerial());
 	
 	leaveTeamMember.GetData().set_member(szPlayerName);
-	leaveTeamMember.GetData().set_playerindex(PlayerIndex);
+	leaveTeamMember.GetData().set_playerindex(playerIndex);
 	leaveTeamMember.GetData().set_type(SFPacketStore::TeamType(0));
 
 	SFLogicEntry::GetLogicEntry()->SendRequest(&leaveTeamMember);
@@ -173,7 +173,7 @@ BOOL SendLoadingStart( SFPlayer* pPlayer )
 	return TRUE;
 }
 
-BOOL SendCreatePlayer( SFPlayer* pPlayer, SFRoom* pRoom, BOOL ExceptMe)
+BOOL SendCreatePlayer( SFPlayer* pPlayer, SFRoom* pRoom, BOOL exceptMe)
 {
 	SFRoom::RoomMemberMap MemberMap = pRoom->GetRoomMemberMap();
 
@@ -183,41 +183,41 @@ BOOL SendCreatePlayer( SFPlayer* pPlayer, SFRoom* pRoom, BOOL ExceptMe)
 	{
 		SFPlayer* pTarget = iter->second;
 
-		if(ExceptMe == TRUE)
+		if (exceptMe == TRUE)
 		{
 			if(pTarget == pPlayer)
 				continue;
 		}
 
-		SFProtobufPacket<SFPacketStore::MSG_CREATE_PLAYER> MsgCreatePlayer = SFProtobufPacket<SFPacketStore::MSG_CREATE_PLAYER>(CGSF::MSG_CREATE_PLAYER);
+		SFProtobufPacket<SFPacketStore::MSG_CREATE_PLAYER> msgCreatePlayer = SFProtobufPacket<SFPacketStore::MSG_CREATE_PLAYER>(CGSF::MSG_CREATE_PLAYER);
 
-		MsgCreatePlayer.SetSerial(pPlayer->GetSerial());
+		msgCreatePlayer.SetSerial(pPlayer->GetSerial());
 		//SFPacketStore::MSG_CREATE_PLAYER PktMsgCreatePlayer;
-		MsgCreatePlayer.GetData().set_serial(pTarget->GetSerial());
-		MsgCreatePlayer.GetData().set_spawnindex(pTarget->GetSpawnIndex());
+		msgCreatePlayer.GetData().set_serial(pTarget->GetSerial());
+		msgCreatePlayer.GetData().set_spawnindex(pTarget->GetSpawnIndex());
 
-		SFLogicEntry::GetLogicEntry()->SendRequest(&MsgCreatePlayer);
+		SFLogicEntry::GetLogicEntry()->SendRequest(&msgCreatePlayer);
 	}
 	
 	return TRUE;
 }
 
-BOOL SendDestroyPlayer( SFPlayer* pPlayer, int PlayerIndex)
+BOOL SendDestroyPlayer( SFPlayer* pPlayer, int playerIndex)
 {
-	SFProtobufPacket<SFPacketStore::MSG_DESTROY_PLAYER> MsgDestroyPlayer = SFProtobufPacket<SFPacketStore::MSG_DESTROY_PLAYER>(CGSF::MSG_DESTROY_PLAYER);
+	SFProtobufPacket<SFPacketStore::MSG_DESTROY_PLAYER> msgDestroyPlayer = SFProtobufPacket<SFPacketStore::MSG_DESTROY_PLAYER>(CGSF::MSG_DESTROY_PLAYER);
 
-	MsgDestroyPlayer.GetData().set_serial(PlayerIndex);
-	MsgDestroyPlayer.SetSerial(pPlayer->GetSerial());
+	msgDestroyPlayer.GetData().set_serial(playerIndex);
+	msgDestroyPlayer.SetSerial(pPlayer->GetSerial());
 
-	SFLogicEntry::GetLogicEntry()->SendRequest(&MsgDestroyPlayer);
+	SFLogicEntry::GetLogicEntry()->SendRequest(&msgDestroyPlayer);
 
 	return TRUE;
 }
 
 BOOL SendPeerInfo( SFPlayer* pPlayer, SFRoom* pRoom)
 {
-	SFProtobufPacket<SFPacketStore::PeerList> PktPeerList = SFProtobufPacket<SFPacketStore::PeerList>(CGSF::PeerList);
-	PktPeerList.SetSerial(pPlayer->GetSerial());
+	SFProtobufPacket<SFPacketStore::PeerList> pktPeerList = SFProtobufPacket<SFPacketStore::PeerList>(CGSF::PeerList);
+	pktPeerList.SetSerial(pPlayer->GetSerial());
 
 	SFP2PSys* pP2PSys = pRoom->GetP2PSys();
 
@@ -234,23 +234,23 @@ BOOL SendPeerInfo( SFPlayer* pPlayer, SFRoom* pRoom)
 			continue;
 		}
 
-		SFPacketStore::PeerList::PeerInfo* pPeer = PktPeerList.GetData().add_peer();
+		SFPacketStore::PeerList::PeerInfo* pPeer = pktPeerList.GetData().add_peer();
 		pPeer->set_serial(iter->first);
 		pPeer->set_info(&(iter->second), sizeof(_PeerInfo));
 	}
 
-	SFLogicEntry::GetLogicEntry()->SendRequest(&PktPeerList);
+	SFLogicEntry::GetLogicEntry()->SendRequest(&pktPeerList);
 	
 	return TRUE;
 }
 
-BOOL SendDeletePeer(SFPlayer* pPlayer, int PlayerIndex )
+BOOL SendDeletePeer(SFPlayer* pPlayer, int playerIndex )
 {
-	SFProtobufPacket<SFPacketStore::DELETE_PEER> DELETE_PEER = SFProtobufPacket<SFPacketStore::DELETE_PEER>(CGSF::DeletePeer);
-	DELETE_PEER.SetSerial(pPlayer->GetSerial());
-	DELETE_PEER.GetData().set_serial(PlayerIndex); 
+	SFProtobufPacket<SFPacketStore::DELETE_PEER> deletePeer = SFProtobufPacket<SFPacketStore::DELETE_PEER>(CGSF::DeletePeer);
+	deletePeer.SetSerial(pPlayer->GetSerial());
+	deletePeer.GetData().set_serial(playerIndex);
 
-	SFLogicEntry::GetLogicEntry()->SendRequest(&DELETE_PEER);
+	SFLogicEntry::GetLogicEntry()->SendRequest(&deletePeer);
 
 	return TRUE;
 }

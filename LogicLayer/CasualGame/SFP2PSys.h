@@ -9,8 +9,8 @@ public:
 	SFP2PSys(void);
 	virtual ~SFP2PSys(void);
 
-	BOOL AddPeer(int Serial, _PeerInfo& Info);
-	BOOL DeletePeer(int Serial);
+	BOOL AddPeer(int serial, _PeerInfo& info);
+	BOOL DeletePeer(int serial);
 	BOOL ResetPeer();
 
 	PeerMap& GetPeerMap(){return m_PeerMap;}

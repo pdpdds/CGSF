@@ -10,8 +10,8 @@ public:
 	virtual ~TCPCallback(void);
 
 	virtual bool HandleNetworkMessage(BasePacket* pPacket) override;
-	virtual void HandleConnect(int Serial) override;
-	virtual void HandleDisconnect(int Serial) override;
+	virtual void HandleConnect(int serial) override;
+	virtual void HandleDisconnect(int serial) override;
 
 protected:
 	CasualGameManager* m_pOwner;

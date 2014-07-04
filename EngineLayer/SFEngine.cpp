@@ -229,24 +229,24 @@ bool SFEngine::ShutDown()
 	return true;
 }
 
-bool SFEngine::OnConnect(int Serial, int acceptorId)
+bool SFEngine::OnConnect(int serial, int acceptorId)
 {
 	BasePacket* pPacket = new BasePacket();
 	pPacket->SetAcceptorId(acceptorId);
 	pPacket->SetPacketType(SFPACKET_CONNECT);
-	pPacket->SetSerial(Serial);
+	pPacket->SetSerial(serial);
 
 	m_pLogicDispatcher->Dispatch(pPacket);
 	
 	return true;
 }
 
-bool SFEngine::OnDisconnect(int Serial, int acceptorId)
+bool SFEngine::OnDisconnect(int serial, int acceptorId)
 {
 	BasePacket* pPacket = new BasePacket();
 	pPacket->SetAcceptorId(acceptorId);
 	pPacket->SetPacketType(SFPACKET_DISCONNECT);
-	pPacket->SetSerial(Serial);
+	pPacket->SetSerial(serial);
 
 	m_pLogicDispatcher->Dispatch(pPacket);
 	

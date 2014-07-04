@@ -30,8 +30,8 @@ public:
 	SFTCPNetwork* GetTCPNetwork(){return m_pTCPNetwork;}
 	SFUDPNetwork *GetUDPNetwork(){return m_pUDPNetwork;}
 
-	bool AddPeer(int Serial, int ExternalIP, short ExternalPort, int LocalIP, short LocalPort);
-	bool DeletePeer(int Serial);
+	bool AddPeer(int serial, int externalIP, short externalPort, int localIP, short localPort);
+	bool DeletePeer(int serial);
 
 
 protected:

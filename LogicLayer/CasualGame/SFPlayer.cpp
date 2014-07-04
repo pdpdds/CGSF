@@ -40,7 +40,7 @@ BOOL SFPlayer::Reset(void)
 		m_pFSM->Reset();
 
 	m_bLoadingComplete = FALSE;
-	m_TeamType = TEAM_RED;
+	m_teamType = TEAM_RED;
 
 	return TRUE;
 }
