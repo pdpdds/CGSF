@@ -6,14 +6,14 @@
 #define P2PSERVER_API __declspec(dllimport)
 #endif
 
-typedef int (ACTIVATEP2P_FUNC(void));
+typedef int(ACTIVATEP2P_FUNC(unsigned short usListenPort));
 typedef int (DEACTIVATEP2P_FUNC(void));
 
 #ifdef __cplusplus
 extern "C" {
 #endif
 
-	P2PSERVER_API int ActivateP2P(unsigned short usListenPort = 30700);
+	P2PSERVER_API int ActivateP2P(unsigned short usListenPort);
 	P2PSERVER_API int DeactivateP2P();
 
 #ifdef __cplusplus

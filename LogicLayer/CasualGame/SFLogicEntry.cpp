@@ -44,14 +44,23 @@ bool SFLogicEntry::Initialize()
 	CreateDirectoryWathcer();
 
 
+///////////////////////////////////////////////////////////////////////////////
+//p2p enable
+///////////////////////////////////////////////////////////////////////////////
 	SFIni ini;
+	int p2pEnable = 0;
+	USHORT listenPort = 0;
 	WCHAR szP2PModule[MAX_PATH];
 
 	ini.SetPathName(_T("./CasualGame.ini"));
-	ini.GetString(L"Option", L"P2PModule", szP2PModule, MAX_PATH);
 
-	if (_tcslen(szP2PModule) != 0)
+	p2pEnable = ini.GetInt(L"P2P", L"ENABLE", 0);
+
+	if (p2pEnable != 0)
 	{
+		ini.GetString(L"P2P", L"MODULE", szP2PModule, MAX_PATH);
+		listenPort = ini.GetInt(L"P2P", L"PORT", 0);
+
 		SetP2PService(true);
 
 		g_pP2PServerHandle = ::LoadLibrary(szP2PModule);
@@ -71,9 +80,9 @@ bool SFLogicEntry::Initialize()
 			return false;
 		}
 
-		int Result = pfuncActivate();
+		int result = pfuncActivate(listenPort);
 
-		if (Result != 0)
+		if (result != 0)
 		{
 			LOG(ERROR) << "P2P Module " << szP2PModule << " Activate fail!!";
 			return false;
