@@ -1,21 +1,18 @@
 #include "StdAfx.h"
 #include "SFBridgeThread.h"
-#include "SFPacket.h"
-#include "SFEngine.h"
+#include "SFPacketDelaySendTask.h"
 
 void PacketSendThread(void* Args)
 {
-	SFEngine* pEngine = (SFEngine*)Args;
-	IPacketProtocol* pPacketProtocol = pEngine->GetPacketProtocol();
-
 	while (1)
 	{
-		BasePacket* pPacket = PacketSendSingleton::instance()->PopPacket();
+		SFPacketDelaySendTask* pPacketTask = (SFPacketDelaySendTask*)PacketSendSingleton::instance()->PopTask();
 
-		if (SFPACKET_SERVERSHUTDOWN == pPacket->GetPacketType())
+		if (pPacketTask == NULL)
 			break;
 
-		pEngine->SendRequest(pPacket);
-		pPacketProtocol->DisposePacket(pPacket);
+		pPacketTask->Execute();
+
+		PacketDelayedSendTask::instance()->Release((SFPacketDelaySendTask*)pPacketTask);
 	}
 }

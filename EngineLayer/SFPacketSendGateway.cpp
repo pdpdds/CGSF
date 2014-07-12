@@ -11,12 +11,12 @@ SFPacketSendGateway::~SFPacketSendGateway(void)
 {
 }
 
-BOOL SFPacketSendGateway::PushPacket( BasePacket* pPacket )
+bool SFPacketSendGateway::PushTask(IPacketTask* pPacketTask)
 {
-	return m_IOCPQueue.Push(pPacket);
+	return m_IOCPQueue.Push(pPacketTask);
 }
 
-BasePacket* SFPacketSendGateway::PopPacket(int WaitTime)
+IPacketTask* SFPacketSendGateway::PopTask(int WaitTime)
 {
 	return m_IOCPQueue.Pop(WaitTime);
 }

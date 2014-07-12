@@ -56,6 +56,9 @@
     <Filter Include="Community">
       <UniqueIdentifier>{99bff1f9-865a-4798-b807-35c6d5256c74}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Packet\PacketTask">
+      <UniqueIdentifier>{2e1e993a-e71a-45bb-ad01-d455981ed3d9}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include=".\SFExcel.cpp">
@@ -183,6 +186,9 @@
     </ClCompile>
     <ClCompile Include="CommunityManager.cpp">
       <Filter>Community</Filter>
+    </ClCompile>
+    <ClCompile Include="SFPacketDelaySendTask.cpp">
+      <Filter>Packet\PacketTask</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -377,6 +383,12 @@
     </ClInclude>
     <ClInclude Include="CommunityManager.h">
       <Filter>Community</Filter>
+    </ClInclude>
+    <ClInclude Include="IPacketTask.h">
+      <Filter>Packet\PacketTask</Filter>
+    </ClInclude>
+    <ClInclude Include="SFPacketDelaySendTask.h">
+      <Filter>Packet\PacketTask</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

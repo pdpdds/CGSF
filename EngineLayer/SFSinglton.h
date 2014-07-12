@@ -8,10 +8,12 @@
 #include "SFPacketSendGateway.h"
 #include "LogicEntry.h"
 #include "SFPacket.h"
+#include "SFPacketDelaySendTask.h"
 
 // class SFEngine;
 
 typedef ACE_Singleton<SFObjectPool<SFPacket>, ACE_Null_Mutex> PacketPoolSingleton;
+typedef ACE_Singleton<SFObjectPool<SFPacketDelaySendTask>, ACE_Null_Mutex> PacketDelayedSendTask;
 typedef ACE_Singleton<SFLogicGateway, ACE_Null_Mutex> LogicGatewaySingleton;
 typedef ACE_Singleton<SFRPCGateway, ACE_Null_Mutex> RPCGatewaySingleton;
 typedef ACE_Singleton<LogicEntry, ACE_Null_Mutex> LogicEntrySingleton;

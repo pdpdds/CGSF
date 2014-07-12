@@ -6,6 +6,7 @@
 #include "SFSessionService.h"
 #include "SFCasualGameDispatcher.h"
 #include "SFUtil.h"
+#include "SFPacketDelaySendTask.h"
 
 #pragma comment(lib, "BaseLayer.lib")
 #pragma comment(lib, "DatabaseLayer.lib")
@@ -16,11 +17,14 @@
 SFEngine* SFEngine::m_pEngine = NULL;
 
 SFEngine::SFEngine()
-	: m_PacketSendThreadId(-1)
+	: m_packetSendThreadId(-1)
 	, m_pNetworkEngine(0)
 	, m_isServer(false)
 {
 	ACE::init();
+
+	PacketDelayedSendTask::instance()->Init(100);
+
 	google::InitGoogleLogging("CGSF");
 	m_Config.Read(L"EngineConfig.xml");
 	
@@ -71,7 +75,7 @@ void SFEngine::AddRPCService(IRPCService* pService)
 
 bool SFEngine::CreatePacketSendThread()
 {	
-	m_PacketSendThreadId = ACE_Thread_Manager::instance()->spawn_n(1, (ACE_THR_FUNC)PacketSendThread, this, THR_NEW_LWP, ACE_DEFAULT_THREAD_PRIORITY, 1002);
+	m_packetSendThreadId = ACE_Thread_Manager::instance()->spawn_n(1, (ACE_THR_FUNC)PacketSendThread, this, THR_NEW_LWP, ACE_DEFAULT_THREAD_PRIORITY, 1002);
 
 	return TRUE;
 }
@@ -212,11 +216,9 @@ bool SFEngine::ShutDown()
 
 	m_pLogicDispatcher->ShutDownLogicSystem();
 
-	BasePacket* pCommand = PacketPoolSingleton::instance()->Alloc();
-	pCommand->SetPacketType(SFPACKET_SERVERSHUTDOWN);
-	PacketSendSingleton::instance()->PushPacket(pCommand);
-
-	ACE_Thread_Manager::instance()->wait_grp(m_PacketSendThreadId);
+	PacketSendSingleton::instance()->PushTask(NULL);
+	
+	ACE_Thread_Manager::instance()->wait_grp(m_packetSendThreadId);
 
 	m_pNetworkEngine->Shutdown();
 
@@ -266,27 +268,36 @@ bool SFEngine::OnTimer(const void *arg)
 	return true;
 }
 
-bool SFEngine::SendRequest(BasePacket* pPacket, bool bDirectSend)
+bool SFEngine::SendRequest(BasePacket* pPacket)
 {
-	if (bDirectSend)
-		return GetPacketProtocol()->SendRequest(pPacket);
+	return GetPacketProtocol()->SendRequest(pPacket);
+}
 
-	BasePacket* pClone = pPacket->Clone();
+bool SFEngine::SendDelayedRequest(BasePacket* pPacket, std::vector<int>* pOwnerList)
+{
+	 SFPacketDelaySendTask* pTask = PacketDelayedSendTask::instance()->Alloc();
+	 SFASSERT(NULL != pTask);
 
-	if (pClone == NULL)
+	if (pOwnerList == NULL)
 	{
-		LOG(ERROR) << "clone packet error!!";
+		std::vector<int> owner;
+		owner.push_back(pPacket->GetSerial());
+		pTask->SetPacket(pPacket, owner);
 	}
-		
-	return PacketSendSingleton::instance()->PushPacket(pClone);
+	else
+	{
+		pTask->SetPacket(pPacket, *pOwnerList);
+	}
+
+	return PacketSendSingleton::instance()->PushTask(pTask);
 }
 
 bool SFEngine::SendRequest(BasePacket* pPacket, std::vector<int>& ownerList)
 {
-	//bool bResult = false;
 	auto iter = ownerList.begin();
 	for (; iter != ownerList.end(); iter++)
 	{
+		pPacket->SetSerial(*iter);
 		if (false == GetPacketProtocol()->SendRequest(pPacket))
 		{
 			DLOG(ERROR) << "broad cast fail";

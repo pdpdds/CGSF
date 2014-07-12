@@ -12,6 +12,12 @@ class SFEngine : public IEngine
 {
 	friend class SFTCPNetwork;
 
+	friend class SFMsgPackProtocol;
+	friend class SFProtobufProtocol;
+	friend class SFAvroProtocol;
+	friend class SFCGSFPacketProtocol;
+	friend class SFJsonProtocol;
+
 public:
 	virtual ~SFEngine(void);
 
@@ -29,9 +35,12 @@ public:
 	virtual bool OnTimer(const void *arg) override;
 
 	bool AddTimer(int timerID, DWORD period, DWORD delay);
-	bool SendRequest(BasePacket* pPacket, bool bDirectSend = true);
+	bool SendRequest(BasePacket* pPacket);
 	bool SendRequest(BasePacket* pPacket, std::vector<int>& ownerList);
-	bool SendInternal(int ownerSerial, char* buffer, unsigned int bufferSize);
+
+	bool SendDelayedRequest(BasePacket* pPacket);
+	bool SendDelayedRequest(BasePacket* pPacket, std::vector<int>* pOwnerList = NULL);
+
 	bool ReleasePacket(BasePacket* pPacket);
 
 	int  AddListener(char* szIP, unsigned short port);
@@ -51,12 +60,13 @@ public:
 protected:
 	bool CreatePacketSendThread();
 	bool CreateEngine(char* szModuleName, bool Server = false);
+	bool SendInternal(int ownerSerial, char* buffer, unsigned int bufferSize);
 	
 private:
 	SFEngine();
 
 	SFConfigure m_Config;
-	int m_PacketSendThreadId;	
+	int m_packetSendThreadId;
 
 	HINSTANCE m_EngineHandle;
 	INetworkEngine* m_pNetworkEngine;

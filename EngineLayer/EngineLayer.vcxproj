@@ -199,6 +199,7 @@
     <ClCompile Include="SFNetworkEntry.cpp" />
     <ClCompile Include="SFObject.cpp" />
     <ClCompile Include="SFObserver.cpp" />
+    <ClCompile Include="SFPacketDelaySendTask.cpp" />
     <ClCompile Include="SFPacketSendGateway.cpp" />
     <ClCompile Include="SFProtobufPacket.cpp" />
     <ClCompile Include="SFProtobufPacketImpl.cpp" />
@@ -234,6 +235,7 @@
     <ClInclude Include="CommonHeader.h" />
     <ClInclude Include="IConnection.h" />
     <ClInclude Include="ILogicDispatcher.h" />
+    <ClInclude Include="IPacketTask.h" />
     <ClInclude Include="IRPCService.h" />
     <ClInclude Include="RPCClientTransportLayer.h" />
     <ClInclude Include="RPCService.h" />
@@ -264,6 +266,7 @@
     <ClInclude Include="SFNetworkEntry.h" />
     <ClInclude Include="SFObject.h" />
     <ClInclude Include="SFObserver.h" />
+    <ClInclude Include="SFPacketDelaySendTask.h" />
     <ClInclude Include="SFPacketSendGateway.h" />
     <ClInclude Include="SFProtobufPacket.h" />
     <ClInclude Include="SFProtobufPacketImpl.h" />

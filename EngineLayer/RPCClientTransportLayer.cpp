@@ -12,14 +12,14 @@ RPCClientTransportLayer::~RPCClientTransportLayer()
 {
 }
 
-void RPCClientTransportLayer::send(char * buf, int size) throw(ServiceException)
+void RPCClientTransportLayer::send(char * buf, int size)
 {
 	SFPacket packet;
 	packet.SetPacketID(60000);
 	packet.Write((const BYTE*)buf, size);
 	SFNetworkEntry::GetInstance()->TCPSend(&packet);
 }
-void RPCClientTransportLayer::recv(std::string &outBuf) throw(ServiceException)
+void RPCClientTransportLayer::recv(std::string &outBuf)
 {
 	SFPacket* pPacket = NULL;
 
