@@ -1,5 +1,4 @@
 #include "stdafx.h"
-#include <CEGUI/CEGUI.h>
 #include "GUIMessageBox.h"
 
 

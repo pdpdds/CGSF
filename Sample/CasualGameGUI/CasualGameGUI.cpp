@@ -1,6 +1,5 @@
 #include "stdafx.h"
 #include "CasualGameGUI.h"
-#include <CEGUI/CEGUI.h>
 #include <CEGUI/RendererModules/Direct3D9/Renderer.h>
 #include "GUIFSM.h"
 #include "GUILobby.h"

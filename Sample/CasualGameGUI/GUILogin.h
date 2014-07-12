@@ -1,8 +1,6 @@
 #pragma once
 
 #include "GUIState.h"
-//#include "CEGuiSample.h"
-#include <CEGUI/CEGUI.h>
 
 class GUILogin : public GUIState
 {

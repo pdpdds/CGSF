@@ -1,5 +1,4 @@
 #pragma once
-#include <CEGUI/CEGUI.h>
 #include "GUIState.h"
 
 class GUIInit : public GUIState

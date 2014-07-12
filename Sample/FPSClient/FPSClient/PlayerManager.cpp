@@ -76,7 +76,7 @@ void PlayerManager::Update( float elapsed )
 	if( m_spawnLocalPlayer == true && m_requestedSpawnPoint == false )
 	{
 		// Send a request spawn point message to the host.
-		NetworkMessage rspm;
+//		NetworkMessage rspm;
 //		rspm.msgid = MSGID_SPAWN_POINT_REQUEST;
 	//	rspm.dpnid = g_engine->GetNetwork()->GetPlayerID();
 		//g_engine->GetNetwork()->Send( &rspm, sizeof( NetworkMessage ), g_engine->GetNetwork()->GetHostID() );

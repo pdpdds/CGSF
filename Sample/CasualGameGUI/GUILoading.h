@@ -1,6 +1,5 @@
 #pragma once
 #include "GUIState.h"
-#include <CEGUI/CEGUI.h>
 
 class GUILoading : public GUIState
 {

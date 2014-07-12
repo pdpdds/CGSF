@@ -1,5 +1,4 @@
 #pragma once
-#include <CEGUI/CEGUI.h>
 
 class BasePacket;
 

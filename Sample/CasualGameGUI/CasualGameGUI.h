@@ -1,7 +1,7 @@
 #pragma once
 #include <d3d9.h>
 #include "GUIState.h"
-#include <CEGUI/CEGUI.h>
+
 
 class BasePacket;
 class GUIFSM;

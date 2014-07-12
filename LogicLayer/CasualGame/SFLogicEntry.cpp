@@ -182,7 +182,7 @@ bool SFLogicEntry::ProcessPacket(BasePacket* pBase)
 	return true;
 }
 
-BOOL SFLogicEntry::OnConnectPlayer( int PlayerSerial )
+BOOL SFLogicEntry::OnConnectPlayer(int serial)
 {
 	SFPlayer* pPlayer = m_pPlayerPool->Alloc();
 
@@ -190,20 +190,20 @@ BOOL SFLogicEntry::OnConnectPlayer( int PlayerSerial )
 		return FALSE;
 
 	pPlayer->Reset();
-	pPlayer->SetSerial(PlayerSerial);
+	pPlayer->SetSerial(serial);
 
 	pPlayer->ChangeState(PLAYER_STATE_INIT);
 
-	m_PlayerMap.insert(PlayerMap::value_type(PlayerSerial, pPlayer));
+	m_PlayerMap.insert(PlayerMap::value_type(serial, pPlayer));
 
-	SendAuthPacket(PlayerSerial);
+	SendAuthPacket(serial);
 
 	return TRUE;
 }
 
-BOOL SFLogicEntry::OnDisconnectPlayer( int PlayerSerial )
+BOOL SFLogicEntry::OnDisconnectPlayer(int serial)
 {
-	PlayerMap::iterator iter = m_PlayerMap.find(PlayerSerial);
+	PlayerMap::iterator iter = m_PlayerMap.find(serial);
 	
 	if(iter == m_PlayerMap.end())
 	{
@@ -283,16 +283,3 @@ BOOL SFLogicEntry::SendRequest(BasePacket* pPacket)
 {
 	return SFEngine::GetInstance()->SendRequest(pPacket);
 }
-
-/*BOOL SFLogicEntry::Send( int serial, int packetID, char* pBuffer, int bufferSize )
-{
-	int headerSize = sizeof(SFPacketHeader);
-
-	SFPacket packetSend;
-
-	packetSend.SetPacketID(packetID);
-
-	packetSend.MakePacket((BYTE*)pBuffer, bufferSize, CGSF_PACKET_OPTION);
-
-	return g_pEngine->GetNetworkEngine()->Send(serial, (char*)packetSend.GetHeader(), packetSend.GetHeaderSize() + packetSend.GetDataSize());
-}*/

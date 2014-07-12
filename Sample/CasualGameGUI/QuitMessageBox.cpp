@@ -1,7 +1,5 @@
 #include "stdafx.h"
-#include <CEGUI/CEGUI.h>
 #include "QuitMessageBox.h"
-
 
 QuitMessageBox::QuitMessageBox(void)
 	: d_root(CEGUI::WindowManager::getSingleton().loadLayoutFromFile("MessageBox.layout"))

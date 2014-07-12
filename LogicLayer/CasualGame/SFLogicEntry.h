@@ -58,13 +58,13 @@ public:
 	GameModeMap* GetGameModeMap(){return &m_GameModeMap;}
 
 protected:
-	BOOL OnConnectPlayer(int playerSerial);
+	BOOL OnConnectPlayer(int serial);
 	BOOL OnPlayerData(BasePacket* pPacket);
 	BOOL OnTimer(BasePacket* pPacket);
 	BOOL OnShouter(BasePacket* pPacket);
 
 	BOOL OnDBResult(SFMessage* pMessage);
-	BOOL OnDisconnectPlayer(int PlayerSerial);
+	BOOL OnDisconnectPlayer(int serial);
 
 private:
 	static SFLogicEntry* m_pLogicEntry;

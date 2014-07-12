@@ -14,3 +14,15 @@
 // TODO: reference additional headers your program requires here
 #include <windows.h>
 #include <SFConstant.h>
+#if defined(max)
+#undef max
+#endif
+
+#if defined(min)
+#undef min
+#endif
+
+#include <CEGUI/CEGUI.h>
+
+#define max
+#define min
