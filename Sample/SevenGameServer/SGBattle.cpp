@@ -10,22 +10,22 @@
 #include "SFEngine.h"
 #include "SGUser.h"
 #include "SGTable.h"
-#include "GameModeConstant.h"
+#include "SevenGameConstant.h"
 
-SGBattle::SGBattle(int Mode)
-: SFGameMode(Mode)
+SGBattle::SGBattle(int mode)
+: SFGameMode(mode)
 {
 	m_DispatchingSystem.RegisterMessage(SevenGame::TurnPass, std::tr1::bind(&SGBattle::OnTurnPass, this, std::tr1::placeholders::_1, std::tr1::placeholders::_2));
 	m_DispatchingSystem.RegisterMessage(SevenGame::CardSubmit, std::tr1::bind(&SGBattle::OnCardSubmit, this, std::tr1::placeholders::_1, std::tr1::placeholders::_2));
 
-	m_SevenGameManger = new SGManager();
-	m_SevenGameManger->AllocateObjcet(SEVENGAME_MEMBER_NUM, MAX_PASS_TICKET); // create four User, 3 pass ticket!!
+	m_pSevenGameManager = new SGManager();
+	m_pSevenGameManager->AllocateObjcet(SEVENGAME_MEMBER_NUM, MAX_PASS_TICKET); // create four User, 3 pass ticket!!
 }
 
 SGBattle::~SGBattle(void)
 {
-	delete m_SevenGameManger;
-	m_SevenGameManger = NULL;
+	delete m_pSevenGameManager;
+	m_pSevenGameManager = NULL;
 }
 
 
@@ -35,32 +35,32 @@ SGBattle::~SGBattle(void)
 #define SG_AI_WAIT_TIME 800
 #define SG_PLAYER_WAIT_TIME 10000
 
-BOOL SGBattle::OnEnter( int GameMode )
+BOOL SGBattle::OnEnter( int gameMode )
 {
 	SFRoom* pRoom = GetOwner()->GetOwner();
 	SFRoom::RoomMemberMap& roomMember = pRoom->GetRoomMemberMap();
 
-	m_GameState = SG_GAME_PLAY;
+	m_nGameState = SG_GAME_PLAY;
 	m_dwLastPlayTickCount = GetTickCount();
 
 	SFASSERT(roomMember.size() != 0 && roomMember.size() <= SEVENGAME_MEMBER_NUM);
 
-	m_SevenGameManger->Reset();
+	m_pSevenGameManager->Reset();
 
 	int playerCount = 0;
 	for (auto& iter : roomMember)
 	{
 		SFPlayer* pPlayer = iter.second;
-		m_SevenGameManger->AddUser(pPlayer->GetSerial());
+		m_pSevenGameManager->AddUser(pPlayer->GetSerial());
 
 		playerCount++;
 	}
 
-	int AISerial = -1;
+	int botSerial = -1;
 	while(playerCount < SEVENGAME_MEMBER_NUM)
 	{
-		m_SevenGameManger->AddUser(AISerial);
-		AISerial--;
+		m_pSevenGameManager->AddUser(botSerial);
+		botSerial--;
 		playerCount++;
 	}
 
@@ -71,17 +71,17 @@ BOOL SGBattle::OnEnter( int GameMode )
 
 void SGBattle::ResetGame()
 {
-	m_SevenGameManger->InitializeData();
-	m_SevenGameManger->PlayerShuffle();
+	m_pSevenGameManager->InitializeData();
+	m_pSevenGameManager->PlayerShuffle();
 
 	SendPlayerID();
 	SendInitCardCount();
 	SendMyCardInfo();
 	SendTableUpdate();
 
-	vector<SGUser*>::iterator pos = m_SevenGameManger->m_userlist.begin();
+	auto& pos = m_pSevenGameManager->m_userlist.begin();
 
-	m_SevenGameManger->SetCurrentUserID((*pos)->GetID());
+	m_pSevenGameManager->SetCurrentUserID((*pos)->GetID());
 
 	SendCurrentTurn();
 }
@@ -93,41 +93,41 @@ BOOL SGBattle::Onleave()
 
 BOOL SGBattle::Update( DWORD dwTickcount )
 {
-	if(m_GameState ==  SG_GAME_PLAY)
+	if(m_nGameState ==  SG_GAME_PLAY)
 	{
-		int playerID = m_SevenGameManger->GetCurrentUserID();
+		int playerID = m_pSevenGameManager->GetCurrentUserID();
 
 		if(playerID < 0) //AI
 		{
 			if(GetTickCount() > m_dwLastPlayTickCount + SG_AI_WAIT_TIME)
 			{
-				SGUser* pAI = m_SevenGameManger->FindUser(playerID);
-				SFASSERT(pAI != NULL);
-				SCardInfo cardInfo = m_SevenGameManger->ProcessAI(pAI);
+				SGUser* pBot = m_pSevenGameManager->FindUser(playerID);
+				SFASSERT(pBot != NULL);
+				SCardInfo cardInfo = m_pSevenGameManager->ProcessAI(pBot);
 				if(cardInfo.iCardNum == -1)
 				{
-					SendTurnPass(pAI->GetID());
+					SendTurnPass(pBot->GetID());
 				}
 				else
 				{
-					m_SevenGameManger->UpdateTableState(&cardInfo);
-					SendCardSubmit(pAI->GetID(), cardInfo);
+					m_pSevenGameManager->UpdateTableState(&cardInfo);
+					SendCardSubmit(pBot->GetID(), cardInfo);
 				}
 
-				m_SevenGameManger->SetCurrentUserID(m_SevenGameManger->GetNextUserID(pAI->GetID()));
-				if(-1 == m_SevenGameManger->EvaluateUser(pAI))
+				m_pSevenGameManager->SetCurrentUserID(m_pSevenGameManager->GetNextUserID(pBot->GetID()));
+				if (-1 == m_pSevenGameManager->EvaluateUser(pBot))
 				{
-					SendUserDie(pAI->GetID());
+					SendUserDie(pBot->GetID());
 				}
 
-				if(FALSE == m_SevenGameManger->CheckGameEnd())
+				if (FALSE == m_pSevenGameManager->CheckGameEnd())
 					SendCurrentTurn();
 				else
 				{
-					if(m_SevenGameManger->CheckGameEnd())
+					if (m_pSevenGameManager->CheckGameEnd())
 					{
 						SendWinner();
-						m_GameState = SG_GAME_GAMEOVER;
+						m_nGameState = SG_GAME_GAMEOVER;
 						m_dwLastTickCount = GetTickCount();
 						return TRUE;
 					}
@@ -142,13 +142,13 @@ BOOL SGBattle::Update( DWORD dwTickcount )
 			}
 		}
 	}
-	else if (m_GameState == SG_GAME_GAMEOVER)
+	else if (m_nGameState == SG_GAME_GAMEOVER)
 	{
 		DWORD dwTickCount = GetTickCount();
 
 		if(dwTickCount - m_dwLastTickCount> SG_DELAY_GAMEOVER)
 		{
-			m_GameState = SG_GAME_PLAY;
+			m_nGameState = SG_GAME_PLAY;
 			ResetGame();
 		}
 
@@ -157,7 +157,7 @@ BOOL SGBattle::Update( DWORD dwTickcount )
 	return TRUE;
 }
 
-BOOL SGBattle::ProcessUserRequest( SFPlayer* pPlayer, int Msg )
+BOOL SGBattle::ProcessUserRequest( SFPlayer* pPlayer, int msg )
 {
 	return TRUE;
 }
@@ -171,7 +171,7 @@ BOOL SGBattle::ProcessUserRequest( SFPlayer* pPlayer, BasePacket* pPacket )
 BOOL SGBattle::OnTurnPass( SFPlayer* pPlayer, BasePacket* pPacket)
 {	
 	SFProtobufPacket<SevenGamePacket::TurnPass>* pPass = (SFProtobufPacket<SevenGamePacket::TurnPass>*)pPacket;
-	int currentTurnUser = m_SevenGameManger->GetCurrentUserID();
+	int currentTurnUser = m_pSevenGameManager->GetCurrentUserID();
 
 	if(currentTurnUser != pPlayer->GetSerial())
 		return FALSE;
@@ -181,25 +181,25 @@ BOOL SGBattle::OnTurnPass( SFPlayer* pPlayer, BasePacket* pPacket)
 
 BOOL SGBattle::ProcessTurnPass(int currentTurnUser)
 {
-	SGUser* pUser = m_SevenGameManger->FindUser(currentTurnUser);
+	SGUser* pUser = m_pSevenGameManager->FindUser(currentTurnUser);
 
-	if(FALSE == m_SevenGameManger->ProcessTurnPass(currentTurnUser))
+	if (FALSE == m_pSevenGameManager->ProcessTurnPass(currentTurnUser))
 		return FALSE;
 
 	SendTurnPass(currentTurnUser);
 
-	m_SevenGameManger->SetCurrentUserID(m_SevenGameManger->GetNextUserID(pUser->GetID()));
-	int result = m_SevenGameManger->EvaluateUser(pUser);
+	m_pSevenGameManager->SetCurrentUserID(m_pSevenGameManager->GetNextUserID(pUser->GetID()));
+	int result = m_pSevenGameManager->EvaluateUser(pUser);
 
 	if(result == -1)
 	{
 		SendUserDie(currentTurnUser);
 	}
 
-	if(m_SevenGameManger->CheckGameEnd())
+	if (m_pSevenGameManager->CheckGameEnd())
 	{
 		SendWinner();
-		m_GameState = SG_GAME_GAMEOVER;
+		m_nGameState = SG_GAME_GAMEOVER;
 		m_dwLastTickCount = GetTickCount();
 
 	}
@@ -214,8 +214,8 @@ BOOL SGBattle::ProcessTurnPass(int currentTurnUser)
 BOOL SGBattle::OnCardSubmit( SFPlayer* pPlayer, BasePacket* pPacket)
 {
 	SFProtobufPacket<SevenGamePacket::CardSubmit>* pCardSubmit = (SFProtobufPacket<SevenGamePacket::CardSubmit>*)pPacket;
-	int currentTurnUser = m_SevenGameManger->GetCurrentUserID();
-	SGUser* pUser = m_SevenGameManger->FindUser(currentTurnUser);
+	int currentTurnUser = m_pSevenGameManager->GetCurrentUserID();
+	SGUser* pUser = m_pSevenGameManager->FindUser(currentTurnUser);
 
 	if(currentTurnUser != pPlayer->GetSerial())
 		return FALSE;
@@ -224,20 +224,20 @@ BOOL SGBattle::OnCardSubmit( SFPlayer* pPlayer, BasePacket* pPacket)
 	info.iCardNum = pCardSubmit->GetData().cardnum();
 	info.iCardType = pCardSubmit->GetData().cardtype();
 
-	if(FALSE == m_SevenGameManger->ProcessCardSubmit(currentTurnUser, info))
+	if (FALSE == m_pSevenGameManager->ProcessCardSubmit(currentTurnUser, info))
 		return FALSE;
 
-	m_SevenGameManger->UpdateTableState(&info);
+	m_pSevenGameManager->UpdateTableState(&info);
 
 	SendCardSubmit(currentTurnUser, info);
 	
-	m_SevenGameManger->SetCurrentUserID(m_SevenGameManger->GetNextUserID(pUser->GetID()));
-	m_SevenGameManger->EvaluateUser(pUser);
+	m_pSevenGameManager->SetCurrentUserID(m_pSevenGameManager->GetNextUserID(pUser->GetID()));
+	m_pSevenGameManager->EvaluateUser(pUser);
 
-	if(m_SevenGameManger->CheckGameEnd())
+	if (m_pSevenGameManager->CheckGameEnd())
 	{
 		SendWinner();
-		m_GameState = SG_GAME_GAMEOVER;
+		m_nGameState = SG_GAME_GAMEOVER;
 		m_dwLastTickCount = GetTickCount();
 		return TRUE;
 	}
@@ -253,15 +253,13 @@ BOOL SGBattle::OnCardSubmit( SFPlayer* pPlayer, BasePacket* pPacket)
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////
 BOOL SGBattle::SendPlayerID()
-{
-		SFRoom* pRoom = GetOwner()->GetOwner();
-	SFRoom::RoomMemberMap& roomMember = pRoom->GetRoomMemberMap();
-
-	SFRoom::RoomMemberMap::iterator iter = roomMember.begin();
+{	
+	SFRoom* pRoom = GetOwner()->GetOwner();
+	auto& roomMember = pRoom->GetRoomMemberMap();
 	
-	for(;iter != roomMember.end(); iter++)
+	for(auto& iter : roomMember)
 	{
-		SFPlayer* pPlayer = iter->second;
+		SFPlayer* pPlayer = iter.second;
 		
 		SFProtobufPacket<SevenGamePacket::PlayerID> packet(SevenGame::PlayerID);
 		packet.SetSerial(pPlayer->GetSerial());
@@ -270,29 +268,25 @@ BOOL SGBattle::SendPlayerID()
 		SFEngine::GetInstance()->SendRequest(&packet);
 	}
 	
-
 	return TRUE;
 }
 
 BOOL SGBattle::SendInitCardCount()
 {
 	SFRoom* pRoom = GetOwner()->GetOwner();
-	SFRoom::RoomMemberMap& roomMember = pRoom->GetRoomMemberMap();
+	auto& roomMember = pRoom->GetRoomMemberMap();
 
 	SFProtobufPacket<SevenGamePacket::InitCardCount> initCardCount(SevenGame::InitCardCount);
 
-	vector<SGUser*>::iterator pos  = m_SevenGameManger->m_userlist.begin();
-
-	while ( pos != m_SevenGameManger->m_userlist.end()) 	 			
+	for (auto& pos : m_pSevenGameManager->m_userlist)
 	{
-		SGUser* pUser = (SGUser*)(*pos);
+		SGUser* pUser = (SGUser*)(pos);
 
 		SevenGamePacket::InitCardCount::CardCount* pCardCount = initCardCount.GetData().add_info();
 			
 		pCardCount->set_playerindex(pUser->GetID());
 		pCardCount->set_cardcount(pUser->GetRemainCard());
 
-		pos++;		
 	}
 
 	BroadCast(initCardCount);
@@ -303,18 +297,16 @@ BOOL SGBattle::SendInitCardCount()
 BOOL SGBattle::SendMyCardInfo()
 {
 	SFRoom* pRoom = GetOwner()->GetOwner();
-	SFRoom::RoomMemberMap& roomMember = pRoom->GetRoomMemberMap();
+	auto& roomMember = pRoom->GetRoomMemberMap();
 
-	SFRoom::RoomMemberMap::iterator iter = roomMember.begin();
-	
-	for(;iter != roomMember.end(); iter++)
+	for (auto& iter : roomMember)
 	{
 		SFProtobufPacket<SevenGamePacket::MyCardInfo> myCardInfo(SevenGame::MyCardInfo);
 
-		SFPlayer* pPlayer = iter->second;
+		SFPlayer* pPlayer = iter.second;
 		myCardInfo.SetSerial(pPlayer->GetSerial());
 
-		SGUser* pSGUser = m_SevenGameManger->FindUser(pPlayer->GetSerial());
+		SGUser* pSGUser = m_pSevenGameManager->FindUser(pPlayer->GetSerial());
 
 		SFASSERT(pSGUser != NULL);
 
@@ -384,13 +376,11 @@ BOOL SGBattle::SendMyCardInfo()
 BOOL SGBattle::BroadCast(BasePacket& packet)
 {
 	SFRoom* pRoom = GetOwner()->GetOwner();
-	SFRoom::RoomMemberMap& roomMember = pRoom->GetRoomMemberMap();
-
-	SFRoom::RoomMemberMap::iterator iter = roomMember.begin();
+	auto& roomMember = pRoom->GetRoomMemberMap();
 	
-	for(;iter != roomMember.end(); iter++)
+	for (auto& iter : roomMember)
 	{
-		SFPlayer* pPlayer = iter->second;
+		SFPlayer* pPlayer = iter.second;
 		packet.SetSerial(pPlayer->GetSerial());
 
 		SFEngine::GetInstance()->SendRequest(&packet);
@@ -402,10 +392,10 @@ BOOL SGBattle::BroadCast(BasePacket& packet)
 void SGBattle::SendCurrentTurn()
 {
 	SFRoom* pRoom = GetOwner()->GetOwner();
-	SFRoom::RoomMemberMap& roomMember = pRoom->GetRoomMemberMap();
+	auto& roomMember = pRoom->GetRoomMemberMap();
 
-	int currentUserID = m_SevenGameManger->GetCurrentUserID();
-	SGUser* pSGUser = m_SevenGameManger->FindUser(currentUserID);
+	int currentUserID = m_pSevenGameManager->GetCurrentUserID();
+	SGUser* pSGUser = m_pSevenGameManager->FindUser(currentUserID);
 
 	SFProtobufPacket<SevenGamePacket::CurrentTurn> currentTurn(SevenGame::CurrentTurn);
 
@@ -416,7 +406,7 @@ void SGBattle::SendCurrentTurn()
 	}
 	else
 	{
-		SFRoom::RoomMemberMap::iterator iter = roomMember.find(pSGUser->GetID());
+		auto& iter = roomMember.find(pSGUser->GetID());
 
 		SFASSERT(iter != roomMember.end());
 		SFPlayer* pCurrentTurnPlayer = iter->second;
@@ -429,20 +419,20 @@ void SGBattle::SendCurrentTurn()
 	BroadCast(currentTurn);
 }
 
-void SGBattle::SendTurnPass(int PlayerIndex)
+void SGBattle::SendTurnPass(int serial)
 {
-	SGUser* pUser = m_SevenGameManger->FindUser(PlayerIndex);
+	SGUser* pUser = m_pSevenGameManager->FindUser(serial);
 
 	SFProtobufPacket<SevenGamePacket::TurnPass> turnPass(SevenGame::TurnPass);
-	turnPass.GetData().set_playerindex(PlayerIndex);
+	turnPass.GetData().set_playerindex(serial);
 	turnPass.GetData().set_ticketcount(pUser->GetPassTicketCnt());
 	BroadCast(turnPass);
 }
 
-void SGBattle::SendCardSubmit(int PlayerIndex, SCardInfo& cardInfo)
+void SGBattle::SendCardSubmit(int serial, SCardInfo& cardInfo)
 {
 	SFProtobufPacket<SevenGamePacket::CardSubmit> cardSubmit(SevenGame::CardSubmit);
-	cardSubmit.GetData().set_playerindex(PlayerIndex);
+	cardSubmit.GetData().set_playerindex(serial);
 	cardSubmit.GetData().set_cardnum(cardInfo.iCardNum);
 	cardSubmit.GetData().set_cardtype(cardInfo.iCardType);
 	BroadCast(cardSubmit);
@@ -452,7 +442,7 @@ void SGBattle::SendWinner()
 {
 	SFProtobufPacket<SevenGamePacket::Winner> winner(SevenGame::Winner);
 
-	winner.GetData().set_playerindex(*(m_SevenGameManger->m_vecWinner.begin()));
+	winner.GetData().set_playerindex(*(m_pSevenGameManager->m_vecWinner.begin()));
 
 	BroadCast(winner);
 }
@@ -472,7 +462,7 @@ void SGBattle::SendTableUpdate()
 {
 	SFProtobufPacket<SevenGamePacket::TableUpdate> tableUpdate(SevenGame::TableUpdate);
 
-	SGTable* pTable = m_SevenGameManger->GetTable();
+	SGTable* pTable = m_pSevenGameManager->GetTable();
 
 	int *paSpadeTable = pTable->GetSpadeTableArray();
 	int *paHeartTable = pTable->GetHeartTableArray();

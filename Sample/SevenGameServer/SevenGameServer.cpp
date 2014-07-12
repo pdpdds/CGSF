@@ -3,13 +3,15 @@
 
 #include "stdafx.h"
 #include "SevenGameProtocol.h"
-#include "GameModeConstant.h"
+#include "SevenGameConstant.h"
+#include "SGTraining.h"
+#include "SGBattle.h"
 #include "SFLogicEntry.h"
 #include "SFServiceController.h"
 #include "SFUtil.h"
 #include "SFBreakPad.h"
 
-SFServiceController g_ServiceController;
+SFServiceController g_serviceController;
 bool ControlService(int argc, _TCHAR** argv);
 
 static DWORD StartSevenGameService(LPDWORD param)
@@ -56,7 +58,7 @@ int _tmain(int argc, _TCHAR* argv[])
 	StartSevenGameService(NULL);
 	
 #else	
-	g_ServiceController.ServiceEntry(argv[0], (LPTHREAD_START_ROUTINE)StartSevenGameService	);
+	g_serviceController.ServiceEntry(argv[0], (LPTHREAD_START_ROUTINE)StartSevenGameService	);
 #endif		
 
 	return 0;
@@ -75,11 +77,11 @@ bool ControlService(int argc, _TCHAR** argv)
 	{
 		if (_tcsicmp(argv[1], L"-i") == 0)
 		{
-			return g_ServiceController.InstallService(szFileName, szFileName, szFilePath);
+			return g_serviceController.InstallService(szFileName, szFileName, szFilePath);
 		}
 		else if (_tcsicmp(argv[1], L"-u") == 0)
 		{
-			return  g_ServiceController.DeleteService(szFileName);
+			return  g_serviceController.DeleteService(szFileName);
 		}
 
 		printf("usage : filename -i(-u)\n");

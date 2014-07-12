@@ -172,7 +172,7 @@
     <ClInclude Include="..\..\Common\SFPacketStore\SevenGamePacketID.h" />
     <ClInclude Include="SelectAlgorithm.h" />
     <ClInclude Include="SevenGameProtocol.h" />
-    <ClInclude Include="GameModeConstant.h" />
+    <ClInclude Include="SevenGameConstant.h" />
     <ClInclude Include="SGBattle.h" />
     <ClInclude Include="SGTraining.h" />
     <ClInclude Include="SGManager.h" />

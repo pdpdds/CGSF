@@ -17,11 +17,11 @@ public:
 ////////////////////////////////////////////////////////////
 //System Method
 ////////////////////////////////////////////////////////////
-	virtual BOOL OnEnter(int GameMode) override;
+	virtual BOOL OnEnter(int gameMode) override;
 	virtual BOOL Onleave() override;
 	virtual BOOL Update(DWORD dwTickcount) override;
 	BOOL ProcessUserRequest(SFPlayer* pPlayer, BasePacket* pPacket) override;
-	BOOL ProcessUserRequest(SFPlayer* pPlayer, int Msg) override;
+	BOOL ProcessUserRequest(SFPlayer* pPlayer, int msg) override;
 	BOOL BroadCast(BasePacket& pPacket);
 
 
@@ -36,9 +36,9 @@ public:
 ////////////////////////////////////////////////////////////
 	BOOL SendPlayerID();
 	void SendCurrentTurn();
-	void SendUserDie(int PlayerIndex);
-	void SendTurnPass(int PlayerIndex);
-	void SendCardSubmit(int PlayerIndex, SCardInfo& cardInfo);
+	void SendUserDie(int serial);
+	void SendTurnPass(int serial);
+	void SendCardSubmit(int serial, SCardInfo& cardInfo);
 	void SendTableUpdate();
 	BOOL SendInitCardCount();
 	BOOL SendMyCardInfo();
@@ -51,8 +51,8 @@ public:
 	BOOL ProcessTurnPass(int currentTurnUser);
 
 private:
-	SGManager *m_SevenGameManger;
-	int m_GameState;
+	SGManager *m_pSevenGameManager;
+	int m_nGameState;
 
 	DWORD m_dwLastTickCount;
 	DWORD m_dwLastPlayTickCount;

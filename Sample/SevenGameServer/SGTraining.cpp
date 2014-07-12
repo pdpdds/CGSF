@@ -1,8 +1,8 @@
 #include "StdAfx.h"
 #include "SGTraining.h"
 
-SGTraining::SGTraining(int Mode)
-: SFGameMode(Mode)
+SGTraining::SGTraining(int mode)
+: SFGameMode(mode)
 {
 }
 
@@ -13,7 +13,7 @@ SGTraining::~SGTraining(void)
 //////////////////////////////////////////////////////
 //Game Mode Initialization
 //////////////////////////////////////////////////////
-BOOL SGTraining::OnEnter( int GameMode )
+BOOL SGTraining::OnEnter( int gameMode )
 {
 	return TRUE;
 }
@@ -38,7 +38,7 @@ BOOL SGTraining::Update( DWORD dwTickcount )
 //////////////////////////////////////////////////////
 //User Request
 //////////////////////////////////////////////////////
-BOOL SGTraining::ProcessUserRequest( SFPlayer* pPlayer, int Msg )
+BOOL SGTraining::ProcessUserRequest( SFPlayer* pPlayer, int msg )
 {
 	return TRUE;
 }

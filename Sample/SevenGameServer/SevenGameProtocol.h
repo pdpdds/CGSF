@@ -7,6 +7,5 @@ public:
 	SevenGameProtocol(void);
 	virtual ~SevenGameProtocol(void);
 
-	BasePacket* CreateIncomingPacketFromPacketId( int PacketId ) override;
+	BasePacket* CreateIncomingPacketFromPacketId( int packetId ) override;
 };
-

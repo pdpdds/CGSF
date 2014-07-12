@@ -16,7 +16,7 @@ public:
 	bool ProcessInput(UINT uMsg, WPARAM wParam, LPARAM lParam) override;
 	virtual void OnRender(float fElapsedTime) override;
 
-	SGManager* GetSevenGameManager(){return m_SevenGameManger;}
+	SGManager* GetSevenGameManager(){return m_pSevenGameManger;}
 
 	BOOL GetPassButtonOverapped(){return m_bPassButtonOverapped;}
 
@@ -33,7 +33,7 @@ public:
 	void Winner(BasePacket* pPacket);
 
 private:
-	SGManager *m_SevenGameManger;
+	SGManager *m_pSevenGameManger;
 	BOOL m_bSecondGame;
 
 	// mouse button presses

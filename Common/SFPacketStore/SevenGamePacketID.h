@@ -2,7 +2,7 @@
 
 namespace SevenGame
 {
-	typedef enum eSevenGamePacketID
+	typedef enum ENUM_PACKET_ID
 	{
 		InitCardCount = 10000,
 		MyCardInfo,

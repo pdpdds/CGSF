@@ -4,7 +4,7 @@
 class SGTraining : public SFGameMode
 {
 public:
-	SGTraining(int Mode);
+	SGTraining(int mode);
 	virtual ~SGTraining(void);
 
 	virtual SFGameMode* Clone()
@@ -12,11 +12,11 @@ public:
 		return new SGTraining(GetGameMode());
 	}
 
-	virtual BOOL OnEnter(int GameMode) override;
+	virtual BOOL OnEnter(int gameMode) override;
 	virtual BOOL Onleave() override;
 
 	virtual BOOL Update(DWORD dwTickcount) override;
 
 	BOOL ProcessUserRequest(SFPlayer* pPlayer, BasePacket* pPacket) override;
-	BOOL ProcessUserRequest(SFPlayer* pPlayer, int Msg) override;
+	BOOL ProcessUserRequest(SFPlayer* pPlayer, int msg) override;
 };

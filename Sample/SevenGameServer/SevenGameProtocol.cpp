@@ -11,25 +11,23 @@ SevenGameProtocol::~SevenGameProtocol(void)
 {
 }
 
-BasePacket* SevenGameProtocol::CreateIncomingPacketFromPacketId( int PacketId )
+BasePacket* SevenGameProtocol::CreateIncomingPacketFromPacketId( int packetId )
 {
-	BasePacket* pPacket = SFCGProtobufProtocol::CreateIncomingPacketFromPacketId(PacketId);
+	BasePacket* pPacket = SFCGProtobufProtocol::CreateIncomingPacketFromPacketId(packetId);
 
 	if(pPacket != NULL)
 		return pPacket;
 
-	switch (PacketId)
+	switch (packetId)
 	{
 	case SevenGame::TurnPass:
-		return new SFProtobufPacket<SevenGamePacket::TurnPass>(PacketId);
-		break;
+		return new SFProtobufPacket<SevenGamePacket::TurnPass>(packetId);
 	case SevenGame::CardSubmit:
-		return new SFProtobufPacket<SevenGamePacket::CardSubmit>(PacketId);
-		break;
-
+		return new SFProtobufPacket<SevenGamePacket::CardSubmit>(packetId);
 	default:
 		SFASSERT(0);
 		break;
 	}
+
 	return NULL;
 }
