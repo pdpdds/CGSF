@@ -11,7 +11,7 @@ AvroClientProtocol::~AvroClientProtocol()
 {
 }
 
-BasePacket* AvroClientProtocol::CreateIncomingPacketFromPacketId(int PacketId)
+BasePacket* AvroClientProtocol::CreateIncomingPacketFromPacketId(int packetId)
 {
 	return NULL;
 }

@@ -7,6 +7,6 @@ public:
 	ProtocolAvroProtocol();
 	virtual ~ProtocolAvroProtocol();
 
-	virtual BasePacket* CreateIncomingPacketFromPacketId(int PacketId) override;
+	virtual BasePacket* CreateIncomingPacketFromPacketId(int packetId) override;
 };
 

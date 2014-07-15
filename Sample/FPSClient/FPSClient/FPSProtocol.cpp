@@ -13,38 +13,29 @@ FPSProtocol::~FPSProtocol(void)
 {
 }
 
-BasePacket* FPSProtocol::CreateIncomingPacketFromPacketId(int PacketId)
+BasePacket* FPSProtocol::CreateIncomingPacketFromPacketId(int packetId)
 {
-	BasePacket* pPacket = SFCGProtobufClientProtocol::CreateIncomingPacketFromPacketId(PacketId);
+	BasePacket* pPacket = SFCGProtobufClientProtocol::CreateIncomingPacketFromPacketId(packetId);
 	if (pPacket != NULL)
 		return pPacket;
 
-	switch (PacketId)
+	switch (packetId)
 	{
 	
 	case FPS::MSG_SPAWN_PLAYER:
-			return new SFProtobufPacket<FPSPacket::MSG_SPAWN_PLAYER>(PacketId);
-		break;
+		return new SFProtobufPacket<FPSPacket::MSG_SPAWN_PLAYER>(packetId);
 
 	case  FPS::MSG_PLAYER_HEALTH:
-		return new SFProtobufPacket<FPSPacket::MSG_PLAYER_HEALTH>(PacketId);
-		break;
+		return new SFProtobufPacket<FPSPacket::MSG_PLAYER_HEALTH>(packetId);
 
 	case FPS::MSG_PLAYER_SCORE:
-		return new SFProtobufPacket<FPSPacket::MSG_PLAYER_SCORE>(PacketId);
-		break;
+		return new SFProtobufPacket<FPSPacket::MSG_PLAYER_SCORE>(packetId);
 
 	case FPS::MSG_PLAYER_WEAPON_CHANGE:
-		return new SFProtobufPacket<FPSPacket::MSG_PLAYER_WEAPON_CHANGE>(PacketId);
-		break;
+		return new SFProtobufPacket<FPSPacket::MSG_PLAYER_WEAPON_CHANGE>(packetId);
 
 	case FPS::MSG_PLAYER_WEAPON_CHANGING:
-		return new SFProtobufPacket<FPSPacket::MSG_PLAYER_WEAPON_CHANGING>(PacketId);
-		break;
-	
-	default:		
-		return NULL;
-		break;
+		return new SFProtobufPacket<FPSPacket::MSG_PLAYER_WEAPON_CHANGING>(packetId);
 	}
 	return NULL;
 }

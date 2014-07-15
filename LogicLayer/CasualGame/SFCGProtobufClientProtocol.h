@@ -7,6 +7,6 @@ public:
 	SFCGProtobufClientProtocol(void);
 	virtual ~SFCGProtobufClientProtocol(void);
 
-	BasePacket* CreateIncomingPacketFromPacketId( int PacketId ) override;
+	BasePacket* CreateIncomingPacketFromPacketId(int packetId) override;
 };
 

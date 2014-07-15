@@ -8,6 +8,6 @@ public:
 	FPSProtocol(void);
 	virtual ~FPSProtocol(void);
 
-	BasePacket* CreateIncomingPacketFromPacketId( int PacketId ) override;
+	BasePacket* CreateIncomingPacketFromPacketId(int packetId) override;
 };
 

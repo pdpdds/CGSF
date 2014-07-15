@@ -82,7 +82,7 @@ bool SFProtobufProtocol::DisposePacket(BasePacket* pPacket)
 	return true;
 }
 
-int SFProtobufProtocol::tryDeframeIncomingPacket( DataBuffer& Buffer, BasePacket*& pPacket, int& PacketId, unsigned int& nExtractedBytes )
+int SFProtobufProtocol::tryDeframeIncomingPacket(DataBuffer& Buffer, BasePacket*& pPacket, int& packetId, unsigned int& nExtractedBytes)
 {
 	if(Buffer.GetDataSize() < 8)
 		return SFProtocol::eIncompletePacket;
@@ -92,14 +92,14 @@ int SFProtobufProtocol::tryDeframeIncomingPacket( DataBuffer& Buffer, BasePacket
 
     unsigned int sStart = 0;
     unsigned int packetLen = 0;
-    PacketId = 0;
+	packetId = 0;
     unsigned int sEnd = 0;
 
     for (int i=0; i<2; i++)
     {
         *((BYTE*)(&sStart)+i)=pBuffer[i];
         *((BYTE*)(&packetLen)+i)=pBuffer[i+2];
-        *((BYTE*)(&PacketId)+i)=pBuffer[i+4];
+		*((BYTE*)(&packetId) + i) = pBuffer[i + 4];
     }
 
     if (sStart!=SignatureStart)
@@ -119,7 +119,7 @@ int SFProtobufProtocol::tryDeframeIncomingPacket( DataBuffer& Buffer, BasePacket
 
     nExtractedBytes = packetLen;
 
-	pPacket = CreateIncomingPacketFromPacketId(PacketId);
+	pPacket = CreateIncomingPacketFromPacketId(packetId);
 
 	if(pPacket==NULL)
 		return SFProtocol::eUndefinedFailure;

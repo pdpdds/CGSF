@@ -11,7 +11,7 @@ ProtocolClientProtocol::~ProtocolClientProtocol()
 {
 }
 
-BasePacket* ProtocolClientProtocol::CreateIncomingPacketFromPacketId(int PacketId)
+BasePacket* ProtocolClientProtocol::CreateIncomingPacketFromPacketId(int packetId)
 {
 	return NULL;
 }

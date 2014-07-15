@@ -11,18 +11,21 @@ ProtocolServerProtocol::~ProtocolServerProtocol(void)
 {
 }
 
-BasePacket* ProtocolServerProtocol::CreateIncomingPacketFromPacketId(int PacketId)
+BasePacket* ProtocolServerProtocol::CreateIncomingPacketFromPacketId(int packetId)
 {	
-	switch (PacketId)
+	switch (packetId)
 	{
 	case Protocol::Sample1:
-		return new SFProtobufPacket<ProtocolPacket::Sample1>(PacketId);		
+		return new SFProtobufPacket<ProtocolPacket::Sample1>(packetId);
+
 	case Protocol::Sample2:
-		return new SFProtobufPacket<ProtocolPacket::Sample2>(PacketId);
+		return new SFProtobufPacket<ProtocolPacket::Sample2>(packetId);
+
 	case Protocol::Sample3:
-		return new SFProtobufPacket<ProtocolPacket::Sample3>(PacketId);
+		return new SFProtobufPacket<ProtocolPacket::Sample3>(packetId);
+
 	case Protocol::Sample4:
-		return new SFProtobufPacket<ProtocolPacket::Sample4>(PacketId);		
+		return new SFProtobufPacket<ProtocolPacket::Sample4>(packetId);
 
 	default:
 		SFASSERT(0);

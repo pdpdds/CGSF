@@ -13,18 +13,18 @@ ProtocolAvroProtocol::~ProtocolAvroProtocol()
 {
 }
 
-BasePacket* ProtocolAvroProtocol::CreateIncomingPacketFromPacketId(int PacketId)
+BasePacket* ProtocolAvroProtocol::CreateIncomingPacketFromPacketId(int packetId)
 {
-	switch (PacketId)
+	switch (packetId)
 	{
 	case Protocol::Sample1:
-		return new SFAvroPacket<c::Sample1>(PacketId);
+		return new SFAvroPacket<c::Sample1>(packetId);
 	case Protocol::Sample2:
-//		return new SFAvroPacket<ProtocolPacket::Sample2>(PacketId);
+//		return new SFAvroPacket<ProtocolPacket::Sample2>(packetId);
 	case Protocol::Sample3:
-//		return new SFAvroPacket<ProtocolPacket::Sample3>(PacketId);
+//		return new SFAvroPacket<ProtocolPacket::Sample3>(packetId);
 	case Protocol::Sample4:
-//		return new SFAvroPacket<ProtocolPacket::Sample4>(PacketId);
+//		return new SFAvroPacket<ProtocolPacket::Sample4>(packetId);
 	
 	default:
 		//SFASSERT(0);

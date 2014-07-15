@@ -7,5 +7,5 @@ public:
 	ProtocolClientProtocol(void);
 	virtual ~ProtocolClientProtocol(void);
 
-	BasePacket* CreateIncomingPacketFromPacketId(int PacketId) override;
+	BasePacket* CreateIncomingPacketFromPacketId(int packetId) override;
 };

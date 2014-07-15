@@ -25,7 +25,7 @@ public:
 	bool DisposePacket(BasePacket* pPacket);
 
 protected:
-	virtual BasePacket* CreateIncomingPacketFromPacketId( int PacketId ) = 0;
+	virtual BasePacket* CreateIncomingPacketFromPacketId(int packetId) = 0;
 
 protected:
 	virtual int encodeOutgoingPacket(BasePacket& packet);
@@ -33,7 +33,7 @@ protected:
 
 	//
 	virtual int tryDeframeIncomingPacket( DataBuffer& Buffer,  BasePacket*& pPacket, int& serviceId, unsigned int& nExtractedBytes);
-	virtual int decodeIncomingPacket(BasePacket* pPacket, int& PacketId);
+	virtual int decodeIncomingPacket(BasePacket* pPacket, int& packetId);
 
 protected:
 
