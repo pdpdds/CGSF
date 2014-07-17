@@ -57,6 +57,9 @@ public:
 	BOOL AddGameMode(int Mode, SFGameMode* pMode);
 	GameModeMap* GetGameModeMap(){return &m_GameModeMap;}
 
+	void SetP2PService(bool bP2PService){ m_bP2PService = bP2PService; }
+	bool GetP2PService(){ return m_bP2PService; }
+
 protected:
 	BOOL OnConnectPlayer(int serial);
 	BOOL OnPlayerData(BasePacket* pPacket);
@@ -68,6 +71,7 @@ protected:
 
 private:
 	static SFLogicEntry* m_pLogicEntry;
+	bool m_bP2PService;
 
 	SFObjectPool<SFPlayer>* m_pPlayerPool;
 	PlayerMap m_PlayerMap;

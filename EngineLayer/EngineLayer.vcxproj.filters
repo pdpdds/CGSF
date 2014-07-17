@@ -190,6 +190,15 @@
     <ClCompile Include="SFPacketDelaySendTask.cpp">
       <Filter>Packet\PacketTask</Filter>
     </ClCompile>
+    <ClCompile Include="SFServerConnectionManager.cpp">
+      <Filter>Network</Filter>
+    </ClCompile>
+    <ClCompile Include="SFServerBridge.cpp">
+      <Filter>Common</Filter>
+    </ClCompile>
+    <ClCompile Include="ILogicEntry.cpp">
+      <Filter>Logic</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include=".\SFExcel.h">
@@ -389,6 +398,12 @@
     </ClInclude>
     <ClInclude Include="SFPacketDelaySendTask.h">
       <Filter>Packet\PacketTask</Filter>
+    </ClInclude>
+    <ClInclude Include="SFServerConnectionManager.h">
+      <Filter>Network</Filter>
+    </ClInclude>
+    <ClInclude Include="SFServerBridge.h">
+      <Filter>Common</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

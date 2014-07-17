@@ -2,20 +2,21 @@
 #include <map>
 
 class BasePacket;
+class INetworkCallback;
 
 class ILogicEntry
 {
+	typedef std::map<int, INetworkCallback*> mapConnectorCallback;
 public:
-	ILogicEntry(void){m_bP2PService = false;}
+	ILogicEntry(void){}
 	virtual ~ILogicEntry(void){}
 
 	virtual bool Initialize() = 0;
 	virtual bool ProcessPacket(BasePacket* pPacket) = 0;
-	virtual bool ProcessServerPacket(int acceptorId, BasePacket* pPacket) { UNREFERENCED_PARAMETER(acceptorId); UNREFERENCED_PARAMETER(pPacket);  return false; }
 
-	void SetP2PService(bool bP2PService){ m_bP2PService = bP2PService; }
-	bool GetP2PService(){ return m_bP2PService; }
+	bool AddConnectorCallback(int identifier, INetworkCallback* pCallback){ m_mapConnectorCallback.insert(std::make_pair(identifier, pCallback)); return true; }
+	virtual bool ProcessConnectorPacket(BasePacket* pPacket);
 
-private:
-	bool m_bP2PService;
+protected:
+	mapConnectorCallback m_mapConnectorCallback;
 };

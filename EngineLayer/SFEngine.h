@@ -7,6 +7,7 @@
 #include "ILogicEntry.h"
 
 class IRPCInterface;
+class SFServerConnectionManager;
 
 class SFEngine : public IEngine
 {
@@ -43,6 +44,8 @@ public:
 
 	bool ReleasePacket(BasePacket* pPacket);
 
+	SFServerConnectionManager* GetServerConnectionManager(){ return m_pServerConnectionManager; }
+	bool LoadConnectionServerList(WCHAR* szFileName);
 	int  AddListener(char* szIP, unsigned short port);
 	int  AddConnector(char* szIP, unsigned short port);
 	void AddRPCService(IRPCService* pService);
@@ -72,6 +75,7 @@ private:
 	INetworkEngine* m_pNetworkEngine;
 	IPacketProtocol* m_pPacketProtocol;
 	ILogicDispatcher* m_pLogicDispatcher;
+	SFServerConnectionManager* m_pServerConnectionManager;
 
 	void SetPacketProtocol(IPacketProtocol* pProtocol){m_pPacketProtocol = pProtocol;}
 	void SetLogicDispathcer(ILogicDispatcher* pDispatcher){m_pLogicDispatcher = pDispatcher;}

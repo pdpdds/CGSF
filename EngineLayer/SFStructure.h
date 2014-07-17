@@ -48,4 +48,24 @@ typedef struct tag_TimerInfo
 
 }_TimerInfo;
 
+typedef struct tag_ServerInfo
+{
+	std::wstring szIP;
+	unsigned short port;
+	int identifer;
+	std::wstring szDesc;
+
+	tag_ServerInfo()
+	{
+		port = 0;
+		identifer = 0;
+	}
+
+	void print()
+	{
+		//_tprintf(L"SERVER(%s:%d) %s\n", szIP.c_str(), port, szDesc.c_str());
+	}
+
+}_ServerInfo;
+
 #pragma pack(pop)

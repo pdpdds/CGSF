@@ -22,7 +22,7 @@ void testJson();
 
 int _tmain(int argc, _TCHAR* argv[])
 {
-	testAvro();
+	testProtobuf();
 	
 	SFEngine::GetInstance()->Start();
 

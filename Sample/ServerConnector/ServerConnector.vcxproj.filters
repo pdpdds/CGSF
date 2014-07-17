@@ -27,6 +27,12 @@
     <ClInclude Include="ServerConnectorLogicEntry.h">
       <Filter>소스 파일</Filter>
     </ClInclude>
+    <ClInclude Include="DatabaseServerCallback.h">
+      <Filter>소스 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="AuthServerCallback.h">
+      <Filter>소스 파일</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="stdafx.cpp">
@@ -36,6 +42,12 @@
       <Filter>소스 파일</Filter>
     </ClCompile>
     <ClCompile Include="ServerConnectorLogicEntry.cpp">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="AuthServerCallback.cpp">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="DatabaseServerCallback.cpp">
       <Filter>소스 파일</Filter>
     </ClCompile>
   </ItemGroup>

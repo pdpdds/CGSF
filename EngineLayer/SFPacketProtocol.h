@@ -102,7 +102,7 @@ bool SFPacketProtocol<T>::SendRequest(BasePacket* pPacket)
 }
 
 template <typename T>
-bool SFPacketProtocol<T>::OnReceive(INT Serial, char* pBuffer, UINT dwTransferred, INT acceptorId)
+bool SFPacketProtocol<T>::OnReceive(INT serial, char* pBuffer, UINT dwTransferred, INT acceptorId)
 {
 	auto bRet = m_Analyzer.AddTransferredData(pBuffer, dwTransferred);
 
@@ -126,7 +126,7 @@ bool SFPacketProtocol<T>::OnReceive(INT Serial, char* pBuffer, UINT dwTransferre
 		else
 			pPacket->SetPacketType(SFPACKET_DATA);
 
-		pPacket->SetSerial(Serial);	
+		pPacket->SetSerial(serial);	
 		pPacket->SetAcceptorId(acceptorId);
 		
 		SendLogicLayer(pPacket);

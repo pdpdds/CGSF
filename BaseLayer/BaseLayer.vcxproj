@@ -206,6 +206,12 @@
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|x64'">NotUsing</PrecompiledHeader>
     </ClCompile>
     <ClCompile Include="VMemPool\BitSet.cpp" />
+    <ClCompile Include="XML\Markup.cpp">
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">NotUsing</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">NotUsing</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|x64'">NotUsing</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">NotUsing</PrecompiledHeader>
+    </ClCompile>
     <ClCompile Include="XML\StringConversion.cpp" />
     <ClCompile Include="XML\tinystr.cpp" />
     <ClCompile Include="XML\tinyxml.cpp" />
@@ -299,6 +305,7 @@
     <ClInclude Include="XML\IXMLSerializable.h" />
     <ClInclude Include="XML\IXMLStreamReader.h" />
     <ClInclude Include="XML\IXMLStreamWriter.h" />
+    <ClInclude Include="XML\Markup.h" />
     <ClInclude Include="XML\SFXMLStreamReader.h" />
     <ClInclude Include="XML\SFXMLStreamWriter.h" />
     <ClInclude Include="XML\StringConversion.h" />

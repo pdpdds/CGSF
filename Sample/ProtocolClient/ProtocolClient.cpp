@@ -13,7 +13,20 @@
 
 #pragma comment(lib, "EngineLayer.lib")
 
+void testAvro();
+void testProtobuf();
+void testCGSF();
+void testMsgPack();
+void testJson();
+
 int _tmain(int argc, _TCHAR* argv[])
+{
+	testProtobuf();
+	
+	return 0;
+}
+
+void testAvro()
 {
 	ProtocolCallback* pCallback = new ProtocolCallback();
 
@@ -24,5 +37,48 @@ int _tmain(int argc, _TCHAR* argv[])
 
 	SFNetworkEntry::GetInstance()->ShutDown();
 
-	return 0;
+}
+
+void testProtobuf()
+{
+	ProtocolCallback* pCallback = new ProtocolCallback();
+
+	SFNetworkEntry::GetInstance()->Initialize(pCallback, new SFPacketProtocol<ProtocolClientProtocol>(MAX_IO_SIZE, MAX_PACKET_SIZE));
+	SFNetworkEntry::GetInstance()->Run();
+
+	ProcessInput(&ProcessProtobufInput);
+
+	SFNetworkEntry::GetInstance()->ShutDown();
+
+}
+
+void testCGSF()
+{
+	ProtocolCallback* pCallback = new ProtocolCallback();
+
+	SFNetworkEntry::GetInstance()->Initialize(pCallback, new SFPacketProtocol<SFCGSFPacketProtocol>(MAX_IO_SIZE, MAX_PACKET_SIZE));
+	SFNetworkEntry::GetInstance()->Run();
+
+	ProcessInput(&ProcessCGSFInput);
+
+	SFNetworkEntry::GetInstance()->ShutDown();
+
+}
+
+void testMsgPack()
+{
+	ProtocolCallback* pCallback = new ProtocolCallback();
+
+	SFNetworkEntry::GetInstance()->Initialize(pCallback, new SFPacketProtocol<SFMsgPackProtocol>(MAX_IO_SIZE, MAX_PACKET_SIZE));
+	SFNetworkEntry::GetInstance()->Run();
+
+	ProcessInput(&ProcessMsgPackInput);
+
+	SFNetworkEntry::GetInstance()->ShutDown();
+
+}
+
+void testJson()
+{
+
 }

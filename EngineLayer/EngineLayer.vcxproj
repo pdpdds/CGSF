@@ -179,6 +179,7 @@
     <ClCompile Include=".\LogicEntry.cpp" />
     <ClCompile Include=".\SFLogicGateway.cpp" />
     <ClCompile Include="CommunityManager.cpp" />
+    <ClCompile Include="ILogicEntry.cpp" />
     <ClCompile Include="RPCClientTransportLayer.cpp" />
     <ClCompile Include="DataBuffer.cpp" />
     <ClCompile Include="RPCService.cpp" />
@@ -206,6 +207,8 @@
     <ClCompile Include="SFProtobufProtocol.cpp" />
     <ClCompile Include="SFProtocol.cpp" />
     <ClCompile Include="SFRPCGateway.cpp" />
+    <ClCompile Include="SFServerBridge.cpp" />
+    <ClCompile Include="SFServerConnectionManager.cpp" />
     <ClCompile Include="SFShouter.cpp" />
     <ClCompile Include="SFSubject.cpp" />
     <ClCompile Include="SFTCPNetwork.cpp" />
@@ -273,6 +276,8 @@
     <ClInclude Include="SFProtobufProtocol.h" />
     <ClInclude Include="SFProtocol.h" />
     <ClInclude Include="SFRPCGateway.h" />
+    <ClInclude Include="SFServerBridge.h" />
+    <ClInclude Include="SFServerConnectionManager.h" />
     <ClInclude Include="SFShouter.h" />
     <ClInclude Include="SFStructure.h" />
     <ClInclude Include="SFSubject.h" />

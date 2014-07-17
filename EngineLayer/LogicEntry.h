@@ -1,13 +1,12 @@
 #pragma once
 #include "ILogicEntry.h"
 
-class LogicEntry : public ILogicEntry
+class LogicEntry
 {
 public:
 	LogicEntry(void);
 	virtual ~LogicEntry(void);
 
-	virtual bool Initialize() { return FALSE; }
 	virtual bool ProcessPacket(BasePacket* pPacket);
 
 	void SetLogic(ILogicEntry* pLogic)

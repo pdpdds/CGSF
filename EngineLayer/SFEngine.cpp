@@ -7,6 +7,7 @@
 #include "SFCasualGameDispatcher.h"
 #include "SFUtil.h"
 #include "SFPacketDelaySendTask.h"
+#include "SFServerConnectionManager.h"
 
 #pragma comment(lib, "BaseLayer.lib")
 #pragma comment(lib, "DatabaseLayer.lib")
@@ -35,6 +36,9 @@ SFEngine::~SFEngine(void)
 {
 	if(m_pNetworkEngine)
 		delete m_pNetworkEngine;
+
+	if (m_pServerConnectionManager)
+		delete m_pServerConnectionManager;
 }
 
 SFEngine* SFEngine::GetInstance()
@@ -129,6 +133,8 @@ bool SFEngine::Intialize(ILogicEntry* pLogicEntry, IPacketProtocol* pProtocol, I
 	}
 
 	SetLogicDispathcer(pDispatcher);
+
+	m_pServerConnectionManager = new SFServerConnectionManager();
 
 	LOG(INFO) << "Logic Entry Initialize";
 	if (false == pLogicEntry->Initialize())
@@ -325,4 +331,9 @@ int SFEngine::AddConnector(char* szIP, unsigned short port)
 int SFEngine::AddListener(char* szIP, unsigned short port)
 {
 	return GetNetworkEngine()->AddListener(szIP, port);
+}
+
+bool SFEngine::LoadConnectionServerList(WCHAR* szFileName)
+{
+	return m_pServerConnectionManager->LoadConnectionServerList(szFileName);
 }

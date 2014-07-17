@@ -8,32 +8,32 @@ class BasePacket;
 class INetworkCallback
 {
 public:
-	INetworkCallback(void){m_isConnected = false; m_Serial = -1;}
+	INetworkCallback(void){ m_bConnected = false; m_serial = -1; }
 	virtual ~INetworkCallback(void){}
 
 	virtual bool HandleNetworkMessage(BasePacket* pPacket) = 0;
 	virtual bool HandleRPC(BasePacket* pPacket){ return false; }
-	virtual void HandleConnect(int Serial)
+	virtual void HandleConnect(int serial)
 	{
 //		printf("Connected\n"); 
-		m_Serial = Serial;
-		m_isConnected = true;
+		m_serial = serial;
+		m_bConnected = true;
 	}
 
 	virtual void HandleDisconnect(int Serial)
 	{
-		m_isConnected = false;
+		m_bConnected = false;
 	//	printf("Disconnected\n");
 	}
-	bool IsConnected(){return m_isConnected;}
-	int GetSerial(){return m_Serial;}
-	void SetSerial(int serial){m_Serial = serial;}
+	bool IsConnected(){ return m_bConnected; }
+	int GetSerial(){ return m_serial; }
+	void SetSerial(int serial){ m_serial = serial; }
 
 protected:
 
 private:
-	int m_Serial;
-	bool m_isConnected;
+	int m_serial;
+	bool m_bConnected;
 };
 
 #pragma warning( pop )

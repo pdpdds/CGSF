@@ -14,7 +14,12 @@ bool LogicEntry::ProcessPacket(BasePacket* pPacket)
 {
 	if (m_pLogicEntry)
 	{		
-		m_pLogicEntry->ProcessPacket(pPacket);
+		if (pPacket->GetAcceptorId() > 0)
+			m_pLogicEntry->ProcessPacket(pPacket);
+		else
+		{
+			m_pLogicEntry->ProcessConnectorPacket(pPacket);
+		}
 	}
 		
 	return true;

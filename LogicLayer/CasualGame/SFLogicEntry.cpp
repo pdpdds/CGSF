@@ -10,6 +10,7 @@ SFLogicEntry* SFLogicEntry::m_pLogicEntry = NULL;
 HINSTANCE g_pP2PServerHandle = 0;
 
 SFLogicEntry::SFLogicEntry(void)
+: m_bP2PService(false)
 {
 	m_pLogicEntry = this;
 }
