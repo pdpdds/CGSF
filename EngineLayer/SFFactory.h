@@ -4,7 +4,6 @@
 
 namespace CGSF
 {
-
 	typedef std::string ProductName;
 
 	template <typename T>

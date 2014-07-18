@@ -12,9 +12,9 @@
 #pragma comment(lib, "ace.lib")
 #endif
 
-INetworkEngine * CreateNetworkEngine(bool Server, IEngine* pEngine)
+INetworkEngine * CreateNetworkEngine(bool bServer, IEngine* pEngine)
 {
-	if(Server)
+	if (bServer)
 		return new ACEServerEngine(pEngine);
 	else
 		return new ACEClientEngine(pEngine);
@@ -26,7 +26,6 @@ ACEEngine::ACEEngine(IEngine* pEngine)
 	, m_acceptorIndex(0)
 {
 }
-
 
 ACEEngine::~ACEEngine(void)
 {
@@ -41,14 +40,14 @@ bool ACEEngine::Init()
 
 bool ACEEngine::SendInternal(int ownerSerial, char* buffer, unsigned int bufferSize)
 {
-	ProactorServiceMapSingleton::instance()->SendInternal(ownerSerial, buffer, bufferSize);
+	ProactorServiceManagerSinglton::instance()->SendInternal(ownerSerial, buffer, bufferSize);
 
 	return true;
 }
 
-
 bool ACEEngine::Disconnect(int serial)
 {
+	ProactorServiceManagerSinglton::instance()->Disconnect(serial);
 	return true;
 }
 
@@ -126,7 +125,6 @@ bool ACEEngine::Shutdown()
 }
 
 //////////////////////////////////////////////////////////////////////////////////////
-
 ACEServerEngine::ACEServerEngine(IEngine* pEngine)
 : ACEEngine(pEngine)
 {
@@ -170,4 +168,3 @@ bool ACEClientEngine::Start(char* szIP, unsigned short port)
 
 	return AddConnector(szIP, port) >= 0;
 }
-

@@ -168,12 +168,13 @@
     <ClInclude Include="ACEEngine.h" />
     <ClInclude Include="ACEHeader.h" />
     <ClInclude Include=".\SingltonObject.h" />
-    <ClInclude Include=".\ProactorIDMap.h" />
+    <ClInclude Include="IDMap.h" />
     <ClInclude Include="ACETimeOutHandler.h" />
     <ClInclude Include="InterlockedValue.h" />
     <ClInclude Include="Lock.h" />
     <ClInclude Include="ProactorAcceptor.h" />
     <ClInclude Include="ProactorService.h" />
+    <ClInclude Include="ProactorServiceManager.h" />
     <ClInclude Include="ProactorWorkerThread.h" />
     <ClInclude Include="Queue.h" />
   </ItemGroup>

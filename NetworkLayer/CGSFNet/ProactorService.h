@@ -22,6 +22,8 @@ public:
 	void PostRecv();
 	
 	void SendInternal(char* pBuffer, int BufferSize, int ownerSerial = -1) override;	
+	void Disconnect();
+
 	void SetSerial(int serial){m_serial = serial;}
 	int GetSerial(){ return m_serial; }
 

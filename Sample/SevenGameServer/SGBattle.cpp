@@ -165,7 +165,6 @@ BOOL SGBattle::ProcessUserRequest( SFPlayer* pPlayer, int msg )
 BOOL SGBattle::ProcessUserRequest( SFPlayer* pPlayer, BasePacket* pPacket )
 {
 	return m_DispatchingSystem.HandleMessage(pPacket->GetPacketID(), pPlayer, pPacket);
-	return TRUE;
 }
 
 BOOL SGBattle::OnTurnPass( SFPlayer* pPlayer, BasePacket* pPacket)

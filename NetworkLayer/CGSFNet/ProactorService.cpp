@@ -14,7 +14,7 @@ ProactorService::~ProactorService( void )
 	if(m_pTimerLock)
 	{
 		delete m_pTimerLock;
-		m_pTimerLock = 0;
+		m_pTimerLock = NULL;
 	}
 }
 
@@ -33,7 +33,7 @@ void ProactorService::open( ACE_HANDLE h, ACE_Message_Block& MessageBlock )
 
 	m_bServiceCloseFlag = false;
 
-	m_serial = ProactorServiceMapSingleton::instance()->Register(this);
+	m_serial = ProactorServiceManagerSinglton::instance()->Register(this);
 
 	assert(m_serial != INVALID_ID);
 
@@ -57,19 +57,19 @@ void ProactorService::PostRecv()
 	}
 }
 
-void ProactorService::handle_read_stream( const ACE_Asynch_Read_Stream::Result& Result )
+void ProactorService::handle_read_stream( const ACE_Asynch_Read_Stream::Result& result )
 {
-	ACE_Message_Block& Block = Result.message_block();
-	if(!Result.success() || Result.bytes_transferred() == 0)
+	ACE_Message_Block& block = result.message_block();
+	if (!result.success() || result.bytes_transferred() == 0)
 	{
-		Block.release();
+		block.release();
 		ReserveClose();
 	}
 	else
 	{
-		if (false == ISession::OnReceive(Block.rd_ptr(), Block.length(), m_acceptorId))
+		if (false == ISession::OnReceive(block.rd_ptr(), block.length(), m_acceptorId))
 		{
-			Block.release();
+			block.release();
 			ReserveClose();
 			return;
 		}
@@ -78,9 +78,9 @@ void ProactorService::handle_read_stream( const ACE_Asynch_Read_Stream::Result& 
 	}
 }
 
-void ProactorService::handle_write_stream( const ACE_Asynch_Write_Stream::Result& Result )
+void ProactorService::handle_write_stream( const ACE_Asynch_Write_Stream::Result& result )
 {
-	Result.message_block().release();
+	result.message_block().release();
 }
 
 void ProactorService::RegisterTimer()
@@ -91,18 +91,27 @@ void ProactorService::RegisterTimer()
 
 void ProactorService::UnregisterTimer()
 {
-	ProactorServiceMapSingleton::instance()->UnRegister(m_serial);
+	ACE_Proactor::instance()->cancel_timer(*this);
+}
+
+void ProactorService::Disconnect()
+{
+	if (this->handle() != ACE_INVALID_HANDLE)
+		ACE_OS::closesocket(this->handle());
+
+	this->handle(ACE_INVALID_HANDLE);
+
+	m_bServiceCloseFlag = true;
 }
 
 void ProactorService::ReserveClose()
 {	
+	ProactorServiceManagerSinglton::instance()->UnRegister(m_serial);
+
 	if(this->handle() != ACE_INVALID_HANDLE)
 		ACE_OS::closesocket(this->handle());
 	
 	this->handle(ACE_INVALID_HANDLE);	
-
-	UnregisterTimer();
-	ProactorServiceMapSingleton::instance()->UnRegister(m_serial);
 
 	ISession::OnDisconnect(this->m_serial, m_acceptorId);
 
@@ -115,19 +124,19 @@ void ProactorService::handle_time_out(const ACE_Time_Value& tv, const void* arg)
 	ACE_UNUSED_ARG(arg);
 
 	if(m_bServiceCloseFlag == true && m_pTimerLock->Acquire() == true)
-	{		
-		ACE_Proactor::instance()->cancel_timer(*this);			
+	{			
+		UnregisterTimer();
 		delete this;	
 	}
 }
 
-void ProactorService::SendInternal(char* pBuffer, int BufferSize, int ownerSerial)
+void ProactorService::SendInternal(char* pBuffer, int bufferSize, int ownerSerial)
 {			
 	ACE_Message_Block* pBlock = NULL;
 
-	ACE_NEW_NORETURN(pBlock, ACE_Message_Block (BufferSize));
+	ACE_NEW_NORETURN(pBlock, ACE_Message_Block(bufferSize));
 
-	pBlock->copy((const char*)pBuffer, BufferSize);
+	pBlock->copy((const char*)pBuffer, bufferSize);
 
 	if(NULL == pBlock->cont())
 	{

@@ -26,9 +26,6 @@
     <ClInclude Include=".\SingltonObject.h">
       <Filter>Source</Filter>
     </ClInclude>
-    <ClInclude Include=".\ProactorIDMap.h">
-      <Filter>Source</Filter>
-    </ClInclude>
     <ClInclude Include="Queue.h">
       <Filter>Source</Filter>
     </ClInclude>
@@ -45,6 +42,12 @@
       <Filter>Source</Filter>
     </ClInclude>
     <ClInclude Include="..\..\Common\BasePacket.h">
+      <Filter>Source</Filter>
+    </ClInclude>
+    <ClInclude Include="ProactorServiceManager.h">
+      <Filter>Source</Filter>
+    </ClInclude>
+    <ClInclude Include="IDMap.h">
       <Filter>Source</Filter>
     </ClInclude>
   </ItemGroup>
