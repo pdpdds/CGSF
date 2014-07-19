@@ -45,7 +45,7 @@ public:
 	bool ReleasePacket(BasePacket* pPacket);
 
 	SFServerConnectionManager* GetServerConnectionManager(){ return m_pServerConnectionManager; }
-	bool LoadConnectionServerList(WCHAR* szFileName);
+	bool SetupServerReconnectSys(WCHAR* szFileName);
 	int  AddListener(char* szIP, unsigned short port);
 	int  AddConnector(char* szIP, unsigned short port);
 	void AddRPCService(IRPCService* pService);

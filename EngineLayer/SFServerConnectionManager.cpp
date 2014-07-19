@@ -5,6 +5,9 @@
 #include "XML/Markup.h"
 
 SFServerConnectionManager::SFServerConnectionManager()
+: m_hThread(NULL)
+, m_hTimerEvent(NULL)
+, m_dwThreadID(0)
 {
 }
 
@@ -75,8 +78,10 @@ bool SFServerConnectionManager::InitServerList(WCHAR* szFileName)
 	return true;
 }
 
-bool SFServerConnectionManager::LoadConnectionServerList(WCHAR* szFileName)
+bool SFServerConnectionManager::SetupServerReconnectSys(WCHAR* szFileName)
 {
+	m_hTimerEvent = CreateEvent(NULL, FALSE, FALSE, L"ServerReconnectEvent");
+
 	if (InitServerList(szFileName) == false)
 		return false;
 
@@ -98,5 +103,39 @@ bool SFServerConnectionManager::LoadConnectionServerList(WCHAR* szFileName)
 		}
 	}
 
+	m_hThread = (HANDLE)_beginthreadex(0, NULL, ServerReconnectProc, this, 0, (unsigned*)&m_dwThreadID);
+
+	if (!m_hThread)
+	{
+		int errorNum = (GetLastError() == ERROR_SUCCESS) ? ERROR_MAX_THRDS_REACHED : GetLastError();
+		LOG(FATAL) << "ServerReconnectProc Thread Creation Fail. Error : " << errorNum;
+		return false;
+	}
+	
+	LOG(INFO) << "ServerReconnectProc success";
+
 	return true;
+}
+
+UINT SFServerConnectionManager::ServerReconnectProc(LPVOID arg)
+{
+	SFServerConnectionManager * pConnectionManager = reinterpret_cast<SFServerConnectionManager*>(arg);
+	
+	while (WaitForSingleObject(pConnectionManager->m_hTimerEvent, 1000) != WAIT_OBJECT_0)
+	{
+		for (auto& server : pConnectionManager->m_listDisonnectedServer)
+		{
+			
+			_ServerInfo& info = server.GetServerInfo();
+			int serial = -1;
+			serial = SFEngine::GetInstance()->AddConnector((char*)StringConversion::ToASCII(info.szIP.c_str()).c_str(), info.port);
+
+			/*if (serial >= 0)
+			{
+				pConnectionManager->m_mapConnectedServer.insert(std::make_pair(serial, server));
+			}*/
+		}
+	}
+
+	return 0;
 }

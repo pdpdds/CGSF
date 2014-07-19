@@ -333,7 +333,7 @@ int SFEngine::AddListener(char* szIP, unsigned short port)
 	return GetNetworkEngine()->AddListener(szIP, port);
 }
 
-bool SFEngine::LoadConnectionServerList(WCHAR* szFileName)
+bool SFEngine::SetupServerReconnectSys(WCHAR* szFileName)
 {
-	return m_pServerConnectionManager->LoadConnectionServerList(szFileName);
+	return m_pServerConnectionManager->SetupServerReconnectSys(szFileName);
 }

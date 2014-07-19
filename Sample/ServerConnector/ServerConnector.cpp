@@ -27,7 +27,7 @@ int _tmain(int argc, _TCHAR* argv[])
 
 	SFEngine::GetInstance()->Intialize(pLogicEntry, new SFPacketProtocol<SFJsonProtocol>);
 
-	if (false == SFEngine::GetInstance()->LoadConnectionServerList(L"ServerConnection.xml"))
+	if (false == SFEngine::GetInstance()->SetupServerReconnectSys(L"ServerConnection.xml"))
 		return 0;
 
 	SFEngine::GetInstance()->Start(0, 10004);
@@ -42,8 +42,6 @@ int _tmain(int argc, _TCHAR* argv[])
 	getchar();
 
 	SFEngine::GetInstance()->ShutDown();
-
-	
 
 	return 0;
 }
