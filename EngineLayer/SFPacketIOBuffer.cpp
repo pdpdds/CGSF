@@ -9,7 +9,7 @@ SFPacketIOBuffer::~SFPacketIOBuffer(void)
 {
 }
 
-bool SFPacketIOBuffer::GetPacket(SFPacketHeader& header, char* pBuffer, int& errorCode)
+bool SFPacketIOBuffer::GetPacket(SFPacketHeader& header, char* pBuffer, unsigned short packetSize, int& errorCode)
 {
 	errorCode = PACKETIO_ERROR_NONE;
 	int oldHead = GetHead();
@@ -29,7 +29,7 @@ bool SFPacketIOBuffer::GetPacket(SFPacketHeader& header, char* pBuffer, int& err
 
 	unsigned int dataSize = header.dataSize;
 
-	if (dataSize > SFPacket::GetMaxPacketSize() - sizeof(SFPacketHeader))
+	if (dataSize > packetSize - sizeof(SFPacketHeader))
 	{
 		SetHead(oldHead);
 		errorCode = PACKETIO_ERROR_DATA;

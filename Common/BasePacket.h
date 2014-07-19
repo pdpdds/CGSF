@@ -1,6 +1,5 @@
 #pragma once
 
-
 #define SFPACKET_NONE			0x00000001
 #define SFPACKET_CONNECT		0x00000002
 #define SFPACKET_DATA			0x00000004
@@ -10,7 +9,6 @@
 #define SFPACKET_DISCONNECT		0x00000040
 #define SFPACKET_DB				0x00000080
 #define SFPACKET_SERVERSHUTDOWN	0x00000100
-
 
 class BasePacket
 {
@@ -38,7 +36,7 @@ public:
 
 	virtual BasePacket* Clone(){ return NULL; }
 
-	virtual bool Encode() { return true; }
+	virtual bool Encode(unsigned short packetSize, int packetOption) { UNREFERENCED_PARAMETER(packetSize); UNREFERENCED_PARAMETER(packetOption);  return true; }
 	virtual bool Decode(char* pBuf, unsigned int nSize) { UNREFERENCED_PARAMETER(pBuf); UNREFERENCED_PARAMETER(nSize); return true; }
 
 protected:

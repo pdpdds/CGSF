@@ -12,7 +12,6 @@
 #include "SFPacketIOBuffer.h"
 #include "SFEncryption.h"
 #include "SFEncryptionXOR.h"
-#include "SFBaseProtocol.h"
 
 #include "Macro.h"
 
@@ -21,11 +20,11 @@ class BasePacket;
 void SendLogicLayer(BasePacket* pPacket);
 
 template <typename T>
-class SFPacketProtocol : public IPacketProtocol, public SFBaseProtocol 
+class SFPacketProtocol : public IPacketProtocol
 {
 public:
 	SFPacketProtocol();
-	SFPacketProtocol(INT bufferIOSize, USHORT packetDataSize);
+	SFPacketProtocol(int bufferIOSize, unsigned short packetDataSize, int packetOption = 0);
 	virtual ~SFPacketProtocol(void) {}
 
 	// ----------------------------------------------------------------
@@ -50,7 +49,14 @@ public:
 	//  Name:           Clone
 	//  Description:    패킷프로토콜 클래스 객체를 생성한다.
 	// ----------------------------------------------------------------
-	virtual IPacketProtocol* Clone() { return new SFPacketProtocol<T>(); }
+	virtual IPacketProtocol* Clone() 
+	{ 
+		SFPacketProtocol* pProtocol = new SFPacketProtocol<T>();
+		pProtocol->GetPacketProtocol().CopyBaseProtocol(m_Analyzer);
+		return pProtocol;
+	}
+
+	T& GetPacketProtocol(){ return m_Analyzer; }
 	
 	//virtual BasePacket* CreatePacket() override;
 
@@ -68,11 +74,11 @@ private:
 template <typename T>
 SFPacketProtocol<T>::SFPacketProtocol()
 {
-	m_Analyzer.Initialize(m_ioSize, m_packetSize);
+	m_Analyzer.Initialize(PACKET_DEFAULT_IO_SIZE, PACKET_DEFAULT_PACKET_SIZE, 0);
 }
 
 template <typename T>
-SFPacketProtocol<T>::SFPacketProtocol(INT bufferIOSize, USHORT packetDataSize)
+SFPacketProtocol<T>::SFPacketProtocol(int bufferIOSize, unsigned short packetDataSize, int packetOption)
 {
 	if (bufferIOSize > MAX_IO_SIZE)
 		bufferIOSize = MAX_IO_SIZE;
@@ -83,10 +89,7 @@ SFPacketProtocol<T>::SFPacketProtocol(INT bufferIOSize, USHORT packetDataSize)
 	if (packetDataSize > bufferIOSize)
 		packetDataSize = bufferIOSize;
 
-	m_ioSize = bufferIOSize;
-	m_packetSize = packetDataSize;
-
-	m_Analyzer.Initialize(m_ioSize, m_packetSize);
+	m_Analyzer.Initialize(bufferIOSize, packetDataSize, packetOption);
 }
 
 template <typename T>

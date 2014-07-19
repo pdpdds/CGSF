@@ -1,14 +1,15 @@
 #pragma once
+#include "SFBasePacketProtocol.h"
 
 class SFCommand;
 
-class SFCGSFPacketProtocol
+class SFCGSFPacketProtocol : public SFBasePacketProtocol
 {
 public:
 	SFCGSFPacketProtocol(void);
 	virtual ~SFCGSFPacketProtocol(void);
 
-	bool Initialize(int ioBufferSize, USHORT packetDataSize);
+	bool Initialize(int ioBufferSize, unsigned short packetDataSize, int packetOption);
 
 	bool Reset();
 	BasePacket* GetPacket(int& ErrorCode);

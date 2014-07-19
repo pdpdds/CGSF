@@ -24,9 +24,12 @@ SFProtobufProtocol::~SFProtobufProtocol(void)
 
 }
 
-bool SFProtobufProtocol::Initialize(int ioBufferSize, USHORT packetSize)
+bool SFProtobufProtocol::Initialize(int ioBufferSize, unsigned short packetSize, int packetOption)
 {
-	SFPacket::SetMaxPacketSize(packetSize);
+	m_ioSize = ioBufferSize;
+	m_packetSize = packetSize;
+	m_packetOption = packetOption;
+
 	return true;
 }
 

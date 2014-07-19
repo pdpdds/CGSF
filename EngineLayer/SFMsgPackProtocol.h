@@ -6,6 +6,7 @@
 // SFMsgPackPacket 패킷 객체의 생성을 담당하며 패킹된 MessagePack 데이터를 네트워크로 전송한다.
 // 프로토콜 클래스는 연결된 소켓에 1:1 대응을 한다.
 // ============================================================================
+#include "SFBasePacketProtocol.h"
 
 #pragma warning( push )
 #pragma warning (disable : 4244) 
@@ -17,13 +18,13 @@
 class SFMsgPackPacket;
 class SFPacketIOBuffer;
 
-class SFMsgPackProtocol
+class SFMsgPackProtocol : public SFBasePacketProtocol
 {
 public:
 	SFMsgPackProtocol();
 	virtual ~SFMsgPackProtocol();
 
-	bool Initialize(int ioBufferSize, USHORT packetDataSize);
+	bool Initialize(int ioBufferSize, unsigned short packetSize, int packetOption);
 
 	// ----------------------------------------------------------------
 	//  Name:           Reset

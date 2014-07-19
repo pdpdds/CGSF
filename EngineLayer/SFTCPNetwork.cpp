@@ -84,7 +84,6 @@ BOOL SFTCPNetwork::Update()
 				delete pPacket;
 				break;
 			}
-
 			
 		}
 		else

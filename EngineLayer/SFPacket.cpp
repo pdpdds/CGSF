@@ -17,7 +17,6 @@ SFPacket::SFPacket(USHORT packetID)
 	Initialize();
 
 	m_pHeader->packetID = packetID;
-
 }
 
 SFPacket::SFPacket()
@@ -59,9 +58,8 @@ void SFPacket::ResetDataBuffer()
 	memset(m_pPacketBuffer + sizeof(SFPacketHeader), 0, m_packetMaxSize - sizeof(SFPacketHeader));
 }
 
-bool SFPacket::Encode()
+bool SFPacket::Encode(unsigned short packetSize, int packetOption)
 {
-	int packetOption = SFBaseProtocol::GetPacketOption();
 
 	if (m_bEncoded == true)
 		return true;
@@ -78,7 +76,7 @@ bool SFPacket::Encode()
 	}
 
 	BYTE pDestBuf[MAX_PACKET_SIZE] = { 0, };
-	int destSize = GetMaxPacketSize() - sizeof(SFPacketHeader);
+	int destSize = packetSize - sizeof(SFPacketHeader);
 
 	DWORD dwResult = 0;
 
@@ -131,7 +129,7 @@ bool SFPacket::Encode()
 	return true;
 }
 
-BOOL SFPacket::Decode(int& errorCode)
+bool SFPacket::Decode(unsigned short packetSize, int& errorCode)
 {
 	SFPacketHeader* pHeader = GetHeader();
 
@@ -161,7 +159,7 @@ BOOL SFPacket::Decode(int& errorCode)
 	if(TRUE == pHeader->CheckCompressed())
 	{
 		BYTE pSrcBuf[MAX_IO_SIZE] = { 0, };
-		int destSize = GetMaxPacketSize();
+		int destSize = packetSize;
 
 		memcpy(pSrcBuf, GetData(), GetDataSize());
 		ResetDataBuffer();

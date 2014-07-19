@@ -20,12 +20,14 @@ SFAvroProtocol::~SFAvroProtocol()
 	m_pPacketIOBuffer = NULL;
 }
 
-bool SFAvroProtocol::Initialize(int ioBufferSize, USHORT packetSize)
+bool SFAvroProtocol::Initialize(int ioBufferSize, unsigned short packetSize, int packetOption)
 {
 	m_pPacketIOBuffer = new SFPacketIOBuffer();
 	m_pPacketIOBuffer->AllocIOBuf(ioBufferSize);
 
-	SFPacket::SetMaxPacketSize(packetSize);
+	m_ioSize = ioBufferSize;
+	m_packetSize = packetSize;
+	m_packetOption = packetOption;
 
 	return true;
 }
@@ -64,7 +66,7 @@ BasePacket* SFAvroProtocol::GetPacket(int& errorCode)
 
 	char dataBuffer[8096] = { 0, };
 
-	if (false == m_pPacketIOBuffer->GetPacket(header, dataBuffer, errorCode))
+	if (false == m_pPacketIOBuffer->GetPacket(header, dataBuffer, m_packetSize, errorCode))
 	{
 		DisposePacket(pPacket);
 		return NULL;

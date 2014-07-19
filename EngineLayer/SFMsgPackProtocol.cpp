@@ -19,12 +19,14 @@ SFMsgPackProtocol::~SFMsgPackProtocol()
 	m_pPacketIOBuffer = NULL;
 }
 
-bool SFMsgPackProtocol::Initialize(int ioBufferSize, USHORT packetSize)
+bool SFMsgPackProtocol::Initialize(int ioBufferSize, unsigned short packetSize, int packetOption)
 {
 	m_pPacketIOBuffer = new SFPacketIOBuffer();
 	m_pPacketIOBuffer->AllocIOBuf(ioBufferSize);
 
-	SFPacket::SetMaxPacketSize(packetSize);
+	m_ioSize = ioBufferSize;
+	m_packetSize = packetSize;
+	m_packetOption = packetOption;
 
 	return true;
 }
@@ -51,7 +53,7 @@ BasePacket* SFMsgPackProtocol::GetPacket(int& errorCode)
 
 	pPacket->GetData().reserve_buffer(pPacket->GetHeader()->dataSize);
 
-	if (FALSE == m_pPacketIOBuffer->GetPacket(*pPacket->GetHeader(), (char*)pPacket->GetData().buffer(), errorCode))
+	if (FALSE == m_pPacketIOBuffer->GetPacket(*pPacket->GetHeader(), (char*)pPacket->GetData().buffer(), m_packetSize, errorCode))
 	{
 		DisposePacket(pPacket);
 		return NULL;

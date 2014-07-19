@@ -1,16 +1,17 @@
 #pragma once
 #include "avro/Encoder.hh"
 #include "avro/Decoder.hh"
+#include "SFBasePacketProtocol.h"
 
 class SFAvroPPacket;
 
-class SFAvroProtocol
+class SFAvroProtocol : public SFBasePacketProtocol
 {
 public:
 	SFAvroProtocol();
 	virtual ~SFAvroProtocol();
 
-	bool Initialize(int ioBufferSize, USHORT packetDataSize);
+	bool Initialize(int ioBufferSize, unsigned short packetSize, int packetOption);
 
 	bool Reset();
 	bool AddTransferredData(char* pBuffer, DWORD dwTransferred);

@@ -49,9 +49,8 @@ void testProtobuf()
 }
 void testCGSF()
 {
-	SFBaseProtocol::SetPacketOption(CGSF_PACKET_OPTION);
 	ProtocolLogicEntry<ProtocolCGSFHandler>* pLogicEntry = new ProtocolLogicEntry<ProtocolCGSFHandler>();
-	SFEngine::GetInstance()->Intialize(pLogicEntry, new SFPacketProtocol<SFCGSFPacketProtocol>(MAX_IO_SIZE, MAX_PACKET_SIZE));
+	SFEngine::GetInstance()->Intialize(pLogicEntry, new SFPacketProtocol<SFCGSFPacketProtocol>(MAX_IO_SIZE, MAX_PACKET_SIZE, CGSF_PACKET_OPTION));
 }
 void testMsgPack()
 {

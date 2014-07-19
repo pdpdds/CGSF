@@ -148,9 +148,6 @@
     <ClCompile Include="SFMsgPackProtocol.cpp">
       <Filter>Packet\MessagePack</Filter>
     </ClCompile>
-    <ClCompile Include="SFBaseProtocol.cpp">
-      <Filter>Packet\PacketProtocol</Filter>
-    </ClCompile>
     <ClCompile Include="SFProtobufPacket.cpp">
       <Filter>Packet\ProtobufPacket</Filter>
     </ClCompile>
@@ -198,6 +195,9 @@
     </ClCompile>
     <ClCompile Include="ILogicEntry.cpp">
       <Filter>Logic</Filter>
+    </ClCompile>
+    <ClCompile Include="SFBasePacketProtocol.cpp">
+      <Filter>Packet\PacketProtocol</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -321,9 +321,6 @@
     <ClInclude Include="SFMsgPackProtocol.h">
       <Filter>Packet\MessagePack</Filter>
     </ClInclude>
-    <ClInclude Include="SFBaseProtocol.h">
-      <Filter>Packet\PacketProtocol</Filter>
-    </ClInclude>
     <ClInclude Include="SFAvroPacket.h">
       <Filter>Packet\Avro</Filter>
     </ClInclude>
@@ -404,6 +401,9 @@
     </ClInclude>
     <ClInclude Include="SFServerBridge.h">
       <Filter>Common</Filter>
+    </ClInclude>
+    <ClInclude Include="SFBasePacketProtocol.h">
+      <Filter>Packet\PacketProtocol</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

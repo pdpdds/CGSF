@@ -186,7 +186,7 @@
     <ClCompile Include="RPC\CPstream.cpp" />
     <ClCompile Include="SFAvroPacketImpl.cpp" />
     <ClCompile Include="SFAvroProtocol.cpp" />
-    <ClCompile Include="SFBaseProtocol.cpp" />
+    <ClCompile Include="SFBasePacketProtocol.cpp" />
     <ClCompile Include="SFCGSFPacketProtocol.cpp" />
     <ClCompile Include="SFClassicDispatcher.cpp" />
     <ClCompile Include="SFConfigure.cpp" />
@@ -255,7 +255,7 @@
     <ClInclude Include="SFAvroPacket.h" />
     <ClInclude Include="SFAvroPacketImpl.h" />
     <ClInclude Include="SFAvroProtocol.h" />
-    <ClInclude Include="SFBaseProtocol.h" />
+    <ClInclude Include="SFBasePacketProtocol.h" />
     <ClInclude Include="SFClassicDispatcher.h" />
     <ClInclude Include="SFConfigure.h" />
     <ClInclude Include="SFConstant.h" />

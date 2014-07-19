@@ -26,8 +26,8 @@ public:
 	SFPacketHeader* GetHeader(){ return m_pHeader; }
 	inline BYTE* GetData(){ return m_pPacketBuffer + sizeof(SFPacketHeader); }	
 
-	virtual bool Encode() override;
-	BOOL Decode(int& ErrorCode);
+	virtual bool Encode(unsigned short packetSize, int packetOption) override;
+	bool Decode(unsigned short packetSize, int& ErrorCode);
 	//virtual bool Decode(char* pBuf, unsigned int nSize) override;
 
 	inline void SetPacketID(unsigned short packetID){ BasePacket::SetPacketID(packetID);  m_pHeader->packetID = packetID; }
@@ -234,9 +234,6 @@ public:
 		memcpy(pBuffer, &m_pPacketBuffer[m_usCurrentReadPosition], bufferSize);
 		m_usCurrentReadPosition += (USHORT)bufferSize;
 	}
-
-	static void SetMaxPacketSize(USHORT packetSize) { m_packetMaxSize = packetSize; }
-	static USHORT GetMaxPacketSize(){ return m_packetMaxSize; }
 
 	virtual BasePacket* Clone() override;
 

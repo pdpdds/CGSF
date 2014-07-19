@@ -2,17 +2,18 @@
 #include "SFProtocol.h"
 #include "DataBuffer.h"
 #include "SFConstant.h"
+#include "SFBasePacketProtocol.h"
 
 class ISession;
 class BasePacket;
 
-class SFProtobufProtocol : public SFProtocol
+class SFProtobufProtocol : public SFProtocol, public SFBasePacketProtocol
 {
 public:
 	SFProtobufProtocol(void);
 	virtual ~SFProtobufProtocol(void);
 
-	bool Initialize(int ioBufferSize, USHORT packetDataSize);
+	bool Initialize(int ioBufferSize, unsigned short packetSize, int packetOption);
 
 	bool Reset();
 	BasePacket* GetPacket(int& ErrorCode);
