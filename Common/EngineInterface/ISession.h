@@ -1,5 +1,6 @@
 #ifndef ISESSION_H_
 #define ISESSION_H_
+
 #include "INetworkEngine.h"
 #include "IEngine.h"
 #include "ISessionService.h"
@@ -14,22 +15,22 @@ class ISession
 
 	virtual void SendInternal(char* pBuffer, int BufferSize, int ownerSerial = -1) = 0;
 
-	void OnConnect(int Serial, bool bServerObject = false)
+	void OnConnect(int serial, int listenerId = 0, bool bServerToServerConnect = false)
 	{
-		m_pSessionService = m_pOwner->GetEngine()->CreateSessionService();
-		m_pSessionService->SetSerial(Serial);
-		m_pOwner->GetEngine()->OnConnect(Serial, bServerObject);
+		m_pSessionService = m_pOwner->GetEngine()->CreateSessionService(bServerToServerConnect);
+		m_pSessionService->SetSerial(serial);
+		m_pOwner->GetEngine()->OnConnect(serial, listenerId);
 	}
 
-	void OnDisconnect(int Serial, bool bServerObject = false)
+	void OnDisconnect(int serial, int listenerId = 0)
 	{
-		m_pOwner->GetEngine()->OnDisconnect(Serial, bServerObject);
+		m_pOwner->GetEngine()->OnDisconnect(serial, listenerId);
 		delete m_pSessionService;
 	}
 
-	bool OnReceive(char* pData, unsigned short Length, bool bServerObject = false)
+	bool OnReceive(char* pData, unsigned short length, int listenerId = 0)
 	{
-		return m_pSessionService->OnReceive(pData, Length, bServerObject);
+		return m_pSessionService->OnReceive(pData, length, listenerId);
 	}
 
 	/*

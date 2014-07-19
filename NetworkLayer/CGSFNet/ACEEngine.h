@@ -27,6 +27,8 @@ public:
 	virtual int AddListener(char* szIP, unsigned short port) override;
 
 protected:
+	bool NetworkOpen();
+
 	int m_acceptorIndex;
 	int m_workThreadGroupID;
 	mapAcceptor m_mapAcceptor;

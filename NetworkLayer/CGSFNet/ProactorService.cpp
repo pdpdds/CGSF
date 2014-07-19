@@ -53,7 +53,6 @@ void ProactorService::PostRecv()
 	{
 		pBlock->release();
 		ReserveClose();
-		return;
 	}
 }
 

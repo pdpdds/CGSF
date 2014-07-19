@@ -11,7 +11,7 @@ public:
 	IEngine(void){}
 	virtual ~IEngine(void){}
 
-	virtual ISessionService* CreateSessionService() = 0;
+	virtual ISessionService* CreateSessionService(bool bServerToServerConnect = false) = 0;
 
 	////////////////////////////////////////////////////////////////////////////////////////////////////
 	//세션이 생성되었을 때

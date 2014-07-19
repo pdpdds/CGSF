@@ -58,8 +58,6 @@ int SFIOBuffer::AppendData( const char* pBuffer, int iSize )
 	CalcUsedBufferSize();
 
 	return iAdded;
-
-
 }
 
 int SFIOBuffer::GetData( char* pBuffer, int iSize )

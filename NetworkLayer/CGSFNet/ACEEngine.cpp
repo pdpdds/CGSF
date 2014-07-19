@@ -25,6 +25,7 @@ ACEEngine::ACEEngine(IEngine* pEngine)
 	, m_TimeOutHandler(this)
 	, m_acceptorIndex(0)
 {
+	ProactorServiceManagerSinglton::instance();
 }
 
 ACEEngine::~ACEEngine(void)
@@ -50,6 +51,28 @@ bool ACEEngine::Disconnect(int serial)
 	ProactorServiceManagerSinglton::instance()->Disconnect(serial);
 	return true;
 }
+
+bool ACEEngine::NetworkOpen()
+{
+	for (auto& acceptor : m_mapAcceptor)
+	{
+		ProactorAcceptor* pAcceptor = acceptor.second;
+
+		ACE_INET_Addr listen_addr;
+		listen_addr.set(pAcceptor->GetPort());
+
+		if (0 != pAcceptor->open(listen_addr, 0, 1, ACE_DEFAULT_BACKLOG, 1, 0, 1, 1, 1024))
+		{
+			delete pAcceptor;
+			return false;
+		}
+	}
+
+	return true;
+}
+
+
+
 
 bool ACEEngine::CheckTimerImpl()
 {
@@ -94,16 +117,7 @@ int ACEEngine::AddConnector(char* szIP, unsigned short port)
 
 int ACEEngine::AddListener(char* szIP, unsigned short port)
 {
-	ACE_INET_Addr listen_addr;
-	listen_addr.set(port);
-
-	ProactorAcceptor* pAcceptor = new ProactorAcceptor(this);
-
-	if (0 != pAcceptor->open(listen_addr, 0, 1, ACE_DEFAULT_BACKLOG, 1, 0, 1, 1, 1024))
-	{
-		delete pAcceptor;
-		return -1;
-	}
+	ProactorAcceptor* pAcceptor = new ProactorAcceptor(this, szIP, port);
 
 	m_acceptorIndex++;
 
@@ -145,7 +159,9 @@ bool ACEServerEngine::Start(char* szIP, unsigned short port)
 		return false;
 	}
 
-	return AddListener(szIP, port) > 0;
+	AddListener(szIP, port);
+
+	return NetworkOpen();
 }
 
 ACEClientEngine::ACEClientEngine(IEngine* pEngine)

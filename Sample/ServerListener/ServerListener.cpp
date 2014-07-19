@@ -7,22 +7,38 @@
 
 #pragma comment(lib, "EngineLayer.lib")
 
+#define RPC_LISTEN_PORT 10000
+#define GAMESERVER_LISTEN_PORT 10001
+#define AUTHSERVER_LISTEN_PORT 10002
+
+
 int _tmain(int argc, _TCHAR* argv[])
 {
 	ServerListenerLogicEntry* pLogicEntry = new ServerListenerLogicEntry();
 	SFEngine::GetInstance()->Intialize(pLogicEntry, new SFPacketProtocol<SFJsonProtocol>);
 
 	int listenerId = -1;
-	listenerId = SFEngine::GetInstance()->AddListener(nullptr, 10000);
+	listenerId = SFEngine::GetInstance()->AddListener(nullptr, RPC_LISTEN_PORT);
 	SFASSERT(listenerId != -1);
 
-	listenerId = SFEngine::GetInstance()->AddListener(nullptr, 10001);
+	//pLogicEntry->AddListenerCallback(listenerId, pListenerRPCCallback);
+
+	listenerId = SFEngine::GetInstance()->AddListener(nullptr, GAMESERVER_LISTEN_PORT);
 	SFASSERT(listenerId != -1);
 
-	listenerId = SFEngine::GetInstance()->AddListener(nullptr, 10002);
+	//pLogicEntry->AddListenerCallback(listenerId, pListenerGameServerCallback);
+
+	listenerId = SFEngine::GetInstance()->AddListener(nullptr, AUTHSERVER_LISTEN_PORT);
 	SFASSERT(listenerId != -1);
 
-	SFEngine::GetInstance()->Start();
+	//pLogicEntry->AddListenerCallback(listenerId, pListenerAuthServerCallback);
+
+	if (false == SFEngine::GetInstance()->Start())
+	{
+		LOG(ERROR) << "Server Start Fail";
+		SFEngine::GetInstance()->ShutDown();
+		return 0;
+	}
 
 	google::FlushLogFiles(google::GLOG_INFO);
 

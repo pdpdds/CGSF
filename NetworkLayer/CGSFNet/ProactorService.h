@@ -42,3 +42,15 @@ private:
 
 	bool m_bServiceCloseFlag;
 };
+
+class ProactorConnectorService : public ProactorService
+{
+public:
+	ProactorConnectorService(int connectorIdentifier){ m_connectorIdentifier = connectorIdentifier; }
+	virtual ~ProactorConnectorService(void){}
+
+	int GetConnectorIdentifer(){ return m_connectorIdentifier; }
+
+private:
+	int m_connectorIdentifier;
+};

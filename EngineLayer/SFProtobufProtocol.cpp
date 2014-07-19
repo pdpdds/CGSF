@@ -32,9 +32,7 @@ bool SFProtobufProtocol::Initialize(int ioBufferSize, USHORT packetSize)
 
 bool SFProtobufProtocol::AddTransferredData(char* pBuffer, DWORD dwTransferred)
 {
-	m_Buffer.Append(pBuffer,dwTransferred);
-
-	return true;
+	return m_Buffer.Append(pBuffer,dwTransferred);
 }
 
 bool SFProtobufProtocol::Reset()

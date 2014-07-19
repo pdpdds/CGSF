@@ -29,7 +29,7 @@ public:
 	bool Intialize(ILogicEntry* pLogicEntry, IPacketProtocol* pProtocol, ILogicDispatcher* pDispatcher = NULL);
 	bool ShutDown();
 
-	virtual ISessionService* CreateSessionService() override;
+	virtual ISessionService* CreateSessionService(bool bServerToServerConnect = false) override;
 	
 	virtual bool OnConnect(int serial, int acceptorId = 0) override;
 	virtual bool OnDisconnect(int serial, int acceptorId = 0) override;

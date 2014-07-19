@@ -16,7 +16,6 @@
 
 int _tmain(int argc, _TCHAR* argv[])
 {
-	
 	ServerConnectorLogicEntry* pLogicEntry = new ServerConnectorLogicEntry();
 
 //각각의 커넥터에 대한 콜백 객체를 추가한다.

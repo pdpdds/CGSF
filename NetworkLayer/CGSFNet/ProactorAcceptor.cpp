@@ -1,11 +1,13 @@
 #include "ProactorAcceptor.h"
 #include "SingltonObject.h"
 
-ProactorAcceptor::ProactorAcceptor( INetworkEngine* pOwner )
+ProactorAcceptor::ProactorAcceptor(INetworkEngine* pOwner, char* szIP, unsigned short port)
 : m_pOwner(pOwner)
 , m_acceptorNum(-1)
+, m_port(port)
 {
-	ProactorServiceManagerSinglton::instance();
+	if (szIP)
+		m_szIP = szIP;
 	//ACEAllocator* AceMemoryPool = new ACEAllocator(100, sizeof(SFProactorService));
 }
 

@@ -84,7 +84,7 @@ bool SFEngine::CreatePacketSendThread()
 	return TRUE;
 }
 
-ISessionService* SFEngine::CreateSessionService()
+ISessionService* SFEngine::CreateSessionService(bool bServerToServerConnect)
 {
 	IPacketProtocol* pProtocol = m_pPacketProtocol->Clone();
 	ISessionService* pService = new SFSessionService(pProtocol);
