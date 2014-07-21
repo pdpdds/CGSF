@@ -1,6 +1,6 @@
+#include "EngineInterface/EngineStructure.h"
 #include "ServerSession.h"
 #include "ASIOServer.h"
-
 
 Session::Session(int nSessionID, boost::asio::io_service& io_service, ASIOServer* pServer)
 		: m_Socket(io_service)
@@ -106,12 +106,20 @@ void Session::handle_receive( const boost::system::error_code& error, size_t byt
 			std::cout << "error No: " << error.value() << " error Message: " << error.message() << std::endl;
 		}
 
+		_SessionDesc desc;
+		desc.sessionType = 0;
+		desc.identifier = 1;
+
 		m_pServer->CloseSession( m_nSessionID );
-		OnDisconnect(m_nSessionID);
+		OnDisconnect(m_nSessionID, desc);
 	}
 	else
 	{
-		if(false == OnReceive(m_ReceiveBuffer.data(), bytes_transferred))
+		_SessionDesc desc;
+		desc.sessionType = 0;
+		desc.identifier = 1;
+
+		if (false == OnReceive(m_ReceiveBuffer.data(), bytes_transferred, desc))
 		{
 			//강제로 끊게 하는 메소드는?
 		}
@@ -120,8 +128,18 @@ void Session::handle_receive( const boost::system::error_code& error, size_t byt
 	}
 }
 
-void Session::SendInternal(char* pBuffer, int BufferSize, int ownerSerial)
+bool Session::SendRequest(BasePacket* pPacket)
 {
-	PostSend(false, BufferSize, pBuffer);
-}
+	IPacketProtocol* pProtocol = GetPacketProtocol();
+	if (NULL == pProtocol)
+		return false;
 
+	char* pBuffer = NULL;
+	int bufferSize;
+	if (false == pProtocol->Encode(pPacket, &pBuffer, bufferSize))
+		return false;
+
+	PostSend(false, bufferSize, pBuffer);
+
+	return true;
+}

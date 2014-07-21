@@ -2,10 +2,9 @@
 #include "SingltonObject.h"
 #include <Assert.h>
 
-ProactorService::ProactorService(int acceptorId)
+ProactorService::ProactorService()
 	: m_bServiceCloseFlag(false)
 	, m_pTimerLock(0)
-	, m_acceptorId(acceptorId)
 {
 }
 
@@ -39,7 +38,7 @@ void ProactorService::open( ACE_HANDLE h, ACE_Message_Block& MessageBlock )
 
 	RegisterTimer();
 
-	ISession::OnConnect(this->m_serial, m_acceptorId);
+	ISession::OnConnect(this->m_serial, m_sessionDesc);
 
 	PostRecv();
 }
@@ -66,7 +65,7 @@ void ProactorService::handle_read_stream( const ACE_Asynch_Read_Stream::Result& 
 	}
 	else
 	{
-		if (false == ISession::OnReceive(block.rd_ptr(), block.length(), m_acceptorId))
+		if (false == ISession::OnReceive(block.rd_ptr(), block.length(), m_sessionDesc))
 		{
 			block.release();
 			ReserveClose();
@@ -112,7 +111,7 @@ void ProactorService::ReserveClose()
 	
 	this->handle(ACE_INVALID_HANDLE);	
 
-	ISession::OnDisconnect(this->m_serial, m_acceptorId);
+	ISession::OnDisconnect(this->m_serial, m_sessionDesc);
 
 	m_bServiceCloseFlag = true;
 }
@@ -129,7 +128,7 @@ void ProactorService::handle_time_out(const ACE_Time_Value& tv, const void* arg)
 	}
 }
 
-void ProactorService::SendInternal(char* pBuffer, int bufferSize, int ownerSerial)
+void ProactorService::SendInternal(char* pBuffer, int bufferSize)
 {			
 	ACE_Message_Block* pBlock = NULL;
 
@@ -145,4 +144,20 @@ void ProactorService::SendInternal(char* pBuffer, int bufferSize, int ownerSeria
 	{
 		m_AsyncWriter.writev(*pBlock, pBlock->total_length());
 	}	
+}
+
+bool ProactorService::SendRequest(BasePacket* pPacket)
+{
+	IPacketProtocol* pProtocol = GetPacketProtocol();
+	if (NULL == pProtocol)
+		return false;
+
+	char* pBuffer = NULL;
+	int bufferSize = 0;
+	if (false == pProtocol->Encode(pPacket, &pBuffer, bufferSize))
+		return false;
+
+	SendInternal(pBuffer, bufferSize);
+
+	return true;
 }

@@ -2,6 +2,7 @@
 #include <EngineInterface/INetworkEngine.h>
 #include <EngineInterface/IEngine.h>
 #include "MGEngine.h"
+#include "BasePacket.h"
 
 
 MGClientReceiver::MGClientReceiver(INetworkEngine* pOwner)
@@ -63,18 +64,28 @@ void MGClientReceiver::notifyConnectingResult(INT32 requestID, ASSOCKDESCEX& soc
 	
 }
 
-void MGClientReceiver::SendInternal(char* pBuffer, int BufferSize, int ownerSerial)
+bool MGClientReceiver::SendRequest(BasePacket* pPacket)
 {
+	IPacketProtocol* pProtocol = GetPacketProtocol();
+	if (NULL == pProtocol)
+		return false;
+
+	char* pBuffer = NULL;
+	int bufferSize;
+	if (false == pProtocol->Encode(pPacket, &pBuffer, bufferSize))
+		return false;
+
 	Synchronized es(&m_sessionLock);
 
-	SessionMap::iterator iter = m_sessionMap.find(ownerSerial);
+	SessionMap::iterator iter = m_sessionMap.find(pPacket->GetSerial());
 
-	if(iter == m_sessionMap.end())
+	if (iter == m_sessionMap.end())
 	{
-		return;
+		return false;
 	}
 
-	iter->second.psender->postingSend(iter->second, BufferSize, pBuffer);
+	iter->second.psender->postingSend(iter->second, bufferSize, pBuffer);
+	return true;
 }
 
 ////////////////////////////////////////////////////////

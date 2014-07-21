@@ -4,14 +4,15 @@
 #include <ACE/Message_Block.h>
 #include "InterlockedValue.h"
 
-#include <EngineInterface/ISession.h>
+#include "EngineInterface/EngineStructure.h"
+#include "BasePacket.h"
 
-class BaseClass;
+#include <EngineInterface/ISession.h>
 
 class ProactorService : public ACE_Service_Handler, public ISession
 {
 public:
-	ProactorService(int acceptorId = 0);
+	ProactorService();
 	virtual ~ProactorService(void);
 
 	virtual void open(ACE_HANDLE h, ACE_Message_Block& MessageBlock) override;
@@ -21,11 +22,14 @@ public:
 
 	void PostRecv();
 	
-	void SendInternal(char* pBuffer, int BufferSize, int ownerSerial = -1) override;	
+	virtual bool SendRequest(BasePacket* pPacket) override;
+	void SendInternal(char* pBuffer, int BufferSize);	
 	void Disconnect();
 
 	void SetSerial(int serial){m_serial = serial;}
 	int GetSerial(){ return m_serial; }
+
+	void SetSessionDesc(_SessionDesc& desc){ m_sessionDesc = desc; };
 
 protected:
 	void RegisterTimer();
@@ -37,20 +41,8 @@ private:
 	ACE_Asynch_Read_Stream m_AsyncReader;
 
 	int m_serial;
-	int m_acceptorId;
+	_SessionDesc m_sessionDesc;
 	InterlockedValue* m_pTimerLock;
 
 	bool m_bServiceCloseFlag;
-};
-
-class ProactorConnectorService : public ProactorService
-{
-public:
-	ProactorConnectorService(int connectorIdentifier){ m_connectorIdentifier = connectorIdentifier; }
-	virtual ~ProactorConnectorService(void){}
-
-	int GetConnectorIdentifer(){ return m_connectorIdentifier; }
-
-private:
-	int m_connectorIdentifier;
 };

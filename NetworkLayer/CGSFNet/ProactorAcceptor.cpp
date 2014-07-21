@@ -29,8 +29,13 @@ int ProactorAcceptor::validate_connection( const ACE_Asynch_Accept::Result& resu
 
 ProactorService* ProactorAcceptor::make_handler()
 {
-	ProactorService* pProactorService = new ProactorService(m_acceptorNum);
+	_SessionDesc sessionDesc;
+	sessionDesc.identifier = m_acceptorNum;
+	sessionDesc.sessionType = 0;
+
+	ProactorService* pProactorService = new ProactorService();
 	pProactorService->SetOwner(m_pOwner);
+	pProactorService->SetSessionDesc(sessionDesc);
 	
 	return pProactorService;
 }

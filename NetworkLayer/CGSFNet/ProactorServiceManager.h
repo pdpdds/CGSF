@@ -1,6 +1,7 @@
 #pragma once
 #include "IDMap.h"
 #include "Lock.h"
+#include "BasePacket.h"
 
 template <typename LockStrategy, typename T, int MaxIDCount>
 class ProactorServiceManager : public SFIDMap<LockStrategy, T, MaxIDCount>
@@ -9,15 +10,15 @@ public:
 	ProactorServiceManager(){}
 	virtual ~ProactorServiceManager(){}
 
-	bool SendInternal(int ownerSerial, char* buffer, unsigned int bufferSize)
+	bool SendRequest(BasePacket* pPacket)
 	{
 		SFLockHelper lock(&m_lock);
 
-		T* pProactorService = Get(ownerSerial);
+		T* pProactorService = Get(pPacket->GetSerial());
 
 		if (pProactorService != NULL)
 		{
-			pProactorService->SendInternal(buffer, bufferSize);
+			pProactorService->SendRequest(pPacket);
 		}
 
 		return true;

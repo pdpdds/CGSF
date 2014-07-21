@@ -23,7 +23,7 @@ public:
 	boost::asio::ip::tcp::socket& Socket() { return m_Socket; }
 
 	void Init();
-	virtual void SendInternal(char* pBuffer, int BufferSize, int ownerSerial = -1) override;
+	virtual bool SendRequest(BasePacket* pPacket) override;
 
 	void PostReceive();
 	
@@ -36,12 +36,8 @@ public:
 
 private:
 	void handle_write(const boost::system::error_code& error, size_t bytes_transferred);
-	
 	void handle_receive( const boost::system::error_code& error, size_t bytes_transferred );
 	
-	
-
-
 	int m_nSessionID;
 	boost::asio::ip::tcp::socket m_Socket;
 	

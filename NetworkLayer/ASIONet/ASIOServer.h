@@ -72,17 +72,17 @@ public:
 		}
 	}
 
-	bool SendInternal(int ownerSerial, char* buffer, unsigned int bufferSize)
+	bool SendRequest(BasePacket* pPacket)
 	{
 		bool bResult = false;
 		EnterCriticalSection(&m_lock);
 
-		Session* pSession = FindSession(ownerSerial);
-		if(pSession)
+		Session* pSession = FindSession(pPacket->GetSerial());
+		if (pSession)
 		{
-			if( pSession->Socket().is_open() )					
-			{						
-				pSession->SendInternal(buffer, bufferSize);
+			if (pSession->Socket().is_open())
+			{
+				pSession->SendRequest(pPacket);
 
 				bResult = true;
 			}
@@ -136,7 +136,11 @@ private:
 			std::cout << "클라이언트 접속 성공. SessionID: " << pSession->SessionID() << std::endl;
 			
 			pSession->Init();
-			pSession->OnConnect(pSession->SessionID());
+
+			_SessionDesc desc;
+			desc.sessionType = 0;
+			desc.identifier = 1;
+			pSession->OnConnect(pSession->SessionID(), desc);
 
 			pSession->PostReceive();
 			

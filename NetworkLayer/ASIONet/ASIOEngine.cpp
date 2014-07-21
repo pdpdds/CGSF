@@ -1,3 +1,4 @@
+#include "EngineInterface/EngineStructure.h"
 #include "ASIOEngine.h"
 #include "BasePacket.h"
 
@@ -40,10 +41,10 @@ bool ASIOServerEngine::Shutdown()
 	return true;
 }
 
-bool ASIOServerEngine::SendInternal(int ownerSerial, char* buffer, unsigned int bufferSize)
+bool ASIOServerEngine::SendRequest(BasePacket* pPacket)
 {
-	m_pServer->SendInternal(ownerSerial, buffer, bufferSize);
-	return true;
+	return m_pServer->SendRequest(pPacket);
+	
 }
 
 bool ASIOServerEngine::Disconnect(int serial)
@@ -95,12 +96,6 @@ bool ASIOClientEngine::Shutdown()
 	return true;
 }
 
-bool ASIOClientEngine::SendInternal(int ownerSerial, char* buffer, unsigned int bufferSize) 
-{
-	m_pClient->SendInternal(buffer, bufferSize, ownerSerial);
-	return true;
-}
-
 bool ASIOClientEngine::Disconnect(int serial)
 {
 	return true;
@@ -114,4 +109,9 @@ bool ASIOClientEngine::CheckTimerImpl()
 bool ASIOClientEngine::CreateTimerTask(unsigned int timerID, unsigned int startTime, unsigned int period)
 {	
 	return true;
+}
+
+bool ASIOClientEngine::SendRequest(BasePacket* pPacket)
+{
+	return m_pClient->SendRequest(pPacket);
 }

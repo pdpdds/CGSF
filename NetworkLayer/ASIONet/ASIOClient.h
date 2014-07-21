@@ -5,8 +5,11 @@
 #include <boost/thread.hpp>
 
 #include "Protocol.h"
+#include <EngineInterface/EngineStructure.h>
 #include <EngineInterface/INetworkEngine.h>
 #include <EngineInterface/ISession.h>
+
+class BasePacket;
 
 #define ASIO_CLIENT_SESSION_ID 1
 
@@ -60,13 +63,28 @@ public:
 			m_Socket.close();
 		}
 
-		OnDisconnect(m_sessionId);
+		_SessionDesc desc;
+		desc.sessionType = 1;
+		desc.identifier = 1;
+
+		OnDisconnect(m_sessionId, desc);
 	}
 
 
-	virtual void SendInternal(char* buffer, int bufferSize, int ownerSerial = -1)
+	virtual bool SendRequest(BasePacket* pPacket)
 	{
-		PostSend(false, bufferSize, buffer);
+		IPacketProtocol* pProtocol = GetPacketProtocol();
+		if (NULL == pProtocol)
+			return false;
+
+		char* pBuffer = NULL;
+		int bufferSize;
+		if (false == pProtocol->Encode(pPacket, &pBuffer, bufferSize))
+			return false;
+
+		PostSend(false, bufferSize, pBuffer);
+
+		return true;
 	}
 
 	void PostSend( const bool bImmediately, const int nSize, char* pData )
@@ -125,7 +143,11 @@ private:
 		{	
 			std::cout << "서버 접속 성공" << std::endl;
 
-			OnConnect(m_sessionId);
+			_SessionDesc desc;
+			desc.sessionType = 1;
+			desc.identifier = 1;
+
+			OnConnect(m_sessionId, desc);
 			PostReceive();
 		}
 		else
@@ -178,7 +200,11 @@ private:
 		}
 		else
 		{
-			if(false == OnReceive(m_ReceiveBuffer.data(), bytes_transferred))
+			_SessionDesc desc;
+			desc.sessionType = 1;
+			desc.identifier = 1;
+
+			if (false == OnReceive(m_ReceiveBuffer.data(), bytes_transferred, desc))
 			{
 			}			
 

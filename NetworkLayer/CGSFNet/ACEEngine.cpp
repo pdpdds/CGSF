@@ -32,24 +32,20 @@ ACEEngine::~ACEEngine(void)
 {
 }
 
-bool ACEEngine::Init()
+bool ACEEngine::SendRequest(BasePacket* pPacket)
 {
-	ACE::init();
-
-	return true;
-}
-
-bool ACEEngine::SendInternal(int ownerSerial, char* buffer, unsigned int bufferSize)
-{
-	ProactorServiceManagerSinglton::instance()->SendInternal(ownerSerial, buffer, bufferSize);
-
-	return true;
+	return ProactorServiceManagerSinglton::instance()->SendRequest(pPacket);
 }
 
 bool ACEEngine::Disconnect(int serial)
 {
 	ProactorServiceManagerSinglton::instance()->Disconnect(serial);
 	return true;
+}
+
+bool ACEEngine::Activate()
+{
+	return NetworkOpen();
 }
 
 bool ACEEngine::NetworkOpen()
@@ -93,7 +89,7 @@ bool ACEEngine::CreateTimerTask(unsigned int TimerID, unsigned int StartTime, un
 	return true;
 }
 
-int ACEEngine::AddConnector(char* szIP, unsigned short port)
+int ACEEngine::AddConnector(int connectorIndex, char* szIP, unsigned short port)
 {
 	ACE_SOCK_Stream* stream = new ACE_SOCK_Stream();
 	ACE_INET_Addr connectAddr(port, szIP);
@@ -102,15 +98,18 @@ int ACEEngine::AddConnector(char* szIP, unsigned short port)
 	if (-1 == result)
 		return -1;
 
+	_SessionDesc sessionDesc;
+	sessionDesc.identifier = connectorIndex;
+	sessionDesc.sessionType = 1;
+
 	ProactorService* pService = new ProactorService();
 	pService->SetOwner(this);
+	pService->SetSessionDesc(sessionDesc);
 
 	ACE_Message_Block mb;
 	pService->open(stream->get_handle(), mb);
 	delete stream;
 	stream = NULL;
-
-	m_mapConnector.insert(std::make_pair(pService->GetSerial(), pService));
 
 	return pService->GetSerial();
 }
@@ -145,12 +144,14 @@ ACEServerEngine::ACEServerEngine(IEngine* pEngine)
 
 }
 
-bool ACEServerEngine::Start(char* szIP, unsigned short port)
+bool ACEServerEngine::Init()
 {
+	ACE::init();
+
 	SYSTEM_INFO si;
 	GetSystemInfo(&si);
 
-	int OptimalThreadCount =si.dwNumberOfProcessors * 2;
+	int OptimalThreadCount = si.dwNumberOfProcessors * 2;
 
 	m_workThreadGroupID = ACE_Thread_Manager::instance()->spawn_n(OptimalThreadCount, (ACE_THR_FUNC)ProactorWorkerThread, NULL, THR_NEW_LWP, ACE_DEFAULT_THREAD_PRIORITY, 1);
 
@@ -159,6 +160,11 @@ bool ACEServerEngine::Start(char* szIP, unsigned short port)
 		return false;
 	}
 
+	return true;
+}
+
+bool ACEServerEngine::Start(char* szIP, unsigned short port)
+{
 	AddListener(szIP, port);
 
 	return NetworkOpen();
@@ -170,8 +176,11 @@ ACEClientEngine::ACEClientEngine(IEngine* pEngine)
 
 }
 
-bool ACEClientEngine::Start(char* szIP, unsigned short port)
+
+bool ACEClientEngine::Init()
 {
+	ACE::init();
+
 	int OptimalThreadCount = 1;
 
 	m_workThreadGroupID = ACE_Thread_Manager::instance()->spawn_n(OptimalThreadCount, (ACE_THR_FUNC)ProactorWorkerThread, NULL, THR_NEW_LWP, ACE_DEFAULT_THREAD_PRIORITY, 1);
@@ -179,8 +188,13 @@ bool ACEClientEngine::Start(char* szIP, unsigned short port)
 	if (m_workThreadGroupID == -1)
 	{
 		assert(0);
-		return FALSE;
+		return false;
 	}
 
-	return AddConnector(szIP, port) >= 0;
+	return true;
+}
+
+bool ACEClientEngine::Start(char* szIP, unsigned short port)
+{
+	return AddConnector(1, szIP, port) >= 0;
 }
