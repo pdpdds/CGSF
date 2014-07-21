@@ -26,6 +26,7 @@
 
 // TODO: reference additional headers your program requires here
 #include "SFConstant.h"
+#include "EngineInterface/EngineStructure.h"
 #include "SFGameConstant.h"
 #include "SFStructure.h"
 #include "SFGameStructure.h"
