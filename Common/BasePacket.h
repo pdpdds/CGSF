@@ -24,8 +24,8 @@ public:
 	
 	void SetSerial(int serial){ m_serial = serial; }
 	int GetSerial(){ return m_serial; }
-	void SetAcceptorId(int acceptorId){ m_acceptorId = acceptorId; }
-	int GetAcceptorId(){ return m_acceptorId; }
+	void SetSessionDesc(_SessionDesc sessiondesc){ m_sessiondesc = sessiondesc; }
+	_SessionDesc& GetSessionDesc(){ return m_sessiondesc; }
 
 	void CopyBaseHeader(BasePacket* pSource)
 	{
@@ -38,12 +38,13 @@ public:
 
 	virtual bool Encode(unsigned short packetSize, int packetOption) { UNREFERENCED_PARAMETER(packetSize); UNREFERENCED_PARAMETER(packetOption);  return true; }
 	virtual bool Decode(char* pBuf, unsigned int nSize) { UNREFERENCED_PARAMETER(pBuf); UNREFERENCED_PARAMETER(nSize); return true; }
+	virtual void Release() {};
 
 protected:
 
 private:
 	int m_serial;
-	int m_acceptorId;
+	_SessionDesc m_sessiondesc;
 	unsigned int m_packetType;
 	unsigned short m_packetID;
 };

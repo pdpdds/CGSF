@@ -10,9 +10,10 @@ public:
 	IPacketProtocol(){}
 	virtual ~IPacketProtocol() {}
 
-	virtual bool OnReceive(int Serial, char* pBuffer, unsigned int dwTransferred, int acceptorId) = 0;
-	virtual bool SendRequest(BasePacket* pPacket) = 0;
+	virtual bool OnReceive(int Serial, char* pBuffer, unsigned int dwTransferred, _SessionDesc& pDesc) = 0;
+	virtual bool Encode(BasePacket* pPacket, char** ppBuffer, int& bufferSize) = 0;
 	//virtual BasePacket* CreatePacket() = 0;
+
 	virtual bool DisposePacket(BasePacket* pPacket) = 0;
 
 	virtual IPacketProtocol* Clone() = 0;
