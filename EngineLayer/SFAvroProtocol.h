@@ -17,10 +17,9 @@ public:
 	bool AddTransferredData(char* pBuffer, DWORD dwTransferred);
 	BasePacket* GetPacket(int& errorCode);
 
-	bool SendRequest(BasePacket* pPacket);
-
+	bool Encode(BasePacket* pPacket, char** ppBuffer, int& bufferSize);
 	
-	bool DisposePacket(BasePacket* pPacket);
+	static bool DisposePacket(BasePacket* pPacket);
 	//BasePacket* CreatePacket();
 
 	virtual BasePacket* CreateIncomingPacketFromPacketId(int PacketId) = 0;
@@ -29,4 +28,5 @@ protected:
 
 private:
 	SFPacketIOBuffer* m_pPacketIOBuffer;
+	char* m_pBuffer;
 };

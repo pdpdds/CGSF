@@ -8,6 +8,7 @@
 #include "SFUtil.h"
 #include "SFPacketDelaySendTask.h"
 #include "SFServerConnectionManager.h"
+#include "SFPacketProtocolManager.h"
 
 #pragma comment(lib, "BaseLayer.lib")
 #pragma comment(lib, "DatabaseLayer.lib")
@@ -21,6 +22,7 @@ SFEngine::SFEngine()
 	: m_packetSendThreadId(-1)
 	, m_pNetworkEngine(0)
 	, m_isServer(false)
+	, m_pPacketProtocolManager(NULL)
 {
 	ACE::init();
 
@@ -84,11 +86,16 @@ bool SFEngine::CreatePacketSendThread()
 	return TRUE;
 }
 
-ISessionService* SFEngine::CreateSessionService(bool bServerToServerConnect)
+ISessionService* SFEngine::CreateSessionService(_SessionDesc& desc)
 {
-	IPacketProtocol* pProtocol = m_pPacketProtocol->Clone();
-	ISessionService* pService = new SFSessionService(pProtocol);
-	return pService;
+	IPacketProtocol* pSourceProtocol = NULL;
+	if (desc.sessionType == 0)
+		pSourceProtocol = m_pPacketProtocolManager->GetPacketProtocolWithListenerId(desc.identifier);
+	else
+		pSourceProtocol = m_pPacketProtocolManager->GetPacketProtocolWithConnectorId(desc.identifier);
+
+	IPacketProtocol* pCloneProtocol = pSourceProtocol->Clone();
+	return new SFSessionService(pCloneProtocol);
 }
 
 void SFEngine::SetLogFolder(TCHAR* szPath)
@@ -123,9 +130,16 @@ bool SFEngine::Intialize(ILogicEntry* pLogicEntry, IPacketProtocol* pProtocol, I
 
 	ACE::init();
 
-	ASSERT(pProtocol != NULL);
-
-	SetPacketProtocol(pProtocol);
+	if (pProtocol)
+	{
+		m_pPacketProtocolManager = new SFPacketProtocolManager(false);
+		m_pPacketProtocolManager->AddPacketProtocol(1, pProtocol);
+		m_pPacketProtocolManager->AddListenerInfo(1, 1);
+	}
+	else
+	{
+		m_pPacketProtocolManager = new SFPacketProtocolManager(true);
+	}
 
 	if (pDispatcher == NULL)
 	{
@@ -214,6 +228,11 @@ bool SFEngine::Start(char* szIP, unsigned short port)
 	return true;
 }
 
+bool SFEngine::Activate()
+{
+	return m_pNetworkEngine->Activate();
+}
+
 bool SFEngine::ShutDown()
 {
 	LOG(INFO) << "Engine Shut Down!!";
@@ -237,10 +256,10 @@ bool SFEngine::ShutDown()
 	return true;
 }
 
-bool SFEngine::OnConnect(int serial, int acceptorId)
+bool SFEngine::OnConnect(int serial, _SessionDesc& desc)
 {
 	BasePacket* pPacket = new BasePacket();
-	pPacket->SetAcceptorId(acceptorId);
+	pPacket->SetSessionDesc(desc);
 	pPacket->SetPacketType(SFPACKET_CONNECT);
 	pPacket->SetSerial(serial);
 
@@ -249,10 +268,10 @@ bool SFEngine::OnConnect(int serial, int acceptorId)
 	return true;
 }
 
-bool SFEngine::OnDisconnect(int serial, int acceptorId)
+bool SFEngine::OnDisconnect(int serial, _SessionDesc& desc)
 {
 	BasePacket* pPacket = new BasePacket();
-	pPacket->SetAcceptorId(acceptorId);
+	pPacket->SetSessionDesc(desc);
 	pPacket->SetPacketType(SFPACKET_DISCONNECT);
 	pPacket->SetSerial(serial);
 
@@ -276,7 +295,7 @@ bool SFEngine::OnTimer(const void *arg)
 
 bool SFEngine::SendRequest(BasePacket* pPacket)
 {
-	return GetPacketProtocol()->SendRequest(pPacket);
+	return GetNetworkEngine()->SendRequest(pPacket);
 }
 
 bool SFEngine::SendDelayedRequest(BasePacket* pPacket, std::vector<int>* pOwnerList)
@@ -304,7 +323,7 @@ bool SFEngine::SendRequest(BasePacket* pPacket, std::vector<int>& ownerList)
 	for (; iter != ownerList.end(); iter++)
 	{
 		pPacket->SetSerial(*iter);
-		if (false == GetPacketProtocol()->SendRequest(pPacket))
+		if (false == GetNetworkEngine()->SendRequest(pPacket))
 		{
 			DLOG(ERROR) << "broad cast fail";
 		}
@@ -313,27 +332,46 @@ bool SFEngine::SendRequest(BasePacket* pPacket, std::vector<int>& ownerList)
 	return true;
 }
 
-bool SFEngine::SendInternal(int ownerSerial, char* buffer, unsigned int bufferSize)
-{
-	return GetNetworkEngine()->SendInternal(ownerSerial, buffer, bufferSize);
-}
-
 bool SFEngine::ReleasePacket(BasePacket* pPacket)
 {
-	return m_pPacketProtocol->DisposePacket(pPacket);
+	pPacket->Release();
+	return true;
 }
 
-int SFEngine::AddConnector(char* szIP, unsigned short port)
+int SFEngine::AddConnector(int connectorId, char* szIP, unsigned short port)
 {
-	return GetNetworkEngine()->AddConnector(szIP, port);
+	return GetNetworkEngine()->AddConnector(connectorId, szIP, port);
 }
 
-int SFEngine::AddListener(char* szIP, unsigned short port)
+int SFEngine::AddListener(char* szIP, unsigned short port, int packetProtocolId)
 {
-	return GetNetworkEngine()->AddListener(szIP, port);
+	int listenerId = GetNetworkEngine()->AddListener(szIP, port);
+
+	if (listenerId)
+	{
+		m_pPacketProtocolManager->AddListenerInfo(listenerId, packetProtocolId);		
+	}
+
+	return listenerId;
 }
 
-bool SFEngine::SetupServerReconnectSys(WCHAR* szFileName)
+bool SFEngine::LoadConnectorList(WCHAR* szFileName)
 {
-	return m_pServerConnectionManager->SetupServerReconnectSys(szFileName);
+	return m_pServerConnectionManager->LoadConnectorList(szFileName);
+}
+
+bool SFEngine::SetupServerReconnectSys()
+{
+	return m_pServerConnectionManager->SetupServerReconnectSys();
+}
+
+bool SFEngine::AddPacketProtocol(int packetProtocolId, IPacketProtocol* pProtocol)
+{
+//20140720 юс╫ц...
+	if (m_pPacketProtocolManager == NULL)
+	{
+		m_pPacketProtocolManager = new SFPacketProtocolManager(false);
+	}
+
+	return m_pPacketProtocolManager->AddPacketProtocol(packetProtocolId, pProtocol);
 }

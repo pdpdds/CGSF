@@ -26,6 +26,12 @@
 #define PACKET_OPTION_CRC_MD5		0x00000010
 
 
+#define PACKET_PROTOCOL_JSON		1
+#define PACKET_PROTOCOL_CGSF		2
+#define PACKET_PROTOCOL_PROTO_BUF	3
+#define PACKET_PROTOCOL_MSG_PACK	4
+#define PACKET_PROTOCOL_AVRO		5
+
 /////////////////////////////////////////////////////////////////////////
 #define TIMER_100_MSEC	 1
 #define TIMER_200_MSEC	 2

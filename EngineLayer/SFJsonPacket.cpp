@@ -1,6 +1,6 @@
 #include "stdafx.h"
 #include "SFJsonPacket.h"
-
+#include "SFJsonProtocol.h"
 
 SFJsonPacket::SFJsonPacket(USHORT usPacketId)
 {
@@ -26,3 +26,7 @@ BasePacket* SFJsonPacket::Clone()
 	return pClone;
 }
 
+void SFJsonPacket::Release()
+{
+	SFJsonProtocol::DisposePacket(this);
+}

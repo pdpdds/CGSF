@@ -43,19 +43,21 @@ bool SFProtobufProtocol::Reset()
 	return true;
 }
 
-bool SFProtobufProtocol::SendRequest(BasePacket* pPacket)
+bool SFProtobufProtocol::Encode(BasePacket* pPacket, char** ppBuffer, int& bufferSize)
 {
 	unsigned int uWrittenBytes = 0;
 	int iResult = serializeOutgoingPacket(*pPacket, oBuffer, uWrittenBytes);
-	if (iResult!= SFProtocol::Success)
+	if (iResult != SFProtocol::Success)
 	{
 		return false;
 	}
 
 	unsigned int uSize = oBuffer.GetDataSize();
-	SFEngine::GetInstance()->SendInternal(pPacket->GetSerial(), oBuffer.GetBuffer(), uSize);
 
 	oBuffer.Pop(uSize);
+
+	*ppBuffer = oBuffer.GetBuffer();
+	bufferSize = uSize;
 
 	return true;
 }
@@ -162,7 +164,6 @@ BasePacket* SFProtobufProtocol::GetPacket(int& ErrorCode)
 	}
 	
 	return pPacket;
-
 }
 
 int SFProtobufProtocol::encodeOutgoingPacket( BasePacket& packet )

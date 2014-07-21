@@ -14,7 +14,7 @@ public:
 	virtual bool Initialize() = 0;
 	virtual bool ProcessPacket(BasePacket* pPacket) = 0;
 
-	bool AddConnectorCallback(int identifier, INetworkCallback* pCallback){ m_mapConnectorCallback.insert(std::make_pair(identifier, pCallback)); return true; }
+	bool AddConnectorCallback(int identifier, INetworkCallback* pCallback, int packetProtocolId);
 	virtual bool ProcessConnectorPacket(BasePacket* pPacket);
 
 protected:

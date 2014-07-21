@@ -4,8 +4,9 @@
 #include "SFCompressLzf.h"
 #include "SFCompressZLib.h"
 #include "SFChecksum.h"
+#include "SFCGSFPacketProtocol.h"
 
-USHORT SFPacket::m_packetMaxSize = PACKET_DEFAULT_PACKET_SIZE;
+USHORT SFPacket::m_packetMaxSize = MAX_PACKET_SIZE;
 
 SFFastCRC SFPacket::m_FastCRC;
 
@@ -164,12 +165,18 @@ bool SFPacket::Decode(unsigned short packetSize, int& errorCode)
 		memcpy(pSrcBuf, GetData(), GetDataSize());
 		ResetDataBuffer();
 
-		if (FALSE == SFCompressor<SFCompressLzf>::GetCompressor()->Uncompress(GetData(), destSize, pSrcBuf, destSize))
+		if (FALSE == SFCompressor<SFCompressLzf>::GetCompressor()->Uncompress(GetData(), destSize, pSrcBuf, GetDataSize()))
 		{
 			//SFLOG_WARN(L"Packet Uncompress Fail!! %d %d", pHeader->DataCRC, dwDataCRC);
 
 			errorCode = PACKETIO_ERROR_DATA_COMPRESS;
 
+			return FALSE;
+		}
+
+		if (destSize + sizeof(SFPacketHeader) > packetSize)
+		{
+			errorCode = PACKETIO_ERROR_DATA_COMPRESS;
 			return FALSE;
 		}
 
@@ -228,4 +235,9 @@ BasePacket* SFPacket::Clone()
 	pClone->m_usCurrentReadPosition = m_usCurrentReadPosition;
 	
 	return pClone;
+}
+
+void SFPacket::Release()
+{
+	SFCGSFPacketProtocol::DisposePacket(this);
 }

@@ -18,12 +18,12 @@ public:
 	bool Reset();
 	BasePacket* GetPacket(int& ErrorCode);
 	bool AddTransferredData(char* pBuffer, DWORD dwTransferred);
-	bool SendRequest(BasePacket* pPacket);
+	bool Encode(BasePacket* pPacket, char** ppBuffer, int& bufferSize);
 
 	virtual void disposeOutgoingPacket(BasePacket* pPacket);
 	virtual void disposeIncomingPacket(BasePacket* pPacket);
 	BasePacket* CreatePacket(){ return NULL; }
-	bool DisposePacket(BasePacket* pPacket);
+	static bool DisposePacket(BasePacket* pPacket);
 
 protected:
 	virtual BasePacket* CreateIncomingPacketFromPacketId(int packetId) = 0;

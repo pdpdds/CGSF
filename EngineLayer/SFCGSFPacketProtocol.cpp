@@ -32,6 +32,7 @@ bool SFCGSFPacketProtocol::Initialize(int ioBufferSize, unsigned short packetSiz
 BasePacket* SFCGSFPacketProtocol::GetPacket(int& errorCode)
 {
 	SFPacket* pPacket = PacketPoolSingleton::instance()->Alloc();
+
 	pPacket->Initialize();
 
 	if (FALSE == m_pPacketIOBuffer->GetPacket(*pPacket->GetHeader(), (char*)pPacket->GetData(), m_packetSize, errorCode))
@@ -63,14 +64,17 @@ bool SFCGSFPacketProtocol::Reset()
 	return true;
 }
 
-bool SFCGSFPacketProtocol::SendRequest(BasePacket* pPacket)
+bool SFCGSFPacketProtocol::Encode(BasePacket* pPacket, char** ppBuffer, int& bufferSize)
 {
 	SFPacket* pSFPacket = (SFPacket*)pPacket;
-	pSFPacket->Encode(m_packetSize, m_packetOption);
-
-	SFEngine::GetInstance()->SendInternal(pSFPacket->GetSerial(), (char*)pSFPacket->GetHeader(), pSFPacket->GetPacketSize());
 	
-	return TRUE;
+	if (false == pSFPacket->Encode(m_packetSize, m_packetOption))
+		return false;
+
+	*ppBuffer = (char*)pSFPacket->GetHeader();
+	bufferSize = pSFPacket->GetPacketSize();
+
+	return true;
 }
 
 bool SFCGSFPacketProtocol::DisposePacket(BasePacket* pPacket)

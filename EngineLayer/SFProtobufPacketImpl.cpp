@@ -1,5 +1,6 @@
 #include "stdafx.h"
 #include "SFProtobufPacketImpl.h"
+#include "SFProtobufProtocol.h"
 
 SFProtobufPacketImpl::SFProtobufPacketImpl( int serviceId, google::protobuf::Message* message )
 {
@@ -44,4 +45,9 @@ int SFProtobufPacketImpl::getEncodedStreamSize()
 google::protobuf::Message& SFProtobufPacketImpl::getStructuredData()
 {
 	return (*message);
+}
+
+void SFProtobufPacketImpl::Release()
+{
+	SFProtobufProtocol::DisposePacket(this);
 }

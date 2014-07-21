@@ -24,6 +24,7 @@ public:
 
 	SFPacketHeader* GetHeader() { return &m_packetHeader; }
 	msgpack::unpacker&	GetData(){ return m_unpacker; }
+	virtual void Release() override;
 
 	virtual BasePacket* Clone() override;
 

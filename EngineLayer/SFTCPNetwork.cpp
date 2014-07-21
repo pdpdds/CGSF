@@ -12,12 +12,12 @@
 #include "SFSinglton.h"
 #include "SFBridgeThread.h"
 #include "ILogicDispatcher.h"
+#include "SFPacketProtocolManager.h"
 
 SFTCPNetwork::SFTCPNetwork(void)
 {
 	lfds611_queue_new(&m_pQueue, 1000);
 }
-
 
 SFTCPNetwork::~SFTCPNetwork(void)
 {
@@ -117,14 +117,18 @@ void SFTCPNetwork::SetLogicDispatcher(ILogicDispatcher* pDispatcher)
 
 void SFTCPNetwork::SetPacketProtocol(IPacketProtocol* pProtocol)
 {
-	m_TCPClient->SetPacketProtocol(pProtocol);
+	_ConnectorInfo connectorInfo;
+	connectorInfo.connectorId = 1;
+	connectorInfo.packetProtocolId = 0;
+
+	m_TCPClient->AddPacketProtocol(0, pProtocol);
+	m_TCPClient->GetPacketProtocolManager()->AddConnectorInfo(&connectorInfo);
 }
 
 bool SFTCPNetwork::IsConnected()
 {
 	return m_pTCPCallBack->IsConnected();
 }
-
 
 BasePacket* SFTCPNetwork::GetRPCResult()
 {

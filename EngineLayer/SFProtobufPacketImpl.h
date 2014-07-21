@@ -15,6 +15,8 @@ public:
 	virtual bool Decode(char* pBuf, unsigned int nSize);
 	virtual bool Encode();
 	virtual google::protobuf::Message& getStructuredData();
+	virtual void Release() override;
+
 private:
 	int serviceId;
 	std::string* pEncodedStream;

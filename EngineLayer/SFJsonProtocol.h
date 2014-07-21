@@ -17,16 +17,16 @@ public:
 	bool Reset();
 	BasePacket* GetPacket(int& errorCode);
 	bool AddTransferredData(char* pBuffer, DWORD dwTransferred);
-	bool SendRequest(BasePacket* pPacket);
+	bool Encode(BasePacket* pPacket, char** ppBuffer, int& bufferSize);
 
-	bool DisposePacket(BasePacket* pPacket);
+	static bool DisposePacket(BasePacket* pPacket);
 	BasePacket* CreatePacket();
 
 protected:
 
 private:
 	JsonBuilder m_builder;
-
+	char* m_pBuffer;
 	bool GetCompleteNode(SFJsonPacket* pPacket);
 };
 

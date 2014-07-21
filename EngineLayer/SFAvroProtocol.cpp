@@ -18,6 +18,9 @@ SFAvroProtocol::~SFAvroProtocol()
 		delete m_pPacketIOBuffer;
 
 	m_pPacketIOBuffer = NULL;
+
+	if (m_pBuffer)
+		delete m_pBuffer;
 }
 
 bool SFAvroProtocol::Initialize(int ioBufferSize, unsigned short packetSize, int packetOption)
@@ -28,6 +31,9 @@ bool SFAvroProtocol::Initialize(int ioBufferSize, unsigned short packetSize, int
 	m_ioSize = ioBufferSize;
 	m_packetSize = packetSize;
 	m_packetOption = packetOption;
+
+	m_pBuffer = new char[m_packetSize];
+	memset(m_pBuffer, 0, m_packetSize);
 
 	return true;
 }
@@ -96,18 +102,14 @@ BasePacket* SFAvroProtocol::CreatePacket()
 	return new SFAvroPacket();
 }*/
 
-bool SFAvroProtocol::SendRequest(BasePacket* pPacket)
+bool SFAvroProtocol::Encode(BasePacket* pPacket, char** ppBuffer, int& bufferSize)
 {
 	SFAvroPacketImpl* pAvroPacket = (SFAvroPacketImpl*)pPacket;
-
-	const int bufferSize = 8192;
-	char buffer[bufferSize] = { 0, };
-	
 
 	//////////////////////////////////////////////////
 	//header copy
 	//////////////////////////////////////////////////
-	memcpy(buffer, pAvroPacket->GetHeader(), sizeof(SFPacketHeader));
+	memcpy(m_pBuffer, pAvroPacket->GetHeader(), sizeof(SFPacketHeader));
 	
 	/*std::auto_ptr<avro::OutputStream> out = avro::memoryOutputStream();
 	avro::EncoderPtr e = avro::binaryEncoder();
@@ -116,13 +118,14 @@ bool SFAvroProtocol::SendRequest(BasePacket* pPacket)
 	bool bResult = pAvroPacket->Encode(e);*/
 	
 	unsigned int writtenSize = pAvroPacket->GetBufferSize();
-	memcpy(buffer + sizeof(SFPacketHeader), pAvroPacket->GetBuffer(), writtenSize);
+	memcpy(m_pBuffer + sizeof(SFPacketHeader), pAvroPacket->GetBuffer(), writtenSize);
 
 	//데이터 사이즈를 헤더에 쓴다.
 	//12바이트 헤더의 마지막 2바이트에 기록
-	*((unsigned short*)buffer + 5) = writtenSize;
+	*((unsigned short*)m_pBuffer + 5) = writtenSize;
 
-	SFEngine::GetInstance()->SendInternal(pAvroPacket->GetSerial(), buffer, sizeof(SFPacketHeader)+writtenSize);
+	*ppBuffer = m_pBuffer;
+	bufferSize = sizeof(SFPacketHeader)+writtenSize;
 
 	return true;
 }

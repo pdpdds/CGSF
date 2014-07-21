@@ -12,6 +12,7 @@ public:
 
 	JsonObjectNode&	GetData(){return m_Node;}
 	SFPacketHeader* GetHeader() { return &m_packetHeader; }
+	virtual void Release() override;
 
 	virtual BasePacket* Clone() override;
 

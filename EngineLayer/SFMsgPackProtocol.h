@@ -46,16 +46,16 @@ public:
 	BasePacket* GetPacket(int& errorCode);
 
 	// ----------------------------------------------------------------
-	//  Name:           SendRequest
-	//  Description:    MessagePack 프로토콜로 패킹된 SFMsgPackPacket 객체를 네트워크로 전송한다.	
+	//  Name:           Encode
+	//  Description:    
 	// ----------------------------------------------------------------
-	bool SendRequest(BasePacket* pPacket);
+	bool Encode(BasePacket* pPacket, char** ppBuffer, int& bufferSize);
 
 	// ----------------------------------------------------------------
 	//  Name:           DisposePacket
 	//  Description:    패킷을 수거한다.
 	// ----------------------------------------------------------------
-	bool DisposePacket(BasePacket* pPacket);
+	static bool DisposePacket(BasePacket* pPacket);
 
 	// ----------------------------------------------------------------
 	//  Name:           CreatePacket

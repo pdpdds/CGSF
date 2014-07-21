@@ -1,5 +1,6 @@
 #include "stdafx.h"
 #include "SFServerConnectionManager.h"
+#include "SFPacketProtocolManager.h"
 #include "SFEngine.h"
 #include "XML/StringConversion.h"
 #include "XML/Markup.h"
@@ -46,60 +47,53 @@ bool SFServerConnectionManager::Save()
 	return true;
 }*/
 
-bool SFServerConnectionManager::InitServerList(WCHAR* szFileName)
+bool SFServerConnectionManager::LoadConnectorList(WCHAR* szFileName)
 {
 	CMarkup xml;
 	xml.Load(L"ServerConnection.xml");
 
 	while (xml.FindChildElem(L"SERVER"))
 	{
-		_ServerInfo serverInfo;
+		_ConnectorInfo connectorInfo;
 		xml.IntoElem();
 
 		xml.FindChildElem(L"IP");
-		serverInfo.szIP = xml.GetChildData();
+		connectorInfo.szIP = xml.GetChildData();
 
 		xml.FindChildElem(L"PORT");
-		serverInfo.port = _ttoi(xml.GetChildData().c_str());
+		connectorInfo.port = _ttoi(xml.GetChildData().c_str());
 
 		xml.FindChildElem(L"IDENTIFER");
-		serverInfo.identifer = _ttoi(xml.GetChildData().c_str());
+		connectorInfo.connectorId = _ttoi(xml.GetChildData().c_str());
 
 		xml.FindChildElem(L"DESC");
-		serverInfo.szDesc = xml.GetChildData();
+		connectorInfo.szDesc = xml.GetChildData();
 
 		xml.OutOfElem();
 
-		SFServerBridge* pServer = new SFServerBridge(serverInfo);
-
-		m_mapServerInfo.insert(std::make_pair(serverInfo.identifer, pServer));
+		m_listConnectorInfo.push_back(connectorInfo);
+		SFEngine::GetInstance()->GetPacketProtocolManager()->AddConnectorInfo(&connectorInfo);
 	}
 
 	return true;
 }
 
-bool SFServerConnectionManager::SetupServerReconnectSys(WCHAR* szFileName)
+bool SFServerConnectionManager::SetupServerReconnectSys()
 {
 	m_hTimerEvent = CreateEvent(NULL, FALSE, FALSE, L"ServerReconnectEvent");
 
-	if (InitServerList(szFileName) == false)
-		return false;
+	
 
-	for (auto& iter : m_mapServerInfo)
+	for (auto& iter : m_listConnectorInfo)
 	{
-		SFServerBridge* pServer = iter.second;		
-		_ServerInfo& info = pServer->GetServerInfo();
+		_ConnectorInfo& info = iter;		
 
 		int serial = -1;
-		serial = SFEngine::GetInstance()->AddConnector((char*)StringConversion::ToASCII(info.szIP.c_str()).c_str(), info.port);
+		serial = SFEngine::GetInstance()->AddConnector(info.connectorId, (char*)StringConversion::ToASCII(info.szIP.c_str()).c_str(), info.port);
 
 		if (serial >= 0)
 		{
-			m_mapConnectedServer.insert(std::make_pair(serial, pServer));
-		}
-		else
-		{
-			m_listDisonnectedServer.push_back(info);
+			info.connected = true;
 		}
 	}
 
@@ -123,19 +117,38 @@ UINT SFServerConnectionManager::ServerReconnectProc(LPVOID arg)
 	
 	while (WaitForSingleObject(pConnectionManager->m_hTimerEvent, 1000) != WAIT_OBJECT_0)
 	{
-		for (auto& server : pConnectionManager->m_listDisonnectedServer)
+		for (auto& iter : pConnectionManager->m_listConnectorInfo)
 		{
-			
-			_ServerInfo& info = server.GetServerInfo();
-			int serial = -1;
-			serial = SFEngine::GetInstance()->AddConnector((char*)StringConversion::ToASCII(info.szIP.c_str()).c_str(), info.port);
+			_ConnectorInfo& info = iter;
 
-			/*if (serial >= 0)
+			if (info.connected == false)
 			{
-				pConnectionManager->m_mapConnectedServer.insert(std::make_pair(serial, server));
-			}*/
+				int serial = -1;
+				serial = SFEngine::GetInstance()->AddConnector(info.connectorId, (char*)StringConversion::ToASCII(info.szIP.c_str()).c_str(), info.port);
+
+				if (serial >= 0)
+				{
+					info.connected = true;
+				}
+			}			
 		}
 	}
 
 	return 0;
+}
+
+bool SFServerConnectionManager::SetConnectorState(int connectorId, bool connected)
+{
+	for (auto& iter : m_listConnectorInfo)
+	{
+		_ConnectorInfo& info = iter;
+
+		if (info.connectorId == connectorId)
+		{
+			info.connected = connected;
+			return true;
+		}
+	}
+
+	return false;
 }

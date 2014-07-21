@@ -48,24 +48,35 @@ typedef struct tag_TimerInfo
 
 }_TimerInfo;
 
-typedef struct tag_ServerInfo
+typedef struct tag_ConnectorInfo
 {
 	std::wstring szIP;
 	unsigned short port;
-	int identifer;
-	std::wstring szDesc;
+	int connectorId;
+	int packetProtocolId;
 
-	tag_ServerInfo()
+	std::wstring szDesc;
+	bool connected;
+
+	tag_ConnectorInfo()
 	{
 		port = 0;
-		identifer = 0;
+		connectorId = 0;
+		connected = false;
 	}
 
-	void print()
+}_ConnectorInfo;
+
+typedef struct tag_ListenerInfo
+{
+	int listenerId;
+	int packetProtocolId;
+
+	tag_ListenerInfo()
 	{
-		//_tprintf(L"SERVER(%s:%d) %s\n", szIP.c_str(), port, szDesc.c_str());
+		listenerId = 0;
+		packetProtocolId = 0;
 	}
-
-}_ServerInfo;
+}_ListenerInfo;
 
 #pragma pack(pop)

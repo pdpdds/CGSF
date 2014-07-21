@@ -85,8 +85,9 @@ BasePacket* SFMsgPackProtocol::CreatePacket()
 	return new SFMsgPackPacket();
 }
 
-bool SFMsgPackProtocol::SendRequest(BasePacket* pPacket)
+bool SFMsgPackProtocol::Encode(BasePacket* pPacket, char** ppBuffer, int& bufferSize)
 {
+	/*
 	SFMsgPackPacket* pMsgPackPacket = (SFMsgPackPacket*)pPacket;
 
 	const int bufferSize = 8192;
@@ -110,7 +111,7 @@ bool SFMsgPackProtocol::SendRequest(BasePacket* pPacket)
 	//12바이트 헤더의 마지막 2바이트에 기록
 	*((unsigned short*)buffer + 5) = nonParsedSize;
 
-	SFEngine::GetInstance()->SendInternal(pMsgPackPacket->GetSerial(), buffer, sizeof(SFPacketHeader)+nonParsedSize);
 
-	return true;
+	return true;*/
+	return false;
 }

@@ -14,8 +14,8 @@ public:
 	bool Reset();
 	BasePacket* GetPacket(int& ErrorCode);
 	bool AddTransferredData(char* pBuffer, DWORD dwTransferred);
-	bool SendRequest(BasePacket* pPacket);
-	bool DisposePacket(BasePacket* pPacket);
+	bool Encode(BasePacket* pPacket, char** ppBuffer, int& bufferSize);
+	static bool DisposePacket(BasePacket* pPacket);
 
 protected:
 

@@ -31,13 +31,13 @@ public:
 	//  Name:           OnReceive
 	//  Description:    유저가 전송한 데이터를 처리한다. 	
 	// ----------------------------------------------------------------
-	bool OnReceive(INT serial, char* pBuffer, UINT dwTransferred, INT acceptorId) override;
+	bool OnReceive(INT serial, char* pBuffer, UINT dwTransferred, _SessionDesc& desc) override;
 	
 	// ----------------------------------------------------------------
 	//  Name:           SendRequest
 	//  Description:    타겟에게 패킷을 전송한다.
 	// ----------------------------------------------------------------
-	virtual bool SendRequest(BasePacket* pPacket) override;	
+	virtual bool Encode(BasePacket* pPacket, char** ppBuffer, int& bufferSize) override;
 
 	// ----------------------------------------------------------------
 	//  Name:           DisposePacket
@@ -55,7 +55,6 @@ public:
 		pProtocol->GetPacketProtocol().CopyBaseProtocol(m_Analyzer);
 		return pProtocol;
 	}
-
 	T& GetPacketProtocol(){ return m_Analyzer; }
 	
 	//virtual BasePacket* CreatePacket() override;
@@ -99,13 +98,13 @@ bool SFPacketProtocol<T>::DisposePacket(BasePacket* pPacket)
 }
 
 template <typename T>
-bool SFPacketProtocol<T>::SendRequest(BasePacket* pPacket)
+bool SFPacketProtocol<T>::Encode(BasePacket* pPacket, char** ppBuffer, int& bufferSize)
 {
-	return m_Analyzer.SendRequest(pPacket);
+	return m_Analyzer.Encode(pPacket, ppBuffer, bufferSize);
 }
 
 template <typename T>
-bool SFPacketProtocol<T>::OnReceive(INT serial, char* pBuffer, UINT dwTransferred, INT acceptorId)
+bool SFPacketProtocol<T>::OnReceive(INT serial, char* pBuffer, UINT dwTransferred, _SessionDesc& desc)
 {
 	auto bRet = m_Analyzer.AddTransferredData(pBuffer, dwTransferred);
 
@@ -130,7 +129,7 @@ bool SFPacketProtocol<T>::OnReceive(INT serial, char* pBuffer, UINT dwTransferre
 			pPacket->SetPacketType(SFPACKET_DATA);
 
 		pPacket->SetSerial(serial);	
-		pPacket->SetAcceptorId(acceptorId);
+		pPacket->SetSessionDesc(desc);
 		
 		SendLogicLayer(pPacket);
 	}

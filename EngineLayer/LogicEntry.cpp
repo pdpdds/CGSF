@@ -14,7 +14,8 @@ bool LogicEntry::ProcessPacket(BasePacket* pPacket)
 {
 	if (m_pLogicEntry)
 	{		
-		if (pPacket->GetAcceptorId() > 0)
+		_SessionDesc& desc = pPacket->GetSessionDesc();
+		if (desc.sessionType == 0)
 			m_pLogicEntry->ProcessPacket(pPacket);
 		else
 		{

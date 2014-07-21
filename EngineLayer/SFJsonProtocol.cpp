@@ -7,12 +7,15 @@
 #include "SFEngine.h"
 
 SFJsonProtocol::SFJsonProtocol(void)
+: m_pBuffer(NULL)
 {
 }
 
 
 SFJsonProtocol::~SFJsonProtocol(void)
 {
+	if (m_pBuffer)
+		delete m_pBuffer;
 }
 
 bool SFJsonProtocol::Initialize(int ioBufferSize, unsigned short packetSize, int packetOption)
@@ -22,6 +25,9 @@ bool SFJsonProtocol::Initialize(int ioBufferSize, unsigned short packetSize, int
 	m_ioSize = ioBufferSize;
 	m_packetSize = packetSize;
 	m_packetOption = packetOption;
+
+	m_pBuffer = new char[m_packetSize];
+	memset(m_pBuffer, 0, m_packetSize);
 
 	return true;
 }
@@ -38,25 +44,23 @@ bool SFJsonProtocol::Reset()
 	return true;
 }
 
-bool SFJsonProtocol::SendRequest(BasePacket* pPacket)
+bool SFJsonProtocol::Encode(BasePacket* pPacket, char** ppBuffer, int& bufferSize)
 {
 	SFJsonPacket* pJsonPacket = (SFJsonPacket*)pPacket;
 	JsonObjectNode& ObjectNode = pJsonPacket->GetData();
 
-	char* buffer = new char[m_packetSize];
-	memset(buffer, 0, m_packetSize);
+	memset(m_pBuffer, 0, m_packetSize);
 
 //////////////////////////////////////////////////
 //header copy
 //////////////////////////////////////////////////
-	memcpy(buffer, pJsonPacket->GetHeader(), sizeof(SFPacketHeader));
-	unsigned int writtenSize = JsonBuilder::MakeBuffer(ObjectNode, buffer + sizeof(SFPacketHeader), m_packetSize - sizeof(SFPacketHeader));
-	*((unsigned short*)buffer + 5) = writtenSize;
+	memcpy(m_pBuffer, pJsonPacket->GetHeader(), sizeof(SFPacketHeader));
+	unsigned int writtenSize = JsonBuilder::MakeBuffer(ObjectNode, m_pBuffer + sizeof(SFPacketHeader), m_packetSize - sizeof(SFPacketHeader));
+	*((unsigned short*)m_pBuffer + 5) = writtenSize;
+
+	*ppBuffer = m_pBuffer;
+	bufferSize = sizeof(SFPacketHeader)+writtenSize;
 	
-	SFEngine::GetInstance()->SendInternal(pJsonPacket->GetSerial(), buffer, sizeof(SFPacketHeader) + writtenSize);
-
-	delete buffer;
-
 	return true;
 }
 

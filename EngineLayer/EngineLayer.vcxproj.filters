@@ -190,13 +190,13 @@
     <ClCompile Include="SFServerConnectionManager.cpp">
       <Filter>Network</Filter>
     </ClCompile>
-    <ClCompile Include="SFServerBridge.cpp">
-      <Filter>Common</Filter>
-    </ClCompile>
     <ClCompile Include="ILogicEntry.cpp">
       <Filter>Logic</Filter>
     </ClCompile>
     <ClCompile Include="SFBasePacketProtocol.cpp">
+      <Filter>Packet\PacketProtocol</Filter>
+    </ClCompile>
+    <ClCompile Include="SFPacketProtocolManager.cpp">
       <Filter>Packet\PacketProtocol</Filter>
     </ClCompile>
   </ItemGroup>
@@ -399,10 +399,10 @@
     <ClInclude Include="SFServerConnectionManager.h">
       <Filter>Network</Filter>
     </ClInclude>
-    <ClInclude Include="SFServerBridge.h">
-      <Filter>Common</Filter>
-    </ClInclude>
     <ClInclude Include="SFBasePacketProtocol.h">
+      <Filter>Packet\PacketProtocol</Filter>
+    </ClInclude>
+    <ClInclude Include="SFPacketProtocolManager.h">
       <Filter>Packet\PacketProtocol</Filter>
     </ClInclude>
   </ItemGroup>

@@ -1,9 +1,10 @@
 #include "stdafx.h"
 #include "SFSessionService.h"
+#include "EngineInterface/ISession.h"
 
-bool SFSessionService::OnReceive(char* pData, unsigned short Length, int acceptorId)
+bool SFSessionService::OnReceive(char* pData, unsigned short Length, _SessionDesc& desc)
 {
-	return m_pPacketProtocol->OnReceive(m_Serial, pData, Length, acceptorId);
+	return m_pPacketProtocol->OnReceive(m_serial, pData, Length, desc);
 }
 
 /*bool SFSessionService::SendRequest(ISession* pSession, BasePacket* pPacket)

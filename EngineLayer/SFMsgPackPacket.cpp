@@ -1,5 +1,6 @@
 #include "stdafx.h"
 #include "SFMsgPackPacket.h"
+#include "SFMsgPackProtocol.h"
 
 SFMsgPackPacket::SFMsgPackPacket(USHORT usPacketId)
 {
@@ -20,4 +21,9 @@ SFMsgPackPacket::~SFMsgPackPacket()
 BasePacket* SFMsgPackPacket::Clone()
 {
 	return NULL;
+}
+
+void SFMsgPackPacket::Release()
+{
+	SFMsgPackProtocol::DisposePacket(this);
 }

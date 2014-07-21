@@ -10,6 +10,8 @@ public:
 	~SFAvroPacketImpl();
 
 	SFPacketHeader* GetHeader() { return &m_packetHeader; }
+	virtual void Release() override;
+
 	virtual bool Decode(char* pBuf, unsigned int nSize) = 0;
 	virtual bool Encode(avro::EncoderPtr e) = 0;
 

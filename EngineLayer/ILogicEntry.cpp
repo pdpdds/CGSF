@@ -3,38 +3,50 @@
 #include "SFEngine.h"
 #include "SFServerConnectionManager.h"
 #include "EngineInterface\INetworkCallback.h"
+#include "SFPacketProtocolManager.h"
 
 bool ILogicEntry::ProcessConnectorPacket(BasePacket* pPacket)
 {
-	SFServerConnectionManager* pManager = SFEngine::GetInstance()->GetServerConnectionManager();
-	auto connector = pManager->GetConnectedServer().find(pPacket->GetSerial());
+	_SessionDesc& desc = pPacket->GetSessionDesc();
 
-	if (connector != pManager->GetConnectedServer().end())
+	auto& callback = m_mapConnectorCallback.find(desc.identifier);
+
+	if (callback != m_mapConnectorCallback.end())
 	{
-		auto& callback = m_mapConnectorCallback.find(connector->second->GetServerInfo().identifer);
-
-		if (callback != m_mapConnectorCallback.end())
+		INetworkCallback* pCallback = callback->second;
+		switch (pPacket->GetPacketType())
 		{
-			INetworkCallback* pCallback = callback->second;
-			switch (pPacket->GetPacketType())
-			{
 
-			case SFPACKET_DATA:
-				pCallback->HandleNetworkMessage(pPacket);
-				break;
+		case SFPACKET_DATA:
+			pCallback->HandleNetworkMessage(pPacket);
+			break;
 
-			case SFPACKET_CONNECT:
-				pCallback->HandleConnect(pPacket->GetSerial());				
-				break;
+		case SFPACKET_CONNECT:
+			pCallback->HandleConnect(pPacket->GetSerial());
+			break;
 
-			case  SFPACKET_DISCONNECT:
-				pCallback->HandleDisconnect(pPacket->GetSerial());
-				break;
+		case  SFPACKET_DISCONNECT:
+		{
+									 pCallback->HandleDisconnect(pPacket->GetSerial());
+									 SFServerConnectionManager* pManager = SFEngine::GetInstance()->GetServerConnectionManager();
+									 pManager->SetConnectorState(desc.identifier, false);
+		}
+			break;
 
-			default:
-				return false;
-			}			
+		default:
+			return false;
 		}
 	}
-		return true;
+
+	return true;
+}
+
+bool ILogicEntry::AddConnectorCallback(int identifier, INetworkCallback* pCallback, int packetProtocolId)
+{
+	SFPacketProtocolManager* pManager = SFEngine::GetInstance()->GetPacketProtocolManager();
+	if (false == pManager->SetConnectorPacketProtocol(identifier, packetProtocolId))
+		return false;
+
+	m_mapConnectorCallback.insert(std::make_pair(identifier, pCallback)); 
+	return true;
 }

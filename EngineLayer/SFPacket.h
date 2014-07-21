@@ -15,6 +15,7 @@ public:
 	void ResetBuffer();
 	void ResetDataBuffer();
 
+	virtual void Release() override;
 	static BOOL GetDataCRC(BYTE* pDataBuf, DWORD dwDataSize, DWORD& dwDataCRC);
 	BOOL CheckDataCRC();
 
