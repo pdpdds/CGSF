@@ -2,7 +2,7 @@
 #define ISESSIONSERVICE_H_
 #include "IPacketProtocol.h"
 
-class BaseBacket;
+class BasePacket;
 class ISession;
 
 class ISessionService
@@ -11,16 +11,16 @@ class ISessionService
 	  ISessionService(IPacketProtocol* pProtocol){m_pPacketProtocol = pProtocol;}
 	  virtual ~ISessionService() {delete m_pPacketProtocol;};
 
-	  virtual bool OnReceive(char* pData, unsigned short Length, int acceptorId) = 0;
+	  virtual bool OnReceive(char* pData, unsigned short Length, _SessionDesc& desc) = 0;
 	 // virtual bool SendRequest(ISession* pSession, BasePacket* pPacket) = 0;
 
-	  void SetSerial(int Serial){m_Serial = Serial;}
+	  void SetSerial(int serial){m_serial = serial;}
 
-	  
+	  IPacketProtocol* GetPacketProtocol(){ return m_pPacketProtocol; }
 
 protected:
 	IPacketProtocol* m_pPacketProtocol;
-	int m_Serial;
+	int m_serial;
 
 private:
 	

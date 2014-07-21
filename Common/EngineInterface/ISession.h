@@ -13,31 +13,27 @@ class ISession
 
 	void SetOwner(INetworkEngine* pOwner){m_pOwner = pOwner;}
 
-	virtual void SendInternal(char* pBuffer, int BufferSize, int ownerSerial = -1) = 0;
-
-	void OnConnect(int serial, int listenerId = 0, bool bServerToServerConnect = false)
+	void OnConnect(int serial, _SessionDesc& desc)
 	{
-		m_pSessionService = m_pOwner->GetEngine()->CreateSessionService(bServerToServerConnect);
+		m_pSessionService = m_pOwner->GetEngine()->CreateSessionService(desc);
 		m_pSessionService->SetSerial(serial);
-		m_pOwner->GetEngine()->OnConnect(serial, listenerId);
+		m_pOwner->GetEngine()->OnConnect(serial, desc);
 	}
 
-	void OnDisconnect(int serial, int listenerId = 0)
+	void OnDisconnect(int serial, _SessionDesc& desc)
 	{
-		m_pOwner->GetEngine()->OnDisconnect(serial, listenerId);
+		m_pOwner->GetEngine()->OnDisconnect(serial, desc);
 		delete m_pSessionService;
 	}
 
-	bool OnReceive(char* pData, unsigned short length, int listenerId = 0)
+	bool OnReceive(char* pData, unsigned short length, _SessionDesc& desc)
 	{
-		return m_pSessionService->OnReceive(pData, length, listenerId);
+		return m_pSessionService->OnReceive(pData, length, desc);
 	}
 
-	/*
-	bool SendRequest(BasePacket* pPacket)
-	{
-		return m_pSessionService->SendRequest(this, pPacket);
-	}*/
+	virtual bool SendRequest(BasePacket* pPacket) = 0;
+
+	IPacketProtocol* GetPacketProtocol(){ return m_pSessionService->GetPacketProtocol(); }
 
 protected:
 
