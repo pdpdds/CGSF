@@ -16,6 +16,8 @@
 //-----------------------------------------------------------------------------
 // Game Includes
 //-----------------------------------------------------------------------------
+#include "EngineInterface/EngineStructure.h"
+#include "BasePacket.h"
 #include "GameMaterial.h"
 #include "Bullet.h"
 #include "Weapon.h"

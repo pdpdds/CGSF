@@ -14,6 +14,10 @@
 #define GAME_DATABASE_SERVER_1 10000
 #define AUTH_SERVER_1 9000
 
+#define PACKET_PROTOCOL_JSON_1		1
+#define PACKET_PROTOCOL_JSON_2		2
+#define PACKET_PROTOCOL_PROTO_BUF	3
+
 int _tmain(int argc, _TCHAR* argv[])
 {
 	ServerConnectorLogicEntry* pLogicEntry = new ServerConnectorLogicEntry();
@@ -22,15 +26,20 @@ int _tmain(int argc, _TCHAR* argv[])
 	AuthServerCallback* pAuthServerCallback = new AuthServerCallback();
 	DatabaseServerCallback* pDatabaseServerCallback = new DatabaseServerCallback();
 
-	pLogicEntry->AddConnectorCallback(AUTH_SERVER_1, pAuthServerCallback);
-	pLogicEntry->AddConnectorCallback(GAME_DATABASE_SERVER_1, pAuthServerCallback);
+	SFEngine::GetInstance()->Intialize(pLogicEntry);
+	SFEngine::GetInstance()->AddPacketProtocol(PACKET_PROTOCOL_JSON_1, new SFPacketProtocol<SFJsonProtocol>);
 
-	SFEngine::GetInstance()->Intialize(pLogicEntry, new SFPacketProtocol<SFJsonProtocol>);
-
-	if (false == SFEngine::GetInstance()->SetupServerReconnectSys(L"ServerConnection.xml"))
+	if (false == SFEngine::GetInstance()->LoadConnectorList(L"ServerConnection.xml"))
 		return 0;
 
-	SFEngine::GetInstance()->Start(0, 10004);
+	pLogicEntry->AddConnectorCallback(AUTH_SERVER_1, pAuthServerCallback, PACKET_PROTOCOL_JSON_1);
+	pLogicEntry->AddConnectorCallback(GAME_DATABASE_SERVER_1, pDatabaseServerCallback, PACKET_PROTOCOL_JSON_1);
+
+	if (false == SFEngine::GetInstance()->SetupServerReconnectSys())
+		return 0;
+
+
+	//SFEngine::GetInstance()->Start(0, 10004);
 
 	/*SFJsonPacket packet(1000);
 	packet.GetData().Add("ECHO", "Server To Server Packet");

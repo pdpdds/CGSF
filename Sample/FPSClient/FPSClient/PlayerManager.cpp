@@ -11,6 +11,7 @@
 #include <SFPacketStore/FPSPacketID.h>
 #include <SFProtobufPacket.h>
 #include <SFPacketStore/SFPacketStore.pb.h>
+#include "EngineInterface/EngineStructure.h"
 #include <BasePacket.h>
 
 extern CasualGameManager* g_pCasualGameManager;

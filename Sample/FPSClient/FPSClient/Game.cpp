@@ -12,12 +12,10 @@
 #include <SFPacketStore/FPSPacket.pb.h>
 #include <SFPacketStore/SFPacketID.h>
 #include <SFPacketStore/SFPacketStore.pb.h>
-#include "BasePacket.h"
 #include "SFProtobufPacket.h"
 #include "PeerInfo.h"
 #include "CasualGameManager.h"
 #include "NetworkSystem.h"
-#include "BasePacket.h"
 
 extern CasualGameManager* g_pCasualGameManager;
 

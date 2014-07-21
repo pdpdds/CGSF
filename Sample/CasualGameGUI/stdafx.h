@@ -14,6 +14,7 @@
 // TODO: reference additional headers your program requires here
 #include <windows.h>
 #include <SFConstant.h>
+#include "EngineInterface/EngineStructure.h"
 #if defined(max)
 #undef max
 #endif

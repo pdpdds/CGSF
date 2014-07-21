@@ -33,3 +33,5 @@
 #include "Define.h"
 #include "DirectXEntity.h"
 #include "commonstructure.h"
+
+#include "EngineInterface/EngineStructure.h"

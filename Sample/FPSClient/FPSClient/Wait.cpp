@@ -9,7 +9,6 @@
 #include <SFPacketStore/SFPacketID.h>
 #include "CommonStructure.h"
 #include <SFPacketStore/SFPacketStore.pb.h>
-#include "BasePacket.h"
 #include "SFProtobufPacket.h"
 #include "CasualGameManager.h"
 

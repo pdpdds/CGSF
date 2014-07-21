@@ -4,6 +4,7 @@
 #include "stdafx.h"
 #include "ServerListenerLogicEntry.h"
 #include "SFJsonProtocol.h"
+#include "SFCGSFPacketProtocol.h"
 
 #pragma comment(lib, "EngineLayer.lib")
 
@@ -11,29 +12,28 @@
 #define GAMESERVER_LISTEN_PORT 10001
 #define AUTHSERVER_LISTEN_PORT 10002
 
+#define PACKET_PROTOCOL_JSON_1		1
+#define PACKET_PROTOCOL_JSON_2		2
+#define PACKET_PROTOCOL_PROTO_BUF	3
 
 int _tmain(int argc, _TCHAR* argv[])
 {
 	ServerListenerLogicEntry* pLogicEntry = new ServerListenerLogicEntry();
-	SFEngine::GetInstance()->Intialize(pLogicEntry, new SFPacketProtocol<SFJsonProtocol>);
+	SFEngine::GetInstance()->Intialize(pLogicEntry);
 
-	int listenerId = -1;
-	listenerId = SFEngine::GetInstance()->AddListener(nullptr, RPC_LISTEN_PORT);
-	SFASSERT(listenerId != -1);
+	SFEngine::GetInstance()->AddPacketProtocol(PACKET_PROTOCOL_JSON_1, new SFPacketProtocol<SFJsonProtocol>);
+	SFEngine::GetInstance()->AddPacketProtocol(PACKET_PROTOCOL_JSON_2, new SFPacketProtocol<SFJsonProtocol>(16384, 8192, 0));
+	SFEngine::GetInstance()->AddPacketProtocol(PACKET_PROTOCOL_PROTO_BUF, new SFPacketProtocol<SFCGSFPacketProtocol>);
 
-	//pLogicEntry->AddListenerCallback(listenerId, pListenerRPCCallback);
+	int rpcListener = SFEngine::GetInstance()->AddListener(nullptr, RPC_LISTEN_PORT, PACKET_PROTOCOL_JSON_1);
+	int gameListener = SFEngine::GetInstance()->AddListener(nullptr, GAMESERVER_LISTEN_PORT, PACKET_PROTOCOL_JSON_2);
+	int authListener = SFEngine::GetInstance()->AddListener(nullptr, AUTHSERVER_LISTEN_PORT, PACKET_PROTOCOL_PROTO_BUF);
 
-	listenerId = SFEngine::GetInstance()->AddListener(nullptr, GAMESERVER_LISTEN_PORT);
-	SFASSERT(listenerId != -1);
+	//pLogicEntry->AddListenerCallback(rpcListener, pListenerRPCCallback);
+	//pLogicEntry->AddListenerCallback(gameListener, pListenerGameServerCallback);
+	//pLogicEntry->AddListenerCallback(AuthListener, pListenerAuthServerCallback);
 
-	//pLogicEntry->AddListenerCallback(listenerId, pListenerGameServerCallback);
-
-	listenerId = SFEngine::GetInstance()->AddListener(nullptr, AUTHSERVER_LISTEN_PORT);
-	SFASSERT(listenerId != -1);
-
-	//pLogicEntry->AddListenerCallback(listenerId, pListenerAuthServerCallback);
-
-	if (false == SFEngine::GetInstance()->Start())
+	if (false == SFEngine::GetInstance()->Activate())
 	{
 		LOG(ERROR) << "Server Start Fail";
 		SFEngine::GetInstance()->ShutDown();

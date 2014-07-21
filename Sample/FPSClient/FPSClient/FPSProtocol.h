@@ -1,5 +1,6 @@
 #pragma once
 #include <wtypes.h>
+#include "EngineInterface/EngineStructure.h"
 #include "SFCGProtobufClientProtocol.h"
 
 class FPSProtocol : public SFCGProtobufClientProtocol

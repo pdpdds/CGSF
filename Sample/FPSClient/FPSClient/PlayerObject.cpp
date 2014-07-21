@@ -12,7 +12,6 @@
 #include "CasualGameManager.h"
 #include "NetworkSystem.h"
 #include "SFProtobufPacket.h"
-#include "BasePacket.h"
 
 extern CasualGameManager* g_pCasualGameManager;
 
