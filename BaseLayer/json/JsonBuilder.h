@@ -9,7 +9,7 @@ public:
 	~JsonBuilder();
 
 public:
-	void PushBuffer(const char* buffer, size_t bufferLen);
+	bool PushBuffer(const char* buffer, size_t bufferLen);
 	bool PopCompleteNode(JsonObjectNode& node, unsigned short dataSize);
 
 	static unsigned int MakeBuffer( const JsonObjectNode& node, char* buffer, unsigned int bufferLen );

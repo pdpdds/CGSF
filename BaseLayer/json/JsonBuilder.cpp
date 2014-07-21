@@ -29,13 +29,9 @@ JsonBuilder::~JsonBuilder()
 	}
 }
 
-void JsonBuilder::PushBuffer( const char* buffer, size_t bufferLen )
+bool JsonBuilder::PushBuffer( const char* buffer, size_t bufferLen )
 {
-	if (false == AddBuffer(buffer, (UINT)bufferLen))
-	{
-		// Todo : AllocBuffer
-		// AddBuffer(buffer, bufferLen);
-	}
+	return AddBuffer(buffer, (UINT)bufferLen);
 }
 
 bool JsonBuilder::PopCompleteNode( JsonObjectNode& node, unsigned short dataSize )
