@@ -14,6 +14,7 @@
 // TODO: reference additional headers your program requires here
 #include <windows.h>
 #include "DBStruct.h"
+#include "EngineInterface/EngineStructure.h"
 
 #include <ace/ace.h>
 #include <ace/Thread_Manager.h>
