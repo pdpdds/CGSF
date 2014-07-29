@@ -16,6 +16,9 @@ To build project, we need visual studio 2013
 Download Binary
 * [CGSF External] (https://drive.google.com/folderview?id=0B4zZS0o3dor0ZGswUU9uT1RsUVE&usp=sharing)
 * Extract VSProject.rar to CGSF/VSProject folder
+* some libraries is required
+  boost library 1.55
+  directx 2010 june version
 * Extract ThirdParty.rar to CGSF folder
 
 Finally, In VSProject Folder
