@@ -428,7 +428,35 @@ namespace SFUtil
 		::_splitpath_s ( fullfilename, drive, dir, filename, ext );
 
 		return std::string(drive) + std::string(dir) + std::string("plugins");
+
 	}
 
+	unsigned int Hash(const WCHAR* str)
+	{
+		//wchar_t* p=const_cast<wchar_t*>(str); <--
+		//replaced this, we shouldnt be doing const_cast's for no reason @juhnu
+		const WCHAR* p = str;
+		unsigned int hashcode = 0;
+		wchar_t c = 0;
+		while (*p)
+		{
+			c = *p; hashcode = (31 * hashcode + (c % 31)) % 64000000; ++p;
+		}
+		return hashcode;
+	}
+	unsigned int Hash(const CHAR* str)
+	{
+		//wchar_t* p=const_cast<wchar_t*>(str); <--
+		//replaced this, we shouldnt be doing const_cast's for no reason @juhnu
+		const CHAR* p = str;
+		unsigned int hashcode = 0;
+		wchar_t c = 0;
+		while (*p)
+		{
+			c = *p;
+			hashcode = (31 * hashcode + (c % 31)) % 64000000; ++p;
+		}
+		return hashcode;
+	}
 	
 }

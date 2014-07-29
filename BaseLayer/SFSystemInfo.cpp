@@ -85,52 +85,52 @@ bool SFSystemInfo::InitializeOSInfo()
 	if (IsWindows8Point1OrGreater())
 	{
 		if (m_OSInfo.isServer)
-			m_OSInfo.OperatingSystem = "Windows Server 2012 R2 or Grater";
+			m_OSInfo.szOperatingSystem = "Windows Server 2012 R2 or Grater";
 		else
-			m_OSInfo.OperatingSystem = "Windows 8.1 or Grater";
+			m_OSInfo.szOperatingSystem = "Windows 8.1 or Grater";
 
-		m_OSInfo.MajorVer = 6;
-		m_OSInfo.MinorVer = 3;
+		m_OSInfo.majorVer = 6;
+		m_OSInfo.minorVer = 3;
 	}
 	else if (IsWindows8OrGreater())
 	{
 		if (m_OSInfo.isServer)
-			m_OSInfo.OperatingSystem = "Windows Server 2012";
+			m_OSInfo.szOperatingSystem = "Windows Server 2012";
 		else
-			m_OSInfo.OperatingSystem = "Windows 8";
+			m_OSInfo.szOperatingSystem = "Windows 8";
 
-		m_OSInfo.MajorVer = 6;
-		m_OSInfo.MinorVer = 2;
+		m_OSInfo.majorVer = 6;
+		m_OSInfo.minorVer = 2;
 	}
 	else if (IsWindows7OrGreater())
 	{
 		if (m_OSInfo.isServer)
-			m_OSInfo.OperatingSystem = "Windows Server 2008 R2";
+			m_OSInfo.szOperatingSystem = "Windows Server 2008 R2";
 		else
-			m_OSInfo.OperatingSystem = "Windows 7";
+			m_OSInfo.szOperatingSystem = "Windows 7";
 
-		m_OSInfo.MajorVer = 6;
-		m_OSInfo.MinorVer = 1;
+		m_OSInfo.majorVer = 6;
+		m_OSInfo.minorVer = 1;
 	}
 	else if (IsWindowsVistaOrGreater())
 	{
 		if (m_OSInfo.isServer)
-			m_OSInfo.OperatingSystem = "Windows Server 2008";
+			m_OSInfo.szOperatingSystem = "Windows Server 2008";
 		else
-			m_OSInfo.OperatingSystem = "Windows Vista";
+			m_OSInfo.szOperatingSystem = "Windows Vista";
 
-		m_OSInfo.MajorVer = 6;
-		m_OSInfo.MinorVer = 0;
+		m_OSInfo.majorVer = 6;
+		m_OSInfo.minorVer = 0;
 	}
 	else if (IsWindowsXPOrGreater())
 	{
 		if (m_OSInfo.isServer)
-			m_OSInfo.OperatingSystem = "Windows Server 2003";
+			m_OSInfo.szOperatingSystem = "Windows Server 2003";
 		else
-			m_OSInfo.OperatingSystem = "Windows XP";
+			m_OSInfo.szOperatingSystem = "Windows XP";
 
-		m_OSInfo.MajorVer = 5;
-		m_OSInfo.MinorVer = 1;
+		m_OSInfo.majorVer = 5;
+		m_OSInfo.minorVer = 1;
 	}
 
 	return true; 

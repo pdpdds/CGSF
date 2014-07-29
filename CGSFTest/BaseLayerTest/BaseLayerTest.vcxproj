@@ -96,6 +96,7 @@
     <ClInclude Include="BitArrayTest.h" />
     <ClInclude Include="CompressTest.h" />
     <ClInclude Include="CRCTest.h" />
+    <ClInclude Include="CryptoTest.h" />
     <ClInclude Include="DataStructureTest.h" />
     <ClInclude Include="DispatchTest.h" />
     <ClInclude Include="DumpTest.h" />
@@ -131,6 +132,7 @@
     <ClCompile Include="CGSFTest.cpp" />
     <ClCompile Include="CompressTest.cpp" />
     <ClCompile Include="CRCTest.cpp" />
+    <ClCompile Include="CryptoTest.cpp" />
     <ClCompile Include="DataStructureTest.cpp" />
     <ClCompile Include="DispatchTest.cpp" />
     <ClCompile Include="DumpTest.cpp" />

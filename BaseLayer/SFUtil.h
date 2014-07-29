@@ -18,10 +18,16 @@ namespace SFUtil
 	void ShowFileProperties(HWND hwnd, LPTSTR lpszFile); //파일의 정보를 얻는다.
 	WCHAR* CreateGuid(int& iGuidSize); //GUID 생성
 
-#ifdef _DEBUG
-	char* CustomFormatA(LPCSTR msg, ...);
-#else
 	wchar_t* CustomFormatW(LPCWSTR msg, ...);
+	char* CustomFormatA(LPCSTR msg, ...);
+
+	unsigned int Hash(const WCHAR* str);
+	unsigned int Hash(const CHAR* str);
+
+#ifdef UNICODE
+#define CustomFormat CustomFormatW
+#else
+#define CustomFormat CustomFormatA
 #endif
 
 	DWORD CountSetBits(ULONG_PTR bitMask); // Helper function to count set bits in the processor mask.

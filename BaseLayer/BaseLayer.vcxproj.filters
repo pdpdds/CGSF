@@ -54,6 +54,12 @@
     <Filter Include="TinyThread">
       <UniqueIdentifier>{540ae730-32e7-43de-acd4-f8d28286f4d5}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Crypto">
+      <UniqueIdentifier>{e758a4ec-72d0-4103-9cca-df48051af4b8}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Window">
+      <UniqueIdentifier>{2543e1bb-bb26-42ed-9e9e-bc1de6d1604d}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include=".\cpu_info.cpp">
@@ -193,6 +199,24 @@
     </ClCompile>
     <ClCompile Include="XML\Markup.cpp">
       <Filter>XML</Filter>
+    </ClCompile>
+    <ClCompile Include="Crypto\Crypto.cpp">
+      <Filter>Crypto</Filter>
+    </ClCompile>
+    <ClCompile Include="Crypto\md5Capi.cpp">
+      <Filter>Crypto</Filter>
+    </ClCompile>
+    <ClCompile Include="LoadTGA.cpp">
+      <Filter>Util</Filter>
+    </ClCompile>
+    <ClCompile Include="Window\UICmdEdit.cpp">
+      <Filter>Window</Filter>
+    </ClCompile>
+    <ClCompile Include="Window\UICmdMsgView.cpp">
+      <Filter>Window</Filter>
+    </ClCompile>
+    <ClCompile Include="Window\UIFramework.cpp">
+      <Filter>Window</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -471,6 +495,27 @@
     </ClInclude>
     <ClInclude Include="XML\Markup.h">
       <Filter>XML</Filter>
+    </ClInclude>
+    <ClInclude Include="Crypto\Crypto.h">
+      <Filter>Crypto</Filter>
+    </ClInclude>
+    <ClInclude Include="Crypto\Key.h">
+      <Filter>Crypto</Filter>
+    </ClInclude>
+    <ClInclude Include="Crypto\md5Capi.h">
+      <Filter>Crypto</Filter>
+    </ClInclude>
+    <ClInclude Include="LoadTGA.h">
+      <Filter>Util</Filter>
+    </ClInclude>
+    <ClInclude Include="Window\UICmdEdit.h">
+      <Filter>Window</Filter>
+    </ClInclude>
+    <ClInclude Include="Window\UICmdMsgView.h">
+      <Filter>Window</Filter>
+    </ClInclude>
+    <ClInclude Include="Window\UIFramework.h">
+      <Filter>Window</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

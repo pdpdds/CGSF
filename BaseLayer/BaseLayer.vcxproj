@@ -160,6 +160,8 @@
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Create</PrecompiledHeader>
     </ClCompile>
     <ClCompile Include="CrashHandler.cpp" />
+    <ClCompile Include="Crypto\Crypto.cpp" />
+    <ClCompile Include="Crypto\md5Capi.cpp" />
     <ClCompile Include="DelayedDirectoryChangeHandler.cpp" />
     <ClCompile Include="DirectoryChanges.cpp" />
     <ClCompile Include="External\7zcrc.cpp">
@@ -182,6 +184,7 @@
     <ClCompile Include="GeneralPool.cpp" />
     <ClCompile Include="json\JsonBuilder.cpp" />
     <ClCompile Include="json\JsonNode.cpp" />
+    <ClCompile Include="LoadTGA.cpp" />
     <ClCompile Include="Logger\ACELogger.cpp" />
     <ClCompile Include="Logger\GoogleLog.cpp" />
     <ClCompile Include="SFBreakPad.cpp" />
@@ -206,6 +209,9 @@
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|x64'">NotUsing</PrecompiledHeader>
     </ClCompile>
     <ClCompile Include="VMemPool\BitSet.cpp" />
+    <ClCompile Include="Window\UICmdEdit.cpp" />
+    <ClCompile Include="Window\UICmdMsgView.cpp" />
+    <ClCompile Include="Window\UIFramework.cpp" />
     <ClCompile Include="XML\Markup.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">NotUsing</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">NotUsing</PrecompiledHeader>
@@ -252,6 +258,9 @@
     <ClInclude Include=".\DataStructure\Tree.h" />
     <ClInclude Include="BigNum.h" />
     <ClInclude Include="CrashHandler.h" />
+    <ClInclude Include="Crypto\Crypto.h" />
+    <ClInclude Include="Crypto\Key.h" />
+    <ClInclude Include="Crypto\md5Capi.h" />
     <ClInclude Include="CStdString.h" />
     <ClInclude Include="DelayedDirectoryChangeHandler.h" />
     <ClInclude Include="DirectoryChanges.h" />
@@ -268,6 +277,7 @@
     <ClInclude Include="json\reader.h" />
     <ClInclude Include="json\visitor.h" />
     <ClInclude Include="json\writer.h" />
+    <ClInclude Include="LoadTGA.h" />
     <ClInclude Include="Logger\ACELogger.h" />
     <ClInclude Include="Logger\GoogleLog.h" />
     <ClInclude Include="Macro.h" />
@@ -302,6 +312,9 @@
     <ClInclude Include="StackWalker.h" />
     <ClInclude Include="VMemPool\BitSet.h" />
     <ClInclude Include="VMemPool\VMemPool.h" />
+    <ClInclude Include="Window\UICmdEdit.h" />
+    <ClInclude Include="Window\UICmdMsgView.h" />
+    <ClInclude Include="Window\UIFramework.h" />
     <ClInclude Include="XML\IXMLSerializable.h" />
     <ClInclude Include="XML\IXMLStreamReader.h" />
     <ClInclude Include="XML\IXMLStreamWriter.h" />
