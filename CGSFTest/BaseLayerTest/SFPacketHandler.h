@@ -1,4 +1,5 @@
 #pragma once
+#include "EngineInterface/EngineStructure.h"
 #include "SFProtobufPacket.h"
 #include "PacketCore.pb.h"
 

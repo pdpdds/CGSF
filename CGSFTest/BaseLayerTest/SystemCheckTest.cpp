@@ -24,8 +24,8 @@ bool SystemCheckTest::Run()
 	if(TRUE == SystemInfo.Initialize())
 	{
 		OSInfo* pOSInfo = SystemInfo.GetOSInfo();
-		DWORD dwOSMajorVersion = pOSInfo->dwOSMajorVer;
-		DWORD dwOSMinorVersion = pOSInfo->dwOSMinorVer;
+		DWORD dwOSMajorVersion = pOSInfo->majorVer;
+		DWORD dwOSMinorVersion = pOSInfo->minorVer;
 
 		printf("##Operation System Infomation##\n");
 		printf("OSName : %s, Ver : %d.%d\n", pOSInfo->szOperatingSystem, dwOSMajorVersion, dwOSMinorVersion);

@@ -3,10 +3,10 @@
 
 struct OSInfo
 {
-	std::string OperatingSystem;
+	std::string szOperatingSystem;
 	bool isServer = false;
-	int MajorVer = 0;
-	int MinorVer = 0;
+	int majorVer = 0;
+	int minorVer = 0;
 };
 
 class SFSystemInfo

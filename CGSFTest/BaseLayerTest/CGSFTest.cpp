@@ -17,6 +17,7 @@
 #include "DispatchTest.h"
 #include "EncryptTest.h"
 #include "CompressTest.h"
+#include "SparseHashTest.h"
 
 //#include "vld.h"
 //#include "SFCheckSum.h"
@@ -25,7 +26,7 @@
 
 int _tmain(int argc, _TCHAR* argv[])
 {
-	DumpTest test;
+	SparseHashTest test;
 	test.Run();
 	getchar();
 		

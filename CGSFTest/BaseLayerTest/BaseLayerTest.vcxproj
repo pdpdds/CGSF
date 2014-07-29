@@ -58,7 +58,7 @@
       <Optimization>Disabled</Optimization>
       <PreprocessorDefinitions>WIN32;_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <SDLCheck>false</SDLCheck>
-      <AdditionalIncludeDirectories>../../BaseLayer;../../DatabaseLayer;../../EngineLayer;../../EngineLayer/EngineDllInterface;../../ThirdParty/LiteZip;../../BaseLayer/DataStructure;../../BaseLayer/Logger;../../ThirdParty/SQLite;../../BaseLayer/External;../../ThirdParty\liblfds\include;../../Common/SFPacketStore;../../ThirdParty/PCRE/include;../../ThirdParty/ssl/include;../../ThirdParty/ACE/include;../../ThirdParty;../../Common</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>../../BaseLayer;../../DatabaseLayer;../../EngineLayer;../../EngineLayer/EngineDllInterface;../../ThirdParty/LiteZip;../../BaseLayer/DataStructure;../../BaseLayer/Logger;../../ThirdParty/SQLite;../../BaseLayer/External;../../ThirdParty\liblfds\include;../../Common/SFPacketStore;../../ThirdParty/PCRE/include;../../ThirdParty/ssl/include;../../ThirdParty/ACE/include;../../ThirdParty;../../Common;../../ThirdParty/sparsehash-2.0.2/src/windows;../../ThirdParty/sparsehash-2.0.2/src</AdditionalIncludeDirectories>
       <AdditionalOptions>-D_SCL_SECURE_NO_WARNINGS %(AdditionalOptions)</AdditionalOptions>
     </ClCompile>
     <Link>
@@ -76,7 +76,7 @@
       <IntrinsicFunctions>true</IntrinsicFunctions>
       <PreprocessorDefinitions>WIN32;NDEBUG;_CONSOLE;_CRT_SECURE_NO_WARNINGS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <SDLCheck>true</SDLCheck>
-      <AdditionalIncludeDirectories>../../BaseLayer;../../DatabaseLayer;../../EngineLayer;../../EngineLayer/EngineDllInterface;../../ThirdParty/LiteZip;../../BaseLayer/DataStructure;../../BaseLayer/Logger;../../ThirdParty/SQLite;../../BaseLayer/External;../../ThirdParty\liblfds\include;../../Common/SFPacketStore;../../ThirdParty/PCRE/include;../../ThirdParty/ssl/include;../../ThirdParty/ACE/include;../../ThirdParty;../../Common</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>../../BaseLayer;../../DatabaseLayer;../../EngineLayer;../../EngineLayer/EngineDllInterface;../../ThirdParty/LiteZip;../../BaseLayer/DataStructure;../../BaseLayer/Logger;../../ThirdParty/SQLite;../../BaseLayer/External;../../ThirdParty\liblfds\include;../../Common/SFPacketStore;../../ThirdParty/PCRE/include;../../ThirdParty/ssl/include;../../ThirdParty/ACE/include;../../ThirdParty;../../Common;../../ThirdParty/sparsehash-2.0.2/src/windows;../../ThirdParty/sparsehash-2.0.2/src</AdditionalIncludeDirectories>
       <DisableSpecificWarnings>4996;4553</DisableSpecificWarnings>
     </ClCompile>
     <Link>
@@ -116,6 +116,7 @@
     <ClInclude Include="SFExtensionClass.h" />
     <ClInclude Include="SFMathTest.h" />
     <ClInclude Include="SFPacketHandler.h" />
+    <ClInclude Include="SparseHashTest.h" />
     <ClInclude Include="SQLite3Test.h" />
     <ClInclude Include="stdafx.h" />
     <ClInclude Include="StringTest.h" />
@@ -149,6 +150,7 @@
     <ClCompile Include="SFExtensionClass.cpp" />
     <ClCompile Include="SFMathTest.cpp" />
     <ClCompile Include="SFPacketHandler.cpp" />
+    <ClCompile Include="SparseHashTest.cpp" />
     <ClCompile Include="SQLite3Test.cpp" />
     <ClCompile Include="stdafx.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Create</PrecompiledHeader>

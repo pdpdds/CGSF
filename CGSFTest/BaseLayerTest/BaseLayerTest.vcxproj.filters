@@ -120,6 +120,9 @@
     <ClInclude Include="CompressTest.h">
       <Filter>Test</Filter>
     </ClInclude>
+    <ClInclude Include="SparseHashTest.h">
+      <Filter>Test</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="stdafx.cpp">
@@ -210,6 +213,9 @@
       <Filter>Test</Filter>
     </ClCompile>
     <ClCompile Include="CompressTest.cpp">
+      <Filter>Test</Filter>
+    </ClCompile>
+    <ClCompile Include="SparseHashTest.cpp">
       <Filter>Test</Filter>
     </ClCompile>
   </ItemGroup>
