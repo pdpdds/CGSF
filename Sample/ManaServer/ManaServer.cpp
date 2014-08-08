@@ -52,7 +52,7 @@
 #include "utils/mathutils.h"
 
 #include <cstdlib>
-//#include <getopt.h>
+#include <getopt.h>
 #include <iostream>
 #include <signal.h>
 #include <physfs.h>
@@ -64,13 +64,14 @@
 #pragma comment(lib, "MOGame.lib")
 #pragma comment(lib, "Winmm.lib")
 #pragma comment(lib, "lua.lib")
-#pragma comment(lib, "lua.lib")
 //#pragma comment(lib, "physfs.lib")
 #pragma comment(lib, "libxml2.lib")
 #ifdef _DEBUG
 #pragma comment(lib, "sigc-vc120-d-2_0.lib")
+#pragma comment(lib, "argtable2d.lib")
 #else
 #pragma comment(lib, "sigc-vc120-2_0.lib")
+#pragma comment(lib, "argtable2.lib")
 #endif
 #pragma comment(lib, "zlib.lib")
 
@@ -126,12 +127,6 @@ static void closeGracefully(int)
 
 static void initializeServer()
 {
-	// Used to close via process signals
-#if (defined __USE_UNIX98 || defined __FreeBSD__)
-	signal(SIGQUIT, closeGracefully);
-#endif
-	// signal(SIGINT, closeGracefully);
-	// signal(SIGTERM, closeGracefully);
 
 	std::string logFile = Configuration::getValue("log_gameServerFile",
 		DEFAULT_LOG_FILE);
@@ -256,13 +251,61 @@ struct CommandLineOptions
 };
 
 /**
+* Parse the command line arguments
+*/
+static void parseOptions(int argc, char *argv[], CommandLineOptions &options)
+{
+	const char *optString = "hv:";
+
+	const struct option longOptions[] =
+	{
+		{ "help", no_argument, 0, 'h' },
+		{ "config", required_argument, 0, 'c' },
+		{ "verbosity", required_argument, 0, 'v' },
+		{ "port", required_argument, 0, 'p' },
+		{ 0, 0, 0, 0 }
+	};
+
+	while (optind < argc)
+	{
+		int result = getopt_long(argc, argv, optString, longOptions, nullptr);
+
+		if (result == -1)
+			break;
+
+		switch (result)
+		{
+		default: // Unknown option.
+		case 'h':
+			// Print help.
+			printHelp();
+			break;
+		case 'c':
+			// Change config filename and path.
+			options.configPath = optarg;
+			break;
+		case 'v':
+			options.verbosity = static_cast<Logger::Level>(atoi(optarg));
+			options.verbosityChanged = true;
+			LOG_INFO("Using log verbosity level " << options.verbosity);
+			break;
+		case 'p':
+			options.port = atoi(optarg);
+			options.portChanged = true;
+			break;
+		}
+	}
+}
+
+/**
 * Main function, initializes and runs server.
 */
-int _tmain(int argc, _TCHAR* argv[])
+int main(int argc, char *argv[])
 {
 	// Parse command line options
 	CommandLineOptions options;
-	
+	parseOptions(argc, argv, options);
+
 	if (!Configuration::initialize(options.configPath))
 	{
 		LOG_FATAL("Refusing to run without configuration!");

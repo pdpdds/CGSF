@@ -11,10 +11,9 @@
     </ProjectConfiguration>
   </ItemGroup>
   <PropertyGroup Label="Globals">
-    <ProjectGuid>{6C7C014F-1570-4070-A691-2C5680BB618E}</ProjectGuid>
+    <ProjectGuid>{A085A6E3-798E-4230-8A0C-AD2D7AB96133}</ProjectGuid>
     <Keyword>Win32Proj</Keyword>
-    <RootNamespace>MOGameSample</RootNamespace>
-    <ProjectName>ManaServer</ProjectName>
+    <RootNamespace>UIWindow</RootNamespace>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
@@ -42,28 +41,23 @@
   <PropertyGroup Label="UserMacros" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <LinkIncremental>true</LinkIncremental>
-    <OutDir>$(SolutionDir)/ManaServer\</OutDir>
-    <IntDir>$(SolutionDir)/Intermediate/$(Configuration)\$(ProjectName)\</IntDir>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <LinkIncremental>false</LinkIncremental>
-    <OutDir>$(SolutionDir)/ManaServer\</OutDir>
-    <IntDir>$(SolutionDir)/Intermediate/$(Configuration)\$(ProjectName)\</IntDir>
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <ClCompile>
       <PrecompiledHeader>Use</PrecompiledHeader>
       <WarningLevel>Level3</WarningLevel>
       <Optimization>Disabled</Optimization>
-      <PreprocessorDefinitions>WIN32;_DEBUG;_CONSOLE;_LIB;__STDC__;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>WIN32;_DEBUG;_WINDOWS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <SDLCheck>true</SDLCheck>
-      <AdditionalIncludeDirectories>../../Common;../../BaseLayer;../../EngineLayer;../../DatabaseLayer;../../P2PLayer;../../DatabaseLayer/CppDatabasePool;../../DatabaseLayer/CppDatabasePool/mysql;../../ThirdParty;../../ThirdParty/mysql/include;../../ThirdParty/ACE/Include;../../LogicLayer/MOGame;../../ThirdParty/libxml/Include;../../ThirdParty/enet/Include;../../ThirdParty/sigc++;../../ThirdParty/argtable2-13\src;../../ThirdParty/lua-5.2.3/src;../../ThirdParty/physfs\include;../../ThirdParty/argtable2-13\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>../../BaseLayer</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
-      <SubSystem>Console</SubSystem>
+      <SubSystem>Windows</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
-      <AdditionalLibraryDirectories>$(SolutionDir)/../ThirdParty/lib/x86/debug;$(SolutionDir)/lib/x86/debug;$(SolutionDir)/../ThirdParty/physfs/lib/x86/debug;$(SolutionDir)/../ThirdParty/libxml/lib;$(SolutionDir)/../ThirdParty/argtable2-13/lib/x86</AdditionalLibraryDirectories>
-      <AdditionalOptions>/FORCE:multiple %(AdditionalOptions)</AdditionalOptions>
+      <AdditionalLibraryDirectories>../../vsproject/lib/x86/debug</AdditionalLibraryDirectories>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
@@ -73,31 +67,40 @@
       <Optimization>MaxSpeed</Optimization>
       <FunctionLevelLinking>true</FunctionLevelLinking>
       <IntrinsicFunctions>true</IntrinsicFunctions>
-      <PreprocessorDefinitions>WIN32;NDEBUG;_CONSOLE;_LIB;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>WIN32;NDEBUG;_WINDOWS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <SDLCheck>true</SDLCheck>
-      <AdditionalIncludeDirectories>../../Common;../../BaseLayer;../../EngineLayer;../../DatabaseLayer;../../P2PLayer;../../DatabaseLayer/CppDatabasePool;../../DatabaseLayer/CppDatabasePool/mysql;../../ThirdParty;../../ThirdParty/mysql/include;../../ThirdParty/ACE/Include;../../LogicLayer/MOGame;../../ThirdParty/libxml/Include;../../ThirdParty/enet/Include;../../ThirdParty/sigc++;../../ThirdParty/argtable2-13\src;../../ThirdParty/lua-5.2.3/src;../../ThirdParty/physfs\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
-      <SubSystem>Console</SubSystem>
+      <SubSystem>Windows</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
       <OptimizeReferences>true</OptimizeReferences>
-      <AdditionalLibraryDirectories>$(SolutionDir)/../ThirdParty/lib/x86/release;$(SolutionDir)/lib/x86/release;$(SolutionDir)/../ThirdParty/physfs/lib/x86/release;$(SolutionDir)/../ThirdParty/libxml/lib</AdditionalLibraryDirectories>
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
     <Text Include="ReadMe.txt" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Resource.h" />
+    <ClInclude Include="SampleUIWindow.h" />
     <ClInclude Include="stdafx.h" />
     <ClInclude Include="targetver.h" />
+    <ClInclude Include="UIWindow.h" />
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="ManaServer.cpp" />
+    <ClCompile Include="SampleUIWindow.cpp" />
     <ClCompile Include="stdafx.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Create</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Create</PrecompiledHeader>
     </ClCompile>
+    <ClCompile Include="UIWindow.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ResourceCompile Include="UIWindow.rc" />
+  </ItemGroup>
+  <ItemGroup>
+    <Image Include="small.ico" />
+    <Image Include="UIWindow.ico" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

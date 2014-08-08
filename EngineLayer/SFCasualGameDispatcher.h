@@ -13,7 +13,6 @@ public:
 
 	virtual bool AddRPCService(IRPCService* pService) override;
 
-
 private:
 	static bool m_bLogicEnd;
 	int m_nLogicThreadCnt;
@@ -22,5 +21,6 @@ private:
 
 	static void LogicThreadProc(void* Args);
 	static void RPCThreadProc(void* Args);
+	static bool ReleasePacket(BasePacket* pPacket);
 };
 

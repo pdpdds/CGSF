@@ -195,6 +195,7 @@
     <ClCompile Include=".\SFSessionService.cpp" />
     <ClCompile Include="SFJsonPacket.cpp" />
     <ClCompile Include="SFJsonProtocol.cpp" />
+    <ClCompile Include="SFMMODispatcher.cpp" />
     <ClCompile Include="SFMsgPackPacket.cpp" />
     <ClCompile Include="SFMsgPackProtocol.cpp" />
     <ClCompile Include="SFNetworkEntry.cpp" />
@@ -264,6 +265,7 @@
     <ClInclude Include=".\SFSessionService.h" />
     <ClInclude Include="SFJsonPacket.h" />
     <ClInclude Include="SFJsonProtocol.h" />
+    <ClInclude Include="SFMMODispatcher.h" />
     <ClInclude Include="SFMsgPackPacket.h" />
     <ClInclude Include="SFMsgPackProtocol.h" />
     <ClInclude Include="SFNetworkEntry.h" />

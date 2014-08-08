@@ -161,12 +161,12 @@ void ItemManager::readEquipSlotNode(xmlNodePtr node)
 void ItemManager::readItemNode(xmlNodePtr itemNode, const std::string &filename)
 {
     const int id = XML::getProperty(itemNode, "id", 0);
-    if (id < 1)
+    /*if (id < 1)
     {
         LOG_WARN("Item Manager: Item ID: " << id << " is invalid in "
                  << filename << ", and will be ignored.");
         return;
-    }
+    }*/
 
     // Type is mostly unused, but still serves for hairsheets and race sheets
     const std::string type = XML::getProperty(itemNode, "type", std::string());

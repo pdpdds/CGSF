@@ -60,6 +60,9 @@
     <Filter Include="Window">
       <UniqueIdentifier>{2543e1bb-bb26-42ed-9e9e-bc1de6d1604d}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Scheduler">
+      <UniqueIdentifier>{8ef6838b-c9b8-4612-a5e5-88b57c64d7cb}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include=".\cpu_info.cpp">
@@ -516,6 +519,9 @@
     </ClInclude>
     <ClInclude Include="Window\UIFramework.h">
       <Filter>Window</Filter>
+    </ClInclude>
+    <ClInclude Include="SFScheduler.h">
+      <Filter>Scheduler</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

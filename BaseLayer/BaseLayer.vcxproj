@@ -303,6 +303,7 @@
     <ClInclude Include="SFMinidump.h" />
     <ClInclude Include="SFObjectPool.h" />
     <ClInclude Include="SFQueue.h" />
+    <ClInclude Include="SFScheduler.h" />
     <ClInclude Include="SFStackWalker.h" />
     <ClInclude Include="SFString.h" />
     <ClInclude Include="SFTimer.h" />

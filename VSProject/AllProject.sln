@@ -143,8 +143,6 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "ServerConnector", "..\Sampl
 		{F7276B81-CD8E-4E0B-ABF5-BAB8FEBE0511} = {F7276B81-CD8E-4E0B-ABF5-BAB8FEBE0511}
 	EndProjectSection
 EndProject
-Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "UIWindow", "..\Sample\UIWindow\UIWindow.vcxproj", "{A085A6E3-798E-4230-8A0C-AD2D7AB96133}"
-EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Win32 = Debug|Win32
@@ -373,12 +371,6 @@ Global
 		{448F9D05-7F45-4033-A03C-98C18DEB0329}.Release|Win32.Build.0 = Release|Win32
 		{448F9D05-7F45-4033-A03C-98C18DEB0329}.Release|x64.ActiveCfg = Release|x64
 		{448F9D05-7F45-4033-A03C-98C18DEB0329}.Release|x64.Build.0 = Release|x64
-		{A085A6E3-798E-4230-8A0C-AD2D7AB96133}.Debug|Win32.ActiveCfg = Debug|Win32
-		{A085A6E3-798E-4230-8A0C-AD2D7AB96133}.Debug|Win32.Build.0 = Debug|Win32
-		{A085A6E3-798E-4230-8A0C-AD2D7AB96133}.Debug|x64.ActiveCfg = Debug|Win32
-		{A085A6E3-798E-4230-8A0C-AD2D7AB96133}.Release|Win32.ActiveCfg = Release|Win32
-		{A085A6E3-798E-4230-8A0C-AD2D7AB96133}.Release|Win32.Build.0 = Release|Win32
-		{A085A6E3-798E-4230-8A0C-AD2D7AB96133}.Release|x64.ActiveCfg = Release|Win32
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

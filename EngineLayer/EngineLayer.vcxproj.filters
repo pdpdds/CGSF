@@ -199,6 +199,9 @@
     <ClCompile Include="SFPacketProtocolManager.cpp">
       <Filter>Packet\PacketProtocol</Filter>
     </ClCompile>
+    <ClCompile Include="SFMMODispatcher.cpp">
+      <Filter>Dispatcher</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include=".\SFExcel.h">
@@ -404,6 +407,9 @@
     </ClInclude>
     <ClInclude Include="SFPacketProtocolManager.h">
       <Filter>Packet\PacketProtocol</Filter>
+    </ClInclude>
+    <ClInclude Include="SFMMODispatcher.h">
+      <Filter>Dispatcher</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

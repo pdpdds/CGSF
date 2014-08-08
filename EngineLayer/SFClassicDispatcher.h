@@ -11,5 +11,7 @@ public:
 	
 	virtual bool CreateLogicSystem(ILogicEntry* pLogicEntry) override;
 	virtual bool ShutDownLogicSystem() override;
+
+	static bool ReleasePacket(BasePacket* pPacket);
 };
 
