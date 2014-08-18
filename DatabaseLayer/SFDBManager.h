@@ -21,7 +21,7 @@ public:
 	SFDBManager()
 		: m_ShutDown(0)
 		, m_Workers_Lock()
-		, m_Workers_Cond(m_Workers_Lock)	
+		, m_workers_Cond(m_Workers_Lock)
 	{
 		m_workerPoolSize = DEFAUT_POOL_SIZE;
 	}
@@ -30,7 +30,7 @@ public:
 
 	int perform(ACE_Method_Request* pReq)
 	{
-		return this->m_Queue.enqueue(pReq);
+		return this->m_queue.enqueue(pReq);
 	}
 
 	void SetWorkerPoolSize(int workerPoolSize)
@@ -47,7 +47,7 @@ public:
 			ACE_Time_Value tv((long)MAX_TIMEOUT);
 			tv += ACE_OS::time(0);
 
-			SFDBRequest* pReq = (SFDBRequest*)this->m_Queue.dequeue(&tv);
+			SFDBRequest* pReq = (SFDBRequest*)this->m_queue.dequeue(&tv);
 
 			if(NULL == pReq)
 			continue;
@@ -70,8 +70,8 @@ public:
 	{
 		ACE_GUARD_RETURN(ACE_Thread_Mutex, worker_mon, this->m_Workers_Lock, -1);
 		this->m_queueWorkers.enqueue_tail(pWorker);
-		this->m_ReqQueue.Push(pReq);
-		this->m_Workers_Cond.signal();
+		this->m_reqQueue.Push(pReq);
+		this->m_workers_Cond.signal();
 
 		return 0;
 	}
@@ -79,7 +79,7 @@ public:
 	virtual int recall_request(ACE_Method_Request* pReq)
 	{
 		ACE_GUARD_RETURN(ACE_Thread_Mutex, worker_mon, this->m_Workers_Lock, -1);
-		this->m_ReqQueue.Push(pReq);
+		this->m_reqQueue.Push(pReq);
 
 		return 0;
 	}
@@ -88,13 +88,13 @@ public:
 	{
 		ACE_Method_Request* pReq = NULL;
 
-		if(m_ReqQueue.Size() == 0)
+		if(m_reqQueue.Size() == 0)
 		{
 			pReq = new SFDBRequest();
 		}
 		else
 		{
-			pReq = m_ReqQueue.Pop();
+			pReq = m_reqQueue.Pop();
 		}
 
 		return pReq;
@@ -106,7 +106,7 @@ protected:
 		ACE_GUARD_RETURN(ACE_Thread_Mutex, worker_mon, this->m_Workers_Lock, 0);
 
 		while(this->m_queueWorkers.is_empty())
-			m_Workers_Cond.wait();
+			m_workers_Cond.wait();
 
 		SFDBWorker* pWorker = NULL;
 		this->m_queueWorkers.dequeue_head(pWorker);
@@ -149,8 +149,8 @@ private:
 	int m_ShutDown;
 	int m_workerPoolSize;
 	ACE_Thread_Mutex m_Workers_Lock;
-	ACE_Condition<ACE_Thread_Mutex> m_Workers_Cond;
+	ACE_Condition<ACE_Thread_Mutex> m_workers_Cond;
 	ACE_Unbounded_Queue<SFDBWorker*>	m_queueWorkers;
-	ACE_Activation_Queue	m_Queue;
-	SFLockQueue<ACE_Method_Request> m_ReqQueue;
+	ACE_Activation_Queue	m_queue;
+	SFLockQueue<ACE_Method_Request> m_reqQueue;
 };

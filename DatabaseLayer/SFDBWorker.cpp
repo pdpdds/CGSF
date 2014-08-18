@@ -7,13 +7,13 @@
 
 int SFDBWorker::svc(void)
 {
-	m_ThreadID = ACE_Thread::self();
+	m_threadID = ACE_Thread::self();
 
 	//BOOL bResult = m_pDatabase->Initialize();
 
 	while(TRUE)
 	{
-		ACE_Method_Request* pReq = this->m_Queue.dequeue();
+		ACE_Method_Request* pReq = this->m_queue.dequeue();
 
 		if(NULL == pReq)
 		{	

@@ -14,7 +14,7 @@ public:
 
 	int perform(ACE_Method_Request* pReq)
 	{
-		return this->m_Queue.enqueue(pReq);
+		return this->m_queue.enqueue(pReq);
 	}
 
 	virtual int svc(void);
@@ -29,8 +29,8 @@ public:
 protected:
 
 private:
-	ACE_Activation_Queue m_Queue;
-	ACE_thread_t m_ThreadID;
+	ACE_Activation_Queue m_queue;
+	ACE_thread_t m_threadID;
 	IDBManager* m_pManager;
 	SFDatabase* m_pDatabase;
 };
