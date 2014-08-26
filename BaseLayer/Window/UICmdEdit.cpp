@@ -64,12 +64,19 @@ HWND UICmdEdit::InitEditProc( HWND hParent, HFONT hFont )
 	RECT rect;
 	GetClientRect( hParent, &rect );
 
+#ifdef _WIN64
 	s_hEditWnd = CreateWindowW( L"EDIT", L"",
 		WS_CHILD | WS_CLIPSIBLINGS | WS_TABSTOP | WS_VISIBLE | WS_BORDER | ES_WANTRETURN | ES_AUTOHSCROLL,
 		0, rect.bottom-EDIT_HEIGHT, rect.right, EDIT_HEIGHT,
 		hParent, (HMENU )ID_EDIT,
-		(HINSTANCE )GetWindowLong( hParent, GWL_HINSTANCE ), NULL );
-
+		(HINSTANCE )GetWindowLongPtr( hParent, GWLP_HINSTANCE ), NULL );
+#else
+	s_hEditWnd = CreateWindowW(L"EDIT", L"",
+		WS_CHILD | WS_CLIPSIBLINGS | WS_TABSTOP | WS_VISIBLE | WS_BORDER | ES_WANTRETURN | ES_AUTOHSCROLL,
+		0, rect.bottom - EDIT_HEIGHT, rect.right, EDIT_HEIGHT,
+		hParent, (HMENU)ID_EDIT,
+		(HINSTANCE)GetWindowLong(hParent, GWL_HINSTANCE), NULL);
+#endif
 	ShowWindow( s_hEditWnd, SW_SHOW );
 	UpdateWindow( s_hEditWnd );
 
@@ -77,9 +84,13 @@ HWND UICmdEdit::InitEditProc( HWND hParent, HFONT hFont )
 	::SendMessage(s_hEditWnd, WM_SETFONT, (WPARAM)hFont, MAKELPARAM(FALSE,0));
 
 	// 여기서 에디트 박스에 폰트를 셋팅하게 한다.
-
-	s_OldEditProc = (WNDPROC )GetWindowLong( s_hEditWnd, GWL_WNDPROC );
-	SetWindowLong( s_hEditWnd, GWL_WNDPROC, (LONG )EditProc );
+#ifdef _WIN64
+	s_OldEditProc = (WNDPROC )GetWindowLongPtr( s_hEditWnd, GWLP_WNDPROC );
+	SetWindowLongPtr( s_hEditWnd, GWLP_WNDPROC, (LONG )EditProc );
+#else
+	s_OldEditProc = (WNDPROC)GetWindowLong(s_hEditWnd, GWL_WNDPROC);
+	SetWindowLong(s_hEditWnd, GWL_WNDPROC, (LONG)EditProc);
+#endif
 
 	return s_hEditWnd;
 }

@@ -58,12 +58,19 @@ HWND UICmdMsgView::InitMsgView( HWND hParent, HFONT hFont )
 	(HINSTANCE )GetWindowLong( hParent, GWL_HINSTANCE ), NULL );
 	*/
 
+#ifdef _WIN64
+	s_hInfoWnd = CreateWindowW(L"EDIT", L"Infomation",
+		WS_CHILD | WS_CLIPSIBLINGS | WS_TABSTOP | WS_VISIBLE | WS_BORDER | WS_VSCROLL | ES_READONLY | ES_MULTILINE | ES_AUTOVSCROLL,
+		0, 0, rect.right, INFO_HEIGHT,
+		hParent, (HMENU)ID_INFO,
+		(HINSTANCE)GetWindowLongPtr(hParent, GWLP_HINSTANCE), NULL);
+#else
 	s_hInfoWnd = CreateWindowW( L"EDIT", L"Infomation",
 		WS_CHILD | WS_CLIPSIBLINGS | WS_TABSTOP | WS_VISIBLE | WS_BORDER | WS_VSCROLL | ES_READONLY | ES_MULTILINE | ES_AUTOVSCROLL,
 		0, 0, rect.right, INFO_HEIGHT,
 		hParent, (HMENU )ID_INFO,
 		(HINSTANCE )GetWindowLong( hParent, GWL_HINSTANCE ), NULL );
-
+#endif
 	ShowWindow( s_hInfoWnd, SW_SHOW );
 	UpdateWindow( s_hInfoWnd );
 
@@ -74,7 +81,15 @@ HWND UICmdMsgView::InitMsgView( HWND hParent, HFONT hFont )
 	// 메인 폰트로 폰트를 셋팅한다.
 	::SendMessage(s_hInfoWnd, WM_SETFONT, (WPARAM)hFont, MAKELPARAM(FALSE,0));
 
-
+#ifdef _WIN64
+	s_hListWnd = CreateWindowW( L"LISTBOX", L"Message List",
+		WS_CHILD | WS_CLIPSIBLINGS | WS_VISIBLE | WS_BORDER | WS_VSCROLL
+		| LBS_DISABLENOSCROLL | LBS_NOINTEGRALHEIGHT | LBS_WANTKEYBOARDINPUT | LBS_USETABSTOPS,
+		0, INFO_HEIGHT, rect.right, rect.bottom - EDIT_HEIGHT - INFO_HEIGHT,
+		hParent, (HMENU )ID_MSGVIEW,
+		(HINSTANCE )GetWindowLongPtr( hParent, GWLP_HINSTANCE ),
+		NULL );
+#else
 	s_hListWnd = CreateWindowW( L"LISTBOX", L"Message List",
 		WS_CHILD | WS_CLIPSIBLINGS | WS_VISIBLE | WS_BORDER | WS_VSCROLL
 		| LBS_DISABLENOSCROLL | LBS_NOINTEGRALHEIGHT | LBS_WANTKEYBOARDINPUT | LBS_USETABSTOPS,
@@ -82,6 +97,7 @@ HWND UICmdMsgView::InitMsgView( HWND hParent, HFONT hFont )
 		hParent, (HMENU )ID_MSGVIEW,
 		(HINSTANCE )GetWindowLong( hParent, GWL_HINSTANCE ),
 		NULL );
+#endif
 
 	ShowWindow( s_hListWnd, SW_SHOW );
 	UpdateWindow( s_hListWnd );
