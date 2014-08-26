@@ -3,7 +3,10 @@
 
 #pragma warning (disable : 4267) 
 #pragma warning (disable : 4244) 
+#pragma warning (disable : 4125) 
 
+#pragma warning( push )
+#pragma warning (disable : 4512) 
 #define INTERNAL_SUPPRESS_PROTOBUF_FIELD_DEPRECATION
 #include "SevenGamePacket.pb.h"
 
@@ -18,6 +21,7 @@
 #include <google/protobuf/reflection_ops.h>
 #include <google/protobuf/wire_format.h>
 // @@protoc_insertion_point(includes)
+#pragma warning( pop )
 
 namespace SevenGamePacket {
 
