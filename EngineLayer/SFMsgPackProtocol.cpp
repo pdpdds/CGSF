@@ -87,6 +87,9 @@ BasePacket* SFMsgPackProtocol::CreatePacket()
 
 bool SFMsgPackProtocol::Encode(BasePacket* pPacket, char** ppBuffer, int& bufferSize)
 {
+	UNREFERENCED_PARAMETER(pPacket);
+	UNREFERENCED_PARAMETER(ppBuffer);
+	UNREFERENCED_PARAMETER(bufferSize);
 	/*
 	SFMsgPackPacket* pMsgPackPacket = (SFMsgPackPacket*)pPacket;
 

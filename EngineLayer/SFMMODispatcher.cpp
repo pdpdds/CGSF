@@ -23,6 +23,8 @@ void SFMMODispatcher::Dispatch(BasePacket* pPacket)
 
 bool SFMMODispatcher::CreateLogicSystem(ILogicEntry* pLogicEntry)
 {
+	UNREFERENCED_PARAMETER(pLogicEntry);
+
 	ACE_Thread_Manager::instance()->spawn_n(1, (ACE_THR_FUNC)PacketDistributorProc, this, THR_NEW_LWP, ACE_DEFAULT_THREAD_PRIORITY);
 
 	for (int index = 0; m_channelCount; index++)
@@ -46,7 +48,7 @@ void SFMMODispatcher::PacketDistributorProc(void* Args)
 {
 	SFMMODispatcher* pMMODispatcher = static_cast<SFMMODispatcher*>(Args);
 
-	SFEngine* pEngine = SFEngine::GetInstance();
+	//SFEngine* pEngine = SFEngine::GetInstance();
 
 	while (m_bLogicEnd == false)
 	{
@@ -54,7 +56,7 @@ void SFMMODispatcher::PacketDistributorProc(void* Args)
 		
 		int channelNum = 0;
 
-		auto& iter = pMMODispatcher->m_mapQueue.find(channelNum);
+		const auto& iter = pMMODispatcher->m_mapQueue.find(channelNum);
 
 		if (iter == pMMODispatcher->m_mapQueue.end())
 		{

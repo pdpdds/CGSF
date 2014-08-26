@@ -4,6 +4,8 @@
 #include "stdafx.h"
 #include <crtdbg.h>
 
+#pragma warning(disable : 4702)
+
 namespace Private 
 {
 #define MAKEQWORD(a, b)	\

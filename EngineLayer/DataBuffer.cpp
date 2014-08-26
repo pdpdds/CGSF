@@ -21,6 +21,9 @@
 #include "StdAfx.h"
 #include "DataBuffer.h"
 
+#pragma warning(disable : 4244)
+#pragma warning(disable : 4267)
+
 DataBuffer::DataBuffer(unsigned int uMaxSize)
 {
 	uSize = 0;

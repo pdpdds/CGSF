@@ -4,6 +4,8 @@
 
 void PacketSendThread(void* Args)
 {
+	UNREFERENCED_PARAMETER(Args);
+
 	while (1)
 	{
 		SFPacketDelaySendTask* pPacketTask = (SFPacketDelaySendTask*)PacketSendSingleton::instance()->PopTask();

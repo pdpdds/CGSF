@@ -44,7 +44,7 @@ bool SFPacketIOBuffer::GetPacket(SFPacketHeader& header, char* pBuffer, unsigned
 
 	int getDataSize = GetData((char*)pBuffer, dataSize);
 
-	if (dataSize != getDataSize)
+	if (dataSize != (unsigned int)getDataSize)
 	{
 		SetHead(oldHead);
 		errorCode = PACKETIO_ERROR_DATA;

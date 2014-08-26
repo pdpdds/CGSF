@@ -21,7 +21,7 @@ public:
 
 	IPacketProtocol* GetPacketProtocol(int packetProtocolId)
 	{ 
-		auto& iter = m_mapPacketProtocol.find(packetProtocolId); 
+		const auto& iter = m_mapPacketProtocol.find(packetProtocolId);
 		if (iter != m_mapPacketProtocol.end()) 
 			return iter->second; 
 		return NULL; 

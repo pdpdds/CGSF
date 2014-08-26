@@ -2,6 +2,7 @@
 #include "SFAvroPacketImpl.h"
 #include "SFAvroProtocol.h"
 
+
 SFAvroPacketImpl::SFAvroPacketImpl()
 {
 }

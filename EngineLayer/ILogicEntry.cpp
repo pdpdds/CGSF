@@ -9,7 +9,7 @@ bool ILogicEntry::ProcessConnectorPacket(BasePacket* pPacket)
 {
 	_SessionDesc& desc = pPacket->GetSessionDesc();
 
-	auto& callback = m_mapConnectorCallback.find(desc.identifier);
+	const auto& callback = m_mapConnectorCallback.find(desc.identifier);
 
 	if (callback != m_mapConnectorCallback.end())
 	{
