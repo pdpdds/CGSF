@@ -46,6 +46,12 @@
 
 #include <cassert>
 
+#pragma warning(disable : 4267) 
+#pragma warning(disable : 4127) 
+#pragma warning(disable : 4244) 
+#pragma warning(disable : 4706) 
+#pragma warning(disable : 4701) 
+
 //Add "openssl-0.9.8l\out32" to Additional Library Directories
 #pragma comment(lib, "ssleay32.lib")
 #pragma comment(lib, "libeay32.lib")
@@ -662,7 +668,7 @@ bool CSmtp::ConnectRemoteServer(const char *szServer, const unsigned short nPort
 	fd_set fdwrite,fdexcept;
 	timeval timeout;
 	int res = 0;
-	bool conected=false;
+	//bool conected=false;
 
 	try
 	{

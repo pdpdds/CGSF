@@ -2,6 +2,8 @@
 #include "UIFramework.h"
 #include "SFUtil.h"
 
+#pragma warning(disable : 4100) 
+
 using namespace SFUtil;
 
 HWND UIWindow::m_logHwnd;
@@ -309,7 +311,7 @@ BOOL UICommandFactory::AddCommand( const WCHAR* szCommand, UICommand* lpCommand,
 
 VOID UICommandFactory::ReleaseCommand()
 {
-	int iSize = m_CMDVector.size();
+	int iSize = (int)m_CMDVector.size();
 	for(int i = 0; i < iSize; ++i)
 	{
 		delete m_CMDVector[i].m_lpCMD;
@@ -321,7 +323,7 @@ VOID UICommandFactory::ReleaseCommand()
 VOID UICommandFactory::ShowCommand()
 {
 	LOG( (L"------------------- Commands -------------------") );
-	int iSize = m_CMDVector.size();
+	int iSize = (int)m_CMDVector.size();
 	for(int i = 0; i < iSize; ++i)
 	{
 		LOG((L"%s : %s", m_CMDVector[i].m_szCMD, m_CMDVector[i].m_szMSG));
@@ -342,7 +344,7 @@ VOID UICommandFactory::DoCommand( WCHAR* Command )
 		UINT uiHash = Hash(cmd);
 		WCHAR* NextCmd = &Buff[wcslen(cmd)+1];
 
-		int iSize = m_CMDVector.size();
+		int iSize = (int)m_CMDVector.size();
 		for(int i = 0; i < iSize; ++i)
 		{
 			if(m_CMDVector[i].m_uiHash != uiHash)

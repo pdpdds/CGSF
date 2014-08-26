@@ -2,6 +2,7 @@
 #include "SFBitArray.h"
 
 #pragma warning (disable : 4244)
+#pragma warning (disable : 4706) 
 
 void *AllocPtr(int nSize)
 {

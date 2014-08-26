@@ -196,6 +196,7 @@
 #include "CStdString.h"
 
 #pragma warning (disable : 4267)
+#pragma warning (disable : 4702)
 
 #ifdef _DEBUG
 #undef THIS_FILE

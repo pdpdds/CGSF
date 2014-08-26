@@ -28,6 +28,7 @@ distribution.
 //#define DEBUG_PARSER
 
 #pragma warning (disable : 4244)
+#pragma warning (disable : 4702)
 
 // Note tha "PutString" hardcodes the same list. This
 // is less flexible than it appears. Changing the entries

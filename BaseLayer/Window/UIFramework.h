@@ -162,5 +162,9 @@ private:
 	// WM_EDIT_RETURN
 	virtual VOID	OnEditReturn(HWND hWnd, UINT uMsg, WPARAM wParam, LPARAM lParam);
 	// WM_COMMAND
-	virtual VOID	OnCommand(HWND hWnd, INT nID, INT iEvent, LPARAM lParam) { return; }
+	virtual VOID	OnCommand(HWND hWnd, INT nID, INT iEvent, LPARAM lParam) 
+	{
+		UNREFERENCED_PARAMETER(hWnd); UNREFERENCED_PARAMETER(nID); UNREFERENCED_PARAMETER(iEvent); UNREFERENCED_PARAMETER(lParam);
+		return; 
+	}
 };

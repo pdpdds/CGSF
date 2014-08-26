@@ -55,6 +55,7 @@ using namespace std;
 
 #pragma warning(disable : 4996)
 #pragma warning (disable : 4267)
+#pragma warning(disable : 4706)
 
 // MD5 simple initialization method
 

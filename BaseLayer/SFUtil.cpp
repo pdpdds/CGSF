@@ -8,6 +8,8 @@
 #include  <Lm.h>
 
 #pragma warning(disable : 4996)
+#pragma warning(disable : 4706) 
+
 namespace SFUtil
 {
 	DWORD GetPESize(LPCTSTR filename)

@@ -2,6 +2,7 @@
 //
 //////////////////////////////////////////////////////////////////////
 
+
 #include "stdafx.h"
 #include "DirectoryChanges.h"
 #include "DelayedDirectoryChangeHandler.h"
@@ -10,6 +11,7 @@
 #include <shlwapi.h>				 // for PathMatchSpec
 #pragma comment( lib, "shlwapi.lib") // function
 
+#pragma warning (disable : 4702)
 
 #ifdef _DEBUG
 #undef THIS_FILE

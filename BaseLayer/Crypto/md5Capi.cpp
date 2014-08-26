@@ -9,6 +9,8 @@
 #include "md5Capi.h"
 #include "SFUtil.h"
 
+#pragma warning (disable : 4701) 
+
 #ifdef _DEBUG
 #undef THIS_FILE
 static char THIS_FILE[]=__FILE__;
@@ -49,7 +51,7 @@ std::wstring &Cmd5Capi::Digest(std::wstring & csBuffer)
     HCRYPTHASH hHash; 
     BYTE bHash[0x7f]; 
     DWORD dwHashLen= 16; // The MD5 algorithm always returns 16 bytes. 
-	DWORD cbContent= csBuffer.length();
+	DWORD cbContent = (DWORD)csBuffer.length();
 	BYTE* pbContent= (BYTE*)csBuffer.c_str();
 
 
