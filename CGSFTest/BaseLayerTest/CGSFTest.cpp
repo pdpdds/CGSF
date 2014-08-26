@@ -18,6 +18,8 @@
 #include "EncryptTest.h"
 #include "CompressTest.h"
 #include "SparseHashTest.h"
+#include "SFScheduler.h"
+#include "SendEMailTest.h"
 
 //#include "vld.h"
 //#include "SFCheckSum.h"
@@ -26,7 +28,7 @@
 
 int _tmain(int argc, _TCHAR* argv[])
 {
-	SparseHashTest test;
+	SendEMailTest test;
 	test.Run();
 	getchar();
 		

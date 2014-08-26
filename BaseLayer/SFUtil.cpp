@@ -174,21 +174,7 @@ namespace SFUtil
 		return TestGUIDString;
 	}
 
-#ifdef _DEBUG
-	char* CustomFormatA(LPCSTR msg, ...)
-	{
-		va_list va_ptr;
-		static char message[256];
-
-		va_start(va_ptr, msg);
-		::vsprintf_s(message, msg, va_ptr); 
-		va_end(va_ptr);
-
-		return message;
-	}
-
-
-#else
+#ifdef _UNICODE
 	wchar_t* CustomFormatW(LPCWSTR msg, ...)
 	{
 		va_list va_ptr;
@@ -196,6 +182,19 @@ namespace SFUtil
 
 		va_start(va_ptr, msg);
 		::vswprintf_s(message, msg, va_ptr); 
+		va_end(va_ptr);
+
+		return message;
+	}
+
+#else
+	char* CustomFormatA(LPCSTR msg, ...)
+	{
+		va_list va_ptr;
+		static char message[256];
+
+		va_start(va_ptr, msg);
+		::vsprintf_s(message, msg, va_ptr);
 		va_end(va_ptr);
 
 		return message;

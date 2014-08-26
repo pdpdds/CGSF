@@ -221,6 +221,9 @@
     <ClCompile Include="Window\UIFramework.cpp">
       <Filter>Window</Filter>
     </ClCompile>
+    <ClCompile Include="CSmtp.cpp">
+      <Filter>Util</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include=".\cpu_info.h">
@@ -522,6 +525,9 @@
     </ClInclude>
     <ClInclude Include="SFScheduler.h">
       <Filter>Scheduler</Filter>
+    </ClInclude>
+    <ClInclude Include="CSmtp.h">
+      <Filter>Util</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

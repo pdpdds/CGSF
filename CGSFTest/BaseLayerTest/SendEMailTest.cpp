@@ -1,6 +1,9 @@
 #include "stdafx.h"
 #include "SendEMailTest.h"
-//#include "CSMTP.h"
+#include "CSMTP.h"
+
+//#pragma comment(lib, "libeay32.lib")
+//#pragma comment(lib, "ssleay32.lib")
 
 SendEMailTest::SendEMailTest(void)
 {
@@ -13,7 +16,6 @@ SendEMailTest::~SendEMailTest(void)
 
 bool SendEMailTest::Run()
 {
-	/*
 	bool bError = false;
 
 	try
@@ -74,6 +76,6 @@ bool SendEMailTest::Run()
 	}
 	if(!bError)
 		std::cout << "Mail was send successfully.\n";
-*/
+
 	return true;
 }

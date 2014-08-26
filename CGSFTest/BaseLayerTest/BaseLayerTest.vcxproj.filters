@@ -126,6 +126,9 @@
     <ClInclude Include="CryptoTest.h">
       <Filter>Test</Filter>
     </ClInclude>
+    <ClInclude Include="SchedulerTest.h">
+      <Filter>Test</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="stdafx.cpp">
@@ -222,6 +225,9 @@
       <Filter>Test</Filter>
     </ClCompile>
     <ClCompile Include="CryptoTest.cpp">
+      <Filter>Test</Filter>
+    </ClCompile>
+    <ClCompile Include="SchedulerTest.cpp">
       <Filter>Test</Filter>
     </ClCompile>
   </ItemGroup>

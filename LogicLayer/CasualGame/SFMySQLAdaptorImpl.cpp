@@ -49,17 +49,25 @@ BOOL SFMySQLAdaptorImpl::OnLogin( BasePacket* pPacket )
 		LOG(ERROR) << "mysql connection get fail!!";
 		return FALSE;
 	}
-	
-	con->setSchema("test");
-	stmt = con->createStatement();
-	res = stmt->executeQuery(szQuery);
-	
-	if(1 == res->rowsCount())
-		Result = 0;
 
-	delete res;
-	delete stmt;
+	try
+	{
+		con->setSchema("test");
+		stmt = con->createStatement();
+		res = stmt->executeQuery(szQuery);
 
+		if (1 == res->rowsCount())
+			Result = 0;
+
+		delete res;
+		delete stmt;
+	}
+	catch (sql::SQLException e)
+	{
+		LOG(ERROR) << "mysql query execute fail!!";
+		return FALSE;
+	}
+	
 	/*Release the connection back into the pool*/
 	pMySqlPool->ReleaseConnectionToPool(con);
 
