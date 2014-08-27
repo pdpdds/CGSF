@@ -118,7 +118,7 @@
       <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
     </ClCompile>
     <Lib>
-      <AdditionalLibraryDirectories>$(SolutionDir)/Lib/x64/debug;../ThirdParty/lib/x64/debug;../ThirdParty/ACE/lib/x64;../ThirdParty/MsgPack/lib/x64;../ThirdParty/Avro/lib/x64/Debug;$(SolutionDir)/../ThirdParty/liblfds/lib/x64/DEBUG;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalLibraryDirectories>$(SolutionDir)/Lib/x64/debug;../ThirdParty/lib/x64/debug;../ThirdParty/ACE/lib/x64;../ThirdParty/MsgPack/lib/x64;../ThirdParty/Avro/lib/x64/Debug;$(SolutionDir)/../ThirdParty/liblfds/lib/x64/DEBUG;$(SolutionDir)/../../ThirdParty/liblfds/lib/x64/DEBUG;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
       <AdditionalDependencies>libglog.lib;aced.lib;commonlayer.lib;msgpackd.lib;avrocpp_s.lib;liblfds611.lib</AdditionalDependencies>
     </Lib>
   </ItemDefinitionGroup>
