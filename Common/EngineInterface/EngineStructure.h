@@ -8,7 +8,7 @@ typedef struct tag_SessionDesc
 	tag_SessionDesc()
 	{
 		sessionType = -1;
-		iidentifier = -1;
+		identifier = -1;
 	}
 
 }_SessionDesc;
