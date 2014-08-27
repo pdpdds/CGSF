@@ -110,7 +110,6 @@
     <ClInclude Include="PCRETest.h" />
     <ClInclude Include="RegistryTest.h" />
     <ClInclude Include="RexTest.h" />
-    <ClInclude Include="SchedulerTest.h" />
     <ClInclude Include="SendEMailTest.h" />
     <ClInclude Include="SerializationTest.h" />
     <ClInclude Include="SFBaseClass.h" />
@@ -146,7 +145,6 @@
     <ClCompile Include="PCRETest.cpp" />
     <ClCompile Include="RegistryTest.cpp" />
     <ClCompile Include="RexTest.cpp" />
-    <ClCompile Include="SchedulerTest.cpp" />
     <ClCompile Include="SendEMailTest.cpp" />
     <ClCompile Include="SerializationTest.cpp" />
     <ClCompile Include="SFBaseClass.cpp" />
