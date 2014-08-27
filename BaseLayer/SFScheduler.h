@@ -37,9 +37,9 @@ struct function_timer
 class SFScheduler
 {
 private:
-	std::priority_queue<function_timer> tasks;
+	std::priority_queue<function_timer> m_tasks;
 	std::unique_ptr<std::thread> m_pThread;
-	bool go_on;
+	bool m_goOn;
 
 	SFScheduler& operator=(const SFScheduler& rhs) = delete;
 	SFScheduler(const SFScheduler& rhs) = delete;
@@ -48,40 +48,40 @@ public:
 
 	SFScheduler()		
 	{ 
-		go_on = true;
+		m_goOn = true;
 		std::unique_ptr<std::thread> pThread(new std::thread([this]() { ThreadLoop(); }));
 		m_pThread = move(pThread);
 	}
 
 	~SFScheduler()
 	{
-		go_on = false;
+		m_goOn = false;
 		m_pThread->join();
 	}
 
 	void ThreadLoop()
 	{
-		while (go_on)
+		while (m_goOn)
 		{
 			auto now = std::chrono::system_clock::now();
-			while (!tasks.empty() && tasks.top().time <= now) {
-				function_timer& f = tasks.top();
+			while (!m_tasks.empty() && m_tasks.top().time <= now) {
+				function_timer& f = m_tasks.top();
 				f.get();
-				tasks.pop();
+				m_tasks.pop();
 			}
 
-			if (tasks.empty()) {
+			if (m_tasks.empty()) {
 				std::this_thread::sleep_for(std::chrono::milliseconds(100));
 			}
 			else {
-				std::this_thread::sleep_for(tasks.top().time - std::chrono::system_clock::now());
+				std::this_thread::sleep_for(m_tasks.top().time - std::chrono::system_clock::now());
 			}
 		}
 	}
 
 	void ScheduleAt(std::chrono::system_clock::time_point& time, std::function<void()>&& func)
 	{
-		tasks.push(function_timer(std::move(func), time));
+		m_tasks.push(function_timer(std::move(func), time));
 	}
 
 	void ScheduleEvery(std::chrono::system_clock::duration interval, std::function<void()> func)
