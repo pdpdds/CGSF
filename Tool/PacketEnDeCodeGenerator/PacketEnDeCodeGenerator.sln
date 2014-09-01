@@ -1,0 +1,46 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 2013
+VisualStudioVersion = 12.0.30501.0
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PacketEnDeCodeGeneratorLib", "PacketEnDeCodeGeneratorLib\PacketEnDeCodeGeneratorLib.csproj", "{45D122CB-9708-4FDA-9825-216223D6111D}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PacketEnDeCodeGeneratorTest", "PacketEnDeCodeGeneratorTest\PacketEnDeCodeGeneratorTest.csproj", "{718F3559-9021-40B0-9DF1-00DD4C80C85D}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PacketEnDeCodeGeneratorConsole", "PacketEnDeCodeGeneratorConsole\PacketEnDeCodeGeneratorConsole.csproj", "{6800E14E-B92D-442F-9C1C-676225DC3B9D}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PacketEnDeCodeGeneratorWinForm", "PacketEnDeCodeGeneratorWinForm\PacketEnDeCodeGeneratorWinForm.csproj", "{30AF7F91-21B6-422B-BFFC-4B8CB5C39FFB}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UnitTestProject", "UnitTestProject\UnitTestProject.csproj", "{5BECA3C6-B3E0-409F-B2F5-B12FE235C187}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{45D122CB-9708-4FDA-9825-216223D6111D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{45D122CB-9708-4FDA-9825-216223D6111D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{45D122CB-9708-4FDA-9825-216223D6111D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{45D122CB-9708-4FDA-9825-216223D6111D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{718F3559-9021-40B0-9DF1-00DD4C80C85D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{718F3559-9021-40B0-9DF1-00DD4C80C85D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{718F3559-9021-40B0-9DF1-00DD4C80C85D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{718F3559-9021-40B0-9DF1-00DD4C80C85D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{6800E14E-B92D-442F-9C1C-676225DC3B9D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6800E14E-B92D-442F-9C1C-676225DC3B9D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6800E14E-B92D-442F-9C1C-676225DC3B9D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6800E14E-B92D-442F-9C1C-676225DC3B9D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{30AF7F91-21B6-422B-BFFC-4B8CB5C39FFB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{30AF7F91-21B6-422B-BFFC-4B8CB5C39FFB}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{30AF7F91-21B6-422B-BFFC-4B8CB5C39FFB}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{30AF7F91-21B6-422B-BFFC-4B8CB5C39FFB}.Release|Any CPU.Build.0 = Release|Any CPU
+		{5BECA3C6-B3E0-409F-B2F5-B12FE235C187}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5BECA3C6-B3E0-409F-B2F5-B12FE235C187}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5BECA3C6-B3E0-409F-B2F5-B12FE235C187}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5BECA3C6-B3E0-409F-B2F5-B12FE235C187}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal
