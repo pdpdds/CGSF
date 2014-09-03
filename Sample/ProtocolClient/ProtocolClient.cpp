@@ -56,7 +56,7 @@ void testCGSF()
 {
 	ProtocolCallback* pCallback = new ProtocolCallback();
 
-	SFNetworkEntry::GetInstance()->Initialize(pCallback, new SFPacketProtocol<SFCGSFPacketProtocol>(MAX_IO_SIZE, MAX_PACKET_SIZE));
+	SFNetworkEntry::GetInstance()->Initialize(pCallback, new SFPacketProtocol<SFCGSFPacketProtocol>(MAX_IO_SIZE, MAX_PACKET_SIZE, CGSF_PACKET_OPTION));
 	SFNetworkEntry::GetInstance()->Run();
 
 	ProcessInput(&ProcessCGSFInput);
