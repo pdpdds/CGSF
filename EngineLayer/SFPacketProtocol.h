@@ -86,7 +86,7 @@ SFPacketProtocol<T>::SFPacketProtocol(int bufferIOSize, unsigned short packetDat
 		packetDataSize = MAX_PACKET_SIZE;
 
 	if (packetDataSize > bufferIOSize)
-		packetDataSize = bufferIOSize;
+		packetDataSize = (unsigned short)bufferIOSize;
 
 	m_Analyzer.Initialize(bufferIOSize, packetDataSize, packetOption);
 }
