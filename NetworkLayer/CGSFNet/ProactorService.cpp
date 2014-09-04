@@ -65,7 +65,7 @@ void ProactorService::handle_read_stream( const ACE_Asynch_Read_Stream::Result& 
 	}
 	else
 	{
-		if (false == ISession::OnReceive(block.rd_ptr(), block.length(), m_sessionDesc))
+		if (false == ISession::OnReceive(block.rd_ptr(), (unsigned short)block.length(), m_sessionDesc))
 		{
 			block.release();
 			ReserveClose();

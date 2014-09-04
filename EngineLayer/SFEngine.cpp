@@ -235,24 +235,37 @@ bool SFEngine::Activate()
 
 bool SFEngine::ShutDown()
 {
-	LOG(INFO) << "Engine Shut Down!!";
+	// 올바르게 종료되는지 조사하기 위해 각 단계별로 로그를 남깁니다.
 
+	LOG(INFO) << "Engine Shut Down!!";
+	google::FlushLogFiles(google::GLOG_INFO);
+		
+	m_pLogicDispatcher->ShutDownLogicSystem();
+	LOG(INFO) << "Engine Shut Down Step (1) ShutDownLogicSystem";
 	google::FlushLogFiles(google::GLOG_INFO);
 
-	m_pLogicDispatcher->ShutDownLogicSystem();
-
 	PacketSendSingleton::instance()->PushTask(NULL);
-	
+	LOG(INFO) << "Engine Shut Down Step (2) instance()->PushTask(NULL)";
+	google::FlushLogFiles(google::GLOG_INFO);
+
 	ACE_Thread_Manager::instance()->wait_grp(m_packetSendThreadId);
+	LOG(INFO) << "Engine Shut Down Step (3) wait_grp(m_packetSendThreadId)";
+	google::FlushLogFiles(google::GLOG_INFO);
 
 	m_pNetworkEngine->Shutdown();
+	LOG(INFO) << "Engine Shut Down Step (4) m_pNetworkEngine->Shutdown()";
+	google::FlushLogFiles(google::GLOG_INFO);
 
+	
 	ACE::fini();
+	LOG(INFO) << "Engine Shut Down Step (5) ACE::fini()";
+	google::FlushLogFiles(google::GLOG_INFO);
 
 	google::ShutdownGoogleLogging();
 
 	delete this;
 
+	
 	return true;
 }
 
