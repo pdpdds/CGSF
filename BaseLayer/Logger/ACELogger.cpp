@@ -1,5 +1,6 @@
+#pragma warning (disable : 4996) 
+
 #include "StdAfx.h"
-#include "ACELogger.h"
 #include "ACELogger.h"
 #include "ace/Log_Msg_Callback.h"
 #include <fstream>

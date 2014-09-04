@@ -1,8 +1,12 @@
 #pragma once
+
+#pragma warning( push )
+#pragma warning (disable : 4996) 
 #include <ace/Log_Msg.h>
 #include <ace/Log_Record.h>
 #include <ace/Log_Msg_Callback.h>
 #include <ace/Singleton.h>
+#pragma warning( pop )
 
 class ACELogger
 {

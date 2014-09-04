@@ -51,6 +51,7 @@
 #pragma warning(disable : 4244) 
 #pragma warning(disable : 4706) 
 #pragma warning(disable : 4701) 
+#pragma warning (disable : 4996) 
 
 //Add "openssl-0.9.8l\out32" to Additional Library Directories
 #pragma comment(lib, "ssleay32.lib")
