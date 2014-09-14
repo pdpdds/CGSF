@@ -60,6 +60,8 @@ bool SFJsonProtocol::Encode(BasePacket* pPacket, char** ppBuffer, int& bufferSiz
 
 	*ppBuffer = m_pBuffer;
 	bufferSize = sizeof(SFPacketHeader)+writtenSize;
+
+	pJsonPacket->Encode(m_packetSize, m_packetOption);
 	
 	return true;
 }

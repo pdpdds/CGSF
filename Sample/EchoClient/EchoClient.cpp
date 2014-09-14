@@ -9,6 +9,7 @@
 #include "SFJsonPacket.h"
 #include <string>
 #include <iostream>
+#include "json\elements.h"
 
 #pragma comment(lib, "EngineLayer.lib")
 
@@ -26,7 +27,30 @@ void EchoInputThread(void* Args)
 			break;
 
 		SFJsonPacket packet(ECHO_PACKET_ID);
+		
+//json array write method 1
+		json::Array array;
+		
+		for (int i = 0; i < 30; i++)
+		{
+			json::UnknownElement element((json::Number)i);
+			array.Insert(element);
+		}
+
+		JsonArrayNode arrayNode(array);
+			
+//json array write method 2
+		/*
+		JsonArrayNode arrayNode();
+		for (int i = 0; i < 30; i++)
+		{
+			JsonObjectNode node;
+			node.Add("e", i);
+			arrayNode.Insert(node);
+		}*/	
+
 		packet.GetData().Add("ECHO", input.c_str());
+		packet.GetData().Add("ArrayData", &arrayNode);
 
 		SFNetworkEntry::GetInstance()->TCPSend(&packet);
 	}

@@ -36,7 +36,7 @@ public:
 	void Parse(const char* content, size_t len);
 	void Parse(const tstring& content);
 
-protected:
+//protected:
 	json::Array* JsonArrayNode::GetRawNode() const;
 
 private:
