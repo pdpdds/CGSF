@@ -29,8 +29,6 @@ namespace CgsfNET64Lib {
 
 	private:
 		
-		//bool OnConnect(int serial);
-		//bool OnProcessData(BasePacket* pPacket);
-		//bool OnDisconnect(int serial);
+		
 	};
 }

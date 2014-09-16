@@ -77,5 +77,18 @@ namespace CgsfNET64Lib {
 		return m_packetQueue->Dequeue();
 	}
 
-	
+	bool CgsfNET64::SendPacket(int serial, UINT16 packetID, array<Byte>^ data)
+	{
+		pin_ptr<Byte> pNativeData = &data[0];
+		
+		SFPacket sendPacket(packetID);
+		sendPacket.SetSerial(serial);
+		sendPacket.Write(pNativeData, data->Length);
+		
+		auto result = SFEngine::GetInstance()->SendRequest(&sendPacket);
+
+		pNativeData = nullptr;
+
+		return result;
+	}
 }

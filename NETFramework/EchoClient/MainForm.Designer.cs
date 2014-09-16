@@ -37,9 +37,7 @@
             this.label9 = new System.Windows.Forms.Label();
             this.btnConnect = new System.Windows.Forms.Button();
             this.btnDisconnect = new System.Windows.Forms.Button();
-            this.listBoxChat = new System.Windows.Forms.ListBox();
             this.textBoxSendChat = new System.Windows.Forms.TextBox();
-            this.button5 = new System.Windows.Forms.Button();
             this.listBoxLog = new System.Windows.Forms.ListBox();
             this.button1 = new System.Windows.Forms.Button();
             this.groupBox5.SuspendLayout();
@@ -55,7 +53,7 @@
             this.groupBox5.Controls.Add(this.label9);
             this.groupBox5.Location = new System.Drawing.Point(12, 12);
             this.groupBox5.Name = "groupBox5";
-            this.groupBox5.Size = new System.Drawing.Size(626, 52);
+            this.groupBox5.Size = new System.Drawing.Size(626, 53);
             this.groupBox5.TabIndex = 23;
             this.groupBox5.TabStop = false;
             this.groupBox5.Text = "Socket 더미 클라이언트 설정";
@@ -122,9 +120,9 @@
             // btnConnect
             // 
             this.btnConnect.Font = new System.Drawing.Font("맑은 고딕", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-            this.btnConnect.Location = new System.Drawing.Point(548, 82);
+            this.btnConnect.Location = new System.Drawing.Point(12, 71);
             this.btnConnect.Name = "btnConnect";
-            this.btnConnect.Size = new System.Drawing.Size(90, 30);
+            this.btnConnect.Size = new System.Drawing.Size(128, 30);
             this.btnConnect.TabIndex = 24;
             this.btnConnect.Text = "접속하기";
             this.btnConnect.UseVisualStyleBackColor = true;
@@ -133,53 +131,34 @@
             // btnDisconnect
             // 
             this.btnDisconnect.Font = new System.Drawing.Font("맑은 고딕", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-            this.btnDisconnect.Location = new System.Drawing.Point(548, 118);
+            this.btnDisconnect.Location = new System.Drawing.Point(146, 71);
             this.btnDisconnect.Name = "btnDisconnect";
-            this.btnDisconnect.Size = new System.Drawing.Size(92, 30);
+            this.btnDisconnect.Size = new System.Drawing.Size(142, 30);
             this.btnDisconnect.TabIndex = 26;
             this.btnDisconnect.Text = "접속 끊기";
             this.btnDisconnect.UseVisualStyleBackColor = true;
             this.btnDisconnect.Click += new System.EventHandler(this.button3_Click);
             // 
-            // listBoxChat
-            // 
-            this.listBoxChat.FormattingEnabled = true;
-            this.listBoxChat.ItemHeight = 12;
-            this.listBoxChat.Location = new System.Drawing.Point(12, 70);
-            this.listBoxChat.Name = "listBoxChat";
-            this.listBoxChat.Size = new System.Drawing.Size(528, 244);
-            this.listBoxChat.TabIndex = 31;
-            // 
             // textBoxSendChat
             // 
-            this.textBoxSendChat.Location = new System.Drawing.Point(12, 320);
+            this.textBoxSendChat.Location = new System.Drawing.Point(12, 107);
             this.textBoxSendChat.Name = "textBoxSendChat";
-            this.textBoxSendChat.Size = new System.Drawing.Size(461, 21);
+            this.textBoxSendChat.Size = new System.Drawing.Size(559, 21);
             this.textBoxSendChat.TabIndex = 32;
-            // 
-            // button5
-            // 
-            this.button5.Location = new System.Drawing.Point(548, 318);
-            this.button5.Name = "button5";
-            this.button5.Size = new System.Drawing.Size(69, 23);
-            this.button5.TabIndex = 33;
-            this.button5.Text = "전체 채팅";
-            this.button5.UseVisualStyleBackColor = true;
-            this.button5.Click += new System.EventHandler(this.button5_Click);
             // 
             // listBoxLog
             // 
             this.listBoxLog.FormattingEnabled = true;
             this.listBoxLog.HorizontalScrollbar = true;
             this.listBoxLog.ItemHeight = 12;
-            this.listBoxLog.Location = new System.Drawing.Point(12, 357);
+            this.listBoxLog.Location = new System.Drawing.Point(12, 148);
             this.listBoxLog.Name = "listBoxLog";
             this.listBoxLog.Size = new System.Drawing.Size(626, 196);
             this.listBoxLog.TabIndex = 35;
             // 
             // button1
             // 
-            this.button1.Location = new System.Drawing.Point(479, 318);
+            this.button1.Location = new System.Drawing.Point(577, 107);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(61, 23);
             this.button1.TabIndex = 36;
@@ -191,12 +170,10 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(652, 560);
+            this.ClientSize = new System.Drawing.Size(652, 358);
             this.Controls.Add(this.button1);
             this.Controls.Add(this.listBoxLog);
-            this.Controls.Add(this.button5);
             this.Controls.Add(this.textBoxSendChat);
-            this.Controls.Add(this.listBoxChat);
             this.Controls.Add(this.btnDisconnect);
             this.Controls.Add(this.btnConnect);
             this.Controls.Add(this.groupBox5);
@@ -223,9 +200,7 @@
         private System.Windows.Forms.Label label9;
         private System.Windows.Forms.Button btnConnect;
         private System.Windows.Forms.Button btnDisconnect;
-        private System.Windows.Forms.ListBox listBoxChat;
         private System.Windows.Forms.TextBox textBoxSendChat;
-        private System.Windows.Forms.Button button5;
         private System.Windows.Forms.ListBox listBoxLog;
         private System.Windows.Forms.Button button1;
     }

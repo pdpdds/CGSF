@@ -7,8 +7,8 @@
     <ProjectGuid>{44196478-AAE0-44F4-8491-77A0D6933747}</ProjectGuid>
     <OutputType>WinExe</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>ChatServer1</RootNamespace>
-    <AssemblyName>ChatServer1</AssemblyName>
+    <RootNamespace>EchoServer</RootNamespace>
+    <AssemblyName>EchoServer</AssemblyName>
     <TargetFrameworkVersion>v4.5.1</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>

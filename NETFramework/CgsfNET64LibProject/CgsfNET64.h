@@ -5,7 +5,7 @@
 #include "SFNETPacket.h"
 
 using namespace System;
-//using namespace System::Collections::Concurrent;
+
 
 namespace CgsfNET64Lib {
 
@@ -30,6 +30,7 @@ namespace CgsfNET64Lib {
 			return m_networkConfig;
 		}
 
+		bool SendPacket(int serial, UINT16 packetID, array<Byte>^ data);
 
 
 	private:

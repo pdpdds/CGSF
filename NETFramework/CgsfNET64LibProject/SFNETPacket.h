@@ -39,11 +39,18 @@ namespace CgsfNET64Lib {
 
 
 		SFPACKET_TYPE GetPacketType() { return m_packetType; }
+		
 		int Serial() { return m_serial; }
+		unsigned short PacketID() { return m_packetID; }
+		unsigned long  packetOption() { return m_packetOption; }
+		unsigned long  CRC() { return m_dataCRC; }
+		unsigned short Size() { return m_dataSize; }
+		array<Byte>^ GetData() { return m_packetData;  }
 
 
 	private:
 		int m_serial;
+		
 		unsigned short m_packetID;
 		unsigned long  m_packetOption;
 		unsigned long  m_dataCRC;
@@ -52,4 +59,6 @@ namespace CgsfNET64Lib {
 		SFPACKET_TYPE m_packetType;
 		array<Byte>^ m_packetData;
 	};
+
+	
 }

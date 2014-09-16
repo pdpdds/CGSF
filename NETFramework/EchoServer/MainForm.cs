@@ -19,8 +19,7 @@ namespace ChatServer1
         List<int> SessionList = new List<int>();
 
         const UInt16 PACKET_ID_ECHO = 1000;
-        const UInt16 PACKET_ID_CHAT = 1001;
-
+        
 
         public MainForm()
         {
@@ -160,16 +159,6 @@ namespace ChatServer1
             public string Msg;
         }
 
-        struct JsonPacketRequestChat
-        {
-            public string chat;
-        }
-
-        struct JsonPacketResponseChat
-        {
-            public int packetID;
-            public string who;
-            public string chat;
-        }
+        
     }
 }

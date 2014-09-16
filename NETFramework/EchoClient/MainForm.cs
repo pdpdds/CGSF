@@ -27,8 +27,7 @@ namespace ChatClientNET
 
         const int PACKET_ID_DISCONNECTED = 1;
         const int PACKET_ID_ECHO = 1000;
-        const int PACKET_ID_CHAT = 1001;
-
+        
 
 
         public MainForm()
@@ -95,18 +94,7 @@ namespace ChatClientNET
             SetDisconnectd();
             Network.Close();
         }
-
-        // 채팅 보내기
-        private void button5_Click(object sender, EventArgs e)
-        {
-            var request = new JsonPacketRequestChat() { chat = textBoxSendChat.Text };
-
-            string jsonstring = Newtonsoft.Json.JsonConvert.SerializeObject(request);
-            byte[] bodyData = Encoding.UTF8.GetBytes(jsonstring);
-
-            PostSendPacket((UInt16)PACKET_ID_CHAT, bodyData);
-        }
-
+                
         // 에코
         private void button1_Click(object sender, EventArgs e)
         {
@@ -246,18 +234,7 @@ namespace ChatClientNET
 
                                 textBoxSendChat.Text = "";
                                 var msg = string.Format("[ECHO]: {0}", resData.Msg);
-                                listBoxChat.Items.Add(msg);
-                            }
-                            break;
-
-                        case PACKET_ID_CHAT:
-                            {
-                                string jsonstring = System.Text.Encoding.GetEncoding("utf-8").GetString(packet.JsonFormatData);
-                                var resData = Newtonsoft.Json.JsonConvert.DeserializeObject<JsonPacketResponseChat>(jsonstring);
-
-                                textBoxSendChat.Text = "";
-                                var msg = string.Format("[{0}]: {1}", resData.who, resData.chat);
-                                listBoxChat.Items.Add(msg);
+                                listBoxLog.Items.Add(msg);
                             }
                             break;
 
@@ -321,18 +298,7 @@ namespace ChatClientNET
             public string Msg;
         }
 
-        class JsonPacketRequestChat
-        {
-            public string chat;
-        }
-
-        class JsonPacketResponseChat
-        {
-            public int packetID = PACKET_ID_CHAT;
-            public string who;
-            public string chat;
-        }
-
+       
         
 
         
