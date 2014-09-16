@@ -130,7 +130,10 @@ int ACEEngine::AddListener(char* szIP, unsigned short port)
 bool ACEEngine::Shutdown()
 {
 	ACE_Proactor::instance()->close();
-	ACE_Thread_Manager::instance()->wait_grp(m_workThreadGroupID);
+
+	if (m_workThreadGroupID >= 0)
+		ACE_Thread_Manager::instance()->wait_grp(m_workThreadGroupID);
+	//ACE_Thread_Manager::instance()->wait_grp(m_workThreadGroupID);
 
 	ACE::fini();
 
