@@ -3,12 +3,7 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 2013
 VisualStudioVersion = 12.0.30723.0
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EchoServer", "EchoServer.csproj", "{44196478-AAE0-44F4-8491-77A0D6933747}"
-	ProjectSection(ProjectDependencies) = postProject
-		{32BA163D-2969-45C9-B7EC-468010CC6B52} = {32BA163D-2969-45C9-B7EC-468010CC6B52}
-	EndProjectSection
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CGSFNETCommon", "..\CGSFNETCommon\CGSFNETCommon.csproj", "{32BA163D-2969-45C9-B7EC-468010CC6B52}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CGSFNETCommon", "CGSFNETCommon.csproj", "{32BA163D-2969-45C9-B7EC-468010CC6B52}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -16,10 +11,6 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{44196478-AAE0-44F4-8491-77A0D6933747}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{44196478-AAE0-44F4-8491-77A0D6933747}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{44196478-AAE0-44F4-8491-77A0D6933747}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{44196478-AAE0-44F4-8491-77A0D6933747}.Release|Any CPU.Build.0 = Release|Any CPU
 		{32BA163D-2969-45C9-B7EC-468010CC6B52}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{32BA163D-2969-45C9-B7EC-468010CC6B52}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{32BA163D-2969-45C9-B7EC-468010CC6B52}.Release|Any CPU.ActiveCfg = Release|Any CPU

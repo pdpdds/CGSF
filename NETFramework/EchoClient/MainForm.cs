@@ -8,11 +8,13 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
+using CGSFNETCommon;
+
 namespace ChatClientNET
 {
     public partial class MainForm : Form
     {
-        ClientNetwork Network = new ClientNetwork();
+        ClientSimpleTcp Network = new ClientSimpleTcp();
         PacketBufferManager PacketBuffer = new PacketBufferManager();
 
         Queue<JsonPacketData> RecvPacketQueue = new Queue<JsonPacketData>();
@@ -52,7 +54,7 @@ namespace ChatClientNET
 
             btnDisconnect.Enabled = false;
 
-            UILog.Write("프로그램 시작 !!!", LOG_LEVEL.INFO);
+            DevLog.Write("프로그램 시작 !!!", LOG_LEVEL.INFO);
         }
 
         private void MainForm_FormClosing(object sender, FormClosingEventArgs e)
@@ -99,10 +101,7 @@ namespace ChatClientNET
         private void button1_Click(object sender, EventArgs e)
         {
             var request = new JsonPacketNoticeEcho() { Msg = textBoxSendChat.Text };
-
-            string jsonstring = Newtonsoft.Json.JsonConvert.SerializeObject(request);
-            byte[] bodyData = Encoding.UTF8.GetBytes(jsonstring);
-
+            var bodyData = JsonEnDecode.Encode<JsonPacketNoticeEcho>(request);
             PostSendPacket((UInt16)PACKET_ID_ECHO, bodyData);
         }
 
@@ -229,8 +228,7 @@ namespace ChatClientNET
 
                         case PACKET_ID_ECHO:
                             {
-                                string jsonstring = System.Text.Encoding.GetEncoding("utf-8").GetString(packet.JsonFormatData);
-                                var resData = Newtonsoft.Json.JsonConvert.DeserializeObject<JsonPacketNoticeEcho>(jsonstring);
+                                var resData = JsonEnDecode.Decode<JsonPacketNoticeEcho>(packet.JsonFormatData);
 
                                 textBoxSendChat.Text = "";
                                 var msg = string.Format("[ECHO]: {0}", resData.Msg);
@@ -258,7 +256,7 @@ namespace ChatClientNET
             {
                 string msg;
 
-                if (UILog.GetLog(out msg))
+                if (DevLog.GetLog(out msg))
                 {
                     ++logWorkCount;
 

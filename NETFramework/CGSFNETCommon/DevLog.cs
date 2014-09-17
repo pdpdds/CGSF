@@ -7,25 +7,16 @@ using System.Threading.Tasks;
 using System.Runtime.CompilerServices;
 using System.Threading;
 
-namespace ChatClientNET
+namespace CGSFNETCommon
 {
-    public enum LOG_LEVEL
-    {
-        TRACE,
-        DEBUG,
-        INFO,
-        WARN,
-        ERROR,
-        DISABLE
-    }
-
-    class UILog
+    public class DevLog
     {
         static System.Collections.Concurrent.ConcurrentQueue<string> logMsgQueue = new System.Collections.Concurrent.ConcurrentQueue<string>();
 
         static Int64 출력가능_로그레벨 = (Int64)LOG_LEVEL.TRACE;
 
         
+
         static public void Init(LOG_LEVEL logLevel)
         {
             ChangeLogLevel(logLevel);
@@ -62,5 +53,17 @@ namespace ChatClientNET
 
             return false;
         }
+        
+    }
+
+
+    public enum LOG_LEVEL
+    {
+        TRACE,
+        DEBUG,
+        INFO,
+        WARN,
+        ERROR,
+        DISABLE
     }
 }

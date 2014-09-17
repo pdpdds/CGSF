@@ -8,6 +8,8 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
+using CGSFNETCommon;
+
 namespace ChatServer1
 {
     public partial class MainForm : Form
@@ -36,12 +38,12 @@ namespace ChatServer1
             if (result)
             {
                 var config = ServerNet.GetNetworkConfig();
-                DevLog.Write(string.Format("[Init] IP:{0}, Port:{1}, EngineDllName:{2}", config.IP, config.Port, config.EngineDllName), DevLog.LOG_LEVEL.INFO);
+                DevLog.Write(string.Format("[Init] IP:{0}, Port:{1}, EngineDllName:{2}", config.IP, config.Port, config.EngineDllName), LOG_LEVEL.INFO);
                 
             }
             else
             {
-                DevLog.Write(string.Format("[Init] 네트워크 라이브러리 초기화 실패"), DevLog.LOG_LEVEL.ERROR);
+                DevLog.Write(string.Format("[Init] 네트워크 라이브러리 초기화 실패"), LOG_LEVEL.ERROR);
             }
         }
 
@@ -49,7 +51,7 @@ namespace ChatServer1
         {
             if (IsStartServerNetwork)
             {
-                DevLog.Write(string.Format("[Stop] 네트워크 종료"), DevLog.LOG_LEVEL.INFO);
+                DevLog.Write(string.Format("[Stop] 네트워크 종료"), LOG_LEVEL.INFO);
                 ServerNet.Stop();
             }
         }
@@ -59,7 +61,7 @@ namespace ChatServer1
             IsStartServerNetwork = true;
             ServerNet.Start();
 
-            DevLog.Write(string.Format("[Start] 네트워크 시작"), DevLog.LOG_LEVEL.INFO);
+            DevLog.Write(string.Format("[Start] 네트워크 시작"), LOG_LEVEL.INFO);
         }
 
         private void button2_Click(object sender, EventArgs e)
@@ -77,7 +79,7 @@ namespace ChatServer1
             }
             catch (Exception ex)
             {
-                DevLog.Write(string.Format("[OnProcessTimedEvent] Exception:{0}", ex.ToString()), DevLog.LOG_LEVEL.ERROR);
+                DevLog.Write(string.Format("[OnProcessTimedEvent] Exception:{0}", ex.ToString()), LOG_LEVEL.ERROR);
             }
         }
 
@@ -93,27 +95,25 @@ namespace ChatServer1
             {
                 case CgsfNET64Lib.SFPACKET_TYPE.CONNECT:
                     SessionList.Add(packet.Serial());
-                    DevLog.Write(string.Format("[OnConnect] Serial:{0}", packet.Serial()), DevLog.LOG_LEVEL.INFO);
+                    DevLog.Write(string.Format("[OnConnect] Serial:{0}", packet.Serial()), LOG_LEVEL.INFO);
                     break;
                 case CgsfNET64Lib.SFPACKET_TYPE.DISCONNECT:
                     SessionList.Remove(packet.Serial());
-                    DevLog.Write(string.Format("[OnDisConnect] Serial:{0}", packet.Serial()), DevLog.LOG_LEVEL.INFO);
+                    DevLog.Write(string.Format("[OnDisConnect] Serial:{0}", packet.Serial()), LOG_LEVEL.INFO);
                     break;
                 case CgsfNET64Lib.SFPACKET_TYPE.DATA:
                     switch (packet.PacketID())
                     {
                         case PACKET_ID_ECHO:
-                            string jsonstring = System.Text.Encoding.GetEncoding("utf-8").GetString(packet.GetData());
-                            var resData = Newtonsoft.Json.JsonConvert.DeserializeObject<JsonPacketNoticeEcho>(jsonstring);
-                            DevLog.Write(string.Format("[Chat] Serial:{0}, Msg:{1}", packet.Serial(), resData.Msg), DevLog.LOG_LEVEL.INFO);
+                            var resData = JsonEnDecode.Decode<JsonPacketNoticeEcho>(packet.GetData());
+                            DevLog.Write(string.Format("[Chat] Serial:{0}, Msg:{1}", packet.Serial(), resData.Msg), LOG_LEVEL.INFO);
 
                             var request = new JsonPacketNoticeEcho() { Msg = resData.Msg };
-                            var jsonstring2 = Newtonsoft.Json.JsonConvert.SerializeObject(request);
-                            var bodyData = Encoding.UTF8.GetBytes(jsonstring2);
+                            var bodyData = JsonEnDecode.Encode<JsonPacketNoticeEcho>(request);
                             ServerNet.SendPacket(packet.Serial(), PACKET_ID_ECHO, bodyData);
                             break;
                         default:
-                            DevLog.Write(string.Format("[ProcessProcket] Invalid PacketID:{0}", packet.PacketID()), DevLog.LOG_LEVEL.ERROR);
+                            DevLog.Write(string.Format("[ProcessProcket] Invalid PacketID:{0}", packet.PacketID()), LOG_LEVEL.ERROR);
                             break;
                     }
                     break;

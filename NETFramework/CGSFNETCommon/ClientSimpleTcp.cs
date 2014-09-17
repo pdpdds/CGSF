@@ -8,9 +8,9 @@ using System.Net.Sockets;
 using System.IO;
 using System.Net;
 
-namespace ChatClientNET
+namespace CGSFNETCommon
 {
-    public class ClientNetwork
+    public class ClientSimpleTcp
     {
         public Socket Sock = null;   
         public string LatestErrorMsg;
