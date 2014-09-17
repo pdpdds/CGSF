@@ -6,8 +6,9 @@ This project purpose rapid development of online casual game server using open s
 Features
 -------
 
-Documentation
+Activity
 -------
+[Check Trello] (https://trello.com/b/fQrjvbHp/cgsf)
 
 Build Instruction
 -------
