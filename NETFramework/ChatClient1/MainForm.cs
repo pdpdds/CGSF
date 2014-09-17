@@ -8,11 +8,13 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
+using CGSFNETCommon;
+
 namespace ChatClientNET
 {
     public partial class MainForm : Form
     {
-        ClientNetwork Network = new ClientNetwork();
+        ClientSimpleTcp Network = new ClientSimpleTcp();
         PacketBufferManager PacketBuffer = new PacketBufferManager();
 
         Queue<JsonPacketData> RecvPacketQueue = new Queue<JsonPacketData>();
@@ -53,7 +55,7 @@ namespace ChatClientNET
 
             btnDisconnect.Enabled = false;
 
-            UILog.Write("프로그램 시작 !!!", LOG_LEVEL.INFO);
+            DevLog.Write("프로그램 시작 !!!", LOG_LEVEL.INFO);
         }
 
         private void MainForm_FormClosing(object sender, FormClosingEventArgs e)
@@ -100,10 +102,7 @@ namespace ChatClientNET
         private void button5_Click(object sender, EventArgs e)
         {
             var request = new JsonPacketRequestChat() { chat = textBoxSendChat.Text };
-
-            string jsonstring = Newtonsoft.Json.JsonConvert.SerializeObject(request);
-            byte[] bodyData = Encoding.UTF8.GetBytes(jsonstring);
-
+            var bodyData = JsonEnDecode.Encode<JsonPacketRequestChat>(request);
             PostSendPacket((UInt16)PACKET_ID_CHAT, bodyData);
         }
 
@@ -111,10 +110,7 @@ namespace ChatClientNET
         private void button1_Click(object sender, EventArgs e)
         {
             var request = new JsonPacketNoticeEcho() { Msg = textBoxSendChat.Text };
-
-            string jsonstring = Newtonsoft.Json.JsonConvert.SerializeObject(request);
-            byte[] bodyData = Encoding.UTF8.GetBytes(jsonstring);
-
+            var bodyData = JsonEnDecode.Encode<JsonPacketNoticeEcho>(request);
             PostSendPacket((UInt16)PACKET_ID_ECHO, bodyData);
         }
 
@@ -241,8 +237,7 @@ namespace ChatClientNET
 
                         case PACKET_ID_ECHO:
                             {
-                                string jsonstring = System.Text.Encoding.GetEncoding("utf-8").GetString(packet.JsonFormatData);
-                                var resData = Newtonsoft.Json.JsonConvert.DeserializeObject<JsonPacketNoticeEcho>(jsonstring);
+                                var resData = JsonEnDecode.Decode<JsonPacketNoticeEcho>(packet.JsonFormatData);
 
                                 textBoxSendChat.Text = "";
                                 var msg = string.Format("[ECHO]: {0}", resData.Msg);
@@ -252,8 +247,7 @@ namespace ChatClientNET
 
                         case PACKET_ID_CHAT:
                             {
-                                string jsonstring = System.Text.Encoding.GetEncoding("utf-8").GetString(packet.JsonFormatData);
-                                var resData = Newtonsoft.Json.JsonConvert.DeserializeObject<JsonPacketResponseChat>(jsonstring);
+                                var resData = JsonEnDecode.Decode<JsonPacketResponseChat>(packet.JsonFormatData);
 
                                 textBoxSendChat.Text = "";
                                 var msg = string.Format("[{0}]: {1}", resData.who, resData.chat);
@@ -281,7 +275,7 @@ namespace ChatClientNET
             {
                 string msg;
 
-                if (UILog.GetLog(out msg))
+                if (DevLog.GetLog(out msg))
                 {
                     ++logWorkCount;
 
