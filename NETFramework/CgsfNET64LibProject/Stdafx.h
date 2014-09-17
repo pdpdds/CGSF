@@ -6,6 +6,7 @@
 
 #include <vector>
 #include <list>
+#include <string>
 
 #include "ACEHeader.h"
 #include <windows.h>

@@ -34,10 +34,19 @@ namespace ChatServer1
             workProcessTimer.Interval = new TimeSpan(0, 0, 0, 0, 32);
             workProcessTimer.Start();
 
-            var result = ServerNet.Init(1, 16000, 4012);
+            var config = new CgsfNET64Lib.NetworkConfig()
+            {
+                IP = "127.0.0.1",
+                Port = 25251,
+                EngineDllName = "CGSFNet.dll",
+                ThreadCount = 4,
+                MaxBufferSize = 16000,
+                MaxPacketSize = 4012,
+            };
+
+            var result = ServerNet.Init(config);
             if (result)
             {
-                var config = ServerNet.GetNetworkConfig();
                 DevLog.Write(string.Format("[Init] IP:{0}, Port:{1}, EngineDllName:{2}", config.IP, config.Port, config.EngineDllName), LOG_LEVEL.INFO);
                 
             }

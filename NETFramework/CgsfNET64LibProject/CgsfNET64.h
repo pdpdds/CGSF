@@ -19,7 +19,7 @@ namespace CgsfNET64Lib {
 		CgsfNET64();
 		~CgsfNET64();
 
-		bool Init(int threadCount, int maxBufferSize, int maxPacketSize);
+		bool Init(NetworkConfig^ config);
 		
 		void Start();
 		void Stop();
@@ -34,7 +34,8 @@ namespace CgsfNET64Lib {
 
 
 	private:
-		void SetNetworkConfigInfo();
+		void SetNetworkConfig(NetworkConfig^ config);
+		
 
 		NetworkConfig^ m_networkConfig = gcnew NetworkConfig();
 		ServerLogicEntry* m_pLogicEntry = nullptr;

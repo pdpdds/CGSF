@@ -44,5 +44,9 @@ namespace CgsfNET64Lib {
 		String^ IP;
 		UINT16 Port;
 		String^ EngineDllName;
+
+		int ThreadCount;
+		int MaxBufferSize;
+		int MaxPacketSize;
 	};
 }

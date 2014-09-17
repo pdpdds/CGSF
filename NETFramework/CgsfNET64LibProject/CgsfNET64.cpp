@@ -8,12 +8,13 @@
 #include "SFNETPacket.h"
 #include "ConcurrencyPacketQueue.h"
 
+#include <msclr\marshal.h>
 #include <msclr\marshal_cppstd.h>
 
 
 namespace CgsfNET64Lib {
 
-	CgsfNET64::CgsfNET64()
+	CgsfNET64::CgsfNET64()  
 	{
 	}
 
@@ -22,44 +23,57 @@ namespace CgsfNET64Lib {
 		delete m_pLogicEntry;
 		delete m_pDispatcher;
 	}
-
-	bool CgsfNET64::Init(int threadCount, int maxBufferSize, int maxPacketSize)
+	
+	void CgsfNET64::SetNetworkConfig(NetworkConfig^ config)
 	{
+		auto pConfig = SFEngine::GetInstance()->GetConfig()->GetConfigureInfo();
+		m_networkConfig = config;
+
+		System::String^ serverIP = config->IP;
+		System::String^ engineName = config->EngineDllName;
+		
+		pConfig->ServerIP = msclr::interop::marshal_as<std::wstring>(serverIP);
+		pConfig->ServerPort = config->Port;
+		pConfig->EngineName = msclr::interop::marshal_as<std::wstring>(engineName);
+	}
+
+	bool CgsfNET64::Init(NetworkConfig^ config)
+	{
+		SetNetworkConfig(config);
+
 		m_packetQueue = gcnew ConcurrencyPacketQueue();
 
 		m_pLogicEntry = new ServerLogicEntry();
 		m_pLogicEntry->m_refPacketQueue = m_packetQueue;
 
 		m_pDispatcher = new SFNETDispatcher();
-		m_pDispatcher->Init(threadCount);
+		m_pDispatcher->Init(m_networkConfig->ThreadCount);
 
 		
 		const int CGSF_PACKET_OPTION_NONE = 0;
-		if (maxBufferSize <= 0) {
-			maxBufferSize = MAX_IO_SIZE;
+		if (m_networkConfig->MaxBufferSize <= 0) {
+			m_networkConfig->MaxBufferSize = MAX_IO_SIZE;
 		}
 
-		if (maxPacketSize <= 0) {
-			maxPacketSize = MAX_PACKET_SIZE;
+		if (m_networkConfig->MaxPacketSize <= 0) {
+			m_networkConfig->MaxPacketSize = MAX_PACKET_SIZE;
 		}
 
-		auto result = SFEngine::GetInstance()->Intialize(m_pLogicEntry, new SFPacketProtocol<SFCGSFPacketProtocol>(maxBufferSize, maxPacketSize, CGSF_PACKET_OPTION_NONE), m_pDispatcher);
+		auto result = SFEngine::GetInstance()->Intialize(m_pLogicEntry, 
+						new SFPacketProtocol<SFCGSFPacketProtocol>(m_networkConfig->MaxBufferSize, 
+																m_networkConfig->MaxPacketSize, CGSF_PACKET_OPTION_NONE), 
+														m_pDispatcher);
 		if (result == false)
 		{
 			return false;
 		}
 
-		SetNetworkConfigInfo();
+		//ReadNetworkConfigFromNative();
 
 		return true;
 	}
 
-	void CgsfNET64::SetNetworkConfigInfo()
-	{
-		m_networkConfig->IP = msclr::interop::marshal_as<System::String^>(SFEngine::GetInstance()->GetConfig()->GetConfigureInfo()->ServerIP);
-		m_networkConfig->Port = SFEngine::GetInstance()->GetConfig()->GetConfigureInfo()->ServerPort;
-		m_networkConfig->EngineDllName = msclr::interop::marshal_as<System::String^>(SFEngine::GetInstance()->GetConfig()->GetConfigureInfo()->EngineName);
-	}
+	
 
 	void CgsfNET64::Start()
 	{
