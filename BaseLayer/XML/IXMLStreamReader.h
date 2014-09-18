@@ -99,6 +99,10 @@ public:
 		}
 	}
 
+	
+	bool m_isXmlFileLoadSuccess = false;
+
+
 private:
 	enum 
 	{ 

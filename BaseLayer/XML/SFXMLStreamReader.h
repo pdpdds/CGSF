@@ -17,8 +17,13 @@ public:
 	{
 		pXmlDoc = new TiXmlDocument(xmlFile);
 
-		if(pXmlDoc)
-			pXmlDoc->LoadFile();
+		if (pXmlDoc)
+		{
+			if (pXmlDoc->LoadFile())
+			{
+				m_isXmlFileLoadSuccess = true;
+			}
+		}
 	}
 
 	~SFXMLStreamReader() 

@@ -157,8 +157,14 @@ bool SFEngine::Intialize(ILogicEntry* pLogicEntry, IPacketProtocol* pProtocol, I
 		return false;
 	}
 	
-	_EngineConfig* pInfo = m_Config.GetConfigureInfo();
 	
+	_EngineConfig* pInfo = m_Config.GetConfigureInfo();
+	if (pInfo->ServerPort == 0)
+	{
+		LOG(ERROR) << "Config FileLoad Fail!!";
+		return false;
+	}
+
 	std::string szNetworkEngineName = StringConversion::ToASCII(pInfo->EngineName);
 	LOG(INFO) << "NetworkEngine Create : " << szNetworkEngineName.c_str();
 	

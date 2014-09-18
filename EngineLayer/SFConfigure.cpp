@@ -22,7 +22,7 @@ BOOL SFConfigure::Read(const WCHAR* pFileName)
 {
 	IXMLStreamReader* pReader = SFXMLStreamReader::CreateXmlStreamReader(pFileName);
 
-	if(NULL == pReader)
+	if (NULL == pReader || pReader->m_isXmlFileLoadSuccess == false)
 		return FALSE;
 
 	pReader->Read(pFileName, *this);
