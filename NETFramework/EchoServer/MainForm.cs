@@ -54,6 +54,8 @@ namespace ChatServer1
             {
                 DevLog.Write(string.Format("[Init] 네트워크 라이브러리 초기화 실패"), LOG_LEVEL.ERROR);
             }
+
+            ServerNet.LogFlush();
         }
 
         private void MainForm_FormClosing(object sender, FormClosingEventArgs e)
@@ -68,8 +70,9 @@ namespace ChatServer1
         private void button1_Click(object sender, EventArgs e)
         {
             IsStartServerNetwork = true;
+            
             ServerNet.Start();
-
+            
             DevLog.Write(string.Format("[Start] 네트워크 시작"), LOG_LEVEL.INFO);
         }
 

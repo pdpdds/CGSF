@@ -68,17 +68,16 @@ namespace CgsfNET64Lib {
 			return false;
 		}
 
-		//ReadNetworkConfigFromNative();
-
 		return true;
 	}
 
 	
 
-	void CgsfNET64::Start()
+	bool CgsfNET64::Start()
 	{
-		SFEngine::GetInstance()->Start();
-		google::FlushLogFiles(google::GLOG_INFO);
+		auto isResult = SFEngine::GetInstance()->Start();
+		LogFlush();
+		return isResult;
 	}
 
 	void CgsfNET64::Stop()
@@ -104,5 +103,11 @@ namespace CgsfNET64Lib {
 		pNativeData = nullptr;
 
 		return result;
+	}
+
+	void CgsfNET64::LogFlush()
+	{
+		google::FlushLogFiles(google::GLOG_INFO);
+		google::FlushLogFiles(google::GLOG_ERROR);
 	}
 }

@@ -21,7 +21,7 @@ namespace CgsfNET64Lib {
 
 		bool Init(NetworkConfig^ config);
 		
-		void Start();
+		bool Start();
 		void Stop();
 			
 		SFNETPacket^ GetPacket();
@@ -31,6 +31,9 @@ namespace CgsfNET64Lib {
 		}
 
 		bool SendPacket(int serial, UINT16 packetID, array<Byte>^ data);
+
+
+		void LogFlush();
 
 
 	private:
