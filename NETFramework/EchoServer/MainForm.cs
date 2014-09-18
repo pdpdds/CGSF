@@ -106,23 +106,23 @@ namespace ChatServer1
             switch (packet.GetPacketType())
             {
                 case CgsfNET64Lib.SFPACKET_TYPE.CONNECT:
-                    SessionList.Add(packet.Serial());
-                    DevLog.Write(string.Format("[OnConnect] Serial:{0}", packet.Serial()), LOG_LEVEL.INFO);
+                    SessionList.Add(packet.SessionID());
+                    DevLog.Write(string.Format("[OnConnect] Serial:{0}", packet.SessionID()), LOG_LEVEL.INFO);
                     break;
                 case CgsfNET64Lib.SFPACKET_TYPE.DISCONNECT:
-                    SessionList.Remove(packet.Serial());
-                    DevLog.Write(string.Format("[OnDisConnect] Serial:{0}", packet.Serial()), LOG_LEVEL.INFO);
+                    SessionList.Remove(packet.SessionID());
+                    DevLog.Write(string.Format("[OnDisConnect] Serial:{0}", packet.SessionID()), LOG_LEVEL.INFO);
                     break;
                 case CgsfNET64Lib.SFPACKET_TYPE.DATA:
                     switch (packet.PacketID())
                     {
                         case PACKET_ID_ECHO:
                             var resData = JsonEnDecode.Decode<JsonPacketNoticeEcho>(packet.GetData());
-                            DevLog.Write(string.Format("[Chat] Serial:{0}, Msg:{1}", packet.Serial(), resData.Msg), LOG_LEVEL.INFO);
+                            DevLog.Write(string.Format("[Chat] Serial:{0}, Msg:{1}", packet.SessionID(), resData.Msg), LOG_LEVEL.INFO);
 
                             var request = new JsonPacketNoticeEcho() { Msg = resData.Msg };
                             var bodyData = JsonEnDecode.Encode<JsonPacketNoticeEcho>(request);
-                            ServerNet.SendPacket(packet.Serial(), PACKET_ID_ECHO, bodyData);
+                            ServerNet.SendPacket(packet.SessionID(), PACKET_ID_ECHO, bodyData);
                             break;
                         default:
                             DevLog.Write(string.Format("[ProcessProcket] Invalid PacketID:{0}", packet.PacketID()), LOG_LEVEL.ERROR);

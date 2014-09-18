@@ -10,7 +10,7 @@ using System.Windows.Forms;
 
 using CGSFNETCommon;
 
-namespace ChatClientNET
+namespace ChatClient1
 {
     public partial class MainForm : Form
     {
@@ -24,13 +24,10 @@ namespace ChatClientNET
         System.Threading.Thread NetworkReadThread = null;
         System.Threading.Thread NetworkSendThread = null;
         
-        
         System.Windows.Threading.DispatcherTimer dispatcherUITimer;
 
-        const int PACKET_ID_DISCONNECTED = 1;
-        const int PACKET_ID_ECHO = 1000;
-        const int PACKET_ID_CHAT = 1001;
-
+        CLIENT_STATUS ClientStatus = new CLIENT_STATUS();
+        
 
 
         public MainForm()
@@ -54,6 +51,8 @@ namespace ChatClientNET
             dispatcherUITimer.Start();
 
             btnDisconnect.Enabled = false;
+
+            PacketHandler.Init(this);
 
             DevLog.Write("프로그램 시작 !!!", LOG_LEVEL.INFO);
         }
@@ -98,30 +97,43 @@ namespace ChatClientNET
             Network.Close();
         }
 
+        // 로그인 하기
+        private void button1_Click(object sender, EventArgs e)
+        {
+            if (string.IsNullOrEmpty(textBoxUserID.Text))
+            {
+                MessageBox.Show("사용할 ID를 입력해 주세요");
+                return;
+            }
+
+            var request = new JsonPacketRequestLogin() { ID = textBoxUserID.Text };
+            var bodyData = JsonEnDecode.Encode<JsonPacketRequestLogin>(request);
+            PostSendPacket((UInt16)PACKET_ID.REQUEST_LOGIN, bodyData);
+        }
+
         // 채팅 보내기
         private void button5_Click(object sender, EventArgs e)
         {
-            var request = new JsonPacketRequestChat() { chat = textBoxSendChat.Text };
-            var bodyData = JsonEnDecode.Encode<JsonPacketRequestChat>(request);
-            PostSendPacket((UInt16)PACKET_ID_CHAT, bodyData);
+            //var request = new JsonPacketRequestChat() { chat = textBoxSendChat.Text };
+            //var bodyData = JsonEnDecode.Encode<JsonPacketRequestChat>(request);
+            //PostSendPacket((UInt16)PACKET_ID_CHAT, bodyData);
         }
 
-        // 에코
-        private void button1_Click(object sender, EventArgs e)
+
+        public void SetClientStatus(CLIENT_STATUS status)
         {
-            var request = new JsonPacketNoticeEcho() { Msg = textBoxSendChat.Text };
-            var bodyData = JsonEnDecode.Encode<JsonPacketNoticeEcho>(request);
-            PostSendPacket((UInt16)PACKET_ID_ECHO, bodyData);
+            ClientStatus = status;
         }
 
-
-        void SetDisconnectd()
+        public void SetDisconnectd()
         {
             if (btnConnect.Enabled == false)
             {
                 btnConnect.Enabled = true;
                 btnDisconnect.Enabled = false;
             }
+
+            ClientStatus = CLIENT_STATUS.NONE;
 
             RecvPacketQueue.Clear();
             SendPacketQueue.Clear();
@@ -131,6 +143,12 @@ namespace ChatClientNET
 
         void PostSendPacket(UInt16 packetID, byte[] bodyData)
         {
+            if (Network.IsConnected() == false)
+            {
+                MessageBox.Show("서버에 접속하지 않았습니다");
+                return;
+            }
+
             List<byte> dataSource = new List<byte>();
             dataSource.AddRange(BitConverter.GetBytes(packetID));
             dataSource.AddRange(BitConverter.GetBytes((UInt32)0));
@@ -181,7 +199,7 @@ namespace ChatClientNET
                 else
                 {
                     var packet = new JsonPacketData();
-                    packet.PacketID = PACKET_ID_DISCONNECTED;
+                    packet.PacketID = (ushort)PACKET_ID.SYSTEM_DISCONNECTD;
                     packet.DataSize = 0;
                     
                     lock (((System.Collections.ICollection)RecvPacketQueue).SyncRoot)
@@ -229,35 +247,7 @@ namespace ChatClientNET
 
                 if (packet != null)
                 {
-                    switch (packet.PacketID)
-                    {
-                        case PACKET_ID_DISCONNECTED:
-                            SetDisconnectd();
-                            break;
-
-                        case PACKET_ID_ECHO:
-                            {
-                                var resData = JsonEnDecode.Decode<JsonPacketNoticeEcho>(packet.JsonFormatData);
-
-                                textBoxSendChat.Text = "";
-                                var msg = string.Format("[ECHO]: {0}", resData.Msg);
-                                listBoxChat.Items.Add(msg);
-                            }
-                            break;
-
-                        case PACKET_ID_CHAT:
-                            {
-                                var resData = JsonEnDecode.Decode<JsonPacketResponseChat>(packet.JsonFormatData);
-
-                                textBoxSendChat.Text = "";
-                                var msg = string.Format("[{0}]: {1}", resData.who, resData.chat);
-                                listBoxChat.Items.Add(msg);
-                            }
-                            break;
-
-                        default:
-                            break;
-                    }
+                    PacketHandler.Process(packet);
                 }
             }
             catch (Exception ex)
@@ -298,37 +288,14 @@ namespace ChatClientNET
                 }
             }
         }
-
-
-
-        class JsonPacketData
-        {
-            public UInt16 PacketID;
-            public UInt32 PacketOption;
-            public UInt32 DataCRC;
-            public UInt16 DataSize;
-            public byte[] JsonFormatData;
-        }
-
-        struct JsonPacketNoticeEcho
-        {
-            public string Msg;
-        }
-
-        class JsonPacketRequestChat
-        {
-            public string chat;
-        }
-
-        class JsonPacketResponseChat
-        {
-            public int packetID = PACKET_ID_CHAT;
-            public string who;
-            public string chat;
-        }
-
-        
-
-        
     }
+
+
+    public enum CLIENT_STATUS
+    {
+        NONE = 0,
+        LOGIN = 1,
+        LOBBY = 2,
+    }
+    
 }

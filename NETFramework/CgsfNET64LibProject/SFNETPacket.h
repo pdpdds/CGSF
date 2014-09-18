@@ -15,7 +15,7 @@ namespace CgsfNET64Lib {
 		void SetData(SFPacket* pPacket)
 		{
 			m_packetType = (SFPACKET_TYPE)pPacket->GetPacketType();
-			m_serial = pPacket->GetSerial();
+			m_sessionID = pPacket->GetSerial();
 
 			if (m_packetType == SFPACKET_TYPE::CONNECT || m_packetType == SFPACKET_TYPE::DISCONNECT ||
 				m_packetType == SFPACKET_TYPE::TIMER || m_packetType == SFPACKET_TYPE::SERVERSHUTDOWN)
@@ -40,7 +40,7 @@ namespace CgsfNET64Lib {
 
 		SFPACKET_TYPE GetPacketType() { return m_packetType; }
 		
-		int Serial() { return m_serial; }
+		int SessionID() { return m_sessionID; }
 		unsigned short PacketID() { return m_packetID; }
 		unsigned long  packetOption() { return m_packetOption; }
 		unsigned long  CRC() { return m_dataCRC; }
@@ -49,7 +49,7 @@ namespace CgsfNET64Lib {
 
 
 	private:
-		int m_serial;
+		int m_sessionID;
 		
 		unsigned short m_packetID;
 		unsigned long  m_packetOption;

@@ -4,7 +4,7 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{44196478-AAE0-44F4-8491-77A0D6933747}</ProjectGuid>
+    <ProjectGuid>{04E51D55-4FC0-419C-A306-605145D1F9D3}</ProjectGuid>
     <OutputType>WinExe</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>ChatServer1</RootNamespace>
@@ -50,6 +50,9 @@
     <Reference Include="WindowsBase" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="ConnectUserManager.cs" />
+    <Compile Include="Lobby.cs" />
+    <Compile Include="LobbyManager.cs" />
     <Compile Include="MainForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -57,6 +60,10 @@
       <DependentUpon>MainForm.cs</DependentUpon>
     </Compile>
     <Compile Include="PacketDefine.cs" />
+    <Compile Include="PktBaseHandler.cs" />
+    <Compile Include="PktCommonHandler.cs" />
+    <Compile Include="PktHandlerManager.cs" />
+    <Compile Include="PktLobbyHandler.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ServerNetwork.cs" />

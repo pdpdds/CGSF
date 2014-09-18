@@ -30,7 +30,7 @@ namespace CgsfNET64Lib {
 			return m_networkConfig;
 		}
 
-		bool SendPacket(int serial, UINT16 packetID, array<Byte>^ data);
+		bool SendPacket(int sessionID, UINT16 packetID, array<Byte>^ data);
 
 
 		void LogFlush();

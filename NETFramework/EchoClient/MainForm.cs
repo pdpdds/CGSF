@@ -10,7 +10,7 @@ using System.Windows.Forms;
 
 using CGSFNETCommon;
 
-namespace ChatClientNET
+namespace ChatClient1
 {
     public partial class MainForm : Form
     {

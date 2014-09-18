@@ -18,11 +18,16 @@ namespace ChatServer1
 
         bool IsStartServerNetwork = false;
         ServerNetwork ServerNet = new ServerNetwork();
+        
+        CgsfNET64Lib.NetworkConfig Config;
+        int MaxLobbyCount = 0;
+        int MaxLobbyUserCount = 0;
+        
         List<int> SessionList = new List<int>();
 
-        const UInt16 PACKET_ID_ECHO = 1000;
-        const UInt16 PACKET_ID_CHAT = 1001;
+        PktHandlerManager HandelrMgr = new PktHandlerManager();
 
+        
 
         public MainForm()
         {
@@ -32,25 +37,45 @@ namespace ChatServer1
         private void MainForm_Load(object sender, EventArgs e)
         {
             workProcessTimer.Tick += new EventHandler(OnProcessTimedEvent);
-            workProcessTimer.Interval = new TimeSpan(0, 0, 0, 0, 32);
+            workProcessTimer.Interval = new TimeSpan(0, 0, 0, 0, 10);
             workProcessTimer.Start();
 
-            var result = ServerNet.Init(1, 16000, 4012);
-            if (result)
+            Config = new CgsfNET64Lib.NetworkConfig()
             {
-                var config = ServerNet.GetNetworkConfig();
-                DevLog.Write(string.Format("[Init] IP:{0}, Port:{1}, EngineDllName:{2}", config.IP, config.Port, config.EngineDllName), LOG_LEVEL.INFO);
+                IP = Properties.Settings.Default.IP,
+                Port = Properties.Settings.Default.Port,
+                EngineDllName = Properties.Settings.Default.EngineDllName,
+                ThreadCount = Properties.Settings.Default.ThreadCount,
+                MaxBufferSize = Properties.Settings.Default.MaxBufferSize,
+                MaxPacketSize = Properties.Settings.Default.MaxPacketSize,
+            };
 
-                IsStartServerNetwork = true;
-                ServerNet.Start();
+            MaxLobbyCount = Properties.Settings.Default.MaxLobbyCount;
+            MaxLobbyUserCount = Properties.Settings.Default.MaxLobbyUserCount;
 
+
+            var result = ServerNet.Init(Config);
+            if (result == false)
+            {
+                DevLog.Write(string.Format("[Init] 네트워크 라이브러리 초기화 실패"), LOG_LEVEL.ERROR);
+                return;
+            }
+
+            IsStartServerNetwork = true;
+            if (ServerNet.Start())
+            {
                 DevLog.Write(string.Format("[Start] 네트워크 시작"), LOG_LEVEL.INFO);
-                
             }
             else
             {
-                DevLog.Write(string.Format("[Init] 네트워크 라이브러리 초기화 실패"), LOG_LEVEL.ERROR);
+                DevLog.Write(string.Format("[Start] 네트워크 시작 실패"), LOG_LEVEL.ERROR);
             }
+
+
+            HandelrMgr.Create(ServerNet, MaxLobbyCount, MaxLobbyUserCount);
+
+
+            SetGUIInfo();
         }
 
         private void MainForm_FormClosing(object sender, FormClosingEventArgs e)
@@ -62,8 +87,22 @@ namespace ChatServer1
             }
         }
 
+        void SetGUIInfo()
+        {
+            textBoxServerConfig.AppendText(string.Format("IP:{0}, Port:{1}, EngineDllName:{2} {3}", Config.IP, Config.Port, Config.EngineDllName, Environment.NewLine));
+            textBoxServerConfig.AppendText(string.Format("ThreadCount:{0}, MaxBufferSize:{1}, MaxPacketSize:{2} {3}", Config.ThreadCount, Config.MaxBufferSize, Config.MaxPacketSize, Environment.NewLine));
 
-               
+            for(int i = 0; i < MaxLobbyCount; ++i)
+            {
+                ListViewItem lvi = new ListViewItem((i+1).ToString());
+                lvi.SubItems.Add(0.ToString());
+                listViewLobbyInfo.Items.Add(lvi);
+            }
+
+            listViewLobbyInfo.Refresh();
+        }
+
+                       
         private void OnProcessTimedEvent(object sender, EventArgs e)
         {
             try
@@ -88,30 +127,16 @@ namespace ChatServer1
             switch (packet.GetPacketType())
             {
                 case CgsfNET64Lib.SFPACKET_TYPE.CONNECT:
-                    SessionList.Add(packet.Serial());
-                    DevLog.Write(string.Format("[OnConnect] Serial:{0}", packet.Serial()), LOG_LEVEL.INFO);
+                    SessionList.Add(packet.SessionID());
+                    DevLog.Write(string.Format("[OnConnect] SessionID:{0}", packet.SessionID()), LOG_LEVEL.INFO);
                     break;
                 case CgsfNET64Lib.SFPACKET_TYPE.DISCONNECT:
-                    SessionList.Remove(packet.Serial());
-                    DevLog.Write(string.Format("[OnDisConnect] Serial:{0}", packet.Serial()), LOG_LEVEL.INFO);
+                    SessionList.Remove(packet.SessionID());
+                    HandelrMgr.ClientDisConnect(packet.SessionID());
+                    DevLog.Write(string.Format("[OnDisConnect] SessionID:{0}", packet.SessionID()), LOG_LEVEL.INFO);
                     break;
                 case CgsfNET64Lib.SFPACKET_TYPE.DATA:
-                    switch (packet.PacketID())
-                    {
-                        case PACKET_ID_ECHO:
-                            //string jsonstring = System.Text.Encoding.GetEncoding("utf-8").GetString(packet.GetData());
-                            //var resData = Newtonsoft.Json.JsonConvert.DeserializeObject<JsonPacketNoticeEcho>(jsonstring);
-                            //DevLog.Write(string.Format("[Chat] Serial:{0}, Msg:{1}", packet.Serial(), resData.Msg), LOG_LEVEL.INFO);
-
-                            //var request = new JsonPacketNoticeEcho() { Msg = resData.Msg };
-                            //var jsonstring2 = Newtonsoft.Json.JsonConvert.SerializeObject(request);
-                            //var bodyData = Encoding.UTF8.GetBytes(jsonstring2);
-                            //ServerNet.SendPacket(packet.Serial(), PACKET_ID_ECHO, bodyData);
-                            break;
-                        default:
-                            DevLog.Write(string.Format("[ProcessProcket] Invalid PacketID:{0}", packet.PacketID()), LOG_LEVEL.ERROR);
-                            break;
-                    }
+                    HandelrMgr.Process(packet);
                     break;
             }
         }
