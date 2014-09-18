@@ -1,2 +1,14 @@
-여기에 있는 라이브러리는 CGSF를 64비트로 빌드한 후 만들어진 것이다.
-여기에 있는 파일들을 .NET서버 실행파일쪽에 복사해야 서버가 실행된다.
+네이티브 CGSF를 빌드한 후 만들어지는 dll 파일을 여기에 복사 해 놓는다.
+ACE.dll
+ACEd.dll
+CGSFNet.dll
+CGSFNet.exp
+CGSFNet.ilk
+CGSFNet.lib
+CGSFNet.pdb
+libglog.dll
+
+
+그리고 이 파일들을 .NET으로 만든 서버 실행 파일이 있는 곳에 모두 복사한다.
+이 파일들이 없으면 실행이 안된다.
+
