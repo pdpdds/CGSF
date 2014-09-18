@@ -10,14 +10,10 @@
 //////////////////////////////////////////////////////////////
 typedef struct tag_EngineConfig
 {
-	std::wstring EngineName;
-	std::wstring P2PModuleName;
-	std::wstring ServerIP;
-	unsigned short ServerPort;
-	std::wstring PacketProtocol;
-	std::wstring HostName;
-	std::list<unsigned int> TimerList;
-	std::wstring LogDirectory;
+	std::wstring engineName;	
+	std::wstring serverIP;
+	unsigned short serverPort;
+	unsigned short maxAccept;	
 	
 	tag_EngineConfig()
 	{
@@ -26,8 +22,8 @@ typedef struct tag_EngineConfig
 
 	void Clear()
 	{
-		ServerPort = 0;
-		TimerList.clear();
+		serverPort = 25251;
+		maxAccept = 5000;
 	}
 
 }_EngineConfig;
@@ -48,20 +44,18 @@ public:
 	void Serialize(IXMLStreamWriter& out) const
 	{
 		out.Begin(L"Struct");
-		out.Write(L"EngineName",m_ConfigureInfo.EngineName);
-		out.Write(L"ServerIP",m_ConfigureInfo.ServerIP);
-		out.Write(L"ServerPort",m_ConfigureInfo.ServerPort);
-		out.Write(L"HostName",m_ConfigureInfo.HostName);
-		out.Write(L"LogDirectory",m_ConfigureInfo.LogDirectory);
+		out.Write(L"EngineName",m_ConfigureInfo.engineName);
+		out.Write(L"ServerIP",m_ConfigureInfo.serverIP);
+		out.Write(L"ServerPort",m_ConfigureInfo.serverPort);		
+		out.Write(L"MaxAccept", m_ConfigureInfo.maxAccept);
 	}
 
 	void Deserialize(IXMLStreamReader& in) {
 		in.Begin(L"Struct");
-		in.Read(L"EngineName",m_ConfigureInfo.EngineName);
-		in.Read(L"ServerIP",m_ConfigureInfo.ServerIP);
-		in.Read(L"ServerPort",m_ConfigureInfo.ServerPort);
-		in.Read(L"HostName",m_ConfigureInfo.HostName);
-		in.Read(L"LogDirectory",m_ConfigureInfo.LogDirectory);
+		in.Read(L"EngineName", m_ConfigureInfo.engineName);
+		in.Read(L"ServerIP", m_ConfigureInfo.serverIP);
+		in.Read(L"ServerPort", m_ConfigureInfo.serverPort);
+		in.Read(L"MaxAccept", m_ConfigureInfo.maxAccept);
 	}
 
 protected:

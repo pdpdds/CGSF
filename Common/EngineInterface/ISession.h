@@ -12,6 +12,7 @@ class ISession
     virtual ~ISession() {};
 
 	void SetOwner(INetworkEngine* pOwner){m_pOwner = pOwner;}
+	IEngine* GetEngine(){ return m_pOwner->GetEngine(); }
 
 	void OnConnect(int serial, _SessionDesc& desc)
 	{

@@ -1,5 +1,6 @@
 #include "stdafx.h"
 #include "SFEngine.h"
+#include <stdlib.h>  
 #include "ILogicDispatcher.h"
 #include "ace/os_ns_thread.h"
 #include "SFBridgeThread.h"
@@ -23,6 +24,7 @@ SFEngine::SFEngine()
 	, m_pNetworkEngine(0)
 	, m_isServer(false)
 	, m_pPacketProtocolManager(NULL)
+	, m_pServerConnectionManager(NULL)
 {
 	ACE::init();
 
@@ -30,17 +32,21 @@ SFEngine::SFEngine()
 
 	google::InitGoogleLogging("CGSF");
 	m_Config.Read(L"EngineConfig.xml");
+
+#ifdef _DEBUG
+	_putenv_s("GLOG_logbufsecs", "0");
+	google::LogToStderr();
+#endif
 	
 	m_EngineHandle = 0;
 }
 
 SFEngine::~SFEngine(void)
-{
-	if(m_pNetworkEngine)
-		delete m_pNetworkEngine;
+{	
+	//ACE::fini();
 
-	if (m_pServerConnectionManager)
-		delete m_pServerConnectionManager;
+	if (m_EngineHandle)
+		FreeLibrary(m_EngineHandle);
 }
 
 SFEngine* SFEngine::GetInstance()
@@ -126,9 +132,7 @@ bool SFEngine::Intialize(ILogicEntry* pLogicEntry, IPacketProtocol* pProtocol, I
 {
 	LOG(INFO) << "Engine Initialize... ";
 
-	SetLogFolder();
-
-	ACE::init();
+	SetLogFolder();	
 
 	if (pProtocol)
 	{
@@ -159,15 +163,25 @@ bool SFEngine::Intialize(ILogicEntry* pLogicEntry, IPacketProtocol* pProtocol, I
 	
 	
 	_EngineConfig* pInfo = m_Config.GetConfigureInfo();
-	if (pInfo->ServerPort == 0)
+	if (pInfo->serverPort == 0)
 	{
 		LOG(ERROR) << "Config FileLoad Fail!!";
 		return false;
 	}
 
-	std::string szNetworkEngineName = StringConversion::ToASCII(pInfo->EngineName);
+	std::string szNetworkEngineName = StringConversion::ToASCII(pInfo->engineName);
 	LOG(INFO) << "NetworkEngine Create : " << szNetworkEngineName.c_str();
-	
+
+	LOG(INFO) << "MaxAccept : " << pInfo->maxAccept;
+
+	if (pInfo->maxAccept <= 0 || pInfo->maxAccept > 10000)
+	{
+		LOG(WARNING) << "MaxAccept Value Abnormal : " << pInfo->maxAccept;
+		SetMaxUserAccept(5000);
+	}
+	else
+		SetMaxUserAccept(pInfo->maxAccept);
+		
 	if (false == CreateEngine((char*)szNetworkEngineName.c_str(), true))
 	{
 		LOG(ERROR) << "NetworkEngine : " << szNetworkEngineName.c_str() << " Creation FAIL!!";
@@ -216,13 +230,13 @@ bool SFEngine::Start(char* szIP, unsigned short port)
 {
 	_EngineConfig* pInfo = m_Config.GetConfigureInfo();
 
-	LOG(INFO) << "Engine Starting... IP : " << (char*)StringConversion::ToASCII(pInfo->ServerIP).c_str() << " Port : " << pInfo->ServerPort;
+	LOG(INFO) << "Engine Starting... IP : " << (char*)StringConversion::ToASCII(pInfo->serverIP).c_str() << " Port : " << pInfo->serverPort;	
 	
 	bool bResult = false;
 	if (port != 0)
 		bResult = m_pNetworkEngine->Start(szIP, port);
 	else
-		bResult = m_pNetworkEngine->Start((char*)StringConversion::ToASCII(pInfo->ServerIP).c_str(), pInfo->ServerPort);
+		bResult = m_pNetworkEngine->Start((char*)StringConversion::ToASCII(pInfo->serverIP).c_str(), pInfo->serverPort);
 	
 	if (bResult == false)
 	{
@@ -242,35 +256,38 @@ bool SFEngine::Activate()
 bool SFEngine::ShutDown()
 {
 	// 올바르게 종료되는지 조사하기 위해 각 단계별로 로그를 남깁니다.
-
-	LOG(INFO) << "Engine Shut Down!!";
-	google::FlushLogFiles(google::GLOG_INFO);
+	LOG(INFO) << "Engine Shut Down!!";	
 		
 	m_pLogicDispatcher->ShutDownLogicSystem();
-	LOG(INFO) << "Engine Shut Down Step (1) ShutDownLogicSystem";
-	google::FlushLogFiles(google::GLOG_INFO);
+	LOG(INFO) << "Engine Shut Down Step (1) ShutDownLogicSystem";	
 
-	PacketSendSingleton::instance()->PushTask(NULL);
-	LOG(INFO) << "Engine Shut Down Step (2) instance()->PushTask(NULL)";
-	google::FlushLogFiles(google::GLOG_INFO);
+	if (m_packetSendThreadId >= 0)
+	{
+		PacketSendSingleton::instance()->PushTask(NULL);
+		LOG(INFO) << "Engine Shut Down Step (2) instance()->PushTask(NULL)";
 
-	ACE_Thread_Manager::instance()->wait_grp(m_packetSendThreadId);
-	LOG(INFO) << "Engine Shut Down Step (3) wait_grp(m_packetSendThreadId)";
-	google::FlushLogFiles(google::GLOG_INFO);
+		ACE_Thread_Manager::instance()->wait_grp(m_packetSendThreadId);
+		LOG(INFO) << "Engine Shut Down Step (3) wait_grp(m_packetSendThreadId)";
+	}
 
-	m_pNetworkEngine->Shutdown();
-	LOG(INFO) << "Engine Shut Down Step (4) m_pNetworkEngine->Shutdown()";
-	google::FlushLogFiles(google::GLOG_INFO);
-
+	if (m_pNetworkEngine)
+	{
+		m_pNetworkEngine->Shutdown();
+		LOG(INFO) << "Engine Shut Down Step (4) m_pNetworkEngine->Shutdown()";		
+				
+		delete m_pNetworkEngine;
+	}
 	
-	ACE::fini();
-	LOG(INFO) << "Engine Shut Down Step (5) ACE::fini()";
-	google::FlushLogFiles(google::GLOG_INFO);
+	if (m_pServerConnectionManager)
+	{
+		delete m_pServerConnectionManager;
+		LOG(INFO) << "Engine Shut Down Step (5) delete Server Connecton Manager";
+	}
+	
+	delete this;
+	LOG(INFO) << "Engine Shut Down Step (6) Engine Delete";
 
 	google::ShutdownGoogleLogging();
-
-	delete this;
-
 	
 	return true;
 }

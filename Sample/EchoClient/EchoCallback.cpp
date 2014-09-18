@@ -4,6 +4,8 @@
 #include <iostream>
 #include "json\elements.h"
 
+extern bool g_bExit;
+
 EchoCallback::EchoCallback(void)
 {
 }

@@ -1,0 +1,7 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<EngineConfig.xml type="Struct">
+  <EngineName type="wstring" value="CGSFNet.dll" />  
+  <ServerIP type="wstring" value="127.0.0.1" />
+  <ServerPort type="uint16" value="25251" />
+  <MaxAccept type="uint16" value="5000" />
+</EngineConfig.xml>

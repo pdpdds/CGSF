@@ -2,10 +2,13 @@
 #include "SingltonObject.h"
 #include <Assert.h>
 
+volatile int g_currentSessionCnt = 0;
+
 ProactorService::ProactorService()
 	: m_bServiceCloseFlag(false)
 	, m_pTimerLock(0)
 {
+	InterlockedIncrement((LONG *)&g_currentSessionCnt);
 }
 
 ProactorService::~ProactorService( void )
@@ -15,6 +18,8 @@ ProactorService::~ProactorService( void )
 		delete m_pTimerLock;
 		m_pTimerLock = NULL;
 	}
+
+	InterlockedDecrement((LONG *)&g_currentSessionCnt);
 }
 
 void ProactorService::open( ACE_HANDLE h, ACE_Message_Block& MessageBlock )
@@ -32,9 +37,29 @@ void ProactorService::open( ACE_HANDLE h, ACE_Message_Block& MessageBlock )
 
 	m_bServiceCloseFlag = false;
 
-	m_serial = ProactorServiceManagerSinglton::instance()->Register(this);
+	if (g_currentSessionCnt > GetEngine()->GetMaxUserAccept())
+	{
+		if (this->handle() != ACE_INVALID_HANDLE)
+			ACE_OS::closesocket(this->handle());
 
-	assert(m_serial != INVALID_ID);
+		this->handle(ACE_INVALID_HANDLE);
+
+		delete this;
+		return;
+	}
+
+	m_serial = ProactorServiceManagerSinglton::instance()->Register(this);	
+
+	if (m_serial == INVALID_ID)
+	{
+		if (this->handle() != ACE_INVALID_HANDLE)
+			ACE_OS::closesocket(this->handle());
+
+		this->handle(ACE_INVALID_HANDLE);
+		
+		delete this;
+		return;
+	}
 
 	RegisterTimer();
 

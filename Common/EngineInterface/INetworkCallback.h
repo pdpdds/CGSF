@@ -15,7 +15,7 @@ public:
 	virtual bool HandleRPC(BasePacket* pPacket){ return false; }
 	virtual void HandleConnect(int serial)
 	{
-//		printf("Connected\n"); 
+		printf("Connected\n"); 
 		m_serial = serial;
 		m_bConnected = true;
 	}
@@ -23,7 +23,7 @@ public:
 	virtual void HandleDisconnect(int Serial)
 	{
 		m_bConnected = false;
-	//	printf("Disconnected\n");
+		printf("Disconnected\n");
 	}
 	bool IsConnected(){ return m_bConnected; }
 	int GetSerial(){ return m_serial; }

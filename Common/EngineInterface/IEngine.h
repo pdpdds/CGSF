@@ -8,7 +8,7 @@ class ISessionService;
 class IEngine
 {
 public:
-	IEngine(void){}
+	IEngine(void){ m_maxUserAccept = 5000; }
 	virtual ~IEngine(void){}
 
 	virtual ISessionService* CreateSessionService(_SessionDesc& desc) = 0;
@@ -29,6 +29,12 @@ public:
 	//타이머 이벤트가 발생할 때
 	////////////////////////////////////////////////////////////////////////////////////////////////////
 	virtual bool OnTimer(const void *arg){ return false; }
+
+	int GetMaxUserAccept(){ return m_maxUserAccept; }
+	void SetMaxUserAccept(int maxUserAccept){ m_maxUserAccept = maxUserAccept; }
+
+private:
+	int m_maxUserAccept;
 
 };
 

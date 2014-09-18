@@ -67,9 +67,6 @@ bool ACEEngine::NetworkOpen()
 	return true;
 }
 
-
-
-
 bool ACEEngine::CheckTimerImpl()
 {
 	return true;
@@ -129,14 +126,12 @@ int ACEEngine::AddListener(char* szIP, unsigned short port)
 
 bool ACEEngine::Shutdown()
 {
+	
 	ACE_Proactor::instance()->close();
 
 	if (m_workThreadGroupID >= 0)
-		ACE_Thread_Manager::instance()->wait_grp(m_workThreadGroupID);
-	//ACE_Thread_Manager::instance()->wait_grp(m_workThreadGroupID);
-
-	ACE::fini();
-
+		ACE_Thread_Manager::instance()->wait_grp(m_workThreadGroupID);		
+	
 	return true;
 }
 
@@ -148,8 +143,7 @@ ACEServerEngine::ACEServerEngine(IEngine* pEngine)
 }
 
 bool ACEServerEngine::Init()
-{
-	ACE::init();
+{	
 
 	SYSTEM_INFO si;
 	GetSystemInfo(&si);
@@ -182,8 +176,6 @@ ACEClientEngine::ACEClientEngine(IEngine* pEngine)
 
 bool ACEClientEngine::Init()
 {
-	ACE::init();
-
 	int OptimalThreadCount = 1;
 
 	m_workThreadGroupID = ACE_Thread_Manager::instance()->spawn_n(OptimalThreadCount, (ACE_THR_FUNC)ProactorWorkerThread, NULL, THR_NEW_LWP, ACE_DEFAULT_THREAD_PRIORITY, 1);

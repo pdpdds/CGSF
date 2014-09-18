@@ -48,11 +48,8 @@ public:
 	inline int Pop()
 	{
 		int id = INVALID_ID;
-		if (false == m_idleIdQueue.Pop(id))
-		{
-			assert(0);
-		}
-
+		m_idleIdQueue.Pop(id);
+		
 		return id;
 	}
 

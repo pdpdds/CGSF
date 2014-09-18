@@ -14,6 +14,7 @@
 #pragma comment(lib, "EngineLayer.lib")
 
 #define ECHO_PACKET_ID 1000
+bool g_bExit = false;
 
 void EchoInputThread(void* Args)
 {
@@ -23,8 +24,11 @@ void EchoInputThread(void* Args)
 	{
 		std::cin >> input;
 
-		if(input.compare("exit") == 0)
+		if (input.compare("exit") == 0)
+		{
+			g_bExit = true;
 			break;
+		}
 
 		SFJsonPacket packet(ECHO_PACKET_ID);
 		
@@ -62,7 +66,7 @@ void ProcessInput()
 
 	SFASSERT(inputThreadID != -1);
 
-	while (SFNetworkEntry::GetInstance()->IsConnected())
+	while (SFNetworkEntry::GetInstance()->IsConnected() && g_bExit == false)
 	{
 		SFNetworkEntry::GetInstance()->Update();
 
