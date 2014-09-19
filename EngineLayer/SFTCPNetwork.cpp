@@ -40,7 +40,7 @@ BOOL SFTCPNetwork::Initialize(char* szModuleName, INetworkCallback* pTCPCallBack
 {
 	m_TCPClient = SFEngine::GetInstance();
 
-	if (FALSE == m_TCPClient->CreateEngine(szModuleName, FALSE))
+	if (ERROR_CODE::SUCCESS != m_TCPClient->CreateEngine(szModuleName, FALSE))
 	{
 		return FALSE;
 	}

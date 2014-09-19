@@ -69,7 +69,7 @@ public:
 
 protected:
 	bool CreatePacketSendThread();
-	bool CreateEngine(char* szModuleName, bool Server = false);
+	ERROR_CODE CreateEngine(char* szModuleName, bool Server = false);
 	
 private:
 	SFEngine();

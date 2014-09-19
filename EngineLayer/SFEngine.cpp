@@ -57,26 +57,26 @@ SFEngine* SFEngine::GetInstance()
 	return m_pEngine;
 }
 
-bool SFEngine::CreateEngine(char* szModuleName, bool server)
+ERROR_CODE SFEngine::CreateEngine(char* szModuleName, bool server)
 {
 	m_isServer = server;
 
 	m_EngineHandle = ::LoadLibraryA(szModuleName);
 
 	if(m_EngineHandle == 0)
-		return false;
+		return ERROR_CODE::ENGINE_INIT_CREAT_ENGINE_LOAD_DLL_FAIL;
 
 	CREATENETWORKENGINE *pfunc;
 	pfunc = (CREATENETWORKENGINE*)::GetProcAddress( m_EngineHandle, "CreateNetworkEngine");
 	m_pNetworkEngine = pfunc(server, this);
 
 	if(m_pNetworkEngine == NULL)
-		return false;
+		return ERROR_CODE::ENGINE_INIT_CREAT_ENGINE_FUNC_NULL;
 
 	if(FALSE == m_pNetworkEngine->Init())
-		return false;
+		return ERROR_CODE::ENGINE_INIT_CREAT_ENGINE_INIT_FAIL;
 	
-	return true;
+	return ERROR_CODE::SUCCESS;
 }
 
 void SFEngine::AddRPCService(IRPCService* pService)
@@ -182,10 +182,11 @@ ERROR_CODE SFEngine::Intialize(ILogicEntry* pLogicEntry, IPacketProtocol* pProto
 	else
 		SetMaxUserAccept(pInfo->maxAccept);
 		
-	if (false == CreateEngine((char*)szNetworkEngineName.c_str(), true))
+	auto errorCode = CreateEngine((char*)szNetworkEngineName.c_str(), true);
+	if (errorCode != ERROR_CODE::SUCCESS)
 	{
 		LOG(ERROR) << "NetworkEngine : " << szNetworkEngineName.c_str() << " Creation FAIL!!";
-		return ERROR_CODE::ENGINE_INIT_CREAT_ENGINE_FAIL;
+		return errorCode;
 	}
 
 	LOG(INFO) << "NetworkEngine : " << szNetworkEngineName.c_str() << " Creation Success!!";
