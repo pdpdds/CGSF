@@ -18,6 +18,7 @@ namespace ChatClient1
 
         REQUEST_LEAVE_LOBBY = 1021,
         RESPONSE_LEAVE_LOBBY = 1022,
+        NOTIFY_LEAVE_LOBBY = 1023,
 
         REQUEST_CHAT = 1031,
         NOTICE_CHAT = 1032,
@@ -27,8 +28,17 @@ namespace ChatClient1
     {
         ERROR = 0,
 
-        ADD_USER_DUPLICATION_SESSION = 1001,
-        ADD_USER_DUPLICATION_ID = 1002,
+        ADD_USER_DUPLICATION_SESSION = 10001,
+        ADD_USER_DUPLICATION_ID = 10002,
+
+        ENTER_LOBBY_ALREADY_LOBBY = 10011,
+        ENTER_LOBBY_INVALID_LOBBY_ID = 10012,
+        ENTER_LOBBY_LOBBY_FULL = 10013,
+
+        LEAVE_LOBBY_DO_NOT_ENTER_LOBBY = 10021,
+        LEAVE_LOBBY_NO_LOBBY = 10022,
+
+        LOBBY_CHAT_DO_NOT_ENTER_LOBBY = 10031,
 
         NONE = UInt16.MaxValue
     }
@@ -67,6 +77,12 @@ namespace ChatClient1
         public ERROR_CODE Result;
     }
 
+    struct JsonPacketNotifyLeaveLobby
+    {
+        public short LobbyID;
+        public string UserID;
+    }
+
 
     struct JsonPacketRequestChat
     {
@@ -75,8 +91,8 @@ namespace ChatClient1
 
     struct JsonPacketNoticeChat
     {
-        public ERROR_CODE result;
-        public string ID;
+        public ERROR_CODE Result;
+        public string UserID;
         public string Chat;
     }
 }

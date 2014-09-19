@@ -61,13 +61,24 @@ namespace ChatServer1
 
     class ConnectUser
     {
-        public int Serial { get; private set; }
+        public int SessionID { get; private set; }
         public string ID { get; private set; }
+        public short LobbyID { get; private set; }
 
-        public void SetInfo(int serial, string id)
+        public void SetInfo(int sessionID, string id)
         {
-            Serial = serial;
+            SessionID = sessionID;
             ID = id;
+        }
+
+        public void EnterLobby(short lobbyID)
+        {
+            LobbyID = lobbyID;
+        }
+
+        public void LeaveLobby()
+        {
+            LobbyID = 0;
         }
     }
 }

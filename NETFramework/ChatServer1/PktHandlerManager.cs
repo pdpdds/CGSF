@@ -45,10 +45,11 @@ namespace ChatServer1
 
             LobbyPacketHandler = new PktLobbyHandler();
             LobbyPacketHandler.Init(ServerNetworkRef, UserManager, LobbyMgr);
-
-
-
+            
             PacketHandlerMap.Add((ushort)PACKET_ID.REQUEST_LOGIN, CommonPacketHandler.RequestLogin);
+            PacketHandlerMap.Add((ushort)PACKET_ID.REQUEST_ENTER_LOBBY, LobbyPacketHandler.RequestEnterLobby);
+            PacketHandlerMap.Add((ushort)PACKET_ID.REQUEST_LEAVE_LOBBY, LobbyPacketHandler.RequestLeaveLobby);
+            PacketHandlerMap.Add((ushort)PACKET_ID.REQUEST_CHAT, LobbyPacketHandler.RequestChat);
         }
 
         public void Process(SFNETPacket packet)

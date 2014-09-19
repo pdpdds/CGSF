@@ -111,6 +111,11 @@ namespace CgsfNET64Lib {
 		return result;
 	}
 
+	void CgsfNET64::ForceDisConnect(int sessionID)
+	{
+		SFEngine::GetInstance()->GetNetworkEngine()->Disconnect(sessionID);
+	}
+
 	void CgsfNET64::LogFlush()
 	{
 		google::FlushLogFiles(google::GLOG_INFO);

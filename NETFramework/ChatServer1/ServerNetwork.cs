@@ -10,5 +10,11 @@ namespace ChatServer1
 {
     class ServerNetwork : CgsfNET64
     {
+        public bool Send<T>(int sessionID, PACKET_ID packetID, T data)
+        {
+            var bodyData = CGSFNETCommon.JsonEnDecode.Encode<T>(data);
+            var result = SendPacket(sessionID, (ushort)packetID, bodyData);
+            return result;
+        }
     }
 }

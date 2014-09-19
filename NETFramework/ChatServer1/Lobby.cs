@@ -8,7 +8,7 @@ namespace ChatServer1
 {
     class Lobby
     {
-        public int ID { get; private set; }
+        public short ID { get; private set; }
 
         // 로비에 들어올 수 있는 최대 유저 수
         int MaxUserCount = 0;
@@ -18,7 +18,7 @@ namespace ChatServer1
 
 
 
-        public void Init(int id, int maxUserCount)
+        public void Init(short id, int maxUserCount)
         {
             ID = id;
             MaxUserCount = maxUserCount;
@@ -26,78 +26,48 @@ namespace ChatServer1
 
         public ERROR_CODE AddUser(ConnectUser user)
         {
-            //if (MaxUserCount <= UserList.Count())
-            //{
-            //    return ERROR_CODE.ENTER_LOBBY_LOBBY_FULL;
-            //}
+            if (MaxUserCount <= UserList.Count())
+            {
+                return ERROR_CODE.ENTER_LOBBY_LOBBY_FULL;
+            }
 
-            //UserList.AddLast(user);
+            UserList.AddLast(user);
 
             return ERROR_CODE.NONE;
         }
 
         public void RemoveUser(string userID)
         {
-            //UserList.RemoveWhere(x => x.UserID == userID);
+            UserList.RemoveWhere(x => x.ID == userID);
         }
-
-        public void EnterLobbyComplete(string userID)
-        {
-            //var user = UserList.FirstOrDefault(x => x.UserID == userID);
-
-            //if (user != null && string.IsNullOrEmpty(user.UserID) == false)
-            //{
-            //    user.ChangeStatusToEnterLobbyComplete();
-            //}
-        }
-
+        
         public int CurrentUserCount()
         {
             return UserList.Count();
         }
 
-        public void LobbyUserAbnormalNetwork(string userID)
+        public void NotifyLeaveUser(ServerNetwork serverNetwork, string userID)
         {
-            //var user = UserList.FirstOrDefault(x => x.UserID == userID);
-            //if (user != null && string.IsNullOrEmpty(user.UserID) == false)
-            //{
-            //    user.AbnormalNetwork();
-            //}
+            var notify = new JsonPacketNotifyLeaveLobby() { LobbyID = ID, UserID = userID };
+
+            UserList.ForEach(user =>
+                {
+                    serverNetwork.Send<JsonPacketNotifyLeaveLobby>(user.SessionID, PACKET_ID.NOTIFY_LEAVE_LOBBY, notify);
+                }
+            );
         }
 
-        public ERROR_CODE Chatting(byte[] sendChatData, ServerNetwork serverNetwork)
+        public void Chatting(ServerNetwork serverNetwork, string userID, string chatMsg)
         {
-            //UserList.ForEach(user =>
-            //{
-            //    if (user.EnableNetworkInLobby())
-            //    {
-            //        serverNetwork.SendData(user.SessionID, sendChatData, PACKETID.NTF_LOBBY_CHAT);
-            //    }
-            //}
-            //    );
-            return ERROR_CODE.NONE;
+            var notify = new JsonPacketNoticeChat() { Result = ERROR_CODE.NONE, UserID = userID, Chat = chatMsg };
+
+            UserList.ForEach(user =>
+                {
+                    serverNetwork.Send<JsonPacketNoticeChat>(user.SessionID, PACKET_ID.NOTICE_CHAT, notify);
+                }
+            );
         }
 
-        // 유저에게 서버에서 메시지를 보낸다.
-        public void ServerNotification(string notifyMessage, ServerNetwork serverNetwork)
-        {
-            //var packet = new PKTNotification()
-            //{
-            //    Msg = notifyMessage
-            //};
-
-            //string jsonstring = Newtonsoft.Json.JsonConvert.SerializeObject(packet);
-            //byte[] bodyData = Encoding.UTF8.GetBytes(jsonstring);
-            //var sendData = PacketToBytes.Make(PACKETID.NTF_NOTIFICATION, bodyData);
-
-            //UserList.ForEach(user =>
-            //{
-            //    if (user.EnableNetworkInLobby())
-            //    {
-            //        serverNetwork.SendData(user.SessionID, sendData, PACKETID.NTF_NOTIFICATION);
-            //    }
-            //}
-            //    );
-        }
+        
     }
 }

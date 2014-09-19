@@ -4,7 +4,7 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{73446DA5-621E-4E64-80FA-8898BBC8FFA8}</ProjectGuid>
+    <ProjectGuid>{F3631F67-510A-4ED8-BACA-2B0CE8CEBC02}</ProjectGuid>
     <OutputType>WinExe</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>ChatClient1</RootNamespace>

@@ -33,6 +33,7 @@ namespace CgsfNET64Lib {
 
 		bool SendPacket(int sessionID, UINT16 packetID, array<Byte>^ data);
 
+		void ForceDisConnect(int sessionID);
 
 		void LogFlush();
 

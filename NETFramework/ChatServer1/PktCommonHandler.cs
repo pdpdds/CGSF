@@ -21,14 +21,14 @@ namespace ChatServer1
                 var result = UserManagerRef.AddUser(packetData.SessionID(), request.ID);
 
                 var response = new JsonPacketResponseLogin() { Result = result };
-                Send<JsonPacketResponseLogin>(packetData.SessionID(), PACKET_ID.RESPONSE_LOGIN, response);
+                ServerNetworkRef.Send<JsonPacketResponseLogin>(packetData.SessionID(), PACKET_ID.RESPONSE_LOGIN, response);
 
                 DevLog.Write(string.Format("[Login] result:{0}, UserID:{1}, SessionID{2}", result.ToString(), request.ID, packetData.SessionID()), LOG_LEVEL.INFO);
             }
             catch (Exception)
             {
                 var response = new JsonPacketResponseLogin() { Result = ERROR_CODE.ERROR };
-                Send<JsonPacketResponseLogin>(packetData.SessionID(), PACKET_ID.RESPONSE_LOGIN, response);
+                ServerNetworkRef.Send<JsonPacketResponseLogin>(packetData.SessionID(), PACKET_ID.RESPONSE_LOGIN, response);
             }
         }
     }

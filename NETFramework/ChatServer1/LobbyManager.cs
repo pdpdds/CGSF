@@ -18,7 +18,7 @@ namespace ChatServer1
 
             for (var i = 0; i < lobbyCount; ++i)
             {
-                var lobyIndex = i + 1;
+                var lobyIndex = (short)(i + 1);
 
                 var lobby = new Lobby();
 
@@ -27,5 +27,51 @@ namespace ChatServer1
                 LobbyList.Add(lobby);
             }
         }
+
+        public ERROR_CODE EnterLobby(short lobbyID, ConnectUser user)
+        {
+            var error = ERROR_CODE.NONE;
+
+            var lobby = LobbyList.Find(x => x.ID == lobbyID);
+            if (lobby == null)
+            {
+                return ERROR_CODE.ENTER_LOBBY_INVALID_LOBBY_ID;
+            }
+
+            error = lobby.AddUser(user);
+            if (error == ERROR_CODE.NONE)
+            {
+                user.EnterLobby(lobbyID);
+            }
+
+            return error;
+        }
+
+        public ERROR_CODE LeaveLobby(short lobbyID, string userID)
+        {
+            var lobby = LobbyList.Find(x => x.ID == lobbyID);
+            if (lobby == null)
+            {
+                return ERROR_CODE.LEAVE_LOBBY_NO_LOBBY;
+            }
+
+            lobby.RemoveUser(userID);
+            lobby.NotifyLeaveUser(ServerNetworkRef, userID);
+            
+            return ERROR_CODE.NONE;
+        }
+
+
+        public void LobbyChat(short lobbyID, string userID, string chatMsg)
+        {
+            var lobby = LobbyList.Find(x => x.ID == lobbyID);
+            if (lobby == null)
+            {
+                return;
+            }
+
+            lobby.Chatting(ServerNetworkRef, userID, chatMsg);
+        }
+        
     }
 }
