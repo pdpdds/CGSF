@@ -8,9 +8,9 @@ int _tmain(int argc, _TCHAR* argv[])
 {
 	EchoLogicEntry* pLogicEntry = new EchoLogicEntry();
 	
-	auto isResult = SFEngine::GetInstance()->Intialize(pLogicEntry, new SFPacketProtocol<SFJsonProtocol>);
+	auto errorCode = SFEngine::GetInstance()->Intialize(pLogicEntry, new SFPacketProtocol<SFJsonProtocol>);
 
-	if (isResult == false)
+	if (errorCode != ERROR_CODE::SUCCESS)
 	{	
 		return 0;
 	}

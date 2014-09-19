@@ -39,20 +39,21 @@ namespace ChatServer1
                 IP = "127.0.0.1",
                 Port = 25251,
                 EngineDllName = "CGSFNet.dll",
+                MaxAcceptCount = 1000,
                 ThreadCount = 4,
                 MaxBufferSize = 16000,
                 MaxPacketSize = 4012,
             };
 
             var result = ServerNet.Init(config);
-            if (result)
+            if (result == CgsfNET64Lib.ERROR_CODE_N.SUCCESS)
             {
                 DevLog.Write(string.Format("[Init] IP:{0}, Port:{1}, EngineDllName:{2}", config.IP, config.Port, config.EngineDllName), LOG_LEVEL.INFO);
                 
             }
             else
             {
-                DevLog.Write(string.Format("[Init] 네트워크 라이브러리 초기화 실패"), LOG_LEVEL.ERROR);
+                DevLog.Write(string.Format("[Init] 네트워크 라이브러리 초기화 실패. {0}, {1}", result.ToString(), result), LOG_LEVEL.ERROR);
             }
 
             ServerNet.LogFlush();

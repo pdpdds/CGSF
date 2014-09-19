@@ -118,5 +118,17 @@ namespace ChatServer1.Properties {
                 this["MaxLobbyUserCount"] = value;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("3000")]
+        public int MaxAcceptCount {
+            get {
+                return ((int)(this["MaxAcceptCount"]));
+            }
+            set {
+                this["MaxAcceptCount"] = value;
+            }
+        }
     }
 }

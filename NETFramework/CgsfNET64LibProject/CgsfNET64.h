@@ -3,6 +3,7 @@
 #pragma once
 
 #include "SFNETPacket.h"
+#include "FRAMEWORK_ERROR_CODE.h"
 
 using namespace System;
 
@@ -19,7 +20,7 @@ namespace CgsfNET64Lib {
 		CgsfNET64();
 		~CgsfNET64();
 
-		bool Init(NetworkConfig^ config);
+		ERROR_CODE_N Init(NetworkConfig^ config);
 		
 		bool Start();
 		void Stop();

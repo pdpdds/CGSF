@@ -1,4 +1,5 @@
 #pragma once
+#include "ErrorCode.h"
 #include <EngineInterface/IEngine.h>
 #include <EngineInterface/INetworkEngine.h>
 #include <EngineInterface/IPacketProtocol.h>
@@ -9,6 +10,7 @@
 class IRPCInterface;
 class SFServerConnectionManager;
 class SFPacketProtocolManager;
+
 
 class SFEngine : public IEngine
 {
@@ -28,7 +30,7 @@ public:
 
 	bool Start(char* szIP = NULL, unsigned short port = 0);
 	bool Activate();
-	bool Intialize(ILogicEntry* pLogicEntry, IPacketProtocol* pProtocol = NULL, ILogicDispatcher* pDispatcher = NULL);
+	ERROR_CODE Intialize(ILogicEntry* pLogicEntry, IPacketProtocol* pProtocol = NULL, ILogicDispatcher* pDispatcher = NULL);
 	bool ShutDown();
 
 	virtual ISessionService* CreateSessionService(_SessionDesc& desc) override;

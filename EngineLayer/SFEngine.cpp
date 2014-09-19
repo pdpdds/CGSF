@@ -128,7 +128,7 @@ void SFEngine::SetLogFolder(TCHAR* szPath)
 	LOG(INFO) << "Log Destination " << (char*)StringConversion::ToASCII(szLogPath).c_str();
 }
 
-bool SFEngine::Intialize(ILogicEntry* pLogicEntry, IPacketProtocol* pProtocol, ILogicDispatcher* pDispatcher)
+ERROR_CODE SFEngine::Intialize(ILogicEntry* pLogicEntry, IPacketProtocol* pProtocol, ILogicDispatcher* pDispatcher)
 {
 	LOG(INFO) << "Engine Initialize... ";
 
@@ -158,7 +158,7 @@ bool SFEngine::Intialize(ILogicEntry* pLogicEntry, IPacketProtocol* pProtocol, I
 	if (false == pLogicEntry->Initialize())
 	{
 		LOG(ERROR) << "LogicEntry Intialize Fail!!";
-		return false;
+		return ERROR_CODE::ENGINE_INIT_LOGIC_ENTRY_FAIL;
 	}
 	
 	
@@ -166,7 +166,7 @@ bool SFEngine::Intialize(ILogicEntry* pLogicEntry, IPacketProtocol* pProtocol, I
 	if (pInfo->serverPort == 0)
 	{
 		LOG(ERROR) << "Config FileLoad Fail!!";
-		return false;
+		return ERROR_CODE::ENGINE_INIT_NULL_CONFIG_INFO;
 	}
 
 	std::string szNetworkEngineName = StringConversion::ToASCII(pInfo->engineName);
@@ -185,7 +185,7 @@ bool SFEngine::Intialize(ILogicEntry* pLogicEntry, IPacketProtocol* pProtocol, I
 	if (false == CreateEngine((char*)szNetworkEngineName.c_str(), true))
 	{
 		LOG(ERROR) << "NetworkEngine : " << szNetworkEngineName.c_str() << " Creation FAIL!!";
-		return false;
+		return ERROR_CODE::ENGINE_INIT_CREAT_ENGINE_FAIL;
 	}
 
 	LOG(INFO) << "NetworkEngine : " << szNetworkEngineName.c_str() << " Creation Success!!";
@@ -193,13 +193,13 @@ bool SFEngine::Intialize(ILogicEntry* pLogicEntry, IPacketProtocol* pProtocol, I
 	if (false == pDispatcher->CreateLogicSystem(pLogicEntry))
 	{
 		LOG(ERROR) << "Logic System Creation FAIL!!";
-		return false;
+		return ERROR_CODE::ENGINE_INIT_CREAT_LOGIC_SYSTEM_FAIL;
 	}
 
 	CreatePacketSendThread();
 
 	LOG(INFO) << "Engine Initialize Complete!! ";
-	return true;
+	return ERROR_CODE::SUCCESS;
 }
 
 ////////////////////////////////////////////////////////////////////

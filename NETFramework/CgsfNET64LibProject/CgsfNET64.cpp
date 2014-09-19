@@ -26,18 +26,24 @@ namespace CgsfNET64Lib {
 	
 	void CgsfNET64::SetNetworkConfig(NetworkConfig^ config)
 	{
+		if (config->MaxAcceptCount <= 0)
+		{
+			config->MaxAcceptCount = 5000;
+		}
+
 		auto pConfig = SFEngine::GetInstance()->GetConfig()->GetConfigureInfo();
 		m_networkConfig = config;
 
 		System::String^ serverIP = config->IP;
 		System::String^ engineName = config->EngineDllName;
 		
-		pConfig->ServerIP = msclr::interop::marshal_as<std::wstring>(serverIP);
-		pConfig->ServerPort = config->Port;
-		pConfig->EngineName = msclr::interop::marshal_as<std::wstring>(engineName);
+		pConfig->serverIP = msclr::interop::marshal_as<std::wstring>(serverIP);
+		pConfig->serverPort = config->Port;
+		pConfig->engineName = msclr::interop::marshal_as<std::wstring>(engineName);
+		pConfig->maxAccept = config->MaxAcceptCount;
 	}
 
-	bool CgsfNET64::Init(NetworkConfig^ config)
+	ERROR_CODE_N CgsfNET64::Init(NetworkConfig^ config)
 	{
 		SetNetworkConfig(config);
 
@@ -59,16 +65,16 @@ namespace CgsfNET64Lib {
 			m_networkConfig->MaxPacketSize = MAX_PACKET_SIZE;
 		}
 
-		auto result = SFEngine::GetInstance()->Intialize(m_pLogicEntry, 
+		auto errorCode = SFEngine::GetInstance()->Intialize(m_pLogicEntry, 
 						new SFPacketProtocol<SFCGSFPacketProtocol>(m_networkConfig->MaxBufferSize, 
 																m_networkConfig->MaxPacketSize, CGSF_PACKET_OPTION_NONE), 
 														m_pDispatcher);
-		if (result == false)
+		if (errorCode != ERROR_CODE::SUCCESS)
 		{
-			return false;
+			return (ERROR_CODE_N)errorCode;
 		}
 
-		return true;
+		return ERROR_CODE_N::SUCCESS;
 	}
 
 	

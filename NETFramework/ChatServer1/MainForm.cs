@@ -45,6 +45,7 @@ namespace ChatServer1
                 IP = Properties.Settings.Default.IP,
                 Port = Properties.Settings.Default.Port,
                 EngineDllName = Properties.Settings.Default.EngineDllName,
+                MaxAcceptCount = Properties.Settings.Default.MaxAcceptCount,
                 ThreadCount = Properties.Settings.Default.ThreadCount,
                 MaxBufferSize = Properties.Settings.Default.MaxBufferSize,
                 MaxPacketSize = Properties.Settings.Default.MaxPacketSize,
@@ -55,9 +56,9 @@ namespace ChatServer1
 
 
             var result = ServerNet.Init(Config);
-            if (result == false)
+            if (result != CgsfNET64Lib.ERROR_CODE_N.SUCCESS)
             {
-                DevLog.Write(string.Format("[Init] 네트워크 라이브러리 초기화 실패"), LOG_LEVEL.ERROR);
+                DevLog.Write(string.Format("[Init] 네트워크 라이브러리 초기화 실패. {0}, {1}", result.ToString(), result), LOG_LEVEL.ERROR);
                 return;
             }
 

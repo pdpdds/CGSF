@@ -142,6 +142,7 @@
   <ItemGroup>
     <ClInclude Include="CgsfNET64.h" />
     <ClInclude Include="DefineValue.h" />
+    <ClInclude Include="FRAMEWORK_ERROR_CODE.h" />
     <ClInclude Include="resource.h" />
     <ClInclude Include="ServerLogicEntry.h" />
     <ClInclude Include="SFNETDispatcher.h" />
