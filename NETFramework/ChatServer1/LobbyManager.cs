@@ -56,12 +56,10 @@ namespace ChatServer1
             }
 
             lobby.RemoveUser(userID);
-            lobby.NotifyLeaveUser(ServerNetworkRef, userID);
             
             return ERROR_CODE.NONE;
         }
-
-
+        
         public void LobbyChat(short lobbyID, string userID, string chatMsg)
         {
             var lobby = LobbyList.Find(x => x.ID == lobbyID);
@@ -72,6 +70,16 @@ namespace ChatServer1
 
             lobby.Chatting(ServerNetworkRef, userID, chatMsg);
         }
-        
+
+        public int LobbyCurrentUserCount(short lobbyID)
+        {
+            var lobby = LobbyList.Find(x => x.ID == lobbyID);
+            if (lobby == null)
+            {
+                return 0;
+            }
+
+            return lobby.CurrentUserCount();
+        }
     }
 }

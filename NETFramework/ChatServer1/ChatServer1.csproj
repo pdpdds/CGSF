@@ -54,6 +54,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="ConnectUserManager.cs" />
+    <Compile Include="InnerMessageQueue.cs" />
     <Compile Include="Lobby.cs" />
     <Compile Include="LobbyManager.cs" />
     <Compile Include="MainForm.cs">

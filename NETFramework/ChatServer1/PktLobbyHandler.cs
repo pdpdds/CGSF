@@ -37,7 +37,9 @@ namespace ChatServer1
                     return;
                 }
 
-                ResponseEnterLobby(packetData.SessionID(), ERROR_CODE.NONE, 0);
+                ResponseEnterLobby(packetData.SessionID(), ERROR_CODE.NONE, request.LobbyID);
+
+                InnerMessageQueue.CurrentLobbyUserCount(request.LobbyID, LobbyManagerRef.LobbyCurrentUserCount(request.LobbyID));
             }
             catch (Exception)
             {
@@ -88,6 +90,8 @@ namespace ChatServer1
                 user.LeaveLobby();
 
                 ResponseLeaveLobby(packetData.SessionID(), ERROR_CODE.NONE, 0);
+
+                InnerMessageQueue.CurrentLobbyUserCount(user.LobbyID, LobbyManagerRef.LobbyCurrentUserCount(user.LobbyID));
             }
             catch (Exception)
             {

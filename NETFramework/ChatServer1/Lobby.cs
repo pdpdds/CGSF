@@ -45,18 +45,7 @@ namespace ChatServer1
         {
             return UserList.Count();
         }
-
-        public void NotifyLeaveUser(ServerNetwork serverNetwork, string userID)
-        {
-            var notify = new JsonPacketNotifyLeaveLobby() { LobbyID = ID, UserID = userID };
-
-            UserList.ForEach(user =>
-                {
-                    serverNetwork.Send<JsonPacketNotifyLeaveLobby>(user.SessionID, PACKET_ID.NOTIFY_LEAVE_LOBBY, notify);
-                }
-            );
-        }
-
+                
         public void Chatting(ServerNetwork serverNetwork, string userID, string chatMsg)
         {
             var notify = new JsonPacketNoticeChat() { Result = ERROR_CODE.NONE, UserID = userID, Chat = chatMsg };

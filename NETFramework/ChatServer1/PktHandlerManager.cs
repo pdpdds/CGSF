@@ -70,7 +70,15 @@ namespace ChatServer1
 
         public void ClientDisConnect(int sessionID)
         {
+            var user = UserManager.GetUser(sessionID);
+            if (user != null && user.LobbyID > 0)
+            {
+                LobbyMgr.LeaveLobby(user.LobbyID, user.ID);
+                InnerMessageQueue.CurrentLobbyUserCount(user.LobbyID, LobbyMgr.LobbyCurrentUserCount(user.LobbyID));
+            }
+
             UserManager.RemoveUser(sessionID);
+            
         }
 
     }

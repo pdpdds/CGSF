@@ -18,8 +18,7 @@ namespace ChatClient1
 
         REQUEST_LEAVE_LOBBY = 1021,
         RESPONSE_LEAVE_LOBBY = 1022,
-        NOTIFY_LEAVE_LOBBY = 1023,
-
+        
         REQUEST_CHAT = 1031,
         NOTICE_CHAT = 1032,
     }
@@ -77,13 +76,7 @@ namespace ChatClient1
         public ERROR_CODE Result;
     }
 
-    struct JsonPacketNotifyLeaveLobby
-    {
-        public short LobbyID;
-        public string UserID;
-    }
-
-
+    
     struct JsonPacketRequestChat
     {
         public string Chat;

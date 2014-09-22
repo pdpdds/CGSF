@@ -37,7 +37,7 @@ namespace ChatServer1
         private void MainForm_Load(object sender, EventArgs e)
         {
             workProcessTimer.Tick += new EventHandler(OnProcessTimedEvent);
-            workProcessTimer.Interval = new TimeSpan(0, 0, 0, 0, 10);
+            workProcessTimer.Interval = new TimeSpan(0, 0, 0, 0, 1);
             workProcessTimer.Start();
 
             Config = new CgsfNET64Lib.NetworkConfig()
@@ -77,6 +77,7 @@ namespace ChatServer1
 
 
             SetGUIInfo();
+            ConnectCountToGUI(0);
         }
 
         private void MainForm_FormClosing(object sender, FormClosingEventArgs e)
@@ -103,12 +104,17 @@ namespace ChatServer1
             listViewLobbyInfo.Refresh();
         }
 
+        void ConnectCountToGUI(int count)
+        {
+            textBoxConnectCount.Text = count.ToString();
+        }
                        
         private void OnProcessTimedEvent(object sender, EventArgs e)
         {
             try
             {
                 ProcessProcket();
+                ProcessInnerMessage();
                 ProcessLog();
             }
             catch (Exception ex)
@@ -129,16 +135,55 @@ namespace ChatServer1
             {
                 case CgsfNET64Lib.SFPACKET_TYPE.CONNECT:
                     SessionList.Add(packet.SessionID());
+                    ConnectCountToGUI(SessionList.Count());
                     DevLog.Write(string.Format("[OnConnect] SessionID:{0}", packet.SessionID()), LOG_LEVEL.INFO);
                     break;
                 case CgsfNET64Lib.SFPACKET_TYPE.DISCONNECT:
                     SessionList.Remove(packet.SessionID());
                     HandelrMgr.ClientDisConnect(packet.SessionID());
+                    ConnectCountToGUI(SessionList.Count());
                     DevLog.Write(string.Format("[OnDisConnect] SessionID:{0}", packet.SessionID()), LOG_LEVEL.INFO);
                     break;
                 case CgsfNET64Lib.SFPACKET_TYPE.DATA:
                     HandelrMgr.Process(packet);
                     break;
+            }
+        }
+
+        void ProcessInnerMessage()
+        {
+            while (true)
+            {
+                InnerMsg msg;
+
+                if (InnerMessageQueue.GetMsg(out msg))
+                {
+                    switch (msg.Type)
+                    {
+                        case InnerMsgType.CURRENT_LOBBY_USER_COUNT:
+                            {
+                                var tokens = msg.Value1.Split("_");
+
+                                int iItemNum = listViewLobbyInfo.Items.Count;
+
+                                for (int i = 0; i < iItemNum; ++i)
+                                {
+                                    if (tokens[0] == listViewLobbyInfo.Items[i].SubItems[0].Text)
+                                    {
+                                        listViewLobbyInfo.Items[i].SubItems[1].Text = tokens[1];
+                                        listViewLobbyInfo.Refresh();
+                                        return;
+                                    }
+                                }
+                            }
+                            break;
+                                                   
+                    }
+                }
+                else
+                {
+                    break;
+                }
             }
         }
 

@@ -80,13 +80,13 @@ namespace ChatClient1
 
             if (Network.Connect(address, port))
             {
-                labelConnState.Text = string.Format("{0}. 서버에 접속 중", DateTime.Now);
+                labelStatus.Text = string.Format("{0}. 서버에 접속 중", DateTime.Now);
                 btnConnect.Enabled = false;
                 btnDisconnect.Enabled = true;
             }
             else
             {
-                labelConnState.Text = string.Format("{0}. 서버에 접속 실패", DateTime.Now);
+                labelStatus.Text = string.Format("{0}. 서버에 접속 실패", DateTime.Now);
             }
         }
 
@@ -111,18 +111,57 @@ namespace ChatClient1
             PostSendPacket((UInt16)PACKET_ID.REQUEST_LOGIN, bodyData);
         }
 
+        // 로비 입장/나가기
+        private void btnLobbyEnterLeave_Click(object sender, EventArgs e)
+        {
+            if (ClientStatus == CLIENT_STATUS.LOBBY)
+            {
+                var request = new JsonPacketRequestLeaveLobby() { LobbyID = textBoxLobbyID.Text.ToInt16() };
+                var bodyData = JsonEnDecode.Encode<JsonPacketRequestLeaveLobby>(request);
+                PostSendPacket((UInt16)PACKET_ID.REQUEST_LEAVE_LOBBY, bodyData);
+                return;
+            }
+
+
+            if (ClientStatus == CLIENT_STATUS.LOGIN)
+            {
+                var request = new JsonPacketRequestEnterLobby() { LobbyID = textBoxLobbyID.Text.ToInt16() };
+                var bodyData = JsonEnDecode.Encode<JsonPacketRequestEnterLobby>(request);
+                PostSendPacket((UInt16)PACKET_ID.REQUEST_ENTER_LOBBY, bodyData);
+            }
+            else
+            {
+                MessageBox.Show("로그인 상태가 아니거나 이미 로비에 입장한 상태입니다");
+            }
+        }
+
         // 채팅 보내기
         private void button5_Click(object sender, EventArgs e)
         {
-            //var request = new JsonPacketRequestChat() { chat = textBoxSendChat.Text };
-            //var bodyData = JsonEnDecode.Encode<JsonPacketRequestChat>(request);
-            //PostSendPacket((UInt16)PACKET_ID_CHAT, bodyData);
+            if (ClientStatus != CLIENT_STATUS.LOBBY)
+            {
+                MessageBox.Show("채팅은 로비에 입장해야만 가능합니다");
+                return;
+            }
+
+            var request = new JsonPacketRequestChat() { Chat = textBoxSendChat.Text };
+            var bodyData = JsonEnDecode.Encode<JsonPacketRequestChat>(request);
+            PostSendPacket((UInt16)PACKET_ID.REQUEST_CHAT, bodyData);
         }
 
 
         public void SetClientStatus(CLIENT_STATUS status)
         {
             ClientStatus = status;
+
+            if (status == CLIENT_STATUS.LOGIN)
+            {
+                btnLobbyEnterLeave.Text = "로비 입장";
+            }
+            else if (status == CLIENT_STATUS.LOBBY)
+            {
+                btnLobbyEnterLeave.Text = "로비 나가기";
+            }
         }
 
         public void SetDisconnectd()
@@ -131,6 +170,7 @@ namespace ChatClient1
             {
                 btnConnect.Enabled = true;
                 btnDisconnect.Enabled = false;
+                btnLobbyEnterLeave.Text = "로비 입장";
             }
 
             ClientStatus = CLIENT_STATUS.NONE;
@@ -138,7 +178,12 @@ namespace ChatClient1
             RecvPacketQueue.Clear();
             SendPacketQueue.Clear();
 
-            labelConnState.Text = "서버 접속이 끊어짐";
+            labelStatus.Text = "서버 접속이 끊어짐";
+        }
+
+        public void ChatToUI(string userID, string chatMsg)
+        {
+            listBoxChat.Items.Add(string.Format("[{0}]: {1}", userID, chatMsg));
         }
 
         void PostSendPacket(UInt16 packetID, byte[] bodyData)
@@ -288,6 +333,8 @@ namespace ChatClient1
                 }
             }
         }
+
+        
     }
 
 
