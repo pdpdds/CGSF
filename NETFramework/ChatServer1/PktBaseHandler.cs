@@ -19,11 +19,6 @@ namespace ChatServer1
             LobbyManagerRef = lobbyManager;
         }
 
-        //public bool Send<T>(int sessionID, PACKET_ID packetID, T data)
-        //{
-        //    var bodyData = CGSFNETCommon.JsonEnDecode.Encode<T>(data);
-        //    var result = ServerNetworkRef.SendPacket(sessionID, (ushort)packetID, bodyData);
-        //    return result;
-        //}
+        
     }
 }

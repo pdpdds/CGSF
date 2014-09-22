@@ -4,10 +4,10 @@ using namespace System;
 
 namespace CgsfNET64Lib {
 
-	public enum class ERROR_CODE_N : short
+	public enum class NET_ERROR_CODE_N : short
 	{
 		// 중요!!!
-		// 정의된 값은 CommonLayer의 ErrorCode.h에 정의된 것과 같아야 한다.
+		// 정의된 값은 CommonLayer의 ErrorCode.h에 정의된 NET_ERROR_CODE와 같아야 한다.
 		SUCCESS = 0,
 
 		ENGINE_INIT_LOGIC_ENTRY_FAIL = 101,
@@ -18,5 +18,9 @@ namespace CgsfNET64Lib {
 		ENGINE_INIT_CREAT_ENGINE_INIT_FAIL = 105,
 
 		ENGINE_INIT_CREAT_LOGIC_SYSTEM_FAIL = 106,
+
+
+
+		NETWORK_START_FAIL			= 1001,
 	};
 }

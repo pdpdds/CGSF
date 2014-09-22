@@ -56,7 +56,7 @@ namespace ChatServer1
 
 
             var result = ServerNet.Init(Config);
-            if (result != CgsfNET64Lib.ERROR_CODE_N.SUCCESS)
+            if (result != CgsfNET64Lib.NET_ERROR_CODE_N.SUCCESS)
             {
                 DevLog.Write(string.Format("[Init] 네트워크 라이브러리 초기화 실패. {0}, {1}", result.ToString(), result), LOG_LEVEL.ERROR);
                 return;

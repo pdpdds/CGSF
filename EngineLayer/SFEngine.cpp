@@ -57,26 +57,26 @@ SFEngine* SFEngine::GetInstance()
 	return m_pEngine;
 }
 
-ERROR_CODE SFEngine::CreateEngine(char* szModuleName, bool server)
+NET_ERROR_CODE SFEngine::CreateEngine(char* szModuleName, bool server)
 {
 	m_isServer = server;
 
 	m_EngineHandle = ::LoadLibraryA(szModuleName);
 
 	if(m_EngineHandle == 0)
-		return ERROR_CODE::ENGINE_INIT_CREAT_ENGINE_LOAD_DLL_FAIL;
+		return NET_ERROR_CODE::ENGINE_INIT_CREAT_ENGINE_LOAD_DLL_FAIL;
 
 	CREATENETWORKENGINE *pfunc;
 	pfunc = (CREATENETWORKENGINE*)::GetProcAddress( m_EngineHandle, "CreateNetworkEngine");
 	m_pNetworkEngine = pfunc(server, this);
 
 	if(m_pNetworkEngine == NULL)
-		return ERROR_CODE::ENGINE_INIT_CREAT_ENGINE_FUNC_NULL;
+		return NET_ERROR_CODE::ENGINE_INIT_CREAT_ENGINE_FUNC_NULL;
 
 	if(FALSE == m_pNetworkEngine->Init())
-		return ERROR_CODE::ENGINE_INIT_CREAT_ENGINE_INIT_FAIL;
+		return NET_ERROR_CODE::ENGINE_INIT_CREAT_ENGINE_INIT_FAIL;
 	
-	return ERROR_CODE::SUCCESS;
+	return NET_ERROR_CODE::SUCCESS;
 }
 
 void SFEngine::AddRPCService(IRPCService* pService)
@@ -128,7 +128,7 @@ void SFEngine::SetLogFolder(TCHAR* szPath)
 	LOG(INFO) << "Log Destination " << (char*)StringConversion::ToASCII(szLogPath).c_str();
 }
 
-ERROR_CODE SFEngine::Intialize(ILogicEntry* pLogicEntry, IPacketProtocol* pProtocol, ILogicDispatcher* pDispatcher)
+NET_ERROR_CODE SFEngine::Intialize(ILogicEntry* pLogicEntry, IPacketProtocol* pProtocol, ILogicDispatcher* pDispatcher)
 {
 	LOG(INFO) << "Engine Initialize... ";
 
@@ -158,7 +158,7 @@ ERROR_CODE SFEngine::Intialize(ILogicEntry* pLogicEntry, IPacketProtocol* pProto
 	if (false == pLogicEntry->Initialize())
 	{
 		LOG(ERROR) << "LogicEntry Intialize Fail!!";
-		return ERROR_CODE::ENGINE_INIT_LOGIC_ENTRY_FAIL;
+		return NET_ERROR_CODE::ENGINE_INIT_LOGIC_ENTRY_FAIL;
 	}
 	
 	
@@ -166,7 +166,7 @@ ERROR_CODE SFEngine::Intialize(ILogicEntry* pLogicEntry, IPacketProtocol* pProto
 	if (pInfo->serverPort == 0)
 	{
 		LOG(ERROR) << "Config FileLoad Fail!!";
-		return ERROR_CODE::ENGINE_INIT_NULL_CONFIG_INFO;
+		return NET_ERROR_CODE::ENGINE_INIT_NULL_CONFIG_INFO;
 	}
 
 	std::string szNetworkEngineName = StringConversion::ToASCII(pInfo->engineName);
@@ -183,7 +183,7 @@ ERROR_CODE SFEngine::Intialize(ILogicEntry* pLogicEntry, IPacketProtocol* pProto
 		SetMaxUserAccept(pInfo->maxAccept);
 		
 	auto errorCode = CreateEngine((char*)szNetworkEngineName.c_str(), true);
-	if (errorCode != ERROR_CODE::SUCCESS)
+	if (errorCode != NET_ERROR_CODE::SUCCESS)
 	{
 		LOG(ERROR) << "NetworkEngine : " << szNetworkEngineName.c_str() << " Creation FAIL!!";
 		return errorCode;
@@ -194,13 +194,13 @@ ERROR_CODE SFEngine::Intialize(ILogicEntry* pLogicEntry, IPacketProtocol* pProto
 	if (false == pDispatcher->CreateLogicSystem(pLogicEntry))
 	{
 		LOG(ERROR) << "Logic System Creation FAIL!!";
-		return ERROR_CODE::ENGINE_INIT_CREAT_LOGIC_SYSTEM_FAIL;
+		return NET_ERROR_CODE::ENGINE_INIT_CREAT_LOGIC_SYSTEM_FAIL;
 	}
 
 	CreatePacketSendThread();
 
 	LOG(INFO) << "Engine Initialize Complete!! ";
-	return ERROR_CODE::SUCCESS;
+	return NET_ERROR_CODE::SUCCESS;
 }
 
 ////////////////////////////////////////////////////////////////////

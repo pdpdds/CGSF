@@ -30,7 +30,7 @@ public:
 
 	bool Start(char* szIP = NULL, unsigned short port = 0);
 	bool Activate();
-	ERROR_CODE Intialize(ILogicEntry* pLogicEntry, IPacketProtocol* pProtocol = NULL, ILogicDispatcher* pDispatcher = NULL);
+	NET_ERROR_CODE Intialize(ILogicEntry* pLogicEntry, IPacketProtocol* pProtocol = NULL, ILogicDispatcher* pDispatcher = NULL);
 	bool ShutDown();
 
 	virtual ISessionService* CreateSessionService(_SessionDesc& desc) override;
@@ -69,7 +69,7 @@ public:
 
 protected:
 	bool CreatePacketSendThread();
-	ERROR_CODE CreateEngine(char* szModuleName, bool Server = false);
+	NET_ERROR_CODE CreateEngine(char* szModuleName, bool Server = false);
 	
 private:
 	SFEngine();

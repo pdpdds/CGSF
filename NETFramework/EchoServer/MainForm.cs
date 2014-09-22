@@ -46,7 +46,7 @@ namespace ChatServer1
             };
 
             var result = ServerNet.Init(config);
-            if (result == CgsfNET64Lib.ERROR_CODE_N.SUCCESS)
+            if (result == CgsfNET64Lib.NET_ERROR_CODE_N.SUCCESS)
             {
                 DevLog.Write(string.Format("[Init] IP:{0}, Port:{1}, EngineDllName:{2}", config.IP, config.Port, config.EngineDllName), LOG_LEVEL.INFO);
                 

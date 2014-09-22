@@ -25,7 +25,9 @@ namespace ChatServer1
 
     enum ERROR_CODE : ushort
     {
-        ERROR   = 0,
+        NONE    = 0,
+
+        ERROR   = 1001,
 
         ADD_USER_DUPLICATION_SESSION = 10001,
         ADD_USER_DUPLICATION_ID = 10002,
@@ -38,8 +40,6 @@ namespace ChatServer1
         LEAVE_LOBBY_NO_LOBBY = 10022,
 
         LOBBY_CHAT_DO_NOT_ENTER_LOBBY = 10031,
-
-        NONE    = UInt16.MaxValue
     }
 
 

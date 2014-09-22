@@ -20,7 +20,7 @@ namespace CgsfNET64Lib {
 		CgsfNET64();
 		~CgsfNET64();
 
-		ERROR_CODE_N Init(NetworkConfig^ config);
+		NET_ERROR_CODE_N Init(NetworkConfig^ config);
 		
 		bool Start();
 		void Stop();

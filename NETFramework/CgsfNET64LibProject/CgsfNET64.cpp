@@ -43,7 +43,7 @@ namespace CgsfNET64Lib {
 		pConfig->maxAccept = config->MaxAcceptCount;
 	}
 
-	ERROR_CODE_N CgsfNET64::Init(NetworkConfig^ config)
+	NET_ERROR_CODE_N CgsfNET64::Init(NetworkConfig^ config)
 	{
 		SetNetworkConfig(config);
 
@@ -69,12 +69,12 @@ namespace CgsfNET64Lib {
 						new SFPacketProtocol<SFCGSFPacketProtocol>(m_networkConfig->MaxBufferSize, 
 																m_networkConfig->MaxPacketSize, CGSF_PACKET_OPTION_NONE), 
 														m_pDispatcher);
-		if (errorCode != ERROR_CODE::SUCCESS)
+		if (errorCode != NET_ERROR_CODE::SUCCESS)
 		{
-			return (ERROR_CODE_N)errorCode;
+			return (NET_ERROR_CODE_N)errorCode;
 		}
 
-		return ERROR_CODE_N::SUCCESS;
+		return NET_ERROR_CODE_N::SUCCESS;
 	}
 
 	
