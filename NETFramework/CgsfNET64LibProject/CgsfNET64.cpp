@@ -96,6 +96,11 @@ namespace CgsfNET64Lib {
 		return m_packetQueue->Dequeue();
 	}
 
+	void CgsfNET64::InnerPacket(SFNETPacket^ packet)
+	{
+		m_packetQueue->InnerPacket(packet);
+	}
+
 	bool CgsfNET64::SendPacket(int sessionID, UINT16 packetID, array<Byte>^ data)
 	{
 		pin_ptr<Byte> pNativeData = &data[0];

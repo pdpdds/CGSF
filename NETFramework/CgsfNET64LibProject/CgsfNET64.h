@@ -27,6 +27,8 @@ namespace CgsfNET64Lib {
 			
 		SFNETPacket^ GetPacket();
 
+		void InnerPacket(SFNETPacket^ packet);
+
 		NetworkConfig^ GetNetworkConfig() {
 			return m_networkConfig;
 		}

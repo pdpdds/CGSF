@@ -17,41 +17,10 @@ namespace CgsfNET64Lib {
 
 	bool ServerLogicEntry::ProcessPacket(BasePacket* pPacket)
 	{
-		LOG(INFO) << "ServerLogicEntry::ProcessPacket. PacketType: " << pPacket->GetPacketType();
-		google::FlushLogFiles(google::GLOG_INFO);
-
-		/*if (static_cast<ConcurrencyPacketQueue^>(m_refPacketQueue) == nullptr)
-		{
-			return false;
-		}*/
+		//LOG(INFO) << "ServerLogicEntry::ProcessPacket. PacketType: " << pPacket->GetPacketType();
+		//google::FlushLogFiles(google::GLOG_INFO);
 
 		m_refPacketQueue->Enqueue(pPacket);
-
-
-
-
-		//m_packetQueue.push(pPacket);
-
-		//switch (pPacket->GetPacketType())
-		//{
-		//case SFPACKET_CONNECT:
-		//	//OnConnect(pPacket->GetSerial());
-		//	break;
-
-		//case SFPACKET_DATA:
-		//	//OnPlayerData(pPacket);
-		//	break;
-
-		//case SFPACKET_DISCONNECT:
-		//	//OnDisconnect(pPacket->GetSerial());
-		//	break;
-
-		//case SFPACKET_TIMER:
-		//	break;
-
-		//default:
-		//	return false;
-		//}
 
 		return true;
 	}

@@ -37,6 +37,14 @@ namespace CgsfNET64Lib {
 			}
 		}
 
+		void SetData(unsigned short packetID, array<Byte>^ data)
+		{
+			m_packetID = packetID;
+			m_packetOption = 0;
+			m_dataCRC = 0;
+			m_dataSize = data->Length;
+			m_packetData = data;
+		}
 
 		SFPACKET_TYPE GetPacketType() { return m_packetType; }
 		

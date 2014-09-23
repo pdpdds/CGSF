@@ -25,6 +25,11 @@ namespace CgsfNET64Lib {
 			m_packetQueue->Enqueue(packet);
 		}
 
+		void InnerPacket(SFNETPacket^ packet)
+		{
+			m_packetQueue->Enqueue(packet);
+		}
+
 		SFNETPacket^ Dequeue()
 		{
 			SFNETPacket^ packet = nullptr;
