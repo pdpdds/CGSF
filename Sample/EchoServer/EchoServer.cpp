@@ -10,7 +10,7 @@ int _tmain(int argc, _TCHAR* argv[])
 	
 	auto errorCode = SFEngine::GetInstance()->Intialize(pLogicEntry, new SFPacketProtocol<SFJsonProtocol>);
 
-	if (errorCode != ERROR_CODE::SUCCESS)
+	if (errorCode != NET_ERROR_CODE::SUCCESS)
 	{	
 		return 0;
 	}

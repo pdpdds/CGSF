@@ -3,6 +3,7 @@
 #include <EngineInterface/IEngine.h>
 #include <EngineInterface/INetworkEngine.h>
 #include <EngineInterface/IPacketProtocol.h>
+#include <EngineInterface/EngineConstant.h>
 #include "SFConfigure.h"
 #include "ILogicDispatcher.h"
 #include "ILogicEntry.h"

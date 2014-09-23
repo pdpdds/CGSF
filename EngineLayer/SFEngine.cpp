@@ -174,10 +174,10 @@ NET_ERROR_CODE SFEngine::Intialize(ILogicEntry* pLogicEntry, IPacketProtocol* pP
 
 	LOG(INFO) << "MaxAccept : " << pInfo->maxAccept;
 
-	if (pInfo->maxAccept <= 0 || pInfo->maxAccept > 10000)
+	if (pInfo->maxAccept <= 0 || pInfo->maxAccept > MAX_USER_ACCEPT)
 	{
 		LOG(WARNING) << "MaxAccept Value Abnormal : " << pInfo->maxAccept;
-		SetMaxUserAccept(5000);
+		SetMaxUserAccept(DEFALUT_USER_ACCEPT);
 	}
 	else
 		SetMaxUserAccept(pInfo->maxAccept);

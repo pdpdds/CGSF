@@ -48,6 +48,20 @@ typedef struct tag_TimerInfo
 
 }_TimerInfo;
 
+typedef struct tag_ListenerInfo
+{
+	int listenerId;
+	int packetProtocolId;
+
+	tag_ListenerInfo()
+	{
+		listenerId = 0;
+		packetProtocolId = 0;
+	}
+}_ListenerInfo;
+
+#pragma pack(pop)
+
 typedef struct tag_ConnectorInfo
 {
 	std::wstring szIP;
@@ -66,17 +80,3 @@ typedef struct tag_ConnectorInfo
 	}
 
 }_ConnectorInfo;
-
-typedef struct tag_ListenerInfo
-{
-	int listenerId;
-	int packetProtocolId;
-
-	tag_ListenerInfo()
-	{
-		listenerId = 0;
-		packetProtocolId = 0;
-	}
-}_ListenerInfo;
-
-#pragma pack(pop)

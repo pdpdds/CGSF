@@ -25,7 +25,7 @@ void TomCryptTest::HMACTest()
 {
 	/*int idx, err;
 	hmac_state hmac;
-	unsigned char key[16] = "CGSF";
+	unsigned char key[16] = "CGSF"; 
 	unsigned char dst[MAXBLOCKSIZE];
 	unsigned long dstlen;
 	//해쉬 알고리즘으로 SHA-1 등록 
