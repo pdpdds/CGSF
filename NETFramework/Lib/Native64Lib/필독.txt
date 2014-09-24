@@ -3,7 +3,6 @@ ACE.dll
 ACEd.dll
 CGSFNet.dll
 CGSFNet.exp
-CGSFNet.ilk
 CGSFNet.lib
 CGSFNet.pdb
 libglog.dll
