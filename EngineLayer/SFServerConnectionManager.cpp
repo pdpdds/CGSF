@@ -73,11 +73,17 @@ bool SFServerConnectionManager::LoadConnectorList(WCHAR* szFileName)
 
 		xml.OutOfElem();
 
-		m_listConnectorInfo.push_back(connectorInfo);
-		SFEngine::GetInstance()->GetPacketProtocolManager()->AddConnectorInfo(&connectorInfo);
+		
+		AddConnectInfo(connectorInfo);
 	}
 
 	return true;
+}
+
+void SFServerConnectionManager::AddConnectInfo(_ConnectorInfo connectorInfo)
+{
+	m_listConnectorInfo.push_back(connectorInfo);
+	SFEngine::GetInstance()->GetPacketProtocolManager()->AddConnectorInfo(&connectorInfo);
 }
 
 bool SFServerConnectionManager::SetupServerReconnectSys()

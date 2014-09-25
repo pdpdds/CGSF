@@ -15,6 +15,8 @@ public:
 	HANDLE m_hTimerEvent;
 	bool SetConnectorState(int connectorId, bool connected);
 
+	void AddConnectInfo(_ConnectorInfo connectorInfo);
+
 protected:
 	UINT static __stdcall ServerReconnectProc(LPVOID arg);
 
