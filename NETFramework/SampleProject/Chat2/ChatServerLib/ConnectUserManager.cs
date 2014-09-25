@@ -70,16 +70,9 @@ namespace ChatServerLib
             return UserSessionMap.Count();
         }
 
-        public ERROR_CODE 유저_인증_완료(string userID)
+        public ERROR_CODE 유저_인증_완료(ConnectUser user)
         {
-            var user = GetUser(userID);
-
-            if (user == null)
-            {
-                return ERROR_CODE.USER_AUTH_SEARCH_FAILURE_USER_ID;
-            }
-
-            if (user.SetAuthorized() == false)
+            if (user.SetAuthorized(user.UserID) == false)
             {
                 return ERROR_CODE.USER_AUTH_ALREADY_SET_AUTH;
             }
@@ -89,31 +82,5 @@ namespace ChatServerLib
     }
 
 
-    class ConnectUser
-    {
-        Int64 SequenceNumber = 0;
-        public int SessionID { get; private set; }
-        public bool Authorized { get; private set; }
-        public short LobbyID { get; private set; }
-
-
-        public void Set(Int64 sequence, int sessionID)
-        {
-            Authorized = false;
-            SequenceNumber = sequence;
-            SessionID = sessionID;
-        }
-
-        public bool SetAuthorized()
-        {
-            if (Authorized)
-            {
-                return false;
-            }
-
-            Authorized = true;
-
-            return true;
-        }
-    }
+    
 }

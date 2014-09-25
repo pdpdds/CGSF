@@ -10,7 +10,7 @@ using CGSFNETCommon;
 
 namespace ChatServerLib
 {
-    class PacketProcessSystem
+    class WorkPacketProcessSystem
     {
         int Index = -1;
 
@@ -21,29 +21,27 @@ namespace ChatServerLib
         ConcurrentQueue<SFNETPacket> PacketQueue = new ConcurrentQueue<SFNETPacket>();
                 
         Dictionary<ushort, Action<SFNETPacket>> PacketHandlerMap = new Dictionary<ushort, Action<SFNETPacket>>();
-        PacketHandler.Common CommonHandler;
+        PacketHandler.Lobby LobbyHandler;
 
-        ConnectUserManager UserManagerInst;
-        LobbyManager LobbyManagerInst;
+        DB.DBManager DBManagerRef;
+        Lobby.LobbyManager LobbyManagerInst;
 
 
-        public void Init(int index, ServerAppConfig appConfig, ServerNetwork serverNetwork)
+        public void Init(int index, int lobbyCountPerWorkPacketProcess, ServerAppConfig appConfig, ServerNetwork serverNetwork, DB.DBManager dbManager)
         {
             Index = index;
             ServerNetworkRef = serverNetwork;
+            DBManagerRef = dbManager;
 
-            // Index가 0 이면 Common 패킷 처리기를 뜻한다
-            if (Index == 0)
+            var firstLobbyID = ((Index - 1) * lobbyCountPerWorkPacketProcess) + 1;
+            if (Index != 1)
             {
-                UserManagerInst = new ConnectUserManager();
-                UserManagerInst.Init(appConfig.MaxTotalUserCount);
-            }
-            else
-            {
-                LobbyManagerInst = new LobbyManager();
-                LobbyManagerInst.Init(index, appConfig, serverNetwork);
-            }
+                firstLobbyID = Index * lobbyCountPerWorkPacketProcess;
+            } 
 
+            LobbyManagerInst = new Lobby.LobbyManager();
+            LobbyManagerInst.Init(firstLobbyID, lobbyCountPerWorkPacketProcess, appConfig, serverNetwork);
+            
 
             RegistPacketHandler();
 
@@ -61,23 +59,16 @@ namespace ChatServerLib
         {
             PacketQueue.Enqueue(packet);
         }
-
-        public ConnectUser GetConnectUser(int sessionID)
-        {
-            return UserManagerInst.GetUser(sessionID);
-        }
-
-
+               
         void RegistPacketHandler()
         {
-            CommonHandler = new PacketHandler.Common();
-            CommonHandler.Init(ServerNetworkRef, UserManagerInst, LobbyManagerInst);
+            LobbyHandler = new PacketHandler.Lobby();
+            LobbyHandler.Init(ServerNetworkRef, DBManagerRef, LobbyManagerInst);
 
-            PacketHandlerMap.Add((ushort)CSCommonLib.PACKET_ID.SYSTEM_CLIENT_CONNECT, CommonHandler.SystemClientConnect);
-            PacketHandlerMap.Add((ushort)CSCommonLib.PACKET_ID.SYSTEM_CLIENT_DISCONNECTD, CommonHandler.SystemClientDisConnected);
-
+            PacketHandlerMap.Add((ushort)CSCommonLib.PACKET_ID.REQUEST_LEAVE_LOBBY, LobbyHandler.RequestEnterLobby);
 
 
+            PacketHandlerMap.Add((ushort)CSCommonLib.PACKET_ID.INNER_ROLL_BACK_ENTER_LOBBY, LobbyHandler.InnerRoolBackEnterLobby);
         }
 
         void Process()

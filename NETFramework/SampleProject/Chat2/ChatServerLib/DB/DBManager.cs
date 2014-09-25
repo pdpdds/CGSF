@@ -33,6 +33,8 @@ namespace ChatServerLib.DB
         public ERROR_CODE CreateAndStart(int threadCount,
                                         Action<ResponseData> dbWorkResultFunc)
         {
+            RegistPacketHandler();
+
             DBResponseFunc = dbWorkResultFunc;
             
             IsThreadRunning = true;
@@ -53,7 +55,7 @@ namespace ChatServerLib.DB
             IsThreadRunning = false;
         }
 
-        public void InsertMsg(RequestData request)
+        public void InsertRequest(RequestData request)
         {
             RequestQueue.Enqueue(request);
         }
@@ -81,6 +83,7 @@ namespace ChatServerLib.DB
                 {
                     if (RequestQueue.TryDequeue(out request) == false)
                     {
+                        System.Threading.Thread.Sleep(1);
                         continue;
                     }
 
@@ -88,7 +91,7 @@ namespace ChatServerLib.DB
                     {
                         var result = DBWorkHandlerMap[request.PacketID](request);
 
-                        if (result.PacketID != PACKET_ID.INVALID)
+                        if (result != null && result.PacketID != PACKET_ID.INVALID)
                         {
                             DBResponseFunc(result);
                         }

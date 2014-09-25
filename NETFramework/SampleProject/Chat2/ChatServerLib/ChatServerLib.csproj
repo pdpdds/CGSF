@@ -32,8 +32,9 @@
     <PlatformTarget>x64</PlatformTarget>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="CgsfNET64Lib">
-      <HintPath>..\..\Lib\CgsfNET64Lib\CgsfNET64Lib.dll</HintPath>
+    <Reference Include="CgsfNET64Lib, Version=1.0.5380.21276, Culture=neutral, processorArchitecture=AMD64">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\Lib\CgsfNET64Lib\CgsfNET64Lib.dll</HintPath>
     </Reference>
     <Reference Include="MsgPack">
       <HintPath>packages\MsgPack.Cli.0.5.4\lib\net45\MsgPack.dll</HintPath>
@@ -45,20 +46,30 @@
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="System.Data" />
     <Reference Include="System.Xml" />
+    <Reference Include="Z.ExtensionMethods">
+      <HintPath>packages\Z.ExtensionMethods.1.3.0.0\lib\Z.ExtensionMethods.dll</HintPath>
+    </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="ConnectUser.cs" />
     <Compile Include="ConnectUserManager.cs" />
     <Compile Include="DB\DBManager.cs" />
     <Compile Include="DB\DBData.cs" />
     <Compile Include="DB\RequestHandler.cs" />
     <Compile Include="InnerMessageQueue.cs" />
-    <Compile Include="LobbyManager.cs" />
+    <Compile Include="Lobby\Lobby.cs" />
+    <Compile Include="Lobby\LobbyManager.cs" />
+    <Compile Include="Lobby\LobbyUser.cs" />
     <Compile Include="MainLib.cs" />
     <Compile Include="PacketHandler\Base.cs" />
     <Compile Include="PacketHandler\Common.cs" />
-    <Compile Include="PacketProcessSystem.cs" />
+    <Compile Include="PacketHandler\Lobby.cs" />
+    <Compile Include="MainPacketProcessSystem.cs" />
+    <Compile Include="PacketHandler\LobbyMethod.cs" />
+    <Compile Include="RelayPacketPacketProcess.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ServerNetwork.cs" />
+    <Compile Include="WorkPacketProcessSystem.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\..\..\CGSFNETCommon\CGSFNETCommon.csproj">
@@ -72,6 +83,9 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="License.txt" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

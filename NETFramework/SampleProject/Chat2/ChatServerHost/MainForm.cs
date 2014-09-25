@@ -33,7 +33,7 @@ namespace ChatServerHost
             workProcessTimer.Start();
 
 
-            var netConfig = new CgsfNET64Lib.NetworkConfig()
+            var netConfig = new ChatServerLib.ServerNetworkConfig()
             {
                 IP = "127.0.0.1",
                 Port = textBoxPort.Text.ToUInt16(),
@@ -60,9 +60,9 @@ namespace ChatServerHost
             
 
             var result = ServerLib.InitAndStartNetwork(netConfig, appConfig);
-            if (result != CgsfNET64Lib.NET_ERROR_CODE_N.SUCCESS)
+            if (result.Item1 == false)
             {
-                DevLog.Write(string.Format("[Init] 네트워크 라이브러리 초기화 및 시작 실패. {0}, {1}", result.ToString(), result), LOG_LEVEL.ERROR);
+                DevLog.Write(string.Format("[Init] 네트워크 라이브러리 초기화 및 시작 실패. {0}", result.Item2.ToString()), LOG_LEVEL.ERROR);
                 return;
             }
 
@@ -164,4 +164,8 @@ namespace ChatServerHost
             }
         }
     } // End MainForm
+
+
+    
+
 }

@@ -4,23 +4,28 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-
+using CSCommonLib;
 
 namespace ChatServerLib.PacketHandler
 {
     class Base
     {
         protected ServerNetwork ServerNetworkRef;
-        protected ConnectUserManager UserManagerRef;
-        protected LobbyManager LobbyManagerRef;
-
-        public void Init(ServerNetwork serverNetwork, ConnectUserManager userManager, LobbyManager lobbyManager)
+        protected DB.DBManager DBManagerRef;
+        
+                
+        public void InsertDBRequest(PACKET_ID packetID, int sessionID, string userID, byte[] jobDatas)
         {
-            ServerNetworkRef = serverNetwork;
-            UserManagerRef = userManager;
-            LobbyManagerRef = lobbyManager;
-        }
+            var request = new DB.RequestData()
+            {
+                PacketID = packetID,
+                SessionID = sessionID,
+                UserID = userID,
+                Datas = jobDatas
+            };
 
+            DBManagerRef.InsertRequest(request);
+        }
 
         
     }

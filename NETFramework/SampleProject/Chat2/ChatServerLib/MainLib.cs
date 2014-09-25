@@ -18,7 +18,8 @@ namespace ChatServerLib
         bool IsStartServerNetwork = false;
         ServerNetwork ServerNet = new ServerNetwork();
 
-        List<PacketProcessSystem> PacketProcessSystemList = new List<PacketProcessSystem>();
+        MainPacketProcessSystem MainPacketProcess;
+        List<WorkPacketProcessSystem> WorkPacketProcessList = new List<WorkPacketProcessSystem>();
         DB.DBManager DBManager = new DB.DBManager();
 
         NetworkConfig NetConfig;
@@ -27,20 +28,29 @@ namespace ChatServerLib
         List<int> LobbyIDToPacketProcessSystemIndexTable = new List<int>();
 
 
-        public NET_ERROR_CODE_N InitAndStartNetwork(NetworkConfig config, ServerAppConfig appConfig)
+        public Tuple<bool, string> InitAndStartNetwork(ServerNetworkConfig netConfig, ServerAppConfig appConfig)
         {
             AppConfig = appConfig;
-            NetConfig = config;
+            NetConfig = new NetworkConfig()
+            {
+                IP = netConfig.IP,
+                Port = netConfig.Port,
+                EngineDllName = netConfig.EngineDllName,
+                MaxAcceptCount = netConfig.MaxAcceptCount,
+                ThreadCount = netConfig.ThreadCount,
+                MaxBufferSize = netConfig.MaxBufferSize,
+                MaxPacketSize = netConfig.MaxPacketSize,
+            };
 
             var result = ServerNet.Init(NetConfig);
             if (result != NET_ERROR_CODE_N.SUCCESS)
             {
-                return result;
+                return new Tuple<bool, string>(false,result.ToString());
             }
 
             if (ServerNet.Start() == false)
             {
-                return NET_ERROR_CODE_N.NETWORK_START_FAIL;
+                return new Tuple<bool, string>(false, NET_ERROR_CODE_N.NETWORK_START_FAIL.ToString());
             }
             else
             {
@@ -48,12 +58,30 @@ namespace ChatServerLib
             }
 
 
-            CreateAndStartPacketSysytem(appConfig);
+            
+
+            return new Tuple<bool, string>(true, NET_ERROR_CODE_N.SUCCESS.ToString());
+        }
+
+        public ERROR_CODE CreateSystem(ServerAppConfig appConfig)
+        {
+            if ((appConfig.MaxLobbyCount % appConfig.ProcessThreadCount) != 0)
+            {
+                return ERROR_CODE.INVALID_LOBBY_COUNT_PER_WORK_PACKET_PROCESS;
+            }
 
 
-            DBManager.CreateAndStart(1, DBResponseFunc); 
+            var lobbyCountPerWorkPacketProcess = appConfig.MaxLobbyCount / appConfig.ProcessThreadCount;
 
-            return NET_ERROR_CODE_N.SUCCESS;
+            var result = DBManager.CreateAndStart(1, DBResponseFunc);
+            if (result != ERROR_CODE.NONE)
+            {
+                return result;
+            }
+
+            CreateAndStartPacketSysytem(appConfig, lobbyCountPerWorkPacketProcess);
+            
+            return ERROR_CODE.NONE;
         }
 
         public void Stop()
@@ -69,40 +97,56 @@ namespace ChatServerLib
             }
         }
 
-        void CreateAndStartPacketSysytem(ServerAppConfig appConfig)
+        void CreateAndStartPacketSysytem(ServerAppConfig appConfig, int lobbyCountPerWorkPacketProcess)
         {
-            SettingLobbyIDToPacketProcessSystemIndexTable(appConfig.MaxLobbyCount, appConfig.ProcessThreadCount);
+            MainPacketProcess = new MainPacketProcessSystem();
+            MainPacketProcess.Init(appConfig, ServerNet, DBManager);
 
 
-            for (int i = 0; i < appConfig.ProcessThreadCount; ++i)
+            SettingLobbyIDToPacketProcessIndexTable(appConfig.MaxLobbyCount, appConfig.ProcessThreadCount);
+
+
+            for (int i = 1; i <= appConfig.ProcessThreadCount; ++i)
             {
-                var process = new PacketProcessSystem();
-                process.Init(i, appConfig, ServerNet);
+                var process = new WorkPacketProcessSystem();
+                process.Init(i, lobbyCountPerWorkPacketProcess, appConfig, ServerNet, DBManager);
 
-                PacketProcessSystemList.Add(process);
+                WorkPacketProcessList.Add(process);
             }
 
+
+            RelayPacketPacketProcess.SetFunction(RelayPacketProcess);
 
             IsPacketDistributeThreadRunning = true;
             PacketDistributeThread = new System.Threading.Thread(this.DistributeProcket);
             PacketDistributeThread.Start();
-        }                
+        }              
 
-        void SettingLobbyIDToPacketProcessSystemIndexTable(int lobbyCount, int threadCount)
+        void SettingLobbyIDToPacketProcessIndexTable(int maxLobbyCount, int lobbyCountPerThread)
         {
             LobbyIDToPacketProcessSystemIndexTable.Add(0);
 
             int index = 1;
 
-            for (int i = 1; i <= lobbyCount; ++i)
+            for (int i = 1; i <= maxLobbyCount; ++i)
             {
                 LobbyIDToPacketProcessSystemIndexTable.Add(index);
 
-                if ((i % lobbyCount) == 0)
+                if ((i % lobbyCountPerThread) == 0)
                 {
                     ++index;
                 }
             }
+        }
+
+        int GetPacketProcessIndex(int lobbyID)
+        {
+            if (lobbyID <= 0 || lobbyID > AppConfig.MaxLobbyCount)
+            {
+                return 0;
+            }
+
+            return LobbyIDToPacketProcessSystemIndexTable[lobbyID]; ;
         }
 
         void DistributeProcket()
@@ -115,40 +159,40 @@ namespace ChatServerLib
                     if (packet == null)
                     {
                         System.Threading.Thread.Sleep(1);
-                        return;
+                        continue;
                     }
-
-
+                        
                     var sessionID = packet.SessionID();
                     var packetProcessIndex = 0;
-
-                    if (packet.GetPacketType() == CgsfNET64Lib.SFPACKET_TYPE.CONNECT)
+                        
+                    if (packet.GetPacketType() == CgsfNET64Lib.SFPACKET_TYPE.DATA)
                     {
-                        packet.SetData((ushort)PACKET_ID.SYSTEM_CLIENT_CONNECT, null);
-                    }
-                    else if (packet.GetPacketType() == CgsfNET64Lib.SFPACKET_TYPE.DISCONNECT)
-                    {
-                        packet.SetData((ushort)PACKET_ID.SYSTEM_CLIENT_DISCONNECTD, null);
-                    }
-                    else if (packet.GetPacketType() == CgsfNET64Lib.SFPACKET_TYPE.DATA)
-                    {
-                        var user = PacketProcessSystemList[0].GetConnectUser(sessionID);
+                        var user = MainPacketProcess.GetConnectUser(sessionID);
                         if (user != null)
                         {
-                            packetProcessIndex = LobbyIDToPacketProcessSystemIndexTable[user.LobbyID];
-
-                            if (packetProcessIndex == 0 && packet.PacketID() == (ushort)PACKET_ID.REQUEST_ENTER_LOBBY)
-                            {
-                                var request = JsonEnDecode.Decode<JsonPacketRequestEnterLobby>(packet.GetData());
-                                if (request.LobbyID >= 0 && request.LobbyID <= AppConfig.MaxLobbyCount)
-                                {
-                                    packetProcessIndex = LobbyIDToPacketProcessSystemIndexTable[request.LobbyID];
-                                }
-                            }
+                            packetProcessIndex = GetPacketProcessIndex(user.LobbyID);
+                        }
+                    }
+                    else
+                    {
+                        if (packet.GetPacketType() == CgsfNET64Lib.SFPACKET_TYPE.CONNECT)
+                        {
+                            packet.SetData(sessionID, (ushort)PACKET_ID.SYSTEM_CLIENT_CONNECT, null);
+                        }
+                        else if (packet.GetPacketType() == CgsfNET64Lib.SFPACKET_TYPE.DISCONNECT)
+                        {
+                            packet.SetData(sessionID, (ushort)PACKET_ID.SYSTEM_CLIENT_DISCONNECTD, null);
                         }
                     }
 
-                    PacketProcessSystemList[packetProcessIndex].InsertPacket(packet);
+                    if (packetProcessIndex == 0)
+                    {
+                        MainPacketProcess.ProcessPacket(packet);
+                    }
+                    else
+                    {
+                        WorkPacketProcessList[packetProcessIndex-1].InsertPacket(packet);
+                    }
                 }
                 catch (Exception ex)
                 {
@@ -160,10 +204,23 @@ namespace ChatServerLib
         void DBResponseFunc(DB.ResponseData resultData)
         {
             var packet = new SFNETPacket();
-            packet.SetData((ushort)PACKET_ID.DB_RESPONSE_LOGIN, resultData.Datas);
+            packet.SetData(-1, (ushort)PACKET_ID.DB_RESPONSE_LOGIN, resultData.Datas);
             ServerNet.InnerPacket(packet);
         }
-        
+
+        public void RelayPacketProcess(short lobbyID, SFNETPacket packet)
+        {
+            var packetProcessIndex = GetPacketProcessIndex(lobbyID);
+
+            if (packetProcessIndex == 0)
+            {
+                MainPacketProcess.ProcessPacket(packet);
+            }
+            else
+            {
+                WorkPacketProcessList[packetProcessIndex - 1].InsertPacket(packet);
+            }
+        }
     }
 
     public class ServerAppConfig
@@ -174,5 +231,16 @@ namespace ChatServerLib
 
         public int ProcessThreadCount;
         public int DBThreadCount;
+    }
+
+    public class ServerNetworkConfig
+    {
+        public string EngineDllName;
+        public string IP;
+        public int MaxAcceptCount;
+        public int MaxBufferSize;
+        public int MaxPacketSize;
+        public ushort Port;
+        public int ThreadCount;
     }
 }
