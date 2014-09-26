@@ -1,9 +1,11 @@
 // 기본 DLL 파일입니다.
 
 #include "stdafx.h"
+#include "SFServerConnectionManager.h"""
 #include "CgsfNET64.h"
 #include "ServerLogicEntry.h"
 #include "SFNETDispatcher.h"
+#include "ServerConnectReceiveCallback.h"
 #include "SFCGSFPacketProtocol.h"
 #include "SFNETPacket.h"
 #include "ConcurrencyPacketQueue.h"
@@ -20,8 +22,9 @@ namespace CgsfNET64Lib {
 
 	CgsfNET64::~CgsfNET64()
 	{
-		delete m_pLogicEntry;
 		delete m_pDispatcher;
+		delete m_pLogicEntry;
+		delete m_pServerConnectCallback;
 	}
 	
 	void CgsfNET64::SetNetworkConfig(NetworkConfig^ config)
@@ -52,11 +55,14 @@ namespace CgsfNET64Lib {
 		m_pLogicEntry = new ServerLogicEntry();
 		m_pLogicEntry->m_refPacketQueue = m_packetQueue;
 
+		m_pServerConnectCallback = new ServerConnectCallback;
+		m_pServerConnectCallback->m_refPacketQueue = m_packetQueue;
+
 		m_pDispatcher = new SFNETDispatcher();
 		m_pDispatcher->Init(m_networkConfig->ThreadCount);
 
 		
-		const int CGSF_PACKET_OPTION_NONE = 0;
+		//const int CGSF_PACKET_OPTION_NONE = 0;
 		if (m_networkConfig->MaxBufferSize <= 0) {
 			m_networkConfig->MaxBufferSize = MAX_IO_SIZE;
 		}
@@ -125,5 +131,48 @@ namespace CgsfNET64Lib {
 	{
 		google::FlushLogFiles(google::GLOG_INFO);
 		google::FlushLogFiles(google::GLOG_ERROR);
+	}
+
+
+	NET_ERROR_CODE_N CgsfNET64::RegistConnectInfo(RemoteServerConnectInfo^ connectInfo)
+	{		
+		System::String^ serverIP = connectInfo->IP;
+		System::String^ description = connectInfo->Description;
+
+
+		_ConnectorInfo info;
+		info.szIP = msclr::interop::marshal_as<std::wstring>(serverIP);
+		info.port = connectInfo->Port;
+		info.connectorId = connectInfo->ConnectID;
+		info.szDesc = msclr::interop::marshal_as<std::wstring>(description);
+		
+		SFEngine::GetInstance()->GetServerConnectionManager()->AddConnectInfo(info);
+
+
+		auto packetProtocol = new SFPacketProtocol<SFCGSFPacketProtocol>(connectInfo->MaxBufferSize,
+																		connectInfo->MaxPacketSize,
+																		CGSF_PACKET_OPTION_NONE);
+		
+		SFEngine::GetInstance()->AddPacketProtocol((int)PACKET_PROTOCOL_TYPE::CGSF, packetProtocol);
+		
+		auto result = m_pLogicEntry->AddConnectorCallback(info.connectorId, m_pServerConnectCallback, (int)PACKET_PROTOCOL_TYPE::CGSF);
+		if (result == false)
+		{
+			NET_ERROR_CODE_N::SERVER_CONNECT_REGIST_DUPLICATION_CONNECT_ID;
+		}
+
+		m_RemoteServerConnectInfoList->Add(connectInfo);
+
+		return NET_ERROR_CODE_N::SUCCESS;
+	}
+
+	bool CgsfNET64::SetupServerReconnectSys()
+	{
+		if (SFEngine::GetInstance()->SetupServerReconnectSys() == false)
+		{
+			return false;
+		}
+
+		return true;
 	}
 }

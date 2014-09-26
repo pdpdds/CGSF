@@ -50,4 +50,19 @@ namespace CgsfNET64Lib {
 		int MaxBufferSize;
 		int MaxPacketSize;
 	};
+
+
+	public ref struct RemoteServerConnectInfo
+	{
+		String^ IP;
+		UINT16 Port;
+		int ConnectID;
+		String^ Description;
+		
+		int MaxBufferSize;
+		int MaxPacketSize;
+	};
+
+
+	const int CGSF_PACKET_OPTION_NONE = 0;
 }

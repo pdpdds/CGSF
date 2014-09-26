@@ -15,12 +15,12 @@ namespace CgsfNET64Lib {
 		ConcurrencyPacketQueue() {}
 		~ConcurrencyPacketQueue() {}
 
-		void Enqueue(BasePacket* pPacket)
+		void Enqueue(bool isServerConnect, BasePacket* pPacket)
 		{
 			SFPacket* pSFPacket = (SFPacket*)pPacket;
 
 			auto packet = gcnew SFNETPacket();
-			packet->SetData(pSFPacket);
+			packet->SetData(isServerConnect, pSFPacket);
 
 			m_packetQueue->Enqueue(packet);
 		}

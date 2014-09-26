@@ -144,6 +144,7 @@
     <ClInclude Include="DefineValue.h" />
     <ClInclude Include="FRAMEWORK_ERROR_CODE.h" />
     <ClInclude Include="resource.h" />
+    <ClInclude Include="ServerConnectReceiveCallback.h" />
     <ClInclude Include="ServerLogicEntry.h" />
     <ClInclude Include="SFNETDispatcher.h" />
     <ClInclude Include="SFNETPacket.h" />
@@ -153,7 +154,6 @@
     <ClCompile Include="AssemblyInfo.cpp" />
     <ClCompile Include="CgsfNET64.cpp" />
     <ClCompile Include="ConcurrencyPacketQueue.h" />
-    <ClCompile Include="ServerLogicEntry.cpp" />
     <ClCompile Include="SFNETDispatcher.cpp" />
     <ClCompile Include="Stdafx.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Create</PrecompiledHeader>

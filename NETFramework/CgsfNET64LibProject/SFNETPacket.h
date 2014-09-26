@@ -12,8 +12,9 @@ namespace CgsfNET64Lib {
 	public:
 		SFNETPacket() {}
 		
-		void SetData(SFPacket* pPacket)
+		void SetData(bool isServerConnect, SFPacket* pPacket)
 		{
+			m_isServerConnect = isServerConnect;
 			m_packetType = (SFPACKET_TYPE)pPacket->GetPacketType();
 			m_sessionID = pPacket->GetSerial();
 
@@ -75,6 +76,7 @@ namespace CgsfNET64Lib {
 		unsigned long  m_dataCRC;
 		unsigned short m_dataSize;
 
+		bool m_isServerConnect;
 		SFPACKET_TYPE m_packetType;
 		array<Byte>^ m_packetData;
 	};
