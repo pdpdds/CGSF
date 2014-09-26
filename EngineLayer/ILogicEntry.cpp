@@ -22,14 +22,14 @@ bool ILogicEntry::ProcessConnectorPacket(BasePacket* pPacket)
 			break;
 
 		case SFPACKET_CONNECT:
-			pCallback->HandleConnect(pPacket->GetSerial());
+			pCallback->HandleConnect(pPacket->GetSerial(), pPacket->GetSessionDesc());
 			break;
 
 		case  SFPACKET_DISCONNECT:
 		{
-									 pCallback->HandleDisconnect(pPacket->GetSerial());
-									 SFServerConnectionManager* pManager = SFEngine::GetInstance()->GetServerConnectionManager();
-									 pManager->SetConnectorState(desc.identifier, false);
+			pCallback->HandleDisconnect(pPacket->GetSerial(), pPacket->GetSessionDesc());
+			SFServerConnectionManager* pManager = SFEngine::GetInstance()->GetServerConnectionManager();
+			pManager->SetConnectorState(desc.identifier, false);
 		}
 			break;
 

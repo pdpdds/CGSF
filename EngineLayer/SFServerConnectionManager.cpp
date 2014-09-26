@@ -84,17 +84,24 @@ void SFServerConnectionManager::AddConnectInfo(_ConnectorInfo connectorInfo)
 {
 	m_listConnectorInfo.push_back(connectorInfo);
 	SFEngine::GetInstance()->GetPacketProtocolManager()->AddConnectorInfo(&connectorInfo);
+
+	LOG(INFO) << "AddConnectInfo. " << "connectID: " << connectorInfo.connectorId << ", ProtocolID: " << connectorInfo.packetProtocolId << ", IP: " << connectorInfo.szIP.data() << ", Port: " << connectorInfo.port;
+	google::FlushLogFiles(google::GLOG_INFO);
 }
 
 bool SFServerConnectionManager::SetupServerReconnectSys()
 {
 	m_hTimerEvent = CreateEvent(NULL, FALSE, FALSE, L"ServerReconnectEvent");
 
-	
+	LOG(INFO) << "SetupServerReconnectSys. " << "First Connect";
+	google::FlushLogFiles(google::GLOG_INFO);
 
 	for (auto& iter : m_listConnectorInfo)
 	{
 		_ConnectorInfo& info = iter;		
+
+		LOG(INFO) << "connectID: " << info.connectorId << ", ProtocolID: " << info.packetProtocolId << ", IP: " << info.szIP.data() << ", Port: " << info.port;
+		google::FlushLogFiles(google::GLOG_INFO);
 
 		int serial = -1;
 		serial = SFEngine::GetInstance()->AddConnector(info.connectorId, (char*)StringConversion::ToASCII(info.szIP.c_str()).c_str(), info.port);

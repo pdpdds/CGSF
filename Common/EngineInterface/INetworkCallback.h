@@ -13,14 +13,14 @@ public:
 
 	virtual bool HandleNetworkMessage(BasePacket* pPacket) = 0;
 	virtual bool HandleRPC(BasePacket* pPacket){ return false; }
-	virtual void HandleConnect(int serial)
+	virtual void HandleConnect(int serial, _SessionDesc m_sessiondesc)
 	{
 		printf("Connected\n"); 
 		m_serial = serial;
 		m_bConnected = true;
 	}
 
-	virtual void HandleDisconnect(int Serial)
+	virtual void HandleDisconnect(int serial, _SessionDesc m_sessiondesc)
 	{
 		m_bConnected = false;
 		printf("Disconnected\n");

@@ -76,11 +76,11 @@ BOOL SFTCPNetwork::Update()
 				break;
 
 			case SFPACKET_CONNECT:			
-				m_pTCPCallBack->HandleConnect(pPacket->GetSerial());
+				m_pTCPCallBack->HandleConnect(pPacket->GetSerial(), pPacket->GetSessionDesc());
 				delete pPacket;
 				break;
 			case  SFPACKET_DISCONNECT:			
-				m_pTCPCallBack->HandleDisconnect(pPacket->GetSerial());
+				m_pTCPCallBack->HandleDisconnect(pPacket->GetSerial(), pPacket->GetSessionDesc());
 				delete pPacket;
 				break;
 			}

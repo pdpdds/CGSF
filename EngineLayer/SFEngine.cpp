@@ -139,10 +139,13 @@ NET_ERROR_CODE SFEngine::Intialize(ILogicEntry* pLogicEntry, IPacketProtocol* pP
 		m_pPacketProtocolManager = new SFPacketProtocolManager(false);
 		m_pPacketProtocolManager->AddPacketProtocol(1, pProtocol);
 		m_pPacketProtocolManager->AddListenerInfo(1, 1);
+
+		LOG(INFO) << "Don't Use MultiPacketProtocol";
 	}
 	else
 	{
 		m_pPacketProtocolManager = new SFPacketProtocolManager(true);
+		LOG(INFO) << "Use MultiPacketProtocol";
 	}
 
 	if (pDispatcher == NULL)
