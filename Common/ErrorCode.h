@@ -1,6 +1,6 @@
 #pragma once
 
-// 에러 코드는 0 ~ 1000까지만 사용한다.
+// 에러 코드는 0 ~ 500까지만 사용한다.
 enum class NET_ERROR_CODE : short
 {
 	SUCCESS		= 0,
