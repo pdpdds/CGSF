@@ -1,7 +1,7 @@
 // 기본 DLL 파일입니다.
 
 #include "stdafx.h"
-#include "SFServerConnectionManager.h"""
+#include "SFServerConnectionManager.h"
 #include "CgsfNET64.h"
 #include "ServerLogicEntry.h"
 #include "SFNETDispatcher.h"
@@ -71,10 +71,24 @@ namespace CgsfNET64Lib {
 			m_networkConfig->MaxPacketSize = MAX_PACKET_SIZE;
 		}
 
-		auto errorCode = SFEngine::GetInstance()->Intialize(m_pLogicEntry, 
-						new SFPacketProtocol<SFCGSFPacketProtocol>(m_networkConfig->MaxBufferSize, 
-																m_networkConfig->MaxPacketSize, CGSF_PACKET_OPTION_NONE), 
-														m_pDispatcher);
+
+		NET_ERROR_CODE errorCode;
+
+		if (config->IsConnectOrListener == false)
+		{
+			errorCode = SFEngine::GetInstance()->Intialize(m_pLogicEntry,
+				new SFPacketProtocol<SFCGSFPacketProtocol>(m_networkConfig->MaxBufferSize,
+				m_networkConfig->MaxPacketSize, CGSF_PACKET_OPTION_NONE),
+				m_pDispatcher);
+		}
+		else
+		{
+			errorCode = SFEngine::GetInstance()->Intialize(m_pLogicEntry,
+							nullptr,
+							m_pDispatcher);
+		}
+		
+
 		if (errorCode != NET_ERROR_CODE::SUCCESS)
 		{
 			return (NET_ERROR_CODE_N)errorCode;
@@ -104,7 +118,7 @@ namespace CgsfNET64Lib {
 
 	void CgsfNET64::InnerPacket(SFNETPacket^ packet)
 	{
-		m_packetQueue->InnerPacket(packet);
+		m_packetQueue->Enqueue(packet);
 	}
 
 	bool CgsfNET64::SendPacket(int sessionID, UINT16 packetID, array<Byte>^ data)
@@ -138,23 +152,22 @@ namespace CgsfNET64Lib {
 	{		
 		System::String^ serverIP = connectInfo->IP;
 		System::String^ description = connectInfo->Description;
-
-
+		
 		_ConnectorInfo info;
 		info.szIP = msclr::interop::marshal_as<std::wstring>(serverIP);
 		info.port = connectInfo->Port;
 		info.connectorId = connectInfo->ConnectID;
 		info.szDesc = msclr::interop::marshal_as<std::wstring>(description);
 		
-		SFEngine::GetInstance()->GetServerConnectionManager()->AddConnectInfo(info);
-
-
+		
 		auto packetProtocol = new SFPacketProtocol<SFCGSFPacketProtocol>(connectInfo->MaxBufferSize,
 																		connectInfo->MaxPacketSize,
 																		CGSF_PACKET_OPTION_NONE);
 		
 		SFEngine::GetInstance()->AddPacketProtocol((int)PACKET_PROTOCOL_TYPE::CGSF, packetProtocol);
 		
+		SFEngine::GetInstance()->GetServerConnectionManager()->AddConnectInfo(info);
+
 		auto result = m_pLogicEntry->AddConnectorCallback(info.connectorId, m_pServerConnectCallback, (int)PACKET_PROTOCOL_TYPE::CGSF);
 		if (result == false)
 		{

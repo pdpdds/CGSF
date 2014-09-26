@@ -26,19 +26,18 @@ namespace CgsfNET64Lib {
 
 		virtual bool ProcessPacket(BasePacket* pPacket) override
 		{
-			auto result = SFEngine::GetInstance()->SendRequest(pPacket);
-			return result;
+			//LOG(INFO) << "ServerLogicEntry::ProcessPacket. PacketType: " << pPacket->GetPacketType();
+			//google::FlushLogFiles(google::GLOG_INFO);
+
+			m_refPacketQueue->Enqueue(false, pPacket);
+			return true;
 		}
 		
 		
 		virtual bool SendPacket(BasePacket* pPacket)
 		{
-			//LOG(INFO) << "ServerLogicEntry::ProcessPacket. PacketType: " << pPacket->GetPacketType();
-			//google::FlushLogFiles(google::GLOG_INFO);
-
-			m_refPacketQueue->Enqueue(false, pPacket);
-
-			return true;
+			auto result = SFEngine::GetInstance()->SendRequest(pPacket);
+			return result;
 		}
 		
 

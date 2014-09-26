@@ -15,6 +15,11 @@ namespace CgsfNET64Lib {
 		void SetData(bool isServerConnect, SFPacket* pPacket)
 		{
 			m_isServerConnect = isServerConnect;
+			if (m_isServerConnect)
+			{
+				m_serverConnectorID = (short)pPacket->GetSessionDesc().identifier;
+			}
+
 			m_packetType = (SFPACKET_TYPE)pPacket->GetPacketType();
 			m_sessionID = pPacket->GetSerial();
 
@@ -58,6 +63,14 @@ namespace CgsfNET64Lib {
 			}
 		}
 
+		void SetData(SFPACKET_TYPE packetType, int sessionID, int identifier)
+		{
+			m_isServerConnect = true;
+			m_serverConnectorID = (short)identifier;
+			m_packetType = packetType;
+			m_sessionID = sessionID;
+		}
+
 		SFPACKET_TYPE GetPacketType() { return m_packetType; }
 		
 		int SessionID() { return m_sessionID; }
@@ -66,6 +79,9 @@ namespace CgsfNET64Lib {
 		unsigned long  CRC() { return m_dataCRC; }
 		unsigned short Size() { return m_dataSize; }
 		array<Byte>^ GetData() { return m_packetData;  }
+
+		bool IsServerConnect() { return m_isServerConnect; }
+		short ServerConnectorID() { return m_serverConnectorID; }
 
 
 	private:
@@ -76,7 +92,9 @@ namespace CgsfNET64Lib {
 		unsigned long  m_dataCRC;
 		unsigned short m_dataSize;
 
-		bool m_isServerConnect;
+		bool m_isServerConnect = false;
+		short m_serverConnectorID = 0;
+
 		SFPACKET_TYPE m_packetType;
 		array<Byte>^ m_packetData;
 	};

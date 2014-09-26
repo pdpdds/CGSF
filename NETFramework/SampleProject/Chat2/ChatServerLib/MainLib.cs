@@ -33,6 +33,7 @@ namespace ChatServerLib
             AppConfig = appConfig;
             NetConfig = new NetworkConfig()
             {
+                IsConnectOrListener = false,
                 IP = netConfig.IP,
                 Port = netConfig.Port,
                 EngineDllName = netConfig.EngineDllName,

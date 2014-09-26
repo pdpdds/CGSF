@@ -41,6 +41,8 @@ namespace CgsfNET64Lib {
 
 	public ref struct NetworkConfig
 	{
+		bool IsConnectOrListener;
+
 		String^ IP;
 		UINT16 Port;
 		String^ EngineDllName;
