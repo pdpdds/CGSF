@@ -33,6 +33,9 @@
     <Reference Include="Jil">
       <HintPath>packages\Jil.2.1.0\lib\net45\Jil.dll</HintPath>
     </Reference>
+    <Reference Include="NLog">
+      <HintPath>packages\NLog.3.1.0.0\lib\net45\NLog.dll</HintPath>
+    </Reference>
     <Reference Include="Sigil">
       <HintPath>packages\Sigil.4.2.2\lib\net45\Sigil.dll</HintPath>
     </Reference>
@@ -48,11 +51,18 @@
   <ItemGroup>
     <Compile Include="ClientSimpleTcp.cs" />
     <Compile Include="DevLog.cs" />
+    <Compile Include="FileLogger.cs" />
     <Compile Include="JsonEnDecode.cs" />
     <Compile Include="PacketBufferManager.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="NLog.config">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <None Include="NLog.xsd">
+      <SubType>Designer</SubType>
+    </None>
     <None Include="packages.config" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
