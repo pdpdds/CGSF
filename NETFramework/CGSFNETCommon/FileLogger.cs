@@ -4,6 +4,8 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
+using NLog;
+
 namespace CGSFNETCommon
 {
     public class FileLogger
