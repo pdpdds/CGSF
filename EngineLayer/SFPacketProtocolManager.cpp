@@ -34,6 +34,8 @@ bool SFPacketProtocolManager::AddListenerInfo(int listenerId, int packetProtocol
 
 	m_listListenerInfo.push_back(info);
 
+	LOG(INFO) << "SFPacketProtocolManager::AddListenerInfo. listenerId: " << listenerId << ", packetProtocolId: " << packetProtocolId;
+	google::FlushLogFiles(google::GLOG_INFO);
 	return true;
 }
 
