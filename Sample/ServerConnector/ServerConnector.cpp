@@ -38,16 +38,6 @@ int _tmain(int argc, _TCHAR* argv[])
 	if (false == SFEngine::GetInstance()->SetupServerReconnectSys())
 		return 0;
 
-
-	//SFEngine::GetInstance()->Start(0, 10004);
-
-	/*SFJsonPacket packet(1000);
-	packet.GetData().Add("ECHO", "Server To Server Packet");
-	packet.SetSerial(listenerId);
-	SFEngine::GetInstance()->SendRequest(&packet);
-	*/
-	google::FlushLogFiles(google::GLOG_INFO);
-
 	getchar();
 
 	SFEngine::GetInstance()->ShutDown();
