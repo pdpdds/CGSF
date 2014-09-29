@@ -41,8 +41,6 @@ namespace CgsfNET64Lib {
 
 	public ref struct NetworkConfig
 	{
-		bool IsListenerAndConnector;
-
 		String^ IP;
 		UINT16 Port;
 		String^ EngineDllName;
@@ -67,6 +65,17 @@ namespace CgsfNET64Lib {
 		int MaxPacketSize;
 	};
 
+	public ref struct MultiListenNetworkInfo
+	{
+		int ListenID;		// 시스템에서 할당한다.
+
+		UINT16 Port;
+		int ProtocolID;
+		int MaxBufferSize;
+		int MaxPacketSize;
+	};
 
 	const int CGSF_PACKET_OPTION_NONE = 0;
+
+	const int MIN_SERVER_CONNECTOR_ID = 1001;
 }

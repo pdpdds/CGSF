@@ -36,7 +36,6 @@ namespace ChatServer1
 
             var config = new CgsfNET64Lib.NetworkConfig()
             {
-                IsListenerAndConnector = false,
                 IP = "127.0.0.1",
                 Port = 25251,
                 EngineDllName = "CGSFNet.dll",

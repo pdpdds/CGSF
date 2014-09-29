@@ -42,7 +42,6 @@ namespace ChatServer1
 
             Config = new CgsfNET64Lib.NetworkConfig()
             {
-                IsListenerAndConnector = false,
                 IP = Properties.Settings.Default.IP,
                 Port = Properties.Settings.Default.Port,
                 EngineDllName = Properties.Settings.Default.EngineDllName,

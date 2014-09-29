@@ -21,7 +21,7 @@ namespace GateWayServer
         
         CgsfNET64Lib.NetworkConfig Config;
 
-        const int GAMESERVER_CONNECT_ID = 11;
+        const int GAMESERVER_CONNECT_ID = 1001;
 
         List<int> SessionList = new List<int>();
 
@@ -42,7 +42,6 @@ namespace GateWayServer
 
             Config = new CgsfNET64Lib.NetworkConfig()
             {
-                IsListenerAndConnector = true,
                 IP = Properties.Settings.Default.IP,
                 Port = Properties.Settings.Default.Port,
                 EngineDllName = Properties.Settings.Default.EngineDllName,
@@ -52,8 +51,23 @@ namespace GateWayServer
                 MaxBufferSize = Properties.Settings.Default.MaxBufferSize,
                 MaxPacketSize = Properties.Settings.Default.MaxPacketSize,
             };
-                        
-            var result = ServerNet.Init(Config);
+
+            var ConnectInfoList = new List<CgsfNET64Lib.RemoteServerConnectInfo>();
+            ConnectInfoList.Add(new CgsfNET64Lib.RemoteServerConnectInfo()
+            {
+                ConnectID = GAMESERVER_CONNECT_ID,
+                Description = "GameServer",
+                IP = Properties.Settings.Default.GameServerIP,
+                Port = Properties.Settings.Default.GameServerPort,
+                ProtocolID = 1001,
+                MaxBufferSize = Properties.Settings.Default.MaxBufferSize,
+                MaxPacketSize = Properties.Settings.Default.MaxPacketSize,
+
+            });
+
+            var ListneInfoList = new List<CgsfNET64Lib.MultiListenNetworkInfo>();
+
+            var result = ServerNet.Init(Config, ConnectInfoList, ListneInfoList);
             if (result != CgsfNET64Lib.NET_ERROR_CODE_N.SUCCESS)
             {
                 DevLog.Write(string.Format("[Init] 네트워크 라이브러리 초기화 실패. {0}, {1}", result.ToString(), result), LOG_LEVEL.ERROR);
@@ -95,27 +109,6 @@ namespace GateWayServer
                 return;
             }
             
-
-            var info = new CgsfNET64Lib.RemoteServerConnectInfo()
-            {
-                ConnectID = GAMESERVER_CONNECT_ID,
-                Description = "GameServer",
-                IP = Properties.Settings.Default.GameServerIP,
-                Port = Properties.Settings.Default.GameServerPort,
-                ProtocolID = 1,
-                MaxBufferSize = Properties.Settings.Default.MaxBufferSize,
-                MaxPacketSize = Properties.Settings.Default.MaxPacketSize,
-
-            };
-
-            var result = ServerNet.RegistConnectInfo(info);
-            if (result != CgsfNET64Lib.NET_ERROR_CODE_N.SUCCESS)
-            {
-                DevLog.Write(string.Format("[Connect GameServer] 게임서버 주소 등록 실패. {0} [{1}]", result.ToString(), result), LOG_LEVEL.ERROR);
-                return;
-            }
-
-            
             var setupResult = ServerNet.SetupServerReconnectSys();
             if (setupResult == false)
             {
@@ -123,7 +116,7 @@ namespace GateWayServer
                 return;
             }
 
-            DevLog.Write(string.Format("[Connect GameServe] 등록 및 연결 시도. ConnectID:{0}, IP:{1}, port:{2}, Description:{3}", info.ConnectID, info.IP, info.Port, info.Description), LOG_LEVEL.INFO);
+            DevLog.Write(string.Format("[Connect GameServe] 등록 및 연결 시도"), LOG_LEVEL.INFO);
         }
 
         void NetworkConfigInfoToGui()

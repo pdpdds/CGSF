@@ -22,7 +22,10 @@ namespace CgsfNET64Lib {
 		~CgsfNET64();
 
 		NET_ERROR_CODE_N Init(NetworkConfig^ config);
-		
+		NET_ERROR_CODE_N Init(NetworkConfig^ config, 
+			Generic::List<RemoteServerConnectInfo^>^ connectInfoList,
+								Generic::List<MultiListenNetworkInfo^>^ listneInfoList);
+				
 		bool Start();
 		void Stop();
 			
@@ -40,14 +43,14 @@ namespace CgsfNET64Lib {
 
 		void LogFlush();
 
-
-		NET_ERROR_CODE_N RegistConnectInfo(RemoteServerConnectInfo^ connectInfo);
+				
 		bool SetupServerReconnectSys();
 
 
 	private:
 		void SetNetworkConfig(NetworkConfig^ config);
 		bool CheckingUniqueProtocolID(int protocolID);
+		NET_ERROR_CODE_N RegistConnectInfo(RemoteServerConnectInfo^ connectInfo);
 
 
 		NetworkConfig^ m_networkConfig = gcnew NetworkConfig();
@@ -59,6 +62,7 @@ namespace CgsfNET64Lib {
 		ConcurrencyPacketQueue^ m_packetQueue;
 
 		Generic::List<RemoteServerConnectInfo^>^ m_RemoteServerConnectInfoList = gcnew Generic::List<RemoteServerConnectInfo^>();
+		Generic::List<MultiListenNetworkInfo^>^ m_ListneInfoList = gcnew Generic::List<MultiListenNetworkInfo^>();
 
 		Generic::List<int>^ m_UseProtocolIDList = gcnew Generic::List<int>();
 	};
