@@ -33,12 +33,13 @@ namespace ChatServerLib
             AppConfig = appConfig;
             NetConfig = new NetworkConfig()
             {
-                IsConnectOrListener = false,
+                IsListenerAndConnector = false,
                 IP = netConfig.IP,
                 Port = netConfig.Port,
                 EngineDllName = netConfig.EngineDllName,
                 MaxAcceptCount = netConfig.MaxAcceptCount,
                 ThreadCount = netConfig.ThreadCount,
+                ProtocolID = 0,
                 MaxBufferSize = netConfig.MaxBufferSize,
                 MaxPacketSize = netConfig.MaxPacketSize,
             };

@@ -42,12 +42,13 @@ namespace GateWayServer
 
             Config = new CgsfNET64Lib.NetworkConfig()
             {
-                IsConnectOrListener = true,
+                IsListenerAndConnector = true,
                 IP = Properties.Settings.Default.IP,
                 Port = Properties.Settings.Default.Port,
                 EngineDllName = Properties.Settings.Default.EngineDllName,
                 MaxAcceptCount = Properties.Settings.Default.MaxAcceptCount,
                 ThreadCount = Properties.Settings.Default.ThreadCount,
+                ProtocolID = 0,
                 MaxBufferSize = Properties.Settings.Default.MaxBufferSize,
                 MaxPacketSize = Properties.Settings.Default.MaxPacketSize,
             };
@@ -101,6 +102,7 @@ namespace GateWayServer
                 Description = "GameServer",
                 IP = Properties.Settings.Default.GameServerIP,
                 Port = Properties.Settings.Default.GameServerPort,
+                ProtocolID = 1,
                 MaxBufferSize = Properties.Settings.Default.MaxBufferSize,
                 MaxPacketSize = Properties.Settings.Default.MaxPacketSize,
 

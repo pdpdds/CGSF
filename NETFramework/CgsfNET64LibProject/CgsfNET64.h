@@ -47,7 +47,8 @@ namespace CgsfNET64Lib {
 
 	private:
 		void SetNetworkConfig(NetworkConfig^ config);
-		
+		bool CheckingUniqueProtocolID(int protocolID);
+
 
 		NetworkConfig^ m_networkConfig = gcnew NetworkConfig();
 		
@@ -58,5 +59,7 @@ namespace CgsfNET64Lib {
 		ConcurrencyPacketQueue^ m_packetQueue;
 
 		Generic::List<RemoteServerConnectInfo^>^ m_RemoteServerConnectInfoList = gcnew Generic::List<RemoteServerConnectInfo^>();
+
+		Generic::List<int>^ m_UseProtocolIDList = gcnew Generic::List<int>();
 	};
 }

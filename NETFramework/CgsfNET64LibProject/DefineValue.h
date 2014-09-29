@@ -41,7 +41,7 @@ namespace CgsfNET64Lib {
 
 	public ref struct NetworkConfig
 	{
-		bool IsConnectOrListener;
+		bool IsListenerAndConnector;
 
 		String^ IP;
 		UINT16 Port;
@@ -49,6 +49,7 @@ namespace CgsfNET64Lib {
 		int MaxAcceptCount;
 
 		int ThreadCount;
+		int ProtocolID;
 		int MaxBufferSize;
 		int MaxPacketSize;
 	};
@@ -60,7 +61,8 @@ namespace CgsfNET64Lib {
 		UINT16 Port;
 		int ConnectID;
 		String^ Description;
-		
+		int ProtocolID;
+
 		int MaxBufferSize;
 		int MaxPacketSize;
 	};

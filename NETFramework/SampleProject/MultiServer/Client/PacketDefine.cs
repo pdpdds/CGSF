@@ -4,12 +4,11 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace GameServer
+namespace ChatClient1
 {
     enum PACKET_ID : ushort
     {
         SYSTEM_DISCONNECTD = 12,
-
 
         CLIENT_RANGE_FIRST = 1000,
 
@@ -17,14 +16,6 @@ namespace GameServer
         RESPONSE_LOGIN = 1002,
 
         CLIENT_RANGE_LAST = 2000,
-
-
-        SERVER_RANGE_FIRST = 10000,
-
-        REQUEST_REGIST_SERVER = 10001,
-        RESPONSE_REGIST_SERVER = 10002,
-
-        SERVER_RANGE_LAST = 20000,
     }
 
     enum ERROR_CODE : ushort
@@ -32,20 +23,19 @@ namespace GameServer
         NONE = 0,
 
         ERROR = 1001,
-
-        ADD_SERVER_DUPLICATION_SESSION = 1011,
     }
 
 
-   
-    struct JsonPacketRequestReqistServer
+    struct JsonPacketRequestLogin
     {
-        public string ServerName;
+        public string ID;
     }
 
-    struct JsonPacketResponseReqistServer
+    struct JsonPacketResponseLogin
     {
         public ERROR_CODE Result;
-        public string ServerName;
     }
+
+
+    
 }

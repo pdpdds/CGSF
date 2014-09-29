@@ -40,12 +40,13 @@ namespace GameServer
 
             Config = new CgsfNET64Lib.NetworkConfig()
             {
-                IsConnectOrListener = false,
+                IsListenerAndConnector = false,
                 IP = Properties.Settings.Default.IP,
                 Port = Properties.Settings.Default.Port,
                 EngineDllName = Properties.Settings.Default.EngineDllName,
                 MaxAcceptCount = Properties.Settings.Default.MaxAcceptCount,
                 ThreadCount = Properties.Settings.Default.ThreadCount,
+                ProtocolID = 0,
                 MaxBufferSize = Properties.Settings.Default.MaxBufferSize,
                 MaxPacketSize = Properties.Settings.Default.MaxPacketSize,
             };

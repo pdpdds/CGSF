@@ -36,12 +36,13 @@ namespace ChatServer1
 
             var config = new CgsfNET64Lib.NetworkConfig()
             {
-                IsConnectOrListener = false,
+                IsListenerAndConnector = false,
                 IP = "127.0.0.1",
                 Port = 25251,
                 EngineDllName = "CGSFNet.dll",
                 MaxAcceptCount = 1000,
                 ThreadCount = 4,
+                ProtocolID = 0,
                 MaxBufferSize = 16000,
                 MaxPacketSize = 4012,
             };

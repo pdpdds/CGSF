@@ -49,7 +49,7 @@ namespace CgsfNET64Lib {
 	NET_ERROR_CODE_N CgsfNET64::Init(NetworkConfig^ config)
 	{
 		SetNetworkConfig(config);
-
+		
 		m_packetQueue = gcnew ConcurrencyPacketQueue();
 
 		m_pLogicEntry = new ServerLogicEntry();
@@ -74,7 +74,7 @@ namespace CgsfNET64Lib {
 
 		NET_ERROR_CODE errorCode;
 
-		if (config->IsConnectOrListener == false)
+		if (m_networkConfig->IsListenerAndConnector == false)
 		{
 			errorCode = SFEngine::GetInstance()->Intialize(m_pLogicEntry,
 				new SFPacketProtocol<SFCGSFPacketProtocol>(m_networkConfig->MaxBufferSize,
@@ -83,9 +83,27 @@ namespace CgsfNET64Lib {
 		}
 		else
 		{
+			if (CheckingUniqueProtocolID(m_networkConfig->ProtocolID) == false)
+			{
+				return NET_ERROR_CODE_N::ENGINE_INIT_DUPLICATION_PROTOCOL_ID;
+			}
+
 			errorCode = SFEngine::GetInstance()->Intialize(m_pLogicEntry,
 							nullptr,
 							m_pDispatcher);
+
+			auto packetProtocol = new SFPacketProtocol<SFCGSFPacketProtocol>(m_networkConfig->MaxBufferSize,
+														m_networkConfig->MaxPacketSize,
+														CGSF_PACKET_OPTION_NONE);
+
+			if (SFEngine::GetInstance()->AddPacketProtocol(m_networkConfig->ProtocolID, packetProtocol) == false)
+			{
+				return NET_ERROR_CODE_N::ENGINE_INIT_ADD_PACKET_PROTOCOL_FAIL;
+			}
+
+			auto listenerId = SFEngine::GetInstance()->AddListener(nullptr, m_networkConfig->Port, m_networkConfig->ProtocolID);
+			LOG(INFO) << "CgsfNET64::Init. listenerId: " << listenerId;
+			google::FlushLogFiles(google::GLOG_INFO);
 		}
 		
 
@@ -101,7 +119,17 @@ namespace CgsfNET64Lib {
 
 	bool CgsfNET64::Start()
 	{
-		auto isResult = SFEngine::GetInstance()->Start();
+		bool isResult = false;
+
+		if (m_networkConfig->IsListenerAndConnector == false)
+		{
+			isResult = SFEngine::GetInstance()->Start();
+		}
+		else
+		{
+			isResult = SFEngine::GetInstance()->Activate();
+		}
+
 		LogFlush();
 		return isResult;
 	}
@@ -160,15 +188,21 @@ namespace CgsfNET64Lib {
 		info.szDesc = msclr::interop::marshal_as<std::wstring>(description);
 		
 		
+		if (CheckingUniqueProtocolID(connectInfo->ProtocolID) == false)
+		{
+			return NET_ERROR_CODE_N::ENGINE_INIT_DUPLICATION_PROTOCOL_ID;
+		}
+
+
 		auto packetProtocol = new SFPacketProtocol<SFCGSFPacketProtocol>(connectInfo->MaxBufferSize,
 																		connectInfo->MaxPacketSize,
 																		CGSF_PACKET_OPTION_NONE);
 		
-		SFEngine::GetInstance()->AddPacketProtocol((int)PACKET_PROTOCOL_TYPE::CGSF, packetProtocol);
+		SFEngine::GetInstance()->AddPacketProtocol(connectInfo->ProtocolID, packetProtocol);
 		
 		SFEngine::GetInstance()->GetServerConnectionManager()->AddConnectInfo(info);
 
-		auto result = m_pLogicEntry->AddConnectorCallback(info.connectorId, m_pServerConnectCallback, (int)PACKET_PROTOCOL_TYPE::CGSF);
+		auto result = m_pLogicEntry->AddConnectorCallback(info.connectorId, m_pServerConnectCallback, connectInfo->ProtocolID);
 		if (result == false)
 		{
 			NET_ERROR_CODE_N::SERVER_CONNECT_REGIST_DUPLICATION_CONNECT_ID;
@@ -186,6 +220,17 @@ namespace CgsfNET64Lib {
 			return false;
 		}
 
+		return true;
+	}
+	
+	bool CgsfNET64::CheckingUniqueProtocolID(int protocolID)
+	{
+		if (m_UseProtocolIDList->Contains(protocolID))
+		{
+			return false;
+		}
+
+		m_UseProtocolIDList->Add(protocolID);
 		return true;
 	}
 }

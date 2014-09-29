@@ -18,7 +18,7 @@ namespace GateWayServer
                 var request = JsonEnDecode.Decode<JsonPacketResponseReqistServer>(packetData.GetData());
 
 
-                DevLog.Write(string.Format("[ResponseRegistServer] result:{0}, ServerName:{1}, SessionID{2}", request.Result.ToString(), request.ServerName, packetData.SessionID()), LOG_LEVEL.INFO);
+                DevLog.Write(string.Format("result:{0}, ServerName:{1}, SessionID: {2}", request.Result.ToString(), request.ServerName, packetData.SessionID()), LOG_LEVEL.INFO);
             }
             catch
             {

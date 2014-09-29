@@ -23,7 +23,7 @@ namespace GameServer
                 var response = new JsonPacketResponseReqistServer() { Result = result, ServerName = "GameServer" };
                 ServerNetworkRef.Send<JsonPacketResponseReqistServer>(packetData.SessionID(), PACKET_ID.RESPONSE_REGIST_SERVER, response);
 
-                DevLog.Write(string.Format("[RegistServer] result:{0}, ServerName:{1}, SessionID{2}", result.ToString(), request.ServerName, packetData.SessionID()), LOG_LEVEL.INFO);
+                DevLog.Write(string.Format("result:{0}, ServerName:{1}, SessionID: {2}", result.ToString(), request.ServerName, packetData.SessionID()), LOG_LEVEL.INFO);
             }
             catch
             {
