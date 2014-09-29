@@ -33,7 +33,7 @@ int _tmain(int argc, _TCHAR* argv[])
 	//pLogicEntry->AddListenerCallback(gameListener, pListenerGameServerCallback);
 	//pLogicEntry->AddListenerCallback(AuthListener, pListenerAuthServerCallback);
 
-	if (false == SFEngine::GetInstance()->Activate())
+	if (false == SFEngine::GetInstance()->Start())
 	{
 		LOG(ERROR) << "Server Start Fail";
 		SFEngine::GetInstance()->ShutDown();

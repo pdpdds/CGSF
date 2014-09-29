@@ -134,6 +134,9 @@ NET_ERROR_CODE SFEngine::Intialize(ILogicEntry* pLogicEntry, IPacketProtocol* pP
 
 	SetLogFolder();	
 
+	if (NULL == pLogicEntry)
+		return NET_ERROR_CODE::ENGINE_INIT_LOGIC_ENTRY_NULL;
+
 	if (pProtocol)
 	{
 		m_pPacketProtocolManager = new SFPacketProtocolManager(false);

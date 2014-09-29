@@ -49,10 +49,8 @@ bool SFServerConnectionManager::Save()
 
 bool SFServerConnectionManager::LoadConnectorList(WCHAR* szFileName)
 {
-	UNREFERENCED_PARAMETER(szFileName);
-
 	CMarkup xml;
-	xml.Load(L"ServerConnection.xml");
+	xml.Load(szFileName);
 
 	while (xml.FindChildElem(L"SERVER"))
 	{
