@@ -10,10 +10,10 @@ int _tmain(int argc, _TCHAR* argv[])
 	pLogicEntry->AddGameMode(GAMEMODE_TRAINING, new SFTraining(GAMEMODE_TRAINING));
 	pLogicEntry->AddGameMode(GAMEMODE_FREEFORALL, new SFFreeForAll(GAMEMODE_FREEFORALL));
 	
-	SFEngine::GetInstance()->Intialize(pLogicEntry, new SFPacketProtocol<FPSProtocol>);	
-	SFEngine::GetInstance()->Start();
-
-	google::FlushLogFiles(google::GLOG_INFO);
+	SFEngine::GetInstance()->Intialize(pLogicEntry);
+	
+	SFEngine::GetInstance()->AddPacketProtocol(0, new SFPacketProtocol<FPSProtocol>);
+	SFEngine::GetInstance()->Listen(0);
 
 	getchar();
 

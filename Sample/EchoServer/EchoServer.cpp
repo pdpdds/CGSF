@@ -8,14 +8,14 @@ int _tmain(int argc, _TCHAR* argv[])
 {
 	EchoLogicEntry* pLogicEntry = new EchoLogicEntry();
 	
-	auto errorCode = SFEngine::GetInstance()->Intialize(pLogicEntry, new SFPacketProtocol<SFJsonProtocol>);
-
+	auto errorCode = SFEngine::GetInstance()->Intialize(pLogicEntry);	
 	if (errorCode != NET_ERROR_CODE::SUCCESS)
 	{	
 		return 0;
 	}
 
-	SFEngine::GetInstance()->Start();	
+	SFEngine::GetInstance()->AddPacketProtocol(0, new SFPacketProtocol<SFJsonProtocol>);
+	SFEngine::GetInstance()->Listen(0);
 
 	getchar();
 	

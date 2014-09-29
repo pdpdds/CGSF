@@ -28,19 +28,15 @@ int _tmain(int argc, _TCHAR* argv[])
 	int rpcListener = SFEngine::GetInstance()->AddListener(nullptr, RPC_LISTEN_PORT, PACKET_PROTOCOL_JSON_1);
 	int gameListener = SFEngine::GetInstance()->AddListener(nullptr, GAMESERVER_LISTEN_PORT, PACKET_PROTOCOL_JSON_2);
 	int authListener = SFEngine::GetInstance()->AddListener(nullptr, AUTHSERVER_LISTEN_PORT, PACKET_PROTOCOL_PROTO_BUF);
-
-	//pLogicEntry->AddListenerCallback(rpcListener, pListenerRPCCallback);
-	//pLogicEntry->AddListenerCallback(gameListener, pListenerGameServerCallback);
-	//pLogicEntry->AddListenerCallback(AuthListener, pListenerAuthServerCallback);
-
-	if (false == SFEngine::GetInstance()->Start())
+	
+	//디폴트 포트는 사용하고 싶지 않을 경우
+	//if (false == SFEngine::GetInstance()->Activate())
+	if (false == SFEngine::GetInstance()->Listen(PACKET_PROTOCOL_JSON_1))
 	{
 		LOG(ERROR) << "Server Start Fail";
 		SFEngine::GetInstance()->ShutDown();
 		return 0;
-	}
-
-	google::FlushLogFiles(google::GLOG_INFO);
+	}	
 
 	getchar();
 

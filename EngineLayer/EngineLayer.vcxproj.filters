@@ -411,6 +411,9 @@
     <ClInclude Include="SFMMODispatcher.h">
       <Filter>Dispatcher</Filter>
     </ClInclude>
+    <ClInclude Include="PacketProtocolConstant.h">
+      <Filter>Packet\PacketProtocol</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <Text Include=".\ReadMe.txt" />

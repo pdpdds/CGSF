@@ -24,7 +24,7 @@ int _tmain(int argc, _TCHAR* argv[])
 {
 	testProtobuf();
 	
-	SFEngine::GetInstance()->Start();
+	SFEngine::GetInstance()->Listen(0);
 
 	google::FlushLogFiles(google::GLOG_INFO);
 
@@ -38,24 +38,28 @@ int _tmain(int argc, _TCHAR* argv[])
 void testAvro()
 {
 	ProtocolLogicEntry<ProtocolAvroHandler>* pLogicEntry = new ProtocolLogicEntry<ProtocolAvroHandler>();
-	SFEngine::GetInstance()->Intialize(pLogicEntry, new SFPacketProtocol<ProtocolAvroProtocol>(MAX_IO_SIZE, MAX_PACKET_SIZE));
+	SFEngine::GetInstance()->Intialize(pLogicEntry);
+	SFEngine::GetInstance()->AddPacketProtocol(0, new SFPacketProtocol<ProtocolAvroProtocol>(MAX_IO_SIZE, MAX_PACKET_SIZE));
 }
 
 void testProtobuf()
 {
 	ProtocolLogicEntry<ProtocolProtobufHandler>* pLogicEntry = new ProtocolLogicEntry<ProtocolProtobufHandler>();
-	SFEngine::GetInstance()->Intialize(pLogicEntry, new SFPacketProtocol<ProtocolServerProtocol>);
+	SFEngine::GetInstance()->Intialize(pLogicEntry);
+	SFEngine::GetInstance()->AddPacketProtocol(0, new SFPacketProtocol<ProtocolServerProtocol>);
 
 }
 void testCGSF()
 {
-	ProtocolLogicEntry<ProtocolCGSFHandler>* pLogicEntry = new ProtocolLogicEntry<ProtocolCGSFHandler>();
-	SFEngine::GetInstance()->Intialize(pLogicEntry, new SFPacketProtocol<SFCGSFPacketProtocol>(MAX_IO_SIZE, MAX_PACKET_SIZE, CGSF_PACKET_OPTION));
+	ProtocolLogicEntry<ProtocolCGSFHandler>* pLogicEntry = new ProtocolLogicEntry<ProtocolCGSFHandler>();	
+	SFEngine::GetInstance()->Intialize(pLogicEntry);
+	SFEngine::GetInstance()->AddPacketProtocol(0, new SFPacketProtocol<SFCGSFPacketProtocol>(MAX_IO_SIZE, MAX_PACKET_SIZE, CGSF_PACKET_OPTION));
 }
 void testMsgPack()
 {
 	ProtocolLogicEntry<ProtocolMsgPackHandler>* pLogicEntry = new ProtocolLogicEntry<ProtocolMsgPackHandler>();
-	SFEngine::GetInstance()->Intialize(pLogicEntry, new SFPacketProtocol<SFMsgPackProtocol>(MAX_IO_SIZE, MAX_PACKET_SIZE));
+	SFEngine::GetInstance()->Intialize(pLogicEntry);
+	SFEngine::GetInstance()->AddPacketProtocol(0, new SFPacketProtocol<SFMsgPackProtocol>(MAX_IO_SIZE, MAX_PACKET_SIZE));
 }
 
 void testJson()

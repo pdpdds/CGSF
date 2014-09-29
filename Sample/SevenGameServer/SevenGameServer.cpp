@@ -29,9 +29,10 @@ static DWORD StartSevenGameService(LPDWORD param)
 	pLogicEntry->AddGameMode(GAMEMODE_BATTLE, new SGBattle(GAMEMODE_BATTLE));
 
 	/////////////////////////////////////////////////////////////////////
-	SFEngine::GetInstance()->Intialize(pLogicEntry, new SFPacketProtocol<SevenGameProtocol>);
+	SFEngine::GetInstance()->Intialize(pLogicEntry);
+	SFEngine::GetInstance()->AddPacketProtocol(0, new SFPacketProtocol<SevenGameProtocol>);
 	SFEngine::GetInstance()->AddTimer(0, 500, 1000);
-	SFEngine::GetInstance()->Start();
+	SFEngine::GetInstance()->Listen(0);
 
 	google::FlushLogFiles(google::GLOG_INFO);
 

@@ -161,9 +161,7 @@ bool ACEServerEngine::Init()
 }
 
 bool ACEServerEngine::Start(char* szIP, unsigned short port)
-{
-	AddListener(szIP, port);
-
+{	
 	return NetworkOpen();
 }
 

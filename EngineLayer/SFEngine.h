@@ -29,9 +29,9 @@ public:
 	static SFEngine* GetInstance();
 	void SetLogFolder(TCHAR* szPath = NULL);
 
-	bool Start(char* szIP = NULL, unsigned short port = 0);
+	bool Listen(int protocolId, char* szIP = NULL, unsigned short port = 0);	
 	bool Activate();
-	NET_ERROR_CODE Intialize(ILogicEntry* pLogicEntry, IPacketProtocol* pProtocol = NULL, ILogicDispatcher* pDispatcher = NULL);
+	NET_ERROR_CODE Intialize(ILogicEntry* pLogicEntry, ILogicDispatcher* pDispatcher = NULL);
 	bool ShutDown();
 
 	virtual ISessionService* CreateSessionService(_SessionDesc& desc) override;
@@ -74,6 +74,7 @@ protected:
 	
 private:
 	SFEngine();
+	bool Start(char* szIP = NULL, unsigned short port = 0); //클라이언트 전용 이후 deprecated 될 것임
 
 	SFConfigure m_Config;
 	int m_packetSendThreadId;

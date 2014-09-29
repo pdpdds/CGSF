@@ -51,7 +51,7 @@ BOOL SFTCPNetwork::Initialize(char* szModuleName, INetworkCallback* pTCPCallBack
 }
 
 BOOL SFTCPNetwork::Start(char* szIP, unsigned short Port)
-{
+{	
 	return m_TCPClient->Start(szIP, Port);
 }
 

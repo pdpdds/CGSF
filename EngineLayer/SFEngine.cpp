@@ -39,6 +39,8 @@ SFEngine::SFEngine()
 #endif
 	
 	m_EngineHandle = 0;
+
+	m_pPacketProtocolManager = new SFPacketProtocolManager();
 }
 
 SFEngine::~SFEngine(void)
@@ -128,28 +130,14 @@ void SFEngine::SetLogFolder(TCHAR* szPath)
 	LOG(INFO) << "Log Destination " << (char*)StringConversion::ToASCII(szLogPath).c_str();
 }
 
-NET_ERROR_CODE SFEngine::Intialize(ILogicEntry* pLogicEntry, IPacketProtocol* pProtocol, ILogicDispatcher* pDispatcher)
+NET_ERROR_CODE SFEngine::Intialize(ILogicEntry* pLogicEntry, ILogicDispatcher* pDispatcher)
 {
 	LOG(INFO) << "Engine Initialize... ";
 
 	SetLogFolder();	
 
 	if (NULL == pLogicEntry)
-		return NET_ERROR_CODE::ENGINE_INIT_LOGIC_ENTRY_NULL;
-
-	if (pProtocol)
-	{
-		m_pPacketProtocolManager = new SFPacketProtocolManager(false);
-		m_pPacketProtocolManager->AddPacketProtocol(1, pProtocol);
-		m_pPacketProtocolManager->AddListenerInfo(1, 1);
-
-		LOG(INFO) << "Don't Use MultiPacketProtocol";
-	}
-	else
-	{
-		m_pPacketProtocolManager = new SFPacketProtocolManager(true);
-		LOG(INFO) << "Use MultiPacketProtocol";
-	}
+		return NET_ERROR_CODE::ENGINE_INIT_LOGIC_ENTRY_NULL;	
 
 	if (pDispatcher == NULL)
 	{
@@ -245,6 +233,48 @@ bool SFEngine::Start(char* szIP, unsigned short port)
 	else
 		bResult = m_pNetworkEngine->Start((char*)StringConversion::ToASCII(pInfo->serverIP).c_str(), pInfo->serverPort);
 	
+	if (bResult == false)
+	{
+		LOG(ERROR) << "Engine Start Fail!!";
+		return false;
+	}
+	LOG(INFO) << "Engine Start!!";
+
+	return true;
+}
+
+bool SFEngine::Listen(int protocolId, char* szIP, unsigned short port)
+{
+	_EngineConfig* pInfo = m_Config.GetConfigureInfo();
+	LOG(INFO) << "Engine Starting... IP : " << (char*)StringConversion::ToASCII(pInfo->serverIP).c_str() << " Port : " << pInfo->serverPort;
+
+	IPacketProtocol* pProtocol = m_pPacketProtocolManager->GetPacketProtocol(protocolId);
+
+	if (pProtocol == NULL)
+	{
+		LOG(ERROR) << "Engine Start Fail. PacketProtocol None";
+		return false;
+	}
+
+	int listenerId = -1;
+	bool bResult = false;
+
+	if (port != 0)
+		listenerId = AddListener(szIP, port, protocolId);
+	else
+		listenerId = AddListener((char*)StringConversion::ToASCII(pInfo->serverIP).c_str(), pInfo->serverPort, protocolId);
+
+	if (listenerId <= 0)
+	{
+		LOG(ERROR) << "Engine Start Fail. m_pNetworkEngine->AddListener fail";
+		return false;
+	}	
+	
+	if (port != 0)
+		bResult = m_pNetworkEngine->Start(szIP, port);
+	else
+		bResult = m_pNetworkEngine->Start((char*)StringConversion::ToASCII(pInfo->serverIP).c_str(), pInfo->serverPort);
+
 	if (bResult == false)
 	{
 		LOG(ERROR) << "Engine Start Fail!!";
@@ -410,11 +440,5 @@ bool SFEngine::SetupServerReconnectSys()
 
 bool SFEngine::AddPacketProtocol(int packetProtocolId, IPacketProtocol* pProtocol)
 {
-//20140720 юс╫ц...
-	if (m_pPacketProtocolManager == NULL)
-	{
-		m_pPacketProtocolManager = new SFPacketProtocolManager(false);
-	}
-
 	return m_pPacketProtocolManager->AddPacketProtocol(packetProtocolId, pProtocol);
 }

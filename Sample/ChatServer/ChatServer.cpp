@@ -11,10 +11,9 @@ int _tmain(int argc, _TCHAR* argv[])
 {
 	ChatLogicEntry* pLogicEntry = new ChatLogicEntry();
 
-	SFEngine::GetInstance()->Intialize(pLogicEntry, new SFPacketProtocol<SFJsonProtocol>);
-	SFEngine::GetInstance()->Start();
-
-	google::FlushLogFiles(google::GLOG_INFO);
+	SFEngine::GetInstance()->Intialize(pLogicEntry);
+	SFEngine::GetInstance()->AddPacketProtocol(0, new SFPacketProtocol<SFJsonProtocol>);
+	SFEngine::GetInstance()->Listen(0);
 
 	getchar();
 

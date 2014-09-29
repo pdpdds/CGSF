@@ -1,8 +1,7 @@
 #include "stdafx.h"
 #include "SFPacketProtocolManager.h"
 
-SFPacketProtocolManager::SFPacketProtocolManager(bool bMultiPacketProtocol)
-: m_bMultiPacketProtocol(bMultiPacketProtocol)
+SFPacketProtocolManager::SFPacketProtocolManager()
 {
 }
 
@@ -19,9 +18,7 @@ SFPacketProtocolManager::~SFPacketProtocolManager()
 
 bool SFPacketProtocolManager::AddPacketProtocol(int packetProtocolId, IPacketProtocol* pProtocol)
 {
-	if (m_bMultiPacketProtocol == false && m_mapPacketProtocol.size() >= 1)
-		return false;
-
+	
 	m_mapPacketProtocol.insert(std::make_pair(packetProtocolId, pProtocol));
 	return true;
 }

@@ -10,7 +10,7 @@ class SFPacketProtocolManager
 	typedef std::list<_ConnectorInfo> listConnectorInfo;
 
 public:
-	SFPacketProtocolManager(bool bMultiPacketProtocol);
+	SFPacketProtocolManager();
 	virtual ~SFPacketProtocolManager();
 	
 	bool AddPacketProtocol(int packetProtocolId, IPacketProtocol* pProtocol);
@@ -53,5 +53,4 @@ private:
 	mapPacketProtocol m_mapPacketProtocol;
 	listListenerInfo m_listListenerInfo;
 	listConnectorInfo m_listConnectorInfo;
-	bool m_bMultiPacketProtocol;
 };

@@ -50,7 +50,10 @@ bool SFServerConnectionManager::Save()
 bool SFServerConnectionManager::LoadConnectorList(WCHAR* szFileName)
 {
 	CMarkup xml;
-	xml.Load(szFileName);
+	bool result = xml.Load(szFileName);
+
+	if (result == false)
+		return false;
 
 	while (xml.FindChildElem(L"SERVER"))
 	{
@@ -72,18 +75,18 @@ bool SFServerConnectionManager::LoadConnectorList(WCHAR* szFileName)
 		xml.OutOfElem();
 
 		
-		AddConnectInfo(connectorInfo);
+		AddConnectorInfo(connectorInfo);
 	}
 
 	return true;
 }
 
-void SFServerConnectionManager::AddConnectInfo(_ConnectorInfo connectorInfo)
+void SFServerConnectionManager::AddConnectorInfo(_ConnectorInfo& connectorInfo)
 {
 	m_listConnectorInfo.push_back(connectorInfo);
 	SFEngine::GetInstance()->GetPacketProtocolManager()->AddConnectorInfo(&connectorInfo);
 
-	LOG(INFO) << "AddConnectInfo. " << "connectID: " << connectorInfo.connectorId << ", ProtocolID: " << connectorInfo.packetProtocolId << ", IP: " << connectorInfo.szIP.data() << ", Port: " << connectorInfo.port;
+	LOG(INFO) << "AddConnectorInfo. " << "connectID: " << connectorInfo.connectorId << ", ProtocolID: " << (int)connectorInfo.packetProtocolId << ", IP: " << connectorInfo.szIP.data() << ", Port: " << connectorInfo.port;
 	google::FlushLogFiles(google::GLOG_INFO);
 }
 
@@ -98,7 +101,7 @@ bool SFServerConnectionManager::SetupServerReconnectSys()
 	{
 		_ConnectorInfo& info = iter;		
 
-		LOG(INFO) << "connectID: " << info.connectorId << ", ProtocolID: " << info.packetProtocolId << ", IP: " << info.szIP.data() << ", Port: " << info.port;
+		LOG(INFO) << "connectID: " << info.connectorId << ", ProtocolID: " << (int)info.packetProtocolId << ", IP: " << info.szIP.data() << ", Port: " << info.port;
 		google::FlushLogFiles(google::GLOG_INFO);
 
 		int serial = -1;

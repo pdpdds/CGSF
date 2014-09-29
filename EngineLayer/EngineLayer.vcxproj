@@ -241,6 +241,7 @@
     <ClInclude Include="ILogicDispatcher.h" />
     <ClInclude Include="IPacketTask.h" />
     <ClInclude Include="IRPCService.h" />
+    <ClInclude Include="PacketProtocolConstant.h" />
     <ClInclude Include="RPCClientTransportLayer.h" />
     <ClInclude Include="RPCService.h" />
     <ClInclude Include="RPC\CPstream.h" />
