@@ -24,6 +24,7 @@ namespace GameServer
                 ServerNetworkRef.Send<JsonPacketResponseReqistServer>(packetData.SessionID(), PACKET_ID.RESPONSE_REGIST_SERVER, response);
 
                 DevLog.Write(string.Format("result:{0}, ServerName:{1}, SessionID: {2}", result.ToString(), request.ServerName, packetData.SessionID()), LOG_LEVEL.INFO);
+                CGSFNETCommon.FileLogger.Info(string.Format("result:{0}, ServerName:{1}, SessionID: {2}", result.ToString(), request.ServerName, packetData.SessionID()));
             }
             catch
             {
