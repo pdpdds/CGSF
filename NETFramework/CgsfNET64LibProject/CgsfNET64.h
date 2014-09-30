@@ -21,36 +21,40 @@ namespace CgsfNET64Lib {
 		CgsfNET64();
 		~CgsfNET64();
 
-		NET_ERROR_CODE_N Init(NetworkConfig^ config);
 		NET_ERROR_CODE_N Init(NetworkConfig^ config, 
 			Generic::List<RemoteServerConnectInfo^>^ connectInfoList,
 								Generic::List<MultiListenNetworkInfo^>^ listneInfoList);
 				
-		bool Start();
+		bool Start(int protocolID);
+		
 		void Stop();
 			
+		
 		SFNETPacket^ GetPacket();
 
 		void InnerPacket(SFNETPacket^ packet);
 
-		NetworkConfig^ GetNetworkConfig() {
-			return m_networkConfig;
-		}
-
 		bool SendPacket(int sessionID, UINT16 packetID, array<Byte>^ data);
 
+		NetworkConfig^ GetNetworkConfig() { return m_networkConfig; }
+
 		void ForceDisConnect(int sessionID);
-
-		void LogFlush();
-
-				
+						
 		bool SetupServerReconnectSys();
 
 
+		
 	private:
+		
 		void SetNetworkConfig(NetworkConfig^ config);
+		
+		bool AddPacketProtocol(int protocolID, int maxBufferSize, int maxPacketSize, int option);
+		
 		bool CheckingUniqueProtocolID(int protocolID);
+		
 		NET_ERROR_CODE_N RegistConnectInfo(RemoteServerConnectInfo^ connectInfo);
+		
+		void LogFlush();
 
 
 		NetworkConfig^ m_networkConfig = gcnew NetworkConfig();

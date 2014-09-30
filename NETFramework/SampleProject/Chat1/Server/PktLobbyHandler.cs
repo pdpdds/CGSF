@@ -72,13 +72,13 @@ namespace ChatServer1
 
             try
             {
-                if (user.LobbyID <= 0)
+                var request = JsonEnDecode.Decode<JsonPacketRequestLeaveLobby>(packetData.GetData());
+
+                if (user.LobbyID <= 0 || request.LobbyID != user.LobbyID)
                 {
                     ResponseLeaveLobby(packetData.SessionID(), ERROR_CODE.LEAVE_LOBBY_DO_NOT_ENTER_LOBBY, 0);
                     return;
                 }
-
-                var request = JsonEnDecode.Decode<JsonPacketRequestLeaveLobby>(packetData.GetData());
 
                 var result = LobbyManagerRef.LeaveLobby(user.LobbyID, user.ID);
                 if (result != ERROR_CODE.NONE)
@@ -91,7 +91,7 @@ namespace ChatServer1
 
                 ResponseLeaveLobby(packetData.SessionID(), ERROR_CODE.NONE, 0);
 
-                InnerMessageQueue.CurrentLobbyUserCount(user.LobbyID, LobbyManagerRef.LobbyCurrentUserCount(user.LobbyID));
+                InnerMessageQueue.CurrentLobbyUserCount(request.LobbyID, LobbyManagerRef.LobbyCurrentUserCount(request.LobbyID));
             }
             catch (Exception)
             {

@@ -47,6 +47,7 @@ namespace CgsfNET64Lib {
 		int MaxAcceptCount;
 
 		int ThreadCount;
+		int ProtocolOption;
 		int ProtocolID;
 		int MaxBufferSize;
 		int MaxPacketSize;
@@ -59,8 +60,9 @@ namespace CgsfNET64Lib {
 		UINT16 Port;
 		int ConnectID;
 		String^ Description;
-		int ProtocolID;
 
+		int ProtocolOption;
+		int ProtocolID;
 		int MaxBufferSize;
 		int MaxPacketSize;
 	};
@@ -68,8 +70,9 @@ namespace CgsfNET64Lib {
 	public ref struct MultiListenNetworkInfo
 	{
 		int ListenID;		// 시스템에서 할당한다.
-
 		UINT16 Port;
+		
+		int ProtocolOption;
 		int ProtocolID;
 		int MaxBufferSize;
 		int MaxPacketSize;

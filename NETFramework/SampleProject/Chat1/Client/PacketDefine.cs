@@ -42,7 +42,7 @@ namespace ChatClient1
         LOBBY_CHAT_DO_NOT_ENTER_LOBBY = 10031,
     }
 
-
+#pragma warning disable 649
     struct JsonPacketRequestLogin
     {
         public string ID;
@@ -88,4 +88,5 @@ namespace ChatClient1
         public string UserID;
         public string Chat;
     }
+#pragma warning restore 649
 }

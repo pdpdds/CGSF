@@ -136,12 +136,17 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <Reference Include="System" />
+    <Reference Include="System.Core" />
     <Reference Include="System.Data" />
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="3DESEncrypt.h" />
+    <ClInclude Include="AESEncrypt.h" />
     <ClInclude Include="CgsfNET64.h" />
+    <ClInclude Include="Compress.h" />
     <ClInclude Include="DefineValue.h" />
+    <ClInclude Include="DESEncrypt.h" />
     <ClInclude Include="FRAMEWORK_ERROR_CODE.h" />
     <ClInclude Include="resource.h" />
     <ClInclude Include="ServerConnectReceiveCallback.h" />

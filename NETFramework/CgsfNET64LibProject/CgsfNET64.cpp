@@ -54,32 +54,7 @@ namespace CgsfNET64Lib {
 		pConfig->engineName = msclr::interop::marshal_as<std::wstring>(engineName);
 		pConfig->maxAccept = config->MaxAcceptCount;
 	}
-
-	NET_ERROR_CODE_N CgsfNET64::Init(NetworkConfig^ config)
-	{
-		SetNetworkConfig(config);
 		
-		m_packetQueue = gcnew ConcurrencyPacketQueue();
-
-		m_pLogicEntry = new ServerLogicEntry();
-		m_pLogicEntry->m_refPacketQueue = m_packetQueue;
-
-		m_pDispatcher = new SFNETDispatcher();
-		m_pDispatcher->Init(m_networkConfig->ThreadCount);
-		
-		NET_ERROR_CODE	errorCode = SFEngine::GetInstance()->Intialize(m_pLogicEntry,
-							new SFPacketProtocol<SFCGSFPacketProtocol>(m_networkConfig->MaxBufferSize,
-							m_networkConfig->MaxPacketSize, CGSF_PACKET_OPTION_NONE),
-							m_pDispatcher);
-		
-		if (errorCode != NET_ERROR_CODE::SUCCESS)
-		{
-			return (NET_ERROR_CODE_N)errorCode;
-		}
-
-		return NET_ERROR_CODE_N::SUCCESS;
-	}
-
 	NET_ERROR_CODE_N CgsfNET64::Init(NetworkConfig^ config,
 								Generic::List<RemoteServerConnectInfo^>^ connectInfoList,
 								Generic::List<MultiListenNetworkInfo^>^ listneInfoList)
@@ -100,83 +75,81 @@ namespace CgsfNET64Lib {
 				
 
 		NET_ERROR_CODE errorCode = SFEngine::GetInstance()->Intialize(m_pLogicEntry,
-									nullptr,
-									m_pDispatcher);
+														m_pDispatcher);
 		if (errorCode != NET_ERROR_CODE::SUCCESS)
 		{
 			return (NET_ERROR_CODE_N)errorCode;
 		}
 
+		if (config->Port > 0)
+		{
+			if (AddPacketProtocol(config->ProtocolID, m_networkConfig->MaxBufferSize, m_networkConfig->MaxPacketSize, config->ProtocolOption) == false)
+			{
+				LOG(ERROR) << "CgsfNET64::Init. Basic AddPacketProtocol. ProtocolID: " << config->ProtocolID;
+				google::FlushLogFiles(google::GLOG_ERROR);
+				return NET_ERROR_CODE_N::ENGINE_INIT_ADD_PACKET_PROTOCOL_FAIL;
+			}
+		}
+
 
 		// Connector 등록
-		LOG(INFO) << "CgsfNET64::Init. Regist Connector";
-		google::FlushLogFiles(google::GLOG_INFO);
-		for (int i = 0; i <= connectInfoList->Count; ++i)
+		if (connectInfoList != nullptr && connectInfoList->Count > 0)
 		{
-			auto result = RegistConnectInfo(connectInfoList[i]);
+			LOG(INFO) << "CgsfNET64::Init. Regist Connector";
+			google::FlushLogFiles(google::GLOG_INFO);
 
-			if (result != NET_ERROR_CODE_N::SUCCESS)
+			for (int i = 0; i < connectInfoList->Count; ++i)
 			{
-				return result;
+				auto result = RegistConnectInfo(connectInfoList[i]);
+
+				if (result != NET_ERROR_CODE_N::SUCCESS)
+				{
+					return result;
+				}
 			}
+
+			m_RemoteServerConnectInfoList = connectInfoList;
 		}
 
 
 		// Listener 등록
-		LOG(INFO) << "CgsfNET64::Init. Regist Listener";
-		google::FlushLogFiles(google::GLOG_INFO);
-
-		for (int i = 0; i <= listneInfoList->Count; ++i)
+		if (listneInfoList != nullptr && listneInfoList->Count > 0)
 		{
-			if (CheckingUniqueProtocolID(listneInfoList[i]->ProtocolID) == false)
-			{				
-				return NET_ERROR_CODE_N::ENGINE_INIT_DUPLICATION_PROTOCOL_ID;
-			}
-
-			auto packetProtocol = new SFPacketProtocol<SFCGSFPacketProtocol>(listneInfoList[i]->MaxBufferSize,
-				listneInfoList[i]->MaxPacketSize,
-				CGSF_PACKET_OPTION_NONE);
-
-			if (SFEngine::GetInstance()->AddPacketProtocol(listneInfoList[i]->ProtocolID, packetProtocol) == false)
-			{
-				LOG(ERROR) << "CgsfNET64::Init. listener AddPacketProtocol. ProtocolID: " << listneInfoList[i]->ProtocolID;
-				google::FlushLogFiles(google::GLOG_ERROR);
-				return NET_ERROR_CODE_N::ENGINE_INIT_ADD_PACKET_PROTOCOL_FAIL;
-			}
-
-			listneInfoList[i]->ListenID = SFEngine::GetInstance()->AddListener(nullptr, listneInfoList[i]->Port, listneInfoList[i]->ProtocolID);
-			LOG(INFO) << "CgsfNET64::Init. listenerId: " << listneInfoList[i]->ListenID;
+			LOG(INFO) << "CgsfNET64::Init. Regist Listener";
 			google::FlushLogFiles(google::GLOG_INFO);
+
+			for (int i = 0; i < listneInfoList->Count; ++i)
+			{
+				if (CheckingUniqueProtocolID(listneInfoList[i]->ProtocolID) == false)
+				{
+					return NET_ERROR_CODE_N::ENGINE_INIT_DUPLICATION_PROTOCOL_ID;
+				}
+
+				if (AddPacketProtocol(listneInfoList[i]->ProtocolID, listneInfoList[i]->MaxBufferSize, listneInfoList[i]->MaxPacketSize, listneInfoList[i]->ProtocolOption) == false)
+				{
+					LOG(ERROR) << "CgsfNET64::Init. Multi Listener AddPacketProtocol. ProtocolID: " << listneInfoList[i]->ProtocolID;
+					google::FlushLogFiles(google::GLOG_ERROR);
+					return NET_ERROR_CODE_N::ENGINE_INIT_ADD_PACKET_PROTOCOL_FAIL;
+				}
+								
+				listneInfoList[i]->ListenID = SFEngine::GetInstance()->AddListener(nullptr, listneInfoList[i]->Port, listneInfoList[i]->ProtocolID);
+				LOG(INFO) << "CgsfNET64::Init. listenerId: " << listneInfoList[i]->ListenID;
+				google::FlushLogFiles(google::GLOG_INFO);
+			}
+
+			m_ListneInfoList = listneInfoList;
 		}
 		
-
-		m_RemoteServerConnectInfoList = connectInfoList;
-		m_ListneInfoList = listneInfoList;
-
 		return NET_ERROR_CODE_N::SUCCESS;
 	}
 
 
-	bool CgsfNET64::Start()
+	bool CgsfNET64::Start(int protocolID)
 	{
-		bool isResult = false;
-
-		if (m_ListneInfoList->Count == 0)
-		{
-			LOG(INFO) << "CgsfNET64::Start. Basic";
-			google::FlushLogFiles(google::GLOG_INFO);
-
-			isResult = SFEngine::GetInstance()->Start();
-		}
-		else
-		{
-			LOG(INFO) << "CgsfNET64::Start. Connector, Multi Listener";
-			google::FlushLogFiles(google::GLOG_INFO);
-
-			isResult = SFEngine::GetInstance()->Activate();
-		}
-
+		LOG(INFO) << "CgsfNET64::Start";
+		bool isResult = SFEngine::GetInstance()->Start(protocolID);
 		LogFlush();
+		
 		return isResult;
 	}
 
@@ -247,16 +220,16 @@ namespace CgsfNET64Lib {
 		
 		auto packetProtocol = new SFPacketProtocol<SFCGSFPacketProtocol>(connectInfo->MaxBufferSize,
 																		connectInfo->MaxPacketSize,
-																		CGSF_PACKET_OPTION_NONE);
+																		connectInfo->ProtocolOption);
 		
 		SFEngine::GetInstance()->AddPacketProtocol(connectInfo->ProtocolID, packetProtocol);
 		
-		SFEngine::GetInstance()->GetServerConnectionManager()->AddConnectInfo(info);
+		SFEngine::GetInstance()->GetServerConnectionManager()->AddConnectorInfo(info);
 
 		auto result = m_pLogicEntry->AddConnectorCallback(info.connectorId, m_pServerConnectCallback, connectInfo->ProtocolID);
 		if (result == false)
 		{
-			LOG(ERROR) << "CgsfNET64::CheckingUniqueProtocolID. Duplication ConnectorID: " << info.connectorId;
+			LOG(ERROR) << "CgsfNET64::RegistConnectInfo. ConnectorID: " << info.connectorId;
 			google::FlushLogFiles(google::GLOG_ERROR);
 			NET_ERROR_CODE_N::SERVER_CONNECTOR_REGIST_DUPLICATION_CONNECT_ID;
 		}
@@ -286,6 +259,18 @@ namespace CgsfNET64Lib {
 		}
 
 		m_UseProtocolIDList->Add(protocolID);
+		return true;
+	}
+
+	bool CgsfNET64::AddPacketProtocol(int protocolID, int maxBufferSize, int maxPacketSize, int option)
+	{
+		auto packetProtocol = new SFPacketProtocol<SFCGSFPacketProtocol>(maxPacketSize, maxPacketSize, option);
+
+		if (SFEngine::GetInstance()->AddPacketProtocol(protocolID, packetProtocol) == false)
+		{
+			return false;
+		}
+
 		return true;
 	}
 }

@@ -66,6 +66,7 @@ namespace CSCommonLib
     }
 
 
+#pragma warning disable 649
     public struct JsonPacketRequestLogin
     {
         public string ID;
@@ -135,4 +136,6 @@ namespace CSCommonLib
         public string UserID;
         public string Chat;
     }
+#pragma warning restore 649
+
 }

@@ -17,6 +17,8 @@ namespace ChatServer1
         System.Windows.Threading.DispatcherTimer workProcessTimer = new System.Windows.Threading.DispatcherTimer();
 
         bool IsStartServerNetwork = false;
+
+        CgsfNET64Lib.NetworkConfig Config;
         ServerNetwork ServerNet = new ServerNetwork();
         List<int> SessionList = new List<int>();
 
@@ -34,30 +36,29 @@ namespace ChatServer1
             workProcessTimer.Interval = new TimeSpan(0, 0, 0, 0, 32);
             workProcessTimer.Start();
 
-            var config = new CgsfNET64Lib.NetworkConfig()
+            Config = new CgsfNET64Lib.NetworkConfig()
             {
                 IP = "127.0.0.1",
                 Port = 25251,
                 EngineDllName = "CGSFNet.dll",
                 MaxAcceptCount = 1000,
                 ThreadCount = 4,
+                ProtocolOption = 0,
                 ProtocolID = 0,
                 MaxBufferSize = 16000,
                 MaxPacketSize = 4012,
             };
 
-            var result = ServerNet.Init(config);
+            var result = ServerNet.Init(Config, null, null);
             if (result == CgsfNET64Lib.NET_ERROR_CODE_N.SUCCESS)
             {
-                DevLog.Write(string.Format("[Init] IP:{0}, Port:{1}, EngineDllName:{2}", config.IP, config.Port, config.EngineDllName), LOG_LEVEL.INFO);
+                DevLog.Write(string.Format("[Init] IP:{0}, Port:{1}, EngineDllName:{2}", Config.IP, Config.Port, Config.EngineDllName), LOG_LEVEL.INFO);
                 
             }
             else
             {
                 DevLog.Write(string.Format("[Init] 네트워크 라이브러리 초기화 실패. {0}, {1}", result.ToString(), result), LOG_LEVEL.ERROR);
             }
-
-            ServerNet.LogFlush();
         }
 
         private void MainForm_FormClosing(object sender, FormClosingEventArgs e)
@@ -72,10 +73,17 @@ namespace ChatServer1
         private void button1_Click(object sender, EventArgs e)
         {
             IsStartServerNetwork = true;
-            
-            ServerNet.Start();
-            
-            DevLog.Write(string.Format("[Start] 네트워크 시작"), LOG_LEVEL.INFO);
+
+            var result = ServerNet.Start(Config.ProtocolID);
+
+            if (result)
+            {
+                DevLog.Write(string.Format("[Start] 네트워크 시작"), LOG_LEVEL.INFO);
+            }
+            else
+            {
+                DevLog.Write(string.Format("[Start] 네트워크 시작 실패"), LOG_LEVEL.ERROR);
+            }
         }
 
         private void button2_Click(object sender, EventArgs e)

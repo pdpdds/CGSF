@@ -37,7 +37,8 @@ namespace GameServer
     }
 
 
-   
+
+#pragma warning disable 649
     struct JsonPacketRequestReqistServer
     {
         public string ServerName;
@@ -48,4 +49,5 @@ namespace GameServer
         public ERROR_CODE Result;
         public string ServerName;
     }
+#pragma warning restore 649
 }

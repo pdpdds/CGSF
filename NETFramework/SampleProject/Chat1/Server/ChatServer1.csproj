@@ -33,7 +33,8 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="CgsfNET64Lib">
+    <Reference Include="CgsfNET64Lib, Version=1.0.5386.25012, Culture=neutral, processorArchitecture=AMD64">
+      <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\..\Lib\CgsfNET64Lib\CgsfNET64Lib.dll</HintPath>
     </Reference>
     <Reference Include="System" />

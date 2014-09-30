@@ -37,6 +37,7 @@ namespace GateWayServer
     }
 
 
+#pragma warning disable 649
     struct JsonPacketRequestLogin
     {
         public string ID;
@@ -58,5 +59,6 @@ namespace GateWayServer
         public ERROR_CODE Result;
         public string ServerName;
     }
+#pragma warning restore 649
    
 }

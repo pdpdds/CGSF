@@ -26,6 +26,8 @@ namespace ChatClient1
     }
 
 
+
+#pragma warning disable 649
     struct JsonPacketRequestLogin
     {
         public string ID;
@@ -35,7 +37,7 @@ namespace ChatClient1
     {
         public ERROR_CODE Result;
     }
-
+#pragma warning restore 649
 
     
 }

@@ -38,28 +38,26 @@ namespace ChatServerLib
                 EngineDllName = netConfig.EngineDllName,
                 MaxAcceptCount = netConfig.MaxAcceptCount,
                 ThreadCount = netConfig.ThreadCount,
+                ProtocolOption = 0,
                 ProtocolID = 0,
                 MaxBufferSize = netConfig.MaxBufferSize,
                 MaxPacketSize = netConfig.MaxPacketSize,
             };
 
-            var result = ServerNet.Init(NetConfig);
+            var result = ServerNet.Init(NetConfig, null, null);
             if (result != NET_ERROR_CODE_N.SUCCESS)
             {
                 return new Tuple<bool, string>(false,result.ToString());
             }
 
-            if (ServerNet.Start() == false)
+            if (ServerNet.Start(NetConfig.ProtocolID) == false)
             {
                 return new Tuple<bool, string>(false, NET_ERROR_CODE_N.NETWORK_START_FAIL.ToString());
             }
             else
             {
                 IsStartServerNetwork = true;
-            }
-
-
-            
+            }           
 
             return new Tuple<bool, string>(true, NET_ERROR_CODE_N.SUCCESS.ToString());
         }

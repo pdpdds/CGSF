@@ -47,6 +47,7 @@ namespace GateWayServer
                 EngineDllName = Properties.Settings.Default.EngineDllName,
                 MaxAcceptCount = Properties.Settings.Default.MaxAcceptCount,
                 ThreadCount = Properties.Settings.Default.ThreadCount,
+                ProtocolOption = 0,
                 ProtocolID = 0,
                 MaxBufferSize = Properties.Settings.Default.MaxBufferSize,
                 MaxPacketSize = Properties.Settings.Default.MaxPacketSize,
@@ -59,15 +60,15 @@ namespace GateWayServer
                 Description = "GameServer",
                 IP = Properties.Settings.Default.GameServerIP,
                 Port = Properties.Settings.Default.GameServerPort,
+                ProtocolOption = 0,
                 ProtocolID = 1001,
                 MaxBufferSize = Properties.Settings.Default.MaxBufferSize,
                 MaxPacketSize = Properties.Settings.Default.MaxPacketSize,
 
             });
 
-            var ListneInfoList = new List<CgsfNET64Lib.MultiListenNetworkInfo>();
-
-            var result = ServerNet.Init(Config, ConnectInfoList, ListneInfoList);
+            
+            var result = ServerNet.Init(Config, ConnectInfoList, null);
             if (result != CgsfNET64Lib.NET_ERROR_CODE_N.SUCCESS)
             {
                 DevLog.Write(string.Format("[Init] 네트워크 라이브러리 초기화 실패. {0}, {1}", result.ToString(), result), LOG_LEVEL.ERROR);
@@ -75,7 +76,7 @@ namespace GateWayServer
             }
 
             IsStartServerNetwork = true;
-            if (ServerNet.Start())
+            if (ServerNet.Start(Config.ProtocolID))
             {
                 HandelrMgr.Create(ServerNet, Config.MaxAcceptCount);
                 ConnectCountToGUI(0);
