@@ -24,7 +24,7 @@ int _tmain(int argc, _TCHAR* argv[])
 {
 	testProtobuf();
 	
-	SFEngine::GetInstance()->Listen(0);
+	SFEngine::GetInstance()->Start(0);
 
 	google::FlushLogFiles(google::GLOG_INFO);
 

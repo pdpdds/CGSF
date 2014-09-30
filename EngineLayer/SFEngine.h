@@ -29,8 +29,8 @@ public:
 	static SFEngine* GetInstance();
 	void SetLogFolder(TCHAR* szPath = NULL);
 
-	bool Listen(int protocolId, char* szIP = NULL, unsigned short port = 0);	
-	bool Activate();
+	bool Start(int protocolId);	
+	
 	NET_ERROR_CODE Intialize(ILogicEntry* pLogicEntry, ILogicDispatcher* pDispatcher = NULL);
 	bool ShutDown();
 
@@ -74,7 +74,7 @@ protected:
 	
 private:
 	SFEngine();
-	bool Start(char* szIP = NULL, unsigned short port = 0); //클라이언트 전용 이후 deprecated 될 것임
+	bool Start(char* szIP, unsigned short port); //클라이언트 전용, 이후 deprecated 될 것임
 
 	SFConfigure m_Config;
 	int m_packetSendThreadId;

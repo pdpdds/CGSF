@@ -43,11 +43,6 @@ bool ACEEngine::Disconnect(int serial)
 	return true;
 }
 
-bool ACEEngine::Activate()
-{
-	return NetworkOpen();
-}
-
 bool ACEEngine::NetworkOpen()
 {
 	for (auto& acceptor : m_mapAcceptor)

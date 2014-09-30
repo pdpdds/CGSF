@@ -14,7 +14,7 @@ int _tmain(int argc, _TCHAR* argv[])
 	SFEngine::GetInstance()->AddPacketProtocol(0, new SFPacketProtocol<SFCGSFPacketProtocol>);
 	TestInterfaceImpl impl;
 	SFEngine::GetInstance()->AddRPCService(new RPCService<TestInterface>(impl));
-	SFEngine::GetInstance()->Listen(0);
+	SFEngine::GetInstance()->Start(0);
 
 	google::FlushLogFiles(google::GLOG_INFO);
 

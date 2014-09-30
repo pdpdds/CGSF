@@ -243,7 +243,7 @@ bool SFEngine::Start(char* szIP, unsigned short port)
 	return true;
 }
 
-bool SFEngine::Listen(int protocolId, char* szIP, unsigned short port)
+bool SFEngine::Start(int protocolId)
 {
 	_EngineConfig* pInfo = m_Config.GetConfigureInfo();
 	LOG(INFO) << "Engine Starting... IP : " << (char*)StringConversion::ToASCII(pInfo->serverIP).c_str() << " Port : " << pInfo->serverPort;
@@ -259,21 +259,18 @@ bool SFEngine::Listen(int protocolId, char* szIP, unsigned short port)
 	int listenerId = -1;
 	bool bResult = false;
 
-	if (port != 0)
-		listenerId = AddListener(szIP, port, protocolId);
-	else
+	if (pInfo->serverPort != 0)
+	{
 		listenerId = AddListener((char*)StringConversion::ToASCII(pInfo->serverIP).c_str(), pInfo->serverPort, protocolId);
 
-	if (listenerId <= 0)
-	{
-		LOG(ERROR) << "Engine Start Fail. m_pNetworkEngine->AddListener fail";
-		return false;
-	}	
-	
-	if (port != 0)
-		bResult = m_pNetworkEngine->Start(szIP, port);
-	else
-		bResult = m_pNetworkEngine->Start((char*)StringConversion::ToASCII(pInfo->serverIP).c_str(), pInfo->serverPort);
+		if (listenerId <= 0)
+		{
+			LOG(ERROR) << "Engine Start Fail. m_pNetworkEngine->AddListener fail";
+			return false;
+		}
+	}
+
+	bResult = m_pNetworkEngine->Start((char*)StringConversion::ToASCII(pInfo->serverIP).c_str(), pInfo->serverPort);
 
 	if (bResult == false)
 	{
@@ -283,11 +280,6 @@ bool SFEngine::Listen(int protocolId, char* szIP, unsigned short port)
 	LOG(INFO) << "Engine Start!!";
 
 	return true;
-}
-
-bool SFEngine::Activate()
-{
-	return m_pNetworkEngine->Activate();
 }
 
 bool SFEngine::ShutDown()

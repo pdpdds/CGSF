@@ -24,8 +24,6 @@ public:
 	virtual int AddConnector(int connectorIndex, char* szIP, unsigned short port) override;
 	virtual int AddListener(char* szIP, unsigned short port) override;
 
-	virtual bool Activate() override;
-
 protected:
 	bool NetworkOpen();
 

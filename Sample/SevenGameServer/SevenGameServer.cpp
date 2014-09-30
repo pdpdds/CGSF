@@ -32,7 +32,7 @@ static DWORD StartSevenGameService(LPDWORD param)
 	SFEngine::GetInstance()->Intialize(pLogicEntry);
 	SFEngine::GetInstance()->AddPacketProtocol(0, new SFPacketProtocol<SevenGameProtocol>);
 	SFEngine::GetInstance()->AddTimer(0, 500, 1000);
-	SFEngine::GetInstance()->Listen(0);
+	SFEngine::GetInstance()->Start(0);
 
 	google::FlushLogFiles(google::GLOG_INFO);
 
