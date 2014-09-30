@@ -157,11 +157,8 @@ NET_ERROR_CODE SFEngine::Intialize(ILogicEntry* pLogicEntry, ILogicDispatcher* p
 	
 	
 	_EngineConfig* pInfo = m_Config.GetConfigureInfo();
-	if (pInfo->serverPort == 0)
-	{
-		LOG(ERROR) << "Config FileLoad Fail!!";
-		return NET_ERROR_CODE::ENGINE_INIT_NULL_CONFIG_INFO;
-	}
+	
+	LOG(INFO) << "Basic Port: " << pInfo->serverPort;
 
 	std::string szNetworkEngineName = StringConversion::ToASCII(pInfo->engineName);
 	LOG(INFO) << "NetworkEngine Create : " << szNetworkEngineName.c_str();
