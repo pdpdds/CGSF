@@ -29,7 +29,6 @@ int _tmain(int argc, _TCHAR* argv[])
 	int gameListener = SFEngine::GetInstance()->AddListener(nullptr, GAMESERVER_LISTEN_PORT, PACKET_PROTOCOL_JSON_2);
 	int authListener = SFEngine::GetInstance()->AddListener(nullptr, AUTHSERVER_LISTEN_PORT, PACKET_PROTOCOL_PROTO_BUF);
 	
-	//디폴트 포트는 사용하고 싶지 않을 경우
 	if (false == SFEngine::GetInstance()->Start(PACKET_PROTOCOL_JSON_1))
 	{
 		LOG(ERROR) << "Server Start Fail";
