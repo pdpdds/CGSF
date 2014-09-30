@@ -242,28 +242,31 @@ bool SFEngine::Start(char* szIP, unsigned short port)
 
 bool SFEngine::Start(int protocolId)
 {
+	bool bResult = false;
 	_EngineConfig* pInfo = m_Config.GetConfigureInfo();
 	LOG(INFO) << "Engine Starting... IP : " << (char*)StringConversion::ToASCII(pInfo->serverIP).c_str() << " Port : " << pInfo->serverPort;
 
-	IPacketProtocol* pProtocol = m_pPacketProtocolManager->GetPacketProtocol(protocolId);
-
-	if (pProtocol == NULL)
+	if (protocolId >= 0)
 	{
-		LOG(ERROR) << "Engine Start Fail. PacketProtocol None";
-		return false;
-	}
+		IPacketProtocol* pProtocol = m_pPacketProtocolManager->GetPacketProtocol(protocolId);
 
-	int listenerId = -1;
-	bool bResult = false;
-
-	if (pInfo->serverPort != 0)
-	{
-		listenerId = AddListener((char*)StringConversion::ToASCII(pInfo->serverIP).c_str(), pInfo->serverPort, protocolId);
-
-		if (listenerId <= 0)
+		if (pProtocol == NULL)
 		{
-			LOG(ERROR) << "Engine Start Fail. m_pNetworkEngine->AddListener fail";
+			LOG(ERROR) << "Engine Start Fail. PacketProtocol None";
 			return false;
+		}
+
+		int listenerId = -1;
+		
+		if (pInfo->serverPort != 0)
+		{
+			listenerId = AddListener((char*)StringConversion::ToASCII(pInfo->serverIP).c_str(), pInfo->serverPort, protocolId);
+
+			if (listenerId <= 0)
+			{
+				LOG(ERROR) << "Engine Start Fail. m_pNetworkEngine->AddListener fail";
+				return false;
+			}
 		}
 	}
 
