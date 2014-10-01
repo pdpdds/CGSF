@@ -10,21 +10,32 @@ using CSCommonLib;
 
 namespace ChatServerLib
 {
+    /// <summary>
+    /// 채팅 서버 로직 메인 클래스
+    /// </summary>
     public class MainLib
     {
+        // 패킷 디스트리뷰트 스레드 동작 여부
         bool IsPacketDistributeThreadRunning;
+        // 패킷 처리 스레드에 패킷을 할당하는 스레드
         System.Threading.Thread PacketDistributeThread;
 
         bool IsStartServerNetwork = false;
         ServerNetwork ServerNet = new ServerNetwork();
 
+        // 메인 패킷 처리. 주
         MainPacketProcessSystem MainPacketProcess;
+        // 로비 관련 패킷을 처리하는 스레드
+        // 각각의 스레드에서 할당된 로비 객체를 다룬다.
         List<WorkPacketProcessSystem> WorkPacketProcessList = new List<WorkPacketProcessSystem>();
+        
         DB.DBManager DBManager = new DB.DBManager();
 
         NetworkConfig NetConfig;
         ServerAppConfig AppConfig;
 
+        // 로비 ID-WorkPacketProcessList의 인덱스를 맵핑
+        // 예를들면 로비ID가 7번인 경우 WorkPacketProcessList의 몇번째 객체를 사용해야하는지 설정되어 있다.
         List<int> LobbyIDToPacketProcessSystemIndexTable = new List<int>();
 
 
@@ -121,6 +132,11 @@ namespace ChatServerLib
             PacketDistributeThread.Start();
         }              
 
+        /// <summary>
+        /// LobbyIDToPacketProcessSystemIndexTable을 설정한다.
+        /// </summary>
+        /// <param name="maxLobbyCount">최대 로비 수</param>
+        /// <param name="lobbyCountPerThread">스레드 당 처리할 로비 수</param>
         void SettingLobbyIDToPacketProcessIndexTable(int maxLobbyCount, int lobbyCountPerThread)
         {
             LobbyIDToPacketProcessSystemIndexTable.Add(0);
@@ -148,6 +164,9 @@ namespace ChatServerLib
             return LobbyIDToPacketProcessSystemIndexTable[lobbyID]; ;
         }
 
+        /// <summary>
+        /// 로비ID를 기준으로 패킷을 각각의 패킷처리 객체에 할당한다. 멀티스레드로 패킷을 처리하도록 해준다.
+        /// </summary>
         void DistributeProcket()
         {
             while (IsPacketDistributeThreadRunning)
@@ -200,6 +219,7 @@ namespace ChatServerLib
             }
         }
 
+        // DB 처리 결과를 내부 패킷으로 넣는다. DB 처리 스레드에서 DB 처리 후 호출한다.
         void DBResponseFunc(DB.ResponseData resultData)
         {
             var packet = new SFNETPacket();
@@ -207,6 +227,7 @@ namespace ChatServerLib
             ServerNet.InnerPacket(packet);
         }
 
+        // 로비 ID에 맞는 패킷처리 객체로 전달한다.
         public void RelayPacketProcess(short lobbyID, SFNETPacket packet)
         {
             var packetProcessIndex = GetPacketProcessIndex(lobbyID);
@@ -232,6 +253,7 @@ namespace ChatServerLib
         public int DBThreadCount;
     }
 
+    // ChatServerHost에서 네트워크 라이브러리를 참조하지 않게 하기 위해서 네트워크 설정 클래스를 재정의
     public class ServerNetworkConfig
     {
         public string EngineDllName;

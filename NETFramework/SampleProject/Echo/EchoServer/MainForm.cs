@@ -16,12 +16,26 @@ namespace ChatServer1
     {
         System.Windows.Threading.DispatcherTimer workProcessTimer = new System.Windows.Threading.DispatcherTimer();
 
+        /// <summary>
+        /// 네트워크 동작 여부
+        /// </summary>
         bool IsStartServerNetwork = false;
 
         CgsfNET64Lib.NetworkConfig Config;
+
+        /// <summary>
+        /// CGSF의 서버 네트워크 라이브러리
+        /// </summary>
         ServerNetwork ServerNet = new ServerNetwork();
+
+        /// <summary>
+        /// 현재 연결된 세션 리스트
+        /// </summary>
         List<int> SessionList = new List<int>();
 
+        /// <summary>
+        /// 에코 패킷 ID
+        /// </summary>
         const UInt16 PACKET_ID_ECHO = 1000;
         
 
@@ -32,6 +46,7 @@ namespace ChatServer1
 
         private void MainForm_Load(object sender, EventArgs e)
         {
+            // 반복 처리를 위한 스레드(UI 동기)
             workProcessTimer.Tick += new EventHandler(OnProcessTimedEvent);
             workProcessTimer.Interval = new TimeSpan(0, 0, 0, 0, 32);
             workProcessTimer.Start();
@@ -105,6 +120,9 @@ namespace ChatServer1
             }
         }
 
+        /// <summary>
+        /// 패킷 처리
+        /// </summary>
         private void ProcessProcket()
         {
             var packet = ServerNet.GetPacket();
@@ -142,6 +160,9 @@ namespace ChatServer1
             }
         }
 
+        /// <summary>
+        /// 개발 로그 UI에 출력
+        /// </summary>
         private void ProcessLog()
         {
             // 너무 이 작업만 할 수 없으므로 일정 작업 이상을 하면 일단 패스한다.
@@ -176,6 +197,9 @@ namespace ChatServer1
         }
 
 
+        /// <summary>
+        /// 에코 패킷 데이터
+        /// </summary>
         struct JsonPacketNoticeEcho
         {
             public string Msg;

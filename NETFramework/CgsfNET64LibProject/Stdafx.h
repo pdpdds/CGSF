@@ -12,3 +12,5 @@
 #include <windows.h>
 #include "CommonHeader.h"
 #include "SFEngine.h"
+
+#include "Helper.h"

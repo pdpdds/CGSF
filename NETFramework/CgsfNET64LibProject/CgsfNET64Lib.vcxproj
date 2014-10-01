@@ -148,6 +148,7 @@
     <ClInclude Include="DefineValue.h" />
     <ClInclude Include="DESEncrypt.h" />
     <ClInclude Include="FRAMEWORK_ERROR_CODE.h" />
+    <ClInclude Include="Helper.h" />
     <ClInclude Include="resource.h" />
     <ClInclude Include="ServerConnectReceiveCallback.h" />
     <ClInclude Include="ServerLogicEntry.h" />

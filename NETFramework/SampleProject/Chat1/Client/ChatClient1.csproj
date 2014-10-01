@@ -4,7 +4,7 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{F177CB6D-87B0-4BAD-A3B9-F83F72B45872}</ProjectGuid>
+    <ProjectGuid>{F3631F67-510A-4ED8-BACA-2B0CE8CEBC02}</ProjectGuid>
     <OutputType>WinExe</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>ChatClient1</RootNamespace>
@@ -88,6 +88,12 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="License.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\..\CGSFNETCommon\CGSFNETCommon.csproj">
+      <Project>{32ba163d-2969-45c9-b7ec-468010cc6b52}</Project>
+      <Name>CGSFNETCommon</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

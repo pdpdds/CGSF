@@ -163,7 +163,7 @@ namespace GateWayServer
                         var response = new JsonPacketRequestReqistServer() { ServerName = "GateWayServer" };
                         ServerNet.Send<JsonPacketRequestReqistServer>(packet.SessionID(), PACKET_ID.REQUEST_REGIST_SERVER, response);
 
-                        DevLog.Write(string.Format("[OnConnect Server] SessionID:{0}, ConnectID:{1}", packet.SessionID(), packet.ServerConnectorID()), LOG_LEVEL.INFO);
+                        DevLog.Write(string.Format("[OnConnect Server] SessionID:{0}, ConnectID:{1}", packet.SessionID(), packet.ServerIdentifier()), LOG_LEVEL.INFO);
                     }
                     else
                     {

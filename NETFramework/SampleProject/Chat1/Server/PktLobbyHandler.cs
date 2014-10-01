@@ -9,6 +9,9 @@ using CGSFNETCommon;
 
 namespace ChatServer1
 {
+    /// <summary>
+    /// 로비 관련 핸들러
+    /// </summary>
     class PktLobbyHandler : PktBaseHandler
     {
         public void RequestEnterLobby(SFNETPacket packetData, ConnectUser user)

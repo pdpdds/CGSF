@@ -6,11 +6,16 @@ using System.Threading.Tasks;
 
 namespace ChatServer1
 {
+    /// <summary>
+    /// 연결된 유저 관리
+    /// </summary>
     class ConnectUserManager
     {
         int MaxUserCount = 0;
 
+        // 세션을 key로 사용하는 유저 맵
         Dictionary<int, ConnectUser> UserSessionMap = new Dictionary<int, ConnectUser>();
+        // 유저 ID를 key를 사용하는 유저 맵
         Dictionary<string, ConnectUser> UserIDMap = new Dictionary<string, ConnectUser>();
         
 

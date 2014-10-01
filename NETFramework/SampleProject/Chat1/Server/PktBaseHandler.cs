@@ -6,6 +6,9 @@ using System.Threading.Tasks;
 
 namespace ChatServer1
 {
+    /// <summary>
+    /// 핸들러 클래스의 기초
+    /// </summary>
     class PktBaseHandler
     {
         protected ServerNetwork ServerNetworkRef;

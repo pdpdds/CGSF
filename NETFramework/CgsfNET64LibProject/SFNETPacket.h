@@ -7,17 +7,25 @@ using namespace System;
 
 namespace CgsfNET64Lib {
 
+	/// <summary>
+	/// SFPacket의 닷넷 버전
+	/// </summary>
 	public ref class SFNETPacket
 	{
 	public:
 		SFNETPacket() {}
 		
+		/// <summary>
+		/// 이 객체의 데이터로 설정한다.
+		/// </summary>
+		/// <param name="isServerConnect">서버간 연결 여부. true 이면 서버-서버 연결</param>
+		/// <param name="pPacket">네트워크 엔진에서 받은 패킷 데이터</param>
 		void SetData(bool isServerConnect, SFPacket* pPacket)
 		{
 			m_isServerConnect = isServerConnect;
 			if (m_isServerConnect)
 			{
-				m_serverConnectorID = (short)pPacket->GetSessionDesc().identifier;
+				m_serverIdentifier = (short)pPacket->GetSessionDesc().identifier;
 			}
 
 			m_packetType = (SFPACKET_TYPE)pPacket->GetPacketType();
@@ -43,6 +51,12 @@ namespace CgsfNET64Lib {
 			}
 		}
 
+		/// <summary>
+		/// 이 객체의 데이터로 설정한다. 내부 패킷을 만들 때 사용
+		/// </summary>
+		/// <param name="sessionID">세션</param>
+		/// <param name="packetID">패킷 ID</param>
+		/// <param name="data">패킷 데이터</param>
 		void SetData(int sessionID, unsigned short packetID, array<Byte>^ data)
 		{
 			m_packetType = SFPACKET_TYPE::DATA;
@@ -63,13 +77,20 @@ namespace CgsfNET64Lib {
 			}
 		}
 
-		void SetData(SFPACKET_TYPE packetType, int sessionID, int identifier)
+		/// <summary>
+		/// 이 객체의 데이터로 설정한다. 주로 연결/끈어짐 관련 내부 패킷을 만들 때 사용
+		/// </summary>
+		/// <param name="packetType">패킷 타입</param>
+		/// <param name="sessionID">세션 ID</param>
+		/// <param name="identifier">서버간 연결인 경우 어느 서버인지 알 수 있다.</param>
+		void SetSystemData(SFPACKET_TYPE packetType, int sessionID, int identifier)
 		{
 			m_isServerConnect = true;
-			m_serverConnectorID = (short)identifier;
+			m_serverIdentifier = (short)identifier;
 			m_packetType = packetType;
 			m_sessionID = sessionID;
 		}
+
 
 		SFPACKET_TYPE GetPacketType() { return m_packetType; }
 		
@@ -81,7 +102,7 @@ namespace CgsfNET64Lib {
 		array<Byte>^ GetData() { return m_packetData;  }
 
 		bool IsServerConnect() { return m_isServerConnect; }
-		short ServerConnectorID() { return m_serverConnectorID; }
+		short ServerIdentifier() { return m_serverIdentifier; }
 
 
 	private:
@@ -93,7 +114,7 @@ namespace CgsfNET64Lib {
 		unsigned short m_dataSize;
 
 		bool m_isServerConnect = false;
-		short m_serverConnectorID = 0;
+		short m_serverIdentifier = 0;
 
 		SFPACKET_TYPE m_packetType;
 		array<Byte>^ m_packetData;

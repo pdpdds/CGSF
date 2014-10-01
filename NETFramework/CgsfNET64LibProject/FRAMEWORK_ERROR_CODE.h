@@ -6,8 +6,8 @@ namespace CgsfNET64Lib {
 
 	public enum class NET_ERROR_CODE_N : short
 	{
-		// 중요!!!
-		// 0 ~ 500까지 정의된 값은 CommonLayer의 ErrorCode.h에 정의된 NET_ERROR_CODE와 같아야 한다.
+		/// 중요!!!
+		/// 0 ~ 500까지 정의된 값은 CommonLayer의 ErrorCode.h에 정의된 NET_ERROR_CODE와 같아야 한다.
 		SUCCESS = 0,
 
 		ENGINE_INIT_LOGIC_ENTRY_FAIL = 101,
@@ -18,8 +18,10 @@ namespace CgsfNET64Lib {
 		ENGINE_INIT_CREAT_LOGIC_SYSTEM_FAIL = 106,
 		
 
+		/// NET_ERROR_CODE_N 에서만 정의한 에러 코드
 		SERVER_CONNECTOR_REGIST_DUPLICATION_CONNECT_ID = 511,
-		SERVER_CONNECTOR_INVALID_CONNECT_ID			= 512,
+		SERVER_CONNECTOR_REGIST_ADD_PROTOCOL		= 512,
+		SERVER_CONNECTOR_INVALID_CONNECT_ID			= 514,
 
 		ENGINE_INIT_ADD_PACKET_PROTOCOL_FAIL		= 522,
 		ENGINE_INIT_DUPLICATION_PROTOCOL_ID = 524,

@@ -9,6 +9,10 @@ using CGSFNETCommon;
 
 namespace ChatServer1
 {
+    /// <summary>
+    /// 핸들러 관리.
+    /// 핸들러 등록, 패킷 처리
+    /// </summary>
     class PktHandlerManager
     {
         Dictionary<ushort, Action<SFNETPacket, ConnectUser>> PacketHandlerMap = new Dictionary<ushort, Action<SFNETPacket, ConnectUser>>();

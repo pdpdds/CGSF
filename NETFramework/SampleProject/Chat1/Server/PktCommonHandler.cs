@@ -9,6 +9,9 @@ using CGSFNETCommon;
 
 namespace ChatServer1
 {
+    /// <summary>
+    /// 일반적인 패킷 처리 핸들러
+    /// </summary>
     class PktCommonHandler : PktBaseHandler
     {
         public void RequestLogin(SFNETPacket packetData, ConnectUser user)

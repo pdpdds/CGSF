@@ -33,7 +33,8 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="CgsfNET64Lib">
+    <Reference Include="CgsfNET64Lib, Version=1.0.5387.27316, Culture=neutral, processorArchitecture=AMD64">
+      <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\..\Lib\CgsfNET64Lib\CgsfNET64Lib.dll</HintPath>
     </Reference>
     <Reference Include="System" />
@@ -82,6 +83,12 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\..\CGSFNETCommon\CGSFNETCommon.csproj">
+      <Project>{32ba163d-2969-45c9-b7ec-468010cc6b52}</Project>
+      <Name>CGSFNETCommon</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

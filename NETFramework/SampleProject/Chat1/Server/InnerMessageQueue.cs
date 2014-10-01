@@ -6,6 +6,9 @@ using System.Threading.Tasks;
 
 namespace ChatServer1
 {
+    /// <summary>
+    /// 내부 통신용 메시지 큐
+    /// </summary>
     class InnerMessageQueue
     {
         static System.Collections.Concurrent.ConcurrentQueue<InnerMsg> msgQueue = new System.Collections.Concurrent.ConcurrentQueue<InnerMsg>();

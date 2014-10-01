@@ -20,11 +20,16 @@ namespace ChatServer1
         ServerNetwork ServerNet = new ServerNetwork();
         
         CgsfNET64Lib.NetworkConfig Config;
+
+        // 최대 로비 개수
         int MaxLobbyCount = 0;
+
+        // 로비 당 최대 유저 수
         int MaxLobbyUserCount = 0;
         
         List<int> SessionList = new List<int>();
 
+        // 패킷 핸들러 매니져
         PktHandlerManager HandelrMgr = new PktHandlerManager();
 
         
@@ -91,6 +96,7 @@ namespace ChatServer1
             }
         }
 
+        // 서버 정로를 UI에 출력
         void SetGUIInfo()
         {
             textBoxServerConfig.AppendText(string.Format("IP:{0}, Port:{1}, EngineDllName:{2} {3}", Config.IP, Config.Port, Config.EngineDllName, Environment.NewLine));
@@ -106,6 +112,7 @@ namespace ChatServer1
             listViewLobbyInfo.Refresh();
         }
 
+        // 현재 접속 인원 수를 UI에 출력
         void ConnectCountToGUI(int count)
         {
             textBoxConnectCount.Text = count.ToString();

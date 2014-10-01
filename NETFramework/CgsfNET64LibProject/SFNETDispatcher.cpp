@@ -38,9 +38,6 @@ namespace CgsfNET64Lib {
 			//로직엔트리 객체의 ProcessPacket 메소드를 호출해서 패킷 처리를 수행한다.
 			BasePacket* pPacket = LogicGatewaySingleton::instance()->PopPacket();
 
-			//LOG(INFO) << "LogicThreadProc PacketType: " << pPacket->GetPacketType();
-			//google::FlushLogFiles(google::GLOG_INFO);
-
 			LogicEntrySingleton::instance()->ProcessPacket(pPacket);
 
 			ReleasePacket(pPacket);
