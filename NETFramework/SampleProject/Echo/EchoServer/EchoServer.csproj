@@ -83,12 +83,6 @@
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\..\..\CGSFNETCommon\CGSFNETCommon.csproj">
-      <Project>{32ba163d-2969-45c9-b7ec-468010cc6b52}</Project>
-      <Name>CGSFNETCommon</Name>
-    </ProjectReference>
-  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

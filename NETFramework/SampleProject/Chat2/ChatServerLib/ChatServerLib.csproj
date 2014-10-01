@@ -72,10 +72,6 @@
     <Compile Include="WorkPacketProcessSystem.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\..\CGSFNETCommon\CGSFNETCommon.csproj">
-      <Project>{32ba163d-2969-45c9-b7ec-468010cc6b52}</Project>
-      <Name>CGSFNETCommon</Name>
-    </ProjectReference>
     <ProjectReference Include="..\CSCommonLib\CSCommonLib.csproj">
       <Project>{cdf3916e-101e-44fe-a015-1004291a0644}</Project>
       <Name>CSCommonLib</Name>

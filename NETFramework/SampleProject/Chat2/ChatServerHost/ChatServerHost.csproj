@@ -84,10 +84,6 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\..\CGSFNETCommon\CGSFNETCommon.csproj">
-      <Project>{32ba163d-2969-45c9-b7ec-468010cc6b52}</Project>
-      <Name>CGSFNETCommon</Name>
-    </ProjectReference>
     <ProjectReference Include="..\ChatServerLib\ChatServerLib.csproj">
       <Project>{51804f4d-dca3-4d16-82e9-afdd7b2fa22a}</Project>
       <Name>ChatServerLib</Name>

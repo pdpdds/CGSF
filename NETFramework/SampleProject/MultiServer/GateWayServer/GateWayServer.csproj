@@ -4,7 +4,7 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{44196478-AAE0-44F4-8491-77A0D6933747}</ProjectGuid>
+    <ProjectGuid>{2EC664DD-784B-4152-AEE8-23E8052EC7B5}</ProjectGuid>
     <OutputType>WinExe</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>GateWayServer</RootNamespace>
@@ -92,12 +92,6 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
-  </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\..\..\CGSFNETCommon\CGSFNETCommon.csproj">
-      <Project>{32ba163d-2969-45c9-b7ec-468010cc6b52}</Project>
-      <Name>CGSFNETCommon</Name>
-    </ProjectReference>
   </ItemGroup>
   <ItemGroup>
     <Content Include="License.txt" />

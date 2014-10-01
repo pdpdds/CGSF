@@ -4,7 +4,7 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{F3631F67-510A-4ED8-BACA-2B0CE8CEBC02}</ProjectGuid>
+    <ProjectGuid>{4D1B84C2-CCE2-49AF-AB7A-64834B4DF806}</ProjectGuid>
     <OutputType>WinExe</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>Client</RootNamespace>
@@ -85,12 +85,6 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
-  </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\..\..\CGSFNETCommon\CGSFNETCommon.csproj">
-      <Project>{32ba163d-2969-45c9-b7ec-468010cc6b52}</Project>
-      <Name>CGSFNETCommon</Name>
-    </ProjectReference>
   </ItemGroup>
   <ItemGroup>
     <Content Include="License.txt" />
