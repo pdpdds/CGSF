@@ -1,13 +1,7 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <EngineConfig.xml type="Struct">
-  <EngineName type="wstring" value="CGSFNet.dll" />
-  <P2PModuleName type="wstring" value="P2PServer.dll" />
+  <EngineName type="wstring" value="CGSFNet.dll" />  
   <ServerIP type="wstring" value="127.0.0.1" />
   <ServerPort type="uint16" value="25251" />
-  <PacketProtocol type="wstring" value="Protobuf" />
-  <HostName type="wstring" value="host" />
-  <TimerList type="array">
-    <item0 type="uint32" value="4" />
-  </TimerList>
-  <LogDirectory type="wstring" value="d:\cgsflog\" />
+  <MaxAccept type="uint16" value="5000" />
 </EngineConfig.xml>

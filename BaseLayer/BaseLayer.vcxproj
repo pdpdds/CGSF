@@ -67,27 +67,28 @@
     <_ProjectFileVersion>11.0.50522.1</_ProjectFileVersion>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
-    <OutDir>..\VSProject\Lib\x86\Debug\</OutDir>
-    <IntDir>../VSProject/Intermediate/$(Configuration)\$(ProjectName)\</IntDir>
+    <OutDir>$(ProjectDir)/../VSProject/Lib\x86\Debug\</OutDir>
+    <IntDir>$(ProjectDir)/../VSProject/Intermediate/$(Configuration)\$(ProjectName)\</IntDir>
     <TargetName>$(ProjectName)</TargetName>
     <TargetExt>.lib</TargetExt>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <TargetName>$(ProjectName)</TargetName>
     <TargetExt>.lib</TargetExt>
-    <OutDir>..\VSProject\Lib\x64\Debug\</OutDir>
-    <IntDir>$(SolutionDir)/Intermediate/$(Configuration)\$(ProjectName)\</IntDir>
+    <OutDir>$(ProjectDir)/../VSProject/Lib\x64\Debug\</OutDir>
+    <IntDir>$(ProjectDir)/../VSProject/Intermediate/$(Configuration)\$(ProjectName)\</IntDir>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
-    <OutDir>..\VSProject\Lib\x86\Release\</OutDir>
-    <IntDir>../VSProject/Intermediate/$(Configuration)\$(ProjectName)\</IntDir>
+    <OutDir>$(ProjectDir)/../VSProject/Lib\x86\Debug\</OutDir>
+    <IntDir>$(ProjectDir)/../VSProject/Intermediate/$(Configuration)\$(ProjectName)\</IntDir>
     <TargetName>$(ProjectName)</TargetName>
     <TargetExt>.lib</TargetExt>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
     <TargetName>$(ProjectName)</TargetName>
     <TargetExt>.lib</TargetExt>
-    <OutDir>$(SolutionDir)\Lib\x64\Release\</OutDir>
+    <OutDir>$(ProjectDir)/../VSProject/Lib\x64\Release\</OutDir>
+    <IntDir>$(ProjectDir)/../VSProject/Intermediate/$(Configuration)\$(ProjectName)\</IntDir>
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <ClCompile>

@@ -67,27 +67,28 @@
     <_ProjectFileVersion>11.0.50522.1</_ProjectFileVersion>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
-    <OutDir>..\VSProject\lib\x86\Debug\</OutDir>
-    <IntDir>../VSProject/Intermediate/$(Configuration)\$(ProjectName)\</IntDir>
+    <OutDir>$(ProjectDir)/../VSProject/lib/x86/Debug/</OutDir>
+    <IntDir>$(ProjectDir)/../VSProject/Intermediate/$(Configuration)\$(ProjectName)\</IntDir>
     <TargetName>$(ProjectName)</TargetName>
     <TargetExt>.lib</TargetExt>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <TargetName>$(ProjectName)</TargetName>
     <TargetExt>.lib</TargetExt>
-    <OutDir>..\VSProject\lib\x64\Debug\</OutDir>
-    <IntDir>$(SolutionDir)/Intermediate/$(Configuration)\$(ProjectName)\</IntDir>
+    <OutDir>$(ProjectDir)/../VSProject/lib\x64\Debug\</OutDir>
+    <IntDir>$(ProjectDir)/../VSProject/Intermediate/$(Configuration)\$(ProjectName)\</IntDir>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
-    <OutDir>$(SolutionDir)\lib\x86\Release\</OutDir>
-    <IntDir>$(SolutionDir)/Intermediate/$(Configuration)\$(ProjectName)\</IntDir>
+    <OutDir>$(ProjectDir)/../VSProject/lib\x86\Release\</OutDir>
+    <IntDir>$(ProjectDir)/../VSProject/Intermediate/$(Configuration)\$(ProjectName)\</IntDir>
     <TargetName>$(ProjectName)</TargetName>
     <TargetExt>.lib</TargetExt>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
     <TargetName>$(ProjectName)</TargetName>
     <TargetExt>.lib</TargetExt>
-    <OutDir>$(SolutionDir)\Lib\x64\Release\</OutDir>
+    <OutDir>$(ProjectDir)/../Lib\x64\Release\</OutDir>
+    <IntDir>$(ProjectDir)/../Intermediate/$(Configuration)\$(ProjectName)\</IntDir>
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <ClCompile>
@@ -102,8 +103,8 @@
       <DebugInformationFormat>EditAndContinue</DebugInformationFormat>
     </ClCompile>
     <Lib>
-      <AdditionalLibraryDirectories>$(SolutionDir)/Lib/x86/debug;../ThirdParty/lib/x86/debug;../ThirdParty/ACE/lib/x86;../ThirdParty/MsgPack/lib/x86;../ThirdParty/Avro/lib/x86/Debug;$(SolutionDir)/../ThirdParty/liblfds/lib/x86/debug;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
-      <AdditionalDependencies>libglog.lib;aced.lib;commonlayer.lib;msgpackd.lib;avrocpp_s.lib;liblfds611.lib</AdditionalDependencies>
+      <AdditionalLibraryDirectories>$(ProjectDir)/../VSProject/Lib/x86/debug;$(ProjectDir)/../ThirdParty/lib/x86/debug;$(ProjectDir)/../ThirdParty/ACE/lib/x86;$(ProjectDir)/../ThirdParty/MsgPack/lib/x86;$(ProjectDir)/../ThirdParty/Avro/lib/x86/Debug;$(ProjectDir)/../ThirdParty/liblfds/lib/x86/debug;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalDependencies>libglog.lib;aced.lib;commonlayer.lib;msgpackd.lib;avrocpp_s.lib;liblfds611.lib;zlib.lib</AdditionalDependencies>
     </Lib>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
@@ -118,7 +119,7 @@
       <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
     </ClCompile>
     <Lib>
-      <AdditionalLibraryDirectories>$(SolutionDir)/Lib/x64/debug;../ThirdParty/lib/x64/debug;../ThirdParty/ACE/lib/x64;../ThirdParty/MsgPack/lib/x64;../ThirdParty/Avro/lib/x64/Debug;$(SolutionDir)/../ThirdParty/liblfds/lib/x64/DEBUG;$(SolutionDir)/../../ThirdParty/liblfds/lib/x64/DEBUG;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalLibraryDirectories>$(ProjectDir)/../VSProject/Lib/x64/debug;../ThirdParty/lib/x64/debug;../ThirdParty/ACE/lib/x64;../ThirdParty/MsgPack/lib/x64;../ThirdParty/Avro/lib/x64/Debug;$(SolutionDir)/../ThirdParty/liblfds/lib/x64/DEBUG;$(SolutionDir)/../../ThirdParty/liblfds/lib/x64/DEBUG;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
       <AdditionalDependencies>libglog.lib;aced.lib;commonlayer.lib;msgpackd.lib;avrocpp_s.lib;liblfds611.lib</AdditionalDependencies>
     </Lib>
   </ItemDefinitionGroup>
@@ -136,7 +137,7 @@
       <AdditionalOptions>-D_SCL_SECURE_NO_WARNINGS %(AdditionalOptions)</AdditionalOptions>
     </ClCompile>
     <Lib>
-      <AdditionalLibraryDirectories>$(SolutionDir)/Lib/x86/Release;../ThirdParty/lib/x86/Release;../ThirdParty/ACE/lib/x86;../ThirdParty/MsgPack/lib/x86;../ThirdParty/Avro/lib/x86/Release;$(SolutionDir)/../ThirdParty/liblfds/lib/x86/RELEASE;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalLibraryDirectories>$(ProjectDir)/../VSProject/Lib/x86/Release;$(ProjectDir)/../ThirdParty/lib/x86/Release;$(ProjectDir)/../ThirdParty/ACE/lib/x86;$(ProjectDir)/../ThirdParty/MsgPack/lib/x86;$(ProjectDir)/../ThirdParty/Avro/lib/x86/Release;$(ProjectDir)/../ThirdParty/liblfds/lib/x86/RELEASE;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
       <AdditionalDependencies>libglog.lib;ace.lib;commonlayer.lib;msgpack.lib;avrocpp_s.lib;liblfds611.lib</AdditionalDependencies>
     </Lib>
   </ItemDefinitionGroup>
@@ -155,7 +156,7 @@
     </ClCompile>
     <Lib>
       <AdditionalDependencies>libglog.lib;ace.lib;commonlayer.lib;msgpack.lib;avrocpp_s.lib;liblfds611.lib</AdditionalDependencies>
-      <AdditionalLibraryDirectories>$(SolutionDir)/Lib/x64/Release;../ThirdParty/lib/x64/Release;../ThirdParty/ACE/lib/x64;../ThirdParty/MsgPack/lib/x64;../ThirdParty/Avro/lib/x64/Release;$(SolutionDir)/../ThirdParty/liblfds/lib/x64/RELEASE;$(SolutionDir)/../../ThirdParty/liblfds/lib/x64/RELEASE;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalLibraryDirectories>$(ProjectDir)/../VSProject/Lib/x64/Release;../ThirdParty/lib/x64/Release;../ThirdParty/ACE/lib/x64;../ThirdParty/MsgPack/lib/x64;../ThirdParty/Avro/lib/x64/Release;$(SolutionDir)/../ThirdParty/liblfds/lib/x64/RELEASE;$(SolutionDir)/../../ThirdParty/liblfds/lib/x64/RELEASE;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
     </Lib>
   </ItemDefinitionGroup>
   <ItemGroup>
