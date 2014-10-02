@@ -51,7 +51,7 @@ BOOL SFFastDBAdaptorImpl::RegisterDBService()
 
 BOOL SFFastDBAdaptorImpl::OnBookInfo( BasePacket* pMessage )
 {	
-	char szName[256];	
+	char szName[256] = { 0, };
 
 	SFMessage* pMsg = (SFMessage*)pMessage;
 

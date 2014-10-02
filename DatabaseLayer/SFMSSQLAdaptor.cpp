@@ -18,8 +18,11 @@ BOOL SFMSSQLAdaptor::Initialize(_DBConnectionInfo* pInfo)
 {
 	m_pMSSql = new SFMSSQL();
 
-	if(FALSE == m_pMSSql->Initialize(pInfo))
+	if (FALSE == m_pMSSql->Initialize(pInfo))
+	{
+		printf("MSSql Initialize Fail!!\n");
 		return FALSE;
+	}
 	
 	return RegisterDBService();
 }

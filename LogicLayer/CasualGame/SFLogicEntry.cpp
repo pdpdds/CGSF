@@ -28,8 +28,11 @@ bool SFLogicEntry::Initialize()
 		pProxyLocal = new SFDatabaseProxyLocal<SFMySQLAdaptorImpl>();
 	}
 
+	DBModuleParams params;
+	params.threadSafe = true;
+
 	m_pDatabaseProxy = new SFDatabaseProxyImpl(pProxyLocal);
-	m_pDatabaseProxy->Initialize();
+	m_pDatabaseProxy->Initialize(params);
 
 	m_pRoomManager = new SFRoomManager();
 	m_pRoomManager->Initialize();

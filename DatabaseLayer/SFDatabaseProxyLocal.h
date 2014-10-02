@@ -9,7 +9,7 @@ public:
 	SFDatabaseProxyLocal(void){}
 	virtual ~SFDatabaseProxyLocal(void){}
 
-	virtual BOOL Initialize(int workerPoolSize = -1) override;
+	virtual BOOL Initialize(DBModuleParams& params) override;
 	virtual BOOL SendDBRequest(BasePacket* pMessage) override;
 
 protected:
@@ -20,10 +20,12 @@ private:
 
 
 template <typename T>
-BOOL SFDatabaseProxyLocal<T>::Initialize(int workerPoolSize = -1)
+BOOL SFDatabaseProxyLocal<T>::Initialize(DBModuleParams& params)
 {
-	if(workerPoolSize > 0)
-		m_DBManager.SetWorkerPoolSize(workerPoolSize);
+	if (params.workerPoolSize <= 0)
+		return FALSE;
+
+	m_DBManager.SetDBParams(params);
 
 	m_DBManager.activate();
 

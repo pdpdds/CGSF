@@ -1,14 +1,16 @@
 #pragma once
 #include "SFMSSQLAdaptor.h"
 
+#define MAX_USER_NAME 20
+
 class SFStmt_SPLoadUser : public SFStatement
 {
 public:
 	int nErrorCode;
 	int nUserID;
-	TCHAR szUserName[10];
+	char szUserName[MAX_USER_NAME];
 
-	void Init(){nErrorCode = nUserID = 0, memset(szUserName, 0, sizeof(TCHAR) * 10);}
+	void Init(){ nErrorCode = nUserID = 0, memset(szUserName, 0, sizeof(char)* MAX_USER_NAME); }
 
 protected:
 	DEFINE_QUERY(L"{call SPLoadUser(?)}")

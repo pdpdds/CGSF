@@ -11,20 +11,75 @@
 #include "QueryIdentifier.h"
 #include "SFMSSQLAdaptorImpl.h"
 
-void DatabaseTest()
+void FastDBQueryThread(void* Args);
+void MSSQLThread(void* Args);
+
+void testMSSQL();
+void testFastDB();
+
+int _tmain(int argc, _TCHAR* argv[])
 {
-	//SFMSSQLAdaptorImpl ODBC;
+	       
+	ACE::init();
 
-	_DBConnectionInfo Info = {L"ServiceName", L"test", L"ID", L"Password"};
+	void testMSSQL();
 
-	/*if(TRUE == ODBC.Initialize(&Info))
-	{					
-		ODBC.OnLoadUser(1, L"jUHANG");
-		
-	}*/
+	ACE::fini();
+
+	return 0;
 }
 
-void QueryThread(void* Args)
+void testMSSQL()
+{
+	DBModuleParams params;	
+	params.threadSafe = false;
+
+	SFDatabaseProxy* pProxyLocal = new SFDatabaseProxyLocal<SFMSSQLAdaptorImpl>();
+	SFDatabaseProxy* pDatabaseProxy = new SFDatabaseProxyImpl(pProxyLocal);
+
+	pDatabaseProxy->Initialize(params);
+	
+	ACE_Thread_Manager::instance()->spawn_n(1, (ACE_THR_FUNC)MSSQLThread, pDatabaseProxy, THR_NEW_LWP, ACE_DEFAULT_THREAD_PRIORITY, 2);
+
+	ACE_Thread_Manager::instance()->wait();
+}
+
+void MSSQLThread(void* Args)
+{
+	SFDatabaseProxy* pDatabaseProxy = (SFDatabaseProxy*)Args;
+
+	std::cout << "Input User Name " << std::endl;
+
+	std::string input;
+
+	while (1)
+	{
+		std::cin >> input;
+		SFMessage* pMessage = SFDatabase::GetInitMessage(DBMSG_LOADUSER, 1000);
+		*pMessage << (char*)input.c_str();
+
+		pDatabaseProxy->SendDBRequest(pMessage);
+	}
+}
+
+///////////////////////////////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////////////////////
+void testFastDB()
+{
+	DBModuleParams params;
+	params.threadSafe = true;
+
+	SFDatabaseProxy* pProxyLocal = new SFDatabaseProxyLocal<SFFastDBAdaptorImpl>();
+	SFDatabaseProxy* pDatabaseProxy = new SFDatabaseProxyImpl(pProxyLocal);
+
+	pDatabaseProxy->Initialize(params);
+
+	ACE_Thread_Manager::instance()->spawn_n(1, (ACE_THR_FUNC)FastDBQueryThread, pDatabaseProxy, THR_NEW_LWP, ACE_DEFAULT_THREAD_PRIORITY, 2);
+
+	ACE_Thread_Manager::instance()->wait();
+}
+
+void FastDBQueryThread(void* Args)
 {
 	SFDatabaseProxy* pDatabaseProxy = (SFDatabaseProxy*)Args;
 
@@ -32,50 +87,12 @@ void QueryThread(void* Args)
 
 	std::string input;
 
-	while(1)
+	while (1)
 	{
 		std::cin >> input;
-		//SFMessage* pPacket = new SFJsonPacket();
 		SFMessage* pMessage = SFDatabase::GetInitMessage(DBMSG_BOOKINFO, 1000);
 		*pMessage << (char*)input.c_str();
 
 		pDatabaseProxy->SendDBRequest(pMessage);
-//		packet.GetData().Add("ECHO", input.c_str());
-//		g_pNetworkEntry->TCPSend(&packet);
 	}
 }
-
-int _tmain(int argc, _TCHAR* argv[])
-{
-	       
-	ACE::init();
-
-	//SFDatabaseProxy* pProxyLocal = new SFDatabaseProxyLocal<SFFastDBAdaptorImpl>();
-	SFDatabaseProxy* pProxyLocal = new SFDatabaseProxyLocal<SFMSSQLAdaptorImpl>();
-	SFDatabaseProxy* pDatabaseProxy = new SFDatabaseProxyImpl(pProxyLocal);
-
-	pDatabaseProxy->Initialize(1);
-
-	ACE_Thread_Manager::instance()->spawn_n(1, (ACE_THR_FUNC)QueryThread, pDatabaseProxy, THR_NEW_LWP, ACE_DEFAULT_THREAD_PRIORITY, 2);
-
-	ACE_Thread_Manager::instance()->wait();
-
-	ACE::fini();
-
-	return 0;
-}
-
-/*ACE::init();
-SFDatabaseProxy* pProxyLocal = new SFDatabaseProxyLocal();
-SFDatabaseProxy* pProxy = new SFDatabaseProxyImpl(pProxyLocal);
-pProxy->Initialize();
-
-SFObjectPool<SFMessage> Pool(100);
-for(int i= 0; i < 100; i++)
-{
-SFMessage* pMessage = Pool.Alloc();
-pProxy->SendDBRequest(pMessage);
-}
-
-getchar();
-ACE::fini();*/

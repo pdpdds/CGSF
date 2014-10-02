@@ -6,6 +6,7 @@
 #include "SFDBWorker.h"
 #include "SFLockQueue.h"
 #include "SFDBRequest.h"
+#include "SFDataBaseProxy.h"
 #include "IDBManager.h"
 
 template <typename T>
@@ -13,8 +14,7 @@ class SFDBManager : public ACE_Task_Base, public IDBManager
 {
 public:
 	enum
-	{
-		DEFAUT_POOL_SIZE = 5,
+	{		
 		MAX_TIMEOUT = 5,
 	};
 
@@ -22,8 +22,7 @@ public:
 		: m_ShutDown(0)
 		, m_Workers_Lock()
 		, m_workers_Cond(m_Workers_Lock)
-	{
-		m_workerPoolSize = DEFAUT_POOL_SIZE;
+	{		
 	}
 
 	virtual ~SFDBManager(void){}
@@ -33,9 +32,9 @@ public:
 		return this->m_queue.enqueue(pReq);
 	}
 
-	void SetWorkerPoolSize(int workerPoolSize)
+	void SetDBParams(DBModuleParams& params)
 	{
-		m_workerPoolSize = workerPoolSize;
+		m_DBparams = params;
 	}
 
 	int svc(void)
@@ -118,18 +117,46 @@ protected:
 	{
 		ACE_GUARD_RETURN(ACE_Thread_Mutex, worker_mon, this->m_Workers_Lock, -1);
 
-		SFDatabase* pDatabase = new SFDatabase(new T());
-		pDatabase->Initialize();
 
-		for(int i = 0; i < m_workerPoolSize; i++)
+		if (m_DBparams.threadSafe == true) //DB 모듈이 스레드 세이프하다면 스레드별로 별도의 객체를 가질 필요는 없다.
 		{
-			SFDBWorker* pWorker;
-			ACE_NEW_RETURN(pWorker, SFDBWorker(this), -1);
-			this->m_queueWorkers.enqueue_tail(pWorker);			
+			SFDatabase* pDatabase = new SFDatabase(new T());
+			if (false == pDatabase->Initialize())
+			{
+				printf("SFDatabase Initialize Fail!!\n");
+				return -1;
+			}
 
-			pWorker->SetDatabase(pDatabase);
+			for (int i = 0; i < m_DBparams.workerPoolSize; i++)
+			{
+				SFDBWorker* pWorker;
+				ACE_NEW_RETURN(pWorker, SFDBWorker(this), -1);
+				this->m_queueWorkers.enqueue_tail(pWorker);
 
-			pWorker->activate();
+				pWorker->SetDatabase(pDatabase);
+
+				pWorker->activate();
+			}
+		}
+		else //DB 모듈이 스레드 세이프하지 않으므로 스레드마다 별도로 DB 모듈을 생성한다.
+		{
+			for (int i = 0; i < m_DBparams.workerPoolSize; i++)
+			{
+				SFDatabase* pDatabase = new SFDatabase(new T());
+				if (false == pDatabase->Initialize())
+				{
+					printf("SFDatabase Initialize Fail!!\n");
+					return -1;
+				}
+
+				SFDBWorker* pWorker;
+				ACE_NEW_RETURN(pWorker, SFDBWorker(this), -1);
+				this->m_queueWorkers.enqueue_tail(pWorker);
+
+				pWorker->SetDatabase(pDatabase);
+
+				pWorker->activate();
+			}
 		}
 
 		return 0;
@@ -147,7 +174,7 @@ protected:
 
 private:
 	int m_ShutDown;
-	int m_workerPoolSize;
+	DBModuleParams m_DBparams;
 	ACE_Thread_Mutex m_Workers_Lock;
 	ACE_Condition<ACE_Thread_Mutex> m_workers_Cond;
 	ACE_Unbounded_Queue<SFDBWorker*>	m_queueWorkers;
