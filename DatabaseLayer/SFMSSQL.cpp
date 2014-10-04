@@ -565,24 +565,22 @@ void SFStatement::GetErrMsg(SQLCHAR* szMsg, SQLSMALLINT nBufLen)
 
 SFQuery::SFQuery(SFStatement& statement)
 {
-	m_pStatement = &statement;
-	//m_bIsLocked = m_pStatement->Lock(TRUE);
+	m_pStatement = &statement;	
 	m_bIsFirst = TRUE;
 	statement.ClearParameter();
 }
 
 SFQuery::~SFQuery()
 {
-	if(m_pStatement && m_bIsLocked)
+	if(m_pStatement)
 	{
-		::SQLFreeStmt(m_pStatement->GetHandle(), SQL_CLOSE);
-		//m_pStatement->Unlock();
+		::SQLFreeStmt(m_pStatement->GetHandle(), SQL_CLOSE);		
 	}
 }
 
 BOOL SFQuery::Execute()
 {
-	if(m_pStatement == NULL || !m_bIsLocked)
+	if(m_pStatement == NULL)
 		return FALSE;
 
 	SQLRETURN sqlReturn = ::SQLExecute(m_pStatement->GetHandle());
@@ -606,7 +604,7 @@ BOOL SFQuery::Execute()
 
 BOOL SFQuery::Fetch()
 {
-	if(m_pStatement == NULL || !m_bIsLocked)
+	if(m_pStatement == NULL)
 		return FALSE;
 
 	SQLRETURN sqlReturn;
@@ -637,7 +635,7 @@ BOOL SFQuery::Fetch()
 
 int SFQuery::RowCount()
 {
-	if(m_pStatement == NULL || !m_bIsLocked)
+	if(m_pStatement == NULL)
 		return FALSE;
 
 	SQLINTEGER nCount;

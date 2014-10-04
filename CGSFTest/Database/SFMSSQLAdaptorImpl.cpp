@@ -53,6 +53,7 @@ BOOL SFMSSQLAdaptorImpl::OnLoadUser( BasePacket* pMessage )
 
 	while (query.Fetch())
 	{
+
 	}
 
 	return TRUE;

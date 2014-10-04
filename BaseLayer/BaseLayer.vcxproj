@@ -77,6 +77,7 @@
     <TargetExt>.lib</TargetExt>
     <OutDir>$(ProjectDir)/../VSProject/Lib\x64\Debug\</OutDir>
     <IntDir>$(ProjectDir)/../VSProject/Intermediate/$(Configuration)\$(ProjectName)\</IntDir>
+    <IncludePath>$(VC_IncludePath);$(WindowsSDK_IncludePath);</IncludePath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <OutDir>$(ProjectDir)/../VSProject/Lib\x86\Debug\</OutDir>

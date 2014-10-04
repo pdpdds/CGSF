@@ -11,6 +11,8 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "BaseLayerTest", "..\CGSFTes
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "BigNum", "..\CGSFTest\BigNum\BigNum.vcxproj", "{4D21A907-D8F6-4A65-936E-823F01D6FB82}"
 EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "DatabaseLayer", "..\DatabaseLayer\DatabaseLayer.vcxproj", "{4EF55E16-D453-444D-90E5-AB80F4E280BA}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Win32 = Debug|Win32
@@ -43,6 +45,14 @@ Global
 		{4D21A907-D8F6-4A65-936E-823F01D6FB82}.Release|Win32.ActiveCfg = Release|Win32
 		{4D21A907-D8F6-4A65-936E-823F01D6FB82}.Release|Win32.Build.0 = Release|Win32
 		{4D21A907-D8F6-4A65-936E-823F01D6FB82}.Release|x64.ActiveCfg = Release|Win32
+		{4EF55E16-D453-444D-90E5-AB80F4E280BA}.Debug|Win32.ActiveCfg = Debug|Win32
+		{4EF55E16-D453-444D-90E5-AB80F4E280BA}.Debug|Win32.Build.0 = Debug|Win32
+		{4EF55E16-D453-444D-90E5-AB80F4E280BA}.Debug|x64.ActiveCfg = Debug|x64
+		{4EF55E16-D453-444D-90E5-AB80F4E280BA}.Debug|x64.Build.0 = Debug|x64
+		{4EF55E16-D453-444D-90E5-AB80F4E280BA}.Release|Win32.ActiveCfg = Release|Win32
+		{4EF55E16-D453-444D-90E5-AB80F4E280BA}.Release|Win32.Build.0 = Release|Win32
+		{4EF55E16-D453-444D-90E5-AB80F4E280BA}.Release|x64.ActiveCfg = Release|x64
+		{4EF55E16-D453-444D-90E5-AB80F4E280BA}.Release|x64.Build.0 = Release|x64
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
