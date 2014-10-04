@@ -16,6 +16,7 @@ public:
 private:
 	static bool m_bLogicEnd;
 	int m_nLogicThreadCnt;
+	int m_logicThreadGroupId;
 	int m_rpcThreadGroupId;
 
 	IRPCService* m_pRPCService;

@@ -8,6 +8,7 @@ public:
 	virtual ~LogicEntry(void);
 
 	virtual bool ProcessPacket(BasePacket* pPacket);
+	virtual bool DestroyLogic();
 
 	void SetLogic(ILogicEntry* pLogic)
 	{

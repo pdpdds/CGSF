@@ -5,25 +5,37 @@
 #include <ACE/TSS_t.h>
 #include "Macro.h"
 
+
+SFDBWorker::SFDBWorker(IDBManager* pManager)
+{ 
+	m_pManager = pManager; 
+}
+
+SFDBWorker::~SFDBWorker(void)
+{
+	//if (m_pDatabase)
+	//	delete m_pDatabase;
+}
+
 int SFDBWorker::svc(void)
 {
 	m_threadID = ACE_Thread::self();
+	ACE_Time_Value Interval(1, 1000);
 
 	//BOOL bResult = m_pDatabase->Initialize();
 
-	while(TRUE)
+	while (this->m_pManager->done() != true)
 	{
-		ACE_Method_Request* pReq = this->m_queue.dequeue();
+		ACE_Method_Request* pReq = this->m_queue.dequeue(&Interval);
 
 		if(NULL == pReq)
 		{	
-			SFASSERT(0);
-			return -1;
+			continue;
 		}
 
-		int Result = pReq->call();
+		int result = pReq->call();
 
-		if(Result == -1)
+		if(result == -1)
 			break;
 
 		this->m_pManager->return_to_work(this, pReq);

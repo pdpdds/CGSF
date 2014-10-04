@@ -10,12 +10,12 @@ public:
 	SFTSSyncQueue(void){}
 	virtual ~SFTSSyncQueue(void){}
 
-	virtual BOOL Push(T* pMsg) = 0;
+	virtual bool Push(T* pMsg) = 0;
 	virtual T* Pop() = 0;
 
 protected:
-	virtual BOOL Initialize() = 0;
-	virtual BOOL Finally() = 0;
+	virtual bool Initialize() = 0;
+	virtual bool Finally() = 0;
 
 private:
 };

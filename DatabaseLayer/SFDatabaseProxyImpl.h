@@ -5,7 +5,11 @@ class SFDatabaseProxyImpl : public SFDatabaseProxy
 {
 public:
 	SFDatabaseProxyImpl(SFDatabaseProxy* pProxy){m_pDataBaseProxy = pProxy;}
-	virtual ~SFDatabaseProxyImpl(void){}
+	virtual ~SFDatabaseProxyImpl(void)
+	{ 
+		if (m_pDataBaseProxy)
+			delete m_pDataBaseProxy;
+	}
 
 	virtual BOOL Initialize(DBModuleParams& params)
 	{

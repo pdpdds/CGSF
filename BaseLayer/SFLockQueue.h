@@ -18,7 +18,7 @@ public:
 		Finally();
 	}
 
-	virtual BOOL Push(T* pMsg) 
+	virtual bool Push(T* pMsg) 
 	{
 		SFLockHelper LockHelper(&m_Lock);
 		m_Queue.push(pMsg);
@@ -42,8 +42,18 @@ public:
 	int Size(){return m_Queue.size();}
 
 protected:
-	virtual BOOL Initialize(){return TRUE;}
-	virtual BOOL Finally(){return TRUE;}
+	virtual bool Initialize(){return true;}
+	virtual bool Finally()
+	{
+		while (m_Queue.empty() == false)
+		{
+			T* pMsg = m_Queue.front();
+			m_Queue.pop();
+			delete pMsg;
+		}
+
+		return true;
+	}
 
 
 private:

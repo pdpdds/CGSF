@@ -11,6 +11,7 @@ HINSTANCE g_pP2PServerHandle = 0;
 
 SFLogicEntry::SFLogicEntry(void)
 : m_bP2PService(false)
+, m_pDatabaseProxy(NULL)
 {
 	m_pLogicEntry = this;
 }
@@ -107,6 +108,10 @@ BOOL SFLogicEntry::CreateDirectoryWathcer()
 
 SFLogicEntry::~SFLogicEntry(void)
 {
+	m_DirectoryWatcherTask.setDone();
+
+	ACE_Thread_Manager::instance()->wait_task(&m_DirectoryWatcherTask);
+
 	if (g_pP2PServerHandle)
 	{
 		DEACTIVATEP2P_FUNC *pfuncDeactivate;

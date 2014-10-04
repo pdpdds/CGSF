@@ -30,8 +30,7 @@ bool SFMMODispatcher::CreateLogicSystem(ILogicEntry* pLogicEntry)
 	for (int index = 0; m_channelCount; index++)
 	{
 		SFIOCPQueue<BasePacket>* pQueue = new SFIOCPQueue<BasePacket>();
-		ACE_thread_t handle = 0;
-		ACE_Thread_Manager::instance()->spawn_n(1, (ACE_THR_FUNC)MMOLogicProc, pQueue, THR_NEW_LWP, ACE_DEFAULT_THREAD_PRIORITY, handle);
+		ACE_Thread_Manager::instance()->spawn_n(1, (ACE_THR_FUNC)MMOLogicProc, pQueue, THR_NEW_LWP, ACE_DEFAULT_THREAD_PRIORITY);
 
 		m_mapQueue.insert(std::make_pair(index, pQueue));
 	}

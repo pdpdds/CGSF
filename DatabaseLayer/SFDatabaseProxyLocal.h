@@ -7,7 +7,11 @@ class SFDatabaseProxyLocal : public SFDatabaseProxy
 {
 public:
 	SFDatabaseProxyLocal(void){}
-	virtual ~SFDatabaseProxyLocal(void){}
+	virtual ~SFDatabaseProxyLocal(void)
+	{
+		m_DBManager.ShutDown();
+		ACE_Thread_Manager::instance()->wait_task(&m_DBManager);
+	}
 
 	virtual BOOL Initialize(DBModuleParams& params) override;
 	virtual BOOL SendDBRequest(BasePacket* pMessage) override;

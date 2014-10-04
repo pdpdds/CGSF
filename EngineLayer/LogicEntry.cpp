@@ -25,3 +25,13 @@ bool LogicEntry::ProcessPacket(BasePacket* pPacket)
 		
 	return true;
 }
+
+bool LogicEntry::DestroyLogic()
+{
+	if (m_pLogicEntry)
+	{
+		delete m_pLogicEntry;
+	}
+
+	return true;
+}

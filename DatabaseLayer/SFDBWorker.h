@@ -9,8 +9,8 @@ class SFDatabase;
 class SFDBWorker : public ACE_Task<ACE_SYNCH>
 {
 public:
-	SFDBWorker(IDBManager* pManager){m_pManager = pManager;}
-	virtual ~SFDBWorker(void){}
+	SFDBWorker(IDBManager* pManager);
+	virtual ~SFDBWorker(void);	
 
 	int perform(ACE_Method_Request* pReq)
 	{

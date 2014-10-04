@@ -25,8 +25,10 @@ public:
 	{		
 	}
 
-	virtual ~SFDBManager(void){}
-
+	virtual ~SFDBManager(void)
+	{
+	}
+	
 	int perform(ACE_Method_Request* pReq)
 	{
 		return this->m_queue.enqueue(pReq);
@@ -41,7 +43,7 @@ public:
 	{
 		Create_Worker_Pool();
 
-		while(!done())
+		while (m_ShutDown != 1)
 		{
 			ACE_Time_Value tv((long)MAX_TIMEOUT);
 			tv += ACE_OS::time(0);
@@ -57,11 +59,25 @@ public:
 			pWorker->perform(pReq);
 		}
 
+		SFDBWorker* pWorker = NULL;
+		this->m_queueWorkers.dequeue_head(pWorker);
+
+		while (pWorker)
+		{						
+			ACE_Thread_Manager::instance()->wait_task(pWorker);
+			delete pWorker;
+			pWorker = NULL;
+
+			this->m_queueWorkers.dequeue_head(pWorker);
+		}
+
 		return 0;
 	}
 
 	int ShutDown()
 	{
+		m_ShutDown = 1;		
+		
 		return 0;
 	}
 
@@ -162,7 +178,7 @@ protected:
 		return 0;
 	}
 
-	int done(void)
+	virtual bool done(void)
 	{
 		return (m_ShutDown == 1);
 	}

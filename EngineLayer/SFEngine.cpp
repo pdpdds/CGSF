@@ -38,17 +38,20 @@ SFEngine::SFEngine()
 	google::LogToStderr();
 #endif
 	
-	m_EngineHandle = 0;
+	m_engineHandle = 0;
 
 	m_pPacketProtocolManager = new SFPacketProtocolManager();
 }
 
 SFEngine::~SFEngine(void)
 {	
-	//ACE::fini();
+	ACE::fini();
 
-	if (m_EngineHandle)
-		FreeLibrary(m_EngineHandle);
+	if (m_pNetworkEngine)
+		delete m_pNetworkEngine;
+
+	if (m_engineHandle)
+		FreeLibrary(m_engineHandle);
 }
 
 SFEngine* SFEngine::GetInstance()
@@ -63,13 +66,13 @@ NET_ERROR_CODE SFEngine::CreateEngine(char* szModuleName, bool server)
 {
 	m_isServer = server;
 
-	m_EngineHandle = ::LoadLibraryA(szModuleName);
+	m_engineHandle = ::LoadLibraryA(szModuleName);
 
-	if(m_EngineHandle == 0)
+	if (m_engineHandle == 0)
 		return NET_ERROR_CODE::ENGINE_INIT_CREAT_ENGINE_LOAD_DLL_FAIL;
 
 	CREATENETWORKENGINE *pfunc;
-	pfunc = (CREATENETWORKENGINE*)::GetProcAddress( m_EngineHandle, "CreateNetworkEngine");
+	pfunc = (CREATENETWORKENGINE*)::GetProcAddress(m_engineHandle, "CreateNetworkEngine");
 	m_pNetworkEngine = pfunc(server, this);
 
 	if(m_pNetworkEngine == NULL)
@@ -89,7 +92,7 @@ void SFEngine::AddRPCService(IRPCService* pService)
 
 bool SFEngine::CreatePacketSendThread()
 {	
-	m_packetSendThreadId = ACE_Thread_Manager::instance()->spawn_n(1, (ACE_THR_FUNC)PacketSendThread, this, THR_NEW_LWP, ACE_DEFAULT_THREAD_PRIORITY, 1002);
+	m_packetSendThreadId = ACE_Thread_Manager::instance()->spawn_n(1, (ACE_THR_FUNC)PacketSendThread, this, THR_NEW_LWP, ACE_DEFAULT_THREAD_PRIORITY);
 
 	return TRUE;
 }
@@ -304,7 +307,7 @@ bool SFEngine::ShutDown()
 		m_pNetworkEngine->Shutdown();
 		LOG(INFO) << "Engine Shut Down Step (4) m_pNetworkEngine->Shutdown()";		
 				
-		delete m_pNetworkEngine;
+		//delete m_pNetworkEngine;
 	}
 	
 	if (m_pServerConnectionManager)

@@ -13,6 +13,7 @@ SFCasualGameDispatcher::SFCasualGameDispatcher(void)
 //캐쥬얼 게임 프레임 워크의 로직 쓰레드 수는 하나임
 	m_nLogicThreadCnt = 1;
 	m_rpcThreadGroupId = -1;
+	m_logicThreadGroupId = -1;
 }
 
 SFCasualGameDispatcher::~SFCasualGameDispatcher(void)
@@ -96,7 +97,7 @@ void SFCasualGameDispatcher::RPCThreadProc(void* Args)
 
 bool SFCasualGameDispatcher::CreateLogicSystem(ILogicEntry* pLogicEntry)
 {	
-	ACE_Thread_Manager::instance()->spawn_n(m_nLogicThreadCnt, (ACE_THR_FUNC)LogicThreadProc, this, THR_NEW_LWP, ACE_DEFAULT_THREAD_PRIORITY);
+	m_logicThreadGroupId = ACE_Thread_Manager::instance()->spawn_n(m_nLogicThreadCnt, (ACE_THR_FUNC)LogicThreadProc, this, THR_NEW_LWP, ACE_DEFAULT_THREAD_PRIORITY);
 
 	LogicEntrySingleton::instance()->SetLogic(pLogicEntry);
 
@@ -108,17 +109,17 @@ bool SFCasualGameDispatcher::CreateLogicSystem(ILogicEntry* pLogicEntry)
 bool SFCasualGameDispatcher::ShutDownLogicSystem()
 {
 	m_bLogicEnd = true;
-
 	BasePacket* pCommand = PacketPoolSingleton::instance()->Alloc();
 	pCommand->SetSerial(-1);
 	pCommand->SetPacketType(SFPACKET_SERVERSHUTDOWN);
 	LogicGatewaySingleton::instance()->PushPacket(pCommand);
 
-	if (m_rpcThreadGroupId >= 0)
-	{
-		RPCGatewaySingleton ::instance()->PushPacket(NULL);
-		ACE_Thread_Manager::instance()->wait_grp(m_rpcThreadGroupId);
-	}
+	ACE_Thread_Manager::instance()->wait_grp(m_logicThreadGroupId);
+
+	LogicEntrySingleton::instance()->DestroyLogic();
+	
+	RPCGatewaySingleton ::instance()->PushPacket(NULL);
+	ACE_Thread_Manager::instance()->wait_grp(m_rpcThreadGroupId);		
 
 	return true;
 }

@@ -79,7 +79,7 @@ private:
 	SFConfigure m_Config;
 	int m_packetSendThreadId;
 
-	HINSTANCE m_EngineHandle;
+	HINSTANCE m_engineHandle;
 	INetworkEngine* m_pNetworkEngine;
 
 	SFPacketProtocolManager* m_pPacketProtocolManager;

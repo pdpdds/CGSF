@@ -12,6 +12,7 @@ public:
 	BOOL GetTaskProcessing(){return m_TaskProcessing;}
 	void SetTaskProcessing(BOOL TaskProcessing){m_TaskProcessing = TaskProcessing;}
 	BOOL done(){return m_done;}
+	void setDone(){ m_done = TRUE; }
 
 	HANDLE GetShouterEvent(){return m_hShouterEvent;}
 

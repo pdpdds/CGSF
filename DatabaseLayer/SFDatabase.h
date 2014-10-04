@@ -10,7 +10,9 @@ class SFDatabase
 {
 public:
 	SFDatabase(SFDBAdaptor* pAdaptor);
-	virtual ~SFDatabase(void){}
+	virtual ~SFDatabase(void)
+	{
+	}
 
 	BOOL Initialize()
 	{
