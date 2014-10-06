@@ -1,5 +1,6 @@
 #pragma once
-#include <map>
+
+#include <unordered_map>
 
 /////////////////////////////////////////////////////////////////////////////
 //20120426 ≈€«√∏¥ º”º∫
@@ -10,7 +11,7 @@
 template <typename TMsgType, typename TMsgHandler, typename TMsg>
 class SFDispatch
 {
-	typedef std::map<TMsgType, TMsgHandler> MsgMap;
+	typedef std::unordered_map<TMsgType, TMsgHandler> MsgMap;
 public:
 	SFDispatch(void){}
 	virtual ~SFDispatch(void){m_MsgMap.clear();}
@@ -59,7 +60,7 @@ bool SFDispatch<typename TMsgType, typename TMsgHandler, typename TMsg>::HandleM
 template <typename TMsgType, typename TMsgHandler, typename TMsg, typename TMsg2>
 class SFDispatch_2
 {
-	typedef std::map<TMsgType, TMsgHandler> MsgMap;
+	typedef std::unordered_map<TMsgType, TMsgHandler> MsgMap;
 public:
 	SFDispatch_2(void){}
 	virtual ~SFDispatch_2(void){m_MsgMap.clear();}
