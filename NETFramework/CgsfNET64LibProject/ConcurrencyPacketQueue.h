@@ -1,4 +1,4 @@
-#pragma once 
+ï»¿#pragma once 
 
 #include "stdafx.h"
 #include "SFNETPacket.h"
@@ -10,7 +10,7 @@ using namespace System::Collections::Concurrent;
 namespace CgsfNET64Lib {
 
 	/// <summary>
-	/// ½º·¹µå ¼¼ÀÌÇÁÇÑ ÆĞÅ¶ ÀúÀå Å¥
+	/// ìŠ¤ë ˆë“œ ì„¸ì´í”„í•œ íŒ¨í‚· ì €ì¥ í
 	/// </summary>
 	ref class ConcurrencyPacketQueue
 	{
@@ -19,10 +19,10 @@ namespace CgsfNET64Lib {
 		~ConcurrencyPacketQueue() {}
 
 		/// <summary>
-		/// Å¥¿¡ ÆĞÅ¶À» ³Ö´Â´Ù.
+		/// íì— íŒ¨í‚·ì„ ë„£ëŠ”ë‹¤.
 		/// </summary>
-		/// <param name="isServerConnect">trueÀÌ¸é ¼­¹ö°£ ¼¼¼Ç</param>
-		/// <param name="pPacket">³×Æ®¿öÅ© ¿£ÁøÀ» ÅëÇØ¼­ ¹ŞÀº ÆĞÅ¶. C++ Å¸ÀÔ</param>
+		/// <param name="isServerConnect">trueì´ë©´ ì„œë²„ê°„ ì„¸ì…˜</param>
+		/// <param name="pPacket">ë„¤íŠ¸ì›Œí¬ ì—”ì§„ì„ í†µí•´ì„œ ë°›ì€ íŒ¨í‚·. C++ íƒ€ì…</param>
 		void Enqueue(bool isServerConnect, BasePacket* pPacket)
 		{
 			auto packet = MakeNetPacket(isServerConnect, pPacket);
@@ -30,18 +30,18 @@ namespace CgsfNET64Lib {
 		}
 
 		/// <summary>
-		/// Å¥¿¡ ÆĞÅ¶À» ³Ö´Â´Ù. ³×Æ®¿öÅ© ¿£ÁøÀÌ ¾Æ´Ñ ³»ºÎ¿¡¼­ ³Ö´Â °æ¿ì
+		/// íì— íŒ¨í‚·ì„ ë„£ëŠ”ë‹¤. ë„¤íŠ¸ì›Œí¬ ì—”ì§„ì´ ì•„ë‹Œ ë‚´ë¶€ì—ì„œ ë„£ëŠ” ê²½ìš°
 		/// </summary>
-		/// <param name="packet">ÆĞÅ¶. .NET Å¸ÀÔ</param>
+		/// <param name="packet">íŒ¨í‚·. .NET íƒ€ì…</param>
 		void Enqueue(SFNETPacket^ packet)
 		{
 			m_packetQueue->Enqueue(packet);
 		}
 
 		/// <summary>
-		/// Å¥¿¡¼­ ÆĞÅ¶À» ²¨³½´Ù.
+		/// íì—ì„œ íŒ¨í‚·ì„ êº¼ë‚¸ë‹¤.
 		/// </summary>
-		/// <returns>ÆĞÅ¶ÀÌ ¾ø´Ù¸é null ¹İÈ¯.</returns>
+		/// <returns>íŒ¨í‚·ì´ ì—†ë‹¤ë©´ null ë°˜í™˜.</returns>
 		SFNETPacket^ Dequeue()
 		{
 			SFNETPacket^ packet = nullptr;
@@ -54,11 +54,11 @@ namespace CgsfNET64Lib {
 
 	private:
 		/// <summary>
-		/// C++ Å¸ÀÔÀÇ ÆĞÅ¶À» .NET¿ë Å¸ÀÔÀÇ ÆĞÅ¶À¸·Î ¸¸µç´Ù.
+		/// C++ íƒ€ì…ì˜ íŒ¨í‚·ì„ .NETìš© íƒ€ì…ì˜ íŒ¨í‚·ìœ¼ë¡œ ë§Œë“ ë‹¤.
 		/// </summary>
-		/// <param name="isServerConnect">trueÀÌ¸é ¼­¹ö°£ ¼¼¼Ç</param>
-		/// <param name="pPacket">³×Æ®¿öÅ© ¿£ÁøÀ» ÅëÇØ¼­ ¹ŞÀº ÆĞÅ¶. C++ Å¸ÀÔ</param>
-		/// <returns>ÆĞÅ¶. .NET Å¸ÀÔ</returns>
+		/// <param name="isServerConnect">trueì´ë©´ ì„œë²„ê°„ ì„¸ì…˜</param>
+		/// <param name="pPacket">ë„¤íŠ¸ì›Œí¬ ì—”ì§„ì„ í†µí•´ì„œ ë°›ì€ íŒ¨í‚·. C++ íƒ€ì…</param>
+		/// <returns>íŒ¨í‚·. .NET íƒ€ì…</returns>
 		SFNETPacket^ MakeNetPacket(bool isServerConnect, BasePacket* pPacket)
 		{
 			SFPacket* pSFPacket = (SFPacket*)pPacket;
@@ -70,7 +70,7 @@ namespace CgsfNET64Lib {
 		}
 		
 		/// <summary>
-		/// ÆĞÅ¶ Å¥
+		/// íŒ¨í‚· í
 		/// </summary>
 		ConcurrentQueue<SFNETPacket^>^ m_packetQueue = gcnew ConcurrentQueue<SFNETPacket^>();
 	};

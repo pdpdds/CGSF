@@ -1,5 +1,5 @@
-// stdafx.cpp : Ç¥ÁØ Æ÷ÇÔ ÆÄÀÏ¸¸ µé¾î ÀÖ´Â ¼Ò½º ÆÄÀÏÀÔ´Ï´Ù.
-// EngineLayerNET.pch´Â ¹Ì¸® ÄÄÆÄÀÏµÈ Çì´õ°¡ µË´Ï´Ù.
-// stdafx.obj¿¡´Â ¹Ì¸® ÄÄÆÄÀÏµÈ Çü½Ä Á¤º¸°¡ Æ÷ÇÔµË´Ï´Ù.
+ï»¿// stdafx.cpp : í‘œì¤€ í¬í•¨ íŒŒì¼ë§Œ ë“¤ì–´ ìžˆëŠ” ì†ŒìŠ¤ íŒŒì¼ìž…ë‹ˆë‹¤.
+// EngineLayerNET.pchëŠ” ë¯¸ë¦¬ ì»´íŒŒì¼ëœ í—¤ë”ê°€ ë©ë‹ˆë‹¤.
+// stdafx.objì—ëŠ” ë¯¸ë¦¬ ì»´íŒŒì¼ëœ í˜•ì‹ ì •ë³´ê°€ í¬í•¨ë©ë‹ˆë‹¤.
 
 #include "stdafx.h"

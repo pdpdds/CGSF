@@ -1,10 +1,10 @@
-#pragma once
+ï»¿#pragma once
 #include "ILogicDispatcher.h"
 
 namespace CgsfNET64Lib {
 	
 	/// <summary>
-	/// ³×Æ®¿öÅ© ¿£Áø¿¡¼­ ÆĞÅ¶À» °¡Á®¿Â´Ù.
+	/// ë„¤íŠ¸ì›Œí¬ ì—”ì§„ì—ì„œ íŒ¨í‚·ì„ ê°€ì ¸ì˜¨ë‹¤.
 	/// </summary>
 	class SFNETDispatcher : public ILogicDispatcher
 	{
@@ -13,51 +13,51 @@ namespace CgsfNET64Lib {
 		virtual ~SFNETDispatcher(void);
 
 		/// <summary>
-		/// ÃÊ±âÈ­. ½º·¹µå ¼ö¸¦ ¼³Á¤ÇÑ´Ù.
+		/// ì´ˆê¸°í™”. ìŠ¤ë ˆë“œ ìˆ˜ë¥¼ ì„¤ì •í•œë‹¤.
 		/// </summary>
-		/// <param name="threadCount">½º·¹µå ¼ö</param>
+		/// <param name="threadCount">ìŠ¤ë ˆë“œ ìˆ˜</param>
 		void Init(int threadCount);
 
 		/// <summary>
-		/// ÆĞÅ¶À» °¡Á®¿Í¼­ Å¥¿¡ ´ã´Â´Ù
+		/// íŒ¨í‚·ì„ ê°€ì ¸ì™€ì„œ íì— ë‹´ëŠ”ë‹¤
 		/// </summary>
-		/// <param name="pPacket">ÆĞÅ¶</param>
+		/// <param name="pPacket">íŒ¨í‚·</param>
 		virtual void Dispatch(BasePacket* pPacket) override;
 
 		/// <summary>
-		/// ÆĞÅ¶ µğ½ºÆĞÃ³¸¦ ÇÒ ½º·¹µå¸¦ »ı¼ºÇÑ´Ù.
+		/// íŒ¨í‚· ë””ìŠ¤íŒ¨ì²˜ë¥¼ í•  ìŠ¤ë ˆë“œë¥¼ ìƒì„±í•œë‹¤.
 		/// </summary>
-		/// <param name="pLogicEntry">ÆĞÅ¶À» Ã³¸®ÇÒ °´Ã¼</param>
-		/// <returns>¹«Á¶°Ç true ¹İÈ¯</returns>
+		/// <param name="pLogicEntry">íŒ¨í‚·ì„ ì²˜ë¦¬í•  ê°ì²´</param>
+		/// <returns>ë¬´ì¡°ê±´ true ë°˜í™˜</returns>
 		virtual bool CreateLogicSystem(ILogicEntry* pLogicEntry) override;
 
 		/// <summary>
-		/// ÆĞÅ¶ µğ½ºÆĞÃ³¸¦ Á¾·áÇÑ´Ù. º¸Åë ¼­¹ö Á¾·á ½Ã¿¡ È£ÃâÇÑ´Ù.
+		/// íŒ¨í‚· ë””ìŠ¤íŒ¨ì²˜ë¥¼ ì¢…ë£Œí•œë‹¤. ë³´í†µ ì„œë²„ ì¢…ë£Œ ì‹œì— í˜¸ì¶œí•œë‹¤.
 		/// </summary>
-		/// <returns>¹«Á¶°Ç true ¹İÈ¯</returns>
+		/// <returns>ë¬´ì¡°ê±´ true ë°˜í™˜</returns>
 		virtual bool ShutDownLogicSystem() override;
 
 		/// <summary>
-		/// ÆĞÅ¶ °´Ã¼ÀÇ ¸Ş¸ğ¸® ÇØÁ¦
+		/// íŒ¨í‚· ê°ì²´ì˜ ë©”ëª¨ë¦¬ í•´ì œ
 		/// </summary>
-		/// <param name="pPacket">¸Ş¸ğ¸® ÇØÁ¦ÇÒ ÆĞÅ¶ °´Ã¼</param>
-		/// <returns>Á¤ÀÇµÇÁö ¾ÊÀº ÆĞÅ¶ Å¸ÀÔÀÎ °æ¿ì false ¹İÈ¯</returns>
+		/// <param name="pPacket">ë©”ëª¨ë¦¬ í•´ì œí•  íŒ¨í‚· ê°ì²´</param>
+		/// <returns>ì •ì˜ë˜ì§€ ì•Šì€ íŒ¨í‚· íƒ€ì…ì¸ ê²½ìš° false ë°˜í™˜</returns>
 		static bool ReleasePacket(BasePacket* pPacket);
 
 
 	private:
 		/// <summary>
-		/// ÆĞÅ¶ µğ½ºÆĞÃ³¿ë ½º·¹µå
+		/// íŒ¨í‚· ë””ìŠ¤íŒ¨ì²˜ìš© ìŠ¤ë ˆë“œ
 		/// </summary>
 		static void LogicThreadProc(void* Args);
 
 		/// <summary>
-		/// LogicThreadProc ½º·¹µå È°µ¿ ¿©ºÎ¸¦ ¼³Á¤. false°¡ µÇ¸é LogicThreadProc ½º·¹µå¸¦ Á¾·áÇÑ´Ù.
+		/// LogicThreadProc ìŠ¤ë ˆë“œ í™œë™ ì—¬ë¶€ë¥¼ ì„¤ì •. falseê°€ ë˜ë©´ LogicThreadProc ìŠ¤ë ˆë“œë¥¼ ì¢…ë£Œí•œë‹¤.
 		/// </summary>
 		static bool m_bLogicEnd;
 
 		/// <summary>
-		/// LogicThreadProc ½º·¹µå °³¼ö
+		/// LogicThreadProc ìŠ¤ë ˆë“œ ê°œìˆ˜
 		/// </summary>
 		int m_nLogicThreadCnt;
 	};

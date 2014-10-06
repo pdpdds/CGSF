@@ -1,4 +1,4 @@
-#pragma once
+ï»¿#pragma once
 
 using namespace System;
 
@@ -10,23 +10,23 @@ namespace CgsfNET64Lib {
 		{
 			array<Byte>^ encrypted;
 
-			// Step 1. MD5 ÇØ½¬¸¦ »ç¿ëÇØ¼­ ¾ÏÈ£È­ÇÏ°í,	   
-			// MD5 ÇØ½¬ »ý¼º±â¸¦ »ç¿ëÇØ¼­ °á°ú´Â 128 ºñÆ® ¹ÙÀÌÆ® ¹è¿­ÀÎµ¥,          
-			// 3DES ÀÎÄÚµùÀ» À§ÇÑ ¿Ã¹Ù¸¥ ±æÀÌ°¡ µÊ.
+			// Step 1. MD5 í•´ì‰¬ë¥¼ ì‚¬ìš©í•´ì„œ ì•”í˜¸í™”í•˜ê³ ,	   
+			// MD5 í•´ì‰¬ ìƒì„±ê¸°ë¥¼ ì‚¬ìš©í•´ì„œ ê²°ê³¼ëŠ” 128 ë¹„íŠ¸ ë°”ì´íŠ¸ ë°°ì—´ì¸ë°,          
+			// 3DES ì¸ì½”ë”©ì„ ìœ„í•œ ì˜¬ë°”ë¥¸ ê¸¸ì´ê°€ ë¨.
 
 			auto HashProvider = gcnew System::Security::Cryptography::MD5CryptoServiceProvider();
 			auto TDESKey = HashProvider->ComputeHash(key);
 
-			// Step 2. TripleDESCryptoServiceProvider object »ý¼º            
+			// Step 2. TripleDESCryptoServiceProvider object ìƒì„±            
 			auto TDESAlgorithm = gcnew System::Security::Cryptography::TripleDESCryptoServiceProvider();
 
-			// Step 3. Encoder ¼³Á¤
+			// Step 3. Encoder ì„¤ì •
 			TDESAlgorithm->Key = TDESKey;
 			TDESAlgorithm->Mode = System::Security::Cryptography::CipherMode::ECB;
 			TDESAlgorithm->Padding = System::Security::Cryptography::PaddingMode::PKCS7;
 
 			
-			// Step 4. ½ÇÁ¦·Î ¹®ÀÚ¿­À» ¾ÏÈ£È­      
+			// Step 4. ì‹¤ì œë¡œ ë¬¸ìžì—´ì„ ì•”í˜¸í™”      
 			try
 			{
 				auto Encryptor = TDESAlgorithm->CreateEncryptor();
@@ -34,7 +34,7 @@ namespace CgsfNET64Lib {
 			}
 			finally
 			{
-				// Áß¿äÇÑ 3DES, HashproviderÀÇ ¼Ó¼ºÀ» ÇØÁ¦       
+				// ì¤‘ìš”í•œ 3DES, Hashproviderì˜ ì†ì„±ì„ í•´ì œ       
 				TDESAlgorithm->Clear();
 				HashProvider->Clear();
 			}
@@ -63,7 +63,7 @@ namespace CgsfNET64Lib {
 			}
 			finally
 			{
-				// Áß¿äÇÑ 3DES, HashproviderÀÇ ¼Ó¼ºÀ» ÇØÁ¦
+				// ì¤‘ìš”í•œ 3DES, Hashproviderì˜ ì†ì„±ì„ í•´ì œ
 				TDESAlgorithm->Clear();
 				HashProvider->Clear();
 			}

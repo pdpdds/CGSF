@@ -1,4 +1,4 @@
-#pragma once
+ï»¿#pragma once
 
 //#include "Stdafx.h"
 #include "ILogicEntry.h"
@@ -14,7 +14,7 @@ using namespace System;
 namespace CgsfNET64Lib {
 
 	/// <summary>
-	/// ³×Æ®¿öÅ© Ã³¸®¸¦ ÇÏ´Â Å¬·¡½º
+	/// ë„¤íŠ¸ì›Œí¬ ì²˜ë¦¬ë¥¼ í•˜ëŠ” í´ë˜ìŠ¤
 	/// </summary>
 	class ServerLogicEntry : public ILogicEntry
 	{
@@ -23,19 +23,19 @@ namespace CgsfNET64Lib {
 		virtual ~ServerLogicEntry(void) {}
 
 		/// <summary>
-		/// ÃÊ±âÈ­. ¾Æ¹«·± µ¿ÀÛ ÇÏÁö ¾ÊÀ½
+		/// ì´ˆê¸°í™”. ì•„ë¬´ëŸ° ë™ì‘ í•˜ì§€ ì•ŠìŒ
 		/// </summary>
-		/// <returns>¹«Àú°Ç true ¹İÈ¯</returns>
+		/// <returns>ë¬´ì €ê±´ true ë°˜í™˜</returns>
 		virtual bool Initialize() override
 		{
 			return true;
 		}
 
 		/// <summary>
-		/// ÆĞÅ¶À» ¹ŞÀ½
+		/// íŒ¨í‚·ì„ ë°›ìŒ
 		/// </summary>
-		/// <param name="pPacket">³×Æ®¿öÅ© ¿£ÁøÀ» ÅëÇØ¼­ ¹Ş´Â ÆĞÅ¶ µ¥ÀÌÅÍ</param>
-		/// <returns>¹«Àú°Ç true ¹İÈ¯</returns>
+		/// <param name="pPacket">ë„¤íŠ¸ì›Œí¬ ì—”ì§„ì„ í†µí•´ì„œ ë°›ëŠ” íŒ¨í‚· ë°ì´í„°</param>
+		/// <returns>ë¬´ì €ê±´ true ë°˜í™˜</returns>
 		virtual bool ProcessPacket(BasePacket* pPacket) override
 		{
 			m_refPacketQueue->Enqueue(false, pPacket);
@@ -43,10 +43,10 @@ namespace CgsfNET64Lib {
 		}
 		
 		/// <summary>
-		/// ÆĞÅ¶À» º¸³½´Ù
+		/// íŒ¨í‚·ì„ ë³´ë‚¸ë‹¤
 		/// </summary>
-		/// <param name="pPacket">³×Æ®¿öÅ© ¿£ÁøÀ» ÅëÇØ º¸³¾ ÆĞÅ¶ µ¥ÀÌÅÍ</param>
-		/// <returns>true°¡ ¾Æ´Ï¸é º¸³»±â ½ÇÆĞ</returns>
+		/// <param name="pPacket">ë„¤íŠ¸ì›Œí¬ ì—”ì§„ì„ í†µí•´ ë³´ë‚¼ íŒ¨í‚· ë°ì´í„°</param>
+		/// <returns>trueê°€ ì•„ë‹ˆë©´ ë³´ë‚´ê¸° ì‹¤íŒ¨</returns>
 		virtual bool SendPacket(BasePacket* pPacket)
 		{
 			auto result = SFEngine::GetInstance()->SendRequest(pPacket);
@@ -55,7 +55,7 @@ namespace CgsfNET64Lib {
 		
 
 		/// <summary>
-		/// ÆĞÅ¶ Å¥. ¿ÜºÎ¿¡¼­ ÇÒ´ç ¹Ş´Â´Ù.
+		/// íŒ¨í‚· í. ì™¸ë¶€ì—ì„œ í• ë‹¹ ë°›ëŠ”ë‹¤.
 		/// </summary>
 		gcroot<ConcurrencyPacketQueue^> m_refPacketQueue;
 		

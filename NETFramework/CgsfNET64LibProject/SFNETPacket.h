@@ -1,4 +1,4 @@
-#pragma once
+ï»¿#pragma once
 
 #include "SFPacket.h"
 #include "DefineValue.h"
@@ -8,7 +8,7 @@ using namespace System;
 namespace CgsfNET64Lib {
 
 	/// <summary>
-	/// SFPacketÀÇ ´å³İ ¹öÀü
+	/// SFPacketì˜ ë‹·ë„· ë²„ì „
 	/// </summary>
 	public ref class SFNETPacket
 	{
@@ -16,10 +16,10 @@ namespace CgsfNET64Lib {
 		SFNETPacket() {}
 		
 		/// <summary>
-		/// ÀÌ °´Ã¼ÀÇ µ¥ÀÌÅÍ·Î ¼³Á¤ÇÑ´Ù.
+		/// ì´ ê°ì²´ì˜ ë°ì´í„°ë¡œ ì„¤ì •í•œë‹¤.
 		/// </summary>
-		/// <param name="isServerConnect">¼­¹ö°£ ¿¬°á ¿©ºÎ. true ÀÌ¸é ¼­¹ö-¼­¹ö ¿¬°á</param>
-		/// <param name="pPacket">³×Æ®¿öÅ© ¿£Áø¿¡¼­ ¹ŞÀº ÆĞÅ¶ µ¥ÀÌÅÍ</param>
+		/// <param name="isServerConnect">ì„œë²„ê°„ ì—°ê²° ì—¬ë¶€. true ì´ë©´ ì„œë²„-ì„œë²„ ì—°ê²°</param>
+		/// <param name="pPacket">ë„¤íŠ¸ì›Œí¬ ì—”ì§„ì—ì„œ ë°›ì€ íŒ¨í‚· ë°ì´í„°</param>
 		void SetData(bool isServerConnect, SFPacket* pPacket)
 		{
 			m_isServerConnect = isServerConnect;
@@ -52,11 +52,11 @@ namespace CgsfNET64Lib {
 		}
 
 		/// <summary>
-		/// ÀÌ °´Ã¼ÀÇ µ¥ÀÌÅÍ·Î ¼³Á¤ÇÑ´Ù. ³»ºÎ ÆĞÅ¶À» ¸¸µé ¶§ »ç¿ë
+		/// ì´ ê°ì²´ì˜ ë°ì´í„°ë¡œ ì„¤ì •í•œë‹¤. ë‚´ë¶€ íŒ¨í‚·ì„ ë§Œë“¤ ë•Œ ì‚¬ìš©
 		/// </summary>
-		/// <param name="sessionID">¼¼¼Ç</param>
-		/// <param name="packetID">ÆĞÅ¶ ID</param>
-		/// <param name="data">ÆĞÅ¶ µ¥ÀÌÅÍ</param>
+		/// <param name="sessionID">ì„¸ì…˜</param>
+		/// <param name="packetID">íŒ¨í‚· ID</param>
+		/// <param name="data">íŒ¨í‚· ë°ì´í„°</param>
 		void SetData(int sessionID, unsigned short packetID, array<Byte>^ data)
 		{
 			m_packetType = SFPACKET_TYPE::DATA;
@@ -78,11 +78,11 @@ namespace CgsfNET64Lib {
 		}
 
 		/// <summary>
-		/// ÀÌ °´Ã¼ÀÇ µ¥ÀÌÅÍ·Î ¼³Á¤ÇÑ´Ù. ÁÖ·Î ¿¬°á/²ö¾îÁü °ü·Ã ³»ºÎ ÆĞÅ¶À» ¸¸µé ¶§ »ç¿ë
+		/// ì´ ê°ì²´ì˜ ë°ì´í„°ë¡œ ì„¤ì •í•œë‹¤. ì£¼ë¡œ ì—°ê²°/ëˆì–´ì§ ê´€ë ¨ ë‚´ë¶€ íŒ¨í‚·ì„ ë§Œë“¤ ë•Œ ì‚¬ìš©
 		/// </summary>
-		/// <param name="packetType">ÆĞÅ¶ Å¸ÀÔ</param>
-		/// <param name="sessionID">¼¼¼Ç ID</param>
-		/// <param name="identifier">¼­¹ö°£ ¿¬°áÀÎ °æ¿ì ¾î´À ¼­¹öÀÎÁö ¾Ë ¼ö ÀÖ´Ù.</param>
+		/// <param name="packetType">íŒ¨í‚· íƒ€ì…</param>
+		/// <param name="sessionID">ì„¸ì…˜ ID</param>
+		/// <param name="identifier">ì„œë²„ê°„ ì—°ê²°ì¸ ê²½ìš° ì–´ëŠ ì„œë²„ì¸ì§€ ì•Œ ìˆ˜ ìˆë‹¤.</param>
 		void SetSystemData(SFPACKET_TYPE packetType, int sessionID, int identifier)
 		{
 			m_isServerConnect = true;

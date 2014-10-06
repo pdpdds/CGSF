@@ -1,4 +1,4 @@
-#pragma once
+ï»¿#pragma once
 
 #include "BasePacket.h"
 #include "SFConstant.h"
@@ -8,7 +8,7 @@ using namespace System;
 namespace CgsfNET64Lib { 
 	
 	/// <summary>
-	/// ÆĞÅ¶ Å¸ÀÔ
+	/// íŒ¨í‚· íƒ€ì…
 	/// </summary>
 	public enum class SFPACKET_TYPE : short
 	{ 
@@ -24,7 +24,7 @@ namespace CgsfNET64Lib {
 	};
 	
 	/// <summary>
-	/// ÆĞÅ¶ ¿É¼Ç
+	/// íŒ¨í‚· ì˜µì…˜
 	/// </summary>
 	public enum class PACKET_OPTION_TYPE : short
 	{
@@ -40,7 +40,7 @@ namespace CgsfNET64Lib {
 	};
 
 	/// <summary>
-	/// ÇÁ·ÎÅäÄİ Å¸ÀÔ
+	/// í”„ë¡œí† ì½œ íƒ€ì…
 	/// </summary>
 	public enum class PACKET_PROTOCOL_TYPE : short
 	{
@@ -54,20 +54,20 @@ namespace CgsfNET64Lib {
 
 
 	/// <summary>
-	/// ³×Æ®¿öÅ© ¼³Á¤
+	/// ë„¤íŠ¸ì›Œí¬ ì„¤ì •
 	/// </summary>
 	public ref struct NetworkConfig
 	{
 		String^ IP;
 		UINT16 Port;
 		
-		/// ³×Æ®¿öÅ© ¿£Áø dll ÆÄÀÏ ÀÌ¸§
+		/// ë„¤íŠ¸ì›Œí¬ ì—”ì§„ dll íŒŒì¼ ì´ë¦„
 		String^ EngineDllName;
 		
-		/// ÆĞÅ¶ µğ½ºÆĞÃÄ ½º·¹µå ¼ö
+		/// íŒ¨í‚· ë””ìŠ¤íŒ¨ì³ ìŠ¤ë ˆë“œ ìˆ˜
 		int ThreadCount;
 
-		/// ÃÖ´ë Á¢¼Ó Çã¿ë ¼ö
+		/// ìµœëŒ€ ì ‘ì† í—ˆìš© ìˆ˜
 		int MaxAcceptCount;
 		int ProtocolOption;
 		int ProtocolID;
@@ -76,13 +76,13 @@ namespace CgsfNET64Lib {
 	};
 
 	/// <summary>
-	/// ´Ù¸¥ ¼­¹ö Á¢¼ÓÀ» À§ÇÑ ³×Æ®¿öÅ© Á¤º¸
+	/// ë‹¤ë¥¸ ì„œë²„ ì ‘ì†ì„ ìœ„í•œ ë„¤íŠ¸ì›Œí¬ ì •ë³´
 	/// </summary>
 	public ref struct RemoteServerConnectInfo
 	{
 		String^ IP;
 		UINT16 Port;
-		/// ¿¬°á ID. Áßº¹µÇ¸é ¾ÈµÈ´Ù
+		/// ì—°ê²° ID. ì¤‘ë³µë˜ë©´ ì•ˆëœë‹¤
 		int ConnectID;
 		String^ Description;
 
@@ -93,11 +93,11 @@ namespace CgsfNET64Lib {
 	};
 
 	/// <summary>
-	/// ¸ÖÆ¼ listen ³×Æ®¿öÅ© Á¤º¸
+	/// ë©€í‹° listen ë„¤íŠ¸ì›Œí¬ ì •ë³´
 	/// </summary>
 	public ref struct MultiListenNetworkInfo
 	{
-		/// listen ID. ½Ã½ºÅÛ¿¡¼­ ÇÒ´çÇÑ´Ù.
+		/// listen ID. ì‹œìŠ¤í…œì—ì„œ í• ë‹¹í•œë‹¤.
 		int ListenID;		
 				
 		UINT16 Port;
@@ -108,9 +108,9 @@ namespace CgsfNET64Lib {
 		int MaxPacketSize;
 	};
 
-	/// ÆĞÅ¶ ¿É¼Ç ¼±¾ğ
+	/// íŒ¨í‚· ì˜µì…˜ ì„ ì–¸
 	const int CGSF_PACKET_OPTION_NONE = 0;
 
-	/// ¼­¹ö ÄÁ³ØÅÍ IDÀÇ ÃÖ¼Ò ¼ö. ÀÌ°Íº¸´Ù ÀÛÀ¸¸é ¾ÈµÈ´Ù.
+	/// ì„œë²„ ì»¨ë„¥í„° IDì˜ ìµœì†Œ ìˆ˜. ì´ê²ƒë³´ë‹¤ ì‘ìœ¼ë©´ ì•ˆëœë‹¤.
 	const int MIN_SERVER_CONNECTOR_ID = 1001;
 }

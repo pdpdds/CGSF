@@ -1,4 +1,4 @@
-#pragma once
+﻿#pragma once
 
 using namespace System;
 
@@ -7,7 +7,7 @@ namespace CgsfNET64Lib {
 	class DESEncrypt
 	{
 	public:
-		// ��ȣȭ
+		// 암호화
 		static array<Byte>^ Encrypt(array<Byte>^ sourceData, array<Byte>^ key)
 		{
 			auto des = gcnew System::Security::Cryptography::DESCryptoServiceProvider();
@@ -22,7 +22,7 @@ namespace CgsfNET64Lib {
 			return encrypted;
 		}
 
-		// ��ȣȭ
+		// 복호화
 		static array<Byte>^ Decrypt(array<Byte>^ sourceData, array<Byte>^ key)
 		{
 			auto des = gcnew System::Security::Cryptography::DESCryptoServiceProvider();

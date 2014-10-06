@@ -1,4 +1,4 @@
-// ±âº» DLL ÆÄÀÏÀÔ´Ï´Ù.
+ï»¿// ê¸°ë³¸ DLL íŒŒì¼ìž…ë‹ˆë‹¤.
 
 #include "stdafx.h"
 #include "SFServerConnectionManager.h"
@@ -75,7 +75,7 @@ namespace CgsfNET64Lib {
 																	m_pDispatcher);
 		if (errorCode != NET_ERROR_CODE::SUCCESS)
 		{
-			// C++/CLR¿¡¼­ Á¤ÀÇÇÑ enumÀ¸·Î Çüº¯È¯ ÇÑ´Ù.
+			// C++/CLRì—ì„œ ì •ì˜í•œ enumìœ¼ë¡œ í˜•ë³€í™˜ í•œë‹¤.
 			return (NET_ERROR_CODE_N)errorCode;
 		}
 
@@ -89,7 +89,7 @@ namespace CgsfNET64Lib {
 		}
 
 
-		// Connector µî·Ï
+		// Connector ë“±ë¡
 		if (connectInfoList != nullptr && connectInfoList->Count > 0)
 		{
 			for (int i = 0; i < connectInfoList->Count; ++i)
@@ -108,7 +108,7 @@ namespace CgsfNET64Lib {
 		}
 
 
-		// Listener µî·Ï
+		// Listener ë“±ë¡
 		if (listneInfoList != nullptr && listneInfoList->Count > 0)
 		{
 			for (int i = 0; i < listneInfoList->Count; ++i)

@@ -1,4 +1,4 @@
-#pragma once
+ï»¿#pragma once
 
 using namespace System;
 using System::StringComparer;
@@ -7,16 +7,16 @@ namespace CgsfNET64Lib {
 	public class AESEncrypt
 	{
 	public:
-		// 128bit(16byte)ÀÇ IV£¨ÃÊ±âÈ­ º¤ÅÍ£©¿Í Key(¾ÏÈ£Å°£©
+		// 128bit(16byte)ì˜ IVï¼ˆì´ˆê¸°í™” ë²¡í„°ï¼‰ì™€ Key(ì•”í˜¸í‚¤ï¼‰
 		//static private string AesIV = @"!QAZ2WSX#EDC4RFV";
 		//static private string AesKey = @"5TGB&YHN7UJM(IK<";
 
 		/// <summary>
-		/// ¹®ÀÚ¿­À» AES·Î ¾ÏÈ£È­ ÇÑ´Ù
+		/// ë¬¸ìì—´ì„ AESë¡œ ì•”í˜¸í™” í•œë‹¤
 		/// </summary>
 		static array<Byte>^ Encrypt(array<Byte>^ sourceData, array<Byte>^ aesKey, array<Byte>^ aesIV)
 		{
-			// AES ¾ÏÈ£È­ ¼­ºñ½º ÇÁ·Î¹ÙÀÌ´õ. System.Core.DllÀ» Ãß°¡ÇØ¾ß ÇÑ´Ù.
+			// AES ì•”í˜¸í™” ì„œë¹„ìŠ¤ í”„ë¡œë°”ì´ë”. System.Core.Dllì„ ì¶”ê°€í•´ì•¼ í•œë‹¤.
 			auto aes = gcnew System::Security::Cryptography::AesCryptoServiceProvider();
 			aes->BlockSize = 128;
 			aes->KeySize = 128;
@@ -34,11 +34,11 @@ namespace CgsfNET64Lib {
 		}
 
 		/// <summary>
-		/// ¹®ÀÚ¿­À» AES·Î º¹È£È­ ÇÑ´Ù
+		/// ë¬¸ìì—´ì„ AESë¡œ ë³µí˜¸í™” í•œë‹¤
 		/// </summary>
 		static array<Byte>^ Decrypt(array<Byte>^ sourceData, array<Byte>^ aesKey, array<Byte>^ aesIV)
 		{
-			// AES ¾ÏÈ£È­ ¼­ºñ½º ÇÁ·Î¹ÙÀÌ´õ
+			// AES ì•”í˜¸í™” ì„œë¹„ìŠ¤ í”„ë¡œë°”ì´ë”
 			auto aes = gcnew System::Security::Cryptography::AesCryptoServiceProvider();
 			aes->BlockSize = 128;
 			aes->KeySize = 128;

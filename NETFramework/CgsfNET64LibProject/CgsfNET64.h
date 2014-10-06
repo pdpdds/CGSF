@@ -1,4 +1,4 @@
-// EngineLayerNET.h
+ï»¿// EngineLayerNET.h
 
 #pragma once
 
@@ -24,140 +24,140 @@ namespace CgsfNET64Lib {
 		~CgsfNET64();
 
 		/// <summary>
-		/// ³×Æ®¿öÅ© ÃÊ±âÈ­
+		/// ë„¤íŠ¸ì›Œí¬ ì´ˆê¸°í™”
 		/// </summary>
-		/// <param name="config">³×Æ®¿öÅ© ¼³Á¤ Á¤º¸</param>
-		/// <param name="connectInfoList">´Ù¸¥ ¼­¹ö¿¡ Á¢¼ÓÇÏ±â À§ÇÑ Á¤º¸</param>
-		/// <param name="listneInfoList">config¿¡ ¼³Á¤µÈ Port ÀÌ¿ÜÀÇ Ãß°¡ listen Á¤º¸</param>
-		/// <returns>¿¡·¯ÄÚµå. NET_ERROR_CODE_N::SUCCESS ÀÌ¿Ü´Â ½ÇÆÐ</returns>
+		/// <param name="config">ë„¤íŠ¸ì›Œí¬ ì„¤ì • ì •ë³´</param>
+		/// <param name="connectInfoList">ë‹¤ë¥¸ ì„œë²„ì— ì ‘ì†í•˜ê¸° ìœ„í•œ ì •ë³´</param>
+		/// <param name="listneInfoList">configì— ì„¤ì •ëœ Port ì´ì™¸ì˜ ì¶”ê°€ listen ì •ë³´</param>
+		/// <returns>ì—ëŸ¬ì½”ë“œ. NET_ERROR_CODE_N::SUCCESS ì´ì™¸ëŠ” ì‹¤íŒ¨</returns>
 		NET_ERROR_CODE_N Init(NetworkConfig^ config, 
 								Generic::List<RemoteServerConnectInfo^>^ connectInfoList,
 								Generic::List<MultiListenNetworkInfo^>^ listneInfoList);
 				
 
 		/// <summary>
-		/// ³×Æ®¿öÅ© µ¿ÀÛ ½ÃÀÛ. Á¢¼ÓÀ» ¹Þ°Å³ª ´Ù¸¥ ¼­¹ö¿¡ Á¢¼ÓÀ» ÇÒ ¼ö ÀÖ´Ù.
+		/// ë„¤íŠ¸ì›Œí¬ ë™ìž‘ ì‹œìž‘. ì ‘ì†ì„ ë°›ê±°ë‚˜ ë‹¤ë¥¸ ì„œë²„ì— ì ‘ì†ì„ í•  ìˆ˜ ìžˆë‹¤.
 		/// </summary>
-		/// <param name="protocolID">³×Æ®¿öÅ© ¼³Á¤ÀÇ Port·Î Á¢¼ÓÇÏ´Â ¼¼¼Ç¿¡¼­ »ç¿ëÇÒ ÇÁ·ÎÅäÄÝID</param>
+		/// <param name="protocolID">ë„¤íŠ¸ì›Œí¬ ì„¤ì •ì˜ Portë¡œ ì ‘ì†í•˜ëŠ” ì„¸ì…˜ì—ì„œ ì‚¬ìš©í•  í”„ë¡œí† ì½œID</param>
 		/// <returns></returns>
 		bool Start(int protocolID);
 		
 		/// <summary>
-		/// ³×Æ®¿öÅ© µ¿ÀÛ Áß´Ü.
+		/// ë„¤íŠ¸ì›Œí¬ ë™ìž‘ ì¤‘ë‹¨.
 		/// </summary>
 		void Stop();
 			
 		/// <summary>
-		/// remote¿¡¼­ ¹ÞÀº ÆÐÅ¶À» °¡Á®°£´Ù.
+		/// remoteì—ì„œ ë°›ì€ íŒ¨í‚·ì„ ê°€ì ¸ê°„ë‹¤.
 		/// </summary>
-		/// <returns>C++ SFPacketÀ» ´å³ÝÀ¸·Î ¹Ù²Û ÆÐÅ¶ µ¥ÀÌÅÍ</returns>
+		/// <returns>C++ SFPacketì„ ë‹·ë„·ìœ¼ë¡œ ë°”ê¾¼ íŒ¨í‚· ë°ì´í„°</returns>
 		SFNETPacket^ GetPacket();
 
 		/// <summary>
-		/// ÆÐÅ¶ ÀúÀå¼Ò¿¡ ÆÐÅ¶À» ³Ö´Â´Ù. ³×Æ®¿öÅ©·Î ¹ÞÀº ÆÐÅ¶°ú °°Àº ¹æÇâÀ¸·Î Ã³¸®ÇÏ±â ¿øÇÒ ¶§ »ç¿ëÇÑ´Ù.
+		/// íŒ¨í‚· ì €ìž¥ì†Œì— íŒ¨í‚·ì„ ë„£ëŠ”ë‹¤. ë„¤íŠ¸ì›Œí¬ë¡œ ë°›ì€ íŒ¨í‚·ê³¼ ê°™ì€ ë°©í–¥ìœ¼ë¡œ ì²˜ë¦¬í•˜ê¸° ì›í•  ë•Œ ì‚¬ìš©í•œë‹¤.
 		/// </summary>
-		/// <param name="packet">ÆÐÅ¶</param>
+		/// <param name="packet">íŒ¨í‚·</param>
 		void InnerPacket(SFNETPacket^ packet);
 
 		/// <summary>
-		/// ÆÐÅ¶ º¸³»±â.
+		/// íŒ¨í‚· ë³´ë‚´ê¸°.
 		/// </summary>
-		/// <param name="sessionID">ÆÐÅ¶À» º¸³¾ ¼¼¼Ç</param>
-		/// <param name="packetID">ÆÐÅ¶ ID</param>
-		/// <param name="data">º¸³¾ µ¥ÀÌÅÍ. ÆÐÅ¶ÀÇ body ºÎºÐ</param>
-		/// <returns>trueÀÌ¸é º¸³»±â ¼º°ø</returns>
+		/// <param name="sessionID">íŒ¨í‚·ì„ ë³´ë‚¼ ì„¸ì…˜</param>
+		/// <param name="packetID">íŒ¨í‚· ID</param>
+		/// <param name="data">ë³´ë‚¼ ë°ì´í„°. íŒ¨í‚·ì˜ body ë¶€ë¶„</param>
+		/// <returns>trueì´ë©´ ë³´ë‚´ê¸° ì„±ê³µ</returns>
 		bool SendPacket(int sessionID, UINT16 packetID, array<Byte>^ data);
 
 		/// <summary>
-		/// ÇöÀç ¼³Á¤µÈ ³×Æ®¿öÅ© ¼³Á¤ Á¤º¸¸¦ ¾ò´Â´Ù.
+		/// í˜„ìž¬ ì„¤ì •ëœ ë„¤íŠ¸ì›Œí¬ ì„¤ì • ì •ë³´ë¥¼ ì–»ëŠ”ë‹¤.
 		/// </summary>
-		/// <returns>³×Æ®¿öÅ© ¼³Á¤ Á¤º¸</returns>
+		/// <returns>ë„¤íŠ¸ì›Œí¬ ì„¤ì • ì •ë³´</returns>
 		NetworkConfig^ GetNetworkConfig() { return m_networkConfig; }
 
 		/// <summary>
-		/// ¼¼¼ÇÀ» °­Á¦ÀûÀ¸·Î Â¥¸¥´Ù.
+		/// ì„¸ì…˜ì„ ê°•ì œì ìœ¼ë¡œ ì§œë¥¸ë‹¤.
 		/// </summary>
-		/// <param name="sessionID">¼¼¼Ç</param>
+		/// <param name="sessionID">ì„¸ì…˜</param>
 		void ForceDisConnect(int sessionID);
 				
 		/// <summary>
-		/// ¸®¸ðÆ® ¼­¹ö¿¡ Á¢¼ÓÀ» ½ÃµµÇÑ´Ù. ÁÖ±âÀûÀ¸·Î Á¢¼Ó µÇÁö ¾ÊÀº ¼­¹ö°¡ ÀÖ´Ù¸é ¹é ±×¶ó¿îµå·Î Á¢¼ÓÀ» ½ÃµµÇÑ´Ù.
+		/// ë¦¬ëª¨íŠ¸ ì„œë²„ì— ì ‘ì†ì„ ì‹œë„í•œë‹¤. ì£¼ê¸°ì ìœ¼ë¡œ ì ‘ì† ë˜ì§€ ì•Šì€ ì„œë²„ê°€ ìžˆë‹¤ë©´ ë°± ê·¸ë¼ìš´ë“œë¡œ ì ‘ì†ì„ ì‹œë„í•œë‹¤.
 		/// </summary>
-		/// <returns>true°¡ ¾Æ´Ï¸é ½ÇÆÐ</returns>
+		/// <returns>trueê°€ ì•„ë‹ˆë©´ ì‹¤íŒ¨</returns>
 		bool SetupServerReconnectSys();
 
 
 		
 	private:
 		/// <summary>
-		/// ³×Æ®¿öÅ© Á¤º¸¸¦ ¼³Á¤ÇÑ´Ù. C++°ú ´Ù¸£°Ô ¼³Á¤ÆÄÀÏÀ» ÀÐÁö ¾Ê°í Á÷Á¢ ¼³Á¤ÇÑ´Ù.
+		/// ë„¤íŠ¸ì›Œí¬ ì •ë³´ë¥¼ ì„¤ì •í•œë‹¤. C++ê³¼ ë‹¤ë¥´ê²Œ ì„¤ì •íŒŒì¼ì„ ì½ì§€ ì•Šê³  ì§ì ‘ ì„¤ì •í•œë‹¤.
 		/// </summary>
-		/// <param name="config">³×Æ®¿öÅ© ¼³Á¤</param>
+		/// <param name="config">ë„¤íŠ¸ì›Œí¬ ì„¤ì •</param>
 		void SetNetworkConfig(NetworkConfig^ config);
 		
 		/// <summary>
-		/// ÆÐÅ¶ ÇÁ·ÎÅäÄÝ Ãß°¡
+		/// íŒ¨í‚· í”„ë¡œí† ì½œ ì¶”ê°€
 		/// </summary>
-		/// <param name="protocolID">ÇÁ·ÎÅäÄÝ ID</param>
-		/// <param name="maxBufferSize">ÃÖ´ë ¹öÆÛ Å©±â</param>
-		/// <param name="maxPacketSize">ÆÐÅ¶ ÇÏ³ªÀÇ ÃÖ´ë Å©±â</param>
-		/// <param name="option">ÆÐÅ¶ ¿É¼Ç</param>
-		/// <returns>true°¡ ¾Æ´Ï¸é Ãß°¡ ½ÇÆÐ</returns>
+		/// <param name="protocolID">í”„ë¡œí† ì½œ ID</param>
+		/// <param name="maxBufferSize">ìµœëŒ€ ë²„í¼ í¬ê¸°</param>
+		/// <param name="maxPacketSize">íŒ¨í‚· í•˜ë‚˜ì˜ ìµœëŒ€ í¬ê¸°</param>
+		/// <param name="option">íŒ¨í‚· ì˜µì…˜</param>
+		/// <returns>trueê°€ ì•„ë‹ˆë©´ ì¶”ê°€ ì‹¤íŒ¨</returns>
 		bool AddPacketProtocol(int protocolID, int maxBufferSize, int maxPacketSize, int option);
 		
 		/// <summary>
-		/// ÇÁ·ÎÅäÄÝ ID°¡ À¯´ÏÅ©ÇÑÁö Á¶»çÇÑ´Ù.
+		/// í”„ë¡œí† ì½œ IDê°€ ìœ ë‹ˆí¬í•œì§€ ì¡°ì‚¬í•œë‹¤.
 		/// </summary>
-		/// <param name="¤¼¤¼¤¼¤¼¤¼¤¼¤¼">³×Æ®¿öÅ© ¼³Á¤ÀÇ Port·Î Á¢¼ÓÇÏ´Â ¼¼¼Ç¿¡¼­ »ç¿ëÇÒ ÇÁ·ÎÅäÄÝID</param>
+		/// <param name="ã…Œã…Œã…Œã…Œã…Œã…Œã…Œ">ë„¤íŠ¸ì›Œí¬ ì„¤ì •ì˜ Portë¡œ ì ‘ì†í•˜ëŠ” ì„¸ì…˜ì—ì„œ ì‚¬ìš©í•  í”„ë¡œí† ì½œID</param>
 		/// <returns></returns>
 		bool CheckingUniqueProtocolID(int protocolID);
 		
 		/// <summary>
-		/// ´Ù¸¥ ¼­¹ö·ÎÀÇ ¿¬°á Á¤º¸¸¦ µî·Ï. ÀÌ Á¤º¸¸¦ »ç¿ëÇÏ¿© ´Ù¸¥ ¼­¹ö¿¡ Á¢¼ÓÀ» ½ÃµµÇÑ´Ù.
+		/// ë‹¤ë¥¸ ì„œë²„ë¡œì˜ ì—°ê²° ì •ë³´ë¥¼ ë“±ë¡. ì´ ì •ë³´ë¥¼ ì‚¬ìš©í•˜ì—¬ ë‹¤ë¥¸ ì„œë²„ì— ì ‘ì†ì„ ì‹œë„í•œë‹¤.
 		/// </summary>
-		/// <param name="connectInfo">¿¬°á Á¤º¸</param>
-		/// <returns>¿¡·¯ÄÚµå. NET_ERROR_CODE_N::SUCCESS ÀÌ¿Ü´Â ½ÇÆÐ</returns>
+		/// <param name="connectInfo">ì—°ê²° ì •ë³´</param>
+		/// <returns>ì—ëŸ¬ì½”ë“œ. NET_ERROR_CODE_N::SUCCESS ì´ì™¸ëŠ” ì‹¤íŒ¨</returns>
 		NET_ERROR_CODE_N RegistConnectInfo(RemoteServerConnectInfo^ connectInfo);
 		
 		
 
 		/// <summary>
-		/// ¼­¹ö ·ÎÁ÷ ¿£Æ®¸®. ´ëºÎºÐ ³×Æ®¿öÅ© °ü·Ã ºÎºÐ
+		/// ì„œë²„ ë¡œì§ ì—”íŠ¸ë¦¬. ëŒ€ë¶€ë¶„ ë„¤íŠ¸ì›Œí¬ ê´€ë ¨ ë¶€ë¶„
 		/// </summary>
 		ServerLogicEntry* m_pLogicEntry = nullptr;
 		
 		/// <summary>
-		/// ³×Æ®¿öÅ© ¿£Áø¿¡¼­ ÆÐÅ¶À» °¡Á®¿À´Â Å¬·¡½º
+		/// ë„¤íŠ¸ì›Œí¬ ì—”ì§„ì—ì„œ íŒ¨í‚·ì„ ê°€ì ¸ì˜¤ëŠ” í´ëž˜ìŠ¤
 		/// </summary>
 		SFNETDispatcher* m_pDispatcher = nullptr;
 
 		/// <summary>
-		/// ´Ù¸¥ ¼­¹ö¿¡ ¿¬°áÇÑ ÈÄ ¿¬°á, ²÷¾îÁü ¹× ÆÐÅ¶ÀÌ ¿À¸é È£ÃâµÇ´Â ÄÝ¹é
+		/// ë‹¤ë¥¸ ì„œë²„ì— ì—°ê²°í•œ í›„ ì—°ê²°, ëŠì–´ì§ ë° íŒ¨í‚·ì´ ì˜¤ë©´ í˜¸ì¶œë˜ëŠ” ì½œë°±
 		/// </summary>
 		ServerConnectCallback* m_pServerConnectCallback = nullptr;
 		
 		/// <summary>
-		/// ÆÐÅ¶ ÀúÀå Å¥. ½º·¹µå ¼¼ÀÌÇÁ ÇÏ´Ù
+		/// íŒ¨í‚· ì €ìž¥ í. ìŠ¤ë ˆë“œ ì„¸ì´í”„ í•˜ë‹¤
 		/// </summary>
 		ConcurrencyPacketQueue^ m_packetQueue = gcnew ConcurrencyPacketQueue();
 
 		/// <summary>
-		/// ³×Æ®¿öÅ© ¼³Á¤ Á¤º¸
+		/// ë„¤íŠ¸ì›Œí¬ ì„¤ì • ì •ë³´
 		/// </summary>
 		NetworkConfig^ m_networkConfig = gcnew NetworkConfig();
 		
 		/// <summary>
-		/// ´Ù¸¥ ¼­¹ö·ÎÀÇ Á¢¼Ó Á¤º¸
+		/// ë‹¤ë¥¸ ì„œë²„ë¡œì˜ ì ‘ì† ì •ë³´
 		/// </summary>
 		Generic::List<RemoteServerConnectInfo^>^ m_RemoteServerConnectInfoList = gcnew Generic::List<RemoteServerConnectInfo^>();
 
 		/// <summary>
-		/// ¸ÖÆ¼ listenÀ» À§ÇÑ Á¤º¸
+		/// ë©€í‹° listenì„ ìœ„í•œ ì •ë³´
 		/// </summary>
 		Generic::List<MultiListenNetworkInfo^>^ m_ListneInfoList = gcnew Generic::List<MultiListenNetworkInfo^>();
 
 		/// <summary>
-		/// Áßº¹µÇÁö ¾ÊÀº ÇÁ·ÎÅäÄÝ ID ÀúÀå
+		/// ì¤‘ë³µë˜ì§€ ì•Šì€ í”„ë¡œí† ì½œ ID ì €ìž¥
 		/// </summary>
 		Generic::List<int>^ m_UseProtocolIDList = gcnew Generic::List<int>();
 	};

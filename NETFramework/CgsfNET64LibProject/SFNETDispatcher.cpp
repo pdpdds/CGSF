@@ -1,4 +1,4 @@
-#include "stdafx.h"
+ï»¿#include "stdafx.h"
 #include "SFNETDispatcher.h"
 #include "SFEngine.h"
 #include "SFPacket.h"
@@ -34,8 +34,8 @@ namespace CgsfNET64Lib {
 		
 		while (m_bLogicEnd == false)
 		{
-			//·ÎÁ÷°ÔÀÌÆ®¿þÀÌ Å¥¿¡¼­ ÆÐÅ¶À» ²¨³½´Ù.
-			//·ÎÁ÷¿£Æ®¸® °´Ã¼ÀÇ ProcessPacket ¸Þ¼Òµå¸¦ È£ÃâÇØ¼­ ÆÐÅ¶ Ã³¸®¸¦ ¼öÇàÇÑ´Ù.
+			//ë¡œì§ê²Œì´íŠ¸ì›¨ì´ íì—ì„œ íŒ¨í‚·ì„ êº¼ë‚¸ë‹¤.
+			//ë¡œì§ì—”íŠ¸ë¦¬ ê°ì²´ì˜ ProcessPacket ë©”ì†Œë“œë¥¼ í˜¸ì¶œí•´ì„œ íŒ¨í‚· ì²˜ë¦¬ë¥¼ ìˆ˜í–‰í•œë‹¤.
 			BasePacket* pPacket = LogicGatewaySingleton::instance()->PopPacket();
 
 			LogicEntrySingleton::instance()->ProcessPacket(pPacket);
@@ -46,7 +46,7 @@ namespace CgsfNET64Lib {
 
 	bool SFNETDispatcher::ReleasePacket(BasePacket* pPacket)
 	{
-		//»ç¿ëÇÑ ÆÐÅ¶À» ¼ö°ÅÇÑ´Ù. ÆÐÅ¶ÀÇ Å¸ÀÔ¿¡ µû¶ó ¸±¸®Áî ÇüÅÂ°¡ ´Ù¸§
+		//ì‚¬ìš©í•œ íŒ¨í‚·ì„ ìˆ˜ê±°í•œë‹¤. íŒ¨í‚·ì˜ íƒ€ìž…ì— ë”°ë¼ ë¦´ë¦¬ì¦ˆ í˜•íƒœê°€ ë‹¤ë¦„
 		switch (pPacket->GetPacketType())
 		{
 		case SFPACKET_DATA:

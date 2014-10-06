@@ -1,4 +1,4 @@
-#pragma once 
+ï»¿#pragma once 
 
 #include "stdafx.h"
 #include "SFNETPacket.h"
@@ -12,16 +12,16 @@ using namespace System::Collections::Concurrent;
 namespace CgsfNET64Lib {
 
 	/// <summary>
-	/// ÇïÆÛ ±â´ÉÀ» ¸ğ¾Æ ³õÀº Å¬·¡½º
+	/// í—¬í¼ ê¸°ëŠ¥ì„ ëª¨ì•„ ë†“ì€ í´ë˜ìŠ¤
 	/// </summary>
 	ref class Helper
 	{
 	public:
 		/// <summary>
-		/// ³×Æ®¿öÅ© ¶óÀÌºê·¯¸®¿ë ·Î±×¸¦ »ç¿ëÇÏ¿© ¸Ş½ÃÁö¸¦ ÆÄÀÏ¿¡ Áï½Ã ³²±ä´Ù.
+		/// ë„¤íŠ¸ì›Œí¬ ë¼ì´ë¸ŒëŸ¬ë¦¬ìš© ë¡œê·¸ë¥¼ ì‚¬ìš©í•˜ì—¬ ë©”ì‹œì§€ë¥¼ íŒŒì¼ì— ì¦‰ì‹œ ë‚¨ê¸´ë‹¤.
 		/// </summary>
-		/// <param name="logLevel">·Î±×·¹º§</param>
-		/// <param name="logMessage">·Î±× ¸Ş½ÃÁö</param>
+		/// <param name="logLevel">ë¡œê·¸ë ˆë²¨</param>
+		/// <param name="logMessage">ë¡œê·¸ ë©”ì‹œì§€</param>
 		static void WriteLog(int logLevel, String^ logMessage)
 		{
 			auto log = msclr::interop::marshal_as<std::string>(logMessage);
