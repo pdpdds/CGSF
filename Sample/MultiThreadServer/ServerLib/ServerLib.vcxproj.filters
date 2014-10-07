@@ -1,0 +1,39 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <ClInclude Include="stdafx.h" />
+    <ClInclude Include="targetver.h" />
+    <ClInclude Include="ServerNetwork.h" />
+    <ClInclude Include="PacketDispatcher.h" />
+    <ClInclude Include="ServerConnectorCallback.h" />
+    <ClInclude Include="PacketDistribute.h" />
+    <ClInclude Include="WorkerPacket.h" />
+    <ClInclude Include="PktHandlerCommon.h">
+      <Filter>PacketHandler</Filter>
+    </ClInclude>
+    <ClInclude Include="PktHandlerLobby.h">
+      <Filter>PacketHandler</Filter>
+    </ClInclude>
+    <ClInclude Include="Protocol.h" />
+    <ClInclude Include="ServerErrorCode.h" />
+    <ClInclude Include="SubPacketProcess.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="stdafx.cpp" />
+    <ClCompile Include="ServerNetwork.cpp" />
+    <ClCompile Include="PacketDispatcher.cpp" />
+    <ClCompile Include="PacketDistribute.cpp" />
+    <ClCompile Include="PktHandlerCommon.cpp">
+      <Filter>PacketHandler</Filter>
+    </ClCompile>
+    <ClCompile Include="PktHandlerLobby.cpp">
+      <Filter>PacketHandler</Filter>
+    </ClCompile>
+    <ClCompile Include="SubPacketProcess.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <Filter Include="PacketHandler">
+      <UniqueIdentifier>{db591b21-efd6-44b0-85db-7c8f4c87dae3}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+</Project>
