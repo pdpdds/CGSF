@@ -1,7 +1,7 @@
 #pragma once
 
 template <typename T>
-class SFIOCPQueue// : public SFTSSyncQueue<T>
+class SFIOCPQueue
 {
 public:
 	SFIOCPQueue(void)
@@ -14,20 +14,18 @@ public:
 		Finally();
 	}
 
-	//virtual
-		BOOL Push(T* pMsg) 
+	bool Push(T* pMsg) 
 	{
 		if(0 == ::PostQueuedCompletionStatus(m_hIOCP, 0, (ULONG_PTR)pMsg, NULL))
 		{
 			//DWORD dwError =GetLastError();
-			return FALSE;
+			return false;
 		}
-		return TRUE;
+		return true;
 	}
 
 /////////////////////////////////////////////////////////////////////////////////////////////
-	//virtual 
-		T* Pop() 
+	T* Pop() 
 	{
 		ULONG_PTR pCompletionKey = 0;
 		DWORD NumberOfBytesTransferred = 0;
@@ -49,12 +47,12 @@ public:
 		if(FALSE != ::GetQueuedCompletionStatus(m_hIOCP, &NumberOfBytesTransferred, &pCompletionKey, &pOverlapped, Wait))
 			return (T*)(pCompletionKey);
 
-		return NULL;
+		return nullptr;
 	}
 
 protected:
 	//virtual
-		BOOL Initialize()
+		bool Initialize()
 	{
 		m_hIOCP = ::CreateIoCompletionPort(INVALID_HANDLE_VALUE, NULL, NULL, 0);
 
@@ -62,10 +60,10 @@ protected:
 	}
 
 	//virtual 
-		BOOL Finally()
+		bool Finally()
 	{
 		CloseHandle(m_hIOCP);
-		return TRUE;
+		return true;
 	}
 
 private:

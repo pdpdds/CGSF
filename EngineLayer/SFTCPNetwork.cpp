@@ -61,7 +61,7 @@ BOOL SFTCPNetwork::Update()
 	{
 		BasePacket* pPacket = LogicGatewaySingleton::instance()->PopPacket(0);
 
-		if (pPacket != NULL)
+		if (pPacket != nullptr)
 		{
 			switch (pPacket->GetPacketType())
 			{

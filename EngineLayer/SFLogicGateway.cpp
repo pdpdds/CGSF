@@ -9,7 +9,7 @@ SFLogicGateway::~SFLogicGateway(void)
 {
 }
 
-BOOL SFLogicGateway::PushPacket( BasePacket* pPacket )
+bool SFLogicGateway::PushPacket( BasePacket* pPacket )
 {
 	return m_IOCPQueue.Push(pPacket);
 }
