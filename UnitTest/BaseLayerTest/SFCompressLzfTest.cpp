@@ -1,4 +1,4 @@
-#include "stdafx.h"
+ï»¿#include "stdafx.h"
 #include "CppUnitTest.h"
 
 #include "SFCompressLzf.h"
@@ -13,8 +13,8 @@ namespace BaseLayerTest
 	public:
 		TEST_METHOD(TestCompressUnCompress)
 		{
-			// [ÁØºñ]
-			char szSource[] = "dsdsd1223098978³ª³ª³ª";
+			// [ì¤€ë¹„]
+			char szSource[] = "dsdsd1223098978ë‚˜ë‚˜ë‚˜";
 			int sourceLen = (int)(strlen(szSource));
 
 			char szDest1[256] = { 0, };
@@ -22,21 +22,21 @@ namespace BaseLayerTest
 
 			SFCompressLzf Lzf;
 
-			// [½ÇÇà - ¾ĞÃà]
+			// [ì‹¤í–‰ - ì••ì¶•]
 			auto compressRelust = Lzf.Compress((BYTE*)&szDest1, destLen1, (BYTE*)&szSource, sourceLen);
-			// [°ËÁõ]
+			// [ê²€ì¦]
 			Assert::AreEqual(true, compressRelust);
 
 			
 			char szDest2[256] = { 0, };
 			int destLen2 = 256;
 
-			// [½ÇÇà - ¾ĞÃà ÇØÁ¦]
+			// [ì‹¤í–‰ - ì••ì¶• í•´ì œ]
 			auto unCompressRelust = Lzf.Uncompress((BYTE*)&szDest2, destLen2, (BYTE*)&szDest1, destLen1);
-			// [°ËÁõ]
+			// [ê²€ì¦]
 			Assert::AreEqual(true, unCompressRelust);
 			
-			// [°ËÁõ - ¾ĞÃà ÇØÁ¦ÇÑ µ¥ÀÌÅÍ¸¦ ¿ø µ¥ÀÌÅÍ¿Í ºñ±³]
+			// [ê²€ì¦ - ì••ì¶• í•´ì œí•œ ë°ì´í„°ë¥¼ ì› ë°ì´í„°ì™€ ë¹„êµ]
 			Assert::AreEqual(szSource, szDest2);
 		}
 
