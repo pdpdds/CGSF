@@ -19,7 +19,7 @@ CCrypto::~CCrypto(void)
 	Finally();
 }
 
-BOOL CCrypto::Initialize(CHAR* szKeyFile)
+bool CCrypto::Initialize(CHAR* szKeyFile)
 {			
 	DWORD	dwResult;
 	errno_t err;
@@ -50,11 +50,11 @@ BOOL CCrypto::Initialize(CHAR* szKeyFile)
 			{
 				dwResult = GetLastError();
 				//MessageBox(_T("Error [0x%x]: CryptAcquireContext() failed."), _T("Information"), MB_OK);
-				return FALSE;
+				return false;
 			}
 		} else {
 			dwResult = GetLastError();
-			return FALSE;
+			return false;
 		}
 	}
 
@@ -64,7 +64,7 @@ BOOL CCrypto::Initialize(CHAR* szKeyFile)
 		{
 			dwResult = GetLastError();
 			//MessageBox(_T("Error [0x%x]: CryptImportKey() failed."), "Information", MB_OK);
-			return FALSE;
+			return false;
 		}
 	} 
 	else 
@@ -73,24 +73,24 @@ BOOL CCrypto::Initialize(CHAR* szKeyFile)
 		{
 			dwResult = GetLastError();
 			//MessageBox(_T("Error CryptImportKey() failed."), _T("Information"), MB_OK);
-			return FALSE;
+			return false;
 		}
 
 		if (!CryptGenKey(m_hProv, CALG_RC4, CRYPT_EXPORTABLE, &m_hSessionKey))
 		{
 			dwResult = GetLastError();
 			//MessageBox(_T("Error CryptGenKey() failed."), _T("Information"), MB_OK);
-			return FALSE;
+			return false;
 		}	
 	}
 
-	return TRUE;
+	return true;
 }
 
-BOOL CCrypto::ProcessEncryption(const TCHAR* pEncryptionData, int iDataSize)
+bool CCrypto::ProcessEncryption(const TCHAR* pEncryptionData, int iDataSize)
 {		
 	if(iDataSize <= 0)
-		return FALSE;
+		return false;
 
 	DWORD dwResult = 0;
 	unsigned char * pCipherBlock = (unsigned char*)malloc(iDataSize);
@@ -104,20 +104,20 @@ BOOL CCrypto::ProcessEncryption(const TCHAR* pEncryptionData, int iDataSize)
 		dwResult = GetLastError();
 		free(pCipherBlock);
 
-		return FALSE;
+		return false;
 	}
 
 	memcpy((void*)pEncryptionData, pCipherBlock, length);
 
 	free(pCipherBlock);
 
-	return TRUE;	
+	return true;	
 }
 
-BOOL CCrypto::ProcessDecryption(const TCHAR* pDecryptionData, int iDataSize)
+bool CCrypto::ProcessDecryption(const TCHAR* pDecryptionData, int iDataSize)
 {
 	if(iDataSize <= 0)
-		return FALSE;
+		return false;
 
 	DWORD dwResult = 0;
 	unsigned long length = iDataSize;
@@ -130,23 +130,23 @@ BOOL CCrypto::ProcessDecryption(const TCHAR* pDecryptionData, int iDataSize)
 		dwResult = GetLastError();
 		free(pCipherBlock);
 		
-		return FALSE;
+		return false;
 	}
 
 	memcpy((void*)pDecryptionData, pCipherBlock, length);	
 
 	free(pCipherBlock);
 
-	return TRUE;
+	return true;
 }
 
 
-BOOL CCrypto::Finally()
+bool CCrypto::Finally()
 {
 	if (!CryptReleaseContext(m_hProv,0))
 	{
-		return FALSE;
+		return false;
 	}	
 
-	return TRUE;
+	return true;
 }

@@ -6,6 +6,6 @@ public:
 	GoogleLog(void);
 	virtual ~GoogleLog(void);
 
-	BOOL Initialize();
-	BOOL Finally();
+	bool Initialize()	{ return true; }
+	bool Finally()		{ return true; }
 };

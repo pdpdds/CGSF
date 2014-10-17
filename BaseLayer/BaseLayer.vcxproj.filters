@@ -149,13 +149,7 @@
     <ClCompile Include="Logger\ACELogger.cpp">
       <Filter>Logger</Filter>
     </ClCompile>
-    <ClCompile Include="Logger\GoogleLog.cpp">
-      <Filter>Logger</Filter>
-    </ClCompile>
     <ClCompile Include="SFCompressLzf.cpp">
-      <Filter>Compress</Filter>
-    </ClCompile>
-    <ClCompile Include="SFCompressor.cpp">
       <Filter>Compress</Filter>
     </ClCompile>
     <ClCompile Include="SFCompressZLib.cpp">

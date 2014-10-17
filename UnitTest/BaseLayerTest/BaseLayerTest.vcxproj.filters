@@ -6,6 +6,6 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="stdafx.cpp" />
-    <ClCompile Include="SFCompressLzfTest.cpp" />
+    <ClCompile Include="SFCompressTest.cpp" />
   </ItemGroup>
 </Project>

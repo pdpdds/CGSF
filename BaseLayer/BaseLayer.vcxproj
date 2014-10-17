@@ -194,11 +194,9 @@
     <ClCompile Include="json\JsonNode.cpp" />
     <ClCompile Include="LoadTGA.cpp" />
     <ClCompile Include="Logger\ACELogger.cpp" />
-    <ClCompile Include="Logger\GoogleLog.cpp" />
     <ClCompile Include="SFBreakPad.cpp" />
     <ClCompile Include="SFBugTrap.cpp" />
     <ClCompile Include="SFCompressLzf.cpp" />
-    <ClCompile Include="SFCompressor.cpp" />
     <ClCompile Include="SFCompressZLib.cpp" />
     <ClCompile Include="SFCustomHandler.cpp" />
     <ClCompile Include="SFEncryptionXOR.cpp" />

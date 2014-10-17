@@ -8,12 +8,12 @@ public:
 	CCrypto(void);
 	virtual ~CCrypto(void);
 
-	BOOL Initialize(CHAR* szKeyFile);
-	BOOL ProcessEncryption(const TCHAR* pEncryptionData, int iDataSize);
-	BOOL ProcessDecryption(const TCHAR* pDecryptionData, int iDataSize);
+	bool Initialize(CHAR* szKeyFile);
+	bool ProcessEncryption(const TCHAR* pEncryptionData, int iDataSize);
+	bool ProcessDecryption(const TCHAR* pDecryptionData, int iDataSize);
 
 protected:
-	BOOL Finally();
+	bool Finally();
 
 private:	
 	HCRYPTPROV	m_hProv;
