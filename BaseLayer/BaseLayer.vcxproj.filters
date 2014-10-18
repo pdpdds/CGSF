@@ -5,10 +5,6 @@
       <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
       <Extensions>cpp;c;cc;cxx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
     </Filter>
-    <Filter Include="DataStructure">
-      <UniqueIdentifier>{93995380-89BD-4b04-88EB-625FBE52EBFB}</UniqueIdentifier>
-      <Extensions>h;hpp;hxx;hm;inl;inc;xsd</Extensions>
-    </Filter>
     <Filter Include="Exception">
       <UniqueIdentifier>{f6164a71-4e36-4c94-917f-8fca1a84f492}</UniqueIdentifier>
     </Filter>
@@ -256,63 +252,6 @@
     <ClInclude Include=".\targetver.h">
       <Filter>Util</Filter>
     </ClInclude>
-    <ClInclude Include=".\DataStructure\Array.h">
-      <Filter>DataStructure</Filter>
-    </ClInclude>
-    <ClInclude Include=".\DataStructure\Array2D.h">
-      <Filter>DataStructure</Filter>
-    </ClInclude>
-    <ClInclude Include=".\DataStructure\Array3D.h">
-      <Filter>DataStructure</Filter>
-    </ClInclude>
-    <ClInclude Include=".\DataStructure\BinarySearchTree.h">
-      <Filter>DataStructure</Filter>
-    </ClInclude>
-    <ClInclude Include=".\DataStructure\BinaryTree.h">
-      <Filter>DataStructure</Filter>
-    </ClInclude>
-    <ClInclude Include=".\DataStructure\Bitvector.h">
-      <Filter>DataStructure</Filter>
-    </ClInclude>
-    <ClInclude Include=".\DataStructure\DLinkedList.h">
-      <Filter>DataStructure</Filter>
-    </ClInclude>
-    <ClInclude Include=".\DataStructure\Graph.h">
-      <Filter>DataStructure</Filter>
-    </ClInclude>
-    <ClInclude Include=".\DataStructure\HashTable.h">
-      <Filter>DataStructure</Filter>
-    </ClInclude>
-    <ClInclude Include=".\DataStructure\Heap.h">
-      <Filter>DataStructure</Filter>
-    </ClInclude>
-    <ClInclude Include=".\DataStructure\Huffman.h">
-      <Filter>DataStructure</Filter>
-    </ClInclude>
-    <ClInclude Include=".\DataStructure\Pathfinding.h">
-      <Filter>DataStructure</Filter>
-    </ClInclude>
-    <ClInclude Include=".\DataStructure\Queue.h">
-      <Filter>DataStructure</Filter>
-    </ClInclude>
-    <ClInclude Include=".\DataStructure\RandomNumbers.h">
-      <Filter>DataStructure</Filter>
-    </ClInclude>
-    <ClInclude Include=".\DataStructure\RLE.h">
-      <Filter>DataStructure</Filter>
-    </ClInclude>
-    <ClInclude Include=".\DataStructure\SLinkedList.h">
-      <Filter>DataStructure</Filter>
-    </ClInclude>
-    <ClInclude Include=".\DataStructure\sorts.h">
-      <Filter>DataStructure</Filter>
-    </ClInclude>
-    <ClInclude Include=".\DataStructure\Stack.h">
-      <Filter>DataStructure</Filter>
-    </ClInclude>
-    <ClInclude Include=".\DataStructure\Tree.h">
-      <Filter>DataStructure</Filter>
-    </ClInclude>
     <ClInclude Include="SFBreakPad.h">
       <Filter>Exception</Filter>
     </ClInclude>
@@ -430,9 +369,6 @@
     <ClInclude Include="SFFastCRC.h">
       <Filter>CRC</Filter>
     </ClInclude>
-    <ClInclude Include="SFDispatch.h">
-      <Filter>DataStructure</Filter>
-    </ClInclude>
     <ClInclude Include="SFIOCPQueue.h">
       <Filter>Syncronization</Filter>
     </ClInclude>
@@ -525,9 +461,6 @@
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
-    <Text Include=".\DataStructure\Readme.txt">
-      <Filter>DataStructure</Filter>
-    </Text>
     <Text Include=".\ReadMe.txt" />
   </ItemGroup>
   <ItemGroup>

@@ -243,25 +243,6 @@
     <ClInclude Include=".\SFSystemInfo.h" />
     <ClInclude Include=".\stdafx.h" />
     <ClInclude Include=".\targetver.h" />
-    <ClInclude Include=".\DataStructure\Array.h" />
-    <ClInclude Include=".\DataStructure\Array2D.h" />
-    <ClInclude Include=".\DataStructure\Array3D.h" />
-    <ClInclude Include=".\DataStructure\BinarySearchTree.h" />
-    <ClInclude Include=".\DataStructure\BinaryTree.h" />
-    <ClInclude Include=".\DataStructure\Bitvector.h" />
-    <ClInclude Include=".\DataStructure\DLinkedList.h" />
-    <ClInclude Include=".\DataStructure\Graph.h" />
-    <ClInclude Include=".\DataStructure\HashTable.h" />
-    <ClInclude Include=".\DataStructure\Heap.h" />
-    <ClInclude Include=".\DataStructure\Huffman.h" />
-    <ClInclude Include=".\DataStructure\Pathfinding.h" />
-    <ClInclude Include=".\DataStructure\Queue.h" />
-    <ClInclude Include=".\DataStructure\RandomNumbers.h" />
-    <ClInclude Include=".\DataStructure\RLE.h" />
-    <ClInclude Include=".\DataStructure\SLinkedList.h" />
-    <ClInclude Include=".\DataStructure\sorts.h" />
-    <ClInclude Include=".\DataStructure\Stack.h" />
-    <ClInclude Include=".\DataStructure\Tree.h" />
     <ClInclude Include="BigNum.h" />
     <ClInclude Include="CrashHandler.h" />
     <ClInclude Include="Crypto\Crypto.h" />
@@ -294,7 +275,6 @@
     <ClInclude Include="SFCompressor.h" />
     <ClInclude Include="SFCompressZLib.h" />
     <ClInclude Include="SFCustomHandler.h" />
-    <ClInclude Include="SFDispatch.h" />
     <ClInclude Include="SFEncryption.h" />
     <ClInclude Include="SFEncryptionXOR.h" />
     <ClInclude Include="SFExceptionHandler.h" />
@@ -334,7 +314,6 @@
     <ClInclude Include="XML\tinyxml.h" />
   </ItemGroup>
   <ItemGroup>
-    <Text Include=".\DataStructure\Readme.txt" />
     <Text Include=".\ReadMe.txt" />
   </ItemGroup>
   <ItemGroup>
