@@ -1,6 +1,4 @@
 #pragma once
-//정규 표현식 확인
-//VS2008 SP1부터 지원
 
 class SFRegexChecker
 {

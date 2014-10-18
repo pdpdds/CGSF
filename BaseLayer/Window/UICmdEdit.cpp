@@ -2,13 +2,10 @@
 #include "UICmdEdit.h"
 #include "UICmdMsgView.h"
 
-HWND UICmdEdit::s_hEditWnd = NULL;	// 에디트,
+HWND UICmdEdit::s_hEditWnd = NULL;
 CHAR UICmdEdit::s_EditStr[MAX_EDITSTRING];
 WNDPROC UICmdEdit::s_OldEditProc;
 
-//////////////////////////////////////////////////////////////////////
-// Construction/Destruction
-//////////////////////////////////////////////////////////////////////
 LRESULT UICmdEdit::OnEditDefault( HWND hWnd, UINT uMsg, WPARAM wParam, LPARAM lParam )
 {
 	return CallWindowProc( s_OldEditProc, hWnd, uMsg, wParam, lParam );
@@ -18,8 +15,7 @@ LRESULT UICmdEdit::OnEditKeyDown( HWND hWnd, UINT uMsg, WPARAM wParam, LPARAM lP
 {
 	switch( wParam ) 
 	{
-	case VK_TAB:
-		// ListView에 포커스 넘김
+	case VK_TAB:		
 		SetFocus(UICmdMsgView::s_hListWnd);
 		return FALSE;
 	}
@@ -33,10 +29,8 @@ LRESULT UICmdEdit::OnEditChar( HWND hWnd, UINT uMsg, WPARAM wParam, LPARAM lPara
 	case 13:	// EditBox에서 return을 했을때
 		SendMessage( hWnd, WM_GETTEXT, MAX_EDITSTRING, (LPARAM)(LPSTR )s_EditStr);
 		if(strlen(s_EditStr) == 0)
-			break;
-		// 입력한것에 대한 처리 셀을 선택
-		SendMessage( hWnd, EM_SETSEL, 0, (LPARAM )-1 );
-		// 부모에게 Return을 통지
+			break;		
+		SendMessage( hWnd, EM_SETSEL, 0, (LPARAM )-1 );		
 		SendMessage( GetParent(hWnd), WM_EDIT_RETURN, strlen(s_EditStr), (LPARAM)(LPSTR )s_EditStr );
 		return FALSE;
 	}
@@ -58,7 +52,6 @@ LRESULT CALLBACK UICmdEdit::EditProc( HWND hWnd, UINT uMsg, WPARAM wParam, LPARA
 
 HWND UICmdEdit::InitEditProc( HWND hParent, HFONT hFont )
 {
-	// 메인 윈도우로.. 처리
 	ZeroMemory(s_EditStr, sizeof(s_EditStr));
 
 	RECT rect;
@@ -79,11 +72,9 @@ HWND UICmdEdit::InitEditProc( HWND hParent, HFONT hFont )
 #endif
 	ShowWindow( s_hEditWnd, SW_SHOW );
 	UpdateWindow( s_hEditWnd );
-
-	// 메인 폰트로 폰트를 셋팅한다.
+	
 	::SendMessage(s_hEditWnd, WM_SETFONT, (WPARAM)hFont, MAKELPARAM(FALSE,0));
 
-	// 여기서 에디트 박스에 폰트를 셋팅하게 한다.
 #ifdef _WIN64
 	s_OldEditProc = (WNDPROC )GetWindowLongPtr( s_hEditWnd, GWLP_WNDPROC );
 	SetWindowLongPtr( s_hEditWnd, GWLP_WNDPROC, (LONG )EditProc );

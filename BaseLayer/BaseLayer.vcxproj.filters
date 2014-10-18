@@ -1,10 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup>
-    <Filter Include="Util">
-      <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
-      <Extensions>cpp;c;cc;cxx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
-    </Filter>
     <Filter Include="Exception">
       <UniqueIdentifier>{f6164a71-4e36-4c94-917f-8fca1a84f492}</UniqueIdentifier>
     </Filter>
@@ -47,9 +43,6 @@
     <Filter Include="MemoryPool\VMemPool">
       <UniqueIdentifier>{139bed01-f0bc-4517-8e92-7b7961dc9c8c}</UniqueIdentifier>
     </Filter>
-    <Filter Include="TinyThread">
-      <UniqueIdentifier>{540ae730-32e7-43de-acd4-f8d28286f4d5}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Crypto">
       <UniqueIdentifier>{e758a4ec-72d0-4103-9cca-df48051af4b8}</UniqueIdentifier>
     </Filter>
@@ -59,40 +52,41 @@
     <Filter Include="Scheduler">
       <UniqueIdentifier>{8ef6838b-c9b8-4612-a5e5-88b57c64d7cb}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Thread">
+      <UniqueIdentifier>{540ae730-32e7-43de-acd4-f8d28286f4d5}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="File">
+      <UniqueIdentifier>{9620745b-ec4d-4a9f-980a-c44e3e618a56}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="EMail">
+      <UniqueIdentifier>{d6786601-40ed-4756-9f9a-47857f796f27}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="DataStructure">
+      <UniqueIdentifier>{6be14709-3a00-4ec0-b9e3-4bca9f3f6414}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="SystemInfo">
+      <UniqueIdentifier>{749c102d-7fbb-46e0-a56f-e0490a2cf685}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Timer">
+      <UniqueIdentifier>{5d9c7ee9-bbd5-4b03-8df0-51796188b9cf}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="WindowService">
+      <UniqueIdentifier>{77c1236b-73ab-4d14-bb5a-c998a7728002}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Registry">
+      <UniqueIdentifier>{b8d161f4-cf95-45f9-9741-a24620a14ac3}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Regex">
+      <UniqueIdentifier>{8fc918c9-e365-4d05-a7eb-117cdb24c3b1}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Common">
+      <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
+      <Extensions>cpp;c;cc;cxx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include=".\cpu_info.cpp">
-      <Filter>Util</Filter>
-    </ClCompile>
-    <ClCompile Include=".\CPUDesc.cpp">
-      <Filter>Util</Filter>
-    </ClCompile>
-    <ClCompile Include=".\SFBitArray.cpp">
-      <Filter>Util</Filter>
-    </ClCompile>
-    <ClCompile Include=".\SFDiskManager.cpp">
-      <Filter>Util</Filter>
-    </ClCompile>
-    <ClCompile Include=".\SFFilePack.cpp">
-      <Filter>Util</Filter>
-    </ClCompile>
-    <ClCompile Include=".\SFIni.cpp">
-      <Filter>Util</Filter>
-    </ClCompile>
-    <ClCompile Include=".\SFRegexChecker.cpp">
-      <Filter>Util</Filter>
-    </ClCompile>
-    <ClCompile Include=".\SFRegistry.cpp">
-      <Filter>Util</Filter>
-    </ClCompile>
-    <ClCompile Include=".\SFServiceController.cpp">
-      <Filter>Util</Filter>
-    </ClCompile>
-    <ClCompile Include=".\SFSystemInfo.cpp">
-      <Filter>Util</Filter>
-    </ClCompile>
     <ClCompile Include=".\stdafx.cpp">
-      <Filter>Util</Filter>
+      <Filter>Common</Filter>
     </ClCompile>
     <ClCompile Include="SFBreakPad.cpp">
       <Filter>Exception</Filter>
@@ -140,7 +134,7 @@
       <Filter>String</Filter>
     </ClCompile>
     <ClCompile Include="SFUtil.cpp">
-      <Filter>Util</Filter>
+      <Filter>Common</Filter>
     </ClCompile>
     <ClCompile Include="Logger\ACELogger.cpp">
       <Filter>Logger</Filter>
@@ -188,7 +182,7 @@
       <Filter>MemoryPool\VMemPool</Filter>
     </ClCompile>
     <ClCompile Include="TinyThread\tinythread.cpp">
-      <Filter>TinyThread</Filter>
+      <Filter>Thread</Filter>
     </ClCompile>
     <ClCompile Include="XML\Markup.cpp">
       <Filter>XML</Filter>
@@ -199,9 +193,6 @@
     <ClCompile Include="Crypto\md5Capi.cpp">
       <Filter>Crypto</Filter>
     </ClCompile>
-    <ClCompile Include="LoadTGA.cpp">
-      <Filter>Util</Filter>
-    </ClCompile>
     <ClCompile Include="Window\UICmdEdit.cpp">
       <Filter>Window</Filter>
     </ClCompile>
@@ -211,46 +202,46 @@
     <ClCompile Include="Window\UIFramework.cpp">
       <Filter>Window</Filter>
     </ClCompile>
+    <ClCompile Include=".\SFFilePack.cpp">
+      <Filter>File</Filter>
+    </ClCompile>
+    <ClCompile Include=".\SFIni.cpp">
+      <Filter>File</Filter>
+    </ClCompile>
+    <ClCompile Include=".\SFDiskManager.cpp">
+      <Filter>File</Filter>
+    </ClCompile>
     <ClCompile Include="CSmtp.cpp">
-      <Filter>Util</Filter>
+      <Filter>EMail</Filter>
+    </ClCompile>
+    <ClCompile Include=".\SFBitArray.cpp">
+      <Filter>DataStructure</Filter>
+    </ClCompile>
+    <ClCompile Include=".\SFSystemInfo.cpp">
+      <Filter>SystemInfo</Filter>
+    </ClCompile>
+    <ClCompile Include=".\CPUDesc.cpp">
+      <Filter>SystemInfo</Filter>
+    </ClCompile>
+    <ClCompile Include=".\cpu_info.cpp">
+      <Filter>SystemInfo</Filter>
+    </ClCompile>
+    <ClCompile Include=".\SFServiceController.cpp">
+      <Filter>WindowService</Filter>
+    </ClCompile>
+    <ClCompile Include=".\SFRegistry.cpp">
+      <Filter>Registry</Filter>
+    </ClCompile>
+    <ClCompile Include=".\SFRegexChecker.cpp">
+      <Filter>Regex</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include=".\cpu_info.h">
-      <Filter>Util</Filter>
-    </ClInclude>
-    <ClInclude Include=".\CPUDesc.h">
-      <Filter>Util</Filter>
-    </ClInclude>
-    <ClInclude Include=".\SFBitArray.h">
-      <Filter>Util</Filter>
-    </ClInclude>
-    <ClInclude Include=".\SFDiskManager.h">
-      <Filter>Util</Filter>
-    </ClInclude>
-    <ClInclude Include=".\SFFilePack.h">
-      <Filter>Util</Filter>
-    </ClInclude>
-    <ClInclude Include=".\SFIni.h">
-      <Filter>Util</Filter>
-    </ClInclude>
-    <ClInclude Include=".\SFRegexChecker.h">
-      <Filter>Util</Filter>
-    </ClInclude>
-    <ClInclude Include=".\SFRegistry.h">
-      <Filter>Util</Filter>
-    </ClInclude>
-    <ClInclude Include=".\SFServiceController.h">
-      <Filter>Util</Filter>
-    </ClInclude>
-    <ClInclude Include=".\SFSystemInfo.h">
-      <Filter>Util</Filter>
-    </ClInclude>
     <ClInclude Include=".\stdafx.h">
-      <Filter>Util</Filter>
+      <Filter>Common</Filter>
     </ClInclude>
     <ClInclude Include=".\targetver.h">
-      <Filter>Util</Filter>
+      <Filter>Common</Filter>
     </ClInclude>
     <ClInclude Include="SFBreakPad.h">
       <Filter>Exception</Filter>
@@ -275,9 +266,6 @@
     </ClInclude>
     <ClInclude Include="StackWalker.h">
       <Filter>Exception</Filter>
-    </ClInclude>
-    <ClInclude Include="GPGLockFreeQueue.h">
-      <Filter>Util</Filter>
     </ClInclude>
     <ClInclude Include="SFMath.h">
       <Filter>Math</Filter>
@@ -316,7 +304,7 @@
       <Filter>DirectoryWatcher</Filter>
     </ClInclude>
     <ClInclude Include="Macro.h">
-      <Filter>Util</Filter>
+      <Filter>Common</Filter>
     </ClInclude>
     <ClInclude Include="SFLock.h">
       <Filter>Syncronization</Filter>
@@ -327,16 +315,10 @@
     <ClInclude Include="SFString.h">
       <Filter>String</Filter>
     </ClInclude>
-    <ClInclude Include="SFTimer.h">
-      <Filter>Util</Filter>
-    </ClInclude>
     <ClInclude Include="SFUtil.h">
-      <Filter>Util</Filter>
+      <Filter>Common</Filter>
     </ClInclude>
     <ClInclude Include="Logger\ACELogger.h">
-      <Filter>Logger</Filter>
-    </ClInclude>
-    <ClInclude Include="Logger\GoogleLog.h">
       <Filter>Logger</Filter>
     </ClInclude>
     <ClInclude Include="SFCompressLzf.h">
@@ -441,9 +423,6 @@
     <ClInclude Include="Crypto\md5Capi.h">
       <Filter>Crypto</Filter>
     </ClInclude>
-    <ClInclude Include="LoadTGA.h">
-      <Filter>Util</Filter>
-    </ClInclude>
     <ClInclude Include="Window\UICmdEdit.h">
       <Filter>Window</Filter>
     </ClInclude>
@@ -456,8 +435,44 @@
     <ClInclude Include="SFScheduler.h">
       <Filter>Scheduler</Filter>
     </ClInclude>
+    <ClInclude Include="GPGLockFreeQueue.h">
+      <Filter>Syncronization</Filter>
+    </ClInclude>
+    <ClInclude Include=".\SFFilePack.h">
+      <Filter>File</Filter>
+    </ClInclude>
+    <ClInclude Include=".\SFIni.h">
+      <Filter>File</Filter>
+    </ClInclude>
+    <ClInclude Include=".\SFDiskManager.h">
+      <Filter>File</Filter>
+    </ClInclude>
     <ClInclude Include="CSmtp.h">
-      <Filter>Util</Filter>
+      <Filter>EMail</Filter>
+    </ClInclude>
+    <ClInclude Include=".\SFBitArray.h">
+      <Filter>DataStructure</Filter>
+    </ClInclude>
+    <ClInclude Include=".\SFSystemInfo.h">
+      <Filter>SystemInfo</Filter>
+    </ClInclude>
+    <ClInclude Include=".\CPUDesc.h">
+      <Filter>SystemInfo</Filter>
+    </ClInclude>
+    <ClInclude Include=".\cpu_info.h">
+      <Filter>SystemInfo</Filter>
+    </ClInclude>
+    <ClInclude Include="SFTimer.h">
+      <Filter>Timer</Filter>
+    </ClInclude>
+    <ClInclude Include=".\SFServiceController.h">
+      <Filter>WindowService</Filter>
+    </ClInclude>
+    <ClInclude Include=".\SFRegistry.h">
+      <Filter>Registry</Filter>
+    </ClInclude>
+    <ClInclude Include=".\SFRegexChecker.h">
+      <Filter>Regex</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

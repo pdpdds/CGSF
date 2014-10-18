@@ -192,7 +192,6 @@
     <ClCompile Include="GeneralPool.cpp" />
     <ClCompile Include="json\JsonBuilder.cpp" />
     <ClCompile Include="json\JsonNode.cpp" />
-    <ClCompile Include="LoadTGA.cpp" />
     <ClCompile Include="Logger\ACELogger.cpp" />
     <ClCompile Include="SFBreakPad.cpp" />
     <ClCompile Include="SFBugTrap.cpp" />
@@ -265,9 +264,7 @@
     <ClInclude Include="json\reader.h" />
     <ClInclude Include="json\visitor.h" />
     <ClInclude Include="json\writer.h" />
-    <ClInclude Include="LoadTGA.h" />
     <ClInclude Include="Logger\ACELogger.h" />
-    <ClInclude Include="Logger\GoogleLog.h" />
     <ClInclude Include="Macro.h" />
     <ClInclude Include="SFBreakPad.h" />
     <ClInclude Include="SFBugTrap.h" />

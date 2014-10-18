@@ -1,10 +1,3 @@
-/** 
- *  @file  		UICmdEdit.h
- *  @brief 		Server UIFramework에서 사용하는 Edit컨트롤
- *  @remarks 
- *  @author  	강동명(edith2580@gmail.com)
- *  @date  		2009-05-09
- */
 #pragma once
 
 class UICmdEdit 

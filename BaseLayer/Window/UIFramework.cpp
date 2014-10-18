@@ -62,7 +62,6 @@ void LOG(const WCHAR* msg, ...)
 	AddLogMsg(UIWindow::m_logHwnd, buf, (int)wcslen(msg));
 }
 
-//////////////////////////////////////
 UIConsol::UIConsol()
 {
 	m_bCommandExit = FALSE;
@@ -73,14 +72,9 @@ UIConsol::~UIConsol()
 }
 
 BOOL UIConsol::Init()
-{
-	//CLog::SetLogHandle(UICmdMsgView::s_hListWnd);
-	//		Nave::NFLog::EnableLogFile(true);
-
-	// 오브젝트 초기화
+{	
 	InitObject();
 
-	// 커멘드 초기화.
 	InitializeCommand();
 
 	m_bCommandExit = FALSE;
@@ -107,10 +101,6 @@ VOID UIConsol::EndCommand()
 }
 
 static UIWindow* g_pMain = NULL;
-///////////////////////////////////////////////////////////////////////////////
-//	Descrip	: 말그대로 윈도우용. Proc..
-//	Date	: 2001-04-11오전 10:41:02
-///////////////////////////////////////////////////////////////////////////////
 LRESULT CALLBACK WindowProc(HWND hWnd, UINT uMsg, WPARAM wParam, LPARAM lParam)
 {
 	if(g_pMain)
@@ -140,8 +130,7 @@ VOID UIWindow::OnEditReturn(HWND hWnd, UINT uMsg, WPARAM wParam, LPARAM lParam)
 	WCHAR buff[MAX_EDITSTRING];
 	ZeroMemory(buff, sizeof(buff));
 	CopyMemory( buff, (WCHAR*)lParam, sizeof(buff) );
-
-	// 여기서 입력된 문자열을 가지고 분석해서 입력한 값에 따라 처리한다.
+	
 	DoCommand(buff);
 }
 
@@ -151,10 +140,6 @@ VOID UIWindow::ResizeWindows( VOID )
 	UICmdMsgView::ResizeLog(m_hMainWnd);
 }
 
-///////////////////////////////////////////////////////////////////////////////
-//	Descrip	: 말그대로 사용할 MsgProc , WindowProc에서 호출된다.
-//	Date	: 2001-04-11오전 10:41:02
-///////////////////////////////////////////////////////////////////////////////
 LRESULT UIWindow::MsgProc( HWND hWnd, UINT uMsg, WPARAM wParam, LPARAM lParam )
 {
 	switch(uMsg)
@@ -174,11 +159,9 @@ LRESULT UIWindow::MsgProc( HWND hWnd, UINT uMsg, WPARAM wParam, LPARAM lParam )
 		OnCommand(hWnd, LOWORD(wParam), HIWORD(wParam), lParam);
 		return FALSE;
 
-		// ListView 키보드 입력.
 	case WM_VKEYTOITEM :
 		return UICmdMsgView::OnVkeyToItem(hWnd, uMsg, wParam, lParam);
-
-		// EditBox 엔터 입력.
+		
 	case WM_EDIT_RETURN:
 		OnEditReturn(hWnd, uMsg, wParam, lParam);
 		return FALSE;
@@ -193,8 +176,7 @@ LRESULT UIWindow::MsgProc( HWND hWnd, UINT uMsg, WPARAM wParam, LPARAM lParam )
 }
 
 BOOL UIWindow::Init(HINSTANCE hInstance, int nCmdShow, int iWidth, int iHeight, WCHAR* AppName, WCHAR* Icon)
-{
-	// 윈도우의 생성
+{	
 	WNDCLASSEX wcex;
 	wcex.cbSize			= sizeof(WNDCLASSEX); 
 	wcex.style			= CS_HREDRAW | CS_VREDRAW | CS_OWNDC;
@@ -233,22 +215,18 @@ BOOL UIWindow::Init(HINSTANCE hInstance, int nCmdShow, int iWidth, int iHeight, 
 	UICmdMsgView::InitMsgView(m_hMainWnd, m_hFont);
 
 	SetLogHandle(UICmdMsgView::s_hListWnd);
-	//		Nave::NFLog::EnableLogFile(true);
 
-	ShowWindow(nCmdShow);					// Show The UIWindow
-	SetForegroundWindow(m_hMainWnd);					// Slightly Higher Priority
-	// EditBox에 포커스 주기
-	SetFocus(UICmdEdit::s_hEditWnd);								// Sets Keyboard Focus To The UIWindow
+	ShowWindow(nCmdShow);
+	SetForegroundWindow(m_hMainWnd);
 
-	// 아이콘 로드 (작은 것 따로 하나)
+	SetFocus(UICmdEdit::s_hEditWnd);
+	
 	HICON hIcon = LoadIcon( hInstance, (LPCTSTR)Icon );
 	SendMessage( m_hMainWnd, WM_SETICON, (WPARAM)ICON_BIG,   (LPARAM)hIcon );
 	SendMessage( m_hMainWnd, WM_SETICON, (WPARAM)ICON_SMALL, (LPARAM)hIcon );
 
-	// 오브젝트 초기화
 	InitObject();
 
-	// 커멘드 초기화.
 	InitializeCommand();
 
 	m_bCommandExit = FALSE;
@@ -257,7 +235,7 @@ BOOL UIWindow::Init(HINSTANCE hInstance, int nCmdShow, int iWidth, int iHeight, 
 
 VOID UIWindow::ShowWindow(int nCmdShow)
 {
-	::ShowWindow(m_hMainWnd, nCmdShow);					// Show The UIWindow
+	::ShowWindow(m_hMainWnd, nCmdShow);
 }
 
 VOID UIWindow::StartCommand()
@@ -278,8 +256,7 @@ VOID UIWindow::StartCommand()
 	ReleaseObject();
 
 	InvalidateRect(m_hMainWnd, NULL, FALSE);
-
-	// 종료 메시지 표현 해 주기 위해서
+	
 	for(int i = 0; i < 10; i++)
 	{
 		// 마지막 메시지를 화면에 출력하기 위해서.
