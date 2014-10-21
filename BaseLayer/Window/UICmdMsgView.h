@@ -8,7 +8,7 @@ public:
 	~UICmdMsgView();
 
 public:
-#define INFO_HEIGHT		300
+#define INFO_HEIGHT		100
 #define ID_INFO			201
 #define ID_MSGVIEW		202
 

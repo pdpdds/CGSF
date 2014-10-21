@@ -5,6 +5,8 @@
 #include <vector>
 
 
+void LOG(const WCHAR* msg, ...);
+
 #define ADD_COMMAND(cmd, object, msg) AddCommand(cmd, new object, msg)
 
 class UICommand
