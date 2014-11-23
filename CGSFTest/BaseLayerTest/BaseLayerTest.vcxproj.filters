@@ -108,9 +108,6 @@
     <ClInclude Include="FilePackingTest.h">
       <Filter>Test</Filter>
     </ClInclude>
-    <ClInclude Include="DataStructureTest.h">
-      <Filter>Test</Filter>
-    </ClInclude>
     <ClInclude Include="SQLite3Test.h">
       <Filter>Test</Filter>
     </ClInclude>
@@ -124,6 +121,9 @@
       <Filter>Test</Filter>
     </ClInclude>
     <ClInclude Include="CryptoTest.h">
+      <Filter>Test</Filter>
+    </ClInclude>
+    <ClInclude Include="ScehdulerTest.h">
       <Filter>Test</Filter>
     </ClInclude>
   </ItemGroup>
@@ -206,9 +206,6 @@
     <ClCompile Include="FilePackingTest.cpp">
       <Filter>Test</Filter>
     </ClCompile>
-    <ClCompile Include="DataStructureTest.cpp">
-      <Filter>Test</Filter>
-    </ClCompile>
     <ClCompile Include="SQLite3Test.cpp">
       <Filter>Test</Filter>
     </ClCompile>
@@ -222,6 +219,9 @@
       <Filter>Test</Filter>
     </ClCompile>
     <ClCompile Include="CryptoTest.cpp">
+      <Filter>Test</Filter>
+    </ClCompile>
+    <ClCompile Include="ScehdulerTest.cpp">
       <Filter>Test</Filter>
     </ClCompile>
   </ItemGroup>
