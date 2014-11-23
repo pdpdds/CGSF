@@ -123,7 +123,7 @@
     <ClInclude Include="CryptoTest.h">
       <Filter>Test</Filter>
     </ClInclude>
-    <ClInclude Include="ScehdulerTest.h">
+    <ClInclude Include="SchedulerTest.h">
       <Filter>Test</Filter>
     </ClInclude>
   </ItemGroup>
@@ -221,7 +221,7 @@
     <ClCompile Include="CryptoTest.cpp">
       <Filter>Test</Filter>
     </ClCompile>
-    <ClCompile Include="ScehdulerTest.cpp">
+    <ClCompile Include="SchedulerTest.cpp">
       <Filter>Test</Filter>
     </ClCompile>
   </ItemGroup>
