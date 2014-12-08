@@ -57,7 +57,7 @@ bool ASIOServerEngine::CheckTimerImpl()
 	return false;
 }
 
-bool ASIOServerEngine::CreateTimerTask(unsigned int TimerID, unsigned int StartTime, unsigned int Period)
+bool ASIOServerEngine::AddTimer(unsigned int TimerID, unsigned int StartTime, unsigned int Period)
 {	
 	return true;
 }
@@ -106,7 +106,7 @@ bool ASIOClientEngine::CheckTimerImpl()
 	return false;
 }
 
-bool ASIOClientEngine::CreateTimerTask(unsigned int timerID, unsigned int startTime, unsigned int period)
+bool ASIOClientEngine::AddTimer(unsigned int timerID, unsigned int startTime, unsigned int period)
 {	
 	return true;
 }

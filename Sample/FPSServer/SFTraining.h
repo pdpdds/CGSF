@@ -15,7 +15,7 @@ public:
 	virtual BOOL OnEnter(int GameMode) override;
 	virtual BOOL Onleave() override;
 
-	virtual BOOL Update(DWORD dwTickcount) override;
+	virtual BOOL Update(DWORD timerId) override;
 
 	BOOL ProcessUserRequest(SFPlayer* pPlayer, BasePacket* pPacket) override;
 	BOOL ProcessUserRequest(SFPlayer* pPlayer, int Msg) override;

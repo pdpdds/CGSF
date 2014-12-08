@@ -112,10 +112,10 @@ BOOL SFRoomFSM::ProcessUserRequest( SFPlayer* pPlayer, int Msg )
 	return FALSE;
 }
 
-BOOL SFRoomFSM::Update( DWORD dwTickCount )
+BOOL SFRoomFSM::Update( DWORD timerId )
 {
 	if(m_pCurrentState)
-		return m_pCurrentState->Update(dwTickCount);
+		return m_pCurrentState->Update(timerId);
 
 	return FALSE;
 }

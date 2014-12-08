@@ -19,7 +19,7 @@ public:
 ////////////////////////////////////////////////////////////
 	virtual BOOL OnEnter(int gameMode) override;
 	virtual BOOL Onleave() override;
-	virtual BOOL Update(DWORD dwTickcount) override;
+	virtual BOOL Update(DWORD timerId) override;
 	BOOL ProcessUserRequest(SFPlayer* pPlayer, BasePacket* pPacket) override;
 	BOOL ProcessUserRequest(SFPlayer* pPlayer, int msg) override;
 	BOOL BroadCast(BasePacket& pPacket);

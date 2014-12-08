@@ -19,7 +19,8 @@ public:
 	virtual bool Disconnect(int serial) override;
 
 	virtual bool CheckTimerImpl() override; //default timer »ç¿ë
-	virtual bool CreateTimerTask(unsigned int timerID, unsigned int startTime, unsigned int period) override;
+	virtual bool AddTimer(unsigned int timerID, unsigned int startTime, unsigned int period) override;
+	virtual bool CancelTimer(int timerID, bool allCancel = false) override;
 
 	virtual int AddConnector(int connectorIndex, char* szIP, unsigned short port) override;
 	virtual int AddListener(char* szIP, unsigned short port) override;

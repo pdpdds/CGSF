@@ -24,7 +24,7 @@ public:
 	BOOL Open(SFPlayer* pPlayer);
 	BOOL Close();
 
-	BOOL Update(DWORD dwTickCount);
+	BOOL Update(int timerId);
 
 	BOOL OnEnter(SFPlayer* pPlayer);
 	BOOL OnLeave(SFPlayer* pPlayer);

@@ -11,7 +11,7 @@ public:
 	SFRoomFSM(SFRoom* pOwner, eRoomState State);
 	virtual ~SFRoomFSM(void);
 
-	virtual BOOL Update(DWORD dwTickCount) override;
+	virtual BOOL Update(DWORD timerId) override;
 	BOOL Reset();
 	eRoomState GetRoomState(){return m_pCurrentState->GetRoomState();}
 

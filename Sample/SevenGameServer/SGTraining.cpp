@@ -30,7 +30,7 @@ BOOL SGTraining::Onleave()
 //////////////////////////////////////////////////////
 //Timer Event
 //////////////////////////////////////////////////////
-BOOL SGTraining::Update( DWORD dwTickcount )
+BOOL SGTraining::Update(DWORD timerId)
 {
 	return TRUE;
 }

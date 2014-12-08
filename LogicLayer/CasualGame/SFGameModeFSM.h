@@ -20,7 +20,7 @@ public:
 	virtual BOOL OnEnter(int gameMode) override;
 	virtual BOOL Onleave() override;
 
-	virtual BOOL Update(DWORD dwTickcount) override;
+	virtual BOOL Update(DWORD timerId) override;
 
 protected:
 	BOOL AddGameMode(SFRoomPlay* pOwner);

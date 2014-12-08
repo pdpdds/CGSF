@@ -81,9 +81,9 @@ BOOL SFRoom::ChangePlayerFSM( ePlayerState State )
 	return TRUE;
 }
 
-BOOL SFRoom::Update(DWORD dwTickCount)
+BOOL SFRoom::Update(int timerId)
 {
-	return m_pRoomFSM->Update(dwTickCount);
+	return m_pRoomFSM->Update(timerId);
 }
 
 BOOL SFRoom::OnEnter( SFPlayer* pPlayer )

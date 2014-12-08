@@ -280,7 +280,7 @@ BOOL SFLogicEntry::OnDBResult(SFMessage* pMessage)
 BOOL SFLogicEntry::OnTimer(BasePacket* pPacket)
 {
 	SFRoomManager* pManager = GetRoomManager();
-	return pManager->Update();
+	return pManager->Update(pPacket->GetSerial());
 }
 
 BOOL SFLogicEntry::OnShouter(BasePacket* pPacket)

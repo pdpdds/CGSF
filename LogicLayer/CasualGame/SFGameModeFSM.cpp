@@ -50,10 +50,10 @@ BOOL SFGameModeFSM::Onleave()
 	return m_pCurrentGameMode->Onleave();
 }
 
-BOOL SFGameModeFSM::Update( DWORD dwTickcount )
+BOOL SFGameModeFSM::Update(DWORD timerId)
 {
 	if(m_pCurrentGameMode)
-		return m_pCurrentGameMode->Update(dwTickcount);
+		return m_pCurrentGameMode->Update(timerId);
 
 	return FALSE;
 }

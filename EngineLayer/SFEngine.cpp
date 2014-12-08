@@ -209,7 +209,7 @@ bool SFEngine::AddTimer(int timerID, DWORD period, DWORD delay)
 
 	if(GetNetworkEngine()->CheckTimerImpl())
 	{
-		if(FALSE == GetNetworkEngine()->CreateTimerTask(timerID, delay, period))
+		if (FALSE == GetNetworkEngine()->AddTimer(timerID, delay, period))
 		{
 			LOG(ERROR) << "Timer Creation FAIL!!";
 			return FALSE;
@@ -219,6 +219,14 @@ bool SFEngine::AddTimer(int timerID, DWORD period, DWORD delay)
 	}
 
 	return TRUE;
+}
+
+////////////////////////////////////////////////////////////////////
+//Add Timer
+////////////////////////////////////////////////////////////////////
+bool SFEngine::CancelTimer(int timerID, bool allCancel)
+{
+	return GetNetworkEngine()->CancelTimer(timerID, allCancel);
 }
 
 bool SFEngine::Start(char* szIP, unsigned short port)
@@ -350,11 +358,11 @@ bool SFEngine::OnDisconnect(int serial, _SessionDesc& desc)
 
 bool SFEngine::OnTimer(const void *arg)
 {
-	UNREFERENCED_PARAMETER(arg);
+	int timerId = (int)arg;
 
 	BasePacket* pPacket = new BasePacket();
 	pPacket->SetPacketType(SFPACKET_TIMER);
-	pPacket->SetSerial(-1);
+	pPacket->SetSerial(timerId);
 
 	m_pLogicDispatcher->Dispatch(pPacket);
 

@@ -20,7 +20,7 @@ BOOL SFTraining::Onleave()
 	return TRUE;
 }
 
-BOOL SFTraining::Update( DWORD dwTickcount )
+BOOL SFTraining::Update(DWORD timerId)
 {
 	return TRUE;
 }

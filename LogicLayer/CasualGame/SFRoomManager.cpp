@@ -52,12 +52,12 @@ BOOL SFRoomManager::SendRoomPage( SFPlayerLobby* pLobbyState, int PageIndex /*= 
 	return TRUE;
 }
 
-BOOL SFRoomManager::Update()
+BOOL SFRoomManager::Update(int timerID)
 {
 	for (auto& iter : m_ActiveRoomMap)
 	{
 		SFRoom* pRoom = iter.second;
-		pRoom->Update(0);
+		pRoom->Update(timerID);
 		//if (thread.joinable())
 			//thread.join();
 	}

@@ -19,7 +19,7 @@ protected:
 	virtual BOOL OnEnter(){return FALSE;}
 	virtual BOOL OnLeave(){return FALSE;}
 
-	virtual BOOL Update(DWORD dwTickCount){return FALSE;}
+	virtual BOOL Update(DWORD timerId){ return FALSE; }
 
 	virtual BOOL OnEnterRoom(SFPlayer* pPlayer){return FALSE;}
 	virtual BOOL OnLeaveRoom(SFPlayer* pPlayer){return FALSE;}

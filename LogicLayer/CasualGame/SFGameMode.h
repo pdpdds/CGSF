@@ -19,7 +19,7 @@ public:
 	virtual BOOL Onleave() {return FALSE;}
 	virtual BOOL ProcessUserRequest(SFPlayer* pPlayer, BasePacket* pPacket) {return FALSE;}
 	virtual BOOL ProcessUserRequest(SFPlayer* pPlayer, int Msg) {return FALSE;}
-	virtual BOOL Update(DWORD dwTickcount) {return FALSE;}
+	virtual BOOL Update(DWORD timerId) { return FALSE; }
 
 	SFRoomPlay* GetOwner(){return m_pOwner;}
 	int GetGameMode(){return m_GameMode;}

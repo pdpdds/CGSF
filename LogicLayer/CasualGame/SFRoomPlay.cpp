@@ -57,9 +57,9 @@ BOOL SFRoomPlay::OnLeave()
 	return TRUE;
 }
 
-BOOL SFRoomPlay::Update( DWORD dwTickCount )
+BOOL SFRoomPlay::Update(DWORD timerId)
 {
-	return m_pGameModeFSM->Update(dwTickCount);
+	return m_pGameModeFSM->Update(timerId);
 
 }
 

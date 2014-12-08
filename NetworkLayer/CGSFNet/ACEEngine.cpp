@@ -69,7 +69,7 @@ bool ACEEngine::CheckTimerImpl()
 	return true;
 }
 
-bool ACEEngine::CreateTimerTask(unsigned int TimerID, unsigned int StartTime, unsigned int Period)
+bool ACEEngine::AddTimer(unsigned int TimerID, unsigned int StartTime, unsigned int Period)
 {
 	ACE_Time_Value Interval(Period / 1000, (Period % 1000) * 1000);
 	ACE_Time_Value Start(StartTime / 1000, (StartTime % 1000) * 1000);
@@ -82,6 +82,19 @@ bool ACEEngine::CreateTimerTask(unsigned int TimerID, unsigned int StartTime, un
 
 	return true;
 }
+
+bool ACEEngine::CancelTimer(int timerID, bool allCancel)
+{
+	if (allCancel == true)
+	{
+		ACE_Proactor::instance()->cancel_timer(m_TimeOutHandler);
+		return true;
+	}
+
+	return ACE_Proactor::instance()->cancel_timer(timerID) == 1;
+}
+
+
 
 int ACEEngine::AddConnector(int connectorIndex, char* szIP, unsigned short port)
 {

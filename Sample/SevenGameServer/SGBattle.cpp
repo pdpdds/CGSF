@@ -91,7 +91,7 @@ BOOL SGBattle::Onleave()
 	return TRUE;
 }
 
-BOOL SGBattle::Update( DWORD dwTickcount )
+BOOL SGBattle::Update(DWORD timerId)
 {
 	if(m_nGameState ==  SG_GAME_PLAY)
 	{

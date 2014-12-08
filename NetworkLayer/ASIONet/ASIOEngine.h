@@ -20,7 +20,7 @@ public:
 	virtual bool Disconnect(int serial) override;
 
 	virtual bool CheckTimerImpl() override; //default timer 사용
-	virtual bool CreateTimerTask(unsigned int TimerID, unsigned int StartTime, unsigned int Period) override;
+	virtual bool AddTimer(unsigned int TimerID, unsigned int StartTime, unsigned int Period) override;
 
 protected:
 
@@ -44,7 +44,7 @@ public:
 	virtual bool Disconnect(int serial) override;
 
 	virtual bool CheckTimerImpl() override; //default timer 사용
-	virtual bool CreateTimerTask(unsigned int timerID, unsigned int startTime, unsigned int period) override;
+	virtual bool AddTimer(unsigned int timerID, unsigned int startTime, unsigned int period) override;
 
 protected:
 

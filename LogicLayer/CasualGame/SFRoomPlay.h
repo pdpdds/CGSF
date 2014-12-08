@@ -13,7 +13,7 @@ public:
 	virtual BOOL OnEnter() override;
 	virtual BOOL OnLeave() override;
 
-	BOOL Update(DWORD dwTickCount) override;
+	BOOL Update(DWORD timerId) override;
 
 	BOOL ProcessUserRequest(SFPlayer* pPlayer, BasePacket* pPacket) override;
 	BOOL ProcessUserRequest(SFPlayer* pPlayer, int Msg) override;

@@ -28,7 +28,7 @@ BOOL SFFreeForAll::Onleave()
 	return TRUE;
 }
 
-BOOL SFFreeForAll::Update( DWORD dwTickcount )
+BOOL SFFreeForAll::Update(DWORD timerId)
 {
 	return TRUE;
 }

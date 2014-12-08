@@ -15,7 +15,7 @@ public:
 	virtual ~SFRoomManager(void);
 
 	BOOL Initialize();
-	BOOL Update();
+	BOOL Update(int timerId);
 
 	SFRoom* GetEmptyRoom();
 	BOOL RecallRoom(SFRoom* pRoom);
