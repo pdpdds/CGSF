@@ -20,7 +20,7 @@ public:
 
 	virtual bool CheckTimerImpl() override; //default timer »ç¿ë
 	virtual bool AddTimer(unsigned int timerID, unsigned int startTime, unsigned int period) override;
-	virtual bool CancelTimer(int timerID, bool allCancel = false) override;
+	virtual bool CancelTimer(int timerID) override;
 
 	virtual int AddConnector(int connectorIndex, char* szIP, unsigned short port) override;
 	virtual int AddListener(char* szIP, unsigned short port) override;

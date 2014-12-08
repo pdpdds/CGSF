@@ -83,9 +83,9 @@ bool ACEEngine::AddTimer(unsigned int TimerID, unsigned int StartTime, unsigned 
 	return true;
 }
 
-bool ACEEngine::CancelTimer(int timerID, bool allCancel)
+bool ACEEngine::CancelTimer(int timerID)
 {
-	if (allCancel == true)
+	if (timerID < 0)
 	{
 		ACE_Proactor::instance()->cancel_timer(m_TimeOutHandler);
 		return true;

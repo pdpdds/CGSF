@@ -47,7 +47,7 @@ class NETWORKENGINEDECL INetworkEngine
 ////////////////////////////////////////////////////////////////////////////////////////////////////
 	virtual bool CheckTimerImpl() {return false;} //default timer 사용
 	virtual bool AddTimer(unsigned int TimerID, unsigned int StartTime, unsigned int Period) { return false; } //타이머 생성
-	virtual bool CancelTimer(int timerID, bool allCancel = false){ return false; }
+	virtual bool CancelTimer(int timerID){ return false; }
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////
 //다른 서버와 연결 가능하도록 컨넥터를 추가한다.

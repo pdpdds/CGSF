@@ -41,7 +41,7 @@ public:
 	virtual bool OnTimer(const void *arg) override;
 
 	bool AddTimer(int timerID, DWORD period, DWORD delay);
-	bool CancelTimer(int timerID, bool allCancel = false);
+	bool CancelTimer(int timerID);
 
 	bool SendRequest(BasePacket* pPacket);
 	bool SendRequest(BasePacket* pPacket, std::vector<int>& ownerList);

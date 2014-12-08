@@ -222,11 +222,12 @@ bool SFEngine::AddTimer(int timerID, DWORD period, DWORD delay)
 }
 
 ////////////////////////////////////////////////////////////////////
-//Add Timer
+//Cancel Timer
+//타이머 아이디가 음수일 경우 등록된 모든 타이머를 취소한다.
 ////////////////////////////////////////////////////////////////////
-bool SFEngine::CancelTimer(int timerID, bool allCancel)
+bool SFEngine::CancelTimer(int timerID)
 {
-	return GetNetworkEngine()->CancelTimer(timerID, allCancel);
+	return GetNetworkEngine()->CancelTimer(timerID);
 }
 
 bool SFEngine::Start(char* szIP, unsigned short port)
