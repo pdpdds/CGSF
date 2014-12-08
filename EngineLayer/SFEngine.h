@@ -49,15 +49,15 @@ public:
 
 	bool ReleasePacket(BasePacket* pPacket);
 
+	bool Disconnect(int serial);
+
 	SFServerConnectionManager* GetServerConnectionManager(){ return m_pServerConnectionManager; }
 	bool SetupServerReconnectSys();
 	bool LoadConnectorList(WCHAR* szFileName);
 	int  AddListener(char* szIP, unsigned short port, int packetProtocolId);
 	int  AddConnector(int connectorId, char* szIP, unsigned short port);
 	void AddRPCService(IRPCService* pService);
-	bool AddPacketProtocol(int packetProtocolId, IPacketProtocol* pProtocol);
-	
-	INetworkEngine* GetNetworkEngine(){return m_pNetworkEngine;}
+	bool AddPacketProtocol(int packetProtocolId, IPacketProtocol* pProtocol);	
 
 	SFConfigure* GetConfig(){return &m_Config;}
 	void SetConfig(SFConfigure& Config){m_Config = Config;}
@@ -75,6 +75,8 @@ protected:
 private:
 	SFEngine();
 	bool Start(char* szIP, unsigned short port); //클라이언트 전용, 이후 deprecated 될 것임
+
+	INetworkEngine* GetNetworkEngine(){ return m_pNetworkEngine; }
 
 	SFConfigure m_Config;
 	int m_packetSendThreadId;

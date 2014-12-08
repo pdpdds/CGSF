@@ -406,6 +406,11 @@ bool SFEngine::ReleasePacket(BasePacket* pPacket)
 	return true;
 }
 
+bool SFEngine::Disconnect(int serial)
+{
+	return GetNetworkEngine()->Disconnect(serial);
+}
+
 int SFEngine::AddConnector(int connectorId, char* szIP, unsigned short port)
 {
 	return GetNetworkEngine()->AddConnector(connectorId, szIP, port);
