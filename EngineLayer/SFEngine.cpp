@@ -231,12 +231,24 @@ bool SFEngine::AddTimer(int timerID, DWORD period, DWORD delay)
 ////////////////////////////////////////////////////////////////////
 bool SFEngine::CancelTimer(int timerID)
 {
-	auto iter = m_mapTimer.find(timerID);
+	mapTimer::iterator iter;
+	bool bResult = false;
 
-	if (iter == m_mapTimer.end())
-		return false;
+	if (timerID >= 0)
+	{
+		iter = m_mapTimer.find(timerID);
 
-	bool bResult = GetNetworkEngine()->CancelTimer(iter->second);
+		if (iter == m_mapTimer.end())
+			return false;
+
+		bResult = GetNetworkEngine()->CancelTimer(iter->second);
+	}
+	else
+	{
+		bResult = GetNetworkEngine()->CancelTimer(timerID);
+	}
+
+	
 
 	if (bResult == false)
 	{
