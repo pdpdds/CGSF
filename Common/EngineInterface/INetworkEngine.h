@@ -46,7 +46,7 @@ class NETWORKENGINEDECL INetworkEngine
 //내부적으로 타이머 이벤트를 발생시킬 수 있는지 확인
 ////////////////////////////////////////////////////////////////////////////////////////////////////
 	virtual bool CheckTimerImpl() {return false;} //default timer 사용
-	virtual bool AddTimer(unsigned int TimerID, unsigned int StartTime, unsigned int Period) { return false; } //타이머 생성
+	virtual long AddTimer(unsigned int TimerID, unsigned int StartTime, unsigned int Period) { return false; } //타이머 생성
 	virtual bool CancelTimer(int timerID){ return false; }
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////

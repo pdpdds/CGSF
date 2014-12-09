@@ -23,6 +23,8 @@ class SFEngine : public IEngine
 	friend class SFCGSFPacketProtocol;
 	friend class SFJsonProtocol;
 
+	typedef std::map<int, long> mapTimer;
+
 public:
 	virtual ~SFEngine(void);
 
@@ -95,4 +97,6 @@ private:
 	static SFEngine* m_pEngine;
 
 	bool m_isServer;
+
+	mapTimer m_mapTimer;
 };

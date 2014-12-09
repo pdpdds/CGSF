@@ -69,18 +69,12 @@ bool ACEEngine::CheckTimerImpl()
 	return true;
 }
 
-bool ACEEngine::AddTimer(unsigned int TimerID, unsigned int StartTime, unsigned int Period)
+long ACEEngine::AddTimer(unsigned int timerID, unsigned int startTime, unsigned int period)
 {
-	ACE_Time_Value Interval(Period / 1000, (Period % 1000) * 1000);
-	ACE_Time_Value Start(StartTime / 1000, (StartTime % 1000) * 1000);
+	ACE_Time_Value interval(period / 1000, (period % 1000) * 1000);
+	ACE_Time_Value start(startTime / 1000, (startTime % 1000) * 1000);
 
-	if (ACE_Proactor::instance()->schedule_timer(m_TimeOutHandler,
-		(void*)TimerID,
-		Start,
-		Interval) == -1)
-		return false;
-
-	return true;
+	return ACE_Proactor::instance()->schedule_timer(m_TimeOutHandler, (void*)timerID, start, interval);
 }
 
 bool ACEEngine::CancelTimer(int timerID)

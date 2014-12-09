@@ -13,6 +13,8 @@ int _tmain(int argc, _TCHAR* argv[])
 
 	SFEngine::GetInstance()->Intialize(pLogicEntry);
 	SFEngine::GetInstance()->AddPacketProtocol(0, new SFPacketProtocol<SFJsonProtocol>);
+//타이머 취소 테스트 코드
+	SFEngine::GetInstance()->AddTimer(100, 500, 1000);
 	SFEngine::GetInstance()->Start(0);
 
 	getchar();

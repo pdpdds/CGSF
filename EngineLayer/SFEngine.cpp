@@ -209,13 +209,17 @@ bool SFEngine::AddTimer(int timerID, DWORD period, DWORD delay)
 
 	if(GetNetworkEngine()->CheckTimerImpl())
 	{
-		if (FALSE == GetNetworkEngine()->AddTimer(timerID, delay, period))
+		long internelTimerId = GetNetworkEngine()->AddTimer(timerID, delay, period);
+
+		if (internelTimerId < 0)
 		{
 			LOG(ERROR) << "Timer Creation FAIL!!";
 			return FALSE;
 		}
 
-		LOG(INFO) << "Timer Creation Success!!";
+		m_mapTimer.insert(std::make_pair(timerID, internelTimerId));
+
+		LOG(INFO) << "TimerId : " << internelTimerId << "Creation Success!!";
 	}
 
 	return TRUE;
@@ -227,7 +231,25 @@ bool SFEngine::AddTimer(int timerID, DWORD period, DWORD delay)
 ////////////////////////////////////////////////////////////////////
 bool SFEngine::CancelTimer(int timerID)
 {
-	return GetNetworkEngine()->CancelTimer(timerID);
+	auto iter = m_mapTimer.find(timerID);
+
+	if (iter == m_mapTimer.end())
+		return false;
+
+	bool bResult = GetNetworkEngine()->CancelTimer(iter->second);
+
+	if (bResult == false)
+	{
+		LOG(INFO) << "Timer Cancel Fail. Id : " << timerID;
+		return false;
+	}
+
+	if (timerID < 0)
+		m_mapTimer.clear();
+	else
+		m_mapTimer.erase(timerID);
+
+	return true;
 }
 
 bool SFEngine::Start(char* szIP, unsigned short port)

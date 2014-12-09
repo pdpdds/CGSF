@@ -37,6 +37,10 @@ bool ChatLogicEntry::ProcessPacket(BasePacket* pPacket)
 		break;
 
 	case SFPACKET_TIMER:
+	{
+		bool bResult = SFEngine::GetInstance()->CancelTimer(100);
+		assert(bResult == true);
+	}
 		break;
 
 	default:

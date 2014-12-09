@@ -57,9 +57,9 @@ bool ASIOServerEngine::CheckTimerImpl()
 	return false;
 }
 
-bool ASIOServerEngine::AddTimer(unsigned int TimerID, unsigned int StartTime, unsigned int Period)
+long ASIOServerEngine::AddTimer(unsigned int TimerID, unsigned int StartTime, unsigned int Period)
 {	
-	return true;
+	return -1;
 }
 
 ////////////////////////////////////////////////////////////////////////////////////////
@@ -106,9 +106,9 @@ bool ASIOClientEngine::CheckTimerImpl()
 	return false;
 }
 
-bool ASIOClientEngine::AddTimer(unsigned int timerID, unsigned int startTime, unsigned int period)
+long ASIOClientEngine::AddTimer(unsigned int timerID, unsigned int startTime, unsigned int period)
 {	
-	return true;
+	return -1;
 }
 
 bool ASIOClientEngine::SendRequest(BasePacket* pPacket)
