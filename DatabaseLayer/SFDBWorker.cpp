@@ -3,6 +3,7 @@
 #include "IDBManager.h"
 #include "SFDatabase.h"
 #include <ACE/TSS_t.h>
+#include <ACE/OS.h>
 #include "Macro.h"
 
 
@@ -20,14 +21,17 @@ SFDBWorker::~SFDBWorker(void)
 int SFDBWorker::svc(void)
 {
 	m_threadID = ACE_Thread::self();
-	ACE_Time_Value Interval(1, 1000);
+	
 
 	//BOOL bResult = m_pDatabase->Initialize();
 
 	while (this->m_pManager->done() != true)
 	{
-		ACE_Method_Request* pReq = this->m_queue.dequeue(&Interval);
+		ACE_Time_Value Interval(5);
+		Interval += ACE_OS::time(0);
 
+		ACE_Method_Request* pReq = this->m_queue.dequeue(&Interval);
+		
 		if(NULL == pReq)
 		{	
 			continue;

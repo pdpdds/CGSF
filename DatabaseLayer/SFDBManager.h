@@ -50,8 +50,8 @@ public:
 
 			SFDBRequest* pReq = (SFDBRequest*)this->m_queue.dequeue(&tv);
 
-			if(NULL == pReq)
-			continue;
+			if(NULL == pReq)			
+				continue;
 
 			SFDBWorker* pWorker = ChooseDBWorker();
 			
