@@ -31,16 +31,26 @@ void MySQLPool::MyReleaseConcreteConnection(sql::Connection* con){
 }
 
 int MySQLPool::MyPingConcreteConnection(sql::Connection *con){
-	return 0;
-	/*try{
-	sql::Statement* stmt = con->createStatement();
-	stmt->executeQuery(keepalivequery);
-	delete stmt;
-	return 0;
-	}catch(sql::SQLException &e){
-		std::cout<<"SQL error "<<e.getErrorCode()<<" at "<<__FUNCTION__ << "\nDescription :"<<e.what()<<std::endl;
+	try
+	{
+		sql::Statement* stmt = con->createStatement();
+
+		if (stmt)
+		{
+			sql::ResultSet* pSet = stmt->executeQuery(keepalivequery);
+
+			if (pSet)
+			{
+				delete pSet;
+			}
+			delete stmt;
+		}		
+	}
+	catch (sql::SQLException &e){
+		std::cout << "SQL error " << e.getErrorCode() << " at " << __FUNCTION__ << "\nDescription :" << e.what() << std::endl;
 		return -1;
-	}*/
+	}
+	return 0;
 }
 
 int MySQLPool::MyGetPingTimeout(){
