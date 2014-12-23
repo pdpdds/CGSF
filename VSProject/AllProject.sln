@@ -141,6 +141,13 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "ServerConnector", "..\Sampl
 		{F7276B81-CD8E-4E0B-ABF5-BAB8FEBE0511} = {F7276B81-CD8E-4E0B-ABF5-BAB8FEBE0511}
 	EndProjectSection
 EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "HTTPServer", "..\Sample\HTTPServer\HTTPServer.vcxproj", "{3599DB9A-E319-421C-8D0D-771AA61DF818}"
+	ProjectSection(ProjectDependencies) = postProject
+		{835E9346-EC73-421D-8C4B-16C4673E3680} = {835E9346-EC73-421D-8C4B-16C4673E3680}
+		{F7276B81-CD8E-4E0B-ABF5-BAB8FEBE0511} = {F7276B81-CD8E-4E0B-ABF5-BAB8FEBE0511}
+		{D3434D93-3187-430C-885F-FD6F9613366A} = {D3434D93-3187-430C-885F-FD6F9613366A}
+	EndProjectSection
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Win32 = Debug|Win32
@@ -361,6 +368,12 @@ Global
 		{448F9D05-7F45-4033-A03C-98C18DEB0329}.Release|Win32.Build.0 = Release|Win32
 		{448F9D05-7F45-4033-A03C-98C18DEB0329}.Release|x64.ActiveCfg = Release|x64
 		{448F9D05-7F45-4033-A03C-98C18DEB0329}.Release|x64.Build.0 = Release|x64
+		{3599DB9A-E319-421C-8D0D-771AA61DF818}.Debug|Win32.ActiveCfg = Debug|Win32
+		{3599DB9A-E319-421C-8D0D-771AA61DF818}.Debug|Win32.Build.0 = Debug|Win32
+		{3599DB9A-E319-421C-8D0D-771AA61DF818}.Debug|x64.ActiveCfg = Debug|Win32
+		{3599DB9A-E319-421C-8D0D-771AA61DF818}.Release|Win32.ActiveCfg = Release|Win32
+		{3599DB9A-E319-421C-8D0D-771AA61DF818}.Release|Win32.Build.0 = Release|Win32
+		{3599DB9A-E319-421C-8D0D-771AA61DF818}.Release|x64.ActiveCfg = Release|Win32
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

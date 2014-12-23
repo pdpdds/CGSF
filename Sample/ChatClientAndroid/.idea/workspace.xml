@@ -23,28 +23,17 @@
       </GlobalState>
     </option>
   </component>
+  <component name="AndroidLayouts">
+    <shared>
+      <config />
+    </shared>
+  </component>
   <component name="ChangeListManager">
     <list default="true" id="5f1c8918-b19a-4d7d-8283-c1317d06e6f5" name="Default" comment="" />
     <ignored path="chatclientandroid.iws" />
     <ignored path=".idea/workspace.xml" />
-    <file path="/ChatActivity.java" changelist="5f1c8918-b19a-4d7d-8283-c1317d06e6f5" time="1398174354391" ignored="false" />
-    <file path="/fragment.java" changelist="5f1c8918-b19a-4d7d-8283-c1317d06e6f5" time="1397330746101" ignored="false" />
-    <file path="/build.xml" changelist="5f1c8918-b19a-4d7d-8283-c1317d06e6f5" time="1397333192684" ignored="false" />
-    <file path="/ChatClientSocket.java" changelist="5f1c8918-b19a-4d7d-8283-c1317d06e6f5" time="1398041966604" ignored="false" />
-    <file path="$PROJECT_DIR$/../JumpGame/AndroidManifest.xml" changelist="5f1c8918-b19a-4d7d-8283-c1317d06e6f5" time="1397754172188" ignored="false" />
-    <file path="/a.dummy" changelist="5f1c8918-b19a-4d7d-8283-c1317d06e6f5" time="1398025465126" ignored="false" />
-    <file path="$PROJECT_DIR$/.idea/workspace.xml" changelist="5f1c8918-b19a-4d7d-8283-c1317d06e6f5" time="1398019980053" ignored="false" />
-    <file path="/ChatClient.java" changelist="5f1c8918-b19a-4d7d-8283-c1317d06e6f5" time="1398174931910" ignored="false" />
-    <file path="D:/Android/sdl-game-dev/build.xml" changelist="5f1c8918-b19a-4d7d-8283-c1317d06e6f5" time="1399951485665" ignored="false" />
-    <file path="D:/Android/sdl-game-dev/AndroidManifest.xml" changelist="5f1c8918-b19a-4d7d-8283-c1317d06e6f5" time="1399951485665" ignored="false" />
-    <file path="D:/Android/sdl-game-dev/src/com/future/sdl_game_dev/SDLActivity.java" changelist="5f1c8918-b19a-4d7d-8283-c1317d06e6f5" time="1399951485665" ignored="false" />
-    <file path="D:/Android/sdl-game-dev/res/layout/main.xml" changelist="5f1c8918-b19a-4d7d-8283-c1317d06e6f5" time="1399951485665" ignored="false" />
-    <file path="D:/Android/sdl-game-dev/res/values/strings.xml" changelist="5f1c8918-b19a-4d7d-8283-c1317d06e6f5" time="1399951485665" ignored="false" />
-    <file path="D:/Android/HelloSDL2/res/values/strings.xml" changelist="5f1c8918-b19a-4d7d-8283-c1317d06e6f5" time="1400746528866" ignored="false" />
-    <file path="D:/Android/HelloSDL2/build.xml" changelist="5f1c8918-b19a-4d7d-8283-c1317d06e6f5" time="1400746528866" ignored="false" />
-    <file path="D:/Android/HelloSDL2/AndroidManifest.xml" changelist="5f1c8918-b19a-4d7d-8283-c1317d06e6f5" time="1400746528866" ignored="false" />
-    <file path="D:/Android/HelloSDL2/src/com/darkx/hellowsdl2/MyActivity.java" changelist="5f1c8918-b19a-4d7d-8283-c1317d06e6f5" time="1400746528866" ignored="false" />
-    <file path="D:/Android/HelloSDL2/res/layout/main.xml" changelist="5f1c8918-b19a-4d7d-8283-c1317d06e6f5" time="1400746528866" ignored="false" />
+    <ignored path="$PROJECT_DIR$/out/" />
+    <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -59,7 +48,8 @@
     <disable_hints />
   </component>
   <component name="DebuggerManager">
-    <breakpoint_any default_suspend_policy="SuspendAll" default_condition_enabled="true">
+    <ui_properties converted="true" />
+    <breakpoint_any default_suspend_policy="SuspendAll" default_condition_enabled="true" converted="true">
       <breakpoint>
         <option name="NOTIFY_CAUGHT" value="true" />
         <option name="NOTIFY_UNCAUGHT" value="true" />
@@ -95,7 +85,7 @@
         <option name="LOG_MESSAGE" value="" />
       </breakpoint>
     </breakpoint_any>
-    <line_breakpoints default_suspend_policy="SuspendAll" default_condition_enabled="true">
+    <line_breakpoints default_suspend_policy="SuspendAll" default_condition_enabled="true" converted="true">
       <breakpoint url="file://$PROJECT_DIR$/src/com/cgsf/chatclientandroid/ChatClientSocket.java" line="152" class="com.cgsf.chatclientandroid.ChatClientSocket" package="com.cgsf.chatclientandroid">
         <option name="ENABLED" value="true" />
         <option name="LOG_ENABLED" value="false" />
@@ -112,9 +102,7 @@
         <option name="LOG_MESSAGE" value="" />
       </breakpoint>
     </line_breakpoints>
-    <ui_properties default_suspend_policy="SuspendAll" default_condition_enabled="true" />
-    <breakpoint_rules />
-    <ui_properties />
+    <breakpoint_rules converted="true" />
   </component>
   <component name="ExecutionTargetManager" SELECTED_TARGET="default_target" />
   <component name="FavoritesManager">
@@ -122,77 +110,175 @@
   </component>
   <component name="FileEditorManager">
     <leaf>
-      <file leaf-file-name="ChatClientSocket.java" pinned="false" current="true" current-in-tab="true">
+      <file leaf-file-name="ChatClientSocket.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/com/cgsf/chatclientandroid/ChatClientSocket.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="136" column="74" selection-start="3806" selection-end="3806" vertical-scroll-proportion="0.28104576">
+            <state vertical-scroll-proportion="0.0" vertical-offset="1640" max-vertical-offset="2755">
+              <caret line="125" column="31" selection-start-line="125" selection-start-column="31" selection-end-line="125" selection-end-column="31" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="JSONStreamAware.class" pinned="false" current="false" current-in-tab="false">
+      <file leaf-file-name="JSONStreamAware.class" pinned="false" current-in-tab="false">
         <entry file="jar://$PROJECT_DIR$/lib/json-simple-1.1.jar!/org/json/simple/JSONStreamAware.class">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="7" column="9" selection-start="189" selection-end="189" vertical-scroll-proportion="0.0">
+            <state vertical-scroll-proportion="0.0" vertical-offset="76" max-vertical-offset="304">
+              <caret line="7" column="9" selection-start-line="7" selection-start-column="9" selection-end-line="7" selection-end-column="9" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="JSONObject.class" pinned="false" current="false" current-in-tab="false">
+      <file leaf-file-name="JSONObject.class" pinned="false" current-in-tab="false">
         <entry file="jar://$PROJECT_DIR$/lib/json-simple-1.1.jar!/org/json/simple/JSONObject.class">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="17" column="28" selection-start="753" selection-end="753" vertical-scroll-proportion="0.0">
+            <state vertical-scroll-proportion="0.0" vertical-offset="114" max-vertical-offset="1881">
+              <caret line="17" column="28" selection-start-line="17" selection-start-column="28" selection-end-line="17" selection-end-column="28" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="String.java" pinned="false" current="false" current-in-tab="false">
+      <file leaf-file-name="String.java" pinned="false" current-in-tab="false">
         <entry file="file://D:/Android/NDKTool/adt-bundle-windows-x86_64-20131030/adt-bundle-windows-x86_64-20131030/sdk/sources/android-19/java/lang/String.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="825" column="18" selection-start="31267" selection-end="31267" vertical-scroll-proportion="0.0">
-              <folding />
+            <state vertical-scroll-proportion="0.0" vertical-offset="14839" max-vertical-offset="37316">
+              <caret line="825" column="18" selection-start-line="825" selection-start-column="18" selection-end-line="825" selection-end-column="18" />
+              <folding>
+                <element signature="e#0#76373#0" expanded="false" />
+                <element signature="imports" expanded="false" />
+                <element signature="e#3702#3703#0" expanded="false" />
+                <element signature="e#3759#3760#0" expanded="false" />
+                <element signature="e#4956#4957#0" expanded="false" />
+                <element signature="e#4998#4999#0" expanded="false" />
+                <element signature="e#5503#5504#0" expanded="false" />
+                <element signature="e#5551#5552#0" expanded="false" />
+                <element signature="e#6002#6003#0" expanded="false" />
+                <element signature="e#6073#6074#0" expanded="false" />
+                <element signature="e#15343#15344#0" expanded="false" />
+                <element signature="e#15394#15395#0" expanded="false" />
+                <element signature="e#15701#15702#0" expanded="false" />
+                <element signature="e#15743#15744#0" expanded="false" />
+                <element signature="e#26510#26511#0" expanded="false" />
+                <element signature="e#26565#26566#0" expanded="false" />
+                <element signature="e#27339#27340#0" expanded="false" />
+                <element signature="e#27393#27394#0" expanded="false" />
+                <element signature="e#27844#27845#0" expanded="false" />
+                <element signature="e#27927#27928#0" expanded="false" />
+                <element signature="e#31278#31279#0" expanded="false" />
+                <element signature="e#31335#31336#0" expanded="false" />
+                <element signature="e#41009#41010#0" expanded="false" />
+                <element signature="e#41042#41043#0" expanded="false" />
+                <element signature="e#45211#45212#0" expanded="false" />
+                <element signature="e#45239#45240#0" expanded="false" />
+                <element signature="e#52519#52520#0" expanded="false" />
+                <element signature="e#52563#52564#0" expanded="false" />
+                <element signature="e#53140#53141#0" expanded="false" />
+                <element signature="e#53208#53209#0" expanded="false" />
+                <element signature="e#55646#55647#0" expanded="false" />
+                <element signature="e#55740#55741#0" expanded="false" />
+                <element signature="e#56563#56564#0" expanded="false" />
+                <element signature="e#56644#56645#0" expanded="false" />
+                <element signature="e#56734#56735#0" expanded="false" />
+                <element signature="e#56761#56762#0" expanded="false" />
+                <element signature="e#57094#57095#0" expanded="false" />
+                <element signature="e#57188#57189#0" expanded="false" />
+                <element signature="e#58016#58017#0" expanded="false" />
+                <element signature="e#58097#58098#0" expanded="false" />
+                <element signature="e#59216#59217#0" expanded="false" />
+                <element signature="e#59271#59272#0" expanded="false" />
+                <element signature="e#60048#60049#0" expanded="false" />
+                <element signature="e#60102#60103#0" expanded="false" />
+                <element signature="e#60812#60813#0" expanded="false" />
+                <element signature="e#60857#60858#0" expanded="false" />
+                <element signature="e#61092#61093#0" expanded="false" />
+                <element signature="e#61136#61137#0" expanded="false" />
+                <element signature="e#61375#61376#0" expanded="false" />
+                <element signature="e#61421#61422#0" expanded="false" />
+                <element signature="e#61652#61653#0" expanded="false" />
+                <element signature="e#61695#61696#0" expanded="false" />
+                <element signature="e#62101#62102#0" expanded="false" />
+                <element signature="e#62165#62166#0" expanded="false" />
+                <element signature="e#62512#62513#0" expanded="false" />
+                <element signature="e#62559#62560#0" expanded="false" />
+                <element signature="e#65011#65012#0" expanded="false" />
+                <element signature="e#65074#65075#0" expanded="false" />
+                <element signature="e#67404#67405#0" expanded="false" />
+                <element signature="e#67454#67455#0" expanded="false" />
+                <element signature="e#69002#69003#0" expanded="false" />
+                <element signature="e#69046#69047#0" expanded="false" />
+                <element signature="e#73233#73234#0" expanded="false" />
+                <element signature="e#73297#73298#0" expanded="false" />
+              </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="main.xml" pinned="false" current="false" current-in-tab="false">
+      <file leaf-file-name="main.xml" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/res/layout/main.xml">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="8" column="12" selection-start="319" selection-end="319" vertical-scroll-proportion="0.0">
-              <folding />
-            </state>
-          </provider>
           <provider editor-type-id="android-designer">
             <state />
           </provider>
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.0" vertical-offset="152" max-vertical-offset="1178">
+              <caret line="8" column="12" selection-start-line="8" selection-start-column="12" selection-end-line="8" selection-end-column="12" />
+              <folding />
+            </state>
+          </provider>
         </entry>
       </file>
-      <file leaf-file-name="ChatActivity.java" pinned="false" current="false" current-in-tab="false">
+      <file leaf-file-name="ChatActivity.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/com/cgsf/chatclientandroid/ChatActivity.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="55" column="12" selection-start="1848" selection-end="1873" vertical-scroll-proportion="0.0">
-              <folding />
+            <state vertical-scroll-proportion="0.6639344" vertical-offset="1880" max-vertical-offset="2432">
+              <caret line="116" column="37" selection-start-line="116" selection-start-column="37" selection-end-line="116" selection-end-column="37" />
+              <folding>
+                <element signature="imports" expanded="true" />
+                <element signature="e#799#807#0" expanded="true" />
+                <element signature="e#3638#3930#0" expanded="true" />
+                <element signature="e#3929#3930#0" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="ChatClient.java" pinned="false" current="false" current-in-tab="false">
+      <file leaf-file-name="ChatClient.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/com/cgsf/chatclientandroid/ChatClient.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="65" column="17" selection-start="1640" selection-end="1640" vertical-scroll-proportion="0.0">
+            <state vertical-scroll-proportion="0.0" vertical-offset="654" max-vertical-offset="1159">
+              <caret line="55" column="32" selection-start-line="55" selection-start-column="30" selection-end-line="55" selection-end-column="32" />
+              <folding>
+                <element signature="imports" expanded="false" />
+                <element signature="e#608#609#0" expanded="false" />
+                <element signature="e#637#638#0" expanded="false" />
+                <element signature="e#690#691#0" expanded="false" />
+                <element signature="e#743#744#0" expanded="false" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="TcpSocket.class" pinned="false" current-in-tab="false">
+        <entry file="jar://$PROJECT_DIR$/lib/JavaSockets-0.1.jar!/net/alhem/jsockets/TcpSocket.class">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.0" vertical-offset="218" max-vertical-offset="2679">
+              <caret line="49" column="0" selection-start-line="49" selection-start-column="0" selection-end-line="49" selection-end-column="0" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="MessageQueue.java" pinned="false" current="false" current-in-tab="false">
+      <file leaf-file-name="MessageQueue.java" pinned="false" current-in-tab="false">
         <entry file="file://D:/Android/NDKTool/adt-bundle-windows-x86_64-20131030/adt-bundle-windows-x86_64-20131030/sdk/sources/android-19/android/os/MessageQueue.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="53" column="31" selection-start="1916" selection-end="1916" vertical-scroll-proportion="0.0">
-              <folding />
+            <state vertical-scroll-proportion="0.0" vertical-offset="665" max-vertical-offset="10393">
+              <caret line="53" column="31" selection-start-line="53" selection-start-column="31" selection-end-line="53" selection-end-column="31" />
+              <folding>
+                <element signature="e#0#18819#0" expanded="false" />
+                <element signature="imports" expanded="false" />
+                <element signature="e#1404#1417#0" expanded="false" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -205,16 +291,9 @@
     </FindUsagesManager>
   </component>
   <component name="IdeDocumentHistory">
-    <option name="changedFiles">
+    <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/ChatClientAndroid.iml" />
-        <option value="$PROJECT_DIR$/build.xml" />
-        <option value="$PROJECT_DIR$/AndroidManifest.xml" />
-        <option value="$PROJECT_DIR$/gen/com/cgsf/chatclientandroid/BuildConfig.java" />
-        <option value="$PROJECT_DIR$/res/layout/main.xml" />
-        <option value="$PROJECT_DIR$/src/com/cgsf/chatclientandroid/ChatClient.java" />
         <option value="$PROJECT_DIR$/src/com/cgsf/chatclientandroid/ChatActivity.java" />
-        <option value="$PROJECT_DIR$/src/com/cgsf/chatclientandroid/ChatClientSocket.java" />
       </list>
     </option>
   </component>
@@ -238,7 +317,7 @@
     <option name="STATE" value="0" />
   </component>
   <component name="ProjectView">
-    <navigator currentView="ProjectPane" proportions="" version="1" splitterProportion="0.5">
+    <navigator currentView="ProjectPane" proportions="" version="1">
       <flattenPackages />
       <showMembers />
       <showModules />
@@ -250,8 +329,8 @@
       <sortByType />
     </navigator>
     <panes>
-      <pane id="PackagesPane" />
       <pane id="Scope" />
+      <pane id="PackagesPane" />
       <pane id="ProjectPane">
         <subPane>
           <PATH>
@@ -303,7 +382,7 @@
     <property name="MemberChooser.sorted" value="false" />
     <property name="recentsLimit" value="5" />
     <property name="GenerateAntBuildDialog.inclineRuntiemClasspath" value="false" />
-    <property name="last_opened_file_path" value="D:/MobileDev/SDL/SDL2Project/Project/BaseFramework/android" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="AndroidLayoutSelectedEditor" value="text-editor" />
     <property name="project.structure.side.proportion" value="0.2" />
     <property name="GenerateAntBuildDialog.forceTargetJdk" value="true" />
@@ -319,10 +398,53 @@
     <property name="Downloaded.Files.Path" value="D:\Android\untitled1\lib" />
   </component>
   <component name="RunManager" selected="Android Application.ChatClientAndroid">
-    <configuration default="true" type="#org.jetbrains.idea.devkit.run.PluginConfigurationType" factoryName="Plugin">
+    <configuration default="true" type="Remote" factoryName="Remote">
+      <option name="USE_SOCKET_TRANSPORT" value="true" />
+      <option name="SERVER_MODE" value="false" />
+      <option name="SHMEM_ADDRESS" value="javadebug" />
+      <option name="HOST" value="localhost" />
+      <option name="PORT" value="5005" />
+      <method />
+    </configuration>
+    <configuration default="true" type="JUnit" factoryName="JUnit">
+      <extension name="coverage" enabled="false" merge="false" sample_coverage="true" runner="idea" />
       <module name="" />
-      <option name="VM_PARAMETERS" value="-Xmx512m -Xms256m -XX:MaxPermSize=250m" />
-      <option name="PROGRAM_PARAMETERS" />
+      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
+      <option name="ALTERNATIVE_JRE_PATH" />
+      <option name="PACKAGE_NAME" />
+      <option name="MAIN_CLASS_NAME" />
+      <option name="METHOD_NAME" />
+      <option name="TEST_OBJECT" value="class" />
+      <option name="VM_PARAMETERS" value="-ea" />
+      <option name="PARAMETERS" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
+      <option name="ENV_VARIABLES" />
+      <option name="PASS_PARENT_ENVS" value="true" />
+      <option name="TEST_SEARCH_SCOPE">
+        <value defaultName="moduleWithDependencies" />
+      </option>
+      <envs />
+      <patterns />
+      <method />
+    </configuration>
+    <configuration default="true" type="AndroidRunConfigurationType" factoryName="Android Application">
+      <module name="" />
+      <option name="ACTIVITY_CLASS" value="" />
+      <option name="MODE" value="default_activity" />
+      <option name="DEPLOY" value="true" />
+      <option name="ARTIFACT_NAME" value="" />
+      <option name="TARGET_SELECTION_MODE" value="EMULATOR" />
+      <option name="USE_LAST_SELECTED_DEVICE" value="false" />
+      <option name="PREFERRED_AVD" value="" />
+      <option name="USE_COMMAND_LINE" value="true" />
+      <option name="COMMAND_LINE" value="" />
+      <option name="WIPE_USER_DATA" value="false" />
+      <option name="DISABLE_BOOT_ANIMATION" value="false" />
+      <option name="NETWORK_SPEED" value="full" />
+      <option name="NETWORK_LATENCY" value="none" />
+      <option name="CLEAR_LOGCAT" value="false" />
+      <option name="SHOW_LOGCAT_AUTOMATICALLY" value="true" />
+      <option name="FILTER_LOGCAT_AUTOMATICALLY" value="true" />
       <method />
     </configuration>
     <configuration default="true" type="AndroidTestRunConfigurationType" factoryName="Android Tests">
@@ -333,6 +455,7 @@
       <option name="CLASS_NAME" value="" />
       <option name="PACKAGE_NAME" value="" />
       <option name="TARGET_SELECTION_MODE" value="EMULATOR" />
+      <option name="USE_LAST_SELECTED_DEVICE" value="false" />
       <option name="PREFERRED_AVD" value="" />
       <option name="USE_COMMAND_LINE" value="true" />
       <option name="COMMAND_LINE" value="" />
@@ -341,14 +464,14 @@
       <option name="NETWORK_SPEED" value="full" />
       <option name="NETWORK_LATENCY" value="none" />
       <option name="CLEAR_LOGCAT" value="false" />
+      <option name="SHOW_LOGCAT_AUTOMATICALLY" value="true" />
+      <option name="FILTER_LOGCAT_AUTOMATICALLY" value="true" />
       <method />
     </configuration>
-    <configuration default="true" type="Remote" factoryName="Remote">
-      <option name="USE_SOCKET_TRANSPORT" value="true" />
-      <option name="SERVER_MODE" value="false" />
-      <option name="SHMEM_ADDRESS" value="javadebug" />
-      <option name="HOST" value="localhost" />
-      <option name="PORT" value="5005" />
+    <configuration default="true" type="#org.jetbrains.idea.devkit.run.PluginConfigurationType" factoryName="Plugin">
+      <module name="" />
+      <option name="VM_PARAMETERS" value="-Xmx512m -Xms256m -XX:MaxPermSize=250m" />
+      <option name="PROGRAM_PARAMETERS" />
       <method />
     </configuration>
     <configuration default="true" type="Applet" factoryName="Applet">
@@ -365,6 +488,7 @@
       <method />
     </configuration>
     <configuration default="true" type="TestNG" factoryName="TestNG">
+      <extension name="coverage" enabled="false" merge="false" sample_coverage="true" runner="idea" />
       <module name="" />
       <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
       <option name="ALTERNATIVE_JRE_PATH" />
@@ -392,6 +516,7 @@
       <method />
     </configuration>
     <configuration default="true" type="Application" factoryName="Application">
+      <extension name="coverage" enabled="false" merge="false" sample_coverage="true" runner="idea" />
       <option name="MAIN_CLASS_NAME" />
       <option name="VM_PARAMETERS" />
       <option name="PROGRAM_PARAMETERS" />
@@ -405,48 +530,14 @@
       <envs />
       <method />
     </configuration>
-    <configuration default="true" type="JUnit" factoryName="JUnit">
-      <module name="" />
-      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
-      <option name="ALTERNATIVE_JRE_PATH" />
-      <option name="PACKAGE_NAME" />
-      <option name="MAIN_CLASS_NAME" />
-      <option name="METHOD_NAME" />
-      <option name="TEST_OBJECT" value="class" />
-      <option name="VM_PARAMETERS" value="-ea" />
-      <option name="PARAMETERS" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
-      <option name="ENV_VARIABLES" />
-      <option name="PASS_PARENT_ENVS" value="true" />
-      <option name="TEST_SEARCH_SCOPE">
-        <value defaultName="moduleWithDependencies" />
-      </option>
-      <envs />
-      <patterns />
-      <method />
-    </configuration>
-    <configuration default="true" type="AndroidRunConfigurationType" factoryName="Android Application">
-      <module name="" />
-      <option name="ACTIVITY_CLASS" value="" />
-      <option name="MODE" value="default_activity" />
-      <option name="DEPLOY" value="true" />
-      <option name="TARGET_SELECTION_MODE" value="EMULATOR" />
-      <option name="PREFERRED_AVD" value="" />
-      <option name="USE_COMMAND_LINE" value="true" />
-      <option name="COMMAND_LINE" value="" />
-      <option name="WIPE_USER_DATA" value="false" />
-      <option name="DISABLE_BOOT_ANIMATION" value="false" />
-      <option name="NETWORK_SPEED" value="full" />
-      <option name="NETWORK_LATENCY" value="none" />
-      <option name="CLEAR_LOGCAT" value="false" />
-      <method />
-    </configuration>
     <configuration default="false" name="ChatClientAndroid" type="AndroidRunConfigurationType" factoryName="Android Application">
       <module name="ChatClientAndroid" />
       <option name="ACTIVITY_CLASS" value="com.cgsf.chatclientandroid.ChatActivity" />
       <option name="MODE" value="specific_activity" />
       <option name="DEPLOY" value="true" />
+      <option name="ARTIFACT_NAME" value="" />
       <option name="TARGET_SELECTION_MODE" value="EMULATOR" />
+      <option name="USE_LAST_SELECTED_DEVICE" value="false" />
       <option name="PREFERRED_AVD" value="NexusOne" />
       <option name="USE_COMMAND_LINE" value="true" />
       <option name="COMMAND_LINE" value="" />
@@ -455,6 +546,8 @@
       <option name="NETWORK_SPEED" value="full" />
       <option name="NETWORK_LATENCY" value="none" />
       <option name="CLEAR_LOGCAT" value="false" />
+      <option name="SHOW_LOGCAT_AUTOMATICALLY" value="true" />
+      <option name="FILTER_LOGCAT_AUTOMATICALLY" value="true" />
       <RunnerSettings RunnerId="AndroidDebugRunner" />
       <ConfigurationWrapper RunnerId="AndroidDebugRunner" />
       <method />
@@ -468,10 +561,14 @@
     </configuration>
   </component>
   <component name="ShelveChangesManager" show_recycled="false" />
+  <component name="SvnConfiguration">
+    <configuration />
+  </component>
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
       <changelist id="5f1c8918-b19a-4d7d-8283-c1317d06e6f5" name="Default" comment="" />
       <created>1397327528376</created>
+      <option name="number" value="Default" />
       <updated>1397327528376</updated>
     </task>
     <servers />
@@ -497,198 +594,892 @@
     </todo-panel>
   </component>
   <component name="ToolWindowManager">
-    <frame x="-8" y="-8" width="1616" height="876" extended-state="6" />
-    <editor active="false" />
+    <frame x="-8" y="-8" width="1616" height="876" extended-state="0" />
+    <editor active="true" />
     <layout>
       <window_info id="Changes" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="JetGradle" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.31988874" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.32732317" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
-      <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
-      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Android" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32962447" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32962447" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
-      <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.24967825" sideWeight="0.6008345" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="SLIDING" type="SLIDING" visible="false" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="true" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.24839126" sideWeight="0.67267686" order="0" side_tool="false" content_ui="combo" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32962447" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Build Variants" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="Palette&#9;" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32947233" sideWeight="0.6809986" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
+      <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="SLIDING" type="SLIDING" visible="false" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
+      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.3268229" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
+      <window_info id="Application Servers" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
+      <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32929516" sideWeight="0.5" order="12" side_tool="false" content_ui="tabs" />
+      <window_info id="Android" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32962447" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32818532" sideWeight="0.6809986" order="2" side_tool="false" content_ui="tabs" />
-      <window_info id="Preview" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32947233" sideWeight="0.6008345" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.248125" sideWeight="0.67267686" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Memory Monitor" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.30396476" sideWeight="0.5" order="14" side_tool="true" content_ui="tabs" />
+      <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.24967825" sideWeight="0.6008345" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="UI Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
+      <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
+      <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
-      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32962447" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.32823366" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
+      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.31988874" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.32823366" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3991655" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
+      <window_info id="Preview" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32947233" sideWeight="0.6008345" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32962447" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="JetGradle" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32962447" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
     </layout>
+  </component>
+  <component name="Vcs.Log.UiProperties">
+    <option name="RECENTLY_FILTERED_USER_GROUPS">
+      <collection />
+    </option>
+    <option name="RECENTLY_FILTERED_BRANCH_GROUPS">
+      <collection />
+    </option>
   </component>
   <component name="VcsContentAnnotationSettings">
     <option name="myLimit" value="2678400000" />
   </component>
   <component name="VcsManagerConfiguration">
-    <option name="OFFER_MOVE_TO_ANOTHER_CHANGELIST_ON_PARTIAL_COMMIT" value="true" />
-    <option name="CHECK_CODE_SMELLS_BEFORE_PROJECT_COMMIT" value="true" />
-    <option name="CHECK_NEW_TODO" value="true" />
     <option name="myTodoPanelSettings">
-      <value>
-        <are-packages-shown value="false" />
-        <are-modules-shown value="false" />
-        <flatten-packages value="false" />
-        <is-autoscroll-to-source value="false" />
-      </value>
+      <TodoPanelSettings />
     </option>
-    <option name="PERFORM_UPDATE_IN_BACKGROUND" value="true" />
-    <option name="PERFORM_COMMIT_IN_BACKGROUND" value="true" />
-    <option name="PERFORM_EDIT_IN_BACKGROUND" value="true" />
-    <option name="PERFORM_CHECKOUT_IN_BACKGROUND" value="true" />
-    <option name="PERFORM_ADD_REMOVE_IN_BACKGROUND" value="true" />
-    <option name="PERFORM_ROLLBACK_IN_BACKGROUND" value="false" />
-    <option name="CHECK_LOCALLY_CHANGED_CONFLICTS_IN_BACKGROUND" value="false" />
-    <option name="CHANGED_ON_SERVER_INTERVAL" value="60" />
-    <option name="SHOW_ONLY_CHANGED_IN_SELECTION_DIFF" value="true" />
-    <option name="CHECK_COMMIT_MESSAGE_SPELLING" value="true" />
-    <option name="DEFAULT_PATCH_EXTENSION" value="patch" />
-    <option name="SHORT_DIFF_HORIZONTALLY" value="true" />
-    <option name="SHORT_DIFF_EXTRA_LINES" value="2" />
-    <option name="SOFT_WRAPS_IN_SHORT_DIFF" value="true" />
-    <option name="INCLUDE_TEXT_INTO_PATCH" value="false" />
-    <option name="INCLUDE_TEXT_INTO_SHELF" value="false" />
-    <option name="SHOW_FILE_HISTORY_DETAILS" value="true" />
-    <option name="SHOW_VCS_ERROR_NOTIFICATIONS" value="true" />
-    <option name="SHOW_DIRTY_RECURSIVELY" value="false" />
-    <option name="LIMIT_HISTORY" value="true" />
-    <option name="MAXIMUM_HISTORY_ROWS" value="1000" />
-    <option name="UPDATE_FILTER_SCOPE_NAME" />
-    <option name="USE_COMMIT_MESSAGE_MARGIN" value="false" />
-    <option name="COMMIT_MESSAGE_MARGIN_SIZE" value="72" />
-    <option name="WRAP_WHEN_TYPING_REACHES_RIGHT_MARGIN" value="false" />
-    <option name="FORCE_NON_EMPTY_COMMENT" value="false" />
-    <option name="CLEAR_INITIAL_COMMIT_MESSAGE" value="false" />
-    <option name="LAST_COMMIT_MESSAGE" />
-    <option name="MAKE_NEW_CHANGELIST_ACTIVE" value="false" />
-    <option name="OPTIMIZE_IMPORTS_BEFORE_PROJECT_COMMIT" value="false" />
-    <option name="CHECK_FILES_UP_TO_DATE_BEFORE_COMMIT" value="false" />
-    <option name="REFORMAT_BEFORE_PROJECT_COMMIT" value="false" />
-    <option name="REFORMAT_BEFORE_FILE_COMMIT" value="false" />
-    <option name="FILE_HISTORY_DIALOG_COMMENTS_SPLITTER_PROPORTION" value="0.8" />
-    <option name="FILE_HISTORY_DIALOG_SPLITTER_PROPORTION" value="0.5" />
-    <option name="ACTIVE_VCS_NAME" />
-    <option name="UPDATE_GROUP_BY_PACKAGES" value="false" />
-    <option name="UPDATE_GROUP_BY_CHANGELIST" value="false" />
-    <option name="UPDATE_FILTER_BY_SCOPE" value="false" />
-    <option name="SHOW_FILE_HISTORY_AS_TREE" value="false" />
-    <option name="FILE_HISTORY_SPLITTER_PROPORTION" value="0.6" />
   </component>
   <component name="XDebuggerManager">
-    <breakpoint-manager />
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/com/cgsf/chatclientandroid/ChatClientSocket.java</url>
+          <line>152</line>
+          <properties />
+        </line-breakpoint>
+      </breakpoints>
+      <option name="time" value="1" />
+    </breakpoint-manager>
+    <watches-manager />
   </component>
   <component name="antWorkspaceConfiguration">
     <option name="IS_AUTOSCROLL_TO_SOURCE" value="false" />
     <option name="FILTER_TARGETS" value="false" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/gen/com/cgsf/chatclientandroid/BuildConfig.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="7" column="10" selection-start="197" selection-end="197" vertical-scroll-proportion="0.0" />
-      </provider>
-    </entry>
-    <entry file="file://D:/Android/NDKTool/adt-bundle-windows-x86_64-20131030/adt-bundle-windows-x86_64-20131030/sdk/sources/android-19/java/util/concurrent/BlockingQueue.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="152" column="14" selection-start="5901" selection-end="5901" vertical-scroll-proportion="0.0" />
-      </provider>
-    </entry>
-    <entry file="jar://$PROJECT_DIR$/lib/JavaSockets-0.1.jar!/net/alhem/jsockets/Socket.class">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="62" column="19" selection-start="2018" selection-end="2018" vertical-scroll-proportion="-4.08" />
-      </provider>
-    </entry>
-    <entry file="file://D:/Android/NDKTool/adt-bundle-windows-x86_64-20131030/adt-bundle-windows-x86_64-20131030/sdk/sources/android-19/java/lang/Thread.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="604" column="26" selection-start="20186" selection-end="20186" vertical-scroll-proportion="0.0" />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/AndroidManifest.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="9" column="50" selection-start="543" selection-end="543" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/ChatClientAndroid.iml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="11" column="21" selection-start="406" selection-end="406" vertical-scroll-proportion="0.0" />
-      </provider>
-    </entry>
     <entry file="jar://$PROJECT_DIR$/lib/JavaSockets-0.1.jar!/net/alhem/jsockets/TcpSocket.class">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="33" column="16" selection-start="1082" selection-end="1082" vertical-scroll-proportion="-9.36" />
-      </provider>
-    </entry>
-    <entry file="jar://$PROJECT_DIR$/lib/JavaSockets-0.1.jar!/net/alhem/jsockets/SocketHandler.class">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="28" column="10" selection-start="1112" selection-end="1112" vertical-scroll-proportion="-10.2" />
+        <state vertical-scroll-proportion="0.0" vertical-offset="503" max-vertical-offset="2679">
+          <caret line="47" column="16" selection-start-line="47" selection-start-column="16" selection-end-line="47" selection-end-column="16" />
+          <folding />
+        </state>
       </provider>
     </entry>
     <entry file="file://D:/Android/NDKTool/adt-bundle-windows-x86_64-20131030/adt-bundle-windows-x86_64-20131030/sdk/sources/android-19/android/os/MessageQueue.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="53" column="31" selection-start="1916" selection-end="1916" vertical-scroll-proportion="0.0">
-          <folding />
+        <state vertical-scroll-proportion="0.0" vertical-offset="665" max-vertical-offset="10393">
+          <caret line="53" column="31" selection-start-line="53" selection-start-column="31" selection-end-line="53" selection-end-column="31" />
+          <folding>
+            <element signature="e#0#18819#0" expanded="false" />
+            <element signature="imports" expanded="false" />
+            <element signature="e#1404#1417#0" expanded="false" />
+          </folding>
         </state>
       </provider>
     </entry>
-    <entry file="jar://$PROJECT_DIR$/lib/json-simple-1.1.jar!/org/json/simple/JSONObject.class">
+    <entry file="file://$PROJECT_DIR$/src/com/cgsf/chatclientandroid/ChatClientSocket.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="17" column="28" selection-start="753" selection-end="753" vertical-scroll-proportion="0.0">
+        <state vertical-scroll-proportion="0.0" vertical-offset="616" max-vertical-offset="2755">
+          <caret line="61" column="25" selection-start-line="61" selection-start-column="18" selection-end-line="61" selection-end-column="25" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="jar://$PROJECT_DIR$/lib/json-simple-1.1.jar!/org/json/simple/JSONStreamAware.class">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="7" column="9" selection-start="189" selection-end="189" vertical-scroll-proportion="0.0">
+        <state vertical-scroll-proportion="0.0" vertical-offset="76" max-vertical-offset="304">
+          <caret line="7" column="9" selection-start-line="7" selection-start-column="9" selection-end-line="7" selection-end-column="9" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://$PROJECT_DIR$/lib/json-simple-1.1.jar!/org/json/simple/JSONObject.class">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="114" max-vertical-offset="1881">
+          <caret line="17" column="28" selection-start-line="17" selection-start-column="28" selection-end-line="17" selection-end-column="28" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://D:/Android/NDKTool/adt-bundle-windows-x86_64-20131030/adt-bundle-windows-x86_64-20131030/sdk/sources/android-19/java/lang/String.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="825" column="18" selection-start="31267" selection-end="31267" vertical-scroll-proportion="0.0">
-          <folding />
+        <state vertical-scroll-proportion="0.0" vertical-offset="14839" max-vertical-offset="37316">
+          <caret line="825" column="18" selection-start-line="825" selection-start-column="18" selection-end-line="825" selection-end-column="18" />
+          <folding>
+            <element signature="e#0#76373#0" expanded="false" />
+            <element signature="imports" expanded="false" />
+            <element signature="e#3702#3703#0" expanded="false" />
+            <element signature="e#3759#3760#0" expanded="false" />
+            <element signature="e#4956#4957#0" expanded="false" />
+            <element signature="e#4998#4999#0" expanded="false" />
+            <element signature="e#5503#5504#0" expanded="false" />
+            <element signature="e#5551#5552#0" expanded="false" />
+            <element signature="e#6002#6003#0" expanded="false" />
+            <element signature="e#6073#6074#0" expanded="false" />
+            <element signature="e#15343#15344#0" expanded="false" />
+            <element signature="e#15394#15395#0" expanded="false" />
+            <element signature="e#15701#15702#0" expanded="false" />
+            <element signature="e#15743#15744#0" expanded="false" />
+            <element signature="e#26510#26511#0" expanded="false" />
+            <element signature="e#26565#26566#0" expanded="false" />
+            <element signature="e#27339#27340#0" expanded="false" />
+            <element signature="e#27393#27394#0" expanded="false" />
+            <element signature="e#27844#27845#0" expanded="false" />
+            <element signature="e#27927#27928#0" expanded="false" />
+            <element signature="e#31278#31279#0" expanded="false" />
+            <element signature="e#31335#31336#0" expanded="false" />
+            <element signature="e#41009#41010#0" expanded="false" />
+            <element signature="e#41042#41043#0" expanded="false" />
+            <element signature="e#45211#45212#0" expanded="false" />
+            <element signature="e#45239#45240#0" expanded="false" />
+            <element signature="e#52519#52520#0" expanded="false" />
+            <element signature="e#52563#52564#0" expanded="false" />
+            <element signature="e#53140#53141#0" expanded="false" />
+            <element signature="e#53208#53209#0" expanded="false" />
+            <element signature="e#55646#55647#0" expanded="false" />
+            <element signature="e#55740#55741#0" expanded="false" />
+            <element signature="e#56563#56564#0" expanded="false" />
+            <element signature="e#56644#56645#0" expanded="false" />
+            <element signature="e#56734#56735#0" expanded="false" />
+            <element signature="e#56761#56762#0" expanded="false" />
+            <element signature="e#57094#57095#0" expanded="false" />
+            <element signature="e#57188#57189#0" expanded="false" />
+            <element signature="e#58016#58017#0" expanded="false" />
+            <element signature="e#58097#58098#0" expanded="false" />
+            <element signature="e#59216#59217#0" expanded="false" />
+            <element signature="e#59271#59272#0" expanded="false" />
+            <element signature="e#60048#60049#0" expanded="false" />
+            <element signature="e#60102#60103#0" expanded="false" />
+            <element signature="e#60812#60813#0" expanded="false" />
+            <element signature="e#60857#60858#0" expanded="false" />
+            <element signature="e#61092#61093#0" expanded="false" />
+            <element signature="e#61136#61137#0" expanded="false" />
+            <element signature="e#61375#61376#0" expanded="false" />
+            <element signature="e#61421#61422#0" expanded="false" />
+            <element signature="e#61652#61653#0" expanded="false" />
+            <element signature="e#61695#61696#0" expanded="false" />
+            <element signature="e#62101#62102#0" expanded="false" />
+            <element signature="e#62165#62166#0" expanded="false" />
+            <element signature="e#62512#62513#0" expanded="false" />
+            <element signature="e#62559#62560#0" expanded="false" />
+            <element signature="e#65011#65012#0" expanded="false" />
+            <element signature="e#65074#65075#0" expanded="false" />
+            <element signature="e#67404#67405#0" expanded="false" />
+            <element signature="e#67454#67455#0" expanded="false" />
+            <element signature="e#69002#69003#0" expanded="false" />
+            <element signature="e#69046#69047#0" expanded="false" />
+            <element signature="e#73233#73234#0" expanded="false" />
+            <element signature="e#73297#73298#0" expanded="false" />
+          </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/res/layout/main.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="8" column="12" selection-start="319" selection-end="319" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
       <provider editor-type-id="android-designer">
         <state />
+      </provider>
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="152" max-vertical-offset="1178">
+          <caret line="8" column="12" selection-start-line="8" selection-start-column="12" selection-end-line="8" selection-end-column="12" />
+          <folding />
+        </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/com/cgsf/chatclientandroid/ChatActivity.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="55" column="12" selection-start="1848" selection-end="1873" vertical-scroll-proportion="0.0">
+        <state vertical-scroll-proportion="0.0" vertical-offset="436" max-vertical-offset="2033">
+          <caret line="69" column="35" selection-start-line="67" selection-start-column="16" selection-end-line="69" selection-end-column="35" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="e#799#807#0" expanded="true" />
+            <element signature="e#3638#3930#0" expanded="true" />
+            <element signature="e#3929#3930#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/cgsf/chatclientandroid/ChatClient.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="1159">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding>
+            <element signature="imports" expanded="false" />
+            <element signature="e#608#609#0" expanded="false" />
+            <element signature="e#637#638#0" expanded="false" />
+            <element signature="e#690#691#0" expanded="false" />
+            <element signature="e#743#744#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://$PROJECT_DIR$/lib/JavaSockets-0.1.jar!/net/alhem/jsockets/TcpSocket.class">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="503" max-vertical-offset="2679">
+          <caret line="47" column="16" selection-start-line="47" selection-start-column="16" selection-end-line="47" selection-end-column="16" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://D:/Android/NDKTool/adt-bundle-windows-x86_64-20131030/adt-bundle-windows-x86_64-20131030/sdk/sources/android-19/android/os/MessageQueue.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="665" max-vertical-offset="10393">
+          <caret line="53" column="31" selection-start-line="53" selection-start-column="31" selection-end-line="53" selection-end-column="31" />
+          <folding>
+            <element signature="e#0#18819#0" expanded="false" />
+            <element signature="imports" expanded="false" />
+            <element signature="e#1404#1417#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/cgsf/chatclientandroid/ChatClientSocket.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="2755">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://$PROJECT_DIR$/lib/json-simple-1.1.jar!/org/json/simple/JSONStreamAware.class">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="76" max-vertical-offset="304">
+          <caret line="7" column="9" selection-start-line="7" selection-start-column="9" selection-end-line="7" selection-end-column="9" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://$PROJECT_DIR$/lib/json-simple-1.1.jar!/org/json/simple/JSONObject.class">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="114" max-vertical-offset="1881">
+          <caret line="17" column="28" selection-start-line="17" selection-start-column="28" selection-end-line="17" selection-end-column="28" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://D:/Android/NDKTool/adt-bundle-windows-x86_64-20131030/adt-bundle-windows-x86_64-20131030/sdk/sources/android-19/java/lang/String.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="14839" max-vertical-offset="37316">
+          <caret line="825" column="18" selection-start-line="825" selection-start-column="18" selection-end-line="825" selection-end-column="18" />
+          <folding>
+            <element signature="e#0#76373#0" expanded="false" />
+            <element signature="imports" expanded="false" />
+            <element signature="e#3702#3703#0" expanded="false" />
+            <element signature="e#3759#3760#0" expanded="false" />
+            <element signature="e#4956#4957#0" expanded="false" />
+            <element signature="e#4998#4999#0" expanded="false" />
+            <element signature="e#5503#5504#0" expanded="false" />
+            <element signature="e#5551#5552#0" expanded="false" />
+            <element signature="e#6002#6003#0" expanded="false" />
+            <element signature="e#6073#6074#0" expanded="false" />
+            <element signature="e#15343#15344#0" expanded="false" />
+            <element signature="e#15394#15395#0" expanded="false" />
+            <element signature="e#15701#15702#0" expanded="false" />
+            <element signature="e#15743#15744#0" expanded="false" />
+            <element signature="e#26510#26511#0" expanded="false" />
+            <element signature="e#26565#26566#0" expanded="false" />
+            <element signature="e#27339#27340#0" expanded="false" />
+            <element signature="e#27393#27394#0" expanded="false" />
+            <element signature="e#27844#27845#0" expanded="false" />
+            <element signature="e#27927#27928#0" expanded="false" />
+            <element signature="e#31278#31279#0" expanded="false" />
+            <element signature="e#31335#31336#0" expanded="false" />
+            <element signature="e#41009#41010#0" expanded="false" />
+            <element signature="e#41042#41043#0" expanded="false" />
+            <element signature="e#45211#45212#0" expanded="false" />
+            <element signature="e#45239#45240#0" expanded="false" />
+            <element signature="e#52519#52520#0" expanded="false" />
+            <element signature="e#52563#52564#0" expanded="false" />
+            <element signature="e#53140#53141#0" expanded="false" />
+            <element signature="e#53208#53209#0" expanded="false" />
+            <element signature="e#55646#55647#0" expanded="false" />
+            <element signature="e#55740#55741#0" expanded="false" />
+            <element signature="e#56563#56564#0" expanded="false" />
+            <element signature="e#56644#56645#0" expanded="false" />
+            <element signature="e#56734#56735#0" expanded="false" />
+            <element signature="e#56761#56762#0" expanded="false" />
+            <element signature="e#57094#57095#0" expanded="false" />
+            <element signature="e#57188#57189#0" expanded="false" />
+            <element signature="e#58016#58017#0" expanded="false" />
+            <element signature="e#58097#58098#0" expanded="false" />
+            <element signature="e#59216#59217#0" expanded="false" />
+            <element signature="e#59271#59272#0" expanded="false" />
+            <element signature="e#60048#60049#0" expanded="false" />
+            <element signature="e#60102#60103#0" expanded="false" />
+            <element signature="e#60812#60813#0" expanded="false" />
+            <element signature="e#60857#60858#0" expanded="false" />
+            <element signature="e#61092#61093#0" expanded="false" />
+            <element signature="e#61136#61137#0" expanded="false" />
+            <element signature="e#61375#61376#0" expanded="false" />
+            <element signature="e#61421#61422#0" expanded="false" />
+            <element signature="e#61652#61653#0" expanded="false" />
+            <element signature="e#61695#61696#0" expanded="false" />
+            <element signature="e#62101#62102#0" expanded="false" />
+            <element signature="e#62165#62166#0" expanded="false" />
+            <element signature="e#62512#62513#0" expanded="false" />
+            <element signature="e#62559#62560#0" expanded="false" />
+            <element signature="e#65011#65012#0" expanded="false" />
+            <element signature="e#65074#65075#0" expanded="false" />
+            <element signature="e#67404#67405#0" expanded="false" />
+            <element signature="e#67454#67455#0" expanded="false" />
+            <element signature="e#69002#69003#0" expanded="false" />
+            <element signature="e#69046#69047#0" expanded="false" />
+            <element signature="e#73233#73234#0" expanded="false" />
+            <element signature="e#73297#73298#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/res/layout/main.xml">
+      <provider editor-type-id="android-designer">
+        <state />
+      </provider>
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="152" max-vertical-offset="1178">
+          <caret line="8" column="12" selection-start-line="8" selection-start-column="12" selection-end-line="8" selection-end-column="12" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/cgsf/chatclientandroid/ChatActivity.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="741" max-vertical-offset="2033">
+          <caret line="68" column="0" selection-start-line="68" selection-start-column="0" selection-end-line="68" selection-end-column="0" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="e#799#807#0" expanded="true" />
+            <element signature="e#3638#3930#0" expanded="true" />
+            <element signature="e#3929#3930#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/cgsf/chatclientandroid/ChatClient.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="671" max-vertical-offset="1159">
+          <caret line="59" column="47" selection-start-line="59" selection-start-column="47" selection-end-line="59" selection-end-column="47" />
+          <folding>
+            <element signature="imports" expanded="false" />
+            <element signature="e#608#609#0" expanded="false" />
+            <element signature="e#637#638#0" expanded="false" />
+            <element signature="e#690#691#0" expanded="false" />
+            <element signature="e#743#744#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://D:/Android/NDKTool/adt-bundle-windows-x86_64-20131030/adt-bundle-windows-x86_64-20131030/sdk/sources/android-19/android/os/MessageQueue.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="665" max-vertical-offset="10393">
+          <caret line="53" column="31" selection-start-line="53" selection-start-column="31" selection-end-line="53" selection-end-column="31" />
+          <folding>
+            <element signature="e#0#18819#0" expanded="false" />
+            <element signature="imports" expanded="false" />
+            <element signature="e#1404#1417#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/cgsf/chatclientandroid/ChatClientSocket.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="209" max-vertical-offset="2755">
+          <caret line="24" column="18" selection-start-line="24" selection-start-column="18" selection-end-line="24" selection-end-column="18" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://$PROJECT_DIR$/lib/json-simple-1.1.jar!/org/json/simple/JSONStreamAware.class">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="76" max-vertical-offset="304">
+          <caret line="7" column="9" selection-start-line="7" selection-start-column="9" selection-end-line="7" selection-end-column="9" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://$PROJECT_DIR$/lib/json-simple-1.1.jar!/org/json/simple/JSONObject.class">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="114" max-vertical-offset="1881">
+          <caret line="17" column="28" selection-start-line="17" selection-start-column="28" selection-end-line="17" selection-end-column="28" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://D:/Android/NDKTool/adt-bundle-windows-x86_64-20131030/adt-bundle-windows-x86_64-20131030/sdk/sources/android-19/java/lang/String.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="14839" max-vertical-offset="37316">
+          <caret line="825" column="18" selection-start-line="825" selection-start-column="18" selection-end-line="825" selection-end-column="18" />
+          <folding>
+            <element signature="e#0#76373#0" expanded="false" />
+            <element signature="imports" expanded="false" />
+            <element signature="e#3702#3703#0" expanded="false" />
+            <element signature="e#3759#3760#0" expanded="false" />
+            <element signature="e#4956#4957#0" expanded="false" />
+            <element signature="e#4998#4999#0" expanded="false" />
+            <element signature="e#5503#5504#0" expanded="false" />
+            <element signature="e#5551#5552#0" expanded="false" />
+            <element signature="e#6002#6003#0" expanded="false" />
+            <element signature="e#6073#6074#0" expanded="false" />
+            <element signature="e#15343#15344#0" expanded="false" />
+            <element signature="e#15394#15395#0" expanded="false" />
+            <element signature="e#15701#15702#0" expanded="false" />
+            <element signature="e#15743#15744#0" expanded="false" />
+            <element signature="e#26510#26511#0" expanded="false" />
+            <element signature="e#26565#26566#0" expanded="false" />
+            <element signature="e#27339#27340#0" expanded="false" />
+            <element signature="e#27393#27394#0" expanded="false" />
+            <element signature="e#27844#27845#0" expanded="false" />
+            <element signature="e#27927#27928#0" expanded="false" />
+            <element signature="e#31278#31279#0" expanded="false" />
+            <element signature="e#31335#31336#0" expanded="false" />
+            <element signature="e#41009#41010#0" expanded="false" />
+            <element signature="e#41042#41043#0" expanded="false" />
+            <element signature="e#45211#45212#0" expanded="false" />
+            <element signature="e#45239#45240#0" expanded="false" />
+            <element signature="e#52519#52520#0" expanded="false" />
+            <element signature="e#52563#52564#0" expanded="false" />
+            <element signature="e#53140#53141#0" expanded="false" />
+            <element signature="e#53208#53209#0" expanded="false" />
+            <element signature="e#55646#55647#0" expanded="false" />
+            <element signature="e#55740#55741#0" expanded="false" />
+            <element signature="e#56563#56564#0" expanded="false" />
+            <element signature="e#56644#56645#0" expanded="false" />
+            <element signature="e#56734#56735#0" expanded="false" />
+            <element signature="e#56761#56762#0" expanded="false" />
+            <element signature="e#57094#57095#0" expanded="false" />
+            <element signature="e#57188#57189#0" expanded="false" />
+            <element signature="e#58016#58017#0" expanded="false" />
+            <element signature="e#58097#58098#0" expanded="false" />
+            <element signature="e#59216#59217#0" expanded="false" />
+            <element signature="e#59271#59272#0" expanded="false" />
+            <element signature="e#60048#60049#0" expanded="false" />
+            <element signature="e#60102#60103#0" expanded="false" />
+            <element signature="e#60812#60813#0" expanded="false" />
+            <element signature="e#60857#60858#0" expanded="false" />
+            <element signature="e#61092#61093#0" expanded="false" />
+            <element signature="e#61136#61137#0" expanded="false" />
+            <element signature="e#61375#61376#0" expanded="false" />
+            <element signature="e#61421#61422#0" expanded="false" />
+            <element signature="e#61652#61653#0" expanded="false" />
+            <element signature="e#61695#61696#0" expanded="false" />
+            <element signature="e#62101#62102#0" expanded="false" />
+            <element signature="e#62165#62166#0" expanded="false" />
+            <element signature="e#62512#62513#0" expanded="false" />
+            <element signature="e#62559#62560#0" expanded="false" />
+            <element signature="e#65011#65012#0" expanded="false" />
+            <element signature="e#65074#65075#0" expanded="false" />
+            <element signature="e#67404#67405#0" expanded="false" />
+            <element signature="e#67454#67455#0" expanded="false" />
+            <element signature="e#69002#69003#0" expanded="false" />
+            <element signature="e#69046#69047#0" expanded="false" />
+            <element signature="e#73233#73234#0" expanded="false" />
+            <element signature="e#73297#73298#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/res/layout/main.xml">
+      <provider editor-type-id="android-designer">
+        <state />
+      </provider>
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="152" max-vertical-offset="1178">
+          <caret line="8" column="12" selection-start-line="8" selection-start-column="12" selection-end-line="8" selection-end-column="12" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/cgsf/chatclientandroid/ChatActivity.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="741" max-vertical-offset="2033">
+          <caret line="68" column="0" selection-start-line="68" selection-start-column="0" selection-end-line="68" selection-end-column="0" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="e#799#807#0" expanded="true" />
+            <element signature="e#3638#3930#0" expanded="true" />
+            <element signature="e#3929#3930#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/cgsf/chatclientandroid/ChatClient.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="1159">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding>
+            <element signature="imports" expanded="false" />
+            <element signature="e#608#609#0" expanded="false" />
+            <element signature="e#637#638#0" expanded="false" />
+            <element signature="e#690#691#0" expanded="false" />
+            <element signature="e#743#744#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://D:/Android/NDKTool/adt-bundle-windows-x86_64-20131030/adt-bundle-windows-x86_64-20131030/sdk/sources/android-19/android/os/MessageQueue.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="665" max-vertical-offset="10393">
+          <caret line="53" column="31" selection-start-line="53" selection-start-column="31" selection-end-line="53" selection-end-column="31" />
+          <folding>
+            <element signature="e#0#18819#0" expanded="false" />
+            <element signature="imports" expanded="false" />
+            <element signature="e#1404#1417#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/cgsf/chatclientandroid/ChatClientSocket.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="100">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://$PROJECT_DIR$/lib/json-simple-1.1.jar!/org/json/simple/JSONStreamAware.class">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="76" max-vertical-offset="304">
+          <caret line="7" column="9" selection-start-line="7" selection-start-column="9" selection-end-line="7" selection-end-column="9" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://$PROJECT_DIR$/lib/json-simple-1.1.jar!/org/json/simple/JSONObject.class">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="114" max-vertical-offset="1881">
+          <caret line="17" column="28" selection-start-line="17" selection-start-column="28" selection-end-line="17" selection-end-column="28" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://D:/Android/NDKTool/adt-bundle-windows-x86_64-20131030/adt-bundle-windows-x86_64-20131030/sdk/sources/android-19/java/lang/String.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="14839" max-vertical-offset="37316">
+          <caret line="825" column="18" selection-start-line="825" selection-start-column="18" selection-end-line="825" selection-end-column="18" />
+          <folding>
+            <element signature="e#0#76373#0" expanded="false" />
+            <element signature="imports" expanded="false" />
+            <element signature="e#3702#3703#0" expanded="false" />
+            <element signature="e#3759#3760#0" expanded="false" />
+            <element signature="e#4956#4957#0" expanded="false" />
+            <element signature="e#4998#4999#0" expanded="false" />
+            <element signature="e#5503#5504#0" expanded="false" />
+            <element signature="e#5551#5552#0" expanded="false" />
+            <element signature="e#6002#6003#0" expanded="false" />
+            <element signature="e#6073#6074#0" expanded="false" />
+            <element signature="e#15343#15344#0" expanded="false" />
+            <element signature="e#15394#15395#0" expanded="false" />
+            <element signature="e#15701#15702#0" expanded="false" />
+            <element signature="e#15743#15744#0" expanded="false" />
+            <element signature="e#26510#26511#0" expanded="false" />
+            <element signature="e#26565#26566#0" expanded="false" />
+            <element signature="e#27339#27340#0" expanded="false" />
+            <element signature="e#27393#27394#0" expanded="false" />
+            <element signature="e#27844#27845#0" expanded="false" />
+            <element signature="e#27927#27928#0" expanded="false" />
+            <element signature="e#31278#31279#0" expanded="false" />
+            <element signature="e#31335#31336#0" expanded="false" />
+            <element signature="e#41009#41010#0" expanded="false" />
+            <element signature="e#41042#41043#0" expanded="false" />
+            <element signature="e#45211#45212#0" expanded="false" />
+            <element signature="e#45239#45240#0" expanded="false" />
+            <element signature="e#52519#52520#0" expanded="false" />
+            <element signature="e#52563#52564#0" expanded="false" />
+            <element signature="e#53140#53141#0" expanded="false" />
+            <element signature="e#53208#53209#0" expanded="false" />
+            <element signature="e#55646#55647#0" expanded="false" />
+            <element signature="e#55740#55741#0" expanded="false" />
+            <element signature="e#56563#56564#0" expanded="false" />
+            <element signature="e#56644#56645#0" expanded="false" />
+            <element signature="e#56734#56735#0" expanded="false" />
+            <element signature="e#56761#56762#0" expanded="false" />
+            <element signature="e#57094#57095#0" expanded="false" />
+            <element signature="e#57188#57189#0" expanded="false" />
+            <element signature="e#58016#58017#0" expanded="false" />
+            <element signature="e#58097#58098#0" expanded="false" />
+            <element signature="e#59216#59217#0" expanded="false" />
+            <element signature="e#59271#59272#0" expanded="false" />
+            <element signature="e#60048#60049#0" expanded="false" />
+            <element signature="e#60102#60103#0" expanded="false" />
+            <element signature="e#60812#60813#0" expanded="false" />
+            <element signature="e#60857#60858#0" expanded="false" />
+            <element signature="e#61092#61093#0" expanded="false" />
+            <element signature="e#61136#61137#0" expanded="false" />
+            <element signature="e#61375#61376#0" expanded="false" />
+            <element signature="e#61421#61422#0" expanded="false" />
+            <element signature="e#61652#61653#0" expanded="false" />
+            <element signature="e#61695#61696#0" expanded="false" />
+            <element signature="e#62101#62102#0" expanded="false" />
+            <element signature="e#62165#62166#0" expanded="false" />
+            <element signature="e#62512#62513#0" expanded="false" />
+            <element signature="e#62559#62560#0" expanded="false" />
+            <element signature="e#65011#65012#0" expanded="false" />
+            <element signature="e#65074#65075#0" expanded="false" />
+            <element signature="e#67404#67405#0" expanded="false" />
+            <element signature="e#67454#67455#0" expanded="false" />
+            <element signature="e#69002#69003#0" expanded="false" />
+            <element signature="e#69046#69047#0" expanded="false" />
+            <element signature="e#73233#73234#0" expanded="false" />
+            <element signature="e#73297#73298#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/res/layout/main.xml">
+      <provider editor-type-id="android-designer">
+        <state />
+      </provider>
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="152" max-vertical-offset="1178">
+          <caret line="8" column="12" selection-start-line="8" selection-start-column="12" selection-end-line="8" selection-end-column="12" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/cgsf/chatclientandroid/ChatActivity.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="703" max-vertical-offset="2090">
+          <caret line="55" column="12" selection-start-line="55" selection-start-column="12" selection-end-line="55" selection-end-column="12" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="e#799#807#0" expanded="true" />
+            <element signature="e#3638#3930#0" expanded="true" />
+            <element signature="e#3929#3930#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/cgsf/chatclientandroid/ChatClient.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="1026" max-vertical-offset="1159">
+          <caret line="65" column="1" selection-start-line="65" selection-start-column="1" selection-end-line="65" selection-end-column="1" />
+          <folding>
+            <element signature="imports" expanded="false" />
+            <element signature="e#608#609#0" expanded="false" />
+            <element signature="e#637#638#0" expanded="false" />
+            <element signature="e#690#691#0" expanded="false" />
+            <element signature="e#743#744#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://D:/Android/NDKTool/adt-bundle-windows-x86_64-20131030/adt-bundle-windows-x86_64-20131030/sdk/sources/android-19/android/os/MessageQueue.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="665" max-vertical-offset="10393">
+          <caret line="53" column="31" selection-start-line="53" selection-start-column="31" selection-end-line="53" selection-end-column="31" />
+          <folding>
+            <element signature="e#0#18819#0" expanded="false" />
+            <element signature="imports" expanded="false" />
+            <element signature="e#1404#1417#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/gen/com/cgsf/chatclientandroid/BuildConfig.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="0">
+          <caret line="7" column="10" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://D:/Android/NDKTool/adt-bundle-windows-x86_64-20131030/adt-bundle-windows-x86_64-20131030/sdk/sources/android-19/java/util/concurrent/BlockingQueue.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="0">
+          <caret line="152" column="14" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://$PROJECT_DIR$/lib/JavaSockets-0.1.jar!/net/alhem/jsockets/Socket.class">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-4.08" vertical-offset="0" max-vertical-offset="0">
+          <caret line="62" column="19" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://D:/Android/NDKTool/adt-bundle-windows-x86_64-20131030/adt-bundle-windows-x86_64-20131030/sdk/sources/android-19/java/lang/Thread.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="0">
+          <caret line="604" column="26" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/AndroidManifest.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="0">
+          <caret line="9" column="50" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/ChatClientAndroid.iml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="0">
+          <caret line="11" column="21" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://$PROJECT_DIR$/lib/JavaSockets-0.1.jar!/net/alhem/jsockets/SocketHandler.class">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-10.2" vertical-offset="0" max-vertical-offset="0">
+          <caret line="28" column="10" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://$PROJECT_DIR$/lib/json-simple-1.1.jar!/org/json/simple/JSONObject.class">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="114" max-vertical-offset="1881">
+          <caret line="17" column="28" selection-start-line="17" selection-start-column="28" selection-end-line="17" selection-end-column="28" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://$PROJECT_DIR$/lib/json-simple-1.1.jar!/org/json/simple/JSONStreamAware.class">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="76" max-vertical-offset="304">
+          <caret line="7" column="9" selection-start-line="7" selection-start-column="9" selection-end-line="7" selection-end-column="9" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://D:/Android/NDKTool/adt-bundle-windows-x86_64-20131030/adt-bundle-windows-x86_64-20131030/sdk/sources/android-19/java/lang/String.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="14839" max-vertical-offset="37316">
+          <caret line="825" column="18" selection-start-line="825" selection-start-column="18" selection-end-line="825" selection-end-column="18" />
+          <folding>
+            <element signature="e#0#76373#0" expanded="false" />
+            <element signature="imports" expanded="false" />
+            <element signature="e#3702#3703#0" expanded="false" />
+            <element signature="e#3759#3760#0" expanded="false" />
+            <element signature="e#4956#4957#0" expanded="false" />
+            <element signature="e#4998#4999#0" expanded="false" />
+            <element signature="e#5503#5504#0" expanded="false" />
+            <element signature="e#5551#5552#0" expanded="false" />
+            <element signature="e#6002#6003#0" expanded="false" />
+            <element signature="e#6073#6074#0" expanded="false" />
+            <element signature="e#15343#15344#0" expanded="false" />
+            <element signature="e#15394#15395#0" expanded="false" />
+            <element signature="e#15701#15702#0" expanded="false" />
+            <element signature="e#15743#15744#0" expanded="false" />
+            <element signature="e#26510#26511#0" expanded="false" />
+            <element signature="e#26565#26566#0" expanded="false" />
+            <element signature="e#27339#27340#0" expanded="false" />
+            <element signature="e#27393#27394#0" expanded="false" />
+            <element signature="e#27844#27845#0" expanded="false" />
+            <element signature="e#27927#27928#0" expanded="false" />
+            <element signature="e#31278#31279#0" expanded="false" />
+            <element signature="e#31335#31336#0" expanded="false" />
+            <element signature="e#41009#41010#0" expanded="false" />
+            <element signature="e#41042#41043#0" expanded="false" />
+            <element signature="e#45211#45212#0" expanded="false" />
+            <element signature="e#45239#45240#0" expanded="false" />
+            <element signature="e#52519#52520#0" expanded="false" />
+            <element signature="e#52563#52564#0" expanded="false" />
+            <element signature="e#53140#53141#0" expanded="false" />
+            <element signature="e#53208#53209#0" expanded="false" />
+            <element signature="e#55646#55647#0" expanded="false" />
+            <element signature="e#55740#55741#0" expanded="false" />
+            <element signature="e#56563#56564#0" expanded="false" />
+            <element signature="e#56644#56645#0" expanded="false" />
+            <element signature="e#56734#56735#0" expanded="false" />
+            <element signature="e#56761#56762#0" expanded="false" />
+            <element signature="e#57094#57095#0" expanded="false" />
+            <element signature="e#57188#57189#0" expanded="false" />
+            <element signature="e#58016#58017#0" expanded="false" />
+            <element signature="e#58097#58098#0" expanded="false" />
+            <element signature="e#59216#59217#0" expanded="false" />
+            <element signature="e#59271#59272#0" expanded="false" />
+            <element signature="e#60048#60049#0" expanded="false" />
+            <element signature="e#60102#60103#0" expanded="false" />
+            <element signature="e#60812#60813#0" expanded="false" />
+            <element signature="e#60857#60858#0" expanded="false" />
+            <element signature="e#61092#61093#0" expanded="false" />
+            <element signature="e#61136#61137#0" expanded="false" />
+            <element signature="e#61375#61376#0" expanded="false" />
+            <element signature="e#61421#61422#0" expanded="false" />
+            <element signature="e#61652#61653#0" expanded="false" />
+            <element signature="e#61695#61696#0" expanded="false" />
+            <element signature="e#62101#62102#0" expanded="false" />
+            <element signature="e#62165#62166#0" expanded="false" />
+            <element signature="e#62512#62513#0" expanded="false" />
+            <element signature="e#62559#62560#0" expanded="false" />
+            <element signature="e#65011#65012#0" expanded="false" />
+            <element signature="e#65074#65075#0" expanded="false" />
+            <element signature="e#67404#67405#0" expanded="false" />
+            <element signature="e#67454#67455#0" expanded="false" />
+            <element signature="e#69002#69003#0" expanded="false" />
+            <element signature="e#69046#69047#0" expanded="false" />
+            <element signature="e#73233#73234#0" expanded="false" />
+            <element signature="e#73297#73298#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/res/layout/main.xml">
+      <provider editor-type-id="android-designer">
+        <state />
+      </provider>
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="152" max-vertical-offset="1178">
+          <caret line="8" column="12" selection-start-line="8" selection-start-column="12" selection-end-line="8" selection-end-column="12" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://D:/Android/NDKTool/adt-bundle-windows-x86_64-20131030/adt-bundle-windows-x86_64-20131030/sdk/sources/android-19/android/os/MessageQueue.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="665" max-vertical-offset="10393">
+          <caret line="53" column="31" selection-start-line="53" selection-start-column="31" selection-end-line="53" selection-end-column="31" />
+          <folding>
+            <element signature="e#0#18819#0" expanded="false" />
+            <element signature="imports" expanded="false" />
+            <element signature="e#1404#1417#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://$PROJECT_DIR$/lib/JavaSockets-0.1.jar!/net/alhem/jsockets/TcpSocket.class">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="218" max-vertical-offset="2679">
+          <caret line="49" column="0" selection-start-line="49" selection-start-column="0" selection-end-line="49" selection-end-column="0" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/com/cgsf/chatclientandroid/ChatClient.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="65" column="17" selection-start="1640" selection-end="1640" vertical-scroll-proportion="0.0">
-          <folding />
+        <state vertical-scroll-proportion="0.0" vertical-offset="654" max-vertical-offset="1159">
+          <caret line="55" column="32" selection-start-line="55" selection-start-column="30" selection-end-line="55" selection-end-column="32" />
+          <folding>
+            <element signature="imports" expanded="false" />
+            <element signature="e#608#609#0" expanded="false" />
+            <element signature="e#637#638#0" expanded="false" />
+            <element signature="e#690#691#0" expanded="false" />
+            <element signature="e#743#744#0" expanded="false" />
+          </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/com/cgsf/chatclientandroid/ChatClientSocket.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="136" column="74" selection-start="3806" selection-end="3806" vertical-scroll-proportion="0.28104576">
+        <state vertical-scroll-proportion="0.0" vertical-offset="1640" max-vertical-offset="2755">
+          <caret line="125" column="31" selection-start-line="125" selection-start-column="31" selection-end-line="125" selection-end-column="31" />
           <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/cgsf/chatclientandroid/ChatActivity.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.6639344" vertical-offset="1880" max-vertical-offset="2432">
+          <caret line="116" column="37" selection-start-line="116" selection-start-column="37" selection-end-line="116" selection-end-column="37" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="e#799#807#0" expanded="true" />
+            <element signature="e#3638#3930#0" expanded="true" />
+            <element signature="e#3929#3930#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -769,4 +1560,3 @@
     </states>
   </component>
 </project>
-

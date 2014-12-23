@@ -59,6 +59,9 @@
     <Filter Include="Packet\PacketTask">
       <UniqueIdentifier>{2e1e993a-e71a-45bb-ad01-d455981ed3d9}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Packet\httpxx">
+      <UniqueIdentifier>{2061b878-9c6d-418f-9f4d-db67959120d3}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include=".\SFExcel.cpp">
@@ -201,6 +204,12 @@
     </ClCompile>
     <ClCompile Include="SFMMODispatcher.cpp">
       <Filter>Dispatcher</Filter>
+    </ClCompile>
+    <ClCompile Include="SFHTTPProtocol.cpp">
+      <Filter>Packet\httpxx</Filter>
+    </ClCompile>
+    <ClCompile Include="SFHTTPPacket.cpp">
+      <Filter>Packet\httpxx</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -413,6 +422,12 @@
     </ClInclude>
     <ClInclude Include="PacketProtocolConstant.h">
       <Filter>Packet\PacketProtocol</Filter>
+    </ClInclude>
+    <ClInclude Include="SFHTTPProtocol.h">
+      <Filter>Packet\httpxx</Filter>
+    </ClInclude>
+    <ClInclude Include="SFHTTPPacket.h">
+      <Filter>Packet\httpxx</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

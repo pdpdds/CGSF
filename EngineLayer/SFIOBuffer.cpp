@@ -83,6 +83,25 @@ int SFIOBuffer::GetData( char* pBuffer, int iSize )
 	if(m_iHead >= m_iBufSize)
 	{
 		m_iHead -= m_iBufSize;
+	}		
+
+	CalcUsedBufferSize();
+
+	return iSize;
+}
+
+int	SFIOBuffer::RemoveData(int iSize)
+{
+	if (GetUsedBufferSize() < iSize)
+		iSize = GetUsedBufferSize();
+
+	if (iSize <= 0)
+		return 0;
+
+	m_iHead += iSize;
+	if (m_iHead >= m_iBufSize)
+	{
+		m_iHead -= m_iBufSize;
 	}
 
 	CalcUsedBufferSize();
