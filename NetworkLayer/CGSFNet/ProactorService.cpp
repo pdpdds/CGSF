@@ -63,6 +63,15 @@ void ProactorService::open( ACE_HANDLE h, ACE_Message_Block& MessageBlock )
 
 	RegisterTimer();
 
+	sockaddr_in addr;
+	int addrLen = sizeof(addr);
+
+	ACE_OS::getpeername(this->handle(), (sockaddr *)&addr, &addrLen);	
+
+	m_sessionDesc.port = ntohs(addr.sin_port);
+	m_sessionDesc.szIP = inet_ntoa(addr.sin_addr);
+
+
 	ISession::OnConnect(this->m_serial, m_sessionDesc);
 
 	PostRecv();
