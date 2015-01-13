@@ -1,6 +1,7 @@
 #include "StdAfx.h"
 #include "SFDBRequest.h"
 #include "SFDBWorker.h"
+#include "SFDatabase.h"
 
 int SFDBRequest::call()
 {

@@ -211,6 +211,9 @@
     <ClCompile Include="SFHTTPPacket.cpp">
       <Filter>Packet\httpxx</Filter>
     </ClCompile>
+    <ClCompile Include="SFLogicDispatcher.cpp">
+      <Filter>Dispatcher</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include=".\SFExcel.h">
@@ -428,6 +431,9 @@
     </ClInclude>
     <ClInclude Include="SFHTTPPacket.h">
       <Filter>Packet\httpxx</Filter>
+    </ClInclude>
+    <ClInclude Include="SFLogicDispatcher.h">
+      <Filter>Dispatcher</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

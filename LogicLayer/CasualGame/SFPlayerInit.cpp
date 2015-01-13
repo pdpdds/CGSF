@@ -4,7 +4,6 @@
 #include "SFDataBaseProxy.h"
 #include "DBMsg.h"
 #include "SFSendPacket.h"
-#include "SFSendDBRequest.h"
 #include "SFPlayerManager.h"
 
 
@@ -62,9 +61,12 @@ BOOL SFPlayerInit::OnLogin(BasePacket* pPacket)
 	pPlayer->m_username = pLogin->GetData().username();
 	pPlayer->m_password = pLogin->GetData().password();
 
-	SFSendDBRequest::RequestLogin(pPlayer);
+	SFMessage* pMessage = SFDBPacketSystem<SFMessage>::GetInstance()->GetInitMessage(DBMSG_LOGIN, pPlayer->GetSerial());
 
-	return TRUE;
+	*pMessage << (char*)pPlayer->m_username.c_str();
+	*pMessage << (char*)pPlayer->m_password.c_str();
+
+	return SFDBPacketSystem<SFMessage>::GetInstance()->SendDBRequest(pMessage);
 }
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////

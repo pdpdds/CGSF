@@ -145,9 +145,6 @@
     <ClInclude Include="SFDirectoryWatcherTask.h">
       <Filter>Entry</Filter>
     </ClInclude>
-    <ClInclude Include="SFSendDBRequest.h">
-      <Filter>DataBase</Filter>
-    </ClInclude>
     <ClInclude Include="SFCGProtobufProtocol.h">
       <Filter>Protocol</Filter>
     </ClInclude>
@@ -266,9 +263,6 @@
     </ClCompile>
     <ClCompile Include="SFDirectoryWatcherTask.cpp">
       <Filter>Entry</Filter>
-    </ClCompile>
-    <ClCompile Include="SFSendDBRequest.cpp">
-      <Filter>DataBase</Filter>
     </ClCompile>
     <ClCompile Include="SFCGProtobufProtocol.cpp">
       <Filter>Protocol</Filter>

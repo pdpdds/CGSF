@@ -3,7 +3,7 @@
 #include "SFMySQL.h"
 #include "MySQLPool.h"
 #include "DBMsg.h"
-#include "SFSendDBRequest.h"
+#include "SFDBPacketSystem.h"
 
 SFMySQLAdaptorImpl::SFMySQLAdaptorImpl(void)
 {
@@ -21,6 +21,11 @@ BOOL SFMySQLAdaptorImpl::RegisterDBService()
 	m_Dispatch.RegisterMessage(DBMSG_LOGIN, std::tr1::bind(&SFMySQLAdaptorImpl::OnLogin, this, std::tr1::placeholders::_1));
 
 	return TRUE;
+}
+
+bool SFMySQLAdaptorImpl::RecallDBMsg(BasePacket* pMessage)
+{
+	return SFDBPacketSystem<SFMessage>::GetInstance()->RecallDBMsg(pMessage);
 }
 
 ////////////////////////////////////////////////////////////////////////////////////////////////
@@ -74,9 +79,9 @@ BOOL SFMySQLAdaptorImpl::OnLogin( BasePacket* pPacket )
 ////////////////////////////////////////////////////////////////////////////////
 //결과를 로직 쓰레드로 보내야 할 경우
 ////////////////////////////////////////////////////////////////////////////////
-	SFMessage* pMsg = SFDatabase::GetInitMessage(pMessage->GetCommand(), pMessage->GetSerial());
+	SFMessage* pMsg = SFDBPacketSystem<SFMessage>::GetInstance()->GetInitMessage(pMessage->GetCommand(), pMessage->GetSerial());
 	*pMsg << Result;
-	SFSendDBRequest::SendToLogic(pMsg);
+	SFDBPacketSystem<SFMessage>::GetInstance()->SendToLogic(pMsg);
 	
 	return TRUE;
 }

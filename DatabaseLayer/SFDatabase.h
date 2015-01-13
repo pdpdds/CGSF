@@ -2,14 +2,17 @@
 #include "DBStruct.h"
 #include "SFDBAdaptor.h"
 #include "SFObjectPool.h"
-#include "SFMessage.h"
+#include "SFDBPacketSystem.h"
 #include "BasePacket.h"
 #include "SFIni.h"
 
 class SFDatabase
 {
 public:
-	SFDatabase(SFDBAdaptor* pAdaptor);
+	SFDatabase(SFDBAdaptor* pAdaptor) : m_pAdaptor(pAdaptor)
+	{					
+	}
+
 	virtual ~SFDatabase(void)
 	{
 	}
@@ -27,26 +30,27 @@ public:
 		ini.GetString(L"DataSourceInfo",L"IP",Info.IP, 20);
 		Info.Port = ini.GetInt(L"DataSourceInfo",L"PORT",0);
 
-	
 		SetInfo(Info);
 
 		return m_pAdaptor->Initialize(&m_Info);
 	}
 
-	BOOL Call(BasePacket* pMessage);
+	BOOL Call(BasePacket* pMessage)
+	{
+		ASSERT(pMessage->GetPacketType() == SFPACKET_DB);
+		m_pAdaptor->Call(pMessage);
+
+		return TRUE;
+	}
 	
 	static _DBConnectionInfo* GetInfo(){return &m_Info;}
 	static void SetInfo(_DBConnectionInfo& Info){m_Info = Info;}
 
-	static SFMessage* GetInitMessage(int RequestMsg, DWORD PlayerSerial);
-	static SFMessage* AllocDBMsg();
-	static BOOL RecallDBMsg( SFMessage* pMessage );
 
 protected:
 
 private:
 	SFDBAdaptor* m_pAdaptor;
-
 	static _DBConnectionInfo m_Info;
-	static SFObjectPool<SFMessage> m_DBMessagePool;
 };
+

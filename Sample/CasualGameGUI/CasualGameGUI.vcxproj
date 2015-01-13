@@ -84,6 +84,7 @@
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
     <IncludePath>$(IncludePath)</IncludePath>
     <OutDir>$(SolutionDir)\Lib\x64\Release\</OutDir>
+    <IntDir>$(SolutionDir)/Intermediate/$(Configuration)\$(ProjectName)\</IntDir>
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <ClCompile>
@@ -92,7 +93,7 @@
       <Optimization>Disabled</Optimization>
       <PreprocessorDefinitions>WIN32;_DEBUG;_LIB;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <SDLCheck>false</SDLCheck>
-      <AdditionalIncludeDirectories>../../EngineLayer;../../Common;../../BaseLayer;../../LogicLayer/CasualGame;../../ThirdParty;../../ThirdParty/CEGUI/Include;../../P2PLayer</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>../../EngineLayer;../../Common;../../BaseLayer;../../LogicLayer/CasualGame;../../ThirdParty;../../ThirdParty/CEGUI/Include;../../P2PLayer;../../ThirdParty/ACE/Include</AdditionalIncludeDirectories>
       <AdditionalOptions>-D_SCL_SECURE_NO_WARNINGS %(AdditionalOptions)</AdditionalOptions>
     </ClCompile>
     <Link>
@@ -110,7 +111,7 @@
       <Optimization>Disabled</Optimization>
       <PreprocessorDefinitions>WIN32;_DEBUG;_LIB;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <SDLCheck>false</SDLCheck>
-      <AdditionalIncludeDirectories>..\..\EngineLayer;..\..\Common;..\..\BaseLayer;../../ThirdParty;../../ThirdParty/CEGUI/Include;../../P2PLayer</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>..\..\EngineLayer;..\..\Common;..\..\BaseLayer;../../ThirdParty;../../ThirdParty/CEGUI/Include;../../P2PLayer;../../ThirdParty/ACE/Include</AdditionalIncludeDirectories>
       <AdditionalOptions>-D_SCL_SECURE_NO_WARNINGS %(AdditionalOptions)</AdditionalOptions>
     </ClCompile>
     <Link>
@@ -130,7 +131,7 @@
       <IntrinsicFunctions>true</IntrinsicFunctions>
       <PreprocessorDefinitions>WIN32;NDEBUG;_LIB;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <SDLCheck>true</SDLCheck>
-      <AdditionalIncludeDirectories>..\..\EngineLayer;..\..\Common;..\..\BaseLayer;../../ThirdParty;../../ThirdParty/CEGUI/Include;../../P2PLayer</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>..\..\EngineLayer;..\..\Common;..\..\BaseLayer;../../ThirdParty;../../ThirdParty/CEGUI/Include;../../P2PLayer;../../ThirdParty/ACE/Include</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Windows</SubSystem>
@@ -151,7 +152,7 @@
       <IntrinsicFunctions>true</IntrinsicFunctions>
       <PreprocessorDefinitions>WIN32;NDEBUG;_LIB;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <SDLCheck>true</SDLCheck>
-      <AdditionalIncludeDirectories>..\..\EngineLayer;..\..\Common;..\..\BaseLayer;../../ThirdParty;../../ThirdParty/CEGUI/Include;../../P2PLayer</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>..\..\EngineLayer;..\..\Common;..\..\BaseLayer;../../ThirdParty;../../ThirdParty/CEGUI/Include;../../P2PLayer;../../ThirdParty/ACE/Include</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Windows</SubSystem>

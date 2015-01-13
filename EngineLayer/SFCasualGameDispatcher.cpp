@@ -1,7 +1,6 @@
 #include "stdafx.h"
 #include "SFCasualGameDispatcher.h"
 #include "SFEngine.h"
-#include "SFDatabase.h"
 #include "IRPCService.h"
 #include "SFPacket.h"
 
@@ -35,45 +34,24 @@ void SFCasualGameDispatcher::Dispatch(BasePacket* pPacket)
 void SFCasualGameDispatcher::LogicThreadProc(void* Args)
 {
 	UNREFERENCED_PARAMETER(Args);
-	//SFEngine* pEngine = SFEngine::GetInstance();
+	LogicEntry* pEntry = LogicEntrySingleton::instance();
 
 	while (m_bLogicEnd == false)
 	{
 //로직게이트웨이 큐에서 패킷을 꺼낸다.
 //로직엔트리 객체의 ProcessPacket 메소드를 호출해서 패킷 처리를 수행한다.
 		BasePacket* pPacket = LogicGatewaySingleton::instance()->PopPacket();
-		LogicEntrySingleton::instance()->ProcessPacket(pPacket);
+		pEntry->ProcessPacket(pPacket);
 
-		ReleasePacket(pPacket);
+//20150113
+//DB 처리를 로직엔트리 객체에 위임해서 엔진레이어가 데이터베이스 레이어에 종속되지 않도록 한다.
+//DB 패킷의 수거는 로직레이어에서 처리하도록 한다.
+//차후 구조를 수정할 것이다.
+		if (pPacket->GetPacketType() != SFPACKET_DB)
+		{
+			ReleasePacket(pPacket);			
+		}
 	}
-}
-
-bool SFCasualGameDispatcher::ReleasePacket(BasePacket* pPacket)
-{
-	//사용한 패킷을 수거한다. 패킷의 타입에 따라 릴리즈 형태가 다름
-	switch (pPacket->GetPacketType())
-	{
-	case SFPACKET_DATA:
-		SFEngine::GetInstance()->ReleasePacket(pPacket);
-		break;
-	case SFPACKET_CONNECT:
-	case SFPACKET_DISCONNECT:
-	case SFPACKET_TIMER:
-	case SFPACKET_SHOUTER:
-	case SFPACKET_SERVERSHUTDOWN:
-		delete pPacket;
-		break;
-
-	case SFPACKET_DB:
-		SFDatabase::RecallDBMsg((SFMessage*)pPacket);
-		break;
-
-	default:
-		SFASSERT(0);
-		return false;
-	}
-
-	return true;
 }
 
 void SFCasualGameDispatcher::RPCThreadProc(void* Args)

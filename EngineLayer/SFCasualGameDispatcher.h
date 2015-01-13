@@ -1,7 +1,7 @@
 #pragma once
-#include "ILogicDispatcher.h"
+#include "SFLogicDispatcher.h"
 
-class SFCasualGameDispatcher : public ILogicDispatcher
+class SFCasualGameDispatcher : public SFLogicDispatcher
 {
 public:
 	SFCasualGameDispatcher(void);
@@ -23,6 +23,5 @@ private:
 
 	static void LogicThreadProc(void* Args);
 	static void RPCThreadProc(void* Args);
-	static bool ReleasePacket(BasePacket* pPacket);
 };
 

@@ -10,12 +10,15 @@ public:
 
 	virtual BOOL Initialize(_DBConnectionInfo* pInfo) = 0;
 	virtual BOOL RegisterDBService() = 0;
+	virtual bool RecallDBMsg(BasePacket* pMessage) = 0;
 
 	BOOL Call(BasePacket* pMessage)
 	{
-		return m_Dispatch.HandleMessage(pMessage->GetPacketID(), pMessage);
+		bool bResult = m_Dispatch.HandleMessage(pMessage->GetPacketID(), pMessage);
 
-		return FALSE;
+		RecallDBMsg(pMessage);
+		
+		return bResult;
 	}
 
 protected:

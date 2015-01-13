@@ -11,12 +11,12 @@ public:
 			delete m_pDataBaseProxy;
 	}
 
-	virtual BOOL Initialize(DBModuleParams& params)
+	virtual bool Initialize(DBModuleParams& params)
 	{
 		return m_pDataBaseProxy->Initialize(params);
 	}
 
-	virtual BOOL SendDBRequest(BasePacket* pMessage)
+	virtual bool SendDBRequest(BasePacket* pMessage)
 	{
 		return m_pDataBaseProxy->SendDBRequest(pMessage);
 	}

@@ -88,17 +88,18 @@
       <PrecompiledHeader>Use</PrecompiledHeader>
       <WarningLevel>Level3</WarningLevel>
       <Optimization>Disabled</Optimization>
-      <PreprocessorDefinitions>WIN32;_DEBUG;_LIB;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>HAVE_STRUCT_TIMESPEC;WIN32;_DEBUG;_LIB;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <SDLCheck>true</SDLCheck>
-      <AdditionalIncludeDirectories>../Common;../BaseLayer;./CppDatabasePool;./CppDatabasePool/mysql;../ThirdParty/Mysql/cppconn;../ThirdParty/Mysql/include;../ThirdParty/fastdb-375/fastdb/inc;../ThirdParty/SQLite;../ThirdParty;../ThirdParty/ACE/Include</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>../Common;../BaseLayer;./CppDatabasePool;./CppDatabasePool/mysql;../ThirdParty/Mysql/cppconn;../ThirdParty/Mysql/include;../ThirdParty/fastdb-375/fastdb/inc;../ThirdParty/SQLite3/include;../ThirdParty;../ThirdParty/ACE/Include;../ThirdParty/libzdb/include;../ThirdParty/libzdb/include/db;../ThirdParty/libzdb/include/net;../ThirdParty/libzdb/include/util;../ThirdParty/pthread\include;../ThirdParty/libzdb/include/exceptions</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Windows</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
     </Link>
     <Lib>
-      <AdditionalLibraryDirectories>../ThirdParty/mysql/lib/x86/Debug</AdditionalLibraryDirectories>
-      <AdditionalDependencies>mysqlcppconn.lib</AdditionalDependencies>
+      <AdditionalLibraryDirectories>../ThirdParty/mysql/lib/x86/Debug;../ThirdParty/libzdb/lib/x86/Debug;</AdditionalLibraryDirectories>
+      <AdditionalDependencies>mysqlcppconn.lib;libzdb.lib</AdditionalDependencies>
+      <AdditionalOptions>/ignore:4221 /ignore:4006 %(AdditionalOptions)</AdditionalOptions>
     </Lib>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
@@ -106,17 +107,18 @@
       <PrecompiledHeader>Use</PrecompiledHeader>
       <WarningLevel>Level3</WarningLevel>
       <Optimization>Disabled</Optimization>
-      <PreprocessorDefinitions>WIN32;_DEBUG;_LIB;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>HAVE_STRUCT_TIMESPEC;WIN32;_DEBUG;_LIB;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <SDLCheck>true</SDLCheck>
-      <AdditionalIncludeDirectories>../Common;../BaseLayer;./CppDatabasePool;./CppDatabasePool/mysql;../ThirdParty/Mysql/cppconn;../ThirdParty/Mysql/include;../ThirdParty/fastdb-375/fastdb/inc;../ThirdParty/SQLite;../ThirdParty;../ThirdParty/ACE/Include</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>../Common;../BaseLayer;./CppDatabasePool;./CppDatabasePool/mysql;../ThirdParty/Mysql/cppconn;../ThirdParty/Mysql/include;../ThirdParty/fastdb-375/fastdb/inc;../ThirdParty/SQLite3/include;../ThirdParty;../ThirdParty/ACE/Include;../ThirdParty/libzdb/include/db;../ThirdParty/libzdb/include/net;../ThirdParty/libzdb/include/util;../ThirdParty/pthread\include;../ThirdParty/libzdb/include/exceptions;../ThirdParty/libzdb/include</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Windows</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
     </Link>
     <Lib>
-      <AdditionalLibraryDirectories>../ThirdParty/mysql/lib/x64/debug</AdditionalLibraryDirectories>
-      <AdditionalDependencies>mysqlcppconn.lib</AdditionalDependencies>
+      <AdditionalLibraryDirectories>../ThirdParty/mysql/lib/x64/debug;../ThirdParty/libzdb/lib/x64/Debug;</AdditionalLibraryDirectories>
+      <AdditionalDependencies>mysqlcppconn.lib;libzdb.lib</AdditionalDependencies>
+      <AdditionalOptions>/ignore:4221 /ignore:4006 %(AdditionalOptions)</AdditionalOptions>
     </Lib>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
@@ -126,9 +128,9 @@
       <Optimization>MaxSpeed</Optimization>
       <FunctionLevelLinking>true</FunctionLevelLinking>
       <IntrinsicFunctions>true</IntrinsicFunctions>
-      <PreprocessorDefinitions>WIN32;NDEBUG;_LIB;_CRT_SECURE_NO_WARNINGS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>HAVE_STRUCT_TIMESPEC;WIN32;NDEBUG;_LIB;_CRT_SECURE_NO_WARNINGS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <SDLCheck>true</SDLCheck>
-      <AdditionalIncludeDirectories>../Common;../BaseLayer;./CppDatabasePool;./CppDatabasePool/mysql;../ThirdParty/Mysql/cppconn;../ThirdParty/Mysql/include;../ThirdParty/fastdb-375/fastdb/inc;../ThirdParty/SQLite;../ThirdParty;../ThirdParty/ACE/Include</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>../Common;../BaseLayer;./CppDatabasePool;./CppDatabasePool/mysql;../ThirdParty/Mysql/cppconn;../ThirdParty/Mysql/include;../ThirdParty/fastdb-375/fastdb/inc;../ThirdParty/SQLite3/include;../ThirdParty;../ThirdParty/ACE/Include;../ThirdParty/libzdb/include/db;../ThirdParty/libzdb/include/net;../ThirdParty/libzdb/include/util;../ThirdParty/pthread\include;../ThirdParty/libzdb/include/exceptions;../ThirdParty/libzdb/include</AdditionalIncludeDirectories>
       <DisableSpecificWarnings>4996</DisableSpecificWarnings>
     </ClCompile>
     <Link>
@@ -138,8 +140,9 @@
       <OptimizeReferences>true</OptimizeReferences>
     </Link>
     <Lib>
-      <AdditionalDependencies>mysqlcppconn.lib;</AdditionalDependencies>
-      <AdditionalLibraryDirectories>../ThirdParty/mysql/lib/x86/Release</AdditionalLibraryDirectories>
+      <AdditionalDependencies>mysqlcppconn.lib;libzdb.lib</AdditionalDependencies>
+      <AdditionalLibraryDirectories>../ThirdParty/mysql/lib/x86/Release;../ThirdParty/libzdb/lib/x86/Release</AdditionalLibraryDirectories>
+      <AdditionalOptions>/ignore:4221 /ignore:4006 %(AdditionalOptions)</AdditionalOptions>
     </Lib>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
@@ -149,9 +152,9 @@
       <Optimization>MaxSpeed</Optimization>
       <FunctionLevelLinking>true</FunctionLevelLinking>
       <IntrinsicFunctions>true</IntrinsicFunctions>
-      <PreprocessorDefinitions>WIN32;NDEBUG;_LIB;_CRT_SECURE_NO_WARNINGS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>HAVE_STRUCT_TIMESPEC;WIN32;NDEBUG;_LIB;_CRT_SECURE_NO_WARNINGS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <SDLCheck>true</SDLCheck>
-      <AdditionalIncludeDirectories>../Common;../BaseLayer;./CppDatabasePool;./CppDatabasePool/mysql;../ThirdParty/Mysql/cppconn;../ThirdParty/Mysql/include;../ThirdParty/fastdb-375/fastdb/inc;../ThirdParty/SQLite;../ThirdParty;../ThirdParty/ACE/Include</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>../Common;../BaseLayer;./CppDatabasePool;./CppDatabasePool/mysql;../ThirdParty/Mysql/cppconn;../ThirdParty/Mysql/include;../ThirdParty/fastdb-375/fastdb/inc;../ThirdParty/SQLite3/include;../ThirdParty;../ThirdParty/ACE/Include;../ThirdParty/libzdb/include/db;../ThirdParty/libzdb/include/net;../ThirdParty/libzdb/include/util;../ThirdParty/pthread\include;../ThirdParty/libzdb/include/exceptions;../ThirdParty/libzdb/include</AdditionalIncludeDirectories>
       <DisableSpecificWarnings>4996</DisableSpecificWarnings>
     </ClCompile>
     <Link>
@@ -161,8 +164,9 @@
       <OptimizeReferences>true</OptimizeReferences>
     </Link>
     <Lib>
-      <AdditionalLibraryDirectories>../ThirdParty/mysql/lib/x64/release</AdditionalLibraryDirectories>
-      <AdditionalDependencies>mysqlcppconn.lib</AdditionalDependencies>
+      <AdditionalLibraryDirectories>../ThirdParty/mysql/lib/x64/release;../ThirdParty/libzdb/lib/x64/Release</AdditionalLibraryDirectories>
+      <AdditionalDependencies>mysqlcppconn.lib;libzdb.lib</AdditionalDependencies>
+      <AdditionalOptions>/ignore:4221 /ignore:4006 %(AdditionalOptions)</AdditionalOptions>
     </Lib>
   </ItemDefinitionGroup>
   <ItemGroup>
@@ -177,6 +181,7 @@
     <ClInclude Include="IDBManager.h" />
     <ClInclude Include="SFDatabase.h" />
     <ClInclude Include="SFDBAdaptor.h" />
+    <ClInclude Include="SFDBPacketSystem.h" />
     <ClInclude Include="SFFastDBAdaptor.h" />
     <ClInclude Include="SFMSSQLAdaptor.h" />
     <ClInclude Include="SFMySQL.h" />
@@ -190,6 +195,8 @@
     <ClInclude Include="SFDBWorker.h" />
     <ClInclude Include="SFFastDB.h" />
     <ClInclude Include="SFMySQLAdaptor.h" />
+    <ClInclude Include="SFZdb.h" />
+    <ClInclude Include="SFZdbAdpator.h" />
     <ClInclude Include="stdafx.h" />
     <ClInclude Include="targetver.h" />
   </ItemGroup>
@@ -224,6 +231,8 @@
     <ClCompile Include="SFDBWorker.cpp" />
     <ClCompile Include="SFFastDB.cpp" />
     <ClCompile Include="SFMySQLAdaptor.cpp" />
+    <ClCompile Include="SFZdb.cpp" />
+    <ClCompile Include="SFZdbAdpator.cpp" />
     <ClCompile Include="stdafx.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Create</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Create</PrecompiledHeader>

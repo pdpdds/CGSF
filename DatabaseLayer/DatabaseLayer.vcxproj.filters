@@ -96,6 +96,15 @@
     <ClInclude Include="CppDatabasePool\mysql\MySQLPool.h">
       <Filter>DatabasePool</Filter>
     </ClInclude>
+    <ClInclude Include="SFDBPacketSystem.h">
+      <Filter>Source Files</Filter>
+    </ClInclude>
+    <ClInclude Include="SFZdb.h">
+      <Filter>DBComponent</Filter>
+    </ClInclude>
+    <ClInclude Include="SFZdbAdpator.h">
+      <Filter>DBAdaptor</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="stdafx.cpp">
@@ -145,6 +154,12 @@
     </ClCompile>
     <ClCompile Include="CppDatabasePool\CommonDatabasePool.h">
       <Filter>DatabasePool</Filter>
+    </ClCompile>
+    <ClCompile Include="SFZdb.cpp">
+      <Filter>DBComponent</Filter>
+    </ClCompile>
+    <ClCompile Include="SFZdbAdpator.cpp">
+      <Filter>DBAdaptor</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

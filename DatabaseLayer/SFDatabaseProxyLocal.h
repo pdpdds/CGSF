@@ -13,8 +13,8 @@ public:
 		ACE_Thread_Manager::instance()->wait_task(&m_DBManager);
 	}
 
-	virtual BOOL Initialize(DBModuleParams& params) override;
-	virtual BOOL SendDBRequest(BasePacket* pMessage) override;
+	virtual bool Initialize(DBModuleParams& params) override;
+	virtual bool SendDBRequest(BasePacket* pMessage) override;
 
 protected:
 
@@ -24,7 +24,7 @@ private:
 
 
 template <typename T>
-BOOL SFDatabaseProxyLocal<T>::Initialize(DBModuleParams& params)
+bool SFDatabaseProxyLocal<T>::Initialize(DBModuleParams& params)
 {
 	if (params.workerPoolSize <= 0)
 		return FALSE;
@@ -37,7 +37,7 @@ BOOL SFDatabaseProxyLocal<T>::Initialize(DBModuleParams& params)
 }
 
 template <typename T>
-BOOL SFDatabaseProxyLocal<T>::SendDBRequest(BasePacket* pMessage)
+bool SFDatabaseProxyLocal<T>::SendDBRequest(BasePacket* pMessage)
 {
 	if(NULL == pMessage)
 		return FALSE;

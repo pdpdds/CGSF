@@ -87,7 +87,7 @@
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
     <TargetName>$(ProjectName)</TargetName>
     <TargetExt>.lib</TargetExt>
-    <OutDir>$(ProjectDir)/../Lib\x64\Release\</OutDir>
+    <OutDir>$(ProjectDir)/../VSProject/lib\x64\Release\</OutDir>
     <IntDir>$(ProjectDir)/../Intermediate/$(Configuration)\$(ProjectName)\</IntDir>
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
@@ -105,12 +105,13 @@
     <Lib>
       <AdditionalLibraryDirectories>$(ProjectDir)/../VSProject/Lib/x86/debug;$(ProjectDir)/../ThirdParty/lib/x86/debug;$(ProjectDir)/../ThirdParty/ACE/lib/x86;$(ProjectDir)/../ThirdParty/MsgPack/lib/x86;$(ProjectDir)/../ThirdParty/Avro/lib/x86/Debug;$(ProjectDir)/../ThirdParty/liblfds/lib/x86/debug;$(ProjectDir)/../ThirdParty/httpxx/lib/x86/debug;$(ProjectDir)/../ThirdParty/http-parser/lib/x86/debug;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
       <AdditionalDependencies>libglog.lib;aced.lib;commonlayer.lib;msgpackd.lib;avrocpp_s.lib;liblfds611.lib;zlib.lib;http-parser.lib;httpxx.lib</AdditionalDependencies>
+      <AdditionalOptions>/ignore:4221 /ignore:4006 %(AdditionalOptions)</AdditionalOptions>
     </Lib>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <ClCompile>
       <Optimization>Disabled</Optimization>
-      <AdditionalIncludeDirectories>./External;../Common;../BaseLayer;../DatabaseLayer;../ThirdParty;../ThirdParty/ACE/include;../P2PLayer;../ThirdParty/liblfds/include;../ThirdParty/msgpack/include;../ThirdParty/avro/include;./RPC;../ThirdParty/zeromq/include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>./External;../Common;../BaseLayer;../DatabaseLayer;../ThirdParty;../ThirdParty/ACE/include;../P2PLayer;../ThirdParty/liblfds/include;../ThirdParty/msgpack/include;../ThirdParty/avro/include;./RPC;../ThirdParty/zeromq/include;../ThirdParty/httpxx/include;../ThirdParty/http-parser/include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>WIN32;_DEBUG;_LIB;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <BasicRuntimeChecks>EnableFastChecks</BasicRuntimeChecks>
       <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
@@ -119,15 +120,16 @@
       <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
     </ClCompile>
     <Lib>
-      <AdditionalLibraryDirectories>$(ProjectDir)/../VSProject/Lib/x64/debug;../ThirdParty/lib/x64/debug;../ThirdParty/ACE/lib/x64;../ThirdParty/MsgPack/lib/x64;../ThirdParty/Avro/lib/x64/Debug;$(SolutionDir)/../ThirdParty/liblfds/lib/x64/DEBUG;$(SolutionDir)/../../ThirdParty/liblfds/lib/x64/DEBUG;$(SolutionDir)/../../ThirdParty/httpxx/lib/x64/DEBUG;$(SolutionDir)/../../ThirdParty/http-parser/lib/x64/DEBUG;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalLibraryDirectories>$(ProjectDir)/../VSProject/Lib/x64/debug;../ThirdParty/lib/x64/debug;../ThirdParty/ACE/lib/x64;../ThirdParty/MsgPack/lib/x64;../ThirdParty/Avro/lib/x64/Debug;$(SolutionDir)/../ThirdParty/liblfds/lib/x64/DEBUG;$(SolutionDir)/../ThirdParty/httpxx/lib/x64/DEBUG;$(SolutionDir)/../ThirdParty/http-parser/lib/x64/DEBUG;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
       <AdditionalDependencies>libglog.lib;aced.lib;commonlayer.lib;msgpackd.lib;avrocpp_s.lib;liblfds611.lib;http-parser.lib;httpxx.lib</AdditionalDependencies>
+      <AdditionalOptions>/ignore:4221 /ignore:4006 %(AdditionalOptions)</AdditionalOptions>
     </Lib>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <ClCompile>
       <Optimization>MaxSpeed</Optimization>
       <IntrinsicFunctions>true</IntrinsicFunctions>
-      <AdditionalIncludeDirectories>./External;../Common;../BaseLayer;../DatabaseLayer;../ThirdParty;../ThirdParty/ACE/include;../P2PLayer;../ThirdParty/liblfds/include;../ThirdParty/msgpack/include;../ThirdParty/avro/include;./RPC;../ThirdParty/zeromq/include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>./External;../Common;../BaseLayer;../DatabaseLayer;../ThirdParty;../ThirdParty/ACE/include;../P2PLayer;../ThirdParty/liblfds/include;../ThirdParty/msgpack/include;../ThirdParty/avro/include;./RPC;../ThirdParty/zeromq/include;../ThirdParty/httpxx/include;../ThirdParty/http-parser/include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>WIN32;NDEBUG;_LIB;%(PreprocessorDefinitions);_CRT_SECURE_NO_WARNINGS</PreprocessorDefinitions>
       <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
       <FunctionLevelLinking>true</FunctionLevelLinking>
@@ -139,13 +141,14 @@
     <Lib>
       <AdditionalLibraryDirectories>$(ProjectDir)/../VSProject/Lib/x86/Release;$(ProjectDir)/../ThirdParty/lib/x86/Release;$(ProjectDir)/../ThirdParty/ACE/lib/x86;$(ProjectDir)/../ThirdParty/MsgPack/lib/x86;$(ProjectDir)/../ThirdParty/Avro/lib/x86/Release;$(ProjectDir)/../ThirdParty/liblfds/lib/x86/RELEASE;$(ProjectDir)/../ThirdParty/httpxx/lib/x86/RELEASE;$(ProjectDir)/../ThirdParty/http-parser/lib/x86/RELEASE;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
       <AdditionalDependencies>libglog.lib;ace.lib;commonlayer.lib;msgpack.lib;avrocpp_s.lib;liblfds611.lib;http-parser.lib;httpxx.lib</AdditionalDependencies>
+      <AdditionalOptions>/ignore:4221 /ignore:4006 %(AdditionalOptions)</AdditionalOptions>
     </Lib>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
     <ClCompile>
       <Optimization>MaxSpeed</Optimization>
       <IntrinsicFunctions>true</IntrinsicFunctions>
-      <AdditionalIncludeDirectories>./External;../Common;../BaseLayer;../DatabaseLayer;../ThirdParty;../ThirdParty/ACE/include;../P2PLayer;../ThirdParty/liblfds/include;../ThirdParty/msgpack/include;../ThirdParty/avro/include;./RPC;../ThirdParty/zeromq/include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>./External;../Common;../BaseLayer;../DatabaseLayer;../ThirdParty;../ThirdParty/ACE/include;../P2PLayer;../ThirdParty/liblfds/include;../ThirdParty/msgpack/include;../ThirdParty/avro/include;./RPC;../ThirdParty/zeromq/include;../ThirdParty/httpxx/include;../ThirdParty/http-parser/include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>WIN32;NDEBUG;_LIB;%(PreprocessorDefinitions);_CRT_SECURE_NO_WARNINGS</PreprocessorDefinitions>
       <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
       <FunctionLevelLinking>true</FunctionLevelLinking>
@@ -156,7 +159,8 @@
     </ClCompile>
     <Lib>
       <AdditionalDependencies>libglog.lib;ace.lib;commonlayer.lib;msgpack.lib;avrocpp_s.lib;liblfds611.lib;http-parser.lib;httpxx.lib</AdditionalDependencies>
-      <AdditionalLibraryDirectories>$(ProjectDir)/../VSProject/Lib/x64/Release;../ThirdParty/lib/x64/Release;../ThirdParty/ACE/lib/x64;../ThirdParty/MsgPack/lib/x64;../ThirdParty/Avro/lib/x64/Release;$(SolutionDir)/../ThirdParty/liblfds/lib/x64/RELEASE;$(SolutionDir)/../../ThirdParty/liblfds/lib/x64/RELEASE;$(SolutionDir)/../../ThirdParty/http-parser/lib/x64/RELEASE;$(SolutionDir)/../../ThirdParty/httpxx/lib/x64/RELEASE;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalLibraryDirectories>$(ProjectDir)/../VSProject/Lib/x64/Release;../ThirdParty/lib/x64/Release;../ThirdParty/ACE/lib/x64;../ThirdParty/MsgPack/lib/x64;../ThirdParty/Avro/lib/x64/Release;$(SolutionDir)/../ThirdParty/liblfds/lib/x64/RELEASE;$(SolutionDir)/../ThirdParty/http-parser/lib/x64/RELEASE;$(SolutionDir)/../ThirdParty/httpxx/lib/x64/RELEASE;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalOptions>/ignore:4221 /ignore:4006 %(AdditionalOptions)</AdditionalOptions>
     </Lib>
   </ItemDefinitionGroup>
   <ItemGroup>
@@ -198,6 +202,7 @@
     <ClCompile Include="SFHTTPProtocol.cpp" />
     <ClCompile Include="SFJsonPacket.cpp" />
     <ClCompile Include="SFJsonProtocol.cpp" />
+    <ClCompile Include="SFLogicDispatcher.cpp" />
     <ClCompile Include="SFMMODispatcher.cpp" />
     <ClCompile Include="SFMsgPackPacket.cpp" />
     <ClCompile Include="SFMsgPackProtocol.cpp" />
@@ -271,6 +276,7 @@
     <ClInclude Include="SFHTTPProtocol.h" />
     <ClInclude Include="SFJsonPacket.h" />
     <ClInclude Include="SFJsonProtocol.h" />
+    <ClInclude Include="SFLogicDispatcher.h" />
     <ClInclude Include="SFMMODispatcher.h" />
     <ClInclude Include="SFMsgPackPacket.h" />
     <ClInclude Include="SFMsgPackProtocol.h" />

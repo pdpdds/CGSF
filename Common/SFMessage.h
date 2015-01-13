@@ -4,7 +4,7 @@
 #include "Macro.h"
 #include <stdio.h>
 
-#define MAX_MESSAGE_BUFFER 512
+#define MAX_MESSAGE_BUFFER 16384
 
 class SFMessage : public BasePacket
 {

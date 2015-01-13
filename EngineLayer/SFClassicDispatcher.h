@@ -1,7 +1,7 @@
 #pragma once
-#include "ILogicDispatcher.h"
+#include "SFLogicDispatcher.h"
 
-class SFClassicDispatcher : public ILogicDispatcher
+class SFClassicDispatcher : public SFLogicDispatcher
 {
 public:
 	SFClassicDispatcher();
@@ -11,7 +11,5 @@ public:
 	
 	virtual bool CreateLogicSystem(ILogicEntry* pLogicEntry) override;
 	virtual bool ShutDownLogicSystem() override;
-
-	static bool ReleasePacket(BasePacket* pPacket);
 };
 

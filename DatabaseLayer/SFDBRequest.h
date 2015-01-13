@@ -2,10 +2,10 @@
 #include <ACE/Method_Request.h>
 #include <ACE/TSS_t.h>
 #include "Macro.h"
-#include "SFDatabase.h"
 
 //extern ACE_TSS<SFDatabaseTSS> DatabaseTSS;
 class SFDBWorker;
+class BasePacket;
 
 class SFDBRequest : public ACE_Method_Request
 {

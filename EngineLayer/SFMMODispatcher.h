@@ -1,10 +1,10 @@
 #pragma once
-#include "ILogicDispatcher.h"
+#include "SFLogicDispatcher.h"
 #include "SFIOCPQueue.h"
 #include "BasePacket.h"
 #include <map>
 
-class SFMMODispatcher : public ILogicDispatcher
+class SFMMODispatcher : public SFLogicDispatcher
 {
 	typedef std::map<int, SFIOCPQueue<BasePacket>*> mapQueue;
 	typedef std::map<int, int> mapSerialChannel;
@@ -26,7 +26,6 @@ private:
 	int m_channelCount;
 	static void PacketDistributorProc(void* Args);
 	static void MMOLogicProc(void* Args);
-	static bool ReleasePacket(BasePacket* pPacket);
 	static bool m_bLogicEnd;
 };
 

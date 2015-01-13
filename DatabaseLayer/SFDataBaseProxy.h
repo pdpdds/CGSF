@@ -23,8 +23,13 @@ public:
 	SFDatabaseProxy(void){}
 	virtual ~SFDatabaseProxy(void){}
 
-	virtual BOOL Initialize(DBModuleParams& param) = 0;
-	virtual BOOL SendDBRequest(BasePacket* pMessage) = 0;
+	virtual bool Initialize(DBModuleParams& param) = 0;
+	virtual bool SendDBRequest(BasePacket* pMessage) = 0;
+	virtual bool RecallDBMsg(BasePacket* pMessage)
+	{
+		return false;
+	}
+
 
 protected:
 

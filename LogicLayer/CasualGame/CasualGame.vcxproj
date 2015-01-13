@@ -90,6 +90,7 @@
     <TargetName>$(ProjectName)</TargetName>
     <TargetExt>.lib</TargetExt>
     <OutDir>$(SolutionDir)\Lib\x64\Release\</OutDir>
+    <IntDir>$(SolutionDir)/Intermediate/$(Configuration)\$(ProjectName)\</IntDir>
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <ClCompile>
@@ -189,7 +190,6 @@
     <ClInclude Include="SFDirectoryWatcher.h" />
     <ClInclude Include="SFDirectoryWatcherTask.h" />
     <ClInclude Include="SFPlayerManager.h" />
-    <ClInclude Include="SFSendDBRequest.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include=".\SFLogicCore.cpp" />
@@ -236,7 +236,6 @@
     <ClCompile Include="SFDirectoryWatcher.cpp" />
     <ClCompile Include="SFDirectoryWatcherTask.cpp" />
     <ClCompile Include="SFPlayerManager.cpp" />
-    <ClCompile Include="SFSendDBRequest.cpp" />
   </ItemGroup>
   <ItemGroup>
     <Text Include=".\ReadMe.txt" />

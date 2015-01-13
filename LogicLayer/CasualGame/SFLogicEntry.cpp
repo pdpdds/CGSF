@@ -5,6 +5,7 @@
 #include "SFMySQLAdaptorImpl.h"
 #include "SFPlayerManager.h"
 #include "interface/P2PServer.h"
+#include "SFDatabase.h"
 
 SFLogicEntry* SFLogicEntry::m_pLogicEntry = NULL;
 HINSTANCE g_pP2PServerHandle = 0;
@@ -181,6 +182,7 @@ bool SFLogicEntry::ProcessPacket(BasePacket* pBase)
 	case SFPACKET_DB:
 		{	
 			OnDBResult((SFMessage*)pBase);
+			SFDBPacketSystem<SFMessage>::GetInstance()->RecallDBMsg((SFMessage*)pBase);
 		}
 		break;
 

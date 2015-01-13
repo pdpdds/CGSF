@@ -10,6 +10,7 @@ public:
 	virtual ~SFMySQLAdaptorImpl(void);
 
 	virtual BOOL RegisterDBService() override;
+	virtual bool RecallDBMsg(BasePacket* pMessage) override;
 
 protected:
 
