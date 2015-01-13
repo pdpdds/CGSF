@@ -6,6 +6,7 @@
 #include "SFPlayerManager.h"
 #include "interface/P2PServer.h"
 #include "SFDatabase.h"
+#include "SFDBPacketSystem.h"
 
 SFLogicEntry* SFLogicEntry::m_pLogicEntry = NULL;
 HINSTANCE g_pP2PServerHandle = 0;
