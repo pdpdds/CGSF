@@ -49,6 +49,12 @@ BOOL SFFastDBAdaptorImpl::RegisterDBService()
 	return TRUE;
 }
 
+bool SFFastDBAdaptorImpl::RecallDBMsg(BasePacket* pMessage)
+{
+	return SFDBPacketSystem<SFMessage>::GetInstance()->RecallDBMsg(pMessage);
+}
+
+
 BOOL SFFastDBAdaptorImpl::OnBookInfo( BasePacket* pMessage )
 {	
 	char szName[256] = { 0, };

@@ -4,6 +4,9 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 VisualStudioVersion = 12.0.21005.1
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Database", "..\CGSFTest\Database\Database.vcxproj", "{3FA3612F-7AF3-4E99-9D58-13F781C08D8B}"
+	ProjectSection(ProjectDependencies) = postProject
+		{4EF55E16-D453-444D-90E5-AB80F4E280BA} = {4EF55E16-D453-444D-90E5-AB80F4E280BA}
+	EndProjectSection
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "CrashHandler", "..\CGSFTest\CrashHandler\CrashHandler.vcxproj", "{AAED6DF2-5855-4041-8C2A-AB809FB156C9}"
 EndProject

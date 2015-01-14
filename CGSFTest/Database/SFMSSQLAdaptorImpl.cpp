@@ -1,6 +1,9 @@
 #include "StdAfx.h"
 #include "SFMSSQLAdaptorImpl.h"
 #include "QueryIdentifier.h"
+#include "SFMessage.h"
+#include "SFObjectPool.h"
+#include "SFDBPacketSystem.h"
 
 SFMSSQLAdaptorImpl::SFMSSQLAdaptorImpl(void)
 {
@@ -25,6 +28,11 @@ BOOL SFMSSQLAdaptorImpl::RegisterDBService()
 
 	m_Dispatch.RegisterMessage(DBMSG_LOADUSER, std::tr1::bind(&SFMSSQLAdaptorImpl::OnLoadUser, this, std::tr1::placeholders::_1));
 	return TRUE;
+}
+
+bool SFMSSQLAdaptorImpl::RecallDBMsg(BasePacket* pMessage)
+{
+	return SFDBPacketSystem<SFMessage>::GetInstance()->RecallDBMsg(pMessage);
 }
 
 BOOL SFMSSQLAdaptorImpl::OnLoadUser( BasePacket* pMessage )

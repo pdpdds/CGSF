@@ -36,6 +36,9 @@
     <ClInclude Include="SFMSSQLAdaptorImpl.h">
       <Filter>AdaptorImpl</Filter>
     </ClInclude>
+    <ClInclude Include="SFZdbAdaptorImpl.h">
+      <Filter>AdaptorImpl</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="stdafx.cpp">
@@ -48,6 +51,9 @@
       <Filter>AdaptorImpl</Filter>
     </ClCompile>
     <ClCompile Include="SFMSSQLAdaptorImpl.cpp">
+      <Filter>AdaptorImpl</Filter>
+    </ClCompile>
+    <ClCompile Include="SFZdbAdaptorImpl.cpp">
       <Filter>AdaptorImpl</Filter>
     </ClCompile>
   </ItemGroup>

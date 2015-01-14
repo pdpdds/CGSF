@@ -55,7 +55,7 @@ void MSSQLThread(void* Args)
 	while (1)
 	{
 		std::cin >> input;
-		SFMessage* pMessage = SFDatabase::GetInitMessage(DBMSG_LOADUSER, 1000);
+		SFMessage* pMessage = SFDBPacketSystem<SFMessage>::GetInstance()->GetInitMessage(DBMSG_LOADUSER, 1000);
 		*pMessage << (char*)input.c_str();
 
 		pDatabaseProxy->SendDBRequest(pMessage);
@@ -90,7 +90,7 @@ void FastDBQueryThread(void* Args)
 	while (1)
 	{
 		std::cin >> input;
-		SFMessage* pMessage = SFDatabase::GetInitMessage(DBMSG_BOOKINFO, 1000);
+		SFMessage* pMessage = SFDBPacketSystem<SFMessage>::GetInstance()->GetInitMessage(DBMSG_BOOKINFO, 1000);
 		*pMessage << (char*)input.c_str();
 
 		pDatabaseProxy->SendDBRequest(pMessage);

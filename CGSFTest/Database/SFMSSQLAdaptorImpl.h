@@ -35,6 +35,7 @@ public:
 	virtual BOOL RegisterDBService() override;
 
 	BOOL OnLoadUser( BasePacket* pMessage );
+	virtual bool RecallDBMsg(BasePacket* pMessage) override;
 		
 protected:		
 
