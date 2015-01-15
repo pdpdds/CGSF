@@ -1,7 +1,6 @@
 #include "stdafx.h"
 #include "SFMySQLAdaptor.h"
 #include "SFMySQL.h"
-#include "DBMsg.h"
 
 SFMySQLAdaptor::SFMySQLAdaptor(void)
 	: m_pMySql(NULL)

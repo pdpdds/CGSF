@@ -110,6 +110,8 @@ public:
 	tstring ToString() const;
 	unsigned int Parse(const char* content, size_t len);
 	unsigned int Parse(const tstring& content);
+
+	void Reset();
 	
 protected:
 	void AddImpl(const char* key, const tstring& value);

@@ -232,6 +232,12 @@ tstring JsonObjectNode::ToString() const
 	return stream.str();
 }
 
+void JsonObjectNode::Reset()
+{
+	if (m_jsonObj)
+		m_jsonObj->Clear();
+}
+
 //////////////////////////////////////////////////////////////////////////
 
 unsigned int JsonObjectNode::Parse( const char* content, size_t len )

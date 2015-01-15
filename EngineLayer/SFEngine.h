@@ -72,15 +72,15 @@ public:
 
 	SFPacketProtocolManager* GetPacketProtocolManager(){ return m_pPacketProtocolManager; }
 
+	INetworkEngine* GetNetworkEngine(){ return m_pNetworkEngine; }
+
 protected:
 	bool CreatePacketSendThread();
 	NET_ERROR_CODE CreateEngine(char* szModuleName, bool Server = false);
 	
 private:
 	SFEngine();
-	bool Start(char* szIP, unsigned short port); //클라이언트 전용, 이후 deprecated 될 것임
-
-	INetworkEngine* GetNetworkEngine(){ return m_pNetworkEngine; }
+	bool Start(char* szIP, unsigned short port); //클라이언트 전용, 이후 deprecated 될 것임	
 
 	SFConfigure m_Config;
 	int m_packetSendThreadId;
