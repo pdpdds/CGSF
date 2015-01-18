@@ -24,7 +24,14 @@ public:
 	
 	void SetSerial(int serial){ m_serial = serial; }
 	int GetSerial(){ return m_serial; }
-	void SetSessionDesc(_SessionDesc sessiondesc){ m_sessiondesc = sessiondesc; }
+	void SetSessionDesc(_SessionDesc& sessiondesc)
+	{ 
+		m_sessiondesc.identifier = sessiondesc.identifier;
+		m_sessiondesc.sessionType = sessiondesc.sessionType;
+		m_sessiondesc.port = sessiondesc.port;
+		m_sessiondesc.szIP = sessiondesc.szIP;
+	}
+
 	_SessionDesc& GetSessionDesc(){ return m_sessiondesc; }
 
 	void CopyBaseHeader(BasePacket* pSource)
