@@ -248,7 +248,7 @@ public:
 	{
 		FindNode(name);
 
-		value.Deserialize(*this);
+		value.Deserialize(this);
 
 		End();
 	}

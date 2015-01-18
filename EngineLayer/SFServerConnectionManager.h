@@ -1,5 +1,6 @@
 #pragma once
 #include <list>
+#include "SFLock.h"
 
 class IServerConnector;
 

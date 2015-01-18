@@ -7,8 +7,8 @@ class ISerializable
 { 
 public:	
 
-	virtual void Serialize(IXMLStreamWriter& out) const=0;
-	virtual void Deserialize(IXMLStreamReader& in)=0;
+	virtual void Serialize(IXMLStreamWriter* out) const=0;
+	virtual void Deserialize(IXMLStreamReader* in)=0;
 	virtual ~ISerializable() {}
 };
 
@@ -20,16 +20,16 @@ public:
 	}
 
 
-	virtual void Serialize(IXMLStreamWriter& out) const 
+	virtual void Serialize(IXMLStreamWriter* out) const 
 	{
-		out.Begin(L"array");
+		(*out).Begin(L"array");
 		for (unsigned int i=0; i<size; ++i) 
 		{
-			out.Write(L"item",buffer[i]);
+			(*out).Write(L"item", buffer[i]);
 		}
 	}
 
-	virtual void Deserialize(IXMLStreamReader&) 
+	virtual void Deserialize(IXMLStreamReader*) 
 	{ 
 		assert (FALSE); 
 	}
@@ -47,14 +47,14 @@ public:
 	{
 	}
 
-	virtual void Serialize(IXMLStreamWriter&) const 
+	virtual void Serialize(IXMLStreamWriter*) const 
 	{
 		assert(FALSE);
 	}
 
-	virtual void Deserialize(IXMLStreamReader& in) 
+	virtual void Deserialize(IXMLStreamReader* in) 
 	{
-		in.Begin(L"array");
+		(*in).Begin(L"array");
 		size_t fsize=in.GetCount(L"item");
 
 		if (fsize >= size) 
@@ -87,9 +87,9 @@ public:
 	{
 	}
 
-	virtual void Serialize(IXMLStreamWriter& out) const 
+	virtual void Serialize(IXMLStreamWriter* out) const 
 	{
-		out.Begin(L"array");
+		(*out).Begin(L"array");
 		int counter=0;
 
 		for (T::const_iterator it=container.begin(); it != container.end(); ++it, ++counter) 
@@ -98,11 +98,11 @@ public:
 			std::wstring item = L"item";
 			item = item + StringConversion::ToUnicode(counter);
 
-			out.Write(item.c_str(), *it);
+			(*out).Write(item.c_str(), *it);
 		}
 	}
 
-	virtual void Deserialize(IXMLStreamReader&) 
+	virtual void Deserialize(IXMLStreamReader*) 
 	{ 
 		assert (FALSE); 
 	}
@@ -118,23 +118,23 @@ public:
 	{
 	}
 
-	virtual void Serialize(IXMLStreamWriter&) const 
+	virtual void Serialize(IXMLStreamWriter*) const 
 	{ 
 		assert (FALSE); 
 	}
 
-	virtual void Deserialize(IXMLStreamReader& in) 
+	virtual void Deserialize(IXMLStreamReader* in) 
 	{ 
-		in.Begin(L"array");
+		(*in).Begin(L"array");
 		//size_t size=in.GetCount(L"item");
-		size_t size=in.GetCount();
+		size_t size=(*in).GetCount();
 
 		for (size_t i=0; i<size; ++i) 
 		{
 			T::value_type value;
 			std::wstring item = L"item";
 			item = item + StringConversion::ToUnicode(i);
-			in.Read(item.c_str(),value);
+			(*in).Read(item.c_str(),value);
 			container.push_back(value);
 		}
 	}
@@ -154,19 +154,19 @@ public:
 	{
 	}
 
-	virtual void Serialize(IXMLStreamWriter& out) const 
+	virtual void Serialize(IXMLStreamWriter* out) const 
 	{
-		out.Begin(L"pair");
-		out.Write(L"key", Value.first);
-		out.Write(L"value", Value.second);
+		(*out).Begin(L"pair");
+		(*out).Write(L"key", Value.first);
+		(*out).Write(L"value", Value.second);
 
 	}
 
-	virtual void Deserialize(IXMLStreamReader& in) 
+	virtual void Deserialize(IXMLStreamReader* in) 
 	{
-		in.Begin(L"pair");
-		in.Read(L"key", Value.first);
-		in.Read(L"value", Value.second);
+		(*in).Begin(L"pair");
+		(*in).Read(L"key", Value.first);
+		(*in).Read(L"value", Value.second);
 	}
 
 public:
@@ -180,18 +180,18 @@ public:
 	{
 	}
 
-	virtual void Serialize(IXMLStreamWriter& out) const 
+	virtual void Serialize(IXMLStreamWriter* out) const 
 	{
-		out.Begin(L"associative_array");
+		(*out).Begin(L"associative_array");
 		int counter=0;
 
 		for (T::const_iterator it=container.begin(); it != container.end(); ++it, ++counter) 
 		{
-			out.Write(L"item", Pair<T::key_type,T::mapped_type>(it->first, it->second));
+			(*out).Write(L"item", Pair<T::key_type, T::mapped_type>(it->first, it->second));
 		}
 	}
 
-	virtual void Deserialize(IXMLStreamReader&)
+	virtual void Deserialize(IXMLStreamReader*)
 	{ 
 		assert (FALSE); 
 	}
@@ -207,20 +207,20 @@ public:
 	{
 	}
 
-	virtual void Serialize(IXMLStreamWriter&) const 
+	virtual void Serialize(IXMLStreamWriter*) const 
 	{ 
 		assert (FALSE); 
 	}
 
-	virtual void Deserialize(IXMLStreamReader& in) 
+	virtual void Deserialize(IXMLStreamReader* in) 
 	{
-		in.Begin(L"associative_array");
+		(*in).Begin(L"associative_array");
 		size_t size=in.GetCount(L"item");
 
 		for (size_t i=0; i<size; ++i) 
 		{
 			Pair<T::key_type,T::mapped_type> pair;
-			in.Read(L"item",pair);
+			(*in).Read(L"item", pair);
 			container.insert(pair.Value);
 		}
 
@@ -237,12 +237,12 @@ public:
 	{
 	}
 
-	virtual void Serialize(IXMLStreamWriter& out) const 
+	virtual void Serialize(IXMLStreamWriter* out) const 
 	{ 
 		Value.Serialize(out); 
 	}
 
-	virtual void Deserialize(IXMLStreamReader& ) 
+	virtual void Deserialize(IXMLStreamReader* ) 
 	{ 
 		assert(FALSE);
 	}
@@ -258,12 +258,12 @@ public:
 	{
 	}
 
-	virtual void Serialize(IXMLStreamWriter&) const 
+	virtual void Serialize(IXMLStreamWriter*) const 
 	{
 		assert(FALSE); 
 	}
 
-	virtual void Deserialize(IXMLStreamReader& in) 
+	virtual void Deserialize(IXMLStreamReader* in) 
 	{
 		Value.Deserialize(in);
 	}

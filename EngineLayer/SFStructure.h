@@ -1,5 +1,6 @@
 #pragma once
 //#include <d3dx9math.h>
+#include <string>
 #pragma pack(push, 1)
 
 typedef struct tag_SFPacketHeader

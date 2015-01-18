@@ -1,6 +1,10 @@
 #include "stdafx.h"
 #include "SFConfigure.h"
-#include <XML/SFXMLStreamWriter.h>
+#include <xml/tinyxml.h>
+#include <xml/IXMLStreamReader.h>
+#include <xml/IXMLStreamWriter.h>
+#include <xml/SFXMLStreamWriter.h>
+#include <xml/SFXMLStreamReader.h>
 #include "SFUtil.h"
 
 SFConfigure::SFConfigure(void)
@@ -57,4 +61,21 @@ BOOL SFConfigure::Write(const WCHAR* pFileName)
 	delete pWriter;
 
 	return TRUE;
+}
+
+void SFConfigure::Serialize(IXMLStreamWriter* out) const
+{
+	(*out).Begin(L"Struct");
+	(*out).Write(L"EngineName", m_ConfigureInfo.engineName);
+	(*out).Write(L"ServerIP", m_ConfigureInfo.serverIP);
+	(*out).Write(L"ServerPort", m_ConfigureInfo.serverPort);
+	(*out).Write(L"MaxAccept", m_ConfigureInfo.maxAccept);
+}
+
+void SFConfigure::Deserialize(IXMLStreamReader* in) {
+	(*in).Begin(L"Struct");
+	(*in).Read(L"EngineName", m_ConfigureInfo.engineName);
+	(*in).Read(L"ServerIP", m_ConfigureInfo.serverIP);
+	(*in).Read(L"ServerPort", m_ConfigureInfo.serverPort);
+	(*in).Read(L"MaxAccept", m_ConfigureInfo.maxAccept);
 }

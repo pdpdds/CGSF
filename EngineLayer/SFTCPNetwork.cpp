@@ -9,7 +9,6 @@
 #include "SFIni.h"
 #include "SFConstant.h"
 #include "SFStructure.h"
-#include "SFSinglton.h"
 #include "SFBridgeThread.h"
 #include "ILogicDispatcher.h"
 #include "SFPacketProtocolManager.h"

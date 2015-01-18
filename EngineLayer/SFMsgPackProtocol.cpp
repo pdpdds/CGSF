@@ -4,7 +4,6 @@
 #include "SFProtocol.h"
 #include "SFMsgPackPacket.h"
 #include "SFEngine.h"
-#include "glog/logging.h"
 
 SFMsgPackProtocol::SFMsgPackProtocol()
 {

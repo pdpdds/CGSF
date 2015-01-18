@@ -104,7 +104,7 @@
     </ClCompile>
     <Lib>
       <AdditionalLibraryDirectories>$(ProjectDir)/../VSProject/Lib/x86/debug;$(ProjectDir)/../ThirdParty/lib/x86/debug;$(ProjectDir)/../ThirdParty/ACE/lib/x86;$(ProjectDir)/../ThirdParty/MsgPack/lib/x86;$(ProjectDir)/../ThirdParty/Avro/lib/x86/Debug;$(ProjectDir)/../ThirdParty/liblfds/lib/x86/debug;$(ProjectDir)/../ThirdParty/httpxx/lib/x86/debug;$(ProjectDir)/../ThirdParty/http-parser/lib/x86/debug;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
-      <AdditionalDependencies>libglog.lib;aced.lib;commonlayer.lib;msgpackd.lib;avrocpp_s.lib;liblfds611.lib;zlib.lib;http-parser.lib;httpxx.lib</AdditionalDependencies>
+      <AdditionalDependencies>libprotobuf.lib;liblzf.lib;libglog.lib;aced.lib;commonlayer.lib;msgpackd.lib;avrocpp_s.lib;liblfds611.lib;zlib.lib;http-parser.lib;httpxx.lib</AdditionalDependencies>
       <AdditionalOptions>/ignore:4221 /ignore:4006 %(AdditionalOptions)</AdditionalOptions>
     </Lib>
   </ItemDefinitionGroup>
@@ -121,7 +121,7 @@
     </ClCompile>
     <Lib>
       <AdditionalLibraryDirectories>$(ProjectDir)/../VSProject/Lib/x64/debug;../ThirdParty/lib/x64/debug;../ThirdParty/ACE/lib/x64;../ThirdParty/MsgPack/lib/x64;../ThirdParty/Avro/lib/x64/Debug;$(SolutionDir)/../ThirdParty/liblfds/lib/x64/DEBUG;$(SolutionDir)/../ThirdParty/httpxx/lib/x64/DEBUG;$(SolutionDir)/../ThirdParty/http-parser/lib/x64/DEBUG;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
-      <AdditionalDependencies>libglog.lib;aced.lib;commonlayer.lib;msgpackd.lib;avrocpp_s.lib;liblfds611.lib;http-parser.lib;httpxx.lib</AdditionalDependencies>
+      <AdditionalDependencies>libprotobuf.lib;liblzf.lib;zlib.lib;libglog.lib;aced.lib;commonlayer.lib;msgpackd.lib;avrocpp_s.lib;liblfds611.lib;http-parser.lib;httpxx.lib</AdditionalDependencies>
       <AdditionalOptions>/ignore:4221 /ignore:4006 %(AdditionalOptions)</AdditionalOptions>
     </Lib>
   </ItemDefinitionGroup>
@@ -140,7 +140,7 @@
     </ClCompile>
     <Lib>
       <AdditionalLibraryDirectories>$(ProjectDir)/../VSProject/Lib/x86/Release;$(ProjectDir)/../ThirdParty/lib/x86/Release;$(ProjectDir)/../ThirdParty/ACE/lib/x86;$(ProjectDir)/../ThirdParty/MsgPack/lib/x86;$(ProjectDir)/../ThirdParty/Avro/lib/x86/Release;$(ProjectDir)/../ThirdParty/liblfds/lib/x86/RELEASE;$(ProjectDir)/../ThirdParty/httpxx/lib/x86/RELEASE;$(ProjectDir)/../ThirdParty/http-parser/lib/x86/RELEASE;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
-      <AdditionalDependencies>libglog.lib;ace.lib;commonlayer.lib;msgpack.lib;avrocpp_s.lib;liblfds611.lib;http-parser.lib;httpxx.lib</AdditionalDependencies>
+      <AdditionalDependencies>libprotobuf.lib;liblzf.lib;zlib.lib;libglog.lib;ace.lib;commonlayer.lib;msgpack.lib;avrocpp_s.lib;liblfds611.lib;http-parser.lib;httpxx.lib</AdditionalDependencies>
       <AdditionalOptions>/ignore:4221 /ignore:4006 %(AdditionalOptions)</AdditionalOptions>
     </Lib>
   </ItemDefinitionGroup>
@@ -158,7 +158,7 @@
       <AdditionalOptions>-D_SCL_SECURE_NO_WARNINGS %(AdditionalOptions)</AdditionalOptions>
     </ClCompile>
     <Lib>
-      <AdditionalDependencies>libglog.lib;ace.lib;commonlayer.lib;msgpack.lib;avrocpp_s.lib;liblfds611.lib;http-parser.lib;httpxx.lib</AdditionalDependencies>
+      <AdditionalDependencies>libprotobuf.lib;liblzf.lib;zlib.lib;libglog.lib;ace.lib;commonlayer.lib;msgpack.lib;avrocpp_s.lib;liblfds611.lib;http-parser.lib;httpxx.lib</AdditionalDependencies>
       <AdditionalLibraryDirectories>$(ProjectDir)/../VSProject/Lib/x64/Release;../ThirdParty/lib/x64/Release;../ThirdParty/ACE/lib/x64;../ThirdParty/MsgPack/lib/x64;../ThirdParty/Avro/lib/x64/Release;$(SolutionDir)/../ThirdParty/liblfds/lib/x64/RELEASE;$(SolutionDir)/../ThirdParty/http-parser/lib/x64/RELEASE;$(SolutionDir)/../ThirdParty/httpxx/lib/x64/RELEASE;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
       <AdditionalOptions>/ignore:4221 /ignore:4006 %(AdditionalOptions)</AdditionalOptions>
     </Lib>

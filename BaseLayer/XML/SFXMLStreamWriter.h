@@ -179,7 +179,7 @@ public:
 	{
 		NewNode(name);
 
-		value.Serialize(*this);
+		value.Serialize(this);
 
 		End();
 	}

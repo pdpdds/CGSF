@@ -19,6 +19,10 @@
 #include <SFPacketStore/SevenGamePacket.pb.h>
 #include <SFPacketStore/SevenGamePacketID.h>
 
+#define GOOGLE_GLOG_DLL_DECL
+#define GLOG_NO_ABBREVIATED_SEVERITIES
+#include "glog/logging.h"
+
 #include "Define.h"
 
 #pragma comment(lib, "EngineLayer.lib")

@@ -7,6 +7,10 @@
 #include "SFConfigure.h"
 #include "ILogicDispatcher.h"
 #include "ILogicEntry.h"
+#include <vector>
+#include "Macro.h"
+#include "SFPacket.h"
+#include "SFPacketProtocol.h"
 
 class IRPCInterface;
 class SFServerConnectionManager;

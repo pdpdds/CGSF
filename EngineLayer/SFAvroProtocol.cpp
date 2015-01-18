@@ -5,7 +5,6 @@
 #include "SFProtocol.h"
 #include "SFAvroPacketImpl.h"
 #include "SFEngine.h"
-#include "glog/logging.h"
 
 SFAvroProtocol::SFAvroProtocol()
 {

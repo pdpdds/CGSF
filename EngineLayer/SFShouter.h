@@ -1,9 +1,8 @@
 #pragma once
-#include <xml/tinyxml.h>
-#include <xml/IXMLStreamReader.h>
-#include <xml/IXMLStreamWriter.h>
-#include <xml/SFXMLStreamWriter.h>
-#include <xml/SFXMLStreamReader.h>
+#include <list>
+
+class IXMLStreamWriter;
+class IXMLStreamReader;
 
 //////////////////////////////////////////////////////////////
 //Shouter Structure
@@ -46,26 +45,8 @@ public:
 
 	_ShouterInfo* GetShouterInfo(){return &m_ShouterInfo;}
 
-	void Serialize(IXMLStreamWriter& out) const
-	{
-		out.Begin(L"Struct");
-		out.Write(L"ShouterTitle",m_ShouterInfo.ShouterTitle);
-		out.Write(L"StartTime",m_ShouterInfo.StartTime);
-		out.Write(L"RepeatCount",m_ShouterInfo.RepeatCount);
-		out.Write(L"MessageInterval",m_ShouterInfo.MessageInterval);
-		out.Write(L"SentenceInterval",m_ShouterInfo.SentenceInterval);
-		out.Write(L"SentenceList",m_ShouterInfo.SentenceList);
-	}
-
-	void Deserialize(IXMLStreamReader& in) {
-		in.Begin(L"Struct");
-		in.Read(L"ShouterTitle",m_ShouterInfo.ShouterTitle);
-		in.Read(L"StartTime",m_ShouterInfo.StartTime);
-		in.Read(L"RepeatCount",m_ShouterInfo.RepeatCount);
-		in.Read(L"MessageInterval",m_ShouterInfo.MessageInterval);
-		in.Read(L"SentenceInterval",m_ShouterInfo.SentenceInterval);
-		in.Read(L"SentenceList",m_ShouterInfo.SentenceList);
-	}
+	void Serialize(IXMLStreamWriter* pOut) const;
+	void Deserialize(IXMLStreamReader* in);
 
 protected:
 	

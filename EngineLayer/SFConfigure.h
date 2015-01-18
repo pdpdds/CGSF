@@ -1,9 +1,7 @@
 #pragma once
-#include <xml/tinyxml.h>
-#include <xml/IXMLStreamReader.h>
-#include <xml/IXMLStreamWriter.h>
-#include <xml/SFXMLStreamWriter.h>
-#include <xml/SFXMLStreamReader.h>
+
+class IXMLStreamWriter;
+class IXMLStreamReader;
 
 //////////////////////////////////////////////////////////////
 //Shouter Structure
@@ -41,22 +39,8 @@ public:
 
 	_EngineConfig* GetConfigureInfo(){return &m_ConfigureInfo;}
 
-	void Serialize(IXMLStreamWriter& out) const
-	{
-		out.Begin(L"Struct");
-		out.Write(L"EngineName",m_ConfigureInfo.engineName);
-		out.Write(L"ServerIP",m_ConfigureInfo.serverIP);
-		out.Write(L"ServerPort",m_ConfigureInfo.serverPort);		
-		out.Write(L"MaxAccept", m_ConfigureInfo.maxAccept);
-	}
-
-	void Deserialize(IXMLStreamReader& in) {
-		in.Begin(L"Struct");
-		in.Read(L"EngineName", m_ConfigureInfo.engineName);
-		in.Read(L"ServerIP", m_ConfigureInfo.serverIP);
-		in.Read(L"ServerPort", m_ConfigureInfo.serverPort);
-		in.Read(L"MaxAccept", m_ConfigureInfo.maxAccept);
-	}
+	void Serialize(IXMLStreamWriter* out) const;
+	void Deserialize(IXMLStreamReader* in);
 
 protected:
 	

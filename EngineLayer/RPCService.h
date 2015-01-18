@@ -3,6 +3,7 @@
 #include "service_define_template.h"
 #include "serviceDef.h"
 #include "IRPCService.h"
+#include "SFPacket.h"
 
 template<class Service>
 class RPCService : public IRPCService

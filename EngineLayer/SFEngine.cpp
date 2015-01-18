@@ -1,4 +1,5 @@
 #include "stdafx.h"
+#include "ACEHeader.h"
 #include "SFEngine.h"
 #include <stdlib.h>  
 #include "ILogicDispatcher.h"
@@ -10,12 +11,10 @@
 #include "SFPacketDelaySendTask.h"
 #include "SFServerConnectionManager.h"
 #include "SFPacketProtocolManager.h"
+#include "XMl/StringConversion.h"
 
 #pragma comment(lib, "BaseLayer.lib")
 #pragma comment(lib, "DatabaseLayer.lib")
-#pragma comment(lib, "zlib.lib")
-#pragma comment(lib, "liblzf.lib")
-#pragma comment(lib, "libprotobuf.lib")
 
 SFEngine* SFEngine::m_pEngine = NULL;
 

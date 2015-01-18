@@ -4,6 +4,7 @@
 #include <iostream>
 #include <sstream>
 #include <fstream>
+#include <time.h>
 
 SFExcel::SFExcel(void)
 {

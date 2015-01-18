@@ -1,4 +1,5 @@
 #pragma once
+#include "ACEHeader.h"
 #include <ace/Singleton.h>
 #include <ace/Malloc_T.h>
 #include <ace/Task.h>
