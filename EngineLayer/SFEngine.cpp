@@ -484,3 +484,8 @@ bool SFEngine::AddPacketProtocol(int packetProtocolId, IPacketProtocol* pProtoco
 {
 	return m_pPacketProtocolManager->AddPacketProtocol(packetProtocolId, pProtocol);
 }
+
+void SFEngine::SendToLogic(BasePacket* pMessage)
+{
+	LogicGatewaySingleton::instance()->PushPacket(pMessage);
+}

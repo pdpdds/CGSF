@@ -33,12 +33,6 @@ public:
 		return SFLogicEntry::GetLogicEntry()->GetDataBaseProxy()->SendDBRequest(pMessage);
 	}
 
-	void SendToLogic(BasePacket* pMessage)
-	{
-		pMessage->SetPacketType(SFPACKET_DB);
-		LogicGatewaySingleton::instance()->PushPacket(pMessage);
-	}
-
 	T* AllocDBMsg()
 	{
 		return m_DBMessagePool.Alloc();

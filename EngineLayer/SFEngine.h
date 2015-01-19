@@ -78,6 +78,8 @@ public:
 
 	INetworkEngine* GetNetworkEngine(){ return m_pNetworkEngine; }
 
+	void SendToLogic(BasePacket* pMessage);
+
 protected:
 	bool CreatePacketSendThread();
 	NET_ERROR_CODE CreateEngine(char* szModuleName, bool Server = false);

@@ -81,7 +81,7 @@ BOOL SFMySQLAdaptorImpl::OnLogin( BasePacket* pPacket )
 ////////////////////////////////////////////////////////////////////////////////
 	SFMessage* pMsg = SFDBPacketSystem<SFMessage>::GetInstance()->GetInitMessage(pMessage->GetCommand(), pMessage->GetSerial());
 	*pMsg << Result;
-	SFDBPacketSystem<SFMessage>::GetInstance()->SendToLogic(pMsg);
+	SFEngine::GetInstance()->SendToLogic(pMsg);
 	
 	return TRUE;
 }
