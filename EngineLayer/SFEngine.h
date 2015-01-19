@@ -62,7 +62,7 @@ public:
 	SFServerConnectionManager* GetServerConnectionManager(){ return m_pServerConnectionManager; }
 	bool SetupServerReconnectSys();
 	bool LoadConnectorList(WCHAR* szFileName);
-	int  AddListener(char* szIP, unsigned short port, int packetProtocolId);
+	int  AddListener(char* szIP, unsigned short port, int packetProtocolId, bool bDefaultListener = false);
 	int  AddConnector(int connectorId, char* szIP, unsigned short port);
 	void AddRPCService(IRPCService* pService);
 	bool AddPacketProtocol(int packetProtocolId, IPacketProtocol* pProtocol);	

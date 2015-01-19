@@ -25,7 +25,7 @@ INetworkEngine * CreateNetworkEngine(bool bServer, IEngine* pEngine)
 ACEEngine::ACEEngine(IEngine* pEngine)
 	: INetworkEngine(pEngine)
 	, m_TimeOutHandler(this)
-	, m_acceptorIndex(0)
+	, m_acceptorIndex(1)
 {
 	ProactorServiceManagerSinglton::instance();
 }
@@ -114,13 +114,18 @@ int ACEEngine::AddConnector(int connectorIndex, char* szIP, unsigned short port)
 
 	return pService->GetSerial();
 }
-
-int ACEEngine::AddListener(char* szIP, unsigned short port)
+#define DEFAULT_LISTENER_INDEX 1
+int ACEEngine::AddListener(char* szIP, unsigned short port, bool bDefaultListener)
 {
 	ProactorAcceptor* pAcceptor = new ProactorAcceptor(this, szIP, port);
 
-	m_acceptorIndex++;
+	if (bDefaultListener == true)
+	{
+		m_mapAcceptor.insert(std::make_pair(DEFAULT_LISTENER_INDEX, pAcceptor));
+		return DEFAULT_LISTENER_INDEX;
+	}
 
+	m_acceptorIndex++;
 	pAcceptor->SetAcceptorNum(m_acceptorIndex);
 
 	m_mapAcceptor.insert(std::make_pair(m_acceptorIndex, pAcceptor));

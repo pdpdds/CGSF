@@ -305,7 +305,7 @@ bool SFEngine::Start(int protocolId)
 		
 		if (pInfo->serverPort != 0)
 		{
-			listenerId = AddListener((char*)StringConversion::ToASCII(pInfo->serverIP).c_str(), pInfo->serverPort, protocolId);
+			listenerId = AddListener((char*)StringConversion::ToASCII(pInfo->serverIP).c_str(), pInfo->serverPort, protocolId, true);
 
 			if (listenerId <= 0)
 			{
@@ -458,9 +458,9 @@ int SFEngine::AddConnector(int connectorId, char* szIP, unsigned short port)
 	return GetNetworkEngine()->AddConnector(connectorId, szIP, port);
 }
 
-int SFEngine::AddListener(char* szIP, unsigned short port, int packetProtocolId)
+int SFEngine::AddListener(char* szIP, unsigned short port, int packetProtocolId, bool bDefaultListener)
 {
-	int listenerId = GetNetworkEngine()->AddListener(szIP, port);
+	int listenerId = GetNetworkEngine()->AddListener(szIP, port, bDefaultListener);
 
 	if (listenerId)
 	{

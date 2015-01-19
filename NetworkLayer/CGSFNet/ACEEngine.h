@@ -23,7 +23,7 @@ public:
 	virtual bool CancelTimer(int timerID) override;
 
 	virtual int AddConnector(int connectorIndex, char* szIP, unsigned short port) override;
-	virtual int AddListener(char* szIP, unsigned short port) override;
+	virtual int AddListener(char* szIP, unsigned short port, bool bDefaultListener = false) override;
 
 protected:
 	bool NetworkOpen();
