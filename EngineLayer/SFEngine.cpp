@@ -103,8 +103,8 @@ ISessionService* SFEngine::CreateSessionService(_SessionDesc& desc)
 		pSourceProtocol = m_pPacketProtocolManager->GetPacketProtocolWithListenerId(desc.identifier);
 	else
 		pSourceProtocol = m_pPacketProtocolManager->GetPacketProtocolWithConnectorId(desc.identifier);
-
-	IPacketProtocol* pCloneProtocol = pSourceProtocol->Clone();
+		
+	IPacketProtocol* pCloneProtocol = pSourceProtocol->Clone();	
 	return new SFSessionService(pCloneProtocol);
 }
 

@@ -120,7 +120,7 @@
       <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
     </ClCompile>
     <Lib>
-      <AdditionalLibraryDirectories>$(ProjectDir)/../VSProject/Lib/x64/debug;../ThirdParty/lib/x64/debug;../ThirdParty/ACE/lib/x64;../ThirdParty/MsgPack/lib/x64;../ThirdParty/Avro/lib/x64/Debug;$(SolutionDir)/../ThirdParty/liblfds/lib/x64/DEBUG;$(SolutionDir)/../ThirdParty/httpxx/lib/x64/DEBUG;$(SolutionDir)/../ThirdParty/http-parser/lib/x64/DEBUG;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalLibraryDirectories>$(ProjectDir)/../VSProject/Lib/x64/debug;$(ProjectDir)/../ThirdParty/lib/x64/debug;$(ProjectDir)/../ThirdParty/ACE/lib/x64;$(ProjectDir)/../ThirdParty/MsgPack/lib/x64;$(ProjectDir)/../ThirdParty/Avro/lib/x64/Debug;$(ProjectDir)/../ThirdParty/liblfds/lib/x64/DEBUG;$(ProjectDir)/../ThirdParty/httpxx/lib/x64/DEBUG;$(ProjectDir)/../ThirdParty/http-parser/lib/x64/DEBUG;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
       <AdditionalDependencies>libprotobuf.lib;liblzf.lib;zlib.lib;libglog.lib;aced.lib;commonlayer.lib;msgpackd.lib;avrocpp_s.lib;liblfds611.lib;http-parser.lib;httpxx.lib</AdditionalDependencies>
       <AdditionalOptions>/ignore:4221 /ignore:4006 %(AdditionalOptions)</AdditionalOptions>
     </Lib>
@@ -159,7 +159,7 @@
     </ClCompile>
     <Lib>
       <AdditionalDependencies>libprotobuf.lib;liblzf.lib;zlib.lib;libglog.lib;ace.lib;commonlayer.lib;msgpack.lib;avrocpp_s.lib;liblfds611.lib;http-parser.lib;httpxx.lib</AdditionalDependencies>
-      <AdditionalLibraryDirectories>$(ProjectDir)/../VSProject/Lib/x64/Release;../ThirdParty/lib/x64/Release;../ThirdParty/ACE/lib/x64;../ThirdParty/MsgPack/lib/x64;../ThirdParty/Avro/lib/x64/Release;$(SolutionDir)/../ThirdParty/liblfds/lib/x64/RELEASE;$(SolutionDir)/../ThirdParty/http-parser/lib/x64/RELEASE;$(SolutionDir)/../ThirdParty/httpxx/lib/x64/RELEASE;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalLibraryDirectories>$(ProjectDir)/../VSProject/Lib/x64/Release;$(ProjectDir)/../ThirdParty/lib/x64/Release;$(ProjectDir)/../ThirdParty/ACE/lib/x64;$(ProjectDir)/../ThirdParty/MsgPack/lib/x64;$(ProjectDir)/../ThirdParty/Avro/lib/x64/Release;$(ProjectDir)/../ThirdParty/liblfds/lib/x64/RELEASE;$(ProjectDir)/../ThirdParty/http-parser/lib/x64/RELEASE;$(ProjectDir)/../ThirdParty/httpxx/lib/x64/RELEASE;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
       <AdditionalOptions>/ignore:4221 /ignore:4006 %(AdditionalOptions)</AdditionalOptions>
     </Lib>
   </ItemDefinitionGroup>

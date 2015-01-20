@@ -122,6 +122,7 @@ int ACEEngine::AddListener(char* szIP, unsigned short port, bool bDefaultListene
 	if (bDefaultListener == true)
 	{
 		m_mapAcceptor.insert(std::make_pair(DEFAULT_LISTENER_INDEX, pAcceptor));
+		pAcceptor->SetAcceptorNum(DEFAULT_LISTENER_INDEX);
 		return DEFAULT_LISTENER_INDEX;
 	}
 
