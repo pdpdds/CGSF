@@ -108,6 +108,8 @@ void ProactorService::handle_read_stream( const ACE_Asynch_Read_Stream::Result& 
 			ReserveClose();
 			return;
 		}
+//20150322 memory leak fix
+		block.release();
 
 		PostRecv();
 	}

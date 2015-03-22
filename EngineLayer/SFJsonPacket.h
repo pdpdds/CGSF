@@ -8,7 +8,7 @@ class SFJsonPacket : public BasePacket
 
 public:
 	SFJsonPacket(USHORT usPacketId);
-	~SFJsonPacket(void);
+	virtual ~SFJsonPacket(void);
 
 	JsonObjectNode&	GetData(){return m_Node;}
 	SFPacketHeader* GetHeader() { return &m_packetHeader; }
