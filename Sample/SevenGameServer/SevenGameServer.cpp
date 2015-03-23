@@ -42,13 +42,13 @@ static DWORD StartSevenGameService(LPDWORD param)
 	WaitForSingleObject(SFServiceController::killServiceEvent, INFINITE);
 #endif
 
-	SFEngine::GetInstance()->ShutDown();
-
 	return 0;
 }
 
 int _tmain(int argc, _TCHAR* argv[])
 {
+	SFEngine::GetInstance();
+
 	if (argc == 2)
 	{
 		ControlService(argc, argv);
@@ -61,6 +61,8 @@ int _tmain(int argc, _TCHAR* argv[])
 #else	
 	g_serviceController.ServiceEntry(argv[0], (LPTHREAD_START_ROUTINE)StartSevenGameService	);
 #endif		
+
+	SFEngine::GetInstance()->ShutDown();
 
 	return 0;
 }
