@@ -24,6 +24,7 @@ protected:
 private:
 	std::list<_ConnectorInfo> m_listConnectorInfo;
 	HANDLE m_hThread;
+	bool  m_bThreadEnd;
 	DWORD  m_dwThreadID;
 
 	SFLock m_Lock;

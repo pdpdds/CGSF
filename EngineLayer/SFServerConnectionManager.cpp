@@ -9,12 +9,19 @@ SFServerConnectionManager::SFServerConnectionManager()
 : m_hThread(NULL)
 , m_hTimerEvent(NULL)
 , m_dwThreadID(0)
+, m_bThreadEnd(false)
 {
 }
 
 
 SFServerConnectionManager::~SFServerConnectionManager()
 {
+	if (m_hThread)
+	{
+		m_bThreadEnd = true;
+		WaitForSingleObject(m_hThread, INFINITE);
+		CloseHandle(m_hThread);
+	}
 }
 
 /*
@@ -131,7 +138,7 @@ UINT SFServerConnectionManager::ServerReconnectProc(LPVOID arg)
 {
 	SFServerConnectionManager * pConnectionManager = reinterpret_cast<SFServerConnectionManager*>(arg);
 	
-	while (WaitForSingleObject(pConnectionManager->m_hTimerEvent, 1000) != WAIT_OBJECT_0)
+	while (WaitForSingleObject(pConnectionManager->m_hTimerEvent, 1000) != WAIT_OBJECT_0 && pConnectionManager->m_bThreadEnd == false)
 	{
 		for (auto& iter : pConnectionManager->m_listConnectorInfo)
 		{
