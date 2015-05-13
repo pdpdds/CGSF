@@ -83,6 +83,9 @@
       <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
       <Extensions>cpp;c;cc;cxx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
     </Filter>
+    <Filter Include="TMX">
+      <UniqueIdentifier>{a0f3c95c-5a3a-476a-a593-0a79e8baba68}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include=".\stdafx.cpp">
@@ -234,6 +237,15 @@
     </ClCompile>
     <ClCompile Include=".\SFRegexChecker.cpp">
       <Filter>Regex</Filter>
+    </ClCompile>
+    <ClCompile Include="TMXParser.cpp">
+      <Filter>TMX</Filter>
+    </ClCompile>
+    <ClCompile Include="TMXMap.cpp">
+      <Filter>TMX</Filter>
+    </ClCompile>
+    <ClCompile Include="TileLayer.cpp">
+      <Filter>TMX</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -473,6 +485,15 @@
     </ClInclude>
     <ClInclude Include=".\SFRegexChecker.h">
       <Filter>Regex</Filter>
+    </ClInclude>
+    <ClInclude Include="TMXParser.h">
+      <Filter>TMX</Filter>
+    </ClInclude>
+    <ClInclude Include="TMXMap.h">
+      <Filter>TMX</Filter>
+    </ClInclude>
+    <ClInclude Include="TileLayer.h">
+      <Filter>TMX</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
