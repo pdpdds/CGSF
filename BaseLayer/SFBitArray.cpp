@@ -1,5 +1,5 @@
 #ifdef _WIN32
-#include "stdafx.h"
+#include <windows.h>
 #endif
 
 #include "SFBitArray.h"
