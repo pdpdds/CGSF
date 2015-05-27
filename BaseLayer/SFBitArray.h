@@ -1,6 +1,11 @@
 #pragma once
 #include <vector>
 
+#ifndef _WIN32
+#include <malloc.h>
+#include <string.h>
+#endif
+
 using namespace std;
 
 #define GetBit(a, b)	((((BYTE*)a)[(b)>>3] >> ((b)&7)) & 1)
@@ -9,6 +14,30 @@ using namespace std;
 #define XOrBit(a, b)	(((BYTE*)a)[(b)>>3] ^= (1 << ((b)&7)))
 
 #define 	SEG_COUNT		10240
+
+#ifndef BYTE
+#define BYTE unsigned char
+#endif
+
+#ifndef BOOL
+#define BOOL bool
+#endif
+
+#ifndef WORD
+#define WORD unsigned short
+#endif
+
+#ifndef DWORD
+#define DWORD unsigned int
+#endif
+
+#ifndef FALSE
+#define FALSE false
+#endif
+
+#ifndef TRUE
+#define TRUE true
+#endif
 
 enum Operation
 {

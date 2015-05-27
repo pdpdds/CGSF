@@ -1,4 +1,7 @@
-#include "StdAfx.h"
+#ifdef _WIN32
+#include "stdafx.h"
+#endif
+
 #include "SFBitArray.h"
 
 #pragma warning (disable : 4244)
@@ -7,18 +10,30 @@
 void *AllocPtr(int nSize)
 {
 	void *p = malloc(nSize);
+#ifdef _WIN32
 	nSize = (int)_msize(p);
+#else
+	nSize = (int)malloc_usable_size(p);
+#endif
 	memset(p, 0, nSize);
 	return p;
 }
 
 void *ReAllocPtr(void *p, int nSize)
 {
+#ifdef _WIN32
 	int nOldSize = (int)_msize(p);
+#else
+	int nOldSize = (int)malloc_usable_size(p);
+#endif
 	p = realloc(p, nSize);
 	if(nSize > nOldSize)
 	{
-		nSize = (int)_msize(p);
+#ifdef _WIN32
+	nSize = (int)_msize(p);
+#else
+		nSize = (int)malloc_usable_size(p);
+#endif
 		memset((char*)p+nOldSize, 0, nSize-nOldSize);
 	}
 	return p;
