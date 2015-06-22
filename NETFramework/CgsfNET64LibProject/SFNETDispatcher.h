@@ -60,5 +60,6 @@ namespace CgsfNET64Lib {
 		/// LogicThreadProc 스레드 개수
 		/// </summary>
 		int m_nLogicThreadCnt;
+		int m_logicThreadGroupId;
 	};
 }

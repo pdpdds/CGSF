@@ -45,7 +45,7 @@ namespace ChatServerLib.Lobby
                 return false;
             }
 
-            UserList.RemoveWhere(x => x.UserID == userID);
+          //  UserList.RemoveWhere(x => x.UserID == userID);
             return true;
         }
 
@@ -63,11 +63,11 @@ namespace ChatServerLib.Lobby
 
             var notify = new JsonPacketNoticeChat() { UserID = userID, Chat = chatMsg };
 
-            UserList.ForEach(user =>
-            {
-                serverNetwork.Send<JsonPacketNoticeChat>(user.SessionID, PACKET_ID.NOTICE_CHAT, notify);
-            }
-            );
+            /*    UserList.ForEach(user =>
+                {
+                    serverNetwork.Send<JsonPacketNoticeChat>(user.SessionID, PACKET_ID.NOTICE_CHAT, notify);
+                }
+                );*/
         }
     }
 }

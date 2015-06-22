@@ -12,6 +12,7 @@ namespace CgsfNET64Lib {
 	SFNETDispatcher::SFNETDispatcher(void)
 	{
 		m_nLogicThreadCnt = 1;
+		m_logicThreadGroupId = -1;
 	}
 
 	SFNETDispatcher::~SFNETDispatcher(void)
@@ -74,7 +75,7 @@ namespace CgsfNET64Lib {
 	
 	bool SFNETDispatcher::CreateLogicSystem(ILogicEntry* pLogicEntry)
 	{
-		ACE_Thread_Manager::instance()->spawn_n(m_nLogicThreadCnt, (ACE_THR_FUNC)LogicThreadProc, this, THR_NEW_LWP, ACE_DEFAULT_THREAD_PRIORITY);
+		m_logicThreadGroupId = ACE_Thread_Manager::instance()->spawn_n(m_nLogicThreadCnt, (ACE_THR_FUNC)LogicThreadProc, this, THR_NEW_LWP, ACE_DEFAULT_THREAD_PRIORITY);
 
 		LogicEntrySingleton::instance()->SetLogic(pLogicEntry);
 
@@ -85,10 +86,17 @@ namespace CgsfNET64Lib {
 	{
 		m_bLogicEnd = true;
 
-		BasePacket* pCommand = PacketPoolSingleton::instance()->Alloc();
-		pCommand->SetSerial(-1);
-		pCommand->SetPacketType(SFPACKET_SERVERSHUTDOWN);
-		LogicGatewaySingleton::instance()->PushPacket(pCommand);
+		for (int i = 0; i < m_nLogicThreadCnt; i++)
+		{
+			BasePacket* pCommand = PacketPoolSingleton::instance()->Alloc();
+			pCommand->SetSerial(-1);
+			pCommand->SetPacketType(SFPACKET_SERVERSHUTDOWN);
+			LogicGatewaySingleton::instance()->PushPacket(pCommand);			
+		}
+
+		ACE_Thread_Manager::instance()->wait_grp(m_logicThreadGroupId);
+
+		LogicEntrySingleton::instance()->DestroyLogic();		
 
 		return true;
 	}

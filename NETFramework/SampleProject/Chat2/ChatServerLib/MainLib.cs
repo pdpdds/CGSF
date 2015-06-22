@@ -101,7 +101,9 @@ namespace ChatServerLib
                 ServerNet.Stop();
 
                 IsPacketDistributeThreadRunning = false;
-                PacketDistributeThread.Join();
+
+                if (PacketDistributeThread != null)
+                    PacketDistributeThread.Join();
 
                 DBManager.Destory();
             }
