@@ -87,12 +87,14 @@ bool SFCasualGameDispatcher::CreateLogicSystem(ILogicEntry* pLogicEntry)
 bool SFCasualGameDispatcher::ShutDownLogicSystem()
 {
 	m_bLogicEnd = true;
-	BasePacket* pCommand = PacketPoolSingleton::instance()->Alloc();
-	pCommand->SetSerial(-1);
-	pCommand->SetPacketType(SFPACKET_SERVERSHUTDOWN);
-	LogicGatewaySingleton::instance()->PushPacket(pCommand);
-
-	ACE_Thread_Manager::instance()->wait_grp(m_logicThreadGroupId);
+	
+	for (int i = 0; i < m_nLogicThreadCnt; i++)
+	{
+		BasePacket* pCommand = PacketPoolSingleton::instance()->Alloc();
+		pCommand->SetSerial(-1);
+		pCommand->SetPacketType(SFPACKET_SERVERSHUTDOWN);
+		LogicGatewaySingleton::instance()->PushPacket(pCommand);
+	}
 
 	LogicEntrySingleton::instance()->DestroyLogic();
 	
