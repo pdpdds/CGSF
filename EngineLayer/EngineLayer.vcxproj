@@ -195,6 +195,8 @@
     <ClCompile Include="SFCGSFPacketProtocol.cpp" />
     <ClCompile Include="SFClassicDispatcher.cpp" />
     <ClCompile Include="SFConfigure.cpp" />
+    <ClCompile Include="SFEchoPacket.cpp" />
+    <ClCompile Include="SFEchoProtocol.cpp" />
     <ClCompile Include="SFEngine.cpp" />
     <ClCompile Include=".\SFCasualGameDispatcher.cpp" />
     <ClCompile Include=".\SFSessionService.cpp" />
@@ -272,6 +274,8 @@
     <ClInclude Include="SFCGSFPacketProtocol.h" />
     <ClInclude Include=".\SFCasualGameDispatcher.h" />
     <ClInclude Include=".\SFSessionService.h" />
+    <ClInclude Include="SFEchoPacket.h" />
+    <ClInclude Include="SFEchoProtocol.h" />
     <ClInclude Include="SFHTTPPacket.h" />
     <ClInclude Include="SFHTTPProtocol.h" />
     <ClInclude Include="SFJsonPacket.h" />

@@ -62,6 +62,9 @@
     <Filter Include="Packet\httpxx">
       <UniqueIdentifier>{2061b878-9c6d-418f-9f4d-db67959120d3}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Packet\SimpleEcho">
+      <UniqueIdentifier>{cffe2a15-ed98-4856-9024-9e55ce10991e}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include=".\SFExcel.cpp">
@@ -213,6 +216,12 @@
     </ClCompile>
     <ClCompile Include="SFLogicDispatcher.cpp">
       <Filter>Dispatcher</Filter>
+    </ClCompile>
+    <ClCompile Include="SFEchoProtocol.cpp">
+      <Filter>Packet\SimpleEcho</Filter>
+    </ClCompile>
+    <ClCompile Include="SFEchoPacket.cpp">
+      <Filter>Packet\SimpleEcho</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -434,6 +443,12 @@
     </ClInclude>
     <ClInclude Include="SFLogicDispatcher.h">
       <Filter>Dispatcher</Filter>
+    </ClInclude>
+    <ClInclude Include="SFEchoProtocol.h">
+      <Filter>Packet\SimpleEcho</Filter>
+    </ClInclude>
+    <ClInclude Include="SFEchoPacket.h">
+      <Filter>Packet\SimpleEcho</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

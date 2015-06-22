@@ -51,6 +51,8 @@ bool SFJsonProtocol::Encode(BasePacket* pPacket, char** ppBuffer, int& bufferSiz
 
 	memset(m_pBuffer, 0, m_packetSize);
 
+	pJsonPacket->Encode(m_packetSize, m_packetOption);
+
 //////////////////////////////////////////////////
 //header copy
 //////////////////////////////////////////////////
@@ -59,9 +61,7 @@ bool SFJsonProtocol::Encode(BasePacket* pPacket, char** ppBuffer, int& bufferSiz
 	*((unsigned short*)m_pBuffer + 5) = writtenSize;
 
 	*ppBuffer = m_pBuffer;
-	bufferSize = sizeof(SFPacketHeader)+writtenSize;
-
-	pJsonPacket->Encode(m_packetSize, m_packetOption);
+	bufferSize = sizeof(SFPacketHeader)+writtenSize;	
 	
 	return true;
 }
