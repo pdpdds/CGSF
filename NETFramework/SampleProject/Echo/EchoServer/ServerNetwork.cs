@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 using CgsfNET64Lib;
 
-namespace ChatServer1
+namespace EchoServer
 {
     class ServerNetwork : CgsfNET64
     {

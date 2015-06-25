@@ -10,7 +10,7 @@ using System.Windows.Forms;
 
 using CGSFNETCommon;
 
-namespace ChatServer1
+namespace EchoServer
 {
     public partial class MainForm : Form
     {

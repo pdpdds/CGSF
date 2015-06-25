@@ -1,4 +1,4 @@
-﻿namespace ChatServer1
+﻿namespace EchoServer
 {
     partial class MainForm
     {

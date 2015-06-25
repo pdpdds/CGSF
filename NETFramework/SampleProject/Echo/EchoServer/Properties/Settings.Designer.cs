@@ -8,7 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace ChatServer1.Properties
+namespace EchoServer.Properties
 {
 
 
