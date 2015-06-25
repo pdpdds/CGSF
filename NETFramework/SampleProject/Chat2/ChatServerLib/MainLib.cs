@@ -75,13 +75,19 @@ namespace ChatServerLib
 
         public ERROR_CODE CreateSystem(ServerAppConfig appConfig)
         {
-            if ((appConfig.MaxLobbyCount % appConfig.ProcessThreadCount) != 0)
+            if (appConfig.ProcessThreadCount < 2)
+            {
+                return ERROR_CODE.LESS_PACKET_PROCESS_THREAD_COUNT;
+            }
+
+            var lobbyProcessThreadCount = appConfig.ProcessThreadCount - 1;
+            if ((appConfig.MaxLobbyCount % lobbyProcessThreadCount) != 0)
             {
                 return ERROR_CODE.INVALID_LOBBY_COUNT_PER_WORK_PACKET_PROCESS;
             }
 
 
-            var lobbyCountPerWorkPacketProcess = appConfig.MaxLobbyCount / appConfig.ProcessThreadCount;
+            var lobbyCountPerWorkPacketProcess = appConfig.MaxLobbyCount / lobbyProcessThreadCount;
 
             var result = DBManager.CreateAndStart(1, DBResponseFunc);
             if (result != ERROR_CODE.NONE)
@@ -89,7 +95,7 @@ namespace ChatServerLib
                 return result;
             }
 
-            CreateAndStartPacketSysytem(appConfig, lobbyCountPerWorkPacketProcess);
+            CreateAndStartPacketSysytem(appConfig, lobbyProcessThreadCount, lobbyCountPerWorkPacketProcess);
             
             return ERROR_CODE.NONE;
         }
@@ -109,19 +115,19 @@ namespace ChatServerLib
             }
         }
 
-        void CreateAndStartPacketSysytem(ServerAppConfig appConfig, int lobbyCountPerWorkPacketProcess)
+        void CreateAndStartPacketSysytem(ServerAppConfig appConfig, int lobbyProcessThreadCount, int lobbyCountPerWorkPacketProcess)
         {
             MainPacketProcess = new MainPacketProcessSystem();
             MainPacketProcess.Init(appConfig, ServerNet, DBManager);
 
 
-            SettingLobbyIDToPacketProcessIndexTable(appConfig.MaxLobbyCount, appConfig.ProcessThreadCount);
+            SettingLobbyIDToPacketProcessIndexTable(appConfig.MaxLobbyCount, lobbyProcessThreadCount);
 
 
-            for (int i = 1; i <= appConfig.ProcessThreadCount; ++i)
+            for (int i = 0; i <= lobbyProcessThreadCount; ++i)
             {
                 var process = new WorkPacketProcessSystem();
-                process.Init(i, lobbyCountPerWorkPacketProcess, appConfig, ServerNet, DBManager);
+                process.Init(i+1, lobbyCountPerWorkPacketProcess, appConfig, ServerNet, DBManager);
 
                 WorkPacketProcessList.Add(process);
             }

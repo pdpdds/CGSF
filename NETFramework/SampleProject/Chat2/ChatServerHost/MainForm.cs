@@ -53,12 +53,7 @@ namespace ChatServerHost
                 DBThreadCount = textBoxDBThreadCount.Text.ToInt32(),
             };
 
-            if (((appConfig.ProcessThreadCount - 1) % appConfig.MaxLobbyCount) != 0)
-            {
-                ++appConfig.ProcessThreadCount;
-            }
             
-
             var result = ServerLib.InitAndStartNetwork(netConfig, appConfig);
             if (result.Item1 == false)
             {
@@ -67,6 +62,16 @@ namespace ChatServerHost
             }
 
             DevLog.Write(string.Format("[Start] 네트워크 시작"), LOG_LEVEL.INFO);
+
+
+            var errorCode = ServerLib.CreateSystem(appConfig);
+            if (errorCode != CSCommonLib.ERROR_CODE.NONE)
+            {
+                DevLog.Write(string.Format("[Init] CreateSystem 실패. {0}", errorCode), LOG_LEVEL.ERROR);
+                return;
+            }
+
+            DevLog.Write(string.Format("[Start] CreateSystem 완료"), LOG_LEVEL.INFO);
         }
 
         private void Form1_FormClosing(object sender, FormClosingEventArgs e)

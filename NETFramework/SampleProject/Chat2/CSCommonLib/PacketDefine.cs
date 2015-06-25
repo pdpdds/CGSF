@@ -42,6 +42,7 @@ namespace CSCommonLib
 
         ERROR = 1001,
         INVALID_LOBBY_COUNT_PER_WORK_PACKET_PROCESS = 1011,
+        LESS_PACKET_PROCESS_THREAD_COUNT = 1012,
 
         // 로그인 
         DB_LOGIN_EXCEPTION                    = 10001,
