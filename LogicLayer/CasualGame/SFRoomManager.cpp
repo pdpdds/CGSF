@@ -83,6 +83,23 @@ SFRoom* SFRoomManager::GetRoom( int RoomIndex )
 	return pRoom;
 }
 
+SFRoom* SFRoomManager::GetWaitRoom()
+{
+
+	for (int i = 0; i < MAX_ROOM_COUNT;i++)
+	{
+		SFRoom* pRoom = m_RoomArray[i];
+
+		if (pRoom->GetRoomState() == ROOM_STATE_WAIT)
+		{
+			return pRoom;
+		}		
+	}
+	
+
+	return NULL;
+}
+
 BOOL SFRoomManager::OnCreateRoom( SFPlayerLobby* pLobbyState, int GameMode )
 {
 	SFRoom* pRoom = GetEmptyRoom();

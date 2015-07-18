@@ -22,6 +22,7 @@ public:
 
 	BOOL OnCreateRoom(SFPlayerLobby* pLobbyState, int GameMode);
 	SFRoom* GetRoom(int RoomIndex);
+	SFRoom* GetWaitRoom();
 
 	BOOL SendRoomPage(SFPlayerLobby* pLobbyState, int PageIndex = 0);
 
