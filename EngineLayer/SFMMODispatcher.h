@@ -13,12 +13,15 @@ public:
 	virtual ~SFMMODispatcher();
 	
 	virtual void Dispatch(BasePacket* pPacket) override;
+	virtual bool OnAuthenticate(BasePacket* pPacket) = 0;
 
 	virtual bool CreateLogicSystem(ILogicEntry* pLogicEntry) override;
 	virtual bool ShutDownLogicSystem() override;
 
 	mapQueue m_mapQueue;
 	mapSerialChannel m_mapSerialChannel;
+
+	int GetMaxChannelCount() { return m_channelCount; }
 
 protected:
 

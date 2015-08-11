@@ -16,8 +16,8 @@ SFMMODispatcher::~SFMMODispatcher()
 }
 
 void SFMMODispatcher::Dispatch(BasePacket* pPacket)
-{
-	LogicGatewaySingleton::instance()->PushPacket(pPacket);
+{		
+	LogicGatewaySingleton::instance()->PushPacket(pPacket);	
 }
 
 bool SFMMODispatcher::CreateLogicSystem(ILogicEntry* pLogicEntry)
@@ -26,7 +26,7 @@ bool SFMMODispatcher::CreateLogicSystem(ILogicEntry* pLogicEntry)
 
 	ACE_Thread_Manager::instance()->spawn_n(1, (ACE_THR_FUNC)PacketDistributorProc, this, THR_NEW_LWP, ACE_DEFAULT_THREAD_PRIORITY);
 
-	for (int index = 0; m_channelCount; index++)
+	for (int index = 0; index < m_channelCount; index++)
 	{
 		SFIOCPQueue<BasePacket>* pQueue = new SFIOCPQueue<BasePacket>();
 		ACE_Thread_Manager::instance()->spawn_n(1, (ACE_THR_FUNC)MMOLogicProc, pQueue, THR_NEW_LWP, ACE_DEFAULT_THREAD_PRIORITY);
@@ -52,9 +52,13 @@ void SFMMODispatcher::PacketDistributorProc(void* Args)
 	{
 		BasePacket* pPacket = LogicGatewaySingleton::instance()->PopPacket();
 		
-		int channelNum = 0;
-
-		const auto& iter = pMMODispatcher->m_mapQueue.find(channelNum);
+		if (false == pMMODispatcher->OnAuthenticate(pPacket))
+		{
+			ReleasePacket(pPacket);
+			continue;
+		}
+				
+		const auto& iter = pMMODispatcher->m_mapQueue.find(pPacket->GetChannelNum());
 
 		if (iter == pMMODispatcher->m_mapQueue.end())
 		{
@@ -72,7 +76,7 @@ void SFMMODispatcher::MMOLogicProc(void* Args)
 {
 	SFIOCPQueue<BasePacket>* pQueue = static_cast<SFIOCPQueue<BasePacket>*>(Args);
 
-	while (m_bLogicEnd)
+	while (m_bLogicEnd == false)
 	{
 		BasePacket* pPacket = pQueue->Pop(INFINITE);
 

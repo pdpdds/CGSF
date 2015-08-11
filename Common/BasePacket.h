@@ -13,7 +13,7 @@
 class BasePacket
 {
 public:
-	BasePacket(){ m_serial = -1; m_packetType = (unsigned int)SFPACKET_NONE; m_packetID = (unsigned short)-1; }
+	BasePacket(){ m_serial = -1; m_packetType = (unsigned int)SFPACKET_NONE; m_packetID = (unsigned short)-1; m_channelNum = -1; }
 	virtual ~BasePacket() {}
 
 	void SetPacketType(unsigned int PacketType){ m_packetType = PacketType; }
@@ -24,6 +24,10 @@ public:
 	
 	void SetSerial(int serial){ m_serial = serial; }
 	int GetSerial(){ return m_serial; }
+
+	void SetChannelNum(int channelNum){ m_channelNum = channelNum; }
+	int GetChannelNum(){ return m_channelNum; }
+
 	void SetSessionDesc(_SessionDesc& sessiondesc)
 	{ 
 		m_sessiondesc.identifier = sessiondesc.identifier;
@@ -54,4 +58,5 @@ private:
 	_SessionDesc m_sessiondesc;
 	unsigned int m_packetType;
 	unsigned short m_packetID;
+	short m_channelNum;
 };

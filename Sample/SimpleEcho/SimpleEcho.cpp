@@ -4,11 +4,15 @@
 #include "stdafx.h"
 #include "EchoLogicEntry.h"
 #include "SFEchoProtocol.h"
+#include "SFBreakPad.h"
 
 #pragma comment(lib, "EngineLayer.lib")
 
 int _tmain(int argc, _TCHAR* argv[])
 {
+	SFBreakPad exceptionHandler;
+	exceptionHandler.Install();
+
 	EchoLogicEntry* pLogicEntry = new EchoLogicEntry();
 
 	auto errorCode = SFEngine::GetInstance()->Intialize(pLogicEntry);

@@ -8,7 +8,7 @@ class SFIDMap
 	typedef ACE_Map_Manager<int, T*, LockStrategy> IDMap;
 
 public:
-	SFIDMap(void) :  m_idleIdQueue(0){}
+	SFIDMap(void) :  m_idleIdQueue(1){}
 	virtual ~SFIDMap(void){}
 
 	int Register(T* p)

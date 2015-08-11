@@ -29,6 +29,7 @@ bool EchoLogicEntry::ProcessPacket(BasePacket* pPacket )
 		printf("disconnect user %d!!\n", pPacket->GetSerial());
 		return OnDisconnect(pPacket);	
 	case SFPACKET_DATA:	
+		printf("packet received from %d, time : %d\n", pPacket->GetSerial(), GetTickCount());
 		//SFEngine::GetInstance()->SendRequest(pPacket);
 		Broadcast(pPacket);
 		break;

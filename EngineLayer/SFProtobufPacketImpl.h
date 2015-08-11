@@ -10,6 +10,8 @@
 #include <google/protobuf/generated_message_reflection.h>
 #pragma warning( pop )
 
+#include "DataBuffer.h"
+
 class SFProtobufPacketImpl : public BasePacket
 {
 public:
@@ -25,9 +27,14 @@ private:
 	int serviceId;
 	std::string* pEncodedStream;
 	google::protobuf::Message* message;
+
+	DataBuffer extendedData;
 	
 public:
 	std::string* getEncodedStream() const { return pEncodedStream; }
-	int getEncodedStreamSize();
+	int getEncodedStreamSize();	
 	int getServiceId() const { return serviceId; }
+
+	DataBuffer* getExtendedData(){ return &extendedData; }
+	int getExtendedDataSize(){ return extendedData.GetDataSize(); }
 };

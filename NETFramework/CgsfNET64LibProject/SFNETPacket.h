@@ -68,7 +68,7 @@ namespace CgsfNET64Lib {
 
 			if (data != nullptr)
 			{
-				m_dataSize = data->Length;
+				m_dataSize = (unsigned short)data->Length;
 				m_packetData = data;
 			}
 			else

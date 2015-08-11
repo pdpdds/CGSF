@@ -52,7 +52,7 @@ namespace CgsfNET64Lib {
 		pConfig->serverIP = msclr::interop::marshal_as<std::wstring>(serverIP);
 		pConfig->serverPort = config->Port;
 		pConfig->engineName = msclr::interop::marshal_as<std::wstring>(engineName);
-		pConfig->maxAccept = config->MaxAcceptCount;
+		pConfig->maxAccept = (unsigned short)config->MaxAcceptCount;
 	}
 		
 	NET_ERROR_CODE_N CgsfNET64::Init(NetworkConfig^ config,
@@ -241,12 +241,13 @@ namespace CgsfNET64Lib {
 
 	bool CgsfNET64::AddPacketProtocol(int protocolID, int maxBufferSize, int maxPacketSize, int option)
 	{
+		UNREFERENCED_PARAMETER(maxBufferSize);
 		if (CheckingUniqueProtocolID(protocolID) == false)
 		{
 			return true;
 		}
 
-		auto packetProtocol = new SFPacketProtocol<SFCGSFPacketProtocol>(maxPacketSize, maxPacketSize, option);
+		auto packetProtocol = new SFPacketProtocol<SFCGSFPacketProtocol>(maxPacketSize, (unsigned short)maxPacketSize, option);
 
 		if (SFEngine::GetInstance()->AddPacketProtocol(protocolID, packetProtocol) == false)
 		{

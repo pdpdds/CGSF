@@ -267,7 +267,10 @@ bool SFEngine::Start(char* szIP, unsigned short port)
 {
 	_EngineConfig* pInfo = m_Config.GetConfigureInfo();
 
-	LOG(INFO) << "Engine Starting... IP : " << (char*)StringConversion::ToASCII(pInfo->serverIP).c_str() << " Port : " << pInfo->serverPort;	
+	if (szIP != NULL && port != 0)
+		LOG(INFO) << "Engine Starting... IP : " << szIP << " Port : " << port;
+	else
+		LOG(INFO) << "Engine Starting... IP : " << (char*)StringConversion::ToASCII(pInfo->serverIP).c_str() << " Port : " << pInfo->serverPort;
 	
 	bool bResult = false;
 	if (port != 0)

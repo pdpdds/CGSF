@@ -5,7 +5,9 @@
 #include "SFProtobufPacketImpl.h"
 #include "SFProtobufProtocol.h"
 
+#define nReceiveBufferSize 8096
 SFProtobufPacketImpl::SFProtobufPacketImpl( int serviceId, google::protobuf::Message* message )
+: extendedData(nReceiveBufferSize)
 {
 	this->serviceId = serviceId;
 	this->message = message;

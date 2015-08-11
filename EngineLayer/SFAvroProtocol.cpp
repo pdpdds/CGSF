@@ -121,7 +121,7 @@ bool SFAvroProtocol::Encode(BasePacket* pPacket, char** ppBuffer, int& bufferSiz
 
 	//데이터 사이즈를 헤더에 쓴다.
 	//12바이트 헤더의 마지막 2바이트에 기록
-	*((unsigned short*)m_pBuffer + 5) = writtenSize;
+	*((unsigned short*)m_pBuffer + 5) = (unsigned short)writtenSize;
 
 	*ppBuffer = m_pBuffer;
 	bufferSize = sizeof(SFPacketHeader)+writtenSize;

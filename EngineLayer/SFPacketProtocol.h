@@ -137,6 +137,8 @@ bool SFPacketProtocol<T>::OnReceive(INT serial, char* pBuffer, UINT dwTransferre
 	
 	if(iErrorCode != PACKETIO_ERROR_NONE)
 	{
+		printf("PACKETIO_ERROR %d\n", iErrorCode);
+
 		return false;
 	}
 
