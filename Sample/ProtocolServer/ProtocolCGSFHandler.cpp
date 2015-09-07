@@ -1,5 +1,6 @@
 #include "stdafx.h"
 #include "ProtocolCGSFHandler.h"
+#include "SFPacket.h"
 
 ProtocolCGSFHandler::ProtocolCGSFHandler()
 {

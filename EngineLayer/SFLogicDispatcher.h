@@ -1,6 +1,7 @@
 #pragma once
 #include "ILogicDispatcher.h"
 #include "SFEngine.h"
+#include "BasePacket.h"
 
 class SFLogicDispatcher : public ILogicDispatcher
 {
