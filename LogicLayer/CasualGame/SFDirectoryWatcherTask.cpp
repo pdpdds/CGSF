@@ -85,10 +85,9 @@ BOOL SFDirectoryWatcherTask::ProcessShouterTask()
 			if(Count != 0)
 				Sleep(pInfo->SentenceInterval);
  
-			BasePacket* pCommand = PacketPoolSingleton::instance()->Alloc();
+			BasePacket* pCommand = new BasePacket();
 			pCommand->SetPacketType(SFPACKET_SHOUTER);
-			pCommand->SetSerial(-1);
-			//memcpy(pCommand->GetDataBuffer(), iter._Ptr
+			pCommand->SetSerial(-1);			
 
 			LogicGatewaySingleton::instance()->PushPacket(pCommand);
 
