@@ -14,7 +14,7 @@ bool SFLogicGateway::PushPacket( BasePacket* pPacket )
 	return m_IOCPQueue.Push(pPacket);
 }
 
-BasePacket* SFLogicGateway::PopPacket(int WaitTime)
+BasePacket* SFLogicGateway::PopPacket(int waitTime)
 {
-	return m_IOCPQueue.Pop(WaitTime);
+	return m_IOCPQueue.Pop(waitTime);
 }
