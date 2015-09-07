@@ -5,10 +5,14 @@
 #include "IEngine.h"
 #include "ISessionService.h"
 
+#define SESSION_STATE_NULL 0
+#define SESSION_STATE_CONNECT 1
+#define SESSION_STATE_AUTENTICATE 2
+
 class ISession
 {
   public:  
-	ISession(){}
+	  ISession(){ m_sessionState = SESSION_STATE_NULL; m_channelNum = -1; }
     virtual ~ISession() {};
 
 	void SetOwner(INetworkEngine* pOwner){m_pOwner = pOwner;}
@@ -36,11 +40,17 @@ class ISession
 
 	IPacketProtocol* GetPacketProtocol(){ return m_pSessionService->GetPacketProtocol(); }
 
+	void SetLoginState(int state){ m_sessionState = state; }
+	int GetLoginState(){ return m_sessionState; }
+
+	int m_channelNum;
+
 protected:
 
 private:
 	INetworkEngine* m_pOwner;
 	ISessionService* m_pSessionService;
+	int m_sessionState;	
 };
 
 

@@ -23,7 +23,7 @@ class NETWORKENGINEDECL INetworkEngine
 
     virtual ~INetworkEngine() {};
 
-	virtual bool Init() = 0;
+	virtual bool Init(int ioThreadCnt) = 0;
 
 	virtual bool Start(char* szIP, unsigned short Port) = 0;
 
