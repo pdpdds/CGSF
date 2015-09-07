@@ -150,15 +150,10 @@ ACEServerEngine::ACEServerEngine(IEngine* pEngine)
 
 }
 
-bool ACEServerEngine::Init()
+bool ACEServerEngine::Init(int ioThreadCnt)
 {	
 
-	SYSTEM_INFO si;
-	GetSystemInfo(&si);
-
-	int OptimalThreadCount = si.dwNumberOfProcessors * 2;
-
-	m_workThreadGroupID = ACE_Thread_Manager::instance()->spawn_n(OptimalThreadCount, (ACE_THR_FUNC)ProactorWorkerThread, NULL, THR_NEW_LWP, ACE_DEFAULT_THREAD_PRIORITY);
+	m_workThreadGroupID = ACE_Thread_Manager::instance()->spawn_n(ioThreadCnt, (ACE_THR_FUNC)ProactorWorkerThread, NULL, THR_NEW_LWP, ACE_DEFAULT_THREAD_PRIORITY);
 
 	if (m_workThreadGroupID == -1)
 	{
@@ -180,11 +175,9 @@ ACEClientEngine::ACEClientEngine(IEngine* pEngine)
 
 }
 
-bool ACEClientEngine::Init()
+bool ACEClientEngine::Init(int ioThreadCnt)
 {
-	int OptimalThreadCount = 1;
-
-	m_workThreadGroupID = ACE_Thread_Manager::instance()->spawn_n(OptimalThreadCount, (ACE_THR_FUNC)ProactorWorkerThread, NULL, THR_NEW_LWP, ACE_DEFAULT_THREAD_PRIORITY);
+	m_workThreadGroupID = ACE_Thread_Manager::instance()->spawn_n(ioThreadCnt, (ACE_THR_FUNC)ProactorWorkerThread, NULL, THR_NEW_LWP, ACE_DEFAULT_THREAD_PRIORITY);
 
 	if (m_workThreadGroupID == -1)
 	{
