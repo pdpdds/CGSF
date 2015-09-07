@@ -13,6 +13,7 @@ public:
 
 	virtual bool Initialize() = 0;
 	virtual bool ProcessPacket(BasePacket* pPacket) = 0;
+	virtual ILogicEntry* Clone() { return NULL; }
 
 	bool AddConnectorCallback(int identifier, INetworkCallback* pCallback, int packetProtocolId);
 	virtual bool ProcessConnectorPacket(BasePacket* pPacket);
