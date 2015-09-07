@@ -9,13 +9,12 @@
 #include "ILogicEntry.h"
 #include <vector>
 #include "Macro.h"
-#include "SFPacket.h"
 #include "SFPacketProtocol.h"
 
 class IRPCInterface;
 class SFServerConnectionManager;
 class SFPacketProtocolManager;
-
+class SFPacket;
 
 class SFEngine : public IEngine
 {
@@ -52,7 +51,7 @@ public:
 	bool SendRequest(BasePacket* pPacket);
 	bool SendRequest(BasePacket* pPacket, std::vector<int>& ownerList);
 
-	bool SendDelayedRequest(BasePacket* pPacket);
+	//bool SendDelayedRequest(BasePacket* pPacket);
 	bool SendDelayedRequest(BasePacket* pPacket, std::vector<int>* pOwnerList = NULL);
 
 	bool ReleasePacket(BasePacket* pPacket);

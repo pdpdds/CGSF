@@ -27,7 +27,7 @@ SFEngine::SFEngine()
 {
 	ACE::init();
 
-	PacketDelayedSendTask::instance()->Init(100);
+	//PacketDelayedSendTask::instance()->Init(100);	
 
 	google::InitGoogleLogging("CGSF");
 	m_Config.Read(L"EngineConfig.xml");
@@ -77,7 +77,11 @@ NET_ERROR_CODE SFEngine::CreateEngine(char* szModuleName, bool server)
 	if(m_pNetworkEngine == NULL)
 		return NET_ERROR_CODE::ENGINE_INIT_CREAT_ENGINE_FUNC_NULL;
 
-	if(FALSE == m_pNetworkEngine->Init())
+	SYSTEM_INFO si;
+	GetSystemInfo(&si);
+	int ioThreadCnt = si.dwNumberOfProcessors * 2;
+
+	if (FALSE == m_pNetworkEngine->Init(ioThreadCnt))
 		return NET_ERROR_CODE::ENGINE_INIT_CREAT_ENGINE_INIT_FAIL;
 	
 	return NET_ERROR_CODE::SUCCESS;

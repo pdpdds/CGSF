@@ -16,6 +16,8 @@
 #define PACKETIO_ERROR_DATA_COMPRESS	-4
 #define PACKETIO_ERROR_DATA_ENCRYPTION	-5
 
+#define PACKETIO_ERROR_MEMORY_ALLOC		-6
+
 #define PACKET_COMPRESS_LIMIT 1024
 
 /////////////////////////////////////////////////////////////////////////
