@@ -20,7 +20,7 @@ ASIOServerEngine::~ASIOServerEngine(void)
 {
 }
 
-bool ASIOServerEngine::Init()
+bool ASIOServerEngine::Init(int ioThreadCnt)
 {
 	m_pServer = new ASIOServer(io_service, this);
 	m_pServer->Init( MAX_SESSION_COUNT );	
@@ -74,7 +74,7 @@ ASIOClientEngine::~ASIOClientEngine(void)
 {
 }
 
-bool ASIOClientEngine::Init()
+bool ASIOClientEngine::Init(int ioThreadCnt)
 {	
 	m_pClient = new ASIOClient(io_service, this);
 

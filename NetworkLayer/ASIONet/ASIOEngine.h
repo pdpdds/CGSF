@@ -11,7 +11,7 @@ public:
 	ASIOServerEngine(IEngine* pEngine);
 	virtual ~ASIOServerEngine(void);
 
-	virtual bool Init() override;
+	virtual bool Init(int ioThreadCnt) override;
 	virtual bool Start(char* szIP, unsigned short Port) override;
     virtual bool Shutdown() override;
 
@@ -35,7 +35,7 @@ public:
 	ASIOClientEngine(IEngine* pEngine);
 	virtual ~ASIOClientEngine(void);
 
-	virtual bool Init() override;
+	virtual bool Init(int ioThreadCnt) override;
 	virtual bool Start(char* szIP, unsigned short port) override;
     virtual bool Shutdown() override;
 
