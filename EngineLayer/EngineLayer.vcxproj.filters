@@ -205,9 +205,6 @@
     <ClCompile Include="SFPacketProtocolManager.cpp">
       <Filter>Packet\PacketProtocol</Filter>
     </ClCompile>
-    <ClCompile Include="SFMMODispatcher.cpp">
-      <Filter>Dispatcher</Filter>
-    </ClCompile>
     <ClCompile Include="SFHTTPProtocol.cpp">
       <Filter>Packet\httpxx</Filter>
     </ClCompile>
@@ -222,6 +219,15 @@
     </ClCompile>
     <ClCompile Include="SFEchoPacket.cpp">
       <Filter>Packet\SimpleEcho</Filter>
+    </ClCompile>
+    <ClCompile Include="SFIOController.cpp">
+      <Filter>Network</Filter>
+    </ClCompile>
+    <ClCompile Include="SFLogicGate.cpp">
+      <Filter>Logic</Filter>
+    </ClCompile>
+    <ClCompile Include="SFMulitiCasualGameDispatcher.cpp">
+      <Filter>Dispatcher</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -429,9 +435,6 @@
     <ClInclude Include="SFPacketProtocolManager.h">
       <Filter>Packet\PacketProtocol</Filter>
     </ClInclude>
-    <ClInclude Include="SFMMODispatcher.h">
-      <Filter>Dispatcher</Filter>
-    </ClInclude>
     <ClInclude Include="PacketProtocolConstant.h">
       <Filter>Packet\PacketProtocol</Filter>
     </ClInclude>
@@ -449,6 +452,15 @@
     </ClInclude>
     <ClInclude Include="SFEchoPacket.h">
       <Filter>Packet\SimpleEcho</Filter>
+    </ClInclude>
+    <ClInclude Include="SFIOController.h">
+      <Filter>Network</Filter>
+    </ClInclude>
+    <ClInclude Include="SFLogicGate.h">
+      <Filter>Logic</Filter>
+    </ClInclude>
+    <ClInclude Include="SFMulitiCasualGameDispatcher.h">
+      <Filter>Dispatcher</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

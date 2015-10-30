@@ -202,10 +202,12 @@
     <ClCompile Include=".\SFSessionService.cpp" />
     <ClCompile Include="SFHTTPPacket.cpp" />
     <ClCompile Include="SFHTTPProtocol.cpp" />
+    <ClCompile Include="SFIOController.cpp" />
     <ClCompile Include="SFJsonPacket.cpp" />
     <ClCompile Include="SFJsonProtocol.cpp" />
     <ClCompile Include="SFLogicDispatcher.cpp" />
-    <ClCompile Include="SFMMODispatcher.cpp" />
+    <ClCompile Include="SFLogicGate.cpp" />
+    <ClCompile Include="SFMulitiCasualGameDispatcher.cpp" />
     <ClCompile Include="SFMsgPackPacket.cpp" />
     <ClCompile Include="SFMsgPackProtocol.cpp" />
     <ClCompile Include="SFNetworkEntry.cpp" />
@@ -278,10 +280,12 @@
     <ClInclude Include="SFEchoProtocol.h" />
     <ClInclude Include="SFHTTPPacket.h" />
     <ClInclude Include="SFHTTPProtocol.h" />
+    <ClInclude Include="SFIOController.h" />
     <ClInclude Include="SFJsonPacket.h" />
     <ClInclude Include="SFJsonProtocol.h" />
     <ClInclude Include="SFLogicDispatcher.h" />
-    <ClInclude Include="SFMMODispatcher.h" />
+    <ClInclude Include="SFLogicGate.h" />
+    <ClInclude Include="SFMulitiCasualGameDispatcher.h" />
     <ClInclude Include="SFMsgPackPacket.h" />
     <ClInclude Include="SFMsgPackProtocol.h" />
     <ClInclude Include="SFNetworkEntry.h" />

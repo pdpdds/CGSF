@@ -30,7 +30,8 @@ void SFMulitiCasualGameDispatcher::Dispatch(BasePacket* pPacket)
 	{
 	case SFPACKET_CONNECT:
 	{
-#ifdef _DEBUG
+//#ifdef _DEBUG
+	/*	OnAuthenticate(pPacket);
 		pSession->SetLoginState(SESSION_STATE_AUTENTICATE);
 		pSession->m_channelNum = 1;
 		SFPacket* pkt = PacketPoolSingleton::instance()->Alloc();
@@ -39,10 +40,10 @@ void SFMulitiCasualGameDispatcher::Dispatch(BasePacket* pPacket)
 		pkt->SetPacketID(12345);
 		pkt->SetSessionDesc(pPacket->GetSessionDesc());
 
-		DistributePacket(pkt);
-#else
+		DistributePacket(pkt);*/
+//#else
 		pSession->SetLoginState(SESSION_STATE_CONNECT);		
-#endif
+//#endif
 		ReleasePacket(pPacket);
 	}
 		return;
@@ -57,21 +58,23 @@ void SFMulitiCasualGameDispatcher::Dispatch(BasePacket* pPacket)
 	}
 	case SFPACKET_DATA:
 		if (pSession->GetLoginState() == SESSION_STATE_AUTENTICATE)
-			DistributePacket(pPacket);		
+		{
+			DistributePacket(pPacket);
+		}
 		else if (pSession->GetLoginState() == SESSION_STATE_CONNECT)
 		{
 			if (true == OnAuthenticate(pPacket))
 			{
 				pSession->m_channelNum = 1;
 				pSession->SetLoginState(SESSION_STATE_AUTENTICATE);
+				DistributePacket(pPacket);
 			}
 			else
 			{
 				pSession->SetLoginState(SESSION_STATE_NULL);
 				SFEngine::GetInstance()->Disconnect(pPacket->GetSerial());
+				ReleasePacket(pPacket);
 			}
-
-			ReleasePacket(pPacket);
 		}
 		else
 		{
@@ -98,7 +101,7 @@ bool SFMulitiCasualGameDispatcher::DistributePacket(BasePacket* pPacket)
 
 bool SFMulitiCasualGameDispatcher::CreateLogicSystem(ILogicEntry* pLogicEntry)
 {
-	//LogicEntrySingleton::instance()->SetLogic(pLogicEntry);
+	LogicEntrySingleton::instance()->SetLogic(pLogicEntry);
 	
 	for (int index = 0; index < m_channelCount; index++)
 	{
@@ -112,7 +115,7 @@ bool SFMulitiCasualGameDispatcher::CreateLogicSystem(ILogicEntry* pLogicEntry)
 		ACE_Thread_Manager::instance()->spawn_n(1, (ACE_THR_FUNC)CasualGameLogicProc, pParam, THR_NEW_LWP, ACE_DEFAULT_THREAD_PRIORITY);
 
 		m_vecQueue.push_back(pQueue);		
-	}
+	}	
 	
 	return true;
 }
