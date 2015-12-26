@@ -1,13 +1,13 @@
 *Unity Client
 
-1. 요약
+- 요약
 쓰레드를 쓰는 방법과 비동기 함수를 이용한 방법 두가지 구현중 비동기 함수를 이용 했습니다.
 로그인 후 각각의 이동을 동기화 하는 수준까지 하려고 했으나 이걸 못하는 분은 이걸 볼 일이 없다는 결론에 도달하여 귀찮음을 줄여주는 수준까지 역으로 추려내어 올립니다.
 내부 구현의 차이에 대해 언급해두었고 문제가 있다면 지적및 수정 부탁 드립니다.
 
 
 
-2. 주요 클래스 요약
+- 주요 클래스 요약
 NetManager_V2 : 서버당 하나의 연결을 담당 합니다. 여기에 connect, recvBuffer,sendBuffer가 있습니다.
 LoginNetManager : 만약 여러개의 서버를 쓰는 경우 통합관리를 할 부분입니다. (예제 에서는 하나)
 여러개의 NetManager_V2를 리스트로 관리하며 유니티 씬의 어느 한 객체의 Update()에서 Update()를 호출 해줘야 합니다.
@@ -35,7 +35,7 @@ ConnectScene : 실질적으로 컨텐츠가 들어가는 씬 입니다.(자세한 것은 아래 설명)
 Clog : 지우셔도 됩니다. debug.log를 화면에 띄워주기위한 역활입니다.
 
 
-3. 씬의 초기화와 예제의 구성
+- 씬의 초기화와 예제의 구성
 
 void Awake()
 17줄 Receive를 받을 함수를 지정합니다. 여기 등록된 함수 전에 LoginNetManager 59줄에 먼저 걸리는데 
@@ -51,7 +51,7 @@ void OnDestory()
 
 
 
-4. 메세지 요청
+- 메세지 요청
 LoginNetManager.I.REQL_Login(sId, spwd);
 LoginNetManager.I.REQL_IDisValid(sReg_id);
 LoginNetManager.I.REQL_Registration(this.sReg_id, sReg_pwd, sReg_email, "UNITY", SystemInfo.deviceUniqueIdentifier);
@@ -59,7 +59,7 @@ LoginNetManager.I.REQL_Registration(this.sReg_id, sReg_pwd, sReg_email, "UNITY",
 상단의 2번 항목에서 언급하였듯 여기서는 LoginNetManager에서 요청 메세지 작성까지 담당하지만 좀 더 복잡한 프로그램이 된다면 분리하셔야 합니다..
 
 
-5. 메세지 응답
+- 메세지 응답
 3번 항목의 Awake()에서 등록한 Onreceive()함수로 응답이 돌아옵니다.
 switch (packet.Protocol)
 {
@@ -81,7 +81,7 @@ switch (packet.Protocol)
 구현은 각각 참조 해주시기 바랍니다.
 
 
-6.테스트 방법
+- 테스트 방법
 접속 주소 127.0.0.1:25251
 서버 : UnityServer내부의 BIN으로 이동, UnitySimpleLoginServer.exe파일을 VSProject/32로 옮겨서 실행.
 클라 : 받은 Asset폴더로 프로젝트를 구성하고 씬을 로드하여 실행 하거나 UnityClient내부의 BIN폴더로 이동. UnitySample을 실행.
@@ -93,7 +93,7 @@ switch (packet.Protocol)
 
 
 
-7.마치며
+- 마치며
 다른 부분을 신경쓰지 않고 동작법을 눈대중으로 알 수 있도록 한 예제라 당연하지만 절대 이대로 구현하지 마시기 바랍니다.
 가령 로그인 서버라면 잘못된 로그인 요청이었을 때 틀렸으면 응답 후 소켓 연결을 끊는게 일반적 입니다.
 패스워드를 암호화 하여 전송하지도 않았습니다. 서버측 연결 끊음 등에 대한 대응도 스스로 하셔야 합니다.
