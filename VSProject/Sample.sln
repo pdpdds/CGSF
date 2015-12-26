@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 2013
-VisualStudioVersion = 12.0.31101.0
+VisualStudioVersion = 12.0.40629.0
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "ChatClient", "..\Sample\ChatClient\ChatClient.vcxproj", "{AE0931A5-DA93-45BB-B0C0-4B43E38A0CE5}"
 EndProject
@@ -47,6 +47,8 @@ EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "ProtocolServer", "..\Sample\ProtocolServer\ProtocolServer.vcxproj", "{864EBB45-8870-4ABE-ABF7-0861A7B4D737}"
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "SimpleEcho", "..\Sample\SimpleEcho\SimpleEcho.vcxproj", "{D55260DD-900B-4968-BFB5-1A1CC36ABAC1}"
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "UnitySimpleLoginServer", "..\Sample\UnityServer\UnityServer.vcxproj", "{8E7DC877-1F70-4D81-9D11-BBE4DCB4D52F}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -194,6 +196,14 @@ Global
 		{D55260DD-900B-4968-BFB5-1A1CC36ABAC1}.Release|Win32.ActiveCfg = Release|Win32
 		{D55260DD-900B-4968-BFB5-1A1CC36ABAC1}.Release|Win32.Build.0 = Release|Win32
 		{D55260DD-900B-4968-BFB5-1A1CC36ABAC1}.Release|x64.ActiveCfg = Release|Win32
+		{8E7DC877-1F70-4D81-9D11-BBE4DCB4D52F}.Debug|Win32.ActiveCfg = Debug|Win32
+		{8E7DC877-1F70-4D81-9D11-BBE4DCB4D52F}.Debug|Win32.Build.0 = Debug|Win32
+		{8E7DC877-1F70-4D81-9D11-BBE4DCB4D52F}.Debug|x64.ActiveCfg = Debug|x64
+		{8E7DC877-1F70-4D81-9D11-BBE4DCB4D52F}.Debug|x64.Build.0 = Debug|x64
+		{8E7DC877-1F70-4D81-9D11-BBE4DCB4D52F}.Release|Win32.ActiveCfg = Release|Win32
+		{8E7DC877-1F70-4D81-9D11-BBE4DCB4D52F}.Release|Win32.Build.0 = Release|Win32
+		{8E7DC877-1F70-4D81-9D11-BBE4DCB4D52F}.Release|x64.ActiveCfg = Release|x64
+		{8E7DC877-1F70-4D81-9D11-BBE4DCB4D52F}.Release|x64.Build.0 = Release|x64
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
