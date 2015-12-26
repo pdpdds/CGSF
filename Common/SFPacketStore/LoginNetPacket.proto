@@ -1,0 +1,31 @@
+package LoginNetPacket;
+message  REQ_LoginInfo
+{
+	required string sId = 1;
+	required string sPwd= 2;
+}
+message REQ_IdIsValid
+{
+	required string sId= 1;
+}
+message REQ_Registration
+{
+	required string sId= 1;
+	required string sPwd= 2;
+	required string sMail= 3;
+	required string sExtra= 4;
+	required string sUDID= 5;
+}
+
+message RES_LoginInfo
+{
+	required int32 iResult= 1;
+}
+message RES_IdIsValid
+{
+	required int32 iResult= 1;
+}
+message RES_Regstration
+{
+	required int32 iResult= 1;
+}
