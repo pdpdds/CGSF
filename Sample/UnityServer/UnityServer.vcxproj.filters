@@ -1,0 +1,48 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <ClCompile Include=".\stdafx.cpp" />
+    <ClCompile Include="UnityServer.cpp" />
+    <ClCompile Include="LoginPart.cpp">
+      <Filter>LoginPart</Filter>
+    </ClCompile>
+    <ClCompile Include="UnityServerEntry.cpp" />
+    <ClCompile Include="GameUser.cpp">
+      <Filter>CommonData</Filter>
+    </ClCompile>
+    <ClCompile Include="PersonalInfo.cpp">
+      <Filter>Manager</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include=".\stdafx.h" />
+    <ClInclude Include=".\targetver.h" />
+    <ClInclude Include="LoginPart.h">
+      <Filter>LoginPart</Filter>
+    </ClInclude>
+    <ClInclude Include="UnityServerEntry.h" />
+    <ClInclude Include="CommonData.h">
+      <Filter>CommonData</Filter>
+    </ClInclude>
+    <ClInclude Include="CommonProtocol.h">
+      <Filter>CommonData</Filter>
+    </ClInclude>
+    <ClInclude Include="GameUser.h">
+      <Filter>CommonData</Filter>
+    </ClInclude>
+    <ClInclude Include="PersonalInfo.h">
+      <Filter>Manager</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <Filter Include="LoginPart">
+      <UniqueIdentifier>{f91f389e-32a2-4ceb-9364-efac4e7ece3b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="CommonData">
+      <UniqueIdentifier>{5fd86b61-4203-498b-b99e-56de602cbca5}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Manager">
+      <UniqueIdentifier>{a854ced1-956e-4100-8bf7-1e4ad418c3c9}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+</Project>
