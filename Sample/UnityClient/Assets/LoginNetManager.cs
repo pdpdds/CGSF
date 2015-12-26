@@ -89,7 +89,7 @@ public class LoginNetManager
     }
     public void REQL_Registration(string sID, string sPwd, string sMail, string sExtra,string sUDID)
     {
-        if (nm.IsConnected() == false) { MSG_ERROR_CONNECT(); return; }
+        if (nm.IsConnected() == false) { if (Connect() == false) return; }
         CommonData.REQ_Registration rg = new CommonData.REQ_Registration();
         rg.sId = sID;
         rg.sPwd = sPwd;
@@ -101,11 +101,19 @@ public class LoginNetManager
     }
     public void REQL_IDisValid(string sID)
     {
-        if (nm.IsConnected() == false) { MSG_ERROR_CONNECT(); return; }
+        if (nm.IsConnected() == false) { if (Connect() == false) return; }
         CommonData.REQ_IdIsValid Id = new CommonData.REQ_IdIsValid();
         Id.sId = sID;
         jPacket packet = new jPacket(NETCODE.CommonProtocol.REQ_IDISIDVALID);
         nm.Send(packet.MakePacket<CommonData.REQ_IdIsValid>(Id));
+    }
+    public void DisConnect(string sName)
+    {
+        //리스트에서 삭제@
+    }
+    public void DisConnectAll()
+    {
+        nm.Disconnect();
     }
 }
 

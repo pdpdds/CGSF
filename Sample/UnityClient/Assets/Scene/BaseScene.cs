@@ -7,7 +7,7 @@ public class BaseScene : MonoBehaviour
     virtual public void Awake() { }
     virtual public void Start() { }
     virtual public void Update() { }
-    virtual public void Destory() { }
+    virtual public void OnDestory() { }
     //virtual public void res_Registration(NETCODE.jPacket packet) { }
     //virtual public void res_Login(NETCODE.jPacket packet) { }
     //virtual public void res_IdIsValid(NETCODE.jPacket packet) { }

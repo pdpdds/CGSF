@@ -8,8 +8,6 @@ using System.Text;
 
 public class ConnectScene : BaseScene
 {
-    
-    
     int iCheckIDvalid = 0;//0 == 미확인, 1 == 사용가능, 2 == 사용불가
     bool bLogined = false;
     string sCheckedID = "";
@@ -26,8 +24,9 @@ public class ConnectScene : BaseScene
     {
         LoginNetManager.I.Update();
 	}
-    public override void Destory()
+    public override void OnDestory()
     {
+        LoginNetManager.I.DisConnectAll();
         LoginNetManager.I.delegate_NonSystemReceiver -= Onreceive;
     }
 

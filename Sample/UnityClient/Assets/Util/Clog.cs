@@ -20,17 +20,30 @@ public class Cloger
     }
     void initFileWrite()
     {
-        
-        sFileName = DateTime.Today.DayOfYear.ToString() + DateTime.Today.Month.ToString() + DateTime.Today.Day.ToString() + DateTime.Today.Hour.ToString() + DateTime.Today.Minute.ToString() + ".txt";
-        sw = new StreamWriter("./log/" + sFileName, false);
-        sw.Write("");
-        sw.Close();
+        try
+        {
+            sFileName = DateTime.Today.DayOfYear.ToString() + DateTime.Today.Month.ToString() + DateTime.Today.Day.ToString() + DateTime.Today.Hour.ToString() + DateTime.Today.Minute.ToString() + ".txt";
+            sw = new StreamWriter("./log/" + sFileName, false);
+            sw.Write("");
+            sw.Close();
+        }
+        catch (Exception e)
+        {
+            Debug.Log(e.ToString());
+        }
     }
     void WriteFile(string s)
     {
-        sw = new StreamWriter("./log/" + sFileName, true);
-        sw.WriteLine(s);
-        sw.Close();
+        try
+        {
+            sw = new StreamWriter("./log/" + sFileName, true);
+            sw.WriteLine(s);
+            sw.Close();
+        }
+        catch (Exception e)
+        {
+            Debug.Log(e.ToString());
+        }
     }
     void sendToLogView(string s)
     {
