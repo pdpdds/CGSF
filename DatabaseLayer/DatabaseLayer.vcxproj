@@ -90,7 +90,7 @@
       <Optimization>Disabled</Optimization>
       <PreprocessorDefinitions>HAVE_STRUCT_TIMESPEC;WIN32;_DEBUG;_LIB;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <SDLCheck>true</SDLCheck>
-      <AdditionalIncludeDirectories>../Common;../BaseLayer;./CppDatabasePool;./CppDatabasePool/mysql;../ThirdParty/Mysql/cppconn;../ThirdParty/Mysql/include;../ThirdParty/fastdb-375/fastdb/inc;../ThirdParty/SQLite3/include;../ThirdParty;../ThirdParty/ACE/Include;../ThirdParty/libzdb/include;../ThirdParty/libzdb/include/db;../ThirdParty/libzdb/include/net;../ThirdParty/libzdb/include/util;../ThirdParty/pthread\include;../ThirdParty/libzdb/include/exceptions</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>../Common;../BaseLayer;./CppDatabasePool;./CppDatabasePool/mysql;../ThirdParty/Mysql/cppconn;../ThirdParty/Mysql/include;../ThirdParty/fastdb-375/fastdb/inc;../ThirdParty/SQLite3/include;../ThirdParty;../ThirdParty/ACE/Include;../ThirdParty/libzdb/include;../ThirdParty/libzdb/include/db;../ThirdParty/libzdb/include/net;../ThirdParty/libzdb/include/util;../ThirdParty/pthread\include;../ThirdParty/libzdb/include/exceptions;../ThirdParty/liblfds/include</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Windows</SubSystem>
@@ -130,7 +130,7 @@
       <IntrinsicFunctions>true</IntrinsicFunctions>
       <PreprocessorDefinitions>HAVE_STRUCT_TIMESPEC;WIN32;NDEBUG;_LIB;_CRT_SECURE_NO_WARNINGS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <SDLCheck>true</SDLCheck>
-      <AdditionalIncludeDirectories>../Common;../BaseLayer;./CppDatabasePool;./CppDatabasePool/mysql;../ThirdParty/Mysql/cppconn;../ThirdParty/Mysql/include;../ThirdParty/fastdb-375/fastdb/inc;../ThirdParty/SQLite3/include;../ThirdParty;../ThirdParty/ACE/Include;../ThirdParty/libzdb/include/db;../ThirdParty/libzdb/include/net;../ThirdParty/libzdb/include/util;../ThirdParty/pthread\include;../ThirdParty/libzdb/include/exceptions;../ThirdParty/libzdb/include</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>../Common;../BaseLayer;./CppDatabasePool;./CppDatabasePool/mysql;../ThirdParty/Mysql/cppconn;../ThirdParty/Mysql/include;../ThirdParty/fastdb-375/fastdb/inc;../ThirdParty/SQLite3/include;../ThirdParty;../ThirdParty/ACE/Include;../ThirdParty/libzdb/include/db;../ThirdParty/libzdb/include/net;../ThirdParty/libzdb/include/util;../ThirdParty/pthread\include;../ThirdParty/libzdb/include/exceptions;../ThirdParty/libzdb/include;../ThirdParty/liblfds/include</AdditionalIncludeDirectories>
       <DisableSpecificWarnings>4996</DisableSpecificWarnings>
     </ClCompile>
     <Link>

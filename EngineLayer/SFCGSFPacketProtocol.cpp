@@ -33,15 +33,15 @@ BasePacket* SFCGSFPacketProtocol::GetPacket(int& errorCode)
 {
 	SFPacket* pPacket = PacketPoolSingleton::instance()->Alloc();
 
-	pPacket->Initialize();
-
-	if (FALSE == m_pPacketIOBuffer->GetPacket(*pPacket->GetHeader(), (char*)pPacket->GetData(), m_packetSize, errorCode))
+	if (pPacket == NULL)
 	{
-		PacketPoolSingleton::instance()->Release(pPacket);
+		errorCode = PACKETIO_ERROR_MEMORY_ALLOC;
 		return NULL;
 	}
 
-	if (FALSE == pPacket->Decode(m_packetSize, errorCode))
+	pPacket->Initialize();
+
+	if (FALSE == m_pPacketIOBuffer->GetPacket(*pPacket->GetHeader(), (char*)pPacket->GetData(), m_packetSize, errorCode))
 	{
 		PacketPoolSingleton::instance()->Release(pPacket);
 		return NULL;

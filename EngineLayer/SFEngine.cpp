@@ -27,6 +27,7 @@ SFEngine::SFEngine()
 {
 	ACE::init();
 
+
 	//PacketDelayedSendTask::instance()->Init(100);	
 
 	google::InitGoogleLogging("CGSF");
