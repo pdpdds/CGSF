@@ -3,9 +3,11 @@ Casual Game Server Framework
 
 This project purpose rapid development of online casual game server using open source code. 
 
-Features
--------
-
+Notice
+------- 
+This Repository is deprecated. Use below Reopositories
+[CGSF Visual Studio 2019 Version](https://github.com/pdpdds/cgsf2019) 
+[CGSF2 Visual Studio 2019 Version](https://github.com/pdpdds/CGSFII)
 Activity
 -------
 [Check Trello] (https://trello.com/b/fQrjvbHp/cgsf)
