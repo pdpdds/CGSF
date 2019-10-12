@@ -5,9 +5,9 @@ This project purpose rapid development of online casual game server using open s
 
 Notice
 -------
-This Repository is deprecated. Use below Reopositories  
-[CGSF Visual Studio 2019 Version](https://github.com/pdpdds/cgsf2019)  
-[CGSF2 Visual Studio 2019 Version](https://github.com/pdpdds/CGSFII)
+This repository is deprecated. Use below Reopositories  
+* [CGSF Visual Studio 2019 Version] (https://github.com/pdpdds/cgsf2019)  
+* [CGSF2 Visual Studio 2019 Version] (https://github.com/pdpdds/CGSFII)
 
 Activity
 -------
@@ -29,7 +29,7 @@ Finally, In VSProject Folder
 
 Open Source
 -------
-* [ACE Library](http://download.dre.vanderbilt.edu/)
+* [ACE Library] (http://download.dre.vanderbilt.edu/)
 * [Google Protocol Buffer] (http://code.google.com/p/protobuf/)
 * [Google Log] (https://code.google.com/p/google-glog/)
 * [CEGUI] (http://cegui.org.uk/)
