@@ -5,8 +5,8 @@ This project purpose rapid development of online casual game server using open s
 
 Notice
 -------
-This Repository is deprecated. Use below Reopositories
-[CGSF Visual Studio 2019 Version](https://github.com/pdpdds/cgsf2019)
+This Repository is deprecated. Use below Reopositories  
+[CGSF Visual Studio 2019 Version](https://github.com/pdpdds/cgsf2019)  
 [CGSF2 Visual Studio 2019 Version](https://github.com/pdpdds/CGSFII)
 
 Activity
